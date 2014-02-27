@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[My Smart Designing Blog]]></title>
+  <link href="http://hirofukami.smartdesiginig.me/atom.xml" rel="self"/>
+  <link href="http://hirofukami.smartdesiginig.me/"/>
+  <updated>2014-02-27T16:35:59+09:00</updated>
+  <id>http://hirofukami.smartdesiginig.me/</id>
+  <author>
+    <name><![CDATA[HiroFukami]]></name>
+    <email><![CDATA[dee.sea@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[First Test Post]]></title>
+    <link href="http://hirofukami.smartdesiginig.me/blog/2014/02/27/first-test-post/"/>
+    <updated>2014-02-27T11:04:51+09:00</updated>
+    <id>http://hirofukami.smartdesiginig.me/blog/2014/02/27/first-test-post</id>
+    <content type="html"><![CDATA[<h1>Dropbox ホスティングサービス &ldquo;Smart Designing&rdquo; をつくりました</h1>
+
+<h2>紆余曲折あってのこのサービス</h2>
+
+<p>オートスケーリングWordPress</p>
+
+<p>Dropbox WordPress</p>
+
+<p>Dropbox Web Hosting</p>
+
+<h2>Dropbox で作る、新感覚Web制作</h2>
+
+<p>Dropboxで作るってどういうこと？と思っている方へ使い方動画を作りました。</p>
+
+<iframe width="640" height="360" src="//www.youtube.com/embed/EbcaoC9Ifmk?rel=0" frameborder="0" allowfullscreen></iframe>
+
+
+<h2>プライシング or 価格</h2>
+
+<p>2週間無料利用できて、それ以降は1ヶ月380円から。
+あららどんなかんじなの？</p>
+
+<h2>どんな使い方するか</h2>
+
+<p>Smart Designing + Octopress でブログやってもいいですね
+Javascript + MBaaS なんかもいいかも</p>
+]]></content>
+  </entry>
+  
+</feed>
