@@ -7,6 +7,7 @@ sharing: true
 footer: true
 ---
 ## Hiro Fukami 深海 寛信 (ふかみ ひろのぶ)
+![Hiro Fukami's Picture](https://graph.facebook.com/1282639350/picture?width=350)
 
 # Sumarry
 
@@ -25,16 +26,20 @@ footer: true
 # History
 
 1.  1999-2002 NTT
-2.  2002-2006 インターネット総合研究所 からの ブロードバンドタワー
-3.  2007-2009 トランスコスモス(Meet-Me)
-4.  2010-2012 fluxflex, inc. 共同創業者
-5.  2009-Present シェイクソウル 代表取締役
+1.  2002-2006 インターネット総合研究所 からの ブロードバンドタワー
+1.  2007-2009 トランスコスモス(Meet-Me)
+1.  2010-2012 fluxflex, inc. 共同創業者
+1.  2009-Present シェイクソウル 代表取締役
+
+### Summary
 
 *   NTT(のちNTT東日本)にて法人営業SE、インターネットの可能性に魅せられて＆本物のスキルを身につけたくて、初の転職でインターネット業界に飛び込む。
 *   <a href="http://www.iri.co.jp" target="_blank">インターネット総合研究所</a>入社後、<a href="http://www.bbtower.co.jp" target="_blank">ブロードバンドタワー</a>にてデータセンタのインターネットバックボーンのネットワークエンジニアとして現場にて運用/設計を経験。現場の実践的技術スキルを身につける。転籍。この時IPOを経験。
 *   インターネットサービスの立ち上げがしたくて、3D仮想空間コミュニティー(メタバース)サービス <a href="http://www.meet-me.jp" target="_blank">Meet-Me</a> の立ち上げのためにトランスコスモス株式会社に入社。ネットワーク/サーバ/運用監視システムを一人で構築し、実質4ヶ月でサービスインさせる荒業を経験。
 *   2009年2月に独立し、<a href="http://shakesoul.net" target="_blank">株式会社シェイクソウル(ShakeSoul, inc.)</a>を設立。代表取締役CEO。現在継続中。
 *   2010年6月 シリコンバレースタートアップ <a href="http://fluxflex.com" target="_blank">fluxflex, inc.</a> の共同創業者、2012年1月末退任。
+
+### Current
 
 今は次のスタートアップの芽を作るためにむけてじっくり準備するために、シェイクソウルで自由にアイデアを検証して実験中。
 
@@ -44,17 +49,20 @@ footer: true
 
 # Social Icons
 
-*   Facebook : [/fukami][1]
-*   Twitter : [@d_sea][2]
+*   Facebook : [/fukami][1]   : 割と大きめなお知らせ的なものが多め(ポスト頻度低め)
+*   Twitter : [@d_sea][2]  : 日常的な思いつき、小ネタ(ポスト頻度多め)
 *   Google+ : [+HiroFukami][3]
 *   Linkedin : [/hirofukami][4]
 *   Tumblr : [Hiro Fukami's Tumblr][5]
 
 ## Tweet
 
-<a class="twitter-timeline"  href="https://twitter.com/d_sea"  data-widget-id="383085843721637888">Tweets by @d_sea</a> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+<a class="twitter-timeline" href="https://twitter.com/d_sea" data-widget-id="383085843721637888">Tweets by @d_sea</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 
-<a class="twitter-timeline"  href="https://twitter.com/shakesoul"  data-widget-id="383088297850859520">Tweets by @shakesoul</a> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+<a class="twitter-timeline" href="https://twitter.com/shakesoul" data-widget-id="383088297850859520">Tweets by @shakesoul</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
 
 # Book
 
@@ -72,11 +80,11 @@ footer: true
 
 最近しゃべったもの
 
-[slideshare id=28749751&doc=131129bpstudy75-131129195658-phpapp02]
+<iframe src="http://www.slideshare.net/slideshow/embed_code/28749751" width="597" height="486" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px 1px 0; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="https://www.slideshare.net/d_sea/smartwp" title="BPStudy#75 スマートWP 裏側のお話からリーンなアプローチまで" target="_blank">BPStudy#75 スマートWP 裏側のお話からリーンなアプローチまで</a> </strong> from <strong><a href="http://www.slideshare.net/d_sea" target="_blank">Hiro Fukami</a></strong> </div>
 
-[slideshare id=26454081&doc=130922coworkingasiaconferencetokyo2013-130923063834-phpapp02]
+<iframe src="http://www.slideshare.net/slideshow/embed_code/26454081" width="597" height="486" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px 1px 0; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="https://www.slideshare.net/d_sea/coworking-asia-conferencetokyo2013" title="スマートWordPress - Coworking Asia Conference Tokyo 2013" target="_blank">スマートWordPress - Coworking Asia Conference Tokyo 2013</a> </strong> from <strong><a href="http://www.slideshare.net/d_sea" target="_blank">Hiro Fukami</a></strong> </div>
 
-[slideshare id=24866409&doc=130802jaws-ug-tokyosmartwp-130802064450-phpapp01]
+<iframe src="http://www.slideshare.net/slideshow/embed_code/24866409" width="597" height="486" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px 1px 0; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="https://www.slideshare.net/d_sea/wordpress-on-jawsug-tokyo" title="スマートWordPress on JAWS-UG Tokyo#17" target="_blank">スマートWordPress on JAWS-UG Tokyo#17</a> </strong> from <strong><a href="http://www.slideshare.net/d_sea" target="_blank">Hiro Fukami</a></strong> </div>
 
 # Skills
 
