@@ -94,12 +94,10 @@ footer: true
     *   最近ではサービスオペレーションやプロモーションのコンサルティングなどもやったり
 
 *   やりたいこと
-    
     *   やっぱりサービスを作りたい
     *   人の心が少しでも振えるような＆人の生活がハッピーになれるようなモノ/サービスを考えるために常に勉強中
 
 *   iPhone App Development(Titanium Mobile/MBaaS)
-
 *   Network Engineering, Servers Engineering
 *   効率的な振る舞い
 *   Extreme Meeting
