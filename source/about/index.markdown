@@ -66,13 +66,13 @@ footer: true
 
 # Book
 
-## よくわかるAmazonEC2/S3入門 ―AmazonWebServicesクラウド活用と実践
+## よくわかるAmazonEC2/S3入門 ―Amazon Web Services クラウド活用と実践
 
 2010.06発行、共著
 
 [<img border="0" src="http://img.7netshopping.jp/bks/images/i3/1102915843.jpg" />][6]<img src="http://ir-jp.amazon-adsystem.com/e/ir?t=dsea-22&l=as2&o=9&a=4774142840" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
 
-[よくわかるAmazonEC2/S3入門 ―AmazonWebServicesクラウド活用と実践 (Software Design plusシリーズ)][7]<img src="http://ir-jp.amazon-adsystem.com/e/ir?t=dsea-22&l=as2&o=9&a=4774142840" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+[よくわかるAmazonEC2/S3入門 ―Amazon Web Servicesクラウド活用と実践 (Software Design plusシリーズ)][7]<img src="http://ir-jp.amazon-adsystem.com/e/ir?t=dsea-22&l=as2&o=9&a=4774142840" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
 
 # Slides
 
