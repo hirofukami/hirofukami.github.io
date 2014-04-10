@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "娘の小学校卒業に参加"
+title: "娘の小学校卒業式に参加"
 date: 2014-03-25 18:41:55 +0900
 comments: true
 categories: Life

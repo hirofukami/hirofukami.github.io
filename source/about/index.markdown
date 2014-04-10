@@ -1,7 +1,7 @@
 ---
 layout: page
 title: "about"
-date: 2014-02-27 16:22
+date: 2014-04-04 10:00
 comments: true
 sharing: true
 footer: true
@@ -47,7 +47,16 @@ footer: true
 
 今もインターネットの可能性を信じて模索する毎日。
 
-# Social Icons
+# This Blog
+
+*   URL : [hirofukami.smartd.me](http://hirofukami.smartd.me)
+*   RSS : [http://hirofukami.smartd.me/atom.xml](http://hirofukami.smartd.me/atom.xml)
+*   Facebook Page : [/hirofukamiblog](https://www.facebook.com/hirofukamiblog) すべてのポストをフィードしています
+
+<iframe src="//www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2Fhirofukamiblog&amp;width=510&amp;height=530&amp;colorscheme=light&amp;show_faces=true&amp;header=false&amp;stream=true&amp;show_border=true&amp;appId=345825838884402" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:510px; height:530px;" allowTransparency="true"></iframe>
+
+# Social Networks
+
 
 *   Facebook : [/fukami][1]   : 割と大きめなお知らせ的なものが多め(ポスト頻度低め)
 *   Twitter : [@d_sea][2]  : 日常的な思いつき、小ネタ(ポスト頻度多め)

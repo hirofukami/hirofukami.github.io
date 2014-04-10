@@ -98,14 +98,14 @@ Firefoxの extensions の Evernote Web Clipper はショートカットキーが
 
 みたいな流れで、マウスを使うことなくキー操作だけでブックマーク出来るようになりました。
 
-## .vimperatorrc 公開
+## .vimperatorrc
 
 ということで、Firefox + Vimperator に戻りました。
 
 ついでに、今使っている Vimperator の .vimepratorrc を gist にあげました。
-プラグイン設定で FeedSomeKeys の設定が書かれていますが、ignorekeys の設定をしているので実質的に使っていません。
+プラグイン設定で FeedSomeKeys の設定が書かれていますが、ignorekeys の設定をしているので実質的に使っていません。主にキーマップだけの設定になっています。
 
-主にキーマップだけの設定になっています。
+**[GitHub Gist vimperatorrc](https://gist.github.com/d-sea/ca08b0cb765f9a255d26)**
 
 {% gist ca08b0cb765f9a255d26 %}
 
