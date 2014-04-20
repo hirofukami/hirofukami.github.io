@@ -9,19 +9,18 @@ ssh_port       = "22"
 document_root  = "/Users/hironobu/Dropbox/sd-static/hirofukami.smartd.me/"
 rsync_delete   = true
 rsync_args     = ""  # Any extra arguments to pass to rsync
-deploy_default = "rsync"
-#deploy_default = "push"
+deploy_default = "push"
 
 # This will be configured for you when you run config_deploy
-deploy_branch  = "gh-pages"
+deploy_branch  = "master"
 
 ## -- Misc Configs -- ##
 
 public_dir      = "public"    # compiled site directory
 source_dir      = "source"    # source file directory
 blog_index_dir  = 'source'    # directory for your blog's index page (if you put your index in source/blog/index.html, set this to 'source/blog')
-#deploy_dir      = "_deploy"   # deploy directory (for Github pages deployment)
-deploy_dir      = "/Users/hironobu/Dropbox/sd-static/hirofukami.smartdesigning.me"   # deploy directory (for Github pages deployment)
+deploy_dir      = "_deploy"   # deploy directory (for Github pages deployment)
+#deploy_dir      = "/Users/hironobu/Dropbox/sd-static/hirofukami.smartdesigning.me"   # deploy directory (for rsync to Smart Designing)
 stash_dir       = "_stash"    # directory to stash posts for speedy generation
 posts_dir       = "_posts"    # directory for blog files
 themes_dir      = ".themes"   # directory for blog files
@@ -248,7 +247,7 @@ task :rsync do
   end
   puts "## Deploying website via Rsync"
 #  ok_failed system("rsync -avze 'ssh -p #{ssh_port}' #{exclude} #{rsync_args} #{"--delete" unless rsync_delete == false} #{public_dir}/ #{ssh_user}:#{document_root}")
-  ok_failed system("rsync -avz #{exclude} #{rsync_args} #{"--delete" unless rsync_delete == false} #{public_dir}/ #{document_root}")
+  ok_failed system("rsync -avz --stats #{exclude} #{rsync_args} #{"--delete" unless rsync_delete == false} #{public_dir}/ #{document_root}")
 end
 
 desc "deploy public directory to github pages"

@@ -9,11 +9,11 @@ ssh_port       = "22"
 document_root  = "/Users/hironobu/Dropbox/sd-static/hirofukami.smartd.me/"
 rsync_delete   = true
 rsync_args     = ""  # Any extra arguments to pass to rsync
-deploy_default = "rsync"
+deploy_default = "push"
 #deploy_default = "push"
 
 # This will be configured for you when you run config_deploy
-deploy_branch  = "gh-pages"
+deploy_branch  = "master"
 
 ## -- Misc Configs -- ##
 
@@ -248,7 +248,7 @@ task :rsync do
   end
   puts "## Deploying website via Rsync"
 #  ok_failed system("rsync -avze 'ssh -p #{ssh_port}' #{exclude} #{rsync_args} #{"--delete" unless rsync_delete == false} #{public_dir}/ #{ssh_user}:#{document_root}")
-  ok_failed system("rsync -avze #{exclude} #{rsync_args} #{"--delete" unless rsync_delete == false} #{public_dir}/ #{document_root}")
+  ok_failed system("rsync -avz --stats #{exclude} #{rsync_args} #{"--delete" unless rsync_delete == false} #{public_dir}/ #{document_root}")
 end
 
 desc "deploy public directory to github pages"
