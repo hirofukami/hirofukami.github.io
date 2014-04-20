@@ -2,7 +2,7 @@
 #      Main Configs       #
 # ----------------------- #
 
-url: http://hirofukami.github.io
+url: http://blog.hirofukami.com
 title: Hiro Fukami's Blog
 subtitle: "My Life Log on Octopress"
 author: HiroFukami
@@ -94,7 +94,7 @@ disqus_short_name: hirofukamisblog
 disqus_show_comment_count: true
 
 # Google Analytics
-google_analytics_tracking_id: UA-44359867-2
+google_analytics_tracking_id: UA-44359867-3
 
 # Facebook Like
 facebook_like: true

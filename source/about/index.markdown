@@ -49,8 +49,8 @@ footer: true
 
 # This Blog
 
-*   URL : [hirofukami.smartd.me](http://hirofukami.smartd.me)
-*   RSS : [http://hirofukami.smartd.me/atom.xml](http://hirofukami.smartd.me/atom.xml)
+*   URL : [blog.hirofukami.com](http://blog.hirofukami.com)
+*   RSS : [http://blog.hirofukami.com/atom.xml](http://blog.hirofukami.com/atom.xml)
 *   Facebook Page : [/hirofukamiblog](https://www.facebook.com/hirofukamiblog) すべてのポストをフィードしています
 
 <iframe src="//www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2Fhirofukamiblog&amp;width=510&amp;height=530&amp;colorscheme=light&amp;show_faces=true&amp;header=false&amp;stream=true&amp;show_border=true&amp;appId=345825838884402" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:510px; height:530px;" allowTransparency="true"></iframe>
