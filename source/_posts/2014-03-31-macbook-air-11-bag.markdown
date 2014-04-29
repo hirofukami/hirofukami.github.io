@@ -10,7 +10,7 @@ categories: Shopping
 
 iPadとかのタブレット用の小さめバッグも出てきた雰囲気もあり、再びバッグ探しをしてみた。
 
-そして買ったのが[これ][1]。
+そして買ったのが[これ][2]。
 
 ![macbook-air-bag-fy-0866](/images/20140331-macbook-air-bag-fy-0866.jpg)
 
