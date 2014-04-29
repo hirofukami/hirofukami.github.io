@@ -64,7 +64,7 @@ MacBook Airやタブレットで仕事ができるようになっているので
 今後もバッグの **小さく薄く** 傾向は続くと思いますし、色々なメーカーから出てくると思っています。
 でも、今回買った FY-0866 は色々探した中でベストな部類に入る良いバッグかと思います。お勧めです！
 
-[Amazon - HARVEST LABEL（ハーヴェストレーベル）FY-0866 ボディバッグ][1]
+[Amazon - HARVEST LABEL（ハーヴェストレーベル）FY-0866 ボディバッグ][2]
 
 [1]: http://hirofukami.com/2012/10/31/macbook-air-11/
 [2]: http://www.amazon.co.jp/exec/obidos/ASIN/B00C95KZ9K/dsea-22/ref=nosim/
