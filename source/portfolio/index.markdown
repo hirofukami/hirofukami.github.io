@@ -18,17 +18,9 @@ Dropbox Web Hosting Cloud Service
 
 <img class="alignnone" alt="SmartWP" src="http://i0.wp.com/www.shakesoul.net/wp-content/uploads/2013/05/SmartWP-Scale-h300.png?resize=491%2C270" width="491" height="270" />
 
-Auto Scaling WordPress Clud Service
+Total Technical Services for WordPress Servver
 
-<a href="http://www.shakesoul.net/smartwp" title="スマートWP" target="_blank">http://www.shakesoul.net/smartwp</a>
-
-# SmartWP Works
-
-<img class="alignnone" alt="SmartWP Works" src="http://i0.wp.com/www.shakesoul.net/wp-content/uploads/2013/11/SmartWP-Works.png?resize=480%2C240" width="480" height="240" />
-
-WordPress Cloud for designing site, Dropbox upload is the fastest deploying.
-
-<a href="http://www.shakesoul.net/smartwp-works" title="スマートWP Works" target="_blank">http://www.shakesoul.net/smartwp-works</a>
+<a href="http://smtwp.com" title="スマートWP" target="_blank">http://smtwp.com</a>
 
 # DmAtChat
 
