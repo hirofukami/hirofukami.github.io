@@ -6,7 +6,7 @@ comments: true
 categories: Football
 ---
 
-![Samurai Blue](https://fbcdn-sphotos-a-a.akamaihd.net/hphotos-ak-xpf1/t1.0-9/10382627_10204020638657934_1095572487847388933_n.jpg)
+![Samurai Blue](https://scontent-a-sjc.xx.fbcdn.net/hphotos-xfp1/t1.0-9/10408816_10204063283164020_2084306547102995469_n.jpg)
 
 日本時間6/15 10:00から行われた 2014 ワールドカップ Cグループ 日本xコートジボワールの試合分析をしてみたいと思う。
 
