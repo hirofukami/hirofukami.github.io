@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Internet | Hiro Fukami's Blog]]></title>
-  <link href="http://blog.hirofukami.com/blog/categories/internet/atom.xml" rel="self"/>
-  <link href="http://blog.hirofukami.com/"/>
-  <updated>2014-08-07T23:29:44+09:00</updated>
-  <id>http://blog.hirofukami.com/</id>
+  <link href="http://hirofukami.com/blog/categories/internet/atom.xml" rel="self"/>
+  <link href="http://hirofukami.com/"/>
+  <updated>2014-08-07T23:37:18+09:00</updated>
+  <id>http://hirofukami.com/</id>
   <author>
     <name><![CDATA[HiroFukami]]></name>
     <email><![CDATA[dee.sea@gmail.com]]></email>
@@ -15,10 +15,10 @@
   
   <entry>
     <title type="html"><![CDATA[WordPress.com と Tumblr 比較]]></title>
-    <link href="http://blog.hirofukami.com/2013/03/19/wordpress-com-vs-tumblr/"/>
+    <link href="http://hirofukami.com/2013/03/19/wordpress-com-vs-tumblr/"/>
     <updated>2013-03-20T01:55:59+09:00</updated>
-    <id>http://blog.hirofukami.com/2013/03/19/wordpress-com-vs-tumblr</id>
-    <content type="html"><![CDATA[<p><img class="aligncenter size-full wp-image-804" alt="tumblr-to-wordpress-migration" src="http://blog.hirofukami.com/images/2013/03/tumblr-to-wordpress-migration.jpg?resize=800%2C325" data-recalc-dims="1" /></p>
+    <id>http://hirofukami.com/2013/03/19/wordpress-com-vs-tumblr</id>
+    <content type="html"><![CDATA[<p><img class="aligncenter size-full wp-image-804" alt="tumblr-to-wordpress-migration" src="http://hirofukami.com/images/2013/03/tumblr-to-wordpress-migration.jpg?resize=800%2C325" data-recalc-dims="1" /></p>
 
 <p>hirofukami.com を自分のブログにして色々発信していこうと思っているのだけど、はてなダイアリーから Tumblr に移ったはいいけど、純粋にブログとして運営するにはちょっと足りない点も出てきたので、Wordpress.com もテスト的に使ってみて比較してみた。</p>
 
@@ -89,9 +89,9 @@
   
   <entry>
     <title type="html"><![CDATA[Kindle利用時にUS/JP Amazonアカウントでちょっと混乱したのでまとめ]]></title>
-    <link href="http://blog.hirofukami.com/2012/10/28/kindle-us-jp-amazon/"/>
+    <link href="http://hirofukami.com/2012/10/28/kindle-us-jp-amazon/"/>
     <updated>2012-10-28T11:37:00+09:00</updated>
-    <id>http://blog.hirofukami.com/2012/10/28/kindle-us-jp-amazon</id>
+    <id>http://hirofukami.com/2012/10/28/kindle-us-jp-amazon</id>
     <content type="html"><![CDATA[<p>まだ iPad mini や Kindle 端末は買ってないのですが、iPhone に Kindle アプリ入れていたので、試しに<a href="http://www.amazon.co.jp/gp/product/B009LHC7A4/ref=as_li_ss_tl?ie=UTF8&camp=247&creative=7399&creativeASIN=B009LHC7A4&linkCode=as2&tag=dsea-22" target="_blank">ジョジョの奇妙な冒険 第1巻</a>の無料サンプルを見てみるかと思ったら、ちょっとはまったのでメモっておく。<br/>
 解決の際に参考にしたのは <a href="http://www.itmedia.co.jp/enterprise/articles/1210/27/news010.html" target="_blank">このリンク</a>。</p>
 
@@ -138,9 +138,9 @@
   
   <entry>
     <title type="html"><![CDATA[Firefox3.0 でいれているアドオン]]></title>
-    <link href="http://blog.hirofukami.com/2008/12/22/firefox3-0/"/>
+    <link href="http://hirofukami.com/2008/12/22/firefox3-0/"/>
     <updated>2008-12-23T00:00:00+09:00</updated>
-    <id>http://blog.hirofukami.com/2008/12/22/firefox3-0</id>
+    <id>http://hirofukami.com/2008/12/22/firefox3-0</id>
     <content type="html"><![CDATA[<div class="section">
   <p>
     自宅PCのHDDを新しいものに代えるついでにWind2000からWinXPに移行して、改めてインストールしなおしているのでまとめておく。<a href="http://d.hatena.ne.jp/d_sea/20080708" target="_blank">以前まとめた記事</a>と比較しても若干変わっているか。
@@ -278,9 +278,9 @@
   
   <entry>
     <title type="html"><![CDATA[NHKスペシャル デジタルネイティブを見て]]></title>
-    <link href="http://blog.hirofukami.com/2008/12/12/nhk/"/>
+    <link href="http://hirofukami.com/2008/12/12/nhk/"/>
     <updated>2008-12-13T00:00:00+09:00</updated>
-    <id>http://blog.hirofukami.com/2008/12/12/nhk</id>
+    <id>http://hirofukami.com/2008/12/12/nhk</id>
     <content type="html"><![CDATA[<div class="section">
   <p>
     録画してそのままだった<a href="http://www.nhk.or.jp/digitalnative/" target="_blank">NHKスペシャル デジタルネイティブ</a>をやっと見た。やっぱりすぐ見ておくべきだったと後悔。こういうものは情報の陳腐化が早いから自分が必要だと思ったものは時間を削りだすくらいしないとダメだな。
@@ -340,9 +340,9 @@
   
   <entry>
     <title type="html"><![CDATA[Dropbox が便利すぎる]]></title>
-    <link href="http://blog.hirofukami.com/2008/12/11/dropbox/"/>
+    <link href="http://hirofukami.com/2008/12/11/dropbox/"/>
     <updated>2008-12-12T00:00:00+09:00</updated>
-    <id>http://blog.hirofukami.com/2008/12/11/dropbox</id>
+    <id>http://hirofukami.com/2008/12/11/dropbox</id>
     <content type="html"><![CDATA[<div class="section">
   <p>
     どこかのブログに紹介されていて入れてみた。いやぁ～、便利だ。このサービスはいい。

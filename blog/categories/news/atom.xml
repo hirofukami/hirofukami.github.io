@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: News | Hiro Fukami's Blog]]></title>
-  <link href="http://blog.hirofukami.com/blog/categories/news/atom.xml" rel="self"/>
-  <link href="http://blog.hirofukami.com/"/>
-  <updated>2014-08-07T23:29:44+09:00</updated>
-  <id>http://blog.hirofukami.com/</id>
+  <link href="http://hirofukami.com/blog/categories/news/atom.xml" rel="self"/>
+  <link href="http://hirofukami.com/"/>
+  <updated>2014-08-07T23:37:18+09:00</updated>
+  <id>http://hirofukami.com/</id>
   <author>
     <name><![CDATA[HiroFukami]]></name>
     <email><![CDATA[dee.sea@gmail.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Octopress にブログ乗り換えました]]></title>
-    <link href="http://blog.hirofukami.com/blog/2014/03/03/sart-octopress/"/>
+    <link href="http://hirofukami.com/blog/2014/03/03/sart-octopress/"/>
     <updated>2014-03-03T10:41:55+09:00</updated>
-    <id>http://blog.hirofukami.com/blog/2014/03/03/sart-octopress</id>
+    <id>http://hirofukami.com/blog/2014/03/03/sart-octopress</id>
     <content type="html"><![CDATA[<h1>きっかけ &ndash; 静的HTMLはえー</h1>
 
 <p>今まで <a href="http://www.shakesoul.net/smartwp">スマートWP</a> や <a href="http://smartdesigning.me/">Smart Designing</a>  などをリリースしてきて、Webホスティングクラウドを運用してみて思ったことは、静的HTMLファイルのWebサーバのパフォーマンスは圧倒的に低負荷にできるなぁというところだった。</p>
@@ -46,9 +46,9 @@
   
   <entry>
     <title type="html"><![CDATA[今日の日経 2014.01.21]]></title>
-    <link href="http://blog.hirofukami.com/2014/01/21/daily-nikkei-2014-01-21/"/>
+    <link href="http://hirofukami.com/2014/01/21/daily-nikkei-2014-01-21/"/>
     <updated>2014-01-21T23:16:42+09:00</updated>
-    <id>http://blog.hirofukami.com/2014/01/21/daily-nikkei-2014-01-21</id>
+    <id>http://hirofukami.com/2014/01/21/daily-nikkei-2014-01-21</id>
     <content type="html"><![CDATA[<h2>投資ファンドに売却 ビッグローブ NEC、700億円前後[1面]</h2>
 
 <p>結局、ビッグローブを買うプロバイダーはいなかったということか。<br/>
@@ -80,9 +80,9 @@
   
   <entry>
     <title type="html"><![CDATA[今日の日経 2013.12.07]]></title>
-    <link href="http://blog.hirofukami.com/2013/12/07/daily-nikkei-2013-12-07/"/>
+    <link href="http://hirofukami.com/2013/12/07/daily-nikkei-2013-12-07/"/>
     <updated>2013-12-07T19:54:50+09:00</updated>
-    <id>http://blog.hirofukami.com/2013/12/07/daily-nikkei-2013-12-07</id>
+    <id>http://hirofukami.com/2013/12/07/daily-nikkei-2013-12-07</id>
     <content type="html"><![CDATA[<h3>秘密保護法が成立 [1面]</h3>
 
 <ul>
@@ -131,9 +131,9 @@
   
   <entry>
     <title type="html"><![CDATA[今日の日経 2013.07.10]]></title>
-    <link href="http://blog.hirofukami.com/2013/07/10/diary-nikkei-2013-07-10/"/>
+    <link href="http://hirofukami.com/2013/07/10/diary-nikkei-2013-07-10/"/>
     <updated>2013-07-10T20:30:01+09:00</updated>
-    <id>http://blog.hirofukami.com/2013/07/10/diary-nikkei-2013-07-10</id>
+    <id>http://hirofukami.com/2013/07/10/diary-nikkei-2013-07-10</id>
     <content type="html"><![CDATA[<p>[1面] 3年滞在で永住権 政府が新制度検討</p>
 
 <ul>
@@ -182,9 +182,9 @@
   
   <entry>
     <title type="html"><![CDATA[今日の日経 2013.05.30]]></title>
-    <link href="http://blog.hirofukami.com/2013/05/29/diary-nikkei-2013-05-30/"/>
+    <link href="http://hirofukami.com/2013/05/29/diary-nikkei-2013-05-30/"/>
     <updated>2013-05-30T07:50:03+09:00</updated>
-    <id>http://blog.hirofukami.com/2013/05/29/diary-nikkei-2013-05-30</id>
+    <id>http://hirofukami.com/2013/05/29/diary-nikkei-2013-05-30</id>
     <content type="html"><![CDATA[<p>円安、構造変化で最長 [1面]</p>
 
 <ul>

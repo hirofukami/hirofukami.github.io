@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Tool | Hiro Fukami's Blog]]></title>
-  <link href="http://blog.hirofukami.com/blog/categories/tool/atom.xml" rel="self"/>
-  <link href="http://blog.hirofukami.com/"/>
-  <updated>2014-08-07T23:29:44+09:00</updated>
-  <id>http://blog.hirofukami.com/</id>
+  <link href="http://hirofukami.com/blog/categories/tool/atom.xml" rel="self"/>
+  <link href="http://hirofukami.com/"/>
+  <updated>2014-08-07T23:37:18+09:00</updated>
+  <id>http://hirofukami.com/</id>
   <author>
     <name><![CDATA[HiroFukami]]></name>
     <email><![CDATA[dee.sea@gmail.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[そして Vichrome から Vimperator に戻った]]></title>
-    <link href="http://blog.hirofukami.com/blog/2014/04/04/chrome-to-firefox/"/>
+    <link href="http://hirofukami.com/blog/2014/04/04/chrome-to-firefox/"/>
     <updated>2014-04-04T09:00:00+09:00</updated>
-    <id>http://blog.hirofukami.com/blog/2014/04/04/chrome-to-firefox</id>
+    <id>http://hirofukami.com/blog/2014/04/04/chrome-to-firefox</id>
     <content type="html"><![CDATA[<p>過去に <a href="http://hirofukami.com/2014/02/04/firefox-vimperator-vs-chrome-vichrome/">Firefox + Vimperator から Chrome + Vichrome に乗り換えた</a> というポストを書いたのだけど、あれから2ヶ月もたたないうちに Vimperator に戻りました。</p>
 
 <p><img src="http://teramako.github.io/doc/browser-workshop-20101127/vimperator-logo.png" alt="Vimperator" /></p>
@@ -240,9 +240,9 @@ echo &quot;###  Finish loading vimperatorrc.  ###&quot;</code></pre></noscript><
   
   <entry>
     <title type="html"><![CDATA[Firefox + Vimperator から Chrome + Vichrome に乗り換えた]]></title>
-    <link href="http://blog.hirofukami.com/2014/02/04/firefox-vimperator-vs-chrome-vichrome/"/>
+    <link href="http://hirofukami.com/2014/02/04/firefox-vimperator-vs-chrome-vichrome/"/>
     <updated>2014-02-04T19:24:36+09:00</updated>
-    <id>http://blog.hirofukami.com/2014/02/04/firefox-vimperator-vs-chrome-vichrome</id>
+    <id>http://hirofukami.com/2014/02/04/firefox-vimperator-vs-chrome-vichrome</id>
     <content type="html"><![CDATA[<p>PCの操作上でブラウザを使う時間はかなりを占めるし、あらゆるサービスが使うことができるようになって、ますますその割合は増えていっている。<br/>
 ということで、ブラウザ操作を効率的に行うのはパフォーマンスをよく保つのに結構重要だと思っている。</p>
 

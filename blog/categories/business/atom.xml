@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Business | Hiro Fukami's Blog]]></title>
-  <link href="http://blog.hirofukami.com/blog/categories/business/atom.xml" rel="self"/>
-  <link href="http://blog.hirofukami.com/"/>
-  <updated>2014-08-07T23:29:44+09:00</updated>
-  <id>http://blog.hirofukami.com/</id>
+  <link href="http://hirofukami.com/blog/categories/business/atom.xml" rel="self"/>
+  <link href="http://hirofukami.com/"/>
+  <updated>2014-08-07T23:37:18+09:00</updated>
+  <id>http://hirofukami.com/</id>
   <author>
     <name><![CDATA[HiroFukami]]></name>
     <email><![CDATA[dee.sea@gmail.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[仕事に対する思考 2014/05/09 スナップショット]]></title>
-    <link href="http://blog.hirofukami.com/blog/2014/05/09/think-my-job/"/>
+    <link href="http://hirofukami.com/blog/2014/05/09/think-my-job/"/>
     <updated>2014-05-09T19:52:54+09:00</updated>
-    <id>http://blog.hirofukami.com/blog/2014/05/09/think-my-job</id>
+    <id>http://hirofukami.com/blog/2014/05/09/think-my-job</id>
     <content type="html"><![CDATA[<p>公園で本を読んでいた時に、ふと自分は仕事で何をしたいのか？と考え始めたらあふれるように考えが吹き出した。</p>
 
 <p>本来大事にすべき根っこの部分を忘れて、スタートアップ、リーン、顧客開発、市場規模とか考えてしまっていたことに気づいた。</p>
@@ -119,9 +119,9 @@
   
   <entry>
     <title type="html"><![CDATA[ディズニーシーに4時間いて思ったこと]]></title>
-    <link href="http://blog.hirofukami.com/blog/2014/03/04/thinking-at-disny-sea/"/>
+    <link href="http://hirofukami.com/blog/2014/03/04/thinking-at-disny-sea/"/>
     <updated>2014-03-04T14:54:54+09:00</updated>
-    <id>http://blog.hirofukami.com/blog/2014/03/04/thinking-at-disny-sea</id>
+    <id>http://hirofukami.com/blog/2014/03/04/thinking-at-disny-sea</id>
     <content type="html"><![CDATA[<p>土曜日になぜか嫁＋娘＋その友だちをディズニーシーから車で家まで送迎するための運転手として18:30からディズニーシーに入った。</p>
 
 <p>特にアトラクションに乗りまくろうという感じでもなかったので、ゆるりと夜のディズニーシーの様子を観察してきた。</p>
@@ -222,12 +222,12 @@
   
   <entry>
     <title type="html"><![CDATA[Web制作者のためのクラウド&#8221;SmartDesigning&#8221;をリリースします]]></title>
-    <link href="http://blog.hirofukami.com/2014/02/13/notify-smartdesigning/"/>
+    <link href="http://hirofukami.com/2014/02/13/notify-smartdesigning/"/>
     <updated>2014-02-13T19:38:13+09:00</updated>
-    <id>http://blog.hirofukami.com/2014/02/13/notify-smartdesigning</id>
+    <id>http://hirofukami.com/2014/02/13/notify-smartdesigning</id>
     <content type="html"><![CDATA[<h2>SmartDesigning (スマートデザイニング)</h2>
 
-<p><a href="http://smartdesigning.me/"><img src="http://blog.hirofukami.com/images/2014/02/SmartDesigning_icon_black.png?resize=256%2C206" alt="SmartDesigning_icon_black" class="alignnone size-full wp-image-2334" data-recalc-dims="1" /></a><br/>
+<p><a href="http://smartdesigning.me/"><img src="http://hirofukami.com/images/2014/02/SmartDesigning_icon_black.png?resize=256%2C206" alt="SmartDesigning_icon_black" class="alignnone size-full wp-image-2334" data-recalc-dims="1" /></a><br/>
 Webデザインするためのクラウドです。<br/>
 手軽にWebサイトをクラウド上に持てます。Dropboxを使ってローカルで作ったファイルをリアルタイムにクラウドに反映させます。</p>
 
@@ -281,7 +281,7 @@ TwitterとFacebookページでアップデートをポストしているので�
 
 <h3>Dropboxアップロード</h3>
 
-<p><img src="http://blog.hirofukami.com/images/2013/10/dropbox-logos_dropbox-logotype-blue.png?resize=446%2C171" alt="dropbox-logos_dropbox-logotype-blue" class="alignnone size-full wp-image-1322" data-recalc-dims="1" /></p>
+<p><img src="http://hirofukami.com/images/2013/10/dropbox-logos_dropbox-logotype-blue.png?resize=446%2C171" alt="dropbox-logos_dropbox-logotype-blue" class="alignnone size-full wp-image-1322" data-recalc-dims="1" /></p>
 
 <p>なんといっても特徴は Dropbox を使ってファイルをアップロードすることです。<br/>
 ローカル上の Dropbox にWebサイト用のディレクトリを作って、ファイルが変更されると同期が走ってクラウドに反映されます。</p>
@@ -338,9 +338,9 @@ TwitterとFacebookページでアップデートをポストしているので�
   
   <entry>
     <title type="html"><![CDATA[LEAN &#8211; インタビューやってみて失敗したあれこれ]]></title>
-    <link href="http://blog.hirofukami.com/2014/02/11/lean-interview-failures/"/>
+    <link href="http://hirofukami.com/2014/02/11/lean-interview-failures/"/>
     <updated>2014-02-11T21:08:20+09:00</updated>
-    <id>http://blog.hirofukami.com/2014/02/11/lean-interview-failures</id>
+    <id>http://hirofukami.com/2014/02/11/lean-interview-failures</id>
     <content type="html"><![CDATA[<p><a href="http://www.shakesoul.net/smartwp">スマートWP</a> を作っていく上で、リーンスタートアップの手法を使って行こうと決めて、<a href="http://www.amazon.co.jp/gp/product/4873115914/ref=as_li_ss_tl?ie=UTF8&amp;camp=247&amp;creative=7399&amp;creativeASIN=4873115914&amp;linkCode=as2&amp;tag=dsea-22">RUNNING LEAN</a> (参考: <a href="http://hirofukami.com/2013/08/06/book-runninglean/">RUNNING LEAN を読んだレビュー</a>)を読み返しつつ具体的行動をしてみたのだけど、初めてのことだしなかなかうまく行かなかった。今思えば失敗の連続だった。</p>
 
 <p>その経験を経て最近ようやく「こんなことかな？」と捉えられるようになったけど、そこに至るまでの数々の失敗もちゃんとアウトプットしていこうと思う。</p>
@@ -360,7 +360,7 @@ TwitterとFacebookページでアップデートをポストしているので�
 
 <p><a href="http://www.amazon.co.jp/gp/product/4873115914/ref=as_li_ss_tl?ie=UTF8&amp;camp=247&amp;creative=7399&amp;creativeASIN=4873115914&amp;linkCode=as2&amp;tag=dsea-22">RUNNING LEAN</a> の p66 には「わずか5人の顧客インタビューで十分です。」と書いてありながら、p80 には「4〜6週間で30〜60人にインタビューしましょう。」とあって、じゃあ多いほうが良いのか、と思いつつ6週間もかけられないから1ターゲットセグメントに10名をまずやってみようと決めた。 途中、WP制作者以外のブロガーもターゲットにインタビューしたのでトータル26名、期間は16週間(4ヶ月弱)かかった。</p>
 
-<p><a href="images/2014/02/Screen-Shot-2014-02-11-at-11.54.41.png"><img src="http://blog.hirofukami.com/images/2014/02/Screen-Shot-2014-02-11-at-11.54.41.png?resize=599%2C486" alt="Screen Shot 2014-02-11 at 11.54.41" class="alignnone size-full wp-image-2324" data-recalc-dims="1" /></a></p>
+<p><a href="images/2014/02/Screen-Shot-2014-02-11-at-11.54.41.png"><img src="http://hirofukami.com/images/2014/02/Screen-Shot-2014-02-11-at-11.54.41.png?resize=599%2C486" alt="Screen Shot 2014-02-11 at 11.54.41" class="alignnone size-full wp-image-2324" data-recalc-dims="1" /></a></p>
 
 <p>これはあまりに時間をかけすぎ。あっという間にプールしていたキャッシュが消えてしまった。本のようなペースではとてもじゃないけど数をこなせない。実際紹介者が協力的でも仕事で忙しかったりしてあっという間に時間は過ぎてしまう。</p>
 
@@ -481,9 +481,9 @@ TwitterとFacebookページでアップデートをポストしているので�
   
   <entry>
     <title type="html"><![CDATA[LEAN &#8211; プライシングの決め方を学ぶ]]></title>
-    <link href="http://blog.hirofukami.com/2014/01/30/lean-learn-pricing/"/>
+    <link href="http://hirofukami.com/2014/01/30/lean-learn-pricing/"/>
     <updated>2014-01-31T04:15:45+09:00</updated>
-    <id>http://blog.hirofukami.com/2014/01/30/lean-learn-pricing</id>
+    <id>http://hirofukami.com/2014/01/30/lean-learn-pricing</id>
     <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/4873115914/ref=as_li_ss_tl?ie=UTF8&amp;camp=247&amp;creative=7399&amp;creativeASIN=4873115914&amp;linkCode=as2&amp;tag=dsea-22">RUNNING LEAN</a> で紹介されていた、<a href="http://neildavidson.com/download/dont-just-roll-the-dice/">Don&#8217;t just roll the dice</a> をやっと読了。</p>
 
 <p>参考 : <a href="http://hirofukami.com/2013/08/06/book-runninglean/">RUNNING LEAN レビュー</a></p>
