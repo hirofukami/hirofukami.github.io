@@ -15,7 +15,7 @@ categories: Startup
 
 ## ターゲットx3 かかる時間は3倍
 
-![initial-interview](http://hirofukami.com/wp-content/uploads/2014/02/Screen-Shot-2014-02-11-at-11.54.41.png)
+![initial-interview](images/2014/02/Screen-Shot-2014-02-11-at-11.54.41.png)
 
 実際、想定した課題があるかどうか、フリーランスWordPress制作者、ブロガー、Web制作会社と3つのターゲットについてインタビューを行った。
 
