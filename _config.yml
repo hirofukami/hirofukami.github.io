@@ -2,12 +2,12 @@
 #      Main Configs       #
 # ----------------------- #
 
-url: http://blog.hirofukami.com
+url: http://hirofukami.com
 title: Hiro Fukami's Blog
 subtitle: "My Life Log on Octopress"
 author: HiroFukami
 simple_search: http://google.com/search
-description:
+description: "いつでも前のめり"
 
 # Default date format is "ordinal" (resulting in "July 22nd 2007")
 # You can customize the format as defined in
