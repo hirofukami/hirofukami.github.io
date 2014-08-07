@@ -1,0 +1,323 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<script data-cfasync="false" type="text/javascript" src="//use.typekit.net/axj3cfp.js"></script>
+	<script data-cfasync="false" type="text/javascript">try{Typekit.load();}catch(e){}</script>
+	<meta charset="utf-8">
+	<title>AWS s3cmd を使ってS3から複数EC2インスタンスへ簡単デプロイ環境を作る  | Hiro Fukami's Blog</title>
+
+<meta name="author" content="HiroFukami"> 
+
+<meta name="description" content="基本的に複数台の EC2 インスタンスある場合にファイルをデプロイする時は、手動なら SCP で1台ずつやるのだろうけど、楽をするなら Chef を使って環境を作るとかになると思う。だけど、オートスケーリングをさせている場合、起動しているインスタンスは常に変わってしまう懸念があるので、 &hellip;"> <meta name="keywords" content="">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link href="/atom.xml" rel="alternate" title="Hiro Fukami's Blog" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script type="text/javascript" src="/javascripts/jquery.fancybox.pack.js"></script>
+
+<script language="Javascript" type="text/javascript">
+$(document).ready(
+  function() {
+    (function($) {
+      $(".fancybox[data-content-id]").each(function() {
+        this.href = $(this).data('content-id');
+      });
+      $(".fancybox").fancybox({
+        beforeLoad: function() {
+          var el, 
+              id = $(this.element).data('title-id');
+
+          if (id) {
+            el = $('#' + id);
+
+            if (el.length) {
+              this.title = el.html();
+            }
+          }
+          if ($(this).data('content')) {
+            this.content = $(this).data('content');
+          }
+        },
+        helpers: {
+          title: {
+            type: 'inside'
+          }
+        }
+      });
+    })(jQuery);
+  }
+);
+</script>
+
+	
+</head>
+
+
+<body>
+	<header id="header" class="inner"><h1><a href="/">Hiro Fukami's Blog</a></h1>
+<h4>My Life Log on Octopress</h4>
+<nav id="main-nav"><ul>
+	<li><a href="/">Blog</a></li>
+	<li><a href="/about">About</a></li>
+	<li><a href="/portfolio">Portfolio</a></li>
+	<li><a href="/archives">Archive</a></li>
+	<li><a href="/atom.xml">RSS</a></li>
+</ul>
+</nav>
+<nav id="mobile-nav">
+	<div class="alignleft menu">
+		<a class="button">Menu</a>
+		<div class="container"><ul>
+	<li><a href="/">Blog</a></li>
+	<li><a href="/about">About</a></li>
+	<li><a href="/portfolio">Portfolio</a></li>
+	<li><a href="/archives">Archive</a></li>
+	<li><a href="/atom.xml">RSS</a></li>
+</ul>
+</div>
+	</div>
+	<div class="alignright search">
+		<a class="button"></a>
+		<div class="container">
+			<form action="http://google.com/search" method="get">
+				<input type="text" name="q" results="0">
+				<input type="hidden" name="q" value="site:blog.hirofukami.com">
+			</form>
+		</div>
+	</div>
+</nav>
+
+
+</header>
+
+	<div id="content" class="inner"><article class="post">
+	<h2 class="title">AWS S3cmd を使ってS3から複数EC2インスタンスへ簡単デプロイ環境を作る</h2>
+	<div class="entry-content"><p>基本的に複数台の EC2 インスタンスある場合にファイルをデプロイする時は、手動なら SCP で1台ずつやるのだろうけど、楽をするなら Chef を使って環境を作るとかになると思う。だけど、オートスケーリングをさせている場合、起動しているインスタンスは常に変わってしまう懸念があるので、実際そこまで作りこむのは大変。</p>
+
+<p>そこで、s3cmd sync を使うと簡単デプロイ環境ができると思って触ってみた。<br/>
+インストールや基本的な動かし方は下記参考URLを見ながら、それ以外の情報も得られたので載せておく。</p>
+
+<p>参考URL</p>
+
+<ul>
+<li><a href="http://blog.serverworks.co.jp/tech/2012/06/27/nginx-01/">http://blog.serverworks.co.jp/tech/2012/06/27/nginx-01/</a></li>
+<li><a href="http://memocra.blogspot.jp/2013/02/s3s3cmd-syncinotifys3cmd-sync.html">http://memocra.blogspot.jp/2013/02/s3s3cmd-syncinotifys3cmd-sync.html</a></li>
+<li><a href="http://understeer.hatenablog.com/entry/2012/07/23/124402">http://understeer.hatenablog.com/entry/2012/07/23/124402</a></li>
+<li><a href="http://recipe.kc-cloud.jp/archives/1059">http://recipe.kc-cloud.jp/archives/1059</a></li>
+<li><a href="http://blog.serverworks.co.jp/tech/2013/04/23/ec-cube-on-aws-s3/">http://blog.serverworks.co.jp/tech/2013/04/23/ec-cube-on-aws-s3/</a></li>
+<li><a href="http://understeer.hatenablog.com/entry/2012/07/23/124402">http://understeer.hatenablog.com/entry/2012/07/23/124402</a></li>
+</ul>
+
+
+<h2>インストール</h2>
+
+<pre class="brush: bash; title: ; notranslate" title="">$ sudo yum -y --enablerepo epel install s3cmd
+</pre>
+
+
+<p>AWS アカウントの Access Key と Secret Key の情報を設定する。HTTPSを使うか、HTTP Proxyを使うかとかあるが適宜入力する。</p>
+
+<pre class="brush: bash; title: ; notranslate" title="">$ s3cmd --configure
+
+Enter new values or accept defaults in brackets with Enter.
+Refer to user manual for detailed description of all options.
+
+Access key and Secret key are your identifiers for Amazon S3
+Access Key: [PUT YOUR ACCESS KEY]
+Secret Key: [PUT YOUR SECRET KEY]
+
+Encryption password is used to protect your files from reading
+by unauthorized persons while in transfer to S3
+Encryption password: [PUT YOUR PASSWORD]
+Path to GPG program [/usr/bin/gpg]:
+
+When using secure HTTPS protocol all communication with Amazon S3
+servers is protected from 3rd party eavesdropping. This method is
+slower than plain HTTP and can't be used if you're behind a proxy
+Use HTTPS protocol [No]:
+
+On some networks all internet access must go through a HTTP proxy.
+Try setting it here if you can't conect to S3 directly
+HTTP Proxy server name:
+
+New settings:
+  Access Key: [PUT YOUR ACCESS KEY]
+  Secret Key: [PUT YOUR SECRET KEY]
+  Encryption password: [PUT YOUR PASSWORD]
+  Path to GPG program: /usr/bin/gpg
+  Use HTTPS protocol: False
+  HTTP Proxy server name:
+  HTTP Proxy server port: 0
+
+Test access with supplied credentials? [Y/n] y
+Please wait...
+Success. Your access key and secret key worked fine <img src='http://i2.wp.com/hirofukami.com/wp-includes/images/smilies/icon_smile.gif?w=830' alt=':-)' class='wp-smiley' data-recalc-dims="1" /> 
+
+Now verifying that encryption works...
+Success. Encryption and decryption worked fine <img src='http://i2.wp.com/hirofukami.com/wp-includes/images/smilies/icon_smile.gif?w=830' alt=':-)' class='wp-smiley' data-recalc-dims="1" /> 
+
+Save settings? [y/N] y
+   * Configuration saved to '/home/ec2-user/.s3cfg'
+</pre>
+
+
+<p>一応、設定ファルのパスをメモっておく。</p>
+
+<h2>sync してみる</h2>
+
+<pre class="brush: bash; title: ; notranslate" title="">$ sudo s3cmd sync s3://deesea-bucket/test-dir/ ./test-s3fs/
+(snip)
+Done. Downloaded 20912437 bytes in 54.9 seconds, 372.27 kB/s
+
+$ du -h --max-depth=1 test-s3fs/
+18M     test-s3fs/wordpress
+23M     test-s3fs/
+</pre>
+
+
+<p>23MBで55secくらいかかった。</p>
+
+<p>作成されたディレクトリファイルは実行したユーザの所有権が付与される。</p>
+
+<pre class="brush: bash; title: ; notranslate" title="">$ ll plugins
+合計 20
+drwxr-xr-x 2 root root 4096  7月  2 06:40 2013 testdir01
+-rwxr-xr-x 1 root root 2262  7月  2 06:16 2013 testfile01.txt
+</pre>
+
+
+<p>パーミッションは 755。</p>
+
+<p>テストの時は &#8211;dry-run つけると実際のファイルは更新せずに実行結果の出力をしてくれる。</p>
+
+<p>sync コマンドの注意点は S3 にあってインスタンスにないファイル・ディレクトリは追加してくれるが、S3 になくてインスタンスにあるものは削除してくれない。sync と言いつつ実は追加・更新のみで削除はしてくれない。これを解消するために &#8211;delete-removed がある。</p>
+
+<h2>&#8211;delete-removed を試す</h2>
+
+<pre class="brush: plain; title: ; notranslate" title="">$ sudo s3cmd --delete-removed sync s3://deesea-bucket/test-dir/ ./test-s3fs/
+</pre>
+
+
+<p>ただこれも注意点があって、ファイルは削除するがディレクトリは残ったままになる。ディレクトリ内のファイルはなくなるがディレクトリまでは削除してくれるない。もしプログラム的に「ディレクトリがあったら」という条件式を書く場合は不具合が起きるので「ディレクトリ内のファイルが1つでもあれば」というようにすると良いだろう。</p>
+
+<h2>&#8211;exclude を試す</h2>
+
+<p>ある特定のディレクトリ・ファイルを sync の対象から外したい時は &#8211;exclude を付ける。<br/>
+特定のファイル名なら &#8211;exclude=&#8221;testfile01.txt&#8221; とすればよいのだけど、特定のディレクトリ配下のファイルすべて除外するという指定する時が結構やっかいだった。<br/>
+結局、&#8211;exclude=&#8221;*exclude-dir/*&#8221; で動いた。</p>
+
+<pre class="brush: bash; title: ; notranslate" title="">$ sudo s3cmd --delete-removed --exclude=&quot;*exclude-dir/*&quot; sync s3://deesea-bucket/test-dir/ ./test-s3fs/
+</pre>
+
+
+<p>これを継続的に回す cron に記述すれば定期的に処理できる。</p>
+
+<pre class="brush: bash; title: ; notranslate" title="">$ sudo crontab -e
+
+*/2 * * * * s3cmd --delete-removed sync s3://deesea-bucket/test-dir/ /usr/share/nginx/html/test-s3fs/
+</pre>
+
+
+<p>2分間隔で処理する記述。</p>
+
+<p>AMIに仕込んでおけば、インスタンスが変わっても気にすることなくデプロイできる。うまく使えばとても楽にデプロイ環境が作れるので、オススメです。</p>
+</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-07-18T02:39:26+09:00" pubdate data-updated="true">Jul 18<span>th</span>, 2013</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/tech/'>Tech</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/2013/07/17/aws-s3cmd-sync-deploy/#disqus_thread">Comments</a></span>
+	
+</div></article>
+
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+	
+	<a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+	
+	
+	<a class="addthis_button_tweet"></a>
+	
+	
+<!---	<a class="addthis_counter addthis_pill_style"></a> --->
+	</div>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid="></script>
+</div>
+
+
+</div>
+	<footer id="footer" class="inner">Copyright &copy; 2014
+
+    HiroFukami
+
+<br>
+Powered by Octopress.
+</footer>
+	<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
+
+<script type="text/javascript">
+      var disqus_shortname = 'hirofukamisblog';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-44359867-3']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+
+
+
+</body>
+</html>

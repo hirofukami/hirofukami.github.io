@@ -1,0 +1,1928 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<script data-cfasync="false" type="text/javascript" src="//use.typekit.net/axj3cfp.js"></script>
+	<script data-cfasync="false" type="text/javascript">try{Typekit.load();}catch(e){}</script>
+	<meta charset="utf-8">
+	<title>My Life Log on Octopress  | Hiro Fukami's Blog</title>
+
+<meta name="author" content="HiroFukami"> 
+
+<meta name="description" content="hbstudy#3で話した時にデモした、Amazon EC2 上で BGP peer を張る環境の作り方をメモしておく。 構成情報 環境は以下、 EC2 の instance は CentOS5.0(Final) Quagga(旧Zebra)を使う 構成は以下、 instance &hellip;"> <meta name="keywords" content="">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link href="/atom.xml" rel="alternate" title="Hiro Fukami's Blog" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script type="text/javascript" src="/javascripts/jquery.fancybox.pack.js"></script>
+
+<script language="Javascript" type="text/javascript">
+$(document).ready(
+  function() {
+    (function($) {
+      $(".fancybox[data-content-id]").each(function() {
+        this.href = $(this).data('content-id');
+      });
+      $(".fancybox").fancybox({
+        beforeLoad: function() {
+          var el, 
+              id = $(this.element).data('title-id');
+
+          if (id) {
+            el = $('#' + id);
+
+            if (el.length) {
+              this.title = el.html();
+            }
+          }
+          if ($(this).data('content')) {
+            this.content = $(this).data('content');
+          }
+        },
+        helpers: {
+          title: {
+            type: 'inside'
+          }
+        }
+      });
+    })(jQuery);
+  }
+);
+</script>
+
+	
+</head>
+
+
+<body>
+	<header id="header" class="inner"><h1><a href="/">Hiro Fukami's Blog</a></h1>
+<h4>My Life Log on Octopress</h4>
+<nav id="main-nav"><ul>
+	<li><a href="/">Blog</a></li>
+	<li><a href="/about">About</a></li>
+	<li><a href="/portfolio">Portfolio</a></li>
+	<li><a href="/archives">Archive</a></li>
+	<li><a href="/atom.xml">RSS</a></li>
+</ul>
+</nav>
+<nav id="mobile-nav">
+	<div class="alignleft menu">
+		<a class="button">Menu</a>
+		<div class="container"><ul>
+	<li><a href="/">Blog</a></li>
+	<li><a href="/about">About</a></li>
+	<li><a href="/portfolio">Portfolio</a></li>
+	<li><a href="/archives">Archive</a></li>
+	<li><a href="/atom.xml">RSS</a></li>
+</ul>
+</div>
+	</div>
+	<div class="alignright search">
+		<a class="button"></a>
+		<div class="container">
+			<form action="http://google.com/search" method="get">
+				<input type="text" name="q" results="0">
+				<input type="hidden" name="q" value="site:blog.hirofukami.com">
+			</form>
+		</div>
+	</div>
+</nav>
+
+
+</header>
+
+	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/2009/09/14/amazon-ec2-bgp-peer/">
+		
+			Amazon EC2 上で BGP Peer を張ってみる</a>
+	</h2>
+	<div class="entry-content">
+		<div class="section">
+  <p>
+    <a href="http://d.hatena.ne.jp/d_sea/20090912/p1" target="_blank">hbstudy#3で話した</a>時にデモした、Amazon EC2 上で BGP peer を張る環境の作り方をメモしておく。
+  </p>
+  
+  <h4>
+    構成情報
+  </h4>
+  
+  <p>
+    環境は以下、
+  </p>
+  
+  <ul>
+    <li>
+      EC2 の instance は CentOS5.0(Final)
+    </li>
+    <li>
+      Quagga(旧Zebra)を使う
+    </li>
+  </ul>
+  
+  <p>
+    構成は以下、
+  </p>
+  
+  <p>
+    <a href="http://f.hatena.ne.jp/d_sea/20090917093725" class="hatena-fotolife" target="_blank"><img src="http://i0.wp.com/cdn-ak.f.st-hatena.com/images/fotolife/d/d_sea/20090917/20090917093725.png?w=500" alt="f:id:d_sea:20090917093725p:image:w500" title="f:id:d_sea:20090917093725p:image:w500" class="hatena-fotolife" data-recalc-dims="1" /></a>
+  </p>
+  
+  <ul>
+    <li>
+      instance 2つを立ち上げる
+    </li>
+    <li>
+      Quagga 上で zebra, bgpd を起動
+    </li>
+    <li>
+      AWS 内の private network 内部で BGP peering
+    </li>
+  </ul>
+  
+  <dl>
+    <dt>
+      instance 1 側の設定内容
+    </dt>
+    
+    <dd>
+      interface ip address&#160;: 10.254.202.228<br />AS65001<br />広報するprefix: 10.1.0.0/16、10.11.0.0./16、10.111.0.0/16
+    </dd>
+    
+    <dt>
+      instance 2 側の設定内容
+    </dt>
+    
+    <dd>
+      interface ip address&#160;: 10.209.162.213<br />AS65002<br />広報するprefix: 10.2.0.0/16
+    </dd>
+  </dl>
+  
+  <dl>
+    <dt>
+      BGP的な設定内容
+    </dt>
+    
+    <dd>
+      2つのinstance の interface ip address が異なるネットワークになるので、EBGP multihop を設定<br />route-map を使って Local Preference、MED、Community を付けてみる
+    </dd>
+  </dl>
+  
+  <dl>
+    <dt>
+      確認内容
+    </dt>
+    
+    <dd>
+      peerが張れているか<br />広報されている経路情報が route-map で指定しているものかどうか
+    </dd>
+  </dl>
+  
+  <h4>
+    構築
+  </h4>
+  
+  <p>
+    CentOS だと yum で quagga がインストールできるので、簡単にすませる。
+  </p>
+  
+  <pre>
+
+[root@domU-12-31-39-07-A1-27:~] yum -y install quagga
+
+</pre>
+  
+  <p>
+    /etc/quagga 配下にファイルが作られる
+  </p>
+  
+  <pre>
+
+[root@domU-12-31-39-07-A1-27:~] cd /etc/quagga/
+
+[root@domU-12-31-39-07-A1-27:/etc/quagga]ll
+
+total 48
+
+-rw-r--r-- 1 root   root      570 May 30  2007 bgpd.conf.sample
+
+-rw-r--r-- 1 root   root     2801 May 30  2007 bgpd.conf.sample2
+
+-rw-r--r-- 1 root   root     1110 May 30  2007 ospf6d.conf.sample
+
+-rw-r--r-- 1 root   root      182 May 30  2007 ospfd.conf.sample
+
+-rw-r--r-- 1 root   root      410 May 30  2007 ripd.conf.sample
+
+-rw-r--r-- 1 root   root      394 May 30  2007 ripngd.conf.sample
+
+-rwxr-x--- 1 quagga quaggavt  128 May 30  2007 vtysh.conf.sample
+
+-rw-r--r-- 1 root   root      373 May 30  2007 zebra.conf.sample
+
+-rw-r----- 1 quagga quagga     32 Sep 12 03:32 zebra.conf.sample02
+
+</pre>
+  
+  <p>
+    zebra.conf と bgpd.conf を以下のように書いた。bgpd.confのほうで空白行は必ず &#8220;!&#8221; を記述しないと動作してくれなかったので注意。
+  </p>
+  
+  <p>
+    instance1の場合
+  </p>
+  
+  <p>
+    zebra.conf
+  </p>
+  
+  <pre>
+
+[root@domU-12-31-39-07-A1-27:/etc/quagga] more zebra.conf
+
+! -*- zebra -*-
+
+!
+
+! zebra sample configuration file
+
+!
+
+! $Id: zebra.conf.sample,v 1.1.1.1 2002/12/13 20:15:30 paul Exp $
+
+!
+
+hostname Router
+
+password zebra # ここは変える
+
+enable password zebra # ここは変える
+
+!
+
+! Interface's description.
+
+!
+
+!interface lo
+
+! description test of desc.
+
+!
+
+!interface sit0
+
+! multicast
+
+
+
+!
+
+! Static default route sample.
+
+!
+
+!ip route 0.0.0.0/0 203.181.89.241
+
+!
+
+
+
+!log file zebra.log
+
+</pre>
+  
+  <p>
+    bgpd.conf
+  </p>
+  
+  <pre>
+
+[root@domU-12-31-39-00-C5-16:~] more /usr/local/etc/bgpd.conf
+
+! -*- bgp -*-
+
+!
+
+! BGPd sample configuratin file
+
+!
+
+! $Id: bgpd.conf.sample,v 1.1.1.1 2002/12/13 20:15:29 paul Exp $
+
+!
+
+hostname bgpd
+
+password zebra
+
+!enable password please-set-at-here
+
+!
+
+!bgp mulitple-instance
+
+!
+
+router bgp 65001
+
+! bgp router-id 10.254.202.228
+
+network 10.1.0.0/16
+
+network 10.11.0.0/16
+
+network 10.111.0.0/16
+
+neighbor 10.209.162.213 remote-as 65002
+
+neighbor 10.209.162.213 route-map TEST-ROUTEMAP-IN in
+
+neighbor 10.209.162.213 route-map TEST-ROUTEMAP-OUT out
+
+neighbor 10.209.162.213 ebgp-multihop
+
+! neighbor 10.0.0.2 next-hop-self
+
+!
+
+! access-list all permit any
+
+!
+
+route-map TEST-ROUTEMAP-IN permit 10
+
+set local-preference 200
+
+set community 65001:65002
+
+!
+
+route-map TEST-ROUTEMAP-OUT permit 10
+
+set metric 111
+
+!
+
+!
+
+!route-map set-nexthop permit 10
+
+! match ip address all
+
+! set ip next-hop 10.0.0.1
+
+!
+
+!log file bgpd.log
+
+!
+
+log stdout
+
+</pre>
+  
+  <p>
+    instance2の場合
+  </p>
+  
+  <p>
+    zebra.conf は内容が同じなので、省略。
+  </p>
+  
+  <p>
+    bgpd.conf
+  </p>
+  
+  <pre>
+
+[root@domU-12-31-39-07-A1-27:/etc/quagga] more bgpd.conf
+
+! -*- bgp -*-
+
+!
+
+! BGPd sample configuratin file
+
+!
+
+! $Id: bgpd.conf.sample,v 1.1.1.1 2002/12/13 20:15:29 paul Exp $
+
+!
+
+hostname bgpd
+
+password zebra
+
+!enable password please-set-at-here
+
+!
+
+!bgp mulitple-instance
+
+!
+
+router bgp 65002
+
+! bgp router-id 10.209.162.213
+
+network 10.2.0.0/16
+
+neighbor 10.254.202.228 remote-as 65001
+
+! neighbor 10.0.0.2 route-map set-nexthop out
+
+neighbor 10.254.202.228 ebgp-multihop
+
+! neighbor 10.0.0.2 next-hop-self
+
+!
+
+! access-list all permit any
+
+!
+
+!route-map set-nexthop permit 10
+
+! match ip address all
+
+! set ip next-hop 10.0.0.1
+
+!
+
+!log file bgpd.log
+
+!
+
+log stdout
+
+</pre>
+  
+  <h4>
+    起動
+  </h4>
+  
+  <p>
+    起動する。bgpを使うので、zebraとbgpd。
+  </p>
+  
+  <pre>
+
+[root@domU-12-31-39-07-A1-27:/etc/quagga] zebra -d
+
+[root@domU-12-31-39-07-A1-27:/etc/quagga] bgpd -d
+
+</pre>
+  
+  <p>
+    zebra(2601)とbgpd(2605)のポートが空く
+  </p>
+  
+  <pre>
+
+root@domU-12-31-39-07-A1-27:/etc/quagga] netstat -an | grep 260*
+
+tcp        0      0 0.0.0.0:2601                0.0.0.0:*                   LISTEN
+
+tcp        0      0 0.0.0.0:2605                0.0.0.0:*                   LISTEN
+
+</pre>
+  
+  <h4>
+    確認
+  </h4>
+  
+  <p>
+    bgpd にログインして確認してみる。instance2 側にて。
+  </p>
+  
+  <pre>
+
+[root@domU-12-31-39-07-A1-27:/etc/quagga] telnet localhost bgpd
+
+</pre>
+  
+  <p>
+    まずは peer が張れているかどうか確認
+  </p>
+  
+  <pre>
+
+bgpd# show ip bgp su
+
+BGP router identifier 10.209.162.213, local AS number 65002
+
+2 BGP AS-PATH entries
+
+0 BGP community entries
+
+
+
+Neighbor        V    AS MsgRcvd MsgSent   TblVer  InQ OutQ Up/Down  State/PfxRcd
+
+10.254.202.228  4 65001       7       8        0    0    0 00:04:34        3
+
+
+
+Total number of neighbors 1
+
+</pre>
+  
+  <p>
+    張れている。続いて、経路情報を確認する。
+  </p>
+  
+  <pre>
+
+bgpd# show ip bgp
+
+BGP table version is 0, local router ID is 10.209.162.213
+
+Status codes: s suppressed, d damped, h history, * valid, &gt; best, i - internal
+
+Origin codes: i - IGP, e - EGP, ? - incomplete
+
+
+
+Network          Next Hop            Metric LocPrf Weight Path
+
+*&gt; 10.1.0.0/16      10.254.202.228         111             0 65001 i
+
+*&gt; 10.2.0.0/16      0.0.0.0                  0         32768 i
+
+*&gt; 10.11.0.0/16     10.254.202.228         111             0 65001 i
+
+*&gt; 10.111.0.0/16    10.254.202.228         111             0 65001 i
+
+
+
+Total number of prefixes 4
+
+</pre>
+  
+  <p>
+    AS65001から3prefixがMED111で広報されていていることが分かる。
+  </p>
+  
+  <p>
+    instance1側で経路情報を見ると、
+  </p>
+  
+  <pre>
+
+bgpd# show ip bgp
+
+BGP table version is 0, local router ID is 10.254.202.228
+
+Status codes: s suppressed, d damped, h history, * valid, &gt; best, i - internal
+
+Origin codes: i - IGP, e - EGP, ? - incomplete
+
+
+
+Network          Next Hop            Metric LocPrf Weight Path
+
+*&gt; 10.1.0.0/16      0.0.0.0                  0         32768 i
+
+*&gt; 10.2.0.0/16      10.209.162.213           0    200      0 65002 i
+
+*&gt; 10.11.0.0/16     0.0.0.0                  0         32768 i
+
+*&gt; 10.111.0.0/16    0.0.0.0                  0         32768 i
+
+
+
+Total number of prefixes 4
+
+</pre>
+  
+  <p>
+    AS65002からの経路情報に local preference 200 がついていることが分かる。
+  </p>
+  
+  <p>
+    communityを見ると、
+  </p>
+  
+  <pre>
+
+bgpd# show ip bgp community 65001:65002
+
+BGP table version is 0, local router ID is 10.254.202.228
+
+Status codes: s suppressed, d damped, h history, * valid, &gt; best, i - internal
+
+Origin codes: i - IGP, e - EGP, ? - incomplete
+
+
+
+Network          Next Hop            Metric LocPrf Weight Path
+
+*&gt; 10.2.0.0/16      10.209.162.213           0    200      0 65002 i
+
+
+
+Total number of prefixes 1
+
+</pre>
+  
+  <p>
+    AS65002からの経路情報に community 65001:65002 がついていることが分かる。
+  </p>
+  
+  <p>
+    ということで、めでたく BGP が張れて経路情報に属性を付けれましたと。
+  </p>
+</div>
+
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-09-15T00:00:00+09:00" pubdate data-updated="true">Sep 15<span>th</span>, 2009</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/tech/'>Tech</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/2009/09/14/amazon-ec2-bgp-peer//blog/page/21/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/2009/09/13/%e3%83%97%e3%83%ad%e3%82%b8%e3%82%a7%e3%82%af%e3%83%88%e3%83%9e%e3%83%8d%e3%83%bc%e3%82%b8%e3%83%a3%e3%81%a8%e3%81%84%e3%81%86%e5%8d%98%e8%aa%9e%e3%81%ae%e6%8c%81%e3%81%a4%e7%84%a1%e6%84%8f%e5%91%b3/">
+		
+			プロジェクトマネージャという単語の持つ無意味さ</a>
+	</h2>
+	<div class="entry-content">
+		<div class="section">
+  <p>
+    最近、仕事でお世話になっているコミュニティーエンジンの ringo さんと打ち合わせの帰り道での会話。
+  </p>
+  
+  <ul>
+    <li>
+      d_sea&#160;: プロジェクトマネージャ(PM)って、今までの経験上、「この人すばらしいPMだ！！」って思った人は一人もいないんですよね～
+    </li>
+    <li>
+      ringo&#160;: 僕もそうだなぁ。。。
+    </li>
+    <li>
+      d_sea&#160;: そう言えば、これができれば PM としてOKという明確なものがないですね。スケジュール管理だけではないし、会議に出ていれば良い訳でもない。実は PM って、イメージだけの言葉なのかも。。。
+    </li>
+    <li>
+      ringo&#160;: それはおもしろい！！PM という仕事の実体は実はないかも。
+    </li>
+  </ul>
+  
+  <p>
+    こんなことを話した訳だけど、ちょっと振り返っても実はかなり的を得ている気がしている。
+  </p>
+  
+  <p>
+    ここ3年くらい前から確信していることとして、「平均的なスキルを持った人が20人いたとしてもできないことがあって、スペシャルな一人がそれをできてしまう世界が確かにある」ということ。
+  </p>
+  
+  <p>
+    これは特にネットのサービス作りで顕著な気がしていて、スキルの高い最小人数ですごいパフォーマンスで作り上げるのが一番早いという結果が出ている。あまり日本では表に出ない事実かもしれないけど、結果を残せているサービスには必ずそういうスペシャルな人がいるはず。
+  </p>
+  
+  <p>
+    そういう現実がある一方、この PM とか PL とか言う響きは複数人で行う際に前提とされる象徴的な言葉かと思っている。
+  </p>
+  
+  <p>
+    PMとかPLだから偉い。みたいな印象が結構強くって、あとのメンバはそれに従う歩兵みたいな感じがする。本当は偉いとかはプロジェクトを取り組む際に全然意味をなさない項目なのだけど、妙にその印象が強くついてしまう現実はあるかと思う。
+  </p>
+  
+  <p>
+    その偉い PM が実は何ができれば良いのかの定義がなかったことに気づけたのはすごく面白かった。
+  </p>
+  
+  <p>
+    もう少し考えると、集団主義的な発想で解決する時に PM がコミットすべき TODO が実は決まってないということは、人の数はそれなりにいるが機能してない人が出やすくって、しかもそれが偉いと思われやすい PM だったりするのはかなりのクリティカルポイントだと思う。
+  </p>
+  
+  <p>
+    自分の経験上、Enterprise SI の SE をやっていた時に必ず PM とか PL を立てて案件を取り組んでいたのだけど、最もパフォーマンスが悪かった(案件に対して直接的に推進する力になれていない)人は PM だったりする記憶がよみがえって、つじつまがあった。
+  </p>
+  
+  <p>
+    別に集団主義を否定している訳でもなんでもなくて、ネットの世界で新しいアプローチをしようとした場合にはムダとかパフォーマンスをしないとかはいらないことなのは明らかなこと。そこで集団主義で複数名で解決する手法をとるにせよ、ちゃんと自分の役割や TODO くらいは明確化してないと、どうにでもなってしまう危険性を元々はらんでいるということを分かっておいた方が良いと思った。その原因が偉いと思われて気を良くしている PM の機能不全だったりするとプロジェクトとしては本当に不幸な自体になる。
+  </p>
+  
+  <p>
+    今回は今思う自分なりの確信になったのだけど、今後自分が本当にすばらしいPMだ！！と思える方に出会えたら、この確信はまた変わるんだろう。
+  </p>
+  
+  <p>
+    その前に仕事のやり方が全く変わって、オンライン上でそれぞれが流動的に関わり合いながら、完全にフラットな体制でプロジェクトを取り組むことが当たり前な世の中になっているかもしれない。
+  </p>
+  
+  <p>
+    自分としてはそうなってくれる方が面白いし、実際その兆候は現れていると思っている。
+  </p>
+</div>
+
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-09-14T00:00:00+09:00" pubdate data-updated="true">Sep 14<span>th</span>, 2009</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/self-management/'>Self Management</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/2009/09/13/%e3%83%97%e3%83%ad%e3%82%b8%e3%82%a7%e3%82%af%e3%83%88%e3%83%9e%e3%83%8d%e3%83%bc%e3%82%b8%e3%83%a3%e3%81%a8%e3%81%84%e3%81%86%e5%8d%98%e8%aa%9e%e3%81%ae%e6%8c%81%e3%81%a4%e7%84%a1%e6%84%8f%e5%91%b3//blog/page/21/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/2009/09/11/hbstudy-3-bgp/">
+		
+			Hbstudy#3 で「BGPのお話」というお話をしてきた</a>
+	</h2>
+	<div class="entry-content">
+		<div class="section">
+  <p>
+    <a href="http://heartbeats.jp/" target="_blank">ハートビーツ</a>さん主催で行われているインフラエンジニアのための勉強会 <a href="http://heartbeats.jp/hbstudy/" target="_blank">hbstudy</a> の3回目で、BGP の話をしてきた。
+  </p>
+  
+  <p>
+    私が1つ目のネタで、2つ目のネタはTOMOYO Linuxの紹介で、NTT-DATA 沼口さんだった。
+  </p>
+  
+  <p>
+    タイトルは「BGPのお話」。思いっきりネットワークのみの世界の話なのと、BGP自身なじみがないと思ったので、どの程度伝わったのかはよく分からずとも、とりあえず概要から運用的な話までしてきた。
+  </p>
+  
+  <p>
+    勉強会中の会場の様子は <a href="http://twitter.com/#search?q=%23hbstudy" target="_blank">twitter で結構流れた</a>ので、そちらでも結構反応が分かる。
+  </p>
+  
+  <p>
+    このスライドは以下。
+  </p>
+  
+  <div style="width:425px;text-align:left;" id="__ss_1988175">
+    <a href="http://www.slideshare.net/d_sea/090910hbstudy3bgp" style="font:14px Helvetica, Arial, Sans-serif;display:block;margin:12px 0 3px;text-decoration:underline;" title="090910hbstudy#3-BGP" target="_blank">090910hbstudy#3-BGP</a> <div style="font-size:11px;font-family:tahoma, arial;height:26px;padding-top:2px;">
+      View more <a href="http://www.slideshare.net/" style="text-decoration:underline;" target="_blank">presentations</a> from <a href="http://www.slideshare.net/d_sea" style="text-decoration:underline;" target="_blank">Hironobu Fukami</a>.
+    </div>
+  </div>
+  
+  <p>
+    質問では経路乗っ取りについてが結構多かった。統一されたシステマチックな仕組みがあるようなイメージを持っていたようだったが、「インターネット運用は性善説に基づいている」ことがもう少し説明できれば良かったかな。
+  </p>
+  
+  <p>
+    デモでは Amazon EC2 上で instance 2つに Quagga 入れて bgpd 動かして peer 張るところまで見せたが、これだけだとルーティングしていることにはならないので、instance 7つくらいで AS path 長を持たせた構成を作ってみたら実践的になるかと思うので、やってみようと思う。
+  </p>
+  
+  <p>
+    EC2 上での 構築と動作させてみたことについては別エントリーでこのブログでまとめることにする。
+  </p>
+  
+  <p>
+    実際BGP運用をしていたのは4年以上前だから、自分の記憶が頼りだった部分もあるのだが、それなりに覚えていたし、考え方の概要は忘れていなかったことが自覚できたのは自分なりの収穫。経験したこととかを振り返ることもできたし、スライドとしてはBGPを概要からまとめられたそれなりな資料が作れたので良い蓄積ができた。
+  </p>
+  
+  <p>
+    まだまだ BGP 設計とか体制作りのコンサルティングはできる感触を得られた。
+  </p>
+  
+  <p>
+    勉強会には初参加の人たちも増えているようで、3回目にして hbstudy の認知が広まってきている感じがした。
+  </p>
+  
+  <p>
+    今後勉強会で聞いてみたいネタとしては、
+  </p>
+  
+  <ul>
+    <li>
+      Apaceh にすごく詳しい人</p> <ul>
+        <li>
+          特に proxy とか、proxy_loadbalancer に詳しい人とか、運用ノウハウに長けている人
+        </li>
+      </ul>
+    </li>
+    
+    <li>
+      MySQL にすごく詳しい人 <ul>
+        <li>
+          tips 満載な人
+        </li>
+      </ul>
+    </li>
+    
+    <li>
+      モニタリングツールとか設定内容
+    </li>
+    <li>
+      たくさんのサーバの設定内容を同期させるツールとか、tips とか
+    </li>
+  </ul>
+  
+  <p>
+    かな。基本的にみんな使っているけど、あまり自信を持って動かせていないような気がするポイントかな。(自分自身がそうだったりする。。。)
+  </p>
+  
+  <p>
+    hbstudy はインフラをちゃんと学ぶ場としてはおそらく他になく貴重だから、今後も濃く良い交流が生まれる勉強会であってほしいかな。
+  </p>
+  
+  <p>
+    ということで、インフラを学びたい人は hbstudy へ一度ご参加ください。
+  </p>
+</div>
+
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-09-12T00:00:00+09:00" pubdate data-updated="true">Sep 12<span>th</span>, 2009</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/tech/'>Tech</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/2009/09/11/hbstudy-3-bgp//blog/page/21/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/2009/09/07/2009-with/">
+		
+			2009夏合宿してきた With クボケー</a>
+	</h2>
+	<div class="entry-content">
+		<div class="section">
+  <p>
+    今年3月のJTPAシリコンバレーカンファレンスで知り合った <a href="http://d.hatena.ne.jp/keikubo/" target="_blank">id:keikubo</a> と夏合宿してきました。
+  </p>
+  
+  <p>
+    目的は二人で思案中のサービスについてさらに具体化させるため。今までメールでのやり取りだけでイメージは作ってきたが、システムのアーキテクチャだけでなく悩みどころのポイントもあったので、ちょうどいいタイミングだった。合宿の提案はクボケーくんから以前にあって、必ずやりたいと思っていたこともある。
+  </p>
+  
+  <p>
+    そんな自分だったのだが、合宿の直前に仕事がかなりクリティカルな状態になってしまい、考えとか議題をまとめるような準備はほとんどできなかった。しかも、逃げ切ったつもりが逃げ切れなくて、仕事の電話が何度も鳴ってしまい、本当に申し訳なかった。。。
+  </p>
+  
+  <p>
+    合宿の様子をざっと紹介。
+  </p>
+  
+  <p>
+    合宿に使ったのは、<a href="http://www.kawasakigrandhotel.jp/" target="_blank">川崎グランドホテル</a>。<a href="http://www.kensyu.jp/pack/index.html" target="_blank">宿泊＋会議室利用のパックがあり</a>、東京よりも全然安い。
+  </p>
+  
+  <p>
+    一番小さい会議室を予約してもらったのだけど、二人には十分すぎる広さ。
+  </p>
+  
+  <p>
+    <a href="http://f.hatena.ne.jp/d_sea/20090914213014" class="hatena-fotolife" target="_blank"><img src="http://i2.wp.com/cdn-ak.f.st-hatena.com/images/fotolife/d/d_sea/20090914/20090914213014.jpg?w=830" alt="f:id:d_sea:20090914213014j:image" title="f:id:d_sea:20090914213014j:image" class="hatena-fotolife" data-recalc-dims="1" /></a>
+  </p>
+  
+  <p>
+    なんか面接が始まるような感じの机とイスの配置。。
+  </p>
+  
+  <p>
+    ホワイトボードが2つあるのがうれしい。1つは紙に印刷できるやつ。
+  </p>
+  
+  <p>
+    <a href="http://f.hatena.ne.jp/d_sea/20090914213007" class="hatena-fotolife" target="_blank"><img src="http://i1.wp.com/cdn-ak.f.st-hatena.com/images/fotolife/d/d_sea/20090914/20090914213007.jpg?w=830" alt="f:id:d_sea:20090914213007j:image" title="f:id:d_sea:20090914213007j:image" class="hatena-fotolife" data-recalc-dims="1" /></a>
+  </p>
+  
+  <p>
+    電源タップ、HUB、無線LANターミナル、LANケーブルがそろっていて、ネットやPC向けの設備的には何も持って行かずに大丈夫でした。
+  </p>
+  
+  <p>
+    ネット環境は会議室では有線と無線。宿泊部屋では有線のみ。が提供されていた。
+  </p>
+  
+  <p>
+    宿泊の設備は古く、昔ながらのビジネスホテルという感じ。ここら辺は期待しては行けないし、しょうがないところ。
+  </p>
+  
+  <p>
+    <a href="http://f.hatena.ne.jp/d_sea/20090914212935" class="hatena-fotolife" target="_blank"><img src="http://i1.wp.com/cdn-ak.f.st-hatena.com/images/fotolife/d/d_sea/20090914/20090914212935.jpg?w=830" alt="f:id:d_sea:20090914212935j:image" title="f:id:d_sea:20090914212935j:image" class="hatena-fotolife" data-recalc-dims="1" /></a>
+  </p>
+  
+  <p>
+    これは最後の夕飯で、豪勢かつおいしかった！
+  </p>
+  
+  <p>
+    最後の夜はビールやらつまみやら買ってきて、飲みつつ話しつつな感じで過ごしました。
+  </p>
+  
+  <p>
+    <a href="http://f.hatena.ne.jp/d_sea/20090914212958" class="hatena-fotolife" target="_blank"><img src="http://i1.wp.com/cdn-ak.f.st-hatena.com/images/fotolife/d/d_sea/20090914/20090914212958.jpg?w=830" alt="f:id:d_sea:20090914212958j:image" title="f:id:d_sea:20090914212958j:image" class="hatena-fotolife" data-recalc-dims="1" /></a>
+  </p>
+  
+  <p>
+    こんな感じで、、
+  </p>
+  
+  <p>
+    <a href="http://f.hatena.ne.jp/d_sea/20090914212948" class="hatena-fotolife" target="_blank"><img src="http://i2.wp.com/cdn-ak.f.st-hatena.com/images/fotolife/d/d_sea/20090914/20090914212948.jpg?w=830" alt="f:id:d_sea:20090914212948j:image" title="f:id:d_sea:20090914212948j:image" class="hatena-fotolife" data-recalc-dims="1" /></a>
+  </p>
+  
+  <p>
+    ビールだらけw
+  </p>
+  
+  <p>
+    実はこういうサービス生み出すような合宿は始めてで、どのくらい進められるのか全く未知だったけど、形になりそうなところまで見えたのは大きな収穫だった。合宿効果すごい。これは癖になりそうw
+  </p>
+  
+  <p>
+    ただ、何も持ってないと何も進めない訳で、おそらく二人のサービスへのイメージとか今までメールで話し合ったことがベースにあったから考えられたし、何しろ二人のパフォーマンスのレベルも良かったことが大きいと思う。
+  </p>
+  
+  <p>
+    しかし、このタイミングで合宿が持てたのは本当に良かった。宿泊先を調べたり予約もしてくれたクボケーくんに感謝！！
+  </p>
+  
+  <p>
+    確実に大事にしたいプロジェクトになっているし、次のマイルストーンに向けて今後はもう少し自分のパフォーマンスをあげて望んで行きたいと思っている。
+  </p>
+</div>
+
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-09-08T00:00:00+09:00" pubdate data-updated="true">Sep 8<span>th</span>, 2009</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/business/'>Business</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/2009/09/07/2009-with//blog/page/21/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/2009/08/28/2009-in-hawaii/">
+		
+			2009夏のおもひで in Hawaii</a>
+	</h2>
+	<div class="entry-content">
+		<div class="section">
+  <p>
+    今年の夏休みは弟の結婚式に参加するためにハワイで丸々1週間すごした。嫁と娘も一緒に家族で初海外の初ハワイだった。
+  </p>
+  
+  <p>
+    気づいたことをメモ
+  </p>
+  
+  <ul>
+    <li>
+      日本語が通じる場所と通じない場所があった
+    </li>
+    <li>
+      英語をしゃべっても通じないことが多かった。カタカナ英語のほうがいいのかな？
+    </li>
+    <li>
+      ファミリー向けホテルの多く立ち並ぶエリアは空港からタクシーで30分くらい。高層な建物ばかりで、ゴミゴミしている
+    </li>
+    <li>
+      リゾート地はさらにタクシーで20分くらい東側の高級エリアで、ビーチの規模はそれほど大きくないが低層な建物が多く静か
+    </li>
+    <li>
+      少し内陸に行くと土地が余っている田舎町になる
+    </li>
+    <li>
+      ハワイのアロハシャツのサイズは大きい。たくさん食べてアロハ着れるくらい大きくなれよ。ということらしい
+    </li>
+    <li>
+      思ったよりも町が整備されていて、建物も多い。もっと自然があるかと思ったけど、予想よりもゴミゴミしていた。
+    </li>
+  </ul>
+  
+  <p>
+    思い出に写真をいくつか。
+  </p>
+  
+  <p>
+    <a href="http://f.hatena.ne.jp/d_sea/20090825013532" class="hatena-fotolife" target="_blank"><img src="http://i2.wp.com/cdn-ak.f.st-hatena.com/images/fotolife/d/d_sea/20090825/20090825013532.jpg?w=830" alt="f:id:d_sea:20090825013532j:image" title="f:id:d_sea:20090825013532j:image" class="hatena-fotolife" data-recalc-dims="1" /></a>
+  </p>
+  
+  <p>
+    <a href="http://f.hatena.ne.jp/d_sea/20090825101256" class="hatena-fotolife" target="_blank"><img src="http://i2.wp.com/cdn-ak.f.st-hatena.com/images/fotolife/d/d_sea/20090825/20090825101256.jpg?w=830" alt="f:id:d_sea:20090825101256j:image" title="f:id:d_sea:20090825101256j:image" class="hatena-fotolife" data-recalc-dims="1" /></a>
+  </p>
+  
+  <p>
+    <a href="http://f.hatena.ne.jp/d_sea/20090825150846" class="hatena-fotolife" target="_blank"><img src="http://i0.wp.com/cdn-ak.f.st-hatena.com/images/fotolife/d/d_sea/20090825/20090825150846.jpg?w=830" alt="f:id:d_sea:20090825150846j:image" title="f:id:d_sea:20090825150846j:image" class="hatena-fotolife" data-recalc-dims="1" /></a>
+  </p>
+  
+  <p>
+    <a href="http://f.hatena.ne.jp/d_sea/20090827065124" class="hatena-fotolife" target="_blank"><img src="http://i1.wp.com/cdn-ak.f.st-hatena.com/images/fotolife/d/d_sea/20090827/20090827065124.jpg?w=830" alt="f:id:d_sea:20090827065124j:image" title="f:id:d_sea:20090827065124j:image" class="hatena-fotolife" data-recalc-dims="1" /></a>
+  </p>
+  
+  <p>
+    <a href="http://f.hatena.ne.jp/d_sea/20090829083720" class="hatena-fotolife" target="_blank"><img src="http://i2.wp.com/cdn-ak.f.st-hatena.com/images/fotolife/d/d_sea/20090829/20090829083720.jpg?w=830" alt="f:id:d_sea:20090829083720j:image" title="f:id:d_sea:20090829083720j:image" class="hatena-fotolife" data-recalc-dims="1" /></a>
+  </p>
+  
+  <p>
+    とりあえず、家族で海外旅行しても娘は大丈夫な年になったなぁ。いろんな国に家族でいくのも良い気がしてきた。
+  </p>
+</div>
+
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-08-29T00:00:00+09:00" pubdate data-updated="true">Aug 29<span>th</span>, 2009</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/life/'>LIfe</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/2009/08/28/2009-in-hawaii//blog/page/21/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/2009/08/22/%ef%bc%9c%e5%8b%9d%e8%b2%a0%e8%84%b3%ef%bc%9e%e3%81%ae%e9%8d%9b%e3%81%88%e6%96%b9/">
+		
+			＜勝負脳＞の鍛え方</a>
+	</h2>
+	<div class="entry-content">
+		<div class="section">
+  <p>
+    スポーツ選手がこの本を読んで試合に臨んだら結構良い結果が得られた。というような話を聞いて買ってみた。
+  </p>
+  
+  <div class="hatena-asin-detail">
+    <p>
+      <a href="http://www.amazon.co.jp/gp/product/4061498614/ref=as_li_tf_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4061498614&linkCode=as2&tag=dsea-22" target="_blank"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4061498614&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=dsea-22" /></a><img src="http://www.assoc-amazon.jp/e/ir?t=dsea-22&l=as2&o=9&a=4061498614" width="1" height="1" border="0" alt="" style="border:none!important;margin:0!important;" /> <div class="hatena-asin-detail-info">
+        <p>
+          <a href="http://www.amazon.co.jp/gp/product/4061498614/ref=as_li_tf_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4061498614&linkCode=as2&tag=dsea-22" target="_blank">の鍛え方 (講談社現代新書)</a><img src="http://www.assoc-amazon.jp/e/ir?t=dsea-22&l=as2&o=9&a=4061498614" width="1" height="1" border="0" alt="" style="border:none!important;margin:0!important;" /> <ul>
+            <li>
+              <span class="hatena-asin-detail-label">作者:</span> <a href="http://d.hatena.ne.jp/keyword/%CE%D3%C0%AE%C7%B7" class="keyword" target="_blank">林成之</a>
+            </li>
+            <li>
+              <span class="hatena-asin-detail-label">出版社/メーカー:</span> <a href="http://d.hatena.ne.jp/keyword/%B9%D6%C3%CC%BC%D2" class="keyword" target="_blank">講談社</a>
+            </li>
+            <li>
+              <span class="hatena-asin-detail-label">発売日:</span> 2006/10/21
+            </li>
+            <li>
+              <span class="hatena-asin-detail-label">メディア:</span> 新書
+            </li>
+            <li>
+              <span class="hatena-asin-detail-label">購入</span>: 29人 <span class="hatena-asin-detail-label">クリック</span>: 244回
+            </li>
+            <li>
+              <a href="http://d.hatena.ne.jp/asin/4061498614" target="_blank">この商品を含むブログ (55件) を見る</a>
+            </li>
+          </ul></div> 
+          
+          <div class="hatena-asin-detail-foot">
+          </div></div> 
+          
+          <p>
+            最近脳についての本が多いが、人間の指向や感情を科学的に捕らえられたら、より効率的な手法があるのではないか。という興味もあって読んでみたいと思った。
+          </p>
+          
+          <p>
+            メンタルがパフォーマンスに対する影響はかなり大きく、今まで経験則的にパフォーマンスに影響を及ぼさない振る舞い方を覚えてきたが、もう一つ理論づけられた手法として体得してみたい気はしていた。それが体得できればもっと効率よいパフォーマンスができるだろうし、同じ時間の中で影響力がより高められたらそれは自分にとってとても良いことだと思っている。
+          </p>
+          
+          <p>
+            この本では脳内の「意識」「心」「記憶」の具体的なメカニズムの解析から始まって、勝負に勝つための勝負脳としての具体的tipsの紹介まで行っている。tips紹介の部分は今まで日本人の中に強く残っている「気合いでなんとかする」「猛練習こそがうまくなる秘訣」のような根拠のない精神主義のようなものが完全に否定されたものになっていて、この部分でも読む価値は高い。
+          </p>
+          
+          <p>
+            勝負脳をうまく使うためのtipsを自分なりに解釈してまとめると、
+          </p>
+          
+          <ul>
+            <li>
+              目的をはっきりさせ、それを達成するための具体的手法をイメージする
+            </li>
+            <li>
+              最初から100％集中する
+            </li>
+            <li>
+              相手の攻撃してきたときが攻撃のチャンス
+            </li>
+            <li>
+              相手の長所を打ち砕く
+            </li>
+            <li>
+              相手と自分の状況を客観的に見る
+            </li>
+            <li>
+              ネガティブな発想、話をせず、ボジティブなものだけを思い浮かべる
+            </li>
+            <li>
+              最後までゆるめず集中する
+            </li>
+            <li>
+              呼吸、姿勢、発想を整える
+            </li>
+          </ul>
+          
+          <p>
+            こんなところだろう。
+          </p>
+          
+          <p>
+            このtipsの根拠となる脳内の科学的な振る舞いの解説が論理的に薄いが、それぞれのtipsは結構的を得ていると思った。
+          </p>
+          
+          <p>
+            特に最初の具体的手法はその通りだと思う。何のためにこの練習をするのか、そのためにはどんなことをすれば良いのか、とか結構基本的なことなのにそれが理解せず、一方的に与えられたものを行っていることはよくあるのではないか。
+          </p>
+          
+          <p>
+            この本を読んで以降、スポーツの見方が変わって結構面白い。今まではただ早いとかうまいだけの印象だったのが、実況を見ながら選手の心理的な部分を「今こういう意識になっているのかな」と想像しながら見るとより選手側に近づける気がしている。
+          </p>
+          
+          <p>
+            ただ、この本の活用は筆者が述べているように、スポーツに限ったことではなくて仕事や生活の場面でも十分利用できることだと思う。
+          </p>
+          
+          <p>
+            まだまだ、ビジネスのシーンでは変な精神主義やパフォーマンスの低いことに対する淘汰が進まずに放置されてしまっている場が多い。より高いレベルでのパフォーマンスのせめぎ合いのような場がもっとできてくれれば、この本のtipsの有効性を実感できるだろうし、最終的にはもっと仕事をすることが面白くなると思っている。
+          </p>
+          
+          <p>
+            現状はまだこのtipsを使わずとも許されてしまっているビジネスのレベルがあるのは確かかと思う。
+          </p></div>
+
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-08-23T00:00:00+09:00" pubdate data-updated="true">Aug 23<span>rd</span>, 2009</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/book/'>Book</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/2009/08/22/%ef%bc%9c%e5%8b%9d%e8%b2%a0%e8%84%b3%ef%bc%9e%e3%81%ae%e9%8d%9b%e3%81%88%e6%96%b9//blog/page/21/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/2009/08/21/%e3%82%8f%e3%81%8c%e5%8f%8b-%e6%9c%ac%e7%94%b0%e5%ae%97%e4%b8%80%e9%83%8e/">
+		
+			わが友 本田宗一郎</a>
+	</h2>
+	<div class="entry-content">
+		<div class="section">
+  <div class="hatena-asin-detail">
+    <p>
+      <a href="http://www.amazon.co.jp/gp/product/4341019082/ref=as_li_tf_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4341019082&linkCode=as2&tag=dsea-22" target="_blank"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4341019082&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=dsea-22" /></a><img src="http://www.assoc-amazon.jp/e/ir?t=dsea-22&l=as2&o=9&a=4341019082" width="1" height="1" border="0" alt="" style="border:none!important;margin:0!important;" /> <div class="hatena-asin-detail-info">
+        <p>
+          <a href="http://www.amazon.co.jp/gp/product/4341019082/ref=as_li_tf_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4341019082&linkCode=as2&tag=dsea-22" target="_blank">わが友 本田宗一郎</a><img src="http://www.assoc-amazon.jp/e/ir?t=dsea-22&l=as2&o=9&a=4341019082" width="1" height="1" border="0" alt="" style="border:none!important;margin:0!important;" /> <ul>
+            <li>
+              <span class="hatena-asin-detail-label">作者:</span> <a href="http://d.hatena.ne.jp/keyword/%B0%E6%BF%BC%C2%E7" class="keyword" target="_blank">井深大</a>
+            </li>
+            <li>
+              <span class="hatena-asin-detail-label">出版社/メーカー:</span> <a href="http://d.hatena.ne.jp/keyword/%CA%B8%E9%BA%BD%D5%BD%A9" class="keyword" target="_blank">文藝春秋</a>
+            </li>
+            <li>
+              <span class="hatena-asin-detail-label">発売日:</span> 1995/03
+            </li>
+            <li>
+              <span class="hatena-asin-detail-label">メディア:</span> 文庫
+            </li>
+            <li>
+              <span class="hatena-asin-detail-label">クリック</span>: 2回
+            </li>
+            <li>
+              <a href="http://d.hatena.ne.jp/asin/4167437023" target="_blank">この商品を含むブログ (5件) を見る</a>
+            </li>
+          </ul></div> 
+          
+          <div class="hatena-asin-detail-foot">
+          </div></div> 
+          
+          <p>
+            本田宗一郎の「やりたいことをやれ」の<a href="http://d.hatena.ne.jp/d_sea/20090705/p1" target="_blank">レビューを書いたら</a>、それを読んだパートナーさんがこの本を貸してくれた。ありがとうございます＞Oさん
+          </p>
+          
+          <p>
+            内容は本田宗一郎が亡くなった後に、もっと本田宗一郎の実績が評価されるべきとの思いから親友だった井深大氏が書いた本。
+          </p>
+          
+          <p>
+            ソニーの創業者とホンダの創業者がこんなにも仲が良いのは知らなかったことなのだが、二人とも技術者でありやってみなくては分からないというベンチャー指向があったりして、単にビジネスの昔話とは片付けられない面白い内容になっている。
+          </p>
+          
+          <p>
+            基本的には本田宗一郎と井深大との思い出話や対談内容の紹介になっているのだけど話題は経営的なものはほとんどなくて、新しいものへの取り組み方とか遊びとか考え方のようなものの紹介になっていて、この二人がどんな思いや考え方をしていたのかが分かる。
+          </p>
+          
+          <p>
+            自分の中で日本の大企業の創業者や経営者というのはひとくくりにしていた部分があって、みんな同じような考え方や振る舞い方を好んでいるような印象を持っていた。が、この二人のやり取りを見てみると古くささや右にならえ的な変な集団主義の発想がなく、むしろ技術に対して単純にチャレンジしてその結果よい製品が生まれて売れた。というすごく単純な思いでやってきていて、それは今でも十分に通用するというよりむしろ必要とされているところかと思う。
+          </p>
+          
+          <p>
+            二人の対談の中で、アメリカの能力主義への現状から「日本も終身雇用なんてことは、いっていられなくなると思う。」という言葉があってかなりビックリした。この対談は1966年で、40年以上前から現状の終身雇用崩壊を示唆していることになる。自分が1990年代に思い描いていた会社員＝大企業＝終身雇用のイメージはすでに崩れていたのか、という認識の違いからも2重にショックだった。
+          </p>
+          
+          <p>
+            ともあれ、二人の対談や文章からエンジニアとして新しいもの、世の中にないものを追求し続け、実際作り続けることこそが、会社の原動力であり最も大事にしてきたことが分かる。
+          </p>
+          
+          <p>
+            今のネットを中心とした数多くの小さなエンジニア会社を40年も前の実績から勇気づけてくれることは間違いない本になるといえる。
+          </p></div>
+
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-08-22T00:00:00+09:00" pubdate data-updated="true">Aug 22<span>nd</span>, 2009</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/book/'>Book</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/2009/08/21/%e3%82%8f%e3%81%8c%e5%8f%8b-%e6%9c%ac%e7%94%b0%e5%ae%97%e4%b8%80%e9%83%8e//blog/page/21/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/2009/07/30/bpstudy-23/">
+		
+			BPstudy#23 に参加しました</a>
+	</h2>
+	<div class="entry-content">
+		<div class="section">
+  <p>
+    2回目となる BPstudy に参加してきました。先月は出れずに2ヶ月ぶり。
+  </p>
+  
+  <h4>
+    第一部
+  </h4>
+  
+  <p>
+    第一部の資料は <a href="http://beproud.jp/bpstudy/?p=33" target="_blank"><a href="http://beproud.jp/bpstudy/?p=33" target="_blank">http://beproud.jp/bpstudy/?p=33</a></a> から入手できます。
+  </p>
+  
+  <ul>
+    <li>
+      プログラミング開発の作るそのものが変わる
+    </li>
+    <li>
+      クラウド上で集約
+    </li>
+    <li>
+      作るというよりかはカスタマイズ部分の対応がフォーカスされるはず
+    </li>
+    <li>
+      PaaS 上で開発することを想定している
+    </li>
+    <li>
+      スケーリングするストレージ = キーバリューストレージ
+    </li>
+  </ul>
+  
+  <h5>
+    Google App Engine での DB 利用
+  </h5>
+  
+  <ul>
+    <li>
+      クラウドのストレージは join ができないことを前提してつくる
+    </li>
+    <li>
+      複数のトランザクションを補償するのが弱いのでアプリレベルで1つに詰め込む方がいい
+    </li>
+    <li>
+      アプリケーション非同期処理
+    </li>
+    <li>
+      いろんなコンポーネントを組み合わせてアプリケーションが成り立つ
+    </li>
+  </ul>
+  
+  <h5>
+    demo
+  </h5>
+  
+  <ul>
+    <li>
+      simplemodeler というコマンド
+    </li>
+    <li>
+      src が選べる
+    </li>
+    <li>
+      scalar でオブジェクトモデルを自動生成
+    </li>
+    <li>
+      Google App Engine 上で反映を確認 <ul>
+        <li>
+          Java で作ってあげる
+        </li>
+      </ul>
+    </li>
+    
+    <li>
+      CSV をインポートできる機能があるらしい
+    </li>
+    <li>
+      class から仕様書が自動生成してくれるらしい HTMLで <ul>
+        <li>
+          詳細が class 図 属性を示す
+        </li>
+        <li>
+          状態遷移表も表として自動生成してくれる
+        </li>
+        <li>
+          program書くことだけで終わらせたい
+        </li>
+      </ul>
+    </li>
+  </ul>
+  
+  <h4>
+    第2部 edge2.cc
+  </h4>
+  
+  <ul>
+    <li>
+      クラウドコンピューティングでの開発を考える
+    </li>
+    <li>
+      # PaaS 上での話のようだ
+    </li>
+    <li>
+      通信プロトコルも統一できていない
+    </li>
+    <li>
+      エラーの頻度が高いはず
+    </li>
+    <li>
+      遅延発生する 返ってこないことも
+    </li>
+    <li>
+      トランザクションモデルが異なる RDBが使えない ACID特性があてにできない
+    </li>
+    <li>
+      制約があるからモデル駆動開発 既存のweb開発とは異なる抽象もでる
+    </li>
+    <li>
+      Enterprise Integration Patterns 本あるよ
+    </li>
+    <li>
+      Apache Camel フレームワーク
+    </li>
+    <li>
+      クラウドと非同期メッセージング
+    </li>
+    <li>
+      厳密な ACID特性を当てにしないサービス設計を採用するというサービス仕様を考えるとか
+    </li>
+    <li>
+      Google Developer Day で出店した TwitterRecommender <ul>
+        <li>
+          自分がフォローしている人をフォローしている人を知る
+        </li>
+      </ul>
+    </li>
+    
+    <li>
+      モバイルwebアプリは HTML5+Sync+Offline で <ul>
+        <li>
+          Safari HTML5 オフライン機能を使用しモバイルクライアントとして offline 対応web アプリケーション対応
+        </li>
+        <li>
+          Android Gears
+        </li>
+      </ul>
+    </li>
+    
+    <li>
+      iPhone のネイティブアプリ実装版 <ul>
+        <li>
+          CoverFlow の UI を利用
+        </li>
+        <li>
+          SQLite をローカルに持って動作させる
+        </li>
+        <li>
+          サンプルコードをいじって作った 2h くらいで終了
+        </li>
+        <li>
+          O/R Mapper は便利
+        </li>
+        <li>
+          XML は SAX Parser でガリガリ書く必要あり
+        </li>
+      </ul>
+    </li>
+  </ul>
+  
+  <h4>
+    懇親会で話したこと聞いたこと
+  </h4>
+  
+  <ul>
+    <li>
+      シリコンバレーでみてきた会社文化の違い
+    </li>
+    <li>
+      JTPAシリコンバレーカンファレンスは一度は参加すべし <ul>
+        <li>
+          昨年と同じならば11月頭に申込開始 要チェック！<a href="http://www.jtpa.org/" target="_blank"><a href="http://www.jtpa.org/" target="_blank">http://www.jtpa.org/</a></a>
+        </li>
+      </ul>
+    </li>
+    
+    <li>
+      internal と external の文化的違いについて <ul>
+        <li>
+          internal を10年前からの企業依存の高いSI業界の旧文化スタイルと言ってしまってもいいかも
+        </li>
+      </ul>
+    </li>
+    
+    <li>
+      深海は個人の力の最大化を試みる実験を株式会社シェイクソウルでしています # 最近この話を飲みの席で良くするかも
+    </li>
+    <li>
+      fujisaki_hb さんが子持ちでしかも3人もいた # おっとビックリ！
+    </li>
+    <li>
+      結局深夜2時まで恵比寿 # 終電以降ひさびさ
+    </li>
+    <li>
+      そこからハートビーツの方々と相乗りタクシー # 安くすんだ、ありがとうございました！
+    </li>
+  </ul>
+  
+  <p>
+    やはり技術的に刺激になるな。知らない情報があったし。徐々に参加者の方々と面識ができ始めている気がするので、エンジニア同士のいいネットワーキング作りにしたい。
+  </p>
+  
+  <p>
+    技術的に尖っている場の方が充実度の高さや刺激の多さが多い気がしてきている、今日この頃。
+  </p>
+</div>
+
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-07-31T00:00:00+09:00" pubdate data-updated="true">Jul 31<span>st</span>, 2009</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/tech/'>Tech</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/2009/07/30/bpstudy-23//blog/page/21/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/2009/07/24/%e3%81%84%e3%81%a4%e3%82%82%e3%81%a9%e3%81%8a%e3%82%8a%e3%81%ae%e3%83%81%e3%82%a7%e3%83%83%e3%82%af/">
+		
+			いつもどおりのチェック</a>
+	</h2>
+	<div class="entry-content">
+		<div class="section">
+  <p>
+    いつもどおりに3ヶ月ぶりにチェックされに行く。
+  </p>
+  
+  <p>
+    相変わらずリテーナーを数時間外していると歯が動くので、食事の時以外はずっとしている。以前に比べればあまり動かなくなっていると思うけれども、夜間使用だけというのはまだまだだろう落武自分の感覚を信じて使い続けている。
+  </p>
+  
+  <p>
+    先生が見る分には問題ないようで、「夜間使用だけですよね？」と毎回聞くのだが、ずっとしていると答えるとちょっと不思議そうにしながらも「長く付けている分には問題ないので、」という感じで会話が終わる。そのパターンが続いている。
+  </p>
+  
+  <p>
+    今頃新しく何かをかえるというよりかはなるべく現状維持で行って欲しいというところなのだろう。こちらももう一度器具をつけるのはゴメンだし、リテーナーをつける分には今までやってきたことなので問題無し。
+  </p>
+  
+  <p>
+    本日の精算：チェック料 ￥5,000
+  </p>
+</div>
+
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-07-25T00:00:00+09:00" pubdate data-updated="true">Jul 25<span>th</span>, 2009</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/life/'>LIfe</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/2009/07/24/%e3%81%84%e3%81%a4%e3%82%82%e3%81%a9%e3%81%8a%e3%82%8a%e3%81%ae%e3%83%81%e3%82%a7%e3%83%83%e3%82%af//blog/page/21/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/2009/07/16/wimax/">
+		
+			WiMax は思ったよりも面白い世の中を提供してくれるかもしれないと思った</a>
+	</h2>
+	<div class="entry-content">
+		<div class="section">
+  <p>
+    WiMAX の話が聞けるので、産業技術大学院大学が主催している <a href="http://pk.aiit.ac.jp/?InfoTalk" target="_blank">InfoTalk(AIIT OPI Monthly Forum)</a> というのに参加した。
+  </p>
+  
+  <p>
+    KDDIから UQ コミュニケーションズに出向されている、技術部門長の渡辺さんが話された。単に emobile より速い無線環境なんだろうな、くらいの知識しかなかったのだが、お話を聞いていくうちに結構これは面白いかもしれないと思った。
+  </p>
+  
+  <p>
+    お話の特徴としては、
+  </p>
+  
+  <ul>
+    <li>
+      WiMAX は携帯や emobie についている、SIM を持たない</p> <ul>
+        <li>
+          だから WiFi gateway としてその回線を複数PCでシェアすることもOKになっていて、WiFi Gateway も製品化されている</p> <ul>
+            <li>
+              一応、HUBにもなるのでデスクトップPCもつなげられる
+            </li>
+          </ul>
+        </li>
+        
+        <li>
+          SIM を持っていると電話と同じ扱いなので、1つの端末で1つしかつなげれない。シャアはできない。
+        </li>
+      </ul>
+    </li>
+  </ul>
+  
+  <p>
+    <a href="http://i1.wp.com/www.uqwimax.jp/service/product/img/pic_ug-ud01ok_main.jpg" class="http-image" target="_blank"><img src="http://i1.wp.com/www.uqwimax.jp/service/product/img/pic_ug-ud01ok_main.jpg?w=830" class="http-image" alt="http://i1.wp.com/www.uqwimax.jp/service/product/img/pic_ug-ud01ok_main.jpg?w=830" data-recalc-dims="1" /></a>
+  </p>
+  
+  <ul>
+    <li>
+      ダイヤルアップ方式を使わない、ノートPCにはチップが内蔵されるらしいので外付けするモノは不要</p> <ul>
+        <li>
+          イメージとしては無線LAN(WiFi)が広大になったイメージ
+        </li>
+        <li>
+          emobile ででやっているダイヤルアップは必要ない
+        </li>
+      </ul>
+    </li>
+    
+    <li>
+      今後 WiMAX 搭載モデルのノートPCやスマートフォンとかがでてくるらしい
+    </li>
+  </ul>
+  
+  <p>
+    というところらしい。
+  </p>
+  
+  <p>
+    ふと思ったのは、WiFi Gateway を自宅に置いたら今自宅にひいているフレッツ回線がいらなくなるし、外出先でもそのまま WiMAX で利用してしまえばいいので、emobile もやめて WiMAX で一元化できてしまうと思った。
+  </p>
+  
+  <p>
+    考えてみれば今、インターネット環境を整えるために使うシーンによって別々の契約プロバイダにそれぞれ払っている。自宅であればフレッツ光＋OCN、外出先だと emobile、最近だと iPhone を外出先で使うには Softbank にも払っている。それが広大で高速な無線LANが自宅でも使えて、しかもWiFi+HUBなら複数PCでシェアできるからその環境だけで完結する。
+  </p>
+  
+  <p>
+    そう考えると新しいネット環境のあり方として、今までのNTT東西＋プロバイダとか emobile を食っていく可能性はあるなと思った。
+  </p>
+  
+  <p>
+    シリコンバレーに行った時は大手の会社には無料で使える(WEP key なし)無線LAN環境が提供されていた。Google, Apple、泊まったモーテルも、その環境はすごく助かった。
+  </p>
+  
+  <p>
+    そんな感覚が区切れなく広がったら、一つ環境に浸かっていればいいことになる。それが実現できるのが WiMAX だと思うとこれは結構面白いかも。と思った。
+  </p>
+  
+  <p>
+    条件としてはちゃんとエリアをカバーすることくらいだろう。土管(回線)の世界はもう新しいものなんてでないと半ば見切っていたところだったので、そんな面白い環境になってくれるといいなと思った次第。
+  </p>
+</div>
+
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-07-17T00:00:00+09:00" pubdate data-updated="true">Jul 17<span>th</span>, 2009</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/business/'>Business</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/2009/07/16/wimax//blog/page/21/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
+
+<nav id="pagenavi">
+    
+        <a href="/blog/page/20/" class="prev">Prev</a>
+    
+    
+        <a href="/blog/page/22/" class="next">Next</a>
+    
+    <div class="center"><a href="/archives">Blog Archives</a></div>
+</nav></div>
+	<footer id="footer" class="inner">Copyright &copy; 2014
+
+    HiroFukami
+
+<br>
+Powered by Octopress.
+</footer>
+	<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
+
+<script type="text/javascript">
+      var disqus_shortname = 'hirofukamisblog';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-44359867-3']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+
+
+
+</body>
+</html>

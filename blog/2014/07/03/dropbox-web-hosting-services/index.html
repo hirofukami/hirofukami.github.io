@@ -1,0 +1,424 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<script data-cfasync="false" type="text/javascript" src="//use.typekit.net/axj3cfp.js"></script>
+	<script data-cfasync="false" type="text/javascript">try{Typekit.load();}catch(e){}</script>
+	<meta charset="utf-8">
+	<title>Dropbox Webホスティングサービス一覧  | Hiro Fukami's Blog</title>
+
+<meta name="author" content="HiroFukami"> 
+
+<meta name="description" content="2014年2月に私の会社、シェイクソウル で SmartDesigning をリリースしました。 このサービスは、 Dropbox を使ってローカルPCのファイル更新をリアルタイムにWebサーバに反映するサービスで、 &hellip;"> <meta name="keywords" content="">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link href="/atom.xml" rel="alternate" title="Hiro Fukami's Blog" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script type="text/javascript" src="/javascripts/jquery.fancybox.pack.js"></script>
+
+<script language="Javascript" type="text/javascript">
+$(document).ready(
+  function() {
+    (function($) {
+      $(".fancybox[data-content-id]").each(function() {
+        this.href = $(this).data('content-id');
+      });
+      $(".fancybox").fancybox({
+        beforeLoad: function() {
+          var el, 
+              id = $(this.element).data('title-id');
+
+          if (id) {
+            el = $('#' + id);
+
+            if (el.length) {
+              this.title = el.html();
+            }
+          }
+          if ($(this).data('content')) {
+            this.content = $(this).data('content');
+          }
+        },
+        helpers: {
+          title: {
+            type: 'inside'
+          }
+        }
+      });
+    })(jQuery);
+  }
+);
+</script>
+
+	
+</head>
+
+
+<body>
+	<header id="header" class="inner"><h1><a href="/">Hiro Fukami's Blog</a></h1>
+<h4>My Life Log on Octopress</h4>
+<nav id="main-nav"><ul>
+	<li><a href="/">Blog</a></li>
+	<li><a href="/about">About</a></li>
+	<li><a href="/portfolio">Portfolio</a></li>
+	<li><a href="/archives">Archive</a></li>
+	<li><a href="/atom.xml">RSS</a></li>
+</ul>
+</nav>
+<nav id="mobile-nav">
+	<div class="alignleft menu">
+		<a class="button">Menu</a>
+		<div class="container"><ul>
+	<li><a href="/">Blog</a></li>
+	<li><a href="/about">About</a></li>
+	<li><a href="/portfolio">Portfolio</a></li>
+	<li><a href="/archives">Archive</a></li>
+	<li><a href="/atom.xml">RSS</a></li>
+</ul>
+</div>
+	</div>
+	<div class="alignright search">
+		<a class="button"></a>
+		<div class="container">
+			<form action="http://google.com/search" method="get">
+				<input type="text" name="q" results="0">
+				<input type="hidden" name="q" value="site:blog.hirofukami.com">
+			</form>
+		</div>
+	</div>
+</nav>
+
+
+</header>
+
+	<div id="content" class="inner"><article class="post">
+	<h2 class="title">Dropbox Webホスティングサービス一覧</h2>
+	<div class="entry-content"><p><img src="/images/dropbox-logos.png" alt="Dropbox" /></p>
+
+<p>2014年2月に私の会社、<a href="http://www.shakesoul.net/">シェイクソウル</a> で <a href="http://smartdesigning.me/">SmartDesigning</a> をリリースしました。</p>
+
+<p>このサービスは、 <a href="https://www.dropbox.com/">Dropbox</a> を使ってローカルPCのファイル更新をリアルタイムにWebサーバに反映するサービスで、従来のWebホスティングに比べてファイルアップロードの手間なくWebサイトを作ることができます。</p>
+
+<p>カテゴライズすれば <strong>Dropbox Webホスティングサービス</strong> というのでしょう。日本ではあまり見かけないのでおそらく <a href="http://smartdesigning.me/">SmartDesigning</a> くらいですが、海外はいくつかあります。</p>
+
+<p>競合調査も兼ねて世界のDropbox Webホスティングサービスを調べたことをまとめます。</p>
+
+<!-- more -->
+
+
+<h1>Brace</h1>
+
+<p><img src="http://s3.amazonaws.com/crunchbase_prod_assets/assets/images/resized/0037/1139/371139v1-max-250x250.png" alt="Brace" /></p>
+
+<ul>
+<li>URL : <a href="http://brace.io/">http://brace.io/</a></li>
+<li>Twitter : <a href="https://twitter.com/braceio">https://twitter.com/braceio</a></li>
+<li>Blog : <a href="http://blog.brace.io/">http://blog.brace.io/</a></li>
+<li>CrunchBase : <a href="http://www.crunchbase.com/company/brace">http://www.crunchbase.com/company/brace</a></li>
+</ul>
+
+
+<p>多分 Dropbox Webホスティング系のサービスで唯一TechCrunch に載ったサービス。
+<a href="http://techcrunch.com/2013/12/05/brace-launches-dropbox-powered-hosting-solution-for-static-sites/">http://techcrunch.com/2013/12/05/brace-launches-dropbox-powered-hosting-solution-for-static-sites/</a></p>
+
+<p>Dropbox内にフォルダが作られスタティックファイルを置くとWebサイトに反映。
+Draft用URLが別にあって本番へのship(deploy)ができる。</p>
+
+<ul>
+<li>Pricing
+
+<ul>
+<li>FREE あり</li>
+<li>$50/year Umlimited visitors、カスタムドメイン</li>
+<li>上位プラン Amazon&rsquo;s CDN、プライベート設定</li>
+</ul>
+</li>
+</ul>
+
+
+<p>2013年ローンチ
+Sanfrancisco, CA, USA</p>
+
+<h1>site44</h1>
+
+<p><img src="http://www.site44.com/static/site44logo.png" alt="site44" /></p>
+
+<ul>
+<li>URL : <a href="http://www.site44.com/">http://www.site44.com/</a></li>
+<li>Twitter : <a href="https://twitter.com/site44">https://twitter.com/site44</a></li>
+<li>Blog : <a href="http://blog.site44.com/">http://blog.site44.com/</a></li>
+</ul>
+
+
+<p>Dropbox内にフォルダが作られスタティックファイルを置くとWebサイトに反映。
+日本では <a href="http://gigazine.net/news/20130125-site44/">Gigazine</a>, <a href="http://matome.naver.jp/odai/2135916317055633301">Lifehacker</a>, <a href="http://www.lifehacker.jp/2012/10/121005site44dropbox.html">NAVERまとめ</a>やいくつかのブログ載る。</p>
+
+<ul>
+<li>Pricing
+
+<ul>
+<li>FREE は以前あったが今はなくしている</li>
+<li>$4.95/month サイト数10、データ転送量10GB/monthまで</li>
+<li>上位プランもデータ転送量リミットあり</li>
+</ul>
+</li>
+</ul>
+
+
+<p>PLANET RATIONAL
+<a href="http://www.planetrational.com/">http://www.planetrational.com/</a>
+2名のアメリカ会社、1名はDropboxで働いている</p>
+
+<h1>PANCAKE</h1>
+
+<ul>
+<li>URL : <a href="https://pancake.io/">https://pancake.io/</a></li>
+<li>Twitter : <a href="https://twitter.com/pancakeio">https://twitter.com/pancakeio</a></li>
+<li>Blog : <a href="http://blog.pancake.io/">http://blog.pancake.io/</a></li>
+</ul>
+
+
+<p>git push(beta) と Dropbox 両方に対応している。
+Markdownで書いたファイルも変換してくれる。Octopressのようなテンプレートの記述方法ができる。</p>
+
+<p>プライシングの表示なし</p>
+
+<p>2011年から？
+運営会社不明</p>
+
+<h1>KISSr</h1>
+
+<ul>
+<li>URL : <a href="http://www.kissr.com/">http://www.kissr.com/</a></li>
+</ul>
+
+
+<p>Comming Soon でまだ準備段階だったが、オープンソース化した。</p>
+
+<ul>
+<li>Pricing
+
+<ul>
+<li>$5/month プランのみ、詳細わからず</li>
+</ul>
+</li>
+</ul>
+
+
+<p>個人
+ライセンス表記なし</p>
+
+<h1>DropPages.com</h1>
+
+<ul>
+<li>URL : <a href="http://droppages.com/">http://droppages.com/</a></li>
+<li>Twitter : <a href="https://twitter.com/droppages">https://twitter.com/droppages</a></li>
+</ul>
+
+
+<p>テキストファイルやテンプレートファイルからなるオリジナルのテーマをDropboxに置いて、Webサイトにするサービス。オリジナルのスタティックファイルをホストしてはいけないみたい。</p>
+
+<p>プライシングの表示なし</p>
+
+<p>2011年5月から行われているサイドプロジェクト
+個人？
+イギリス サウサンプトン</p>
+
+<h1>cloudcannon</h1>
+
+<ul>
+<li><a href="http://cloudcannon.com/">http://cloudcannon.com/</a></li>
+<li>Twitter : <a href="https://twitter.com/cloudcannonapp">https://twitter.com/cloudcannonapp</a></li>
+<li>Facebook : <a href="https://www.facebook.com/CloudCannon">https://www.facebook.com/CloudCannon</a></li>
+<li>Blog : <a href="http://cloudcannon.com/blog">http://cloudcannon.com/blog</a></li>
+</ul>
+
+
+<p>HTML内に独自のクラスを書くとブラウザ上から編集ができる。</p>
+
+<ul>
+<li>Pricing
+
+<ul>
+<li>$9/month オリジナルドメイン、1サイト追加ごと+$5/month</li>
+</ul>
+</li>
+</ul>
+
+
+<p>ニュージーランドの会社、2013年ごろから3名でやっているようだ</p>
+
+<h1>Harp Platfrom</h1>
+
+<ul>
+<li><a href="https://www.harp.io/">https://www.harp.io/</a></li>
+</ul>
+
+
+<p>オリジナルの404ページ、オリジナルSSLに対応、オープンソース</p>
+
+<ul>
+<li>Pricing
+
+<ul>
+<li>$9.95/month カスタムドメイン、ベーシックSSL、ストレージ無制限</li>
+</ul>
+</li>
+</ul>
+
+
+<p>2012年から
+カナダ バンクーバー</p>
+
+<h1>そして Smart Designing</h1>
+
+<p><img src="images/2013/03/slide-sd.png" alt="Smart Designing" /></p>
+
+<ul>
+<li>URL : <a href="http://smartdesigning.me/">http://smartdesigning.me/</a></li>
+<li>Twitter : <a href="http://smartdesigning.me/">http://smartdesigning.me/</a></li>
+<li>Facebook : <a href="https://twitter.com/smart_designing">https://twitter.com/smart_designing</a></li>
+</ul>
+
+
+<p>Dropbox内にフォルダが作られスタティックファイルを置くとWebサイトに反映。というのは同じ。
+Static版に加え、<strong>WordPress版</strong>もリリース。日本、アジアを中心に攻める予定。</p>
+
+<ul>
+<li>Pricing <a href="http://smartdesigning.me/pricing/">http://smartdesigning.me/pricing/</a>
+
+<ul>
+<li>￥380/月から 1site、Storage 200MB、アクセス無制限</li>
+<li>上位プラン プライベートアクセス、オリジナルドメイン、Dropboxチーム共有</li>
+</ul>
+</li>
+</ul>
+
+
+<p>2014.02 ローンチ
+Tokyo, Japan
+株式会社シェイクソウル</p>
+
+<h1>まとめ</h1>
+
+<p>どこもサービス内容の基本はDropboxを使ってWebホスティングするというもの。Webダッシュボードを設けたり、ドラフトURLを設けたりと細かなところでは違いはある。</p>
+
+<p>FREEもありつつ価格は$5から$9/monthが多め。意外と<a href="http://smartdesigning.me/">SmartDesigning</a>の￥380/月からは安い方だった。</p>
+
+<p>Static以外の <strong>WordPress版</strong> を提供していたのは <a href="http://smartdesigning.me/">SmartDesigning</a> のみだった。</p>
+
+<p>まだまだどこも小ぶりな会社で、どこがこのジャンルを制するかはまだわからない。そもそもこのジャンルがブレイクするかはこれからだろう。</p>
+
+<p>シェイクソウルとしては時代の先端的な部分を先駆けてやっているので、日本でこのポジションを得られているのは、まずOKと思っている。</p>
+
+<p>Dropbox Webホスティング面白そうだなと思ったら、日本語サポートができる <a href="http://smartdesigning.me/">SmartDesigning</a> を是非申し込んでください。</p>
+
+<p><a href="http://smartdesigning.me/">http://smartdesigning.me/</a></p>
+</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-07-03T17:30:00+09:00" pubdate data-updated="true">Jul 3<span>rd</span>, 2014</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/services/'>Services</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/blog/2014/07/03/dropbox-web-hosting-services/#disqus_thread">Comments</a></span>
+	
+</div></article>
+
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+	
+	<a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+	
+	
+	<a class="addthis_button_tweet"></a>
+	
+	
+<!---	<a class="addthis_counter addthis_pill_style"></a> --->
+	</div>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid="></script>
+</div>
+
+
+
+<section id="comment">
+    <h2 class="title">Comments</h2>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+	<footer id="footer" class="inner">Copyright &copy; 2014
+
+    HiroFukami
+
+<br>
+Powered by Octopress.
+</footer>
+	<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
+
+<script type="text/javascript">
+      var disqus_shortname = 'hirofukamisblog';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://blog.hirofukami.com/blog/2014/07/03/dropbox-web-hosting-services/';
+        var disqus_url = 'http://blog.hirofukami.com/blog/2014/07/03/dropbox-web-hosting-services/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-44359867-3']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+
+
+
+</body>
+</html>

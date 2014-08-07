@@ -1,0 +1,849 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Tech | Hiro Fukami's Blog]]></title>
+  <link href="http://blog.hirofukami.com/blog/categories/tech/atom.xml" rel="self"/>
+  <link href="http://blog.hirofukami.com/"/>
+  <updated>2014-08-07T23:13:34+09:00</updated>
+  <id>http://blog.hirofukami.com/</id>
+  <author>
+    <name><![CDATA[HiroFukami]]></name>
+    <email><![CDATA[dee.sea@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Docker Meetup Tokyo #2 に参加した]]></title>
+    <link href="http://blog.hirofukami.com/blog/2014/04/11/docker-meetup-tokyo2/"/>
+    <updated>2014-04-11T22:00:00+09:00</updated>
+    <id>http://blog.hirofukami.com/blog/2014/04/11/docker-meetup-tokyo2</id>
+    <content type="html"><![CDATA[<p><img src="https://connpass-tokyo.s3.amazonaws.com/thumbs/7f/d1/7fd16d32367bb52155ca416e032071fc.png" alt="Docker Meetup Tokyo #2" /></p>
+
+<ul>
+<li>イベント概要 : <a href="http://connpass.com/event/5640/">http://connpass.com/event/5640/</a></li>
+<li>togetter : <a href="http://togetter.com/li/653977">http://togetter.com/li/653977</a></li>
+</ul>
+
+
+<p>最近 Docker Docker と tweet されていて、かなりな盛り上がりを見せている Docker ですが、その Meetup があるらしいと tweet で流れていたので申込んだら80番目くらいで申し込めたので行ってきました。</p>
+
+<p>最終的には100名定員に400名以上が申し込んでとんでもないブームになっていました。
+多分、自分と同じように触れてないけど Docker ってどんなふうに使っているの？みたいに把握しておきたい人たちが殺到したのでは？と思うところです。</p>
+
+<p>以下、メモと思ったことのまとめです。</p>
+
+<!-- more -->
+
+
+<h2>前半発表内容</h2>
+
+<h3>@mainyaa：今からでも間に合うDocker基礎+Docker 0.9概要+Docker 0.10概要</h3>
+
+<iframe src="http://www.slideshare.net/slideshow/embed_code/33405582" width="597" height="486" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px 1px 0; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
+
+
+<div style="margin-bottom:5px"> <strong> <a href="https://www.slideshare.net/mainya/dockerdocker09-010" title="Docker基礎+docker0.9, 0.10概要" target="_blank">Docker基礎+docker0.9, 0.10概要</a> </strong> from <strong><a href="http://www.slideshare.net/mainya" target="_blank">Kazuyuki Mori</a></strong> </div>
+
+
+<p><a href="http://www.slideshare.net/mainya/dockerdocker09-010">http://www.slideshare.net/mainya/dockerdocker09-010</a></p>
+
+<p>Docker の概要を基本からおさらいしてくれる良いスライドでした。</p>
+
+<p>今後本格的に触るかどうか判断しておきたい自分にとっては、概要を理解しつつ最新状況も把握できたとてもありがたい情報ばかりでした。</p>
+
+<ul>
+<li>デモ
+
+<ul>
+<li>Dockerfile に書いてビルドして、追記して</li>
+<li>ビルド、前回実行部分はキャッシュ、新しい部分だけ新たに実行</li>
+<li>差分だけ実行</li>
+</ul>
+</li>
+<li>Docker前提のCoreOSとか分散処理とかのOSが出てきている</li>
+<li>Docker 0.9
+
+<ul>
+<li>LXC 必須ではなくなった、抽象化された、色々なOSでも動ける環境、開発中</li>
+</ul>
+</li>
+</ul>
+
+
+<h3>@ten_forward：Linuxカーネルのコンテナ関連機能入門</h3>
+
+<script async class="speakerdeck-embed" data-id="7e257d80a38f013120051af8c79ec55f" data-ratio="1.41436464088398" src="//speakerdeck.com/assets/embed.js"></script>
+
+
+<p><a href="https://speakerdeck.com/tenforward/linux-kernel-falsekontenaji-neng-2014-04-11">https://speakerdeck.com/tenforward/linux-kernel-falsekontenaji-neng-2014-04-11</a></p>
+
+<ul>
+<li>Docker そのものではなく、実現するベースとなっている LXC 中心の内容</li>
+<li>Dockerに関しては最初の発表以上のものはなし</li>
+<li>コンテナの歴史について、LXCの仕組み的な部分もあり</li>
+</ul>
+
+
+<h3>@naoya_ito：Dockerアプリケーションのポータビリティ</h3>
+
+<script async class="speakerdeck-embed" data-id="37db7d10a3900131166e024e11a95d47" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
+
+
+<p><a href="https://speakerdeck.com/naoya/dockerapurikesiyonfalsepotabiriteiwokao-eru-number-dockerjp">https://speakerdeck.com/naoya/dockerapurikesiyonfalsepotabiriteiwokao-eru-number-dockerjp</a></p>
+
+<ul>
+<li><a href="http://kaizenplatform.in/">Kaizen Platform Inc.</a> の技術顧問の肩書になっていた
+
+<ul>
+<li># 最近資金調達したはず => やっぱりそうだった <a href="http://kaizenplatform.in/pressrelease/2014/03/31/series-a.html">http://kaizenplatform.in/pressrelease/2014/03/31/series-a.html</a></li>
+</ul>
+</li>
+<li>Build Once, Run Anywhere どこでもDockerが動けば動かせるよ</li>
+<li>atlassian/jira プロジェクト管理ツール
+
+<ul>
+<li>$ docker run atlassian/jira で社内で動いちゃう</li>
+</ul>
+</li>
+<li><p>Heroku push のタイイングで LXC で作りなおしている、新しいのを作り古いの捨てる</p></li>
+<li><p>ステートレスかつ Shared Nothing</p></li>
+<li>実行/外部環境を明確化・抽象化する</li>
+<li><p>使うアプリを管理するツールを使う</p>
+
+<ul>
+<li>その設計方式 The Twelve-Factor App</li>
+<li>Dockerでどうやるか</li>
+</ul>
+</li>
+<li><p>作ってみた</p>
+
+<ul>
+<li>git pull request に紐づくURLを発行して確認したい</li>
+<li>デモ
+
+<ul>
+<li>sinatra で作ったWebアプリ</li>
+<li>手順
+
+<ul>
+<li>ローカルにレポジトリを作る、git フックが入る</li>
+<li>古いコンテナを落とす、新しい docker コマンドを立ち上げる</li>
+<li>git push して master に上げる</li>
+<li>他の人から見て git pull してURLがふられる</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+
+<h2>聞き終わって</h2>
+
+<h3>用途は開発過程でのお手軽サーバ環境</h3>
+
+<p>まだプロダクションでは使わないようにと言われているけど、社内では結構ヘビーに使われている。</p>
+
+<p>用途としては社内での開発、検証時に使いたいサーバ環境が多い印象。</p>
+
+<p>差分管理という仕組みも良くて失敗したらロールバックできるし、<strong>試す</strong> という視点ではこの上ないお手軽環境。</p>
+
+<h3>今までの仮想環境で最も手軽かつ高い汎用性</h3>
+
+<p>カーネルが対応したサーバOSならば Docker 動くし、Dockerfile で手軽に環境を移動して別のサーバ上で動かすことができる。今までの仮想環境に比べてこれ以上ない手軽さと汎用性がある。</p>
+
+<p>どんどん作って育てて、捨ててができる。Vagrant に代わって社内の開発環境とか検証環境に使われていくんだろうな。</p>
+
+<p>今までオンプレミスの上でしか動かせなかった Vmware, Xen, VirtualBox(Vagrant) と
+仮想サーバOS上の上にさらに仮想環境が作れる Docker。</p>
+
+<p>この違いはとても大きい。ひとつの仮想環境のパラダイムシフトになるくらい大きなインパクトになる。</p>
+
+<h3>Docker を使ったサービスできるんじゃん？</h3>
+
+<p>Dockerfile さえあればそれを IaaS 上のサーバに置いて動かせるから、それを置いてあげる Docker(file) Hosting のようなことができる。PaaS ではなくて IaaS on IaaS みたな形態。手元で試したまんまがサーバ上で動かすことができるメリットがある。</p>
+
+<p>ゆくゆく Docker 1.0 が出ればそれをそのままプロダクションとして動かしても良いから、開発環境(ローカル Dockerfile) = ステージング(Docker Hosting) = 本番(Docker Hosting) となってシームレスなデプロイが実現できる。</p>
+
+<p>と思ったら既にいくつかのサービスが既にあった。</p>
+
+<p><a href="http://www.centurylinklabs.com/top-10-startups-built-on-docker/">http://www.centurylinklabs.com/top-10-startups-built-on-docker/</a></p>
+
+<p>サービスのプライシングを見るにどこも同じ感じ。通常のホスティングサーバみたいにCPU、メモリ、ディスク容量などのリソースによっていくつかの月額プランがある。
+金額は $10/month 〜 $200/month の範囲。</p>
+
+<p>技術的には新しいけど、プライシングのパラメーターが古いと結局現状のホスティング事業者の競争と同じように差別化しにくいから、サービス提供者側は価格を下げる叩き合いになっちゃう気がする。
+もう少しユニークな視点で Docker の特徴とかをパラメータに入れられると良いかもね。</p>
+
+<h3>Docker 1.0 が出た時のインパクトを考える</h3>
+
+<p>既にこの盛り上がりようなので 1.0 が出て プロダクションとして使ってOKとなれば違った面が一気に活性化されそう。</p>
+
+<p>でも、Docker Hosting は存在するし、サービス内で利用する用途としてはやっぱり現状の共有レンタルサーバの代わりとなるのが思いつきやすい。</p>
+
+<p>現状の共有レンタルサーバの Apache1.0 suEXEC の環境はロリポ事件のようなことが起きてもそんなに改善はなくて、技術的な追求はないからだらだら過ごしてしまっている。</p>
+
+<p>IaaS 1インスタンス 上にたくさんの Docker プロセスを立ち上げて、suEXEC に比べて独立性の高いセキュアな環境を提供できますよ。ということだろう。</p>
+
+<p>あまり革新的なイメージはないけど、国内外のホスティングやさんたちはおそらくやる気がするから単なるWebホスティングサービスだけをすごくやろうとは思わない。</p>
+
+<p>やるとしたら WordPress, Redmine とかアプリを入れて PaaS かな。でも現状共有型でも提供できてしまっているし、内部的にセキュアになるくらいか。</p>
+
+<p>もう少し考えたいところ。</p>
+
+<h3>今後も楽しみな Docker Meetup Tokyo</h3>
+
+<p>今回で400名申込だったので、次回の #3 はどのくらいになってしまうんだろう。</p>
+
+<p>ユーザも増えるだろうし、Docker 自身もすごいスピードでリリースされているので充実した内容になることが楽しみです。</p>
+
+<p>スピーカーの皆様、企画いただいたオーガナイザーの方々へ感謝いたします。ありがとうございました！</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Chef solo knife コマンド覚書]]></title>
+    <link href="http://blog.hirofukami.com/2014/01/31/chef-solo-knife-command-memo/"/>
+    <updated>2014-01-31T19:53:16+09:00</updated>
+    <id>http://blog.hirofukami.com/2014/01/31/chef-solo-knife-command-memo</id>
+    <content type="html"><![CDATA[<p><img src="http://i0.wp.com/docs.opscode.com/chef/_static/opscode_chef_html_logo.png?resize=200%2C154" class="alignnone" data-recalc-dims="1" /><br/>
+どうも Chef コマンドを覚えられず、入門 Chef solo を毎回読みなおしてしまっているので、コマンド覚書を作っておく。</p>
+
+<ul>
+<li>レポジトリ名 : chef-repo</li>
+<li>chef クライアントホスト名 : chef-client</li>
+<li>クックブック名 : cookbook-name</li>
+</ul>
+
+
+<p>適当に置き換えてください。</p>
+
+<h1>新規</h1>
+
+<h2>レポジトリ作成</h2>
+
+<p>Chef レポジトリを作る。</p>
+
+<pre class="brush: plain; title: ; notranslate" title="">$ knife solo init [chef-repo-name]</pre>
+
+
+<h2>クックブック作成</h2>
+
+<p>レシピを新規作成する。</p>
+
+<pre class="brush: plain; title: ; notranslate" title="">$ knife cookbook create [cookbook-name] -o site-cookbooks</pre>
+
+
+<h2>ノード設定</h2>
+
+<p>chef クライアントに仕立てる。</p>
+
+<pre class="brush: plain; title: ; notranslate" title="">$ knife solo prepare [chef-client-hostname]</pre>
+
+
+<p>AWS EC2 に適用する場合はキーとユーザ名の指定が必要なので、ec2-user ユーザで作業すると、</p>
+
+<pre class="brush: plain; title: ; notranslate" title="">$ knife solo prepare -i ~/Keypair/[key-file] ec2-user@[chef-client-hostname]</pre>
+
+
+<p>とする。</p>
+
+<p>nodesディレクトリに [chef-client-hostname].json が作成される。</p>
+
+<h1>更新</h1>
+
+<h2>レシピを編集する</h2>
+
+<p>site-cookbooks/[cookbook-name]/recipes/default.rb を編集する。 適用したいレシピが複数に渡る場合はそれぞれの recipes/default.rb を編集する。</p>
+
+<h2>適用したいnodeファイルを確認</h2>
+
+<p>AWS EC2 AMI からの起動する際のように、すでに chef クライアントとして設定されているがホスト名が変わってしまう場合は、[chef-client-hostname].json ファイル名を割り当てられたホスト名に変更する。</p>
+
+<p>適用したいクックブックが記述されているか、nodes/[chef-client-hostname].json ファイルの中身を確認。</p>
+
+<h2>ノードに適用</h2>
+
+<p>ノードに適用。</p>
+
+<pre class="brush: plain; title: ; notranslate" title="">$ knife solo cook [chef-client-hostname]</pre>
+
+
+<p>AWS EC2 に適用する場合はキーとユーザ名の指定が必要なので、ec2-user ユーザで作業すると、</p>
+
+<pre class="brush: plain; title: ; notranslate" title="">$ knife solo cook -i ~/Keypair/[key-file] ec2-user@[chef-client-hostname]</pre>
+
+
+<p>とする。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[スマートWP構築のChefレシピを公開します]]></title>
+    <link href="http://blog.hirofukami.com/2014/01/09/smartwp-setup-chef-recipe/"/>
+    <updated>2014-01-09T20:52:32+09:00</updated>
+    <id>http://blog.hirofukami.com/2014/01/09/smartwp-setup-chef-recipe</id>
+    <content type="html"><![CDATA[<p>去年夏に Chef に出会い、<a href="http://www.shakesoul.net/smartwp">スマートWP</a>のセットアップ方法を変えました。<br/>
+<img src="http://i0.wp.com/docs.opscode.com/chef/_static/opscode_chef_html_logo.png?w=830" alt="" data-recalc-dims="1" /><br/>
+今までは「AWS EC2 を手動でセットアップして AMI 保存」を繰り返すことでサーバをバージョンアップしてきた方法から、まっさらな AWS AMI を Chef で一気にセットアップするように切り替えました。</p>
+
+<p>何が良いかというと、</p>
+
+<ul>
+<li>最新のバージョンが常に保たれる
+
+<ul>
+<li>AWS AMI もバージョンアップされるし、各アプリケーションも常にバージョンアップされるので</li>
+<li>AMIを更新し続けると古いバージョンのままになってどこかでバージョンアップの作業が必要になる</li>
+</ul>
+</li>
+<li>すべての作業内容がレシピに残る
+
+<ul>
+<li>どうしても手動だとやったことの記録漏れが出がち</li>
+</ul>
+</li>
+<li>手動よりも圧倒的に早い</li>
+</ul>
+
+
+<p>というところかと思う。</p>
+
+<p>そんな Cehf で作った<a href="http://www.shakesoul.net/smartwp">スマートWP</a>のレシピを公開します。</p>
+
+<p>このレシピで作られたスマートWPのサーバ環境は私の個人ブログ <a href="http://hirofukami.com">hirofukami.com</a> と会社のサイト <a href="http://www.shakesoul.net">ShakeSoul inc.</a> があって、負荷状況に応じて自動的にサーバを増減させるオートスケーリングが動くようになっています。</p>
+
+<p>ご興味のある方は <a href="http://www.shakesoul.net/smartwp">スマートWPのサービス紹介ページ</a>を見てみてください。</p>
+
+<center>
+  <br /> <a href="http://www.shakesoul.net/smartwp"><img src="http://i0.wp.com/www.shakesoul.net/wp-content/uploads/2013/05/SmartWP-Scale-h300.png?resize=327%2C180" class="alignnone" data-recalc-dims="1" /></a><br />
+</center>
+
+
+
+
+<!--more-->
+
+
+<p>レシピは2つ使っていて、他の環境とも共用しているベースとなるセットアップの後にスケーラブルな構成のためのレシピを適用しています。</p>
+
+<p>では、以下。私の <a href="https://gist.github.com/d-sea">Github Gist</a> からの貼付けです。</p>
+
+<p>まずはベースの設定。recipe[swp_setup]です。</p>
+
+<p>{% gist 8328203 swp_setup_default.rb %}</p>
+
+<p>続いて、recipe[swap_scale-org]です。</p>
+
+<p>{% gist 8328145 swp_scale-org_default.rb %}</p>
+
+<p>これを nodes/[hostname].json で、</p>
+
+<p>{% gist 8328241 node.json %}</p>
+
+<p>のように書いて適用させています。</p>
+
+<p>こんな感じで、Webサーバとしては nginx + php-fpm、それに Dropbox linux と s3fs を使っているのがお分かりかと思います。 今後、ここで読み込んでいるテンプレートの nginx のコンフィグとかなんかも公開しようかなと思っています。</p>
+
+<p>色々やっている方とディスカッションしてみたいので、違うやり方しているよとかこっちのほうが良いよみたいなのがあればフィードバックください〜</p>
+
+<p>あと、Chef 学びたいとかスケーラブルなサーバ環境つくりたいとかもあれば相談いただければです。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[入門Chef 補完 &#8211; chef〜vagrant saharaインストール]]></title>
+    <link href="http://blog.hirofukami.com/2013/10/11/install-chef-solve-way/"/>
+    <updated>2013-10-12T01:26:20+09:00</updated>
+    <id>http://blog.hirofukami.com/2013/10/11/install-chef-solve-way</id>
+    <content type="html"><![CDATA[<p><img class="alignnone" alt="Chef Logo" src="http://i0.wp.com/docs.opscode.com/chef/_static/opscode_chef_html_logo.png?resize=200%2C154" data-recalc-dims="1" /></p>
+
+<p>来ました Chef です。DevOps は考え方として把握していたけど、具体的にツールとして Chef が登場したし、<a href="http://www.shakesoul.net/smartwordpress" target="_blank">スマートWordPress</a> でも使えそうな気配がしたので、そろそろ把握するにはいタイミングだろうと思って学んでみている。</p>
+
+<p>伊藤直也さん著の、今や Amazon でUnixオペレーティングシステムカテゴリベストセラーNo.1の入門Chef Solo を購入して読了。<br/>
+<a href="http://www.amazon.co.jp/gp/product/B00BSPH158/ref=as_li_ss_il?ie=UTF8&amp;camp=247&amp;creative=7399&amp;creativeASIN=B00BSPH158&amp;linkCode=as2&amp;tag=dsea-22"><img alt="" src="http://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=B00BSPH158&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=dsea-22" border="0" /></a><img style="border: none !important; margin: 0px !important;" alt="" src="http://ir-jp.amazon-adsystem.com/e/ir?t=dsea-22&l=as2&o=9&a=B00BSPH158" width="1" height="1" border="0" /><br/>
+<a href="http://www.amazon.co.jp/gp/product/B00BSPH158/ref=as_li_ss_tl?ie=UTF8&amp;camp=247&amp;creative=7399&amp;creativeASIN=B00BSPH158&amp;linkCode=as2&amp;tag=dsea-22">入門Chef Solo &#8211; Infrastructure as Code</a><img style="border: none !important; margin: 0px !important;" alt="" src="http://ir-jp.amazon-adsystem.com/e/ir?t=dsea-22&l=as2&o=9&a=B00BSPH158" width="1" height="1" border="0" /></p>
+
+<p>その通りに自分の環境づくりから始めたものの結構のっけからうまくいかないことが起こった。<br/>
+先端的なものは変化が激しいしそんなこともあると思いつつ、色々調べつつ自分なりに起こった事象に対して解消していった。</p>
+
+<p>そんな解消した方法を 入門Chef 補完として紹介します。</p>
+
+<p>最初はChef インストールからローカルで 仮想環境操作を CLI 操作する vagrant のインストール、さらに vagrant のプラグイン sahara インストールまでのインストール手順になります。</p>
+
+<p>今後、また検証が進んで補完内容がたまったら紹介します。</p>
+
+<p>環境は</p>
+
+<ul>
+<li>OS X 10.7.5</li>
+<li>Ruby 1.8.7</li>
+<li>gem 1.3.7</li>
+</ul>
+
+
+<p>と、ちょっと古めの MacBook Air です。</p>
+
+<!--more-->
+
+
+<h2>Chef のインストール手順は Opscode のマニュアルに従う</h2>
+
+<p>Chef のインストールは入門Chefでは gem install だが、古い gem だと入らない。gem をアップデートすればよいけど、そもそも ruby 1.9.2 より古いと動作しないかもということもあり、依存しているもののバージョンアップをいちいちするのは手間だし、追い切れない。</p>
+
+<p>Chef のインストール方法は Opscode 提供のシェルを使うと Chef 含め必要なものを丸っとインストールしてくれる。動作確認されているであろう新しいバージョンが入る。<br/>
+ここらへんの手順は入門Chefに頼らず一度 opscode.com のマニュアルを読んだ方が良い。</p>
+
+<p><a href="http://docs.opscode.com/chef/install_workstation.html" target="_blank"><a href="http://docs.opscode.com/chef/install_workstation.html">http://docs.opscode.com/chef/install_workstation.html</a></a></p>
+
+<p>手順は、以下を実行するだけ。</p>
+
+<pre class="brush: bash; title: ; notranslate" title="">$ curl -L https://www.opscode.com/chef/install.sh | sudo bash
+</pre>
+
+
+<p>注意点は現状の環境と別で Mac だと /opt/chef というディレクトリが作られるので、環境に上書きされず Chef 用の独立した環境が1つ追加される。これを個人として許容できれば良いだろう。</p>
+
+<p>作られる階層構造は以下、</p>
+
+<pre class="brush: bash; title: ; notranslate" title="">/opt
+   /chef
+      /bin
+      /embedded
+         /bin
+         /include
+         /lib
+         /share
+         /ssl</pre>
+
+
+<p>インストールが終わると、2つの異なる ruby バージョンが存在することになる。</p>
+
+<pre class="brush: bash; title: ; notranslate" title=""># 今までの環境
+$ ruby -v
+ruby 1.8.7 (2012-10-12 patchlevel 371) [i686-darwin11]
+
+$ which ruby
+/opt/local/bin/ruby
+
+$ gem -v
+1.3.7
+
+# インストールされた Chef 用の環境
+$ /opt/chef/embedded/bin/ruby -v
+ruby 1.9.3p448 (2013-06-27 revision 41675) [x86_64-darwin11.2.0]
+
+$ /opt/chef/embedded/bin/gem -v
+1.8.24
+</pre>
+
+
+<p>自分は現状の環境のバージョンがちょっと古いしその上で動かしていたものもあるので、独立して設けたほうが支障がなく簡単に導入できるのでこのやり方を使った。</p>
+
+<h2>VirualBox, Vagrant, Sahara の失敗しないインストール方法</h2>
+
+<p>本では、Vagran, Saharaまでのインストール手順は、</p>
+
+<ol>
+<li>VirtualBox インストール</li>
+<li>gem install vagrant</li>
+<li>OSメージダウンロード</li>
+<li>vagrant gem install sahara</li>
+</ol>
+
+
+<p>だけど、この方法は自分の環境では動かなかったり、途中で不整合がでてインストールし直しが起きたりした。<br/>
+結果的に手順は以下のようになった。</p>
+
+<ol>
+<li>Vagrant で使いたいOSイメージを決める</li>
+<li>OSイメージのVirtualBox Guest Additions バージョンを確認</li>
+<li>OSイメージの VirtualBox Guest Additions バージョンと同じ VirtualBox のバージョンをインストール</li>
+<li>Vagrant のWebから最新バージョンのインストーラーをダウンロードしてインストール</li>
+<li>vagrant plugin install sahara</li>
+</ol>
+
+
+<h3>VirtualBox のバージョンはゲストOSに依存している</h3>
+
+<p>ゲストOSの VirtualBox Guest Additions と VirualBox のバージョンを一致させないと動かない。<br/>
+vagrant up するとこんなエラーが出る</p>
+
+<blockquote><p>[default] The guest additions on this VM do not match the install version of<br/>
+VirtualBox! This may cause things such as forwarded ports, shared<br/>
+folders, and more to not work properly. If any of those things fail on<br/>
+this machine, please update the guest additions and repackage the<br/>
+box.</p>
+
+<p>Guest Additions Version: 4.2.16<br/>
+VirtualBox Version: 4.2.18</p></blockquote>
+
+<p>なので、最初にOSイメージを決めてそれに対応する VirtualBox のバージョンをインストールする必要がある。</p>
+
+<p><a href="http://www.vagrantbox.es/" target="_blank"><a href="http://www.vagrantbox.es/">http://www.vagrantbox.es/</a></a> からだと、VirtualBox Guest Additions が示されていないイメージもあったり情報が不足しているが、自分はとりあえず情報がある<br/>
+CentOS 6.4 x86_64 Minimal (VirtualBox Guest Additions 4.2.16, Chef 11.6.0, Puppet 3.2.3)<br/>
+をダウンロードした。</p>
+
+<p>VirtualBox Guest Additions 4.2.16 なので、VirualBox も 4.2.16 をインストールする。<br/>
+<a href="https://www.virtualbox.org/wiki/Downloads" target="_blank"><a href="https://www.virtualbox.org/wiki/Downloads">https://www.virtualbox.org/wiki/Downloads</a></a> からだと最新版 4.2.18 しかないので、<br/>
+<a href="https://www.virtualbox.org/wiki/Download_Old_Builds_4_2" target="_blank"><a href="https://www.virtualbox.org/wiki/Download_Old_Builds_4_2">https://www.virtualbox.org/wiki/Download_Old_Builds_4_2</a></a> から 4.2.16 を見つけてダウンロード、インストーラーでインストールする。</p>
+
+<h3>Vagrant インストールは最新版インストーラーを使う</h3>
+
+<p>入門Chefでは Vagrant のインストール方法は gem install でとあるが、gem を使うと古い Vagrant がインストールされて、Sahara などのプラグインが追加できなかった。<br/>
+Opscode インストール方法で作られた Chef用 gem でも古い Vagrant だった。</p>
+
+<pre class="brush: bash; title: ; notranslate" title="">$ /opt/chef/embedded/bin/gem search vagrant
+ vagrant (1.0.7)</pre>
+
+
+<p>このバージョンではプラグインを追加するコマンドがない。</p>
+
+<p>解決方法は <a href="http://downloads.vagrantup.com/" target="_blank"><a href="http://downloads.vagrantup.com/">http://downloads.vagrantup.com/</a></a> より最新版をインストールする。OS X、Windows、Linuxなどプラットフォームごとにインストーラーが用意されている。<br/>
+インストールが終わると sahara プラグインがインストールできる。</p>
+
+<p>コマンドは vagrant gem install sahara ではなく(誤字？) vagrant plugin install sahara<br/>
+参考になったURL : <a href="http://qiita.com/hnakamur/items/2c1ae50a23ddc9f7cbe8" target="_blank"><a href="http://qiita.com/hnakamur/items/2c1ae50a23ddc9f7cbe8">http://qiita.com/hnakamur/items/2c1ae50a23ddc9f7cbe8</a></a></p>
+
+<pre class="brush: bash; title: ; notranslate" title="">$ vagrant -v
+ Vagrant 1.3.4
+
+# sahara プラグインインストール
+ $ vagrant plugin install sahara
+
+$ vagrant -h
+ Usage: vagrant [-v] [-h] command []
+
+-v, --version Print the version and exit.
+ -h, --help Print this help.
+
+Available subcommands:
+ box
+ destroy
+ halt
+ help
+ init
+ package
+ plugin
+ provision
+ reload
+ resume
+ sandbox
+ ssh
+ ssh-config
+ status
+ suspend
+ up</pre>
+
+
+<p>vagrant sandbox コマンドが追加される。これで vagrant sandbox on とかが使えるようになる。</p>
+
+<p>このやり方なら Chef インストールから vagrant が使えるところまで来れるはずです。</p>
+
+<p>本を読んだけど、あれ？うまくいかないなぁとつまずいてしまった方の参考になれば幸いです。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[AWS オートスケーリング設定方法 &#8211; 2013年版実践編]]></title>
+    <link href="http://blog.hirofukami.com/2013/07/23/aws-autoscaling-setting-2013/"/>
+    <updated>2013-07-23T19:24:54+09:00</updated>
+    <id>http://blog.hirofukami.com/2013/07/23/aws-autoscaling-setting-2013</id>
+    <content type="html"><![CDATA[<p>AWS が Auto Scaling、CloudWatch、Elastic Load Balancing を発表した時は興奮して、すぐに触ってブログに書きました。</p>
+
+<ul>
+<li><a title="Amazon EC2 新機能 Monitoring, Auto Scaling and Elastic Load Balancing を一通り触ってみた" href="http://hirofukami.com/2009/05/24/amazon-ec2-monitoring-auto-scaling-and-elastic/" target="_blank">Amazon EC2 新機能 Monitoring, Auto Scaling and Elastic Load Balancing を一通り触ってみた</a></li>
+<li><a title="Amazon EC2 Auto Scaling をもう少し詳しく見てみた" href="http://hirofukami.com/2010/03/05/amazon-ec2-auto-scaling/" target="_blank">Amazon EC2 Auto Scaling をもう少し詳しく見てみた</a></li>
+</ul>
+
+
+<p>その情報を元にして <a href="http://www.amazon.co.jp/gp/product/4774142840/ref=as_li_ss_tl?ie=UTF8&camp=247&creative=7399&creativeASIN=4774142840&linkCode=as2&tag=dsea-22" target="_blank">「よくわかるAmazonEC2/S3入門」を執筆した</a> のだけど、4年前の情報なのでもう古くオートスケーリングの設定方法も変わったようだったのでしっかり追いつきたいと思って再び触ってみた。</p>
+
+<p>結論的には以前と同じように思った通りの挙動が確認できた。AWS のドキュメントも充実していて理解をだいぶ助けたが、ちょいちょい間違っている点があったり、基本的にパラメータが多くて説明が少ないので、ユーザにはとっつきにくいというより、ちゃんと動かすまでに結構大変な思いをするものなのは変わらないようだ。<br/>
+ただ、実践でちゃんと使えるようになると魔法のツールになるので、設定方法を紹介してお役に立てれば幸いです。</p>
+
+<p>参考URLとしては、<a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/as-scale-based-on-demand.html" target="_blank">AWS のドキュメントサイトの Auto Scaling &#8211; Scale Based on Demand</a> に沿って進めるとできるが、その通りだと動かない部分もあり、ちょっとした解説や補足を加えて日本語で以下に書いていきます。</p>
+
+<h2>目指す挙動</h2>
+
+<p>オートスケーリングを活用して実戦的に使える設定方法としては、</p>
+
+<ul>
+<li>常にインスタンスの負荷状態をモニタリングしている</li>
+<li>モニタリングのある閾値を超えたら自動的にインスタンス数を増減させる</li>
+<li>起動したインスタンスは ELB の配下に置かれる</li>
+</ul>
+
+
+<p>これができると例えば、Webフロントサーバのスケーラブルな環境を作ることができる。<br/>
+自動的にスケールしてくれるので、今まで人間リソースに頼っていた部分が丸ごとなくなってコストカットも狙える。</p>
+
+<p>ただ注意点は、起動したインスタンスは起動後処理を開始できることを担保してあげないといけないので、ファイルのデプロイやアプリケーションの自動起動などを行うためのセッティングや起動スクリプトの用意などが必要。</p>
+
+<h2>Auto Scaling 設定概要</h2>
+
+<p>オートスケーリングの設定は複数の設定を組み合わせて動作させる。</p>
+
+<ul>
+<li>launch-config : インスタンスの起動情報を設定する。AMI、インスタンス、キーペア、セキュリティグループなどを指定する</li>
+<li>auto-scaling-group : オートスケーリングの中心となる設定。最大最小起動インスタンス数、ELB、アベイラビリティゾーンなどを指定する</li>
+<li>scaling policy : インスタンスを増減方法の設定。一度に立ち上げるインスタンス数などを指定する</li>
+<li>metric-alarm : CloudWatch における閾値の設定。どんな条件の時にアラートを出すかを指定する</li>
+</ul>
+
+
+<p>上の3つが Auto Scaling コマンドで実施し、最後は CloudWatch コマンドで実施する。<br/>
+各設定と挙動を整理すると以下の図のようになる。<br/>
+<a href="images/2013/07/130723aws-autoscaling-001.png"><img class="aligncenter size-large wp-image-1103" alt="130723AWS-AutoScaling.001" src="http://blog.hirofukami.com/images/2013/07/130723aws-autoscaling-001.png?resize=830%2C622" data-recalc-dims="1" /></a><!--more--></p>
+
+<h2>準備</h2>
+
+<p>現在 オートスケーリングの設定はコマンドラインからのみのようなので、コマンドラインツールをダウンロードして、自分の環境に適用させる。</p>
+
+<ul>
+<li>Auto Scaling Command Line Tool : <a href="http://aws.amazon.com/developertools/2535">http://aws.amazon.com/developertools/2535</a></li>
+<li>CloudWatch Command Line Tool : <a href="http://aws.amazon.com/developertools/2534">http://aws.amazon.com/developertools/2534</a></li>
+</ul>
+
+
+<p>自分の環境への適用方法は割愛。<br/>
+結果として、ターミナルで as コマンドと mon コマンドが実行可能になっていること。</p>
+
+<p>各コマンドを理解するには [コマンド] -h としてヘルプを見る。必須項目は何か、オプションの意味などが分かる。</p>
+
+<h2>launch config の設定</h2>
+
+<p>as-create-launch-config で launch config の作成をする。<br/>
+以下は、</p>
+
+<ul>
+<li>launch-config 名 : demo00-test04</li>
+<li>AMI : ami-893cab88</li>
+<li>インスタンスタイプ : t1.micro</li>
+<li>キーペア : deesea</li>
+<li>セキュリティグループ : quick-start-1</li>
+<li>リージョン : ap-northeast-1 (Tokyo)</li>
+</ul>
+
+
+<p>とした場合の設定方法</p>
+
+<pre class="brush: bash; title: ; notranslate" title="">$ as-create-launch-config demo00-test04 --image-id ami-893cab88 --instance-type t1.micro --region ap-northeast-1 --key deesea --group quick-start-1
+</pre>
+
+
+<p>キーペアとセキュリティグループは必須項目ではないのだけど、設定しないとサーバにログイン出来ない、サービスできないことになるので現実的には必須項目。</p>
+
+<p>確認する時は、as-describe-launch-config する</p>
+
+<pre class="brush: bash; title: ; notranslate" title="">$ as-describe-launch-configs -H
+LAUNCH-CONFIG  NAME           IMAGE-ID      TYPE
+LAUNCH-CONFIG  demo00-test04  ami-893cab88  t1.micro
+</pre>
+
+
+<h2>Auto Scaling Group の設定</h2>
+
+<p>as-create-auto-scaling-group で auto scaling group を作成する。<br/>
+以下は、</p>
+
+<ul>
+<li>auto-scaling-group 名 : demo00-test00-group00</li>
+<li>適用させる launch config 名 : demo00-test04</li>
+<li>(必要であれば) 起動したインスタンスを配下につける ELB 名 : demo00</li>
+<li>起動最大インスタンス数 : 10</li>
+<li>起動最小インスタンス数 : 2</li>
+<li>アベイラビリティゾーン : ap-northeast-1a, ap-northeast-1c</li>
+<li>リージョン : ap-northeast-1 (Tokyo)</li>
+</ul>
+
+
+<p>とした場合の設定方法</p>
+
+<pre class="brush: bash; title: ; notranslate" title="">$ as-create-auto-scaling-group demo00-test00-group00 --launch-configuration demo00-test04 --load-balancers demo00 --max-size 10 --min-size 2 --availability-zones ap-northeast-1a,ap-northeast-1c --region ap-northeast-1
+</pre>
+
+
+<p>この設定をした時点で、min-size 数のインスタンスが自動的に起動する。<br/>
+min-size は「常に起動するインスタンス数」になるので、min-size 1 以上にすれば落ちない状態を作ることができる。</p>
+
+<p>確認する時は、as-describe-auto-scaling-groups する</p>
+
+<pre class="brush: bash; title: ; notranslate" title="">$ as-describe-auto-scaling-groups
+AUTO-SCALING-GROUP  demo00-test00-group00  demo00-test04  ap-northeast-1c,ap-northeast-1a  demo00  2  10  2  Default
+INSTANCE  i-eaea06ee  ap-northeast-1c  InService  Healthy  demo00-test04
+INSTANCE  i-48c9254c  ap-northeast-1a  InService  Healthy  demo00-test04
+</pre>
+
+
+<p>起動したインスタンスも表示される。この場合2つのインスタンスが ap-northeast-1a と ap-northeast-1c に分散して起動されていることが分かる。</p>
+
+<p>修正したい時は、as-update-auto-scaling-group を使う。修正したい部分だけ書けばアップデートされる。</p>
+
+<pre class="brush: bash; title: ; notranslate" title="">$ as-update-auto-scaling-group demo00-test00-group00 --launch-config demo00-test05
+</pre>
+
+
+<p>アップデートコマンドがあるのは auto scaling group だけなので、AMI を更新した時の適用方法は、</p>
+
+<ol>
+<li>as-create-launch-config で新しい launch config を作成</li>
+<li>as-update-auto-scaling-group で適用させる launch config を変更</li>
+<li>as-delete-launch config で古い launch config を削除</li>
+</ol>
+
+
+<p>という流れを踏む必要がある。</p>
+
+<h2>Scaling Policy の設定</h2>
+
+<p>as-put-scaling-policy で scaling policy を作成する。<br/>
+スケールアウトとスケールインそれぞれに対して設定する。<br/>
+以下は、スケールアウト用</p>
+
+<ul>
+<li>scaling policy 名 : demo00-test00-outpolicy00</li>
+<li>適用する auto scaling group 名 : demo00-test00-group00</li>
+<li>adjustment トリガーに引っかかった時に増やす値 : 50</li>
+<li>type adjustmentの単位 : PercentChangeInCapacity</li>
+<li>リージョン : ap-northeast-1 (Tokyo)</li>
+</ul>
+
+
+<p>adjustment 50 で type が PercentChangeInCapacity と言うことは。全体のキャパシティに対して 50% 増加する分のスケーリングをするという意味。現在の起動インスタンス数が2だったら、2の50％の1インスタンスを起動して合計3インスタンスになる。現在のインスタンス数が10だったら、5インスタンス増えて合計15インスタンスになる。</p>
+
+<pre class="brush: bash; title: スケールアウト; notranslate" title="スケールアウト">$ as-put-scaling-policy demo00-test00-outpolicy00 -g demo00-test00-group00 --adjustment 50 --type PercentChangeInCapacity --region ap-northeast-1
+</pre>
+
+
+<p>&nbsp;</p>
+
+<pre class="brush: bash; title: 出力結果; notranslate" title="出力結果">arn:aws:autoscaling:ap-northeast-1:910777643605:scalingPolicy:801eb489-69c7-4ecd-8b5c-60e7509c9dbf:autoScalingGroupName/demo00-test00-group00:policyName/demo00-test00-outpolicy00
+</pre>
+
+
+<p>以下は、スケールアウト用</p>
+
+<ul>
+<li>scaling policy 名 : demo00-test00-inpolicy00</li>
+<li>適用する auto scaling group 名 : demo00-test00-group00</li>
+<li>adjustment トリガーに引っかかった時に増やす値 : -1</li>
+<li>type adjustmentの単位 : ChangeInCapacity</li>
+<li>リージョン : ap-northeast-1 (Tokyo)</li>
+</ul>
+
+
+<p>インスタンス数を減らすので、adjustment はマイナスの数字になる。<br/>
+ここでは単純に1インスタンスを減らす設定内容。</p>
+
+<pre class="brush: bash; title: スケールイン; notranslate" title="スケールイン">$ as-put-scaling-policy demo00-test00-inpolicy00 -g demo00-test00-group00 --adjustment=-1 --type ChangeInCapacity --region ap-northeast-1
+</pre>
+
+
+<p>&nbsp;</p>
+
+<pre class="brush: bash; title: 出力結果; notranslate" title="出力結果">arn:aws:autoscaling:ap-northeast-1:910777643605:scalingPolicy:0ce7a750-7fa1-46fc-a316-d2647013aa3f:autoScalingGroupName/demo00-test00-group00:policyName/demo00-test00-inpolicy00
+</pre>
+
+
+<p>arn: から始まる出力結果は次で設定する CloudWatch の設定時に使うのでメモっておく。<br/>
+as-describe-policies コマンドの POLICY-ARN 項目でも確認できる。</p>
+
+<h2>metric alarm の設定</h2>
+
+<p>CloudWatch のコマンド mon-put-metric-alrm を使って閾値を設定する。<br/>
+これもスケールアウトとスケールインそれぞれ設定する。<br/>
+以下は、</p>
+
+<ul>
+<li>アラーム名 : スケールアウト demo00-test00-AddCapacity01、スケールイン demo00-test00-RemoveCapacity01</li>
+<li>モニタリングする項目 metric-name : CPUUtilization</li>
+<li>適用サービス名 namespace : AWS/EC2</li>
+<li>モニタリング値の統計項目 : Average</li>
+<li>監視間隔 : 60 (sec)</li>
+<li>閾値 : スケールアウト 90、スケールイン 40</li>
+<li>検出条件 : GreaterThanOrEqualToThreshold (閾値の値と等しくもしくは超えた時)</li>
+<li>監視対象 dimensions : AutoScalingGroupName=demo00-test00-group00 (スケーリンググループ全体に適用しているのがポイント)</li>
+<li>アラームを出すまでに連続で閾値を超えた回数 evaluation-periods : 2 (この場合、監視間隔60 x 2 = 120sec後にアラームを発生する)</li>
+<li>アラーム発生時の処理 :
+
+<ul>
+<li>スケールアウト arn:aws:autoscaling:ap-northeast-1:910777643605:scalingPolicy:801eb489-69c7-4ecd-8b5c-60e7509c9dbf:autoScalingGroupName/demo00-test00-group00:policyName/demo00-test00-outpolicy00</li>
+<li>スケールイン arn:aws:autoscaling:ap-northeast-1:910777643605:scalingPolicy:801eb489-69c7-4ecd-8b5c-60e7509c9dbf:autoScalingGroupName/demo00-test00-group00:policyName/demo00-test00-outpolicy00</li>
+<li>(as-put-scaling-policy 出力結果)</li>
+</ul>
+</li>
+<li>リージョン : ap-northeast-1 (Tokyo)</li>
+</ul>
+
+
+<p>とした場合の設定方法</p>
+
+<p>namespace は AWS のドキュメントだと &#8220;AWS/EC2&#8243; とダブルコーテーションで囲ってあるが、これだと設定はできるが挙動時にエラーになって動作してくれない。</p>
+
+<pre class="brush: bash; title: ; notranslate" title="">$ mon-put-metric-alarm --alarm-name demo00-test00-AddCapacity01 --metric-name CPUUtilization --namespace=AWS/EC2 --statistic Average --period 60 --threshold 90 --comparison-operator GreaterThanOrEqualToThreshold --dimensions &quot;AutoScalingGroupName=demo00-test00-group00&quot; --evaluation-periods 2 --alarm-actions arn:aws:autoscaling:ap-northeast-1:910777643605:scalingPolicy:801eb489-69c7-4ecd-8b5c-60e7509c9dbf:autoScalingGroupName/demo00-test00-group00:policyName/demo00-test00-outpolicy00 --region ap-northeast-1
+
+$ mon-put-metric-alarm --alarm-name demo00-test00-RemoveCapacity01 --metric-name CPUUtilization --namespace=AWS/EC2 --statistic Average --period 60 --threshold 40 --comparison-operator LessThanOrEqualToThreshold --dimensions &quot;AutoScalingGroupName=demo00-test00-group00&quot; --evaluation-periods 2 --alarm-actions arn:aws:autoscaling:ap-northeast-1:910777643605:scalingPolicy:0ce7a750-7fa1-46fc-a316-d2647013aa3f:autoScalingGroupName/demo00-test00-group00:policyName/demo00-test00-inpolicy00 --region ap-northeast-1
+</pre>
+
+
+<h2>確認</h2>
+
+<p>CloudWatch の設定が正しくできているか mon-describe-alarms コマンドで確認する。</p>
+
+<pre class="brush: bash; title: ; notranslate" title="">$ mon-describe-alarms --region ap-northeast-1 --headers
+ALARM                           STATE  ALARM_ACTIONS                             NAMESPACE  METRIC_NAME     PERIOD  STATISTIC  EVAL_PERIODS  COMPARISON                     THRESHOLD
+demo00-test00-AddCapacity01     OK     arn:aws:autoscalin...-test00-outpolicy00  AWS/EC2    CPUUtilization  60      Average    2             GreaterThanOrEqualToThreshold  90.0
+demo00-test00-RemoveCapacity01  ALARM     arn:aws:autoscalin...0-test00-inpolicy00  AWS/EC2    CPUUtilization  60      Average    2             LessThanOrEqualToThreshold     40.0
+</pre>
+
+
+<p>通常の状態であれば STATE 項目でスケールアウトが OK、スケールイン が ALARM になっていれば良い。ALARM は今現在閾値に引っかかって ALARM を出しているという状態。INSUFFICIENT_DATA になっていなければ何か設定がおかしいということ。</p>
+
+<p>CloudWatch のログは mon-describe-alarm-history で見れる。アラームに引っかかったものや設定の更新が時系列に表示される。</p>
+
+<pre class="brush: bash; title: ; notranslate" title="">$ mon-describe-alarm-history --region ap-northeast-1
+demo00-test00-RemoveCapacity01  2013-07-22T09:02:45.790Z  Action               Successfully executed action arn:aws:autoscaling:ap-northeast-1:910777643605:scalingPolicy:0ce7a750-7fa1-46fc-a316-d2647013aa3f:autoScalingGroupName/demo00-test00-group00:policyName/demo00-test00-inpolicy00
+demo00-test00-RemoveCapacity01  2013-07-22T09:02:45.759Z  StateUpdate          Alarm updated from OK to ALARM
+demo00-test00-RemoveCapacity01  2013-07-22T08:59:45.776Z  StateUpdate          Alarm updated from ALARM to OK
+demo00-test00-RemoveCapacity01  2013-07-22T08:55:45.772Z  Action               Successfully executed action arn:aws:autoscaling:ap-northeast-1:910777643605:scalingPolicy:0ce7a750-7fa1-46fc-a316-d2647013aa3f:autoScalingGroupName/demo00-test00-group00:policyName/demo00-test00-inpolicy00
+demo00-test00-RemoveCapacity01  2013-07-22T08:55:45.768Z  StateUpdate          Alarm updated from OK to ALARM
+demo00-test00-AddCapacity02     2013-07-22T08:46:41.129Z  ConfigurationUpdate  Alarm &quot;demo00-test00-AddCapacity02&quot; deleted
+demo00-test00-AddCapacity03     2013-07-22T08:46:33.759Z  ConfigurationUpdate  Alarm &quot;demo00-test00-AddCapacity03&quot; deleted
+demo00-test00-AddCapacity05     2013-07-22T08:46:24.615Z  ConfigurationUpdate  Alarm &quot;demo00-test00-AddCapacity05&quot; deleted
+demo00-test00-AddCapacity05     2013-07-22T08:43:21.129Z  StateUpdate          Alarm updated from ALARM to OK
+demo00-test00-AddCapacity05     2013-07-22T08:42:21.092Z  StateUpdate          Alarm updated from OK to ALARM
+demo00-test00-AddCapacity04     2013-07-22T08:41:07.031Z  ConfigurationUpdate  Alarm &quot;demo00-test00-AddCapacity04&quot; deleted
+demo00-test00-AddCapacity05     2013-07-22T08:40:25.609Z  StateUpdate          Alarm updated from INSUFFICIENT_DATA to OK
+demo00-test00-AddCapacity05     2013-07-22T08:40:24.983Z  ConfigurationUpdate  Alarm &quot;demo00-test00-AddCapacity05&quot; created
+demo00-test00-AddCapacity04     2013-07-22T08:39:33.834Z  Action               Successfully executed action arn:aws:autoscaling:ap-northeast-1:910777643605:scalingPolicy:801eb489-69c7-4ecd-8b5c-60e7509c9dbf:autoScalingGroupName/demo00-test00-group00:policyName/demo00-test00-outpolicy00
+demo00-test00-AddCapacity04     2013-07-22T08:39:33.815Z  StateUpdate          Alarm updated from INSUFFICIENT_DATA to ALARM
+</pre>
+
+
+<p>また、実際のモニタリングの値を見たい時は、mon-get-stats コマンドを使う。</p>
+
+<pre class="brush: bash; title: ; notranslate" title="">$ mon-get-stats CPUUtilization --region ap-northeast-1 --namespace AWS/EC2 --statistics Average --dimensions &quot;AutoScalingGroupName=demo00-test00-group00&quot;
+
+(snip)
+
+2013-07-23 00:22:00  25.615000000000002  Percent
+2013-07-23 00:23:00  19.310000000000002  Percent
+2013-07-23 00:24:00  23.115000000000002  Percent
+2013-07-23 00:25:00  19.13               Percent
+2013-07-23 00:26:00  23.505000000000003  Percent
+2013-07-23 00:27:00  19.04               Percent
+2013-07-23 00:28:00  15.985              Percent
+2013-07-23 00:29:00  6.665               Percent
+</pre>
+
+
+<p>これで auto scaling group 全体の値が確認できる。</p>
+
+<p>負荷テストして実際スケールさせる場合は、1インスタンスだけCPU使用率100％にしても複数インスタンス起動している場合は平均で見られるので、スケールしない。複数のインスタンスで負荷をかけて、mon-get-stats の値が閾値を超えたかどうか確認しつつ、インスタンスが自動的に起動されるか見ると良い。</p>
+]]></content>
+  </entry>
+  
+</feed>
