@@ -4,7 +4,7 @@
   <title><![CDATA[Hiro Fukami's Blog]]></title>
   <link href="http://hirofukami.com/atom.xml" rel="self"/>
   <link href="http://hirofukami.com/"/>
-  <updated>2014-08-12T19:08:41+09:00</updated>
+  <updated>2014-09-12T11:23:45+09:00</updated>
   <id>http://hirofukami.com/</id>
   <author>
     <name><![CDATA[HiroFukami]]></name>
@@ -12,6 +12,195 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Apple Special Event をみた雑感]]></title>
+    <link href="http://hirofukami.com/blog/2014/09/10/apple-special-event-review/"/>
+    <updated>2014-09-10T21:00:00+09:00</updated>
+    <id>http://hirofukami.com/blog/2014/09/10/apple-special-event-review</id>
+    <content type="html"><![CDATA[<p><img src="http://images.apple.com/live/2014-sept-event/images/82600965630684f727f0b7ced7d04fe291df9be9_expanded_large.jpg" alt="Apple September 2014 Special Event" /></p>
+
+<p>ずっとアップルのキーノートやスペシャルイベントの動画はもう5年以上チェックしていて、今回も iPhone 6, WATCH の発表となった <a href="http://www.apple.com/live/2014-sept-event/">Apple September 2014 Special Event</a> をみた雑感をまとめてみる。</p>
+
+<p>最初にまとめを言ってしまうと、今回のイベントはジョブズからクックに代わって以降、最高のプレゼンテーションだったのではないかと思っている。
+製品にフォーカスし、期待を上回り、最高の盛り上がりを作り出すことに成功した。特に演出が良かったと思う。</p>
+
+<p>さて、以降細かなメモ書を載せます。</p>
+
+<!-- more -->
+
+
+<h1>Introduction</h1>
+
+<ul>
+<li>凝った導入ビデオだ</li>
+<li>&ldquo;different&rdquo; を強調している。ジョブズ時代の名コンセプト &ldquo;Think different&rdquo; と関連させている。ということは、なにか今までのラインナップにはない新プロダクトを発表する前触れを匂わせている。</li>
+<li>クックが登場しただけで会場が非常に盛り上がっている。アップル愛されているなぁ、俺も愛しているけど</li>
+</ul>
+
+
+<h1>iPhone 6</h1>
+
+<p><img src="http://images.apple.com/iphone-6/overview/images/hero_large.jpg" alt="iPhone6" /></p>
+
+<h2>最初みた印象</h2>
+
+<ul>
+<li>iPhone6が画面サイズが大きくなったということは、今後もこのサイズで行くのかな？個人的にはiPhone5のサイズでいいんだけど</li>
+<li>iPhone6は黒のイメージを押しているな、iPhone5は高級感を押し出したゴールドだった</li>
+<li>高級感はなく最初のころの丸みを帯びたiPhoneを薄くした印象</li>
+<li>角が丸くなったからバンパー系のケースがはまらなそう</li>
+<li>iPhone6 Plus の解像度(1920x1080)って、自分のメインマシン Macbook Air 11インチより高解像度だ。すごいな、PC並だな</li>
+</ul>
+
+
+<h2>Functions</h2>
+
+<ul>
+<li>トラッキングで高さの情報も取れる説明をして会場が沸いたが、今までもトラッキングアプリで上下の情報も取れていてたけどな</li>
+<li>LTE 150Mbps はいずれやるとしても、Voice on LTE とかは日本の3大キャリアは嫌がりそうだから、導入は遅れるだろうな</li>
+<li>Wi-Fi caling とかこれも日本の3大キャリアはいやがりそう</li>
+<li>やっぱりアップル純正iPhone6ケースはバンパー型ではなくシリコンで全体を覆うものだ</li>
+<li>ストレージ容量が128GBとかもうPC並のスペックだな</li>
+</ul>
+
+
+<h2>Marketing</h2>
+
+<ul>
+<li>デジカメを食ったたから次はHD対応して、ビデオを食うよと</li>
+<li>そうかPCの代わりに iPhone6 plus どうぞって戦略か</li>
+<li>そうなると iPad の立場が難しくなるけど、どうするんだろう。iPadは今後あまり入れ込まないのかな</li>
+<li>PCに比べれば 128GB で $499は安いな</li>
+<li>iOS8については前回のイベントで紹介しているのでさらっと説明で終了</li>
+<li>1週間後にシッピングか、同時にiOS8リリース、早いな</li>
+</ul>
+
+
+<h2>etc</h2>
+
+<ul>
+<li>プレゼン後のiPhone6のビデオイマイチ過ぎだけど、誰が歌っているかわからなければ駄作だ、わざとだろうけど</li>
+</ul>
+
+
+<h1> Pay</h1>
+
+<ul>
+<li>クレジットカードの古さを強調している、iPhone発表時のストーリーの持って行き方と似ている</li>
+<li>&ldquo;現状ある古いものを別の場所へ連れて行こう&rdquo; と呼びかける</li>
+<li>NFCのアンテナは背面ではなくて上部なんだ、背面だと手で握りづらいという判断か、こういった細かい部分の配慮がアップルらしい</li>
+<li>パスブックにクレジットカードがあるのはいいなぁ、使わなくなったカードは自分で削除できるから</li>
+</ul>
+
+
+<h2>Marketing</h2>
+
+<ul>
+<li>これは国ごとの金融業界に対する挑戦だから、日本で使えるようになるのはかなり先か、参入を許さない人たち色々動くだろう</li>
+<li>事例のようにショップとアップルが直接組めると成り立ちやすいんだけど日本だとどうかなぁ、外資系小売店や飲食店から導入されそう</li>
+<li>クレジットカードで払いたい派の自分としては日本のフェリカは使いたくないとずっと思ってきたけど、これは使いたくなる</li>
+<li>チャージが必要ない、クレジット決済を簡素化していることがポイント</li>
+</ul>
+
+
+<h1> WATCH</h1>
+
+<p><img src="http://images.apple.com/watch/features/images/favorite_large.jpg" alt="WATCH" /></p>
+
+<ul>
+<li>やばい、プレゼン始まる前のビデオをみただけなのに、買うならスポーツタイプだな、ベルトは、、とか考え始めている</li>
+<li>Apple Watch じゃなくて ロゴ()を見せているのか</li>
+<li>操作方法はダイヤルかぁ、今までの腕時計にも付いているしすでに慣れたインターフェイスだ。なるほど。どう操作するのが最も端的かよく考えたなぁ</li>
+<li>ダイヤルのアイデアが出ないうちに出しちゃうとタッチスクリーンとボタンになっちゃうんだろう</li>
+</ul>
+
+
+<h2>Mecanical</h2>
+
+<ul>
+<li>専用チップか、これどこまでがApple WatchでどこまでがiPhoneの情報の表示なんだろう</li>
+<li>OSのバージョンとかどうあげるんだろう、OSはないのか</li>
+</ul>
+
+
+<h2>UI</h2>
+
+<ul>
+<li>文字入力をなるべくしないために、テンプレートとか絵文字とかを使うようにして、音声入力も用意している</li>
+<li>emoji はワールドワイドで通じるんだ</li>
+<li>ダイヤルのアイデアに行き着くまでにタッチは基本1本指ならいけるけど、2本でやるのは無理と判断したように思える</li>
+<li>実はタッチもダイヤルも操作できるようになってるのかな、シンプルに1つにしたほうが良いと思う</li>
+</ul>
+
+
+<h2>How to</h2>
+
+<ul>
+<li>ホテルのドアキー代わりとかすげークールだ</li>
+<li>WATCH で Pay もできるのは嬉しい</li>
+<li>WATCH はiPhone5 も対応か、ありがたい、ってもう買うこと前提になっている自分</li>
+</ul>
+
+
+<h1>プレゼン全般</h1>
+
+<p>今回はアップルの魔法に掛かってしまったなぁ。</p>
+
+<p>ジョブズがいなくなってから一番良かったプレゼンかも。観客の熱狂、求めていたものが期待を超えてくる高揚感。</p>
+
+<p>プレゼンはシンプルで刺さりやすく、演出も良かった、プロダクトを見せる映像も効果的だった。今までのテンプレ気味な内容からプロダクトの本質にせまるためのアプローチを取ろうとしていたことがわかった。</p>
+
+<h2>時間</h2>
+
+<p>プレゼンの時間は個人的にはアップルがジョブズ時代から守ってきたように90分に収めるのが良いと思っている。観客の集中が続かないから。デモとかアプリ紹介とかを入れて飽きない工夫を施して60分を90分にまで伸ばしているから、90分が限界だと思っている。
+前回のキーノートが2時間を超えたときはさすがに長いしつめ込み過ぎと思った。参考 : <a href="http://hirofukami.com/blog/2014/06/09/apple-wwdc-2014-keynote-review/">Apple WWDC 2014 キーノートを見た雑感</a></p>
+
+<p>今回はプレゼン時間も長すぎ調度良い、U2のライブの前まで1:40で最初の長めのビデオが5分くらいだから1:35。約90分。</p>
+
+<h2>クックの増した存在感</h2>
+
+<p>クックがわりと長めにしゃべったのも良かった。CEOになってから時間もたったせいか、落ち着いて観客を引き付けながらしゃべるようになった。オーラを感じる。</p>
+
+<h2>U2</h2>
+
+<p>本当にその場でFree決めた訳ではなく、スライドが用意されていたので仕込みだろうけど、仕込みであったとしても良い盛り上がりだと思う。ライブだけだと退屈だっただろう。</p>
+
+<h2>社員の名前を呼びながら拍手のシーン</h2>
+
+<p>最後に各プロダクトを称えるシーンが良かった。今まで見えづらかったクックの人柄が見えた部分。ジョブズの単独カリスマ性から強烈なプロダクト毎のチームとしてアップルを見せていくのだろう。</p>
+
+<h2>よく練られて非常に効果的だった演出</h2>
+
+<ul>
+<li>最初のビデオは長いなと思いつつ、見ている人を引きつけつつメッセージを浸透させている</li>
+<li>紹介ビデオもいつもながらな撮り方なのだけど、プロダクトの高級感とか質感がよく分かって引き込まれるようだった</li>
+<li> WATCH 紹介の前にまだ時間は半分くらいしか経過していないのに、「One More Thing」で盛り上がりを作るとかやられたなぁと思う</li>
+<li>今までのアップルの素晴らしい要素を再活用して、新製品に繋げられている</li>
+</ul>
+
+
+<h1>イベントと無関係な部分 プレゼン資料について</h1>
+
+<ul>
+<li>Keynoteを使っているのだろうけど、直線が階段になるようなアニメーションどうやるんだろう</li>
+<li>アップルのプレゼンで使っている Keynote はいつもシンプルだけど効果的なアニメーション使っていて、真似したい</li>
+<li>Keynote のアニメーション設定方法を学びたい</li>
+</ul>
+
+
+<h1>これからのアップル</h1>
+
+<ul>
+<li>今回は今までの素晴らしい遺産をリビルドすることで成功したが、今後は新しいキーワードやコンセプトをどうやって打ち出すかどうかが課題かな</li>
+<li>今回の WATCH で分かるように、今後確実にアップルは非PC以外のジャンルにで行くわけで、新しい世界を作り出す会社として再認識されたんではと思う</li>
+<li>このイメージがある限りちょとやそっとでは落ちていかない気がする</li>
+</ul>
+
+
+<p>ということで、ひさびさにアップルに酔いしれてしまったのでした。Love  !</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[日産 リーフ 2週間モニターレポート]]></title>
@@ -2068,7 +2257,7 @@ Swiftは唯一まったく新しいものとして登場できたと思うが、
 <p><strong><a href="https://gist.github.com/d-sea/ca08b0cb765f9a255d26">GitHub Gist vimperatorrc</a></strong></p>
 
 <div><script src='https://gist.github.com/ca08b0cb765f9a255d26.js'></script>
-<noscript><pre><code>&quot; Hiro Fukami's Vimperatorrc
+<noscript><pre><code>&quot; Hiro Fukami&#39;s Vimperatorrc
 
 &quot;------------------------+
 &quot; 基本設定
@@ -2136,16 +2325,16 @@ let g:direct_sbm_use_services_by_post = &quot;h&quot;
 &quot; autocmd VimperatorEnter .* &lt;args&gt; を lazy コマンドとして登録
 &quot;command! -nargs=+ lazy autocmd VimperatorEnter .* &lt;args&gt;
 &quot;Gmail
-lazy fmaps -urls='mail\.google\.com/mail' c / j k n p o u e x s r a # [ ] z ? gi gs gt gd ga gb gc gl b &lt;S-i&gt; &lt;C-h&gt; &lt;C-Enter&gt;
+lazy fmaps -urls=&#39;mail\.google\.com/mail&#39; c / j k n p o u e x s r a # [ ] z ? gi gs gt gd ga gb gc gl b &lt;S-i&gt; &lt;C-h&gt; &lt;C-Enter&gt;
 
 &quot;Google Calendar
-lazy fmaps -urls='www\.google\.com/calendar' -events=vkeydown k j r t d w m c &lt;Del&gt; / + q s ?
+lazy fmaps -urls=&#39;www\.google\.com/calendar&#39; -events=vkeydown k j r t d w m c &lt;Del&gt; / + q s ?
 
 &quot;Google Docs
-lazy fmaps -urls='docs\.google\.com/' &lt;Del&gt; &lt;C-x&gt; &lt;C-d&gt; &lt;C-v&gt; &lt;C-c&gt; &lt;C-y&gt; &lt;C-z&gt; &lt;C-a&gt; 
+lazy fmaps -urls=&#39;docs\.google\.com/&#39; &lt;Del&gt; &lt;C-x&gt; &lt;C-d&gt; &lt;C-v&gt; &lt;C-c&gt; &lt;C-y&gt; &lt;C-z&gt; &lt;C-a&gt; 
 
 &quot;Feedly
-lazy fmaps -urls='feedly\.com/' gm ga gg r j k n p o v m x s e t ? &lt;S-m&gt;
+lazy fmaps -urls=&#39;feedly\.com/&#39; gm ga gg r j k n p o v m x s e t ? &lt;S-m&gt;
 
 set hintchars=hjklasdfgyuiopqwertnmzxcvb
 hi Hint z-index:5000; font-size:12px; color:white; background-color:gray; border-color:lightgray; border-width:2px; border-style:solid; padding:0px 2px 0px 2px; position:absolute; font-family: Menlo, Consolas, Monaco, monospace; text-transform: uppercase;
@@ -2552,54 +2741,6 @@ echo &quot;###  Finish loading vimperatorrc.  ###&quot;</code></pre></noscript><
 <p>Loc 2735</p>
 
 <blockquote><p>偉大なる起業家は違う。リスクそのものへの許容度が高いのではなく、リスクの大きさをよくよく見極めた上で対処する。</p></blockquote>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Book - 急に売れ始めるにはワケがある]]></title>
-    <link href="http://hirofukami.com/blog/2014/03/26/book-tipping-point/"/>
-    <updated>2014-03-26T09:41:55+09:00</updated>
-    <id>http://hirofukami.com/blog/2014/03/26/book-tipping-point</id>
-    <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/exec/obidos/ASIN/4797338121/dsea-22/ref=nosim/" rel="nofollow" target="_blank"><img src="http://ecx.images-amazon.com/images/I/51o8tn1vbjL._SY500_.jpg" style="border: none;" alt="急に売れ始めるにはワケがある ネットワーク理論が明らかにする口コミの法則（ソフトバンク文庫）" /></a>
-<a href="http://www.amazon.co.jp/exec/obidos/ASIN/4797338121/dsea-22/ref=nosim/" rel="nofollow" target="_blank">急に売れ始めるにはワケがある ネットワーク理論が明らかにする口コミの法則（ソフトバンク文庫）</a></p>
-
-<h2>プロモーションをどう取り組むか</h2>
-
-<p>サービスを流行らせることに対してどんな発想で取り組んでいるだろう。</p>
-
-<p>エンジニアしかいないチームに結構多い失敗パターンは、サービスの開発を一生懸命にやってできたけど、リリースしてみたら注目されず、さて困ったとなってしまうこと。
-サービスが流行って欲しい気持ちはあっても、何もしなくてはサービスの存在はないのと等しい。</p>
-
-<p>根本的な考え方として「良いものをつくれば黙ってでも売れる」時代ではもうないので、<strong>サービスを使って欲しい人に対して正しく伝えられるか</strong> というプロモーションの課題は、サービス開発と同じくらい重要な要素になっている。</p>
-
-<h2>理想は口コミプロモーション</h2>
-
-<p>では、プロモーションとして何をするか。</p>
-
-<p>メディアへの露出は毎回使えるわけではなく、スケールさせたい時にタイミングをはかって使うには良いけど、シード期には規模は小さくとも熱心に使ってくれるターゲットに効率的に情報を届けたい。</p>
-
-<p>やっぱりそこは口コミで広がっていくことを狙いたくなる。</p>
-
-<p>ではどうやって？実は口コミを意図的に作るためのノウハウが自分にはないことに気づいた。
-FacebookやTwitterにポストするだけであとは何をしていいやらと迷走していた。</p>
-
-<p>そこでこの本を買った。</p>
-
-<h2>口コミが発生する法則を解き明かす</h2>
-
-<p>多分、原書のタイトルは「ティッピング・ポイント」。邦題とニュアンスが違ってくる。
-口コミの解説というより、急激に広がる現象(ティッピング・ポイント)が起きる時にどんな要素が必要なのか。どういう背景があるのか。と言った点を解き明かすスタイルになっている。</p>
-
-<p>ビジネスにフォーカスしたというより、様々な分野や研究結果から実例を元に解説しているので、法則を解説する論文的な側面がある。</p>
-
-<h2>論理は理解、あとは自分次第</h2>
-
-<p>ティッピング・ポイントが発生するためのメカニズムと発生に必要な要素や背景を理解することができる。
-では、自分のサービスを流行らせるために何を具体的にしていこうか。そこは書いていない。自分で考え出すしかない。</p>
-
-<p>ただ、本書では豊富な事例があるので具体策を考える時に助けてくれるだろう。</p>
-
-<p>プロモーションを理論的に学べる本だった。</p>
 ]]></content>
   </entry>
   

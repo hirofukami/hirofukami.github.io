@@ -102,6 +102,254 @@ $(document).ready(
     <article class="post">
 	<h2 class="title">
 		
+		<a href="/2008/10/14/%e3%83%90%e3%83%83%e3%82%af%e3%82%a2%e3%83%83%e3%83%97%e3%82%b7%e3%82%a7%e3%83%ab%e3%82%92%e4%bd%9c%e3%81%a3%e3%81%a6%e3%81%bf%e3%81%9f/">
+		
+			バックアップシェルを作ってみた</a>
+	</h2>
+	<div class="entry-content">
+		<div class="section">
+  <p>
+    また何かのときに使えるかもしれないのでメモ。
+  </p>
+  
+  <p>
+    ちまたにはバックアップソフトを買うだとかするようですが、rsync コマンドを使ってクーロンで動かせば基本的なことは足りてしまう。以下、バックアップサーバ(バックアップファイルをためるサーバ)にてクーロンでまわしているシェルの基本部分抜粋。
+  </p>
+  
+  <p>
+    参考にしたのはいつもお世話になっているところから<a href="http://centossrv.com/backup.shtml" target="_blank">ココ</a>。ただ、バッククライアント側で rsync を実施しているので、こちらの方法は異なる。
+  </p>
+  
+  <p>
+    動作の特徴
+  </p>
+  
+  <ul>
+    <li>
+      バックアップサーバから rsync コマンドを使ってファイル/ディレクトリを取得</p> <ul>
+        <li>
+          プロトコルは ssh を使ってパスワードなし key を使う
+        </li>
+      </ul>
+    </li>
+    
+    <li>
+      バックアップ先は list に記述 <ul>
+        <li>
+          記述例) 192.168.0.100://root/backup
+        </li>
+      </ul>
+    </li>
+    
+    <li>
+      バックアップ保存先は仮で /home/backup 配下にしている <ul>
+        <li>
+          最新のバックアップファイル/フォルダは new ディレクトリに保存
+        </li>
+        <li>
+          前日以降分は biz2 で圧縮して old ディレクトリへ移動
+        </li>
+      </ul>
+    </li>
+    
+    <li>
+      old ディレクトリ内の圧縮ファイルは365日経過したら削除
+    </li>
+    <li>
+      処理の詳細は /var/log/backup.log に記述
+    </li>
+    <li>
+      処理でエラーしたら root あてのメールが飛ぶ
+    </li>
+  </ul>
+  
+  <p>
+    <pre class="syntax-highlight">
+
+<span class="synComment">#!/bin/bash</span>
+
+
+
+<span class="synIdentifier">LANG</span>=C
+
+
+
+<span class="synComment"># 設定開始</span>
+
+
+
+<span class="synIdentifier">USER</span>=backup
+
+<span class="synComment"># バックアップ対象リスト名</span>
+
+<span class="synIdentifier">BACKUPLIST</span>=/home/<span class="synPreProc">$USER</span>/script/list
+
+<span class="synStatement">[</span> <span class="synStatement">!</span> <span class="synStatement">-s</span> <span class="synPreProc">$BACKUPLIST</span> <span class="synStatement">]</span> <span class="synStatement">&&</span> <span class="synStatement">echo</span><span class="synConstant"> </span><span class="synStatement">"</span><span class="synPreProc">$BACKUPLIST</span><span class="synConstant"> is not found</span><span class="synStatement">"</span><span class="synConstant"> </span><span class="synStatement">&&</span> error_exit
+
+
+
+<span class="synComment"># バックアップ先ディレクトリ名</span>
+
+<span class="synComment"># 最新 new, 過去分 old</span>
+
+<span class="synIdentifier">BACKUPDIRNEW</span>=/home/<span class="synPreProc">$USER</span>/backup-files/new
+
+<span class="synIdentifier">BACKUPDIROLD</span>=/home/<span class="synPreProc">$USER</span>/backup-files/old
+
+<span class="synStatement">mkdir</span> <span class="synSpecial">-p</span> <span class="synPreProc">$BACKUPDIRNEW</span>
+
+<span class="synStatement">mkdir</span> <span class="synSpecial">-p</span> <span class="synPreProc">$BACKUPDIROLD</span>
+
+
+
+<span class="synComment"># バックアップ保存世代数</span>
+
+<span class="synComment"># ※当日分を含めた過去分バックアップを保存する世代数</span>
+
+<span class="synComment"># ※過去分バックアップを保存しない場合は1を指定する</span>
+
+<span class="synIdentifier">BACKUPGEN</span>=<span class="synConstant">365</span>
+
+
+
+<span class="synComment"># バックアップログファイル名</span>
+
+<span class="synIdentifier">BACKUPLOG</span>=/var/log/backup.log
+
+
+
+<span class="synComment"># 異常終了処理関数定義</span>
+
+error_exit <span class="synStatement">()</span> <span class="synSpecial">{</span>
+
+<span class="synStatement">exit</span> <span class="synConstant">1</span>
+
+<span class="synSpecial">}</span>
+
+
+
+<span class="synComment"># バックアップログファイル作成</span>
+
+<span class="synComment"># 1回分のみ保持</span>
+
+<span class="synStatement">rm</span> -f <span class="synPreProc">$BACKUPLOG</span>
+
+<span class="synStatement">if</span> <span class="synStatement">[</span> <span class="synStatement">!</span> <span class="synStatement">-f</span> <span class="synPreProc">$BACKUPLOG</span> <span class="synStatement">];</span> <span class="synStatement">then</span>
+
+<span class="synStatement">touch</span> <span class="synPreProc">$BACKUPLOG</span>
+
+<span class="synStatement">chmod</span> <span class="synConstant">644</span> <span class="synPreProc">$BACKUPLOG</span>
+
+<span class="synStatement">fi</span>
+
+
+
+<span class="synComment"># バックアップファイルの履歴</span>
+
+<span class="synComment"># 新しいファイルは new</span>
+
+<span class="synComment"># 前のファイルはoldディレクトリ以下に日付入りの圧縮ファイルにする</span>
+
+<span class="synStatement">cd</span> <span class="synPreProc">$BACKUPDIRNEW</span>
+
+<span class="synIdentifier">LINECOUNT</span>=<span class="synSpecial">`</span><span class="synStatement">ls</span><span class="synSpecial"> </span><span class="synStatement">|</span><span class="synSpecial">wc -l </span><span class="synConstant">2</span><span class="synSpecial">&gt;/dev/null`</span>
+
+<span class="synStatement">echo</span><span class="synConstant"> </span><span class="synStatement">"</span><span class="synConstant">#### </span><span class="synSpecial">`date`</span><span class="synConstant"> backup start ####</span><span class="synStatement">"</span><span class="synConstant"> </span><span class="synStatement">&gt;&gt;</span> <span class="synPreProc">$BACKUPLOG</span>
+
+<span class="synStatement">if</span> <span class="synStatement">[</span> <span class="synPreProc">$LINECOUNT</span> <span class="synStatement">-ne</span> <span class="synConstant"></span> <span class="synStatement">];</span> <span class="synStatement">then</span>
+
+<span class="synIdentifier">TIMESTAMP</span>=<span class="synSpecial">`date +%y%m%d-%H%M%S`</span>
+
+tar jcvfP <span class="synPreProc">$BACKUPDIRNEW</span>/<span class="synPreProc">${TIMESTAMP}</span>backup.tar.bz2 <span class="synPreProc">$BACKUPDIRNEW</span> <span class="synStatement">&gt;&gt;</span> <span class="synPreProc">$BACKUPLOG</span> <span class="synStatement">2&gt;&1</span>
+
+<span class="synStatement">mv</span> <span class="synPreProc">$BACKUPDIRNEW</span>/<span class="synPreProc">${TIMESTAMP}</span>backup.tar.bz2 <span class="synPreProc">$BACKUPDIROLD</span>/ <span class="synStatement">&gt;</span> /dev/null <span class="synStatement">2&gt;&1</span>
+
+<span class="synStatement">fi</span>
+
+
+
+<span class="synComment"># バックアップ実行</span>
+
+<span class="synComment"># key にて ssh rsync パスワードなし</span>
+
+while <span class="synStatement">read</span> LINE
+
+<span class="synStatement">do</span>
+
+rsync -avz --delete <span class="synStatement">-e</span> <span class="synStatement">"</span><span class="synConstant">ssh -i /home/</span><span class="synPreProc">$USER</span><span class="synConstant">/.ssh/id_rsa</span><span class="synStatement">"</span> <span class="synPreProc">$USER</span>@<span class="synPreProc">$LINE</span> <span class="synPreProc">$BACKUPDIRNEW</span>/ <span class="synStatement">&gt;&gt;</span> <span class="synPreProc">$BACKUPLOG</span> <span class="synStatement">2&gt;&1</span>
+
+<span class="synStatement">done</span> <span class="synStatement">&lt;</span> <span class="synPreProc">$BACKUPLIST</span>
+
+<span class="synIdentifier">code</span>=<span class="synPreProc">$?</span>
+
+<span class="synStatement">if</span> <span class="synStatement">[</span> <span class="synPreProc">$code</span> <span class="synStatement">-ne</span> <span class="synConstant"></span> <span class="synStatement">];</span> <span class="synStatement">then</span>
+
+cat <span class="synPreProc">$BACKUPLOG</span> <span class="synStatement">|</span> mail <span class="synStatement">-s</span> <span class="synStatement">"</span><span class="synConstant">BACKUP NG CODE IS </span><span class="synPreProc">$code</span><span class="synStatement">"</span> root
+
+error_exit
+
+<span class="synStatement">fi</span>
+
+<span class="synStatement">echo</span><span class="synConstant"> </span><span class="synStatement">"</span><span class="synConstant">#### </span><span class="synSpecial">`date`</span><span class="synConstant"> backup end ####</span><span class="synStatement">"</span><span class="synConstant"> </span><span class="synStatement">&gt;&gt;</span> <span class="synPreProc">$BACKUPLOG</span>
+
+
+
+<span class="synComment"># バックアップ保存世代を超えた古いバックアップを削除</span>
+
+<span class="synStatement">if</span> <span class="synStatement">[</span> <span class="synPreProc">$(</span><span class="synStatement">ls</span><span class="synSpecial"> </span><span class="synPreProc">$BACKUPDIROLD</span><span class="synSpecial">/ </span><span class="synStatement">|</span><span class="synSpecial">wc -l</span><span class="synPreProc">)</span> <span class="synStatement">-gt</span> <span class="synPreProc">$BACKUPGEN</span> <span class="synStatement">];</span> <span class="synStatement">then</span>
+
+<span class="synIdentifier">OLDBACKUPCNT</span>=<span class="synSpecial">`</span><span class="synStatement">expr</span><span class="synSpecial"> $</span><span class="synStatement">(ls</span><span class="synSpecial"> </span><span class="synPreProc">$BACKUPDIROLD</span><span class="synSpecial">/ </span><span class="synStatement">|</span><span class="synSpecial">wc -l</span><span class="synStatement">)</span><span class="synSpecial"> - </span><span class="synPreProc">$BACKUPGEN</span><span class="synSpecial">`</span>
+
+<span class="synStatement">for</span> file <span class="synStatement">in</span> <span class="synSpecial">`</span><span class="synStatement">ls</span><span class="synSpecial"> -t </span><span class="synPreProc">$BACKUPDIROLD</span><span class="synSpecial">/ </span><span class="synStatement">|tail</span><span class="synSpecial"> -n </span><span class="synPreProc">$OLDBACKUPCNT</span><span class="synSpecial">`</span>
+
+<span class="synStatement">do</span>
+
+<span class="synStatement">rm</span> <span class="synStatement">-f</span> <span class="synPreProc">$BACKUPDIROLD</span>/<span class="synPreProc">$file</span>
+
+<span class="synStatement">done</span>
+
+<span class="synStatement">fi</span>
+
+</pre></div>
+
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-10-15T00:00:00+09:00" pubdate data-updated="true">Oct 15<span>th</span>, 2008</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/tech/'>Tech</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/2008/10/14/%e3%83%90%e3%83%83%e3%82%af%e3%82%a2%e3%83%83%e3%83%97%e3%82%b7%e3%82%a7%e3%83%ab%e3%82%92%e4%bd%9c%e3%81%a3%e3%81%a6%e3%81%bf%e3%81%9f//blog/page/32/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
 		<a href="/2008/10/08/2008-2/">
 		
 			東京ゲームショウ2008にいってきました</a>
@@ -1143,110 +1391,6 @@ $(document).ready(
 
 	
 		<span class="comments"><a href="/2008/09/11/acer-x223w-22//blog/page/32/index.html#disqus_thread">Comments</a></span>
-	
-</div></article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/2008/09/10/check-pad/">
-		
-			Check*pad の使い方</a>
-	</h2>
-	<div class="entry-content">
-		<div class="section">
-  <p>
-    仕事とプライベートのToDoを忘れないために <a href="http://www.checkpad.jp/?" target="_blank">check*pad</a> を使っているけど、チェックする時間がないと取りこぼしもあるので使い方とポリシーを模索中。使い方と気にしておくポイントを忘れないようにメモ。
-  </p>
-  
-  <h5>
-    使い方
-  </h5>
-  
-  <dl>
-    <dt>
-      リストは仕事とプライベート、短期的なもの長期的なものに分ける
-    </dt>
-    
-    <dd>
-      例えば、&#8221;仕事-細かいタスク短期もの&#8221;、&#8221;仕事-それほど急がないもの&#8221;、&#8221;private&#8221;、&#8221;blogネタ&#8221; みたいに分ける
-    </dd>
-    
-    <dt>
-      チェック項目にカテゴリ、日付を書いておく
-    </dt>
-    
-    <dd>
-      例えば、&#8221;9/10まで [study] WordPress入れてみる <a href="http://ja.wordpress.org/" target="_blank"><a href="http://ja.wordpress.org/" target="_blank">http://ja.wordpress.org/</a></a>&#8221; みたいに
-    </dd>
-    
-    <dt>
-      モーニングリストを活用する
-    </dt>
-    
-    <dd>
-      [今日やること] リストを作って、そこにモーニングリスト設定をする。<br />毎朝10時にGmailに飛ばす。(携帯はあまり活用しないので、見たい時もGmailは携帯からもチェックできるし)<br />1日の終わりに必ず check*pad を開いて、明日やりたいチェック項目を [今日やること] リストに移動させる。
-    </dd>
-  </dl>
-  
-  <h5>
-    ポイント
-  </h5>
-  
-  <ul>
-    <li>
-      [今日やることリスト] に移動させるチェック項目は1日分にとどめること</p> <ul>
-        <li>
-          これもやりたいという気持ちをグッとおさえて、クールに判断する
-        </li>
-        <li>
-          1日は24時間。有限なのだから詰め込める限界もあることをよく自覚する、っと。
-        </li>
-      </ul>
-    </li>
-  </ul>
-  
-  <p>
-    ちょっと複雑かなぁ。でも確実にするにはちょっとした手間は習慣づけないといけないのかも。
-  </p>
-  
-  <p>
-    まずはこのやり方でしばらく行ってみる。
-  </p>
-</div>
-
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-09-11T00:00:00+09:00" pubdate data-updated="true">Sep 11<span>th</span>, 2008</time></div>
-	
-
-<div class="tags">
-
-	<a class='category' href='/blog/categories/internet/'>Internet</a>
-
-</div>
-
-
-	
-		<span class="comments"><a href="/2008/09/10/check-pad//blog/page/32/index.html#disqus_thread">Comments</a></span>
 	
 </div></article>
 

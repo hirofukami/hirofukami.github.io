@@ -102,6 +102,178 @@ $(document).ready(
     <article class="post">
 	<h2 class="title">
 		
+		<a href="/2013/07/17/aws-s3cmd-sync-deploy/">
+		
+			AWS S3cmd を使ってS3から複数EC2インスタンスへ簡単デプロイ環境を作る</a>
+	</h2>
+	<div class="entry-content">
+		<p>基本的に複数台の EC2 インスタンスある場合にファイルをデプロイする時は、手動なら SCP で1台ずつやるのだろうけど、楽をするなら Chef を使って環境を作るとかになると思う。だけど、オートスケーリングをさせている場合、起動しているインスタンスは常に変わってしまう懸念があるので、実際そこまで作りこむのは大変。</p>
+
+<p>そこで、s3cmd sync を使うと簡単デプロイ環境ができると思って触ってみた。<br/>
+インストールや基本的な動かし方は下記参考URLを見ながら、それ以外の情報も得られたので載せておく。</p>
+
+<p>参考URL</p>
+
+<ul>
+<li><a href="http://blog.serverworks.co.jp/tech/2012/06/27/nginx-01/">http://blog.serverworks.co.jp/tech/2012/06/27/nginx-01/</a></li>
+<li><a href="http://memocra.blogspot.jp/2013/02/s3s3cmd-syncinotifys3cmd-sync.html">http://memocra.blogspot.jp/2013/02/s3s3cmd-syncinotifys3cmd-sync.html</a></li>
+<li><a href="http://understeer.hatenablog.com/entry/2012/07/23/124402">http://understeer.hatenablog.com/entry/2012/07/23/124402</a></li>
+<li><a href="http://recipe.kc-cloud.jp/archives/1059">http://recipe.kc-cloud.jp/archives/1059</a></li>
+<li><a href="http://blog.serverworks.co.jp/tech/2013/04/23/ec-cube-on-aws-s3/">http://blog.serverworks.co.jp/tech/2013/04/23/ec-cube-on-aws-s3/</a></li>
+<li><a href="http://understeer.hatenablog.com/entry/2012/07/23/124402">http://understeer.hatenablog.com/entry/2012/07/23/124402</a></li>
+</ul>
+
+
+<h2>インストール</h2>
+
+<pre class="brush: bash; title: ; notranslate" title="">$ sudo yum -y --enablerepo epel install s3cmd
+</pre>
+
+
+<p>AWS アカウントの Access Key と Secret Key の情報を設定する。HTTPSを使うか、HTTP Proxyを使うかとかあるが適宜入力する。</p>
+
+<pre class="brush: bash; title: ; notranslate" title="">$ s3cmd --configure
+
+Enter new values or accept defaults in brackets with Enter.
+Refer to user manual for detailed description of all options.
+
+Access key and Secret key are your identifiers for Amazon S3
+Access Key: [PUT YOUR ACCESS KEY]
+Secret Key: [PUT YOUR SECRET KEY]
+
+Encryption password is used to protect your files from reading
+by unauthorized persons while in transfer to S3
+Encryption password: [PUT YOUR PASSWORD]
+Path to GPG program [/usr/bin/gpg]:
+
+When using secure HTTPS protocol all communication with Amazon S3
+servers is protected from 3rd party eavesdropping. This method is
+slower than plain HTTP and can't be used if you're behind a proxy
+Use HTTPS protocol [No]:
+
+On some networks all internet access must go through a HTTP proxy.
+Try setting it here if you can't conect to S3 directly
+HTTP Proxy server name:
+
+New settings:
+  Access Key: [PUT YOUR ACCESS KEY]
+  Secret Key: [PUT YOUR SECRET KEY]
+  Encryption password: [PUT YOUR PASSWORD]
+  Path to GPG program: /usr/bin/gpg
+  Use HTTPS protocol: False
+  HTTP Proxy server name:
+  HTTP Proxy server port: 0
+
+Test access with supplied credentials? [Y/n] y
+Please wait...
+Success. Your access key and secret key worked fine <img src='http://i2.wp.com/hirofukami.com/wp-includes/images/smilies/icon_smile.gif?w=830' alt=':-)' class='wp-smiley' data-recalc-dims="1" /> 
+
+Now verifying that encryption works...
+Success. Encryption and decryption worked fine <img src='http://i2.wp.com/hirofukami.com/wp-includes/images/smilies/icon_smile.gif?w=830' alt=':-)' class='wp-smiley' data-recalc-dims="1" /> 
+
+Save settings? [y/N] y
+   * Configuration saved to '/home/ec2-user/.s3cfg'
+</pre>
+
+
+<p>一応、設定ファルのパスをメモっておく。</p>
+
+<h2>sync してみる</h2>
+
+<pre class="brush: bash; title: ; notranslate" title="">$ sudo s3cmd sync s3://deesea-bucket/test-dir/ ./test-s3fs/
+(snip)
+Done. Downloaded 20912437 bytes in 54.9 seconds, 372.27 kB/s
+
+$ du -h --max-depth=1 test-s3fs/
+18M     test-s3fs/wordpress
+23M     test-s3fs/
+</pre>
+
+
+<p>23MBで55secくらいかかった。</p>
+
+<p>作成されたディレクトリファイルは実行したユーザの所有権が付与される。</p>
+
+<pre class="brush: bash; title: ; notranslate" title="">$ ll plugins
+合計 20
+drwxr-xr-x 2 root root 4096  7月  2 06:40 2013 testdir01
+-rwxr-xr-x 1 root root 2262  7月  2 06:16 2013 testfile01.txt
+</pre>
+
+
+<p>パーミッションは 755。</p>
+
+<p>テストの時は &#8211;dry-run つけると実際のファイルは更新せずに実行結果の出力をしてくれる。</p>
+
+<p>sync コマンドの注意点は S3 にあってインスタンスにないファイル・ディレクトリは追加してくれるが、S3 になくてインスタンスにあるものは削除してくれない。sync と言いつつ実は追加・更新のみで削除はしてくれない。これを解消するために &#8211;delete-removed がある。</p>
+
+<h2>&#8211;delete-removed を試す</h2>
+
+<pre class="brush: plain; title: ; notranslate" title="">$ sudo s3cmd --delete-removed sync s3://deesea-bucket/test-dir/ ./test-s3fs/
+</pre>
+
+
+<p>ただこれも注意点があって、ファイルは削除するがディレクトリは残ったままになる。ディレクトリ内のファイルはなくなるがディレクトリまでは削除してくれるない。もしプログラム的に「ディレクトリがあったら」という条件式を書く場合は不具合が起きるので「ディレクトリ内のファイルが1つでもあれば」というようにすると良いだろう。</p>
+
+<h2>&#8211;exclude を試す</h2>
+
+<p>ある特定のディレクトリ・ファイルを sync の対象から外したい時は &#8211;exclude を付ける。<br/>
+特定のファイル名なら &#8211;exclude=&#8221;testfile01.txt&#8221; とすればよいのだけど、特定のディレクトリ配下のファイルすべて除外するという指定する時が結構やっかいだった。<br/>
+結局、&#8211;exclude=&#8221;*exclude-dir/*&#8221; で動いた。</p>
+
+<pre class="brush: bash; title: ; notranslate" title="">$ sudo s3cmd --delete-removed --exclude=&quot;*exclude-dir/*&quot; sync s3://deesea-bucket/test-dir/ ./test-s3fs/
+</pre>
+
+
+<p>これを継続的に回す cron に記述すれば定期的に処理できる。</p>
+
+<pre class="brush: bash; title: ; notranslate" title="">$ sudo crontab -e
+
+*/2 * * * * s3cmd --delete-removed sync s3://deesea-bucket/test-dir/ /usr/share/nginx/html/test-s3fs/
+</pre>
+
+
+<p>2分間隔で処理する記述。</p>
+
+<p>AMIに仕込んでおけば、インスタンスが変わっても気にすることなくデプロイできる。うまく使えばとても楽にデプロイ環境が作れるので、オススメです。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-07-18T02:39:26+09:00" pubdate data-updated="true">Jul 18<span>th</span>, 2013</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/tech/'>Tech</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/2013/07/17/aws-s3cmd-sync-deploy//blog/page/9/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
 		<a href="/2013/07/12/launch-service-my-challenge/">
 		
 			「サービスを作って食べていけるか」のチャレンジに移行します</a>
@@ -855,97 +1027,6 @@ analytics.start(10,true); は10秒間隔でデータを送っている？よう�
 
 	
 		<span class="comments"><a href="/2013/05/31/titanium-google-analytics//blog/page/9/index.html#disqus_thread">Comments</a></span>
-	
-</div></article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/2013/05/29/diary-nikkei-2013-05-30/">
-		
-			今日の日経 2013.05.30</a>
-	</h2>
-	<div class="entry-content">
-		<p>円安、構造変化で最長 [1面]</p>
-
-<ul>
-<li>8ヶ月連続の円安ということだけど、ここ30年間の推移のグラフを見ると円高傾向のゆるやかな傾きになっていることが分かる。</li>
-<li>長期的に見れば100円以下を想定しておくのは当然ということか。だから企業の想定為替レートはあまり変えないのかもしれない。</li>
-</ul>
-
-
-<p>住宅金利6月も上げ [1面]</p>
-
-<ul>
-<li>「金融緩和で貸出金利の押し下げを狙った日銀の思惑が外れる結果になっている。」と明確に日銀のミスが書かれたのはアベノミクス以降はじめてかも。</li>
-<li>基本的に景気が良い時は、変動金利は固定金利より上がって、景気が悪い時は変動金利は低い。という理解をしているので、今の現象は当然と思えるのだけど。給料と預金の定期金利とかが上がって来ないとと変動金利は下がったままだろう。ということで、変動金利で組んだ自分エライ(笑</li>
-</ul>
-
-
-<p>市場乱調 下 [1面]</p>
-
-<ul>
-<li>日本企業の新陳代謝が進んでいない指摘はここ最近になってぼちぼち出るようになったが、じゃあそれをどうするかという部分が手付かず。</li>
-<li>起業に対する資金は少しずつ増えているが、結局それらが成長して既得権社たちをぶっ壊していくことも想定しないと大きくなれない。今は既得権社が圧倒的に守られて、壊れることを恐れてしまっているからプレイヤーが入れ替わらない。</li>
-</ul>
-
-
-<p>安全保障の審査通過 ソフトバンク スプリント買収で</p>
-
-<ul>
-<li>米政府からの条件が色々ついたが、まずは1ステップクリアできてよかった。中国製の通信機器を2016年末までに撤去する。とかアメリカらしい条件の付け方。</li>
-<li>日本企業が本当の意味でグローバルカンパニーになれるかどうか、という大きいテーマを持っていると思うので、是非成し遂げてほしいな。</li>
-</ul>
-
-
-<p>ベンチャー支援オフィス</p>
-
-<ul>
-<li>ベンチャー用のオフィスが結構増えてきたと思う。ベンチャーにお金が回っていることもあってか環境面の充実も進んでいるのは確か。</li>
-<li>しかし場所が霞ヶ関って、1坪2万円前後だし、霞ヶ関の相場に比べれば安いのだろうけど、入居するのは高めの家賃でも払える金持ちベンチャーなのかな。そもそも金持ちベンチャーっているのか？</li>
-<li>一番大事なのは箱ではなくて、そこに実績と信用のあるメンターがいるかどうかなんだけどね。</li>
-</ul>
-
-
-<p>9万4000人分 ヤフー誤送信 IDなど、作業ミス</p>
-
-<ul>
-<li>9万4000人分のIDとメールアドレスを他のユーザに送っちゃったよ。というミスだけど記事の小ささに反して結構なおおごとだと思った。</li>
-<li>メルマガ送るのにどんなツールを使っているか知らないけど、9万件のIDとメールアドレスがそもそも入手できてメールに含ませることができてしまうことが問題。必要な処理以外はできないようにすべきで、手順を誤ったと言っているけどツールの設計ミスが根本原因だろう。</li>
-</ul>
-
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-05-30T07:50:03+09:00" pubdate data-updated="true">May 30<span>th</span>, 2013</time></div>
-	
-
-<div class="tags">
-
-	<a class='category' href='/blog/categories/news/'>News</a>
-
-</div>
-
-
-	
-		<span class="comments"><a href="/2013/05/29/diary-nikkei-2013-05-30//blog/page/9/index.html#disqus_thread">Comments</a></span>
 	
 </div></article>
 
