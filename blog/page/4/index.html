@@ -102,6 +102,118 @@ $(document).ready(
     <article class="post">
 	<h2 class="title">
 		
+		<a href="/2014/01/31/chef-solo-knife-command-memo/">
+		
+			Chef Solo Knife コマンド覚書</a>
+	</h2>
+	<div class="entry-content">
+		<p><img src="http://i0.wp.com/docs.opscode.com/chef/_static/opscode_chef_html_logo.png?resize=200%2C154" class="alignnone" data-recalc-dims="1" /><br/>
+どうも Chef コマンドを覚えられず、入門 Chef solo を毎回読みなおしてしまっているので、コマンド覚書を作っておく。</p>
+
+<ul>
+<li>レポジトリ名 : chef-repo</li>
+<li>chef クライアントホスト名 : chef-client</li>
+<li>クックブック名 : cookbook-name</li>
+</ul>
+
+
+<p>適当に置き換えてください。</p>
+
+<h1>新規</h1>
+
+<h2>レポジトリ作成</h2>
+
+<p>Chef レポジトリを作る。</p>
+
+<pre class="brush: plain; title: ; notranslate" title="">$ knife solo init [chef-repo-name]</pre>
+
+
+<h2>クックブック作成</h2>
+
+<p>レシピを新規作成する。</p>
+
+<pre class="brush: plain; title: ; notranslate" title="">$ knife cookbook create [cookbook-name] -o site-cookbooks</pre>
+
+
+<h2>ノード設定</h2>
+
+<p>chef クライアントに仕立てる。</p>
+
+<pre class="brush: plain; title: ; notranslate" title="">$ knife solo prepare [chef-client-hostname]</pre>
+
+
+<p>AWS EC2 に適用する場合はキーとユーザ名の指定が必要なので、ec2-user ユーザで作業すると、</p>
+
+<pre class="brush: plain; title: ; notranslate" title="">$ knife solo prepare -i ~/Keypair/[key-file] ec2-user@[chef-client-hostname]</pre>
+
+
+<p>とする。</p>
+
+<p>nodesディレクトリに [chef-client-hostname].json が作成される。</p>
+
+<h1>更新</h1>
+
+<h2>レシピを編集する</h2>
+
+<p>site-cookbooks/[cookbook-name]/recipes/default.rb を編集する。 適用したいレシピが複数に渡る場合はそれぞれの recipes/default.rb を編集する。</p>
+
+<h2>適用したいnodeファイルを確認</h2>
+
+<p>AWS EC2 AMI からの起動する際のように、すでに chef クライアントとして設定されているがホスト名が変わってしまう場合は、[chef-client-hostname].json ファイル名を割り当てられたホスト名に変更する。</p>
+
+<p>適用したいクックブックが記述されているか、nodes/[chef-client-hostname].json ファイルの中身を確認。</p>
+
+<h2>ノードに適用</h2>
+
+<p>ノードに適用。</p>
+
+<pre class="brush: plain; title: ; notranslate" title="">$ knife solo cook [chef-client-hostname]</pre>
+
+
+<p>AWS EC2 に適用する場合はキーとユーザ名の指定が必要なので、ec2-user ユーザで作業すると、</p>
+
+<pre class="brush: plain; title: ; notranslate" title="">$ knife solo cook -i ~/Keypair/[key-file] ec2-user@[chef-client-hostname]</pre>
+
+
+<p>とする。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-01-31T19:53:16+09:00" pubdate data-updated="true">Jan 31<span>st</span>, 2014</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/tech/'>Tech</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/2014/01/31/chef-solo-knife-command-memo//blog/page/4/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
 		<a href="/2014/01/30/lean-learn-pricing/">
 		
 			LEAN &#8211; プライシングの決め方を学ぶ</a>
@@ -676,122 +788,6 @@ Facebookのフレンドが増えるとますますチェックせざるを得な
 
 	
 		<span class="comments"><a href="/2014/01/14/2014-theme//blog/page/4/index.html#disqus_thread">Comments</a></span>
-	
-</div></article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/2014/01/13/good-card-cases/">
-		
-			良い感じのカードケースを探す &#8211; 財布をやめようスタイル</a>
-	</h2>
-	<div class="entry-content">
-		<p>財布はかさばる。小銭が増えれば重くなるし分厚くもなる。<br/>
-縦長の厚っこい革の財布を後ろポケットに入れてチェーンでつないで、存在感ドーンみたいなスタイルはかなり敬遠する。<br/>
-財布や現金は将来的にはなくなるだろうと思っていて、ライフスタイルとして「なるべく持ち物は少なくシンプルに」を実行している。<br/>
-最近では財布を持ち歩かず以下の3つのカードだけで過ごしている。</p>
-
-<ol>
-<li>パスモ
-
-<ul>
-<li>小銭で支払えるようなものはこれで対応</li>
-<li>オートチャージをつけているので常に￥3000程度入っている</li>
-<li>コンビニでは100％支払いに使える。駅近のショップも大体対応している</li>
-</ul>
-</li>
-<li>クレジットカード
-
-<ul>
-<li>レストランやショッピングはこれで払う</li>
-<li>ポイントもたまるし現金よりお得</li>
-<li>ちなみに常に持ち歩いているクレジットカードは楽天カード</li>
-</ul>
-</li>
-<li>運転免許証
-
-<ul>
-<li>身分を証明するために</li>
-<li>もし事故とかあった時に身分がすぐ分かるように</li>
-</ul>
-</li>
-</ol>
-
-
-<p>今のところ財布を持たずにこの3つだけで外に出ても大丈夫。<br/>
-ただ、これを入れるケースがなかなかなくてAmazonやら楽天やらで探してみた。</p>
-
-<p>要件は、</p>
-
-<ul>
-<li>ケースからカードが落ちない
-
-<ul>
-<li>よくあるカードケースは出し入れが簡単なように口が空いているが、落ちてしまう危険がある</li>
-<li>口がふさげているもの or ケースと強く一体化しているものが良い</li>
-</ul>
-</li>
-<li>薄くて小さい
-
-<ul>
-<li>入れるカードは3つだけなので薄くて良い。20枚以上入ります！みたいなのが売りな奴はいらない</li>
-<li>大きさはなるべくカードの大きさに近いもの</li>
-<li>ぱっと見スリムにスマートにな感じ</li>
-</ul>
-</li>
-</ul>
-
-
-<p>実際今使っているのはこれ。</p>
-
-<table border="0" cellpadding="0" cellspacing="0">
-  <tr>
-    <td valign="top">
-      <div style="border:1px none #000000;margin:0px;padding:6px 0px;background-color:#ffffff;width:420px;text-align:center;float:left">
-        <a href="http://hb.afl.rakuten.co.jp/hgc/123b7cc0.81d8e4b8.123b7cc1.d435787e/?pc=http%3a%2f%2fitem.rakuten.co.jp%2fwindasia%2fsmart_02_gunmetal%3fscid%3daf_link_tbl&m=http%3a%2f%2fm.rakuten.co.jp%2fwindasia%2fn%2fsmart_02_gunmetal" target="_blank" style="color:#BBBBBB;"><img src="http://hbb.afl.rakuten.co.jp/hgb/?pc=http%3a%2f%2fthumbnail.image.rakuten.co.jp%2f%400_mall%2fwindasia%2fcabinet%2f02192442%2fimg61392881.gif%3f_ex%3d400x400&m=http%3a%2f%2fthumbnail.image.rakuten.co.jp%2f%400_mall%2fwindasia%2fcabinet%2f02192442%2fimg61392881.gif%3f_ex%3d80x80" alt="【クールな財布】スマートマネークリップ GUNMETAL【STORUS】【SmartMoneyclip】" border="0" style="margin:0px;padding:0px" /></a> <p style="font-size:12px;line-height:1.4em;text-align:left;margin:0px;padding:2px 6px">
-          <a href="http://hb.afl.rakuten.co.jp/hgc/123b7cc0.81d8e4b8.123b7cc1.d435787e/?pc=http%3a%2f%2fitem.rakuten.co.jp%2fwindasia%2fsmart_02_gunmetal%3fscid%3daf_link_tbl&m=http%3a%2f%2fm.rakuten.co.jp%2fwindasia%2fn%2fsmart_02_gunmetal" target="_blank" style="color:#BBBBBB;">【クールな財布】スマートマネークリップ GUNMETAL【STORUS】【SmartMoneyclip】</a><br /><span style="color:#999999;">価格：3,980円（税込、送料込）</span>
-        </p>
-      </div>
-    </td>
-  </tr>
-</table>
-
-
-<p>ただ素材がメタルなので iPhone と一緒にポケットに入れると傷がつくので革製品のものがほしいなぁと思うところ。</p>
-
-
-		
-		<a href="/2014/01/13/good-card-cases/" class="more-link">Read on &rarr;</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-01-13T21:05:13+09:00" pubdate data-updated="true">Jan 13<span>th</span>, 2014</time></div>
-	
-
-<div class="tags">
-
-	<a class='category' href='/blog/categories/shopping/'>Shopping</a>
-
-</div>
-
-
-	
-		<span class="comments"><a href="/2014/01/13/good-card-cases//blog/page/4/index.html#disqus_thread">Comments</a></span>
 	
 </div></article>
 

@@ -102,6 +102,207 @@ $(document).ready(
     <article class="post">
 	<h2 class="title">
 		
+		<a href="/2008/12/06/%e3%81%95%e3%81%8f%e3%82%89%e3%82%a4%e3%83%b3%e3%82%bf%e3%83%bc%e3%83%8d%e3%83%83%e3%83%88%e3%81%ae%e3%83%ac%e3%83%b3%e3%82%bf%e3%83%ab%e3%82%b5%e3%83%bc%e3%83%90%e3%82%92%e7%94%b3%e3%81%97%e8%be%bc/">
+		
+			さくらインターネットのレンタルサーバを申し込む</a>
+	</h2>
+	<div class="entry-content">
+		<div class="section">
+  <p>
+    今後の自分用のwebを作っていくためにさくらインターネットのレンタルサービスを申し込んだ。容量はそれほどいらないので、500円/月のプラン。しかし、500円って。。。すごい時代だ。これで、PHP,Perl,MySQLが使えるのだから簡単なwebサービスを作るには不自由なし。
+  </p>
+  
+  <p>
+    さっそくオンラインで申し込んでsshログインしてちょっと覗いてみた。
+  </p>
+  
+  <pre>
+
+%date
+
+Mon Dec 7 22:27:21 JST 2008
+
+%uname -a
+
+FreeBSD www1290.sakura.ne.jp 6.1-RELEASE-p23 FreeBSD 6.1-RELEASE-p23 #0: Thu Feb 28 18:48:26 JST 2008     root@www1450.sakura.ne.jp:/usr/src/sys/i386/compile/SAKURA9S  i386
+
+%
+
+</pre>
+  
+  <p>
+    OSはFreeBSD 6.1か。Linuxが浸透する前からサービスしていたからフリーなものとしてFreeBSDを採用したのかな。
+  </p>
+  
+  <p>
+    ログインすると/home配下に自分のユーザ名で作成される。この中にMailBoxもwwwのhtmlソースも置くことになる。
+  </p>
+  
+  <pre>
+
+%pwd
+
+/home/shakesoul
+
+%ll
+
+total 44
+
+-rw-r--r--   1 shakesoul  users   797 Jul 14  2004 .cshrc
+
+-rw-------   1 shakesoul  users   795 Dec  8 13:17 .history
+
+-rw-r--r--   1 shakesoul  users   255 Jul 14  2004 .login
+
+-rw-r--r--   1 shakesoul  users   165 Jul 14  2004 .login_conf
+
+-rw-------   1 shakesoul  users   371 Jul 14  2004 .mail_aliases
+
+-rw-r--r--   1 shakesoul  users   331 Jul 14  2004 .mailrc
+
+-rw-r--r--   1 shakesoul  users   801 Jul 14  2004 .profile
+
+-rw-------   1 shakesoul  users   276 Jul 14  2004 .rhosts
+
+-rw-r--r--   1 shakesoul  users   852 Jul 14  2004 .shrc
+
+drwx------   2 shakesoul  users   512 Dec  7 21:13 .spamassassin
+
+drwx------   2 shakesoul  users   512 Dec  7 21:13 .ssh
+
+drwx------   5 shakesoul  users   512 Dec  7 21:34 MailBox
+
+drwx------   2 shakesoul  users   512 Dec  7 21:13 db
+
+drwxr-xr-x  14 shakesoul  users  2048 Dec  7 21:35 fml
+
+drwxr-xr-x   2 shakesoul  users   512 Dec  7 21:13 sblo_files
+
+drwxr-xr-x   5 shakesoul  users  1024 Dec  8 12:06 www
+
+%
+
+</pre>
+  
+  <p>
+    一緒のサーバにいる他のユーザ名も %ls -l /home すれば見れちゃうのだけど、そこは遠慮して、、
+  </p>
+  
+  <pre>
+
+%ll /home/ | wc
+
+99     884    7228
+
+</pre>
+  
+  <p>
+    100弱のユーザが1サーバに入っている。
+  </p>
+  
+  <p>
+    ディスクは足りているのか？と見ると。
+  </p>
+  
+  <pre>
+
+%df -h
+
+Filesystem       Size    Used   Avail Capacity  Mounted on
+
+/dev/twed0s1a    973M     75M    820M     8%    /
+
+devfs            1.0K    1.0K      0B   100%    /dev
+
+/dev/twed0s1f    207G     19G    172G    10%    /home
+
+/dev/twed0s1d    3.8G    706M    2.8G    20%    /usr
+
+/dev/twed0s1e    9.5G    755M    8.0G     8%    /var
+
+procfs           4.0K    4.0K      0B   100%    /proc
+
+</pre>
+  
+  <p>
+    /home 配下はまだ10%ほどしか使ってない。全体的にもこんなもんだろうから <a href="http://www.sakura.ne.jp/news/archives/20081112-001.news" target="_blank">サービスのディクス容量増やせた</a>のね。
+  </p>
+  
+  <p>
+    結構良いのは、.htaccess とか MySQL まわりの設定がブラウザ上からできること。
+  </p>
+  
+  <p>
+    ベーシック認証も有効にできるし、
+  </p>
+  
+  <p>
+    <a href="http://f.hatena.ne.jp/d_sea/20081208223952" class="hatena-fotolife" target="_blank"><img src="http://i2.wp.com/cdn-ak.f.st-hatena.com/images/fotolife/d/d_sea/20081208/20081208223952.png?w=830" alt="f:id:d_sea:20081208223952p:image" title="f:id:d_sea:20081208223952p:image" class="hatena-fotolife" data-recalc-dims="1" /></a>
+  </p>
+  
+  <p>
+    DBサーバは別立てしているようだ。MySQLは1ユーザに1データベースのみ作成できる。phpMyAdminで操作も可能。
+  </p>
+  
+  <p>
+    <a href="http://f.hatena.ne.jp/d_sea/20081208223953" class="hatena-fotolife" target="_blank"><img src="http://i2.wp.com/cdn-ak.f.st-hatena.com/images/fotolife/d/d_sea/20081208/20081208223953.png?w=830" alt="f:id:d_sea:20081208223953p:image" title="f:id:d_sea:20081208223953p:image" class="hatena-fotolife" data-recalc-dims="1" /></a>
+  </p>
+  
+  <p>
+    仮想化とかクラウドとか言われるずっと前からさくらインターネットはレンタルサービスしてきたんだよね。逆に仮想化ソフトを入れるとその分パフォーマンスが落ちるし、運用監視ももう一階層面倒を見なくてはいけないから大変になる。
+  </p>
+  
+  <p>
+    このコストパフォーマンスはすばらしいなぁ。ソフトで言えば、FreeBSD,Apache,MySQL,PHP だからコストはかからない。
+  </p>
+  
+  <p>
+    今後はこんな風にフリーなアプリケーションを普通にサービスとして利用してすごく安く課金するモデルが当たり前になるのだろうなぁ。
+  </p>
+  
+  <p>
+    結構いい参考にさせてもたった。
+  </p>
+</div>
+
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-12-07T00:00:00+09:00" pubdate data-updated="true">Dec 7<span>th</span>, 2008</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/business/'>Business</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/2008/12/06/%e3%81%95%e3%81%8f%e3%82%89%e3%82%a4%e3%83%b3%e3%82%bf%e3%83%bc%e3%83%8d%e3%83%83%e3%83%88%e3%81%ae%e3%83%ac%e3%83%b3%e3%82%bf%e3%83%ab%e3%82%b5%e3%83%bc%e3%83%90%e3%82%92%e7%94%b3%e3%81%97%e8%be%bc//blog/page/30/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
 		<a href="/2008/12/04/web-fhy-works-com/">
 		
 			Webサービス作りの遊び場として fhy-works.com を立ち上げました</a>
@@ -1482,107 +1683,6 @@ $(document).ready(
 
 	
 		<span class="comments"><a href="/2008/11/16/%e3%82%a8%e3%83%b3%e3%82%b8%e3%83%8b%e3%82%a2%e3%81%ae%e3%81%82%e3%82%8a%e6%96%b9%e3%81%ab%e3%81%a4%e3%81%84%e3%81%a6%e5%85%b1%e6%84%9f%e3%81%97%e3%81%9f//blog/page/30/index.html#disqus_thread">Comments</a></span>
-	
-</div></article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/2008/11/14/%e8%bf%91%e6%89%80%e3%81%ae%e7%84%bc%e3%81%8d%e8%8a%8b/">
-		
-			近所の焼き芋</a>
-	</h2>
-	<div class="entry-content">
-		<div class="section">
-  <p>
-    近所の田んぼで焼き芋大会があるというので家族で行ってきた。焼き芋は無料で配られるらしい。
-  </p>
-  
-  <p>
-    最近は焚き火をしてはいけないとかあるので、外で焼き芋なんて子どものころ以来かと思う。
-  </p>
-  
-  <p>
-    収穫の終わった田んぼに入るとすでに煙にくすぶっている山なりのものがいくつかある。良く見ると落ち葉の山ではなくて籾殻の山で炎は出さずにいぶし焼みたいにしている。
-  </p>
-  
-  <p>
-    <a href="http://f.hatena.ne.jp/d_sea/20081115123355" class="hatena-fotolife" target="_blank"><img src="http://i2.wp.com/cdn-ak.f.st-hatena.com/images/fotolife/d/d_sea/20081115/20081115123355.jpg?w=830" alt="f:id:d_sea:20081115123355j:image" title="f:id:d_sea:20081115123355j:image" class="hatena-fotolife" data-recalc-dims="1" /></a>
-  </p>
-  
-  <p>
-    稲の収穫後のだから無駄にならずにこういう利用方法があるのかと感心した。しかし籾殻に火をつけても炎が出るわけでなくくすぶるような感じで煙のみが出るのだなぁ。これなら子どもにも危なくないし、若干エコなのかも。
-  </p>
-  
-  <p>
-    焼きあがるまでの間、この焼き芋大会を主催してくださっている地元の農家の人たちによるクイズ大会をしたりして子ども達を飽きないようにしてくださった。
-  </p>
-  
-  <p>
-    始まってから待つこと45分くらいして山の中の焼き芋を掘り出し始めて配り始めた。
-  </p>
-  
-  <p>
-    <a href="http://f.hatena.ne.jp/d_sea/20081115124619" class="hatena-fotolife" target="_blank"><img src="http://i2.wp.com/cdn-ak.f.st-hatena.com/images/fotolife/d/d_sea/20081115/20081115124619.jpg?w=830" alt="f:id:d_sea:20081115124619j:image" title="f:id:d_sea:20081115124619j:image" class="hatena-fotolife" data-recalc-dims="1" /></a>
-  </p>
-  
-  <p>
-    実際いただいた焼き芋はすごく大きくって、中までホクホク。
-  </p>
-  
-  <p>
-    <a href="http://f.hatena.ne.jp/d_sea/20081115135132" class="hatena-fotolife" target="_blank"><img src="http://i0.wp.com/cdn-ak.f.st-hatena.com/images/fotolife/d/d_sea/20081115/20081115135132.jpg?w=830" alt="f:id:d_sea:20081115135132j:image" title="f:id:d_sea:20081115135132j:image" class="hatena-fotolife" data-recalc-dims="1" /></a>
-  </p>
-  
-  <p>
-    いや～おいしかった！蒸し焼きみたいにしているから中までちゃんと火が通っていくんだなぁ。スーパーで売っているサツマイモはここまで大きいものはないそうなので、出荷する手前で落とされてしまうのかもしれない。不恰好でも大きすぎてもおいしいものは普通に流通すればいいのに、もったいない。
-  </p>
-  
-  <p>
-    しかし、印象的だったのはこの焼き芋大会を主催してくださった田んぼの持ち主さんとサツマイモを提供してくれているであろう農家の方々の姿。皆さん元気で明るくって力強かった。歳は自分の親くらいの方でもどんどん動いて準備してくれるし、なかなか焼けない芋があって待っていてもその時間を楽しんでいるかのように笑顔だった。土からエネルギーをもらっているからかもしれない。
-  </p>
-  
-  <p>
-    PCにずっと向き合っていることを仕事としている自分にとってはなんともうらやましく感じた。これが昔から人が生きていくために行ってきた仕事の根本であるような気がして、仕事の全てをリセットしなくちゃいけないときに思い切ってやってみてもいいかなと思ってしまった。そこには優劣とか関係なく純粋に働いた分に対する収穫が得られる世界がある。
-  </p>
-  
-  <p>
-    焼き芋大会は毎年やっているようで、また来年も予定されているらしい。準備してくださった農家の皆さん、本当においしい焼き芋と素敵な時間をありがとうございました。
-  </p>
-</div>
-
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-11-15T00:00:00+09:00" pubdate data-updated="true">Nov 15<span>th</span>, 2008</time></div>
-	
-
-<div class="tags">
-
-	<a class='category' href='/blog/categories/life/'>LIfe</a>
-
-</div>
-
-
-	
-		<span class="comments"><a href="/2008/11/14/%e8%bf%91%e6%89%80%e3%81%ae%e7%84%bc%e3%81%8d%e8%8a%8b//blog/page/30/index.html#disqus_thread">Comments</a></span>
 	
 </div></article>
 
