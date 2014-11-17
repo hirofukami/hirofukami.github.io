@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Book | Hiro Fukami's Blog]]></title>
   <link href="http://hirofukami.com/blog/categories/book/atom.xml" rel="self"/>
   <link href="http://hirofukami.com/"/>
-  <updated>2014-10-16T18:33:17+09:00</updated>
+  <updated>2014-11-18T08:52:40+09:00</updated>
   <id>http://hirofukami.com/</id>
   <author>
     <name><![CDATA[HiroFukami]]></name>
@@ -12,6 +12,125 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[WordPressプロフェッショナル養成読本という本を書きました]]></title>
+    <link href="http://hirofukami.com/blog/2014/11/18/published-wordpress-book/"/>
+    <updated>2014-11-18T08:00:00+09:00</updated>
+    <id>http://hirofukami.com/blog/2014/11/18/published-wordpress-book</id>
+    <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/4774167878/ref=as_li_ss_tl?ie=UTF8&amp;camp=247&amp;creative=7399&amp;creativeASIN=4774167878&amp;linkCode=as2&amp;tag=dsea-22"><img src="https://scontent-a.xx.fbcdn.net/hphotos-xfa1/v/t1.0-9/10698425_10204946115594279_2210129673257922785_n.jpg?oh=377dd520a4c25b41104dad97742f6841&amp;oe=551BD267" alt="WordPress本" /></a></p>
+
+<p>本を書きました。WordPress関連の本になります。
+株式会社シェイクソウルを作ってから2冊目になります。
+合計7名による共著で、各章ごとに1筆者担当でした。</p>
+
+<p>最初は会社を作ってすぐの頃に <a href="http://www.amazon.co.jp/gp/product/4774142840/ref=as_li_ss_il?ie=UTF8&amp;camp=247&amp;creative=7399&amp;creativeASIN=4774142840&amp;linkCode=as2&amp;tag=dsea-22">「よくわかるAmazon EC2/S3」</a> を共著したので、本を出すのは4年ぶりになります。</p>
+
+<p>タイトルは、
+<a href="http://www.amazon.co.jp/gp/product/4774167878/ref=as_li_ss_tl?ie=UTF8&amp;camp=247&amp;creative=7399&amp;creativeASIN=4774167878&amp;linkCode=as2&amp;tag=dsea-22">「WordPress プロフェッショナル 養成読本 [Webサイト運用の現場で役立つ知識が満載！] (Software Design plus)」</a></p>
+
+<p>エンジニアの方にはお馴染みの技術評論社から出ている Software Design 系列の雑誌形態で、"WordPressを幅広くより実践的に学ぶための本" というコンセプトです。</p>
+
+<p>すでに発売中で、電子書籍化もされています。</p>
+
+<p><a href="http://www.amazon.co.jp/gp/product/B00OJVW65I/ref=as_li_ss_tl?ie=UTF8&amp;camp=247&amp;creative=7399&amp;creativeASIN=B00OJVW65I&amp;linkCode=as2&amp;tag=dsea-22"><img src="http://ecx.images-amazon.com/images/I/610lYz15VZL.jpg" alt="WordPress プロフェッショナル 養成読本" /></a></p>
+
+<ul>
+<li><a href="http://www.amazon.co.jp/gp/product/B00OJVW65I/ref=as_li_ss_tl?ie=UTF8&amp;camp=247&amp;creative=7399&amp;creativeASIN=B00OJVW65I&amp;linkCode=as2&amp;tag=dsea-22">Amazon Kindle</a></li>
+<li><a href="http://hb.afl.rakuten.co.jp/hgc/1360a562.9a5abdd9.1360a563.41a92e76/?pc=http%3a%2f%2fitem.rakuten.co.jp%2frakutenkobo-ebooks%2f9a39447a0f8b32cfa7753d907d110ab3%2f%3fscid%3daf_link_txt&amp;amp;m=http%3a%2f%2fm.rakuten.co.jp%2frakutenkobo-ebooks%2fi%2f13693951%2f">楽天 Kobo</a></li>
+</ul>
+
+
+<!-- more -->
+
+
+<h1>馴れ初め</h1>
+
+<p>2013年末あたりに技術評論社の方からメールで連絡がありました。
+どうやら <a href="http://smtwp.com/">スマートWP</a> を見ていただいて、サービスの特徴である &ldquo;AWSでスケーラブルWordPress&rdquo; について書いて欲しいということでした。</p>
+
+<p>確かにWordPressをAWS上で積極的に動かしているのはAmimotoとスマートWPくらいですし、AWSオートスケーリング自体の紹介も少ない中、WordPress に適用させようとするマニアックなことを紹介しているのは日本でもなかなかないのかなと思います。</p>
+
+<p>WordPress関連で出版されている本は、WordPress入門とデザインに関するものが多く、技術的なノウハウや運用上必要な要素については少ないと思っていました。今回の本はすでに出版されている本では触れられていない、<strong>&ldquo;WordPressを実践的に使うための本&rdquo;</strong> にしたいということでしたので、興味を持ちました。</p>
+
+<p>自分自身のノウハウがどの程度外部の方に役立つのか試してみたかったという思いと、アウトプットすることで自分自身の整理にもなり理解が一段と深くなるのではないかと思い、引き受けることにしました。</p>
+
+<h1>書いた内容について</h1>
+
+<p>書いた章のタイトルは <strong>&ldquo;AWSでスケーラブルWordPress&rdquo;</strong> です。</p>
+
+<p>AWSを用いてWordPressを動かす、しかもオートスケーリングさせて人の手を介在させないスケーリングの自動化を実現します。</p>
+
+<p>誰もがこの構成を目指すものではなく、はっきり言ってマニアックですｗ</p>
+
+<p>網羅している技術範囲も広く、スケーラブルなサーバ設計、AWS(EC2, S3, ELB, オートスケーリング, RDS)、WordPress、必要なツール(S3fs, Dropbox) が登場します。</p>
+
+<p>なるべく構築手順を示して、本を手にした方が実際その通りの手順をするとスケーラブルなWordPressサイトが構築できるように心がけて書きました。
+はじめて書いた本でもオートスケーリングについて書きましたが、今回はWebUIから操作できるようになっていたり最新の設定方法を反映できています。</p>
+
+<p>ここで構築している構成は実際、<a href="http://smtwp.com/">スマートWP</a> で利用していますが、Dropbox でファイルをデプロイするユニークな方法をとっています。
+これによって手元のPCから即時に複数のサーバでも反映できるリアルタイムデプロイが可能になります。
+Dropboxリアルタイムデプロイは <a href="http://smartdesigning.me/">Smart Designing</a> で静的HTMLファイルのWebホスティング環境として提供しています。</p>
+
+<h1>オートスケーリングコンサルティング開始！</h1>
+
+<p><a href="http://www.shakesoul.net/portfolio/consulting/autoscaling-consulting"><img src="http://www.shakesoul.net/wp-content/uploads/2013/10/ss-autoscaling.png" alt="オートスケーリングコンサルティング" /></a></p>
+
+<p>オートスケーリング技術は、サーバ設計ノウハウがベースになりつつ、AWSの各サービスの把握も必要で学習コストが高い技術です。
+日本ではオートスケーリングという魔法のような技術を積極的に導入しようとする動きが少ないようですので、興味はあるけどよくわからない状況かと思っています。</p>
+
+<p>今回の執筆でオートスケーリングのノウハウがまた一段とたまりましたし、ノウハウをしっかり自分の会社でも活かしていこうということで、<strong><a href="http://www.shakesoul.net/portfolio/consulting/autoscaling-consulting">オートスケーリングコンサルティング</a></strong> をサービスとして始めています。</p>
+
+<p>ご興味あればコンタクトページから連絡いただければです。</p>
+
+<h1>サイン会したよ</h1>
+
+<p><a href="http://2014.tokyo.wordcamp.org/">WordCamp 2014 Tokyo</a> の会場でサイン会をしました。</p>
+
+<p><img src="https://fbcdn-sphotos-b-a.akamaihd.net/hphotos-ak-xfp1/v/t1.0-9/10703748_10204966104813997_2179117887814190012_n.jpg?oh=198098c534ae4ee411ef059df9046fb2&amp;oe=54E63E04&amp;__gda__=1427329889_f09c3f6a786495c8bba06b95daecff46" alt="WordCamp 2014 Tokyo サイン会" /></p>
+
+<p>共著した他の筆者の方々に会うのははじめてだったのですが、顔見知りもいて何やら懐かしいやらお疲れ様な感じやらでした。</p>
+
+<h1>謝辞</h1>
+
+<p>この本は雑誌の形式をとっているため、謝辞と著者プロフィールがありませんでしたので、ここで謝辞を述べたいと思います。</p>
+
+<p>今回の執筆にあたり、原稿のレビューを外部の方にお願いして客観評価を加えながらブラッシュアップしていきました。
+外国の著名なビジネス書は必ず出版前の原稿を外部の友人・知人、そのジャンルの知識人へレビューを依頼し、文章をより良いものにしています。今回の執筆は、それに習って出版前のレビューをWordPressコミュニティに精通されている方にお願いしました。</p>
+
+<p>この場を借りてレビューをしてくださった2名にお礼を言いたいと思います。</p>
+
+<p><a href="https://h2o-space.com/">H2O Spaceのたにぐちまことさん</a> には、豊富な執筆経験より文法的なチェックや分かりやすい言い回しを教えていただきました。</p>
+
+<p><a href="http://www.tsukuri.be/">ツクリべの小川さん</a> は、実際原稿に示した作業手順通りにわざわざ操作してみていただいて、手順や解説のわかりやすさをユーザ視点でレビューいただきました。</p>
+
+<p>このお二人の質の高く、僕の身に余る献身的なレビューのお陰で文章の質が1つも2つも上がったものになりました。本当にありがとうございました！！</p>
+
+<p>個人的にはレビューによって読み手側の感想をダイレクトに聞くことができたので、自分のアウトプットのわかりやすさのチェックや言い回しのクセみたいなものを知ることができました。</p>
+
+<p>事前にレビューを依頼する試みははじめての事だったのですが、やはり <strong>&ldquo;客観評価がアウトプットをより良くしてくれる&rdquo;</strong> という良い体験ができました。</p>
+
+<h1>他の章について</h1>
+
+<p>仕上がった本を読んでみると、WordPressの今からSEO、PHPプログラミングまでWordPressを中心として派生する各話題を幅広く網羅していると思います。</p>
+
+<p>WordPressはアップデートが早いのでなかなか最新を追うのは苦労しますが、<strong>WordPressの今</strong> が知れるのは結構貴重かと思います。REST APIなどはまだ出てきたばかりの機能ですし、今後どのようにWordPressが変化していくのかを知れると思います。</p>
+
+<p>個人的にはNginx入門とセキュリティは勉強になりました。特にNginxは使っていますが、だいたい検索したり<a href="http://wiki.nginx.org/Main">Niginx.orgのWiki</a>を見ながら我流で設定していたので、知らない記述の仕方に触れることができました。</p>
+
+<h1>まとめ</h1>
+
+<p>1つ1つのテーマはそれぞれ単独の本が書けるくらい重要なので、紙面の限られる雑誌形態の1冊でまとめるのは難しいかもしれません。本を手にした方にとっては全てのテーマが必要ないかもしれません。</p>
+
+<p>ただ、WordPressを実践的扱っていく場合にはどのテーマも外せないものですので、今まで初期インストールで満足してしまっていた方々には、実践するための知識やノウハウを全般的に知れる本になるかと思います。</p>
+
+<p>私の書いた AWSでスケーラブルWordPress は同じような内容で述べられているものはそうそうないと思いますし、概要説明から実際手を動かして構築できる手順までなるべく分かりやすく示したつもりです。</p>
+
+<p>興味があればその部分に触れるためにだけに買っていもらえれば嬉しいです。</p>
+
+<p>フィードバックはこのブログのコメントでもいただければです。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Book 運のいい人の法則]]></title>
@@ -294,73 +413,6 @@ FacebookやTwitterにポストするだけであとは何をしていいやら�
 <p>ただ、本書では豊富な事例があるので具体策を考える時に助けてくれるだろう。</p>
 
 <p>プロモーションを理論的に学べる本だった。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Book - スタートアップ！]]></title>
-    <link href="http://hirofukami.com/blog/2014/03/17/book-startup/"/>
-    <updated>2014-03-17T10:41:55+09:00</updated>
-    <id>http://hirofukami.com/blog/2014/03/17/book-startup</id>
-    <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/exec/obidos/ASIN/B00FR78XAK/dsea-22/ref=nosim/" rel="nofollow" target="_blank"><img src="http://ecx.images-amazon.com/images/I/41kBvG1RPAL._SY500_.jpg" style="border: none;" alt="スタートアップ！" /></a>
-<a href="http://www.amazon.co.jp/exec/obidos/ASIN/B00FR78XAK/dsea-22/ref=nosim/" rel="nofollow" target="_blank">スタートアップ！ シリコンバレー流成功する自己実現の秘訣</a></p>
-
-<p>筆者の1人であるリード・ホフマンはペイパル取締役を経てLinkedin創業者、Linkedin上場後の現在はVCの経営も行い投資家として側面も持っている。</p>
-
-<h1>成功した創業者が書く貴重な著書</h1>
-
-<p>実際スタートアップの創業者がスタートアップについて書いた本は少ない。
-そのスタートアップが成功した場合になるともっと少ない。
-多いのは学者や起業・新規事業コンサルタントが書く本で、これは本当に役に立たない。</p>
-
-<p>リーンスタートアップは常識化されているが、実際リーンスタートアップ関連の著者が大きな成功まで手にしたわけではないことから、実践面や考え方・思想の部分でまだまだ足りない。
-だからまだリーンスタートアップの成功事例が少ないかもとも思っている。</p>
-
-<p>自分が知る限り、創業者がスタートアップについて書いた本でほんとうに参考になったのは、
-<a href="http://www.amazon.co.jp/exec/obidos/ASIN/4274065979/dsea-22/ref=nosim/">ハッカーと画家</a> と <a href="http://www.amazon.co.jp/exec/obidos/ASIN/415209267X/dsea-22/ref=nosim/">小さなチーム、大きな仕事</a> の2つだけだった。</p>
-
-<p>そして今回この本 <a href="http://www.amazon.co.jp/exec/obidos/ASIN/B00FR78XAK/dsea-22/ref=nosim/">スタートアップ！</a> が3つ目に位置づけられた。</p>
-
-<h1>「スタートアップ的な」生き方の提唱本</h1>
-
-<p>この本は厳密には起業としてのスタートアップについて述べた本ではない。</p>
-
-<p>人生の歩み方において「スタートアップ的な」生き方が必要であり、それがどういうものかを解説している本である。</p>
-
-<p>より自分自身で戦略的に努力をして、時代の流れを読みながら自分の人生を切り開いていくための実践本となっている。</p>
-
-<p>単なる概念の提唱だけでなく<strong>自分に投資しよう</strong> のコーナーで、Linkedinを使ってより具体的なアプローチを紹介したり(サービスプロモーションも兼ねているのだろうけど)具体的にやることをあげている。</p>
-
-<h1>時代認識の共感ポイント</h1>
-
-<p>スタートアップ的な生き方を提唱する理由として、時代が変わってきたた背景があってその時代認識が自分が思っているものとほぼ同じだったのが良かった。</p>
-
-<p>時代認識の共感ポイントを本文から引用する。</p>
-
-<blockquote><p>以前なら、勤め先と働き手の間には長期の決めごとがあり、終身雇用が保証される代わりに働き手はずっと会社に忠誠を尽くした。今ではこの決めごとに代わって成果主義にもとづく短期契約が広まり、双方の意識でいつでも契約が打ち切られる可能性がある。</p>
-
-<p>だから、仕事に対してこれまで抱いていた考え方は捨てよう。ルールは変わった。いまや「構え、狙え、撃て」ではなく、「狙え、撃て、狙え、撃て、狙え、撃て」なのだ。失業した時や仕事に不満があるときだけ職探しをするのは時代遅れとなり、絶えず新しい仕事に出会う機会をつくることが欠かせなくなった。ただの社交に代わって、かしこく人脈づくりをする時代になったのだ。</p></blockquote>
-
-<p>自分自身も時代変化と予測があって自分なりの歩み方をしてきているので、客観的にそれが肯定されたことが良かった。</p>
-
-<h1>大事なのは人脈</h1>
-
-<p>主に重要視していることは人脈を自分の戦略上の大事なリソースに位置づけていること。</p>
-
-<p>単なる知り合いや困ったときにすがりつくだけの関係ではなく、常にゆるやかなギブテク関係を保ちつつ、大きな課題や必要な情報を得るための <strong>ほんもののつながり</strong> を築く必要性を解いている。</p>
-
-<p>なぜ大事なのか、具体的にどんな関係になることなのかページ数を割いて説明してくれる。</p>
-
-<p>具体的イメージがつきにくい場合は <a href="http://www.amazon.co.jp/exec/obidos/ASIN/B00DH84TAO/dsea-22/ref=nosim/">抜擢される人の人脈力</a> を補完的に読むと良いと思う。</p>
-
-<p>つまるところスタートアップのような不確実でリソースが少ない状態で進んでいくには、他人の力を借りて助けてもらいながら上手くやっていく必要がある。</p>
-
-<p>ちょっと最近サービスづくりに没頭してしまい、自分を評価してくれていた人たちとコンタクトを取っていなかったし、サービスのステージも一つ先に進めようと思っていたところなので、もう一度人脈を確認しながら進める動きをしている。</p>
-
-<p>サービスを作る初期段階から人脈へのアプローチをし始めておけばとこの本を読んで後悔した。
-もう少し早く出会っていれば色々な気構えができて、より安心して進めたと思う。</p>
-
-<p>自分で自分の生き方を戦略的に進めていきたいと強く思っている方にお勧めの本です。</p>
 ]]></content>
   </entry>
   

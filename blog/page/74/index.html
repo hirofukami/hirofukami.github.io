@@ -102,6 +102,85 @@ $(document).ready(
     <article class="post">
 	<h2 class="title">
 		
+		<a href="/2004/07/11/redistribute-static-metric/">
+		
+			Redistribute Static Metric</a>
+	</h2>
+	<div class="entry-content">
+		<div class="section">
+  <p>
+    Cisco と Extreme での redistribute static metric の足し方(type 1)が異なることに気づく。
+  </p>
+  
+  <p>
+    上流から見た場合
+  </p>
+  
+  <ul>
+    <li>
+      Cisco</p> <ul>
+        <li>
+          core interface cost + redistribute metric
+        </li>
+      </ul>
+    </li>
+    
+    <li>
+      Extreme <ul>
+        <li>
+          core interface cost + redistribute metric + edge interface cost
+        </li>
+      </ul>
+    </li>
+  </ul>
+  
+  <p>
+    確か、Juniper も Ciscoと同じだったはず。
+  </p>
+  
+  <p>
+    でもホントにメーカの仕様 issue？
+  </p>
+</div>
+
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2004-07-12T00:00:00+09:00" pubdate data-updated="true">Jul 12<span>th</span>, 2004</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/tech/'>Tech</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/2004/07/11/redistribute-static-metric//blog/page/74/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
 		<a href="/2004/07/05/nssa/">
 		
 			NSSA</a>
