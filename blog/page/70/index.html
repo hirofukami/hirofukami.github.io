@@ -102,6 +102,71 @@ $(document).ready(
     <article class="post">
 	<h2 class="title">
 		
+		<a href="/2005/03/21/juniper-10g-edge/">
+		
+			[Juniper] 10G Edge&#8230;</a>
+	</h2>
+	<div class="entry-content">
+		<div class="section">
+  <p>
+    10G PIC 2～3 port のって、GbE port がたくさん欲しいと思うと、Juniper では M160あたりだと思うのだがこれは End of Support になるらしい。
+  </p>
+  
+  <p>
+    確かに 10G pic は XENPAK ではないし、
+  </p>
+  
+  <p>
+    # と言ってる間に <a href="http://www.juniper.net/products/mseries/" target="_blank"><a href="http://www.juniper.net/products/mseries/" target="_blank">http://www.juniper.net/products/mseries/</a></a> では M160 がいなくなってた。
+  </p>
+  
+  <p>
+    そうなると [T|M]320 になって、cost が億単位ですわ、ムリムリ(w
+  </p>
+  
+  <p>
+    edge 系に入ってくると踏んでたんだけどな Juniper 。。。
+  </p>
+</div>
+
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2005-03-22T00:00:00+09:00" pubdate data-updated="true">Mar 22<span>nd</span>, 2005</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/tech/'>Tech</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/2005/03/21/juniper-10g-edge//blog/page/70/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
 		<a href="/2005/03/18/%e6%b5%81%e8%a1%8c%e3%81%ab%e3%81%ae%e3%81%a3%e3%81%a6%e3%83%bb%e3%83%bb%e3%83%bb/">
 		
 			流行にのって・・・</a>
@@ -948,119 +1013,6 @@ $(document).ready(
 
 	
 		<span class="comments"><a href="/2005/02/21/cisco-bug-to-bug//blog/page/70/index.html#disqus_thread">Comments</a></span>
-	
-</div></article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/2005/02/03/%e3%82%b7%e3%82%b9%e3%83%86%e3%83%a0%e6%94%bb%e7%95%a5-%e7%b7%a8/">
-		
-			システム攻略 編</a>
-	</h2>
-	<div class="entry-content">
-		<div class="section">
-  <p>
-    余計な雑音に抗議をして、とりあえずシステムへの対応に取り掛かった。テストで出したオーダが窓口君との電話を切ったすぐ後に送られて来た。「遅くなり申し訳ありません。」だって、、、完全に見落としていたようだ、呆れるわ、ホント怠慢。
-  </p>
-  
-  <p>
-    ただこのメールもシステム登録先のメールアドレスに来たメールで、システムは相変わらず変化なし。本文は文章というより DB を操作する時のコマンドになんとなく似ている。
-  </p>
-  
-  <p>
-    どうせシステムの問い合わせ窓口の連中だって、この訳の分からないシステムの仕組みなんて分かってないだろうと予想し、自分でこのシステムの仕組みを攻略することを決める。# 他の仕事もあるけどしょうがない。進まないんだから。
-  </p>
-  
-  <p>
-    メールに来た文章とこのシステムへの事前登録シートをよくよく見ていたらひらめいたっ！！！
-  </p>
-  
-  <p>
-    おそらくこのシステムのアップデート情報は事前に登録したメールアドレス宛にコマンドチックな body をもたせて、それを独自アプリ(受信プログラム)で読み取り、クライアントのローカルレベル表示させている。
-  </p>
-  
-  <p>
-    つまり、システムアドレス宛てに出されたメールが受信プログラムで受信できなければアップデートはされない。どこかでメールを吸い取ってしまうと、再送もされないので、更新もされない。オンラインの意味が無いシステムなのだ。
-  </p>
-  
-  <p>
-    その後の対応
-  </p>
-  
-  <ul>
-    <li>
-      システムメールアドレス用のアカウントを社内で作ってもう # 専用アカウント
-    </li>
-    <li>
-      窓口君へシステムアドレスの変更申込書を送る
-    </li>
-    <li>
-      窓口君にお願いしてオーダの進捗データを新しいシステムアドレスへ再送してもらう
-    </li>
-  </ul>
-  
-  <p>
-    結果、受信プログラムにて受信完了。進捗画面にて受付IDと納期が表示された。
-  </p>
-  
-  <p>
-    はあ～。(自分で)解決したけど何だこの仕組み？加入・局内システムみたく、Webにしないんだろう？そもそも何で2つに分けてるの？いじめとしか言いようが無い。
-  </p>
-  
-  <p>
-    教訓
-  </p>
-  
-  <ul>
-    <li>
-      必ずこのシステム専用のメールアカウントを1つ用意する必要がある
-    </li>
-    <li>
-      このメールアドレスを接続契約締結前の事前登録情報のシステムアドレスの欄に記載する
-    </li>
-    <li>
-      システムの仕組みは自分で解決するしかない #提供してるくせに詳しくない＆作っているのはグループ会社
-    </li>
-  </ul>
-  
-  <p>
-    <p>
-      # タイトルの「DF敷設への格闘」とは仕事上やり取りしているある会社とのしょうもない出来事を後世に敷設を試みる方たちのために記したものです。(DF=暗い＋繊維 英語にしてみれば・・・)
-    </p></div>
-
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2005-02-04T00:00:00+09:00" pubdate data-updated="true">Feb 4<span>th</span>, 2005</time></div>
-	
-
-<div class="tags">
-
-	<a class='category' href='/blog/categories/business/'>Business</a>
-
-</div>
-
-
-	
-		<span class="comments"><a href="/2005/02/03/%e3%82%b7%e3%82%b9%e3%83%86%e3%83%a0%e6%94%bb%e7%95%a5-%e7%b7%a8//blog/page/70/index.html#disqus_thread">Comments</a></span>
 	
 </div></article>
 
