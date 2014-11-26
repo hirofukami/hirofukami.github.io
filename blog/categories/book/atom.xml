@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Book | Hiro Fukami's Blog]]></title>
   <link href="http://hirofukami.com/blog/categories/book/atom.xml" rel="self"/>
   <link href="http://hirofukami.com/"/>
-  <updated>2014-11-25T19:58:30+09:00</updated>
+  <updated>2014-11-26T20:37:31+09:00</updated>
   <id>http://hirofukami.com/</id>
   <author>
     <name><![CDATA[HiroFukami]]></name>
@@ -100,7 +100,7 @@
     <link href="http://hirofukami.com/blog/2014/11/18/published-wordpress-book/"/>
     <updated>2014-11-18T08:00:00+09:00</updated>
     <id>http://hirofukami.com/blog/2014/11/18/published-wordpress-book</id>
-    <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/4774167878/ref=as_li_ss_tl?ie=UTF8&amp;camp=247&amp;creative=7399&amp;creativeASIN=4774167878&amp;linkCode=as2&amp;tag=dsea-22"><img src="https://scontent-a.xx.fbcdn.net/hphotos-xfa1/v/t1.0-9/10698425_10204946115594279_2210129673257922785_n.jpg?oh=377dd520a4c25b41104dad97742f6841&amp;oe=551BD267" alt="WordPress本" /></a></p>
+    <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/4774167878/ref=as_li_ss_tl?ie=UTF8&amp;camp=247&amp;creative=7399&amp;creativeASIN=4774167878&amp;linkCode=as2&amp;tag=dsea-22"><img src="/images/20141118-wordpress-book.jpg" alt="WordPress本" /></a></p>
 
 <p>本を書きました。WordPress関連の本になります。
 株式会社シェイクソウルを作ってから2冊目になります。
@@ -169,7 +169,7 @@ Dropboxリアルタイムデプロイは <a href="http://smartdesigning.me/">Sma
 
 <p><a href="http://2014.tokyo.wordcamp.org/">WordCamp 2014 Tokyo</a> の会場でサイン会をしました。</p>
 
-<p><img src="https://fbcdn-sphotos-b-a.akamaihd.net/hphotos-ak-xfp1/v/t1.0-9/10703748_10204966104813997_2179117887814190012_n.jpg?oh=198098c534ae4ee411ef059df9046fb2&amp;oe=54E63E04&amp;__gda__=1427329889_f09c3f6a786495c8bba06b95daecff46" alt="WordCamp 2014 Tokyo サイン会" /></p>
+<p><img src="/images/20141118-wordpress-book-sign.jpg" alt="WordCamp 2014 Tokyo サイン会" /></p>
 
 <p>共著した他の筆者の方々に会うのははじめてだったのですが、顔見知りもいて何やら懐かしいやらお疲れ様な感じやらでした。</p>
 

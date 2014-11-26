@@ -102,6 +102,94 @@ $(document).ready(
     <article class="post">
 	<h2 class="title">
 		
+		<a href="/2013/07/23/aws-autoscaling-setting-2013/">
+		
+			AWS オートスケーリング設定方法 &#8211; 2013年版実践編</a>
+	</h2>
+	<div class="entry-content">
+		<p>AWS が Auto Scaling、CloudWatch、Elastic Load Balancing を発表した時は興奮して、すぐに触ってブログに書きました。</p>
+
+<ul>
+<li><a title="Amazon EC2 新機能 Monitoring, Auto Scaling and Elastic Load Balancing を一通り触ってみた" href="http://hirofukami.com/2009/05/24/amazon-ec2-monitoring-auto-scaling-and-elastic/" target="_blank">Amazon EC2 新機能 Monitoring, Auto Scaling and Elastic Load Balancing を一通り触ってみた</a></li>
+<li><a title="Amazon EC2 Auto Scaling をもう少し詳しく見てみた" href="http://hirofukami.com/2010/03/05/amazon-ec2-auto-scaling/" target="_blank">Amazon EC2 Auto Scaling をもう少し詳しく見てみた</a></li>
+</ul>
+
+
+<p>その情報を元にして <a href="http://www.amazon.co.jp/gp/product/4774142840/ref=as_li_ss_tl?ie=UTF8&camp=247&creative=7399&creativeASIN=4774142840&linkCode=as2&tag=dsea-22" target="_blank">「よくわかるAmazonEC2/S3入門」を執筆した</a> のだけど、4年前の情報なのでもう古くオートスケーリングの設定方法も変わったようだったのでしっかり追いつきたいと思って再び触ってみた。</p>
+
+<p>結論的には以前と同じように思った通りの挙動が確認できた。AWS のドキュメントも充実していて理解をだいぶ助けたが、ちょいちょい間違っている点があったり、基本的にパラメータが多くて説明が少ないので、ユーザにはとっつきにくいというより、ちゃんと動かすまでに結構大変な思いをするものなのは変わらないようだ。<br/>
+ただ、実践でちゃんと使えるようになると魔法のツールになるので、設定方法を紹介してお役に立てれば幸いです。</p>
+
+<p>参考URLとしては、<a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/as-scale-based-on-demand.html" target="_blank">AWS のドキュメントサイトの Auto Scaling &#8211; Scale Based on Demand</a> に沿って進めるとできるが、その通りだと動かない部分もあり、ちょっとした解説や補足を加えて日本語で以下に書いていきます。</p>
+
+<h2>目指す挙動</h2>
+
+<p>オートスケーリングを活用して実戦的に使える設定方法としては、</p>
+
+<ul>
+<li>常にインスタンスの負荷状態をモニタリングしている</li>
+<li>モニタリングのある閾値を超えたら自動的にインスタンス数を増減させる</li>
+<li>起動したインスタンスは ELB の配下に置かれる</li>
+</ul>
+
+
+<p>これができると例えば、Webフロントサーバのスケーラブルな環境を作ることができる。<br/>
+自動的にスケールしてくれるので、今まで人間リソースに頼っていた部分が丸ごとなくなってコストカットも狙える。</p>
+
+<p>ただ注意点は、起動したインスタンスは起動後処理を開始できることを担保してあげないといけないので、ファイルのデプロイやアプリケーションの自動起動などを行うためのセッティングや起動スクリプトの用意などが必要。</p>
+
+<h2>Auto Scaling 設定概要</h2>
+
+<p>オートスケーリングの設定は複数の設定を組み合わせて動作させる。</p>
+
+<ul>
+<li>launch-config : インスタンスの起動情報を設定する。AMI、インスタンス、キーペア、セキュリティグループなどを指定する</li>
+<li>auto-scaling-group : オートスケーリングの中心となる設定。最大最小起動インスタンス数、ELB、アベイラビリティゾーンなどを指定する</li>
+<li>scaling policy : インスタンスを増減方法の設定。一度に立ち上げるインスタンス数などを指定する</li>
+<li>metric-alarm : CloudWatch における閾値の設定。どんな条件の時にアラートを出すかを指定する</li>
+</ul>
+
+
+<p>上の3つが Auto Scaling コマンドで実施し、最後は CloudWatch コマンドで実施する。<br/>
+各設定と挙動を整理すると以下の図のようになる。<br/>
+<a href="images/2013/07/130723aws-autoscaling-001.png"><img class="aligncenter size-large wp-image-1103" alt="130723AWS-AutoScaling.001" src="/images/2013/07/130723aws-autoscaling-001.png?resize=830%2C622" data-recalc-dims="1" /></a>
+		
+		<a href="/2013/07/23/aws-autoscaling-setting-2013/" class="more-link">Read on &rarr;</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-07-23T19:24:54+09:00" pubdate data-updated="true">Jul 23<span>rd</span>, 2013</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/tech/'>Tech</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/2013/07/23/aws-autoscaling-setting-2013//blog/page/9/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
 		<a href="/2013/07/21/book-1vs21football/">
 		
 			「1対21」のサッカー原論 &#8211; 風間八宏</a>
@@ -879,71 +967,6 @@ AWS で Web インフラ作ったりプロマネやったりして、受託の�
 
 	
 		<span class="comments"><a href="/2013/07/10/diary-nikkei-2013-07-10//blog/page/9/index.html#disqus_thread">Comments</a></span>
-	
-</div></article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/2013/06/19/2013-brazilxjapan/">
-		
-			コンフェデレーションズカップ2013 ブラジル X 日本 雑感</a>
-	</h2>
-	<div class="entry-content">
-		<p>「失敗した時こそ学ぶことができる」<br/>
-なんて、そんな思いが強かったもので、はじめてですがサッカーの試合について見ていて思ったことを自分なりに書いてみたいと思います。</p>
-
-<p>実は NHK BS1 でやっている、プレミアリーグ、セリA、ブンデスリーガなどの試合を見てきていて、サッカーの奥深さを感じたり勝つために必要な要素は何かと考えるのが趣味というか、ビジネスにおける自分の振る舞いや考え方に良い影響を与えてくれていたりします。</p>
-
-<p>さて、コンフェデレーションズカップ2013 ブラジル x 日本 は 0-3 の結果でした。</p>
-
-<h2>選手は何をしたかったのだろう？</h2>
-
-<p>試合前の日本代表選手の言葉は「ブラジルに勝つ」でしたが、どうやって勝機を見出すのか実際の試合ではその意図を感じることはできなかった。<br/>
-あの発言とこの試合内容が一致していない違和感を強く感じた。単純に気持ちが高ぶっているだけの発言だったのか、やろうとしたことはあったけど全く試合ではできなかったのか。やろうとしたことがあったとしたらそれは何だったのか知りたいところ。</p>
-
-<p>開始3分でのネイマールの素晴らしいゴールは、なかなかお目にかかれないくらいなもので、あれを「事故」としてすぐ忘れて切り替えることは必要だった。それでも日本の運動量があがることはなくて、ゆったりとボールを回すブラジルのペースに合わせてしまうように、アグレッシブさやスピード感のあるボール回しが消えて時間だけが過ぎてしまったような試合全体の印象。</p>
-
-<p>日本の失点シーンは完全に崩された訳ではなく、一瞬の隙をつかれて2点を失って、3点目は前掛かり行った結果なのでまぁしょうがない。1点目、2点目を防ぐにはちょっとしたディフェンスの出足や読みが必要だったのだけど、日本はそこまで行きついていなかった。<br/>
-ああいうライナーのクロスをゴール正面に正確に送られることはアジア予選ではなかっただろうから、アジアレベルに慣れきってしまったのかもしれない。<br/>
-しかし、ブラジルは少ないチャンスでも高い確率でゴールにすることができるシュートがうまいなぁ。</p>
-
-<p>ちょっと気になっているのは、試合の最初から日本のスピード感が全くなかったこと。パスのボールスピードも人の動き遅く、逆にブラジルの動き出しの早さ、特にディフェンスでここぞというところでの体の寄せるスピードは日本に明らかに早かった。<br/>
-理由は、芝の長い荒れたピッチなのか、疲れなのか、暑さなのか、それともブラジルという見えないプレッシャーやリスペクトのし過ぎなのか。<br/>
-後半20分くらいですでにバテ気味で、3点目を決められた時のCB吉田の振り切られっぷりを見ると、試合前から疲れはあったのかもしれないけど、もっと速くプレーできないとどの国とやっても勝機は見いだせないのではと思う。</p>
-
-
-		
-		<a href="/2013/06/19/2013-brazilxjapan/" class="more-link">Read on &rarr;</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-06-19T21:48:50+09:00" pubdate data-updated="true">Jun 19<span>th</span>, 2013</time></div>
-	
-
-<div class="tags">
-
-	<a class='category' href='/blog/categories/sports/'>Sports</a>
-
-</div>
-
-
-	
-		<span class="comments"><a href="/2013/06/19/2013-brazilxjapan//blog/page/9/index.html#disqus_thread">Comments</a></span>
 	
 </div></article>
 
