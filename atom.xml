@@ -4,7 +4,7 @@
   <title><![CDATA[Hiro Fukami's Blog]]></title>
   <link href="http://hirofukami.com/atom.xml" rel="self"/>
   <link href="http://hirofukami.com/"/>
-  <updated>2014-11-26T20:34:17+09:00</updated>
+  <updated>2014-12-01T21:29:08+09:00</updated>
   <id>http://hirofukami.com/</id>
   <author>
     <name><![CDATA[HiroFukami]]></name>
@@ -12,6 +12,163 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[WordPressからOctopressへきれいに移行する方法]]></title>
+    <link href="http://hirofukami.com/blog/2014/12/01/right-way-wordpress-to-octopress/"/>
+    <updated>2014-12-01T20:00:00+09:00</updated>
+    <id>http://hirofukami.com/blog/2014/12/01/right-way-wordpress-to-octopress</id>
+    <content type="html"><![CDATA[<p><img src="http://hirofukami.com/images/20141201-octopress.png" alt="octopress" /></p>
+
+<p>自分のブログ <a href="http://hirofukami.com">hirofukami.com</a> は今、Octopress on <a href="https://pages.github.com/">Github Pages</a> で動いています。</p>
+
+<p>その前は自分サーバ上で WordPress を運用していたのですが、アップデートがめんどい、もうちょっとすっきり運用したい、あとOctopress結構クールじゃん(これが大きい)とか思って <a href="http://octopress.org/">Octopress</a> に移行しました。</p>
+
+<p>今までブログは以下のように渡り歩いてきたのですが、今までのポストは全て移行して蓄積してきました。</p>
+
+<ol>
+<li>はてなダイアリー</li>
+<li>Tumblr</li>
+<li>WordPress.com</li>
+<li>WordPress on 自分サーバ</li>
+<li>Octopress on Github Pages</li>
+</ol>
+
+
+<p>2002年12月が最初のポストで、12年間で738ポストあります。
+今回の移行も今までどおり全ポストを WordPress から Octopress に移行するためにあれこれやってみたのですが、Webに載っている方法でベストなものがなかったので、少しだけいじってきれいに移行できたというお話です。</p>
+
+<!-- more -->
+
+
+<h2>Webに載っている方法たち</h2>
+
+<p>Octopress の元になっている <a href="http://import.jekyllrb.com/">Jekyll</a> には<a href="http://import.jekyllrb.com/docs/wordpress/">WordPressからの移行方法も紹介しているページ</a>があったり、検索すると出てきたりして3つほど試してみた。</p>
+
+<h3>1. WordPress to Jekyll Exporter</h3>
+
+<p>Github から取得可能 <a href="https://github.com/benbalter/wordpress-to-jekyll-exporter">https://github.com/benbalter/wordpress-to-jekyll-exporter</a></p>
+
+<p>さすがに wordpress.org のプラグインには登録されていない。</p>
+
+<p>WordPress プラグインとしてインストールして、WordPress管理画面上で操作する。
+全てのポストを <code>.md</code> ファイルに変換してくれる。</p>
+
+<p>動作は問題ないのだけど、生成された <code>.md</code> ファイルを見ると、最初の行のyaml front matterが以下のようになっている。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>---
+</span><span class='line'>title: 仕事で本当に大切にしたいこと
+</span><span class='line'>author: Hiro Fukami
+</span><span class='line'>layout: post
+</span><span class='line'>permalink: /2004/07/26/%e4%bb%95%e4%ba%8b%e3%81%a7%e6%9c%ac%e5%bd%93%e3%81%ab%e5%a4%a7%e5%88%87%e3%81%ab%e3%81%97%e3%81%9f%e3%81%84%e3%81%93%e3%81%a8/
+</span><span class='line'>tumblr_hirofukami_permalink:
+</span><span class='line'>  - http://hirofukami.tumblr.com/post/29542403177
+</span><span class='line'>tumblr_hirofukami_id:
+</span><span class='line'>  - 29542403177
+</span><span class='line'>original_post_id:
+</span><span class='line'>  - 741
+</span><span class='line'>categories:
+</span><span class='line'>  - Book
+</span><span class='line'>tags:
+</span><span class='line'>  - book
+</span><span class='line'>  - reivew
+</span><span class='line'>---</span></code></pre></td></tr></table></div></figure>
+
+
+<p>日付(date)がない。。。</p>
+
+<p>試しに <code>rake generate</code> からの <code>rake preview</code> で見てみると、確かに日付が表示されない。日付がわからないのはブログとしてダメだ。何とかせねば。</p>
+
+<h3>2. jekyll-import</h3>
+
+<p><a href="http://import.jekyllrb.com/docs/wordpress/">Jekyllのページに紹介されていて</a> ruby の gem で提供されれている。</p>
+
+<p>ソース : <a href="https://github.com/jekyll/jekyll-import/tree/v0.4.1">https://github.com/jekyll/jekyll-import/tree/v0.4.1</a></p>
+
+<p>WordPress の動いているサーバ上で実行させるようなのだけど、うまく動かなかった。</p>
+
+<h3>3. Exitwp</h3>
+
+<p>もっと他にないのかと思って調べて見つけたもの。</p>
+
+<p>ソース : <a href="https://github.com/thomasf/exitwp">https://github.com/thomasf/exitwp</a></p>
+
+<p>WordPress管理画面からexportツールを使ってxmlファイルで出力させて、それを python スクリプトで変換してくれるもの。</p>
+
+<p>XMLファイルを落として、手元のMacで実行してみたが色々足りないよエラーが出て、あまりMacにインストールしたくない派の自分としてはここでストップした。</p>
+
+<h2>結局、WordPress to Jekyll Exporter に1行足すだけで解決した</h2>
+
+<p>WordPress to Jekyll Exporter のソースを見てみると、jekyll-export.php の中で yaml front matterの部分をWordPress関数から持ってきている部分があり、そこに WordPress 関数の <code>get_the_time</code> を足したらうまく日付が加わった。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>---
+</span><span class='line'>title: 仕事で本当に大切にしたいこと
+</span><span class='line'>date: Mon, 26 Jul 2004 15:00:00 +0000
+</span><span class='line'>author: Hiro Fukami
+</span><span class='line'>layout: post
+</span><span class='line'>permalink: /2004/07/26/%e4%bb%95%e4%ba%8b%e3%81%a7%e6%9c%ac%e5%bd%93%e3%81%ab%e5%a4%a7%e5%88%87%e3%81%ab%e3%81%97%e3%81%9f%e3%81%84%e3%81%93%e3%81%a8/
+</span><span class='line'>tumblr_hirofukami_permalink:
+</span><span class='line'>  - http://hirofukami.tumblr.com/post/29542403177
+</span><span class='line'>tumblr_hirofukami_id:
+</span><span class='line'>  - 29542403177
+</span><span class='line'>original_post_id:
+</span><span class='line'>  - 741
+</span><span class='line'>categories:
+</span><span class='line'>  - Book
+</span><span class='line'>tags:
+</span><span class='line'>  - book
+</span><span class='line'>  - reivew
+</span><span class='line'>---</span></code></pre></td></tr></table></div></figure>
+
+
+<p>preview もOK。日付のフォーマットは調べたらOctopress側でも変更する必要なく解釈できるようだったので、シンプルな1行になった。</p>
+
+<p><code>'date' =&gt; get_the_time( 'r', $post ),</code></p>
+
+<p>差分は<a href="https://github.com/d-sea/wordpress-to-jekyll-exporter/commit/50b7a10276dd8f799558502e8f4a0b7462968188">こちら</a></p>
+
+<p><a href="https://github.com/d-sea/wordpress-to-jekyll-exporter">Github で fork している</a>ので、使い方はご自由にどうぞ。</p>
+
+<p>OK、OK。思っていた通りに移行できた。すっきりした。</p>
+
+<p>良き Octopress Blog ライフを〜</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[ホンダ ヴェゼル VEZEL 試乗レビュー]]></title>
@@ -43,7 +200,7 @@
 <p>とてもゆったりしている。身長が180cmの私が座っても天井までこぶし1個分以上余る。
 ボディーはなるべく小さくしているのに、中の空間はなるべく大きく取るようにしている。</p>
 
-<p>シートの横幅も十分。後部座席もゆってりしている。足元の広さも十分。</p>
+<p>シートの横幅も十分。後部座席もゆったりしている。足元の広さも十分。</p>
 
 <p>それでいてトランクが非常に広い。大きな荷物も置ける。足りなければ後部座席を倒してフラットにもできる。</p>
 
@@ -2516,62 +2673,6 @@ Swiftは唯一まったく新しいものとして登場できたと思うが、
 ひとつ事例を紹介しているが、見つけ方のコツは書いていない。</p>
 
 <p>サービスを作っている立場からすると本当はこの部分が最も聞きたい部分なのだけど、本書の範疇外だから、自分の工夫やアイデアでアクションを考えるしかない。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[娘の中学校入学式に参加]]></title>
-    <link href="http://hirofukami.com/blog/2014/04/05/daughter-welcoming-ceremony/"/>
-    <updated>2014-04-05T18:41:55+09:00</updated>
-    <id>http://hirofukami.com/blog/2014/04/05/daughter-welcoming-ceremony</id>
-    <content type="html"><![CDATA[<p><img src="http://hirofukami.com/images/20140405-welcomming-ceremony.jpg" alt="Welcoming Ceremony" /></p>
-
-<p>4/5は娘の中学校の卒業式でした。卒業式からはや11日後であっという間に来てしまいました。</p>
-
-<h2>6年間お世話になる世界へ</h2>
-
-<p>娘が入学したのは自宅から最も近い中高一貫女子校なので、6年間通うことになります。</p>
-
-<p>当初その学校のことはあまり知らなかったこともあり、受験する予定ではなかったのですが、夏の学校説明会にうかがった時にその学校の大事にしている考え方にとても共感して、娘のがんばりの元結果的に通うことになりました。</p>
-
-<p>この学校では <strong>自分の力でチャレンジして切り開いていく力</strong> を育むことを教育の根本に添えていて、押し付けや強制のようなスタンスは取らず、生徒の考えや努力を促すよう先生方もサポートしてくれる様子でした。</p>
-
-<p>私自身は詰め込み教育や暗記重視の試験を体験した反省の経験と、自分自身が起業・スタートアップとチャレンジしていること、またその時代背景の変化を考えるに、これから必要なことはあらかじめ用意された正解を覚えることではなくて、<strong>自分自身で誰も解いたことのない正解を追い求めていく</strong>たくましさや変化への順応力だと思っています。</p>
-
-<p>これはゆくゆくでも娘に身につけてほしいなぁと、常に思い続けていました。私自身の思いとこの学校の教育思想はとても似ているように思います。</p>
-
-<p>娘自身も通えることをとても楽しみにしていたようですが、私自身もこの学校の共感の深さからこれから娘がどんなふうに成長していくのか、どんな環境なのか楽しみです。6年間という時間はとても長い時間ですが、この共感があるので安心して通わせることができます。</p>
-
-<h2>入学式で思ったこと</h2>
-
-<p>ふと思ったことがいくつかあったので、メモしておく。</p>
-
-<ul>
-<li>日の丸、君が代斉唱がない : 私学なので当たり前だけど強制されるものがない環境は良いと思った</li>
-<li>関係の薄い来賓がいない : 同窓会会長だけ。自分たちのコミュニティだけ</li>
-<li>長ったらしい挨拶がない : 校長先生の言葉も新入生に向けたメッセージを意識して端的で短め。退屈にならずに良かった</li>
-<li>来賓の挨拶がない : 話したのは、校長先生、在校生代表、新入生代表の3名だけ</li>
-<li>全体的にこじんまりして端的 : 必要な物を必要なだけという感じ</li>
-</ul>
-
-
-<p>端的なのはとても良い印象を持った。
-私学というと公立と違いその学校の考え方が深く反映されるから、それが良くも悪くも出やすい。
-今回は良い方に出たと思う。</p>
-
-<h2>背伸びしながらも楽しんで</h2>
-
-<p>初日から大量のプリントとスケジュール説明とかかなりの情報量をいきなり食らい、その上緊張もあったので娘はだいぶ疲れたみたい。</p>
-
-<p>すべて上の学年の先輩たちだし、今までとは違ったスピードとレベルで進んでいくだろうから、かなりの背伸びが必要だと思う。</p>
-
-<p>慣れるまでは時間がかかるだろうけど、最終的にはそれを楽しむくらいの度量やたくましさを身につけてくれればと思う。</p>
-
-<p>親の関与する割合は今後少なくなってくるだろう。ただ、いつでもどんなことが起きてもサポートするスタンスはとり続けたいと思う。</p>
-
-<p>逆にそんなことくらいしかできなくなっていくんだろうなぁ。</p>
-
-<p>楽しみなセレモニーの後にちょっとした寂しさを感じた、そんな日でした。</p>
 ]]></content>
   </entry>
   

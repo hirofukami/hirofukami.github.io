@@ -102,6 +102,178 @@ $(document).ready(
     <article class="post">
 	<h2 class="title">
 		
+		<a href="/2005/06/19/cisco-memo-2005-05-10/">
+		
+			[Cisco] 検証 Memo 2005.05.10</a>
+	</h2>
+	<div class="entry-content">
+		<div class="section">
+  <p>
+    C7606検証時に教えてもらったこと色々
+  </p>
+  
+  <h4>
+    BGP config にて推奨された部分
+  </h4>
+  
+  <ul>
+    <li>
+      経路受け渡し速度Up
+    </li>
+  </ul>
+  
+  <blockquote>
+    <p>
+      ip tcp path-mtu-discovery
+    </p>
+  </blockquote>
+  
+  <ul>
+    <li>
+      コントロールパケット用のバッファ増加
+    </li>
+  </ul>
+  
+  <blockquote>
+    <p>
+      spd headroom ****
+    </p>
+  </blockquote>
+  
+  <ul>
+    <li>
+      Update　パケット殺到時の負荷軽減 queue の確保
+    </li>
+  </ul>
+  
+  <blockquote>
+    <p>
+      interface GigabitEthernet0/0
+    </p>
+    
+    <p>
+      &#160;:
+    </p>
+    
+    <p>
+      hold-queue 4096 in
+    </p>
+    
+    <p>
+      hold-queue 4096 out
+    </p>
+  </blockquote>
+  
+  <ul>
+    <li>
+      peer group の推奨</p> <ul>
+        <li>
+          BGP テーブルをまとめることが可能
+        </li>
+        <li>
+          out は group でまとめて適用、in は neighbor 個別で適用可
+        </li>
+      </ul>
+    </li>
+  </ul>
+  
+  <blockquote>
+    <p>
+      neighbor TEST-A peer-group
+    </p>
+    
+    <p>
+      neighbor TEST-A route-map ESPORT out
+    </p>
+    
+    <p>
+      &#160;:
+    </p>
+    
+    <p>
+      neighbor *.*.*.* peer-group TEST-A
+    </p>
+    
+    <p>
+      neighbor *.*.*.* route-map IMPORT in
+    </p>
+  </blockquote>
+  
+  <h4>
+    etc.
+  </h4>
+  
+  <ul>
+    <li>
+      soft-reconfig はもういらない</p> <ul>
+        <li>
+          BGP session の route-reflesh にて経路情報を取りに行くことが可能なので、入れない方が負荷が減る
+        </li>
+      </ul>
+    </li>
+  </ul>
+  
+  <blockquote>
+    <p>
+      neighbor *.*.*.* soft-reconfiguration inbound
+    </p>
+  </blockquote>
+  
+  <ul>
+    <li>
+      redundancy の mode</p> <ul>
+        <li>
+          sso ならば forwarding を止めない、ただし BGP セッションは切れるのでどの道経路の再計算は発生する
+        </li>
+      </ul>
+    </li>
+  </ul>
+  
+  <blockquote>
+    <p>
+      mode sso
+    </p>
+  </blockquote>
+</div>
+
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2005-06-20T00:00:00+09:00" pubdate data-updated="true">Jun 20<span>th</span>, 2005</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/tech/'>Tech</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/2005/06/19/cisco-memo-2005-05-10//blog/page/68/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
 		<a href="/2005/06/18/bgm/">
 		
 			もじもじ君 BGM</a>
@@ -847,71 +1019,6 @@ $(document).ready(
 
 	
 		<span class="comments"><a href="/2005/05/07/dvd-copy//blog/page/68/index.html#disqus_thread">Comments</a></span>
-	
-</div></article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/2005/04/28/gr4000-maximum-prefix/">
-		
-			[GR4000] Maximum Prefix</a>
-	</h2>
-	<div class="entry-content">
-		<div class="section">
-  <p>
-    まぁ、マルチベンダで構成しようってことになると、10G border として国産ルータも注目してたりしますが、まだまだという印象がだんだん強くなってきます。。。
-  </p>
-  
-  <p>
-    驚くべきことに Cisco で言う、maximum-prefix 機能がありません。これでは upstream 用にしか使えないじゃんっ！！
-  </p>
-  
-  <p>
-    対応 OS は &#8216;06.06 予定だとの事。ラボのエンジニア曰く、「必要ですか？」と言ったとさ。。。
-  </p>
-  
-  <p>
-    自分たちの技術力に閉じこもって、外を見ていない印象。
-  </p>
-  
-  <p>
-    Juniper や Cisco のシェアを本気で奪いたいのなら、相手の機能を洗い出して盛り込んでいくくらいの事はしてもらいたいとこです。
-  </p>
-</div>
-
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2005-04-29T00:00:00+09:00" pubdate data-updated="true">Apr 29<span>th</span>, 2005</time></div>
-	
-
-<div class="tags">
-
-	<a class='category' href='/blog/categories/tech/'>Tech</a>
-
-</div>
-
-
-	
-		<span class="comments"><a href="/2005/04/28/gr4000-maximum-prefix//blog/page/68/index.html#disqus_thread">Comments</a></span>
 	
 </div></article>
 

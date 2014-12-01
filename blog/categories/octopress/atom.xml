@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Octopress | Hiro Fukami's Blog]]></title>
+  <link href="http://hirofukami.com/blog/categories/octopress/atom.xml" rel="self"/>
+  <link href="http://hirofukami.com/"/>
+  <updated>2014-12-01T21:34:56+09:00</updated>
+  <id>http://hirofukami.com/</id>
+  <author>
+    <name><![CDATA[HiroFukami]]></name>
+    <email><![CDATA[dee.sea@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[WordPressからOctopressへきれいに移行する方法]]></title>
+    <link href="http://hirofukami.com/blog/2014/12/01/right-way-wordpress-to-octopress/"/>
+    <updated>2014-12-01T20:00:00+09:00</updated>
+    <id>http://hirofukami.com/blog/2014/12/01/right-way-wordpress-to-octopress</id>
+    <content type="html"><![CDATA[<p><img src="/images/20141201-octopress.png" alt="octopress" /></p>
+
+<p>自分のブログ <a href="http://hirofukami.com">hirofukami.com</a> は今、Octopress on <a href="https://pages.github.com/">Github Pages</a> で動いています。</p>
+
+<p>その前は自分サーバ上で WordPress を運用していたのですが、アップデートがめんどい、もうちょっとすっきり運用したい、あとOctopress結構クールじゃん(これが大きい)とか思って <a href="http://octopress.org/">Octopress</a> に移行しました。</p>
+
+<p>今までブログは以下のように渡り歩いてきたのですが、今までのポストは全て移行して蓄積してきました。</p>
+
+<ol>
+<li>はてなダイアリー</li>
+<li>Tumblr</li>
+<li>WordPress.com</li>
+<li>WordPress on 自分サーバ</li>
+<li>Octopress on Github Pages</li>
+</ol>
+
+
+<p>2002年12月が最初のポストで、12年間で738ポストあります。
+今回の移行も今までどおり全ポストを WordPress から Octopress に移行するためにあれこれやってみたのですが、Webに載っている方法でベストなものがなかったので、少しだけいじってきれいに移行できたというお話です。</p>
+
+<!-- more -->
+
+
+<h2>Webに載っている方法たち</h2>
+
+<p>Octopress の元になっている <a href="http://import.jekyllrb.com/">Jekyll</a> には<a href="http://import.jekyllrb.com/docs/wordpress/">WordPressからの移行方法も紹介しているページ</a>があったり、検索すると出てきたりして3つほど試してみた。</p>
+
+<h3>1. WordPress to Jekyll Exporter</h3>
+
+<p>Github から取得可能 <a href="https://github.com/benbalter/wordpress-to-jekyll-exporter">https://github.com/benbalter/wordpress-to-jekyll-exporter</a></p>
+
+<p>さすがに wordpress.org のプラグインには登録されていない。</p>
+
+<p>WordPress プラグインとしてインストールして、WordPress管理画面上で操作する。
+全てのポストを <code>.md</code> ファイルに変換してくれる。</p>
+
+<p>動作は問題ないのだけど、生成された <code>.md</code> ファイルを見ると、最初の行のyaml front matterが以下のようになっている。</p>
+
+<h2>```</h2>
+
+<p>title: 仕事で本当に大切にしたいこと
+author: Hiro Fukami
+layout: post
+permalink: /2004/07/26/%e4%bb%95%e4%ba%8b%e3%81%a7%e6%9c%ac%e5%bd%93%e3%81%ab%e5%a4%a7%e5%88%87%e3%81%ab%e3%81%97%e3%81%9f%e3%81%84%e3%81%93%e3%81%a8/
+tumblr_hirofukami_permalink:
+  &ndash; <a href="http://hirofukami.tumblr.com/post/29542403177">http://hirofukami.tumblr.com/post/29542403177</a>
+tumblr_hirofukami_id:
+  &ndash; 29542403177
+original_post_id:
+  &ndash; 741
+categories:
+  &ndash; Book
+tags:
+  &ndash; book</p>
+
+<h2>  &ndash; reivew</h2>
+
+<p>```</p>
+
+<p>日付(date)がない。。。</p>
+
+<p>試しに <code>rake generate</code> からの <code>rake preview</code> で見てみると、確かに日付が表示されない。日付がわからないのはブログとしてダメだ。何とかせねば。</p>
+
+<h3>2. jekyll-import</h3>
+
+<p><a href="http://import.jekyllrb.com/docs/wordpress/">Jekyllのページに紹介されていて</a> ruby の gem で提供されれている。</p>
+
+<p>ソース : <a href="https://github.com/jekyll/jekyll-import/tree/v0.4.1">https://github.com/jekyll/jekyll-import/tree/v0.4.1</a></p>
+
+<p>WordPress の動いているサーバ上で実行させるようなのだけど、うまく動かなかった。</p>
+
+<h3>3. Exitwp</h3>
+
+<p>もっと他にないのかと思って調べて見つけたもの。</p>
+
+<p>ソース : <a href="https://github.com/thomasf/exitwp">https://github.com/thomasf/exitwp</a></p>
+
+<p>WordPress管理画面からexportツールを使ってxmlファイルで出力させて、それを python スクリプトで変換してくれるもの。</p>
+
+<p>XMLファイルを落として、手元のMacで実行してみたが色々足りないよエラーが出て、あまりMacにインストールしたくない派の自分としてはここでストップした。</p>
+
+<h2>結局、WordPress to Jekyll Exporter に1行足すだけで解決した</h2>
+
+<p>WordPress to Jekyll Exporter のソースを見てみると、jekyll-export.php の中で yaml front matterの部分をWordPress関数から持ってきている部分があり、そこに WordPress 関数の <code>get_the_time</code> を足したらうまく日付が加わった。</p>
+
+<h2>```</h2>
+
+<p>title: 仕事で本当に大切にしたいこと
+date: Mon, 26 Jul 2004 15:00:00 +0000
+author: Hiro Fukami
+layout: post
+permalink: /2004/07/26/%e4%bb%95%e4%ba%8b%e3%81%a7%e6%9c%ac%e5%bd%93%e3%81%ab%e5%a4%a7%e5%88%87%e3%81%ab%e3%81%97%e3%81%9f%e3%81%84%e3%81%93%e3%81%a8/
+tumblr_hirofukami_permalink:
+  &ndash; <a href="http://hirofukami.tumblr.com/post/29542403177">http://hirofukami.tumblr.com/post/29542403177</a>
+tumblr_hirofukami_id:
+  &ndash; 29542403177
+original_post_id:
+  &ndash; 741
+categories:
+  &ndash; Book
+tags:
+  &ndash; book</p>
+
+<h2>  &ndash; reivew</h2>
+
+<p>```</p>
+
+<p>preview もOK。日付のフォーマットは調べたらOctopress側でも変更する必要なく解釈できるようだったので、シンプルな1行になった。</p>
+
+<p><code>'date' =&gt; get_the_time( 'r', $post ),</code></p>
+
+<p>差分は<a href="https://github.com/d-sea/wordpress-to-jekyll-exporter/commit/50b7a10276dd8f799558502e8f4a0b7462968188">こちら</a></p>
+
+<p><a href="https://github.com/d-sea/wordpress-to-jekyll-exporter">Github で fork している</a>ので、使い方はご自由にどうぞ。</p>
+
+<p>OK、OK。思っていた通りに移行できた。すっきりした。</p>
+
+<p>良き Octopress Blog ライフを〜</p>
+]]></content>
+  </entry>
+  
+</feed>
