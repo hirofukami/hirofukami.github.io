@@ -15,9 +15,11 @@
 
 	<link href="/atom.xml" rel="alternate" title="Hiro Fukami's Blog" type="application/atom+xml">
 	<link rel="canonical" href="">
-	<link href="/favicon.png" rel="shortcut icon">
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
 	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<link href="/favicon.png" rel="shortcut icon">
 	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 	<script type="text/javascript" src="/javascripts/jquery.fancybox.pack.js"></script>
 
@@ -68,6 +70,16 @@ $(document).ready(
 	<li><a href="/portfolio">Portfolio</a></li>
 	<li><a href="/archives">Archive</a></li>
 	<li><a href="/atom.xml">RSS</a></li>
+    
+	<li>
+        <form class="pull-right navbar-search"action="http://google.com/search" method="get">
+            <fieldset role="search">
+                <input type="hidden" name="q" value="site:hirofukami.com" />
+                <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+            </fieldset>
+        </form>
+	</li>
+    
 </ul>
 </nav>
 <nav id="mobile-nav">
@@ -79,6 +91,16 @@ $(document).ready(
 	<li><a href="/portfolio">Portfolio</a></li>
 	<li><a href="/archives">Archive</a></li>
 	<li><a href="/atom.xml">RSS</a></li>
+    
+	<li>
+        <form class="pull-right navbar-search"action="http://google.com/search" method="get">
+            <fieldset role="search">
+                <input type="hidden" name="q" value="site:hirofukami.com" />
+                <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+            </fieldset>
+        </form>
+	</li>
+    
 </ul>
 </div>
 	</div>
@@ -97,6 +119,204 @@ $(document).ready(
 </header>
 
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/2007/08/02/layer-2-trunk-failover/">
+		
+			Layer 2 Trunk Failover</a>
+	</h2>
+	<div class="entry-content">
+		<div class="section">
+  <p>
+    サーバ収容用の Layer2 switch を物理的冗長構成にしてポートをケチる時にスパニングツリーを使いがちになるわけだけど、心理的にスパニングツリーは怖くてなるべくなら使いたくないと思ったときに、ちょうどいい解決策があった。
+  </p>
+  
+  <p>
+    ただし、これは<del datetime="2008-12-17T11:32:15+09:00">ブレードサーバのエンクロージャに付く</del> Cisco Catalyst <del datetime="2008-12-17T11:32:15+09:00">Blade Switch 3020 という専用 module でのお話なので汎用性は低い</del>で動作する<span class="footnote"><a href="/d_sea/#f1" name="fn1" title="Catalyst2960でも出来たのでCatalystなら出来ると思われる" target="_blank">*1</a></span>。
+  </p>
+  
+  <p>
+    Layer 2 trunk failover の動作内容は、upstrem, downstream という2つの trunk group(もちろんシングルでも良い)を対応付けておいて、[upstream<del datetime="2008-12-17T11:32:15+09:00">|downstream]</del> down を検出したら、もう一方の <del datetime="2008-12-17T11:32:15+09:00">[upstream|</del>downstream] も down させるというもの<span class="footnote"><a href="/d_sea/#f2" name="fn2" title="2008/12/17修正:動作するのはupstreamのlinkが変化したときだけだった。downstreamがdownしてもupstreamはdonwしない" target="_blank">*2</a></span>。
+  </p>
+  
+  <p>
+    こうすることで、link status の同期を取って L2-SW の上下(実際には下位のサーバとはエンクロージャ内での接続なので、そのつなぎこみが断するのは考えにくいが、)のネットワーク機器の冗長機能を生かすことが可能。
+  </p>
+  
+  <p>
+    物理冗長しているL2-SW間の渡りのケーブルがいらなくなるので、ループにならないし、SPT を使わずにすむ。
+  </p>
+  
+  <p>
+    前提としてサーバは2NIC持っていて、それぞれ L2-SW につながっていて、bonding の設定がされていること。
+  </p>
+  
+  <ul>
+    <li>
+      config (2008/12/17追記)
+    </li>
+  </ul>
+  
+  <p>
+    こんな感じで設定する。link state track 番号は増やせるので、VLANごとに設定できる。この場合はGi0/1がダウンしたらGi0/9も連動してダウンする。Gi0/2がダウンしたらGi0/10も連動してダウンする。
+  </p>
+  
+  <pre>
+
+link state track 1
+
+link state track 2
+
+...
+
+interface GigabitEthernet0/1
+
+switchport access vlan 50
+
+switchport mode access
+
+speed 1000
+
+link state group 1 upstream
+
+!
+
+interface GigabitEthernet0/2
+
+switchport access vlan 60
+
+switchport mode access
+
+speed 1000
+
+link state group 2 upstream
+
+...
+
+interface GigabitEthernet0/9
+
+switchport access vlan 50
+
+switchport mode access
+
+speed 1000
+
+link state group 1 downstream
+
+!
+
+interface GigabitEthernet0/10
+
+switchport access vlan 60
+
+switchport mode access
+
+speed 1000
+
+link state group 2 downstream
+
+</pre>
+  
+  <p>
+    <ul>
+      <li>
+        参考URL:
+      </li>
+    </ul>
+    
+    <dl>
+      <dt>
+        Cisco Catalyst Blade Switch 3020 for HP Getting Started Guide
+      </dt>
+      
+      <dd>
+        <a href="http://www.cisco.com/en/US/products/ps6748/products_getting_started_guide09186a00806c38a8.html" target="_blank"><a href="http://www.cisco.com/en/US/products/ps6748/products_getting_started_guide09186a00806c38a8.html" target="_blank">http://www.cisco.com/en/US/products/ps6748/products_getting_started_guide09186a00806c38a8.html</a></a>
+      </dd>
+      
+      <dt>
+        Configuring EtherChannels and Layer 2 Trunk Failover and Link-State Tracking
+      </dt>
+      
+      <dd>
+        <del datetime="2008-12-17T11:32:15+09:00"><a href="http://www.cisco.com/en/US/products/ps6748/products_configuration_guide_chapter09186a00806c3477.html" target="_blank"><a href="http://www.cisco.com/en/US/products/ps6748/products_configuration_guide_chapter09186a00806c3477.html" target="_blank">http://www.cisco.com/en/US/products/ps6748/products_configuration_guide_chapter09186a00806c3477.html</a></a></del>
+      </dd>
+    </dl>
+    
+    <p>
+      リンク切れ
+    </p>
+    
+    <dl>
+      <dt>
+        Cisco Systems, Inc. Cisco Catalyst Blade Switch 3020 for HP Hardware Installation Guide
+      </dt>
+      
+      <dd>
+        <a href="http://www.cisco.com/en/US/products/ps6748/products_installation_guide_chapter09186a008065b0b9.html" target="_blank"><a href="http://www.cisco.com/en/US/products/ps6748/products_installation_guide_chapter09186a008065b0b9.html" target="_blank">http://www.cisco.com/en/US/products/ps6748/products_installation_guide_chapter09186a008065b0b9.html</a></a>
+      </dd>
+    </dl>
+    
+    <p>
+      2008/12/17追記
+    </p>
+    
+    <dl>
+      <dt>
+        Understanding Layer 2 Trunk Failover
+      </dt>
+      
+      <dd>
+        <a href="http://www.cisco.com/en/US/docs/switches/blades/3020/software/release/12.2_25_sef1/configuration/guide/swethchl.html#wp1346176" target="_blank"><a href="http://www.cisco.com/en/US/docs/switches/blades/3020/software/release/12.2_25_sef1/configuration/guide/swethchl.html#wp1346176" target="_blank">http://www.cisco.com/en/US/docs/switches/blades/3020/software/release/12.2_25_sef1/configuration/guide/swethchl.html#wp1346176</a></a>
+      </dd>
+    </dl></div>
+
+
+<pre><code>&lt;div class="footnote"&gt;
+  &lt;p class="footnote"&gt;
+    &lt;a href="/d_sea/#fn1" name="f1" target="_blank"&gt;*1&lt;/a&gt;：Catalyst2960でも出来たのでCatalystなら出来ると思われる
+  &lt;/p&gt;
+
+  &lt;p class="footnote"&gt;
+    &lt;a href="/d_sea/#fn2" name="f2" target="_blank"&gt;*2&lt;/a&gt;：2008/12/17修正:動作するのはupstreamのlinkが変化したときだけだった。downstreamがdownしてもupstreamはdonwしない
+  &lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-08-03T00:00:00+09:00" pubdate data-updated="true">Aug 3<span>rd</span>, 2007</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/tech/'>Tech</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/2007/08/02/layer-2-trunk-failover//blog/page/43/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
 
 
     <article class="post">
@@ -832,75 +1052,6 @@ $(document).ready(
 	
 </div></article>
 
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/2007/06/05/%e3%83%a1%e3%83%87%e3%82%a3%e3%82%a2%e3%81%ab%e8%bc%89%e3%82%8b%e3%81%a8%e5%91%a8%e3%82%8a%e3%81%8c%e3%81%86%e3%82%8b%e3%81%95%e3%81%8f%e3%81%aa%e3%82%8b/">
-		
-			メディアに載ると周りがうるさくなる</a>
-	</h2>
-	<div class="entry-content">
-		<div class="section">
-  <p>
-    記者会見場にいて、実際そこで話されていることと記事になった時の空気感の違いというか差異は確かにあるなぁと思ったりして、、これは別の機会に書こうと思うけど。
-  </p>
-  
-  <p>
-    メディアに載ると周りが騒がしくなってその対応に追われる。。。個人的な励ましメールは非常にありがたく、それは除いた話で。
-  </p>
-  
-  <p>
-    メディアに載ったとたんそれをトリガーにして打ち合わせをさせてくれとか、業者として使ってくれ、協業させてくれとかいろいろ言ってくる。
-  </p>
-  
-  <p>
-    今まで会った業者にはメディアに載っている情報はすでに話してきたものだし、むしろ詳しく話してしまっている(NDAは？まぁまぁいいじゃない)部分もあり。でも、メディアに載ったとたん急に焦ったようにリアクションして迫ってくる。真のパートナーになるべきところはいいのだけど、スキルに難ありのところも再びチャンスをっ！みたいに言われても、もうムリ(w
-  </p>
-  
-  <p>
-    ここらへんがメディアの持つ説得力というか社会的に周知されたことによる存在感を示せる力かも知れないなぁ。
-  </p>
-  
-  <p>
-    個人的に BLOG、CGM などによってメディアの存在価値が薄くなるのでは？なんて思っていたけど、少し捕らえ方を再考するきっかけになった。
-  </p>
-</div>
-
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-06-06T00:00:00+09:00" pubdate data-updated="true">Jun 6<span>th</span>, 2007</time></div>
-	
-
-<div class="tags">
-
-	<a class='category' href='/blog/categories/business/'>Business</a>
-
-</div>
-
-
-	
-		<span class="comments"><a href="/2007/06/05/%e3%83%a1%e3%83%87%e3%82%a3%e3%82%a2%e3%81%ab%e8%bc%89%e3%82%8b%e3%81%a8%e5%91%a8%e3%82%8a%e3%81%8c%e3%81%86%e3%82%8b%e3%81%95%e3%81%8f%e3%81%aa%e3%82%8b//blog/page/43/index.html#disqus_thread">Comments</a></span>
-	
-</div></article>
-
 <nav id="pagenavi">
     
         <a href="/blog/page/42/" class="prev">Prev</a>
@@ -910,7 +1061,21 @@ $(document).ready(
     
     <div class="center"><a href="/archives">Blog Archives</a></div>
 </nav></div>
-	<footer id="footer" class="inner">Copyright &copy; 2014
+	<footer id="footer" class="inner"><br>
+<div class="row">
+	<div class="col-sm-2 col-sm-offset-3 text-center">
+		<img src="https://graph.facebook.com/1282639350/picture?width=120" alt="Hiro Fukami" class="img-circle">
+	</div>
+	<div class="col-sm-4 text-left text-muted">
+		<h3>Hiro Fukami</h3>
+		<a href="http://twitter.com/d_sea">@d_sea</a>. Business Starter and Engineer in Tokyo.
+		Founder and CEO of <a href="http://www.shakesoul.net">ShakeSoul, inc.</a>. See more about me <a href="/about">here</a>.
+	</div>
+</div>
+
+<br>
+
+Copyright &copy; 2014
 
     HiroFukami
 

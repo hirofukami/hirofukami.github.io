@@ -15,9 +15,11 @@
 
 	<link href="/atom.xml" rel="alternate" title="Hiro Fukami's Blog" type="application/atom+xml">
 	<link rel="canonical" href="">
-	<link href="/favicon.png" rel="shortcut icon">
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
 	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<link href="/favicon.png" rel="shortcut icon">
 	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 	<script type="text/javascript" src="/javascripts/jquery.fancybox.pack.js"></script>
 
@@ -68,6 +70,16 @@ $(document).ready(
 	<li><a href="/portfolio">Portfolio</a></li>
 	<li><a href="/archives">Archive</a></li>
 	<li><a href="/atom.xml">RSS</a></li>
+    
+	<li>
+        <form class="pull-right navbar-search"action="http://google.com/search" method="get">
+            <fieldset role="search">
+                <input type="hidden" name="q" value="site:hirofukami.com" />
+                <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+            </fieldset>
+        </form>
+	</li>
+    
 </ul>
 </nav>
 <nav id="mobile-nav">
@@ -79,6 +91,16 @@ $(document).ready(
 	<li><a href="/portfolio">Portfolio</a></li>
 	<li><a href="/archives">Archive</a></li>
 	<li><a href="/atom.xml">RSS</a></li>
+    
+	<li>
+        <form class="pull-right navbar-search"action="http://google.com/search" method="get">
+            <fieldset role="search">
+                <input type="hidden" name="q" value="site:hirofukami.com" />
+                <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+            </fieldset>
+        </form>
+	</li>
+    
 </ul>
 </div>
 	</div>
@@ -97,6 +119,88 @@ $(document).ready(
 </header>
 
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/2013/12/03/release-smartwp-works/">
+		
+			新サービス スマートWP Works リリースしました</a>
+	</h2>
+	<div class="entry-content">
+		<p>本日、私の会社 株式会社シェイクソウルで、「スマートWP Works」というサービスをリリースしました。<br/>
+<a href="http://www.shakesoul.net/smartwp-works"><img class="alignnone size-full wp-image-1417" alt="SmartWP-Works_slim" src="/images/2013/12/SmartWP-Works_slim.png?resize=600%2C300" data-recalc-dims="1" /></a><br/>
+このサービスはリーンスタートアップの手法を採用して、20名ちょっとにインタビューしサービスの修正を繰り返して生み出したサービスです。</p>
+
+<h2>スマートWP Worksについて</h2>
+
+<p>サービス内容は、WP制作者のための制作サイトで見た目のデザインを作る時や顧客のレビューをする時に使うWordPressサイトです。<br/>
+これを使うことでテキストエディターさえあればWPサイトの制作がすぐに始められるだけでなく、制作作業も効率的に大きく変えてくれるようになります。</p>
+
+<p>まるでローカルPCがサーバに直接つながっているかのように思え、今までより早くサイトを制作できるようになります。</p>
+
+<p>通常ローカルPCに開発環境(Web + php + MySQL)をセットアップして行う場合が多いですが、WP制作者のコアスキルセットはCSS, HMLTコーディングなのでセットアップも一苦労だったり、バージョン管理せずに古いまま使い続けてしまうことがあります。<br/>
+メンテされないローカル環境はいざサーバにファイルをアップロードした時に不整合を生じさせる可能性があるので、理想的には &#8220;制作環境 = サーバ環境&#8221; となります。しかし、ローカルでファイル編集をした後にアップロードする手間があり、見た目のチェックは都度ブラウザで確認するので、その作業をサイトを納品するまでに100回以上行うかもしれません。100回分のアップロードは積み上げると結構な時間になります。1回のアップロードに 40秒かかるとして 40秒 x 100回 = 4000秒 = 1.1時間 になります。</p>
+
+<p>Woks ではこのアップロードの手間をまるごと省くことができます。これを実現するためにDropboxを用いています。</p>
+
+<h2>Dropboxでいろんなことができるようになった</h2>
+
+<p><a href="http://www.shakesoul.net/smartwp/dropbox-upload"><img class="alignnone size-full wp-image-1322" alt="dropbox-logos_dropbox-logotype-blue" src="/images/2013/10/dropbox-logos_dropbox-logotype-blue.png?resize=446%2C171" data-recalc-dims="1" /></a><br/>
+サーバへのファイルアップロードに Dropbox を使うのはとてもユニークだと思いますが、Dropboxの機能も含め色々便利な機能を提供できることになりました。</p>
+
+<ol>
+<li>ファイルアップロードの手間がなくなる</li>
+<li>ローカルPCへのセットアップがなくなる</li>
+<li>リモートからレビューと進捗チェックができるようになる</li>
+<li>共同作業ができるようになる</li>
+<li>ファイルバージョン管理ができるようになる</li>
+</ol>
+
+
+<p>詳しくは <a href="http://www.shakesoul.net/smartwp-works" target="_blank">スマートWP Works のサービスページ</a> で書きましたので、参照いただければです。</p>
+
+<h2>そしてこれから</h2>
+
+<p>スマートWPはスケーラブルな本番環境と今回リリースした Works というラインナップで、WordPressのためのクラウドサービスを提供していきます。まだリリースしたばかりなので収束することなくより良いサービスへ修正していければと思っています。</p>
+
+<p>それと WordPress という今や世界中で拡大し続けるこのセグメントでもう一つ異なる側面のサービスを出せたらと思っています。こちらもモックができたら想定ターゲットに見せて行きたいしこのブログでも紹介できたらと思います。</p>
+
+<p>お楽しみに！</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-12-03T21:30:49+09:00" pubdate data-updated="true">Dec 3<span>rd</span>, 2013</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/business/'>Business</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/2013/12/03/release-smartwp-works//blog/page/7/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
 
 
     <article class="post">
@@ -752,65 +856,6 @@ WordPress が動くことが前提で、その上でプラグインやテーマ�
 	
 </div></article>
 
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/2013/09/16/39th-birthday/">
-		
-			39回目の誕生日に思ふこと</a>
-	</h2>
-	<div class="entry-content">
-		<p>9/16は誕生日でした。恐ろしいことにもうこれで39回目。来年は40歳です。ちなみに妻は前日の9/15が誕生日で、この日だけ同い年になります。</p>
-
-<p><a href="images/2013/09/2013birthdaycard.jpg"><img class="wp-image-1228 alignright" alt="2013BirthDayCard" src="/images/2013/09/2013birthdaycard.jpg?resize=369%2C491" data-recalc-dims="1" /></a>写真は娘が当日くれたお手製のバースデーカードで、僕に似せているみたいです。青い洋服が多いのと、ちゃんとリンゴマークの入った MacBook を持っています。</p>
-
-<p>お誕生日は自分が主役になれる年に1度のまれなイベントなので、自分自身がその歳で何を思ったかを残しておくのは貴重かなと思い、書いてみることにします。</p>
-
-<p>子どもの頃に思い描いていた39歳のイメージは、いわゆる「おじさん」な人で、安定した企業に勤めてスーツを着て社会的にもしっかりしたポジション(課長とか係長あたり)にいる。という感じで、40歳以上はもっとでっぷりして髪もポマードでテカテカしている、さらにおじさん度が深くなるみたいな感じだったと思います。</p>
-
-<p>今の自分の姿とは1つとして当てはまる点がないのですが、それだけ時代が変わったと言えるし僕自身も変わってきたと言えます。</p>
-
-<h2>思えば遠くへ来たもんだ</h2>
-
-<p>僕がいわゆる大企業の出世街道から降りたのは、新卒で入社したNTT(入社した直後にNTT東日本)を辞めた時だと思う。その時は何もスキルがない自分にすごく危機感を持っていて、子どもが産まれて7ヶ月目だったけど、安定を求めるというよりとにかく自分を向上させる環境に行きたかった。</p>
-
-<p>そこから2〜3年程度で転職を3回ほどして、徐々にWebサービスづくりの仕事に近づいていった。この間IPOも経験して、株ももらえて売って、これは本当にラッキーだった。その時のゲインがなければ多分独立したり今やっているようなサービスづくりのチャレンジ方法は取れなかったと思う。</p>
-
-
-		
-		<a href="/2013/09/16/39th-birthday/" class="more-link">Read on &rarr;</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-09-17T00:12:44+09:00" pubdate data-updated="true">Sep 17<span>th</span>, 2013</time></div>
-	
-
-<div class="tags">
-
-	<a class='category' href='/blog/categories/life/'>LIfe</a>
-
-</div>
-
-
-	
-		<span class="comments"><a href="/2013/09/16/39th-birthday//blog/page/7/index.html#disqus_thread">Comments</a></span>
-	
-</div></article>
-
 <nav id="pagenavi">
     
         <a href="/blog/page/6/" class="prev">Prev</a>
@@ -820,7 +865,21 @@ WordPress が動くことが前提で、その上でプラグインやテーマ�
     
     <div class="center"><a href="/archives">Blog Archives</a></div>
 </nav></div>
-	<footer id="footer" class="inner">Copyright &copy; 2014
+	<footer id="footer" class="inner"><br>
+<div class="row">
+	<div class="col-sm-2 col-sm-offset-3 text-center">
+		<img src="https://graph.facebook.com/1282639350/picture?width=120" alt="Hiro Fukami" class="img-circle">
+	</div>
+	<div class="col-sm-4 text-left text-muted">
+		<h3>Hiro Fukami</h3>
+		<a href="http://twitter.com/d_sea">@d_sea</a>. Business Starter and Engineer in Tokyo.
+		Founder and CEO of <a href="http://www.shakesoul.net">ShakeSoul, inc.</a>. See more about me <a href="/about">here</a>.
+	</div>
+</div>
+
+<br>
+
+Copyright &copy; 2014
 
     HiroFukami
 
