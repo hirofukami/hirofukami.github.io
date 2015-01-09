@@ -124,6 +124,142 @@ $(document).ready(
     <article class="post">
 	<h2 class="title">
 		
+		<a href="/2009/09/11/hbstudy-3-bgp/">
+		
+			Hbstudy#3 で「BGPのお話」というお話をしてきた</a>
+	</h2>
+	<div class="entry-content">
+		<div class="section">
+  <p>
+    <a href="http://heartbeats.jp/" target="_blank">ハートビーツ</a>さん主催で行われているインフラエンジニアのための勉強会 <a href="http://heartbeats.jp/hbstudy/" target="_blank">hbstudy</a> の3回目で、BGP の話をしてきた。
+  </p>
+  
+  <p>
+    私が1つ目のネタで、2つ目のネタはTOMOYO Linuxの紹介で、NTT-DATA 沼口さんだった。
+  </p>
+  
+  <p>
+    タイトルは「BGPのお話」。思いっきりネットワークのみの世界の話なのと、BGP自身なじみがないと思ったので、どの程度伝わったのかはよく分からずとも、とりあえず概要から運用的な話までしてきた。
+  </p>
+  
+  <p>
+    勉強会中の会場の様子は <a href="http://twitter.com/#search?q=%23hbstudy" target="_blank">twitter で結構流れた</a>ので、そちらでも結構反応が分かる。
+  </p>
+  
+  <p>
+    このスライドは以下。
+  </p>
+  
+  <div style="width:425px;text-align:left;" id="__ss_1988175">
+    <a href="http://www.slideshare.net/d_sea/090910hbstudy3bgp" style="font:14px Helvetica, Arial, Sans-serif;display:block;margin:12px 0 3px;text-decoration:underline;" title="090910hbstudy#3-BGP" target="_blank">090910hbstudy#3-BGP</a> <div style="font-size:11px;font-family:tahoma, arial;height:26px;padding-top:2px;">
+      View more <a href="http://www.slideshare.net/" style="text-decoration:underline;" target="_blank">presentations</a> from <a href="http://www.slideshare.net/d_sea" style="text-decoration:underline;" target="_blank">Hironobu Fukami</a>.
+    </div>
+  </div>
+  
+  <p>
+    質問では経路乗っ取りについてが結構多かった。統一されたシステマチックな仕組みがあるようなイメージを持っていたようだったが、「インターネット運用は性善説に基づいている」ことがもう少し説明できれば良かったかな。
+  </p>
+  
+  <p>
+    デモでは Amazon EC2 上で instance 2つに Quagga 入れて bgpd 動かして peer 張るところまで見せたが、これだけだとルーティングしていることにはならないので、instance 7つくらいで AS path 長を持たせた構成を作ってみたら実践的になるかと思うので、やってみようと思う。
+  </p>
+  
+  <p>
+    EC2 上での 構築と動作させてみたことについては別エントリーでこのブログでまとめることにする。
+  </p>
+  
+  <p>
+    実際BGP運用をしていたのは4年以上前だから、自分の記憶が頼りだった部分もあるのだが、それなりに覚えていたし、考え方の概要は忘れていなかったことが自覚できたのは自分なりの収穫。経験したこととかを振り返ることもできたし、スライドとしてはBGPを概要からまとめられたそれなりな資料が作れたので良い蓄積ができた。
+  </p>
+  
+  <p>
+    まだまだ BGP 設計とか体制作りのコンサルティングはできる感触を得られた。
+  </p>
+  
+  <p>
+    勉強会には初参加の人たちも増えているようで、3回目にして hbstudy の認知が広まってきている感じがした。
+  </p>
+  
+  <p>
+    今後勉強会で聞いてみたいネタとしては、
+  </p>
+  
+  <ul>
+    <li>
+      Apaceh にすごく詳しい人</p> <ul>
+        <li>
+          特に proxy とか、proxy_loadbalancer に詳しい人とか、運用ノウハウに長けている人
+        </li>
+      </ul>
+    </li>
+    
+    <li>
+      MySQL にすごく詳しい人 <ul>
+        <li>
+          tips 満載な人
+        </li>
+      </ul>
+    </li>
+    
+    <li>
+      モニタリングツールとか設定内容
+    </li>
+    <li>
+      たくさんのサーバの設定内容を同期させるツールとか、tips とか
+    </li>
+  </ul>
+  
+  <p>
+    かな。基本的にみんな使っているけど、あまり自信を持って動かせていないような気がするポイントかな。(自分自身がそうだったりする。。。)
+  </p>
+  
+  <p>
+    hbstudy はインフラをちゃんと学ぶ場としてはおそらく他になく貴重だから、今後も濃く良い交流が生まれる勉強会であってほしいかな。
+  </p>
+  
+  <p>
+    ということで、インフラを学びたい人は hbstudy へ一度ご参加ください。
+  </p>
+</div>
+
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-09-12T00:00:00+09:00" pubdate data-updated="true">Sep 12<span>th</span>, 2009</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/tech/'>Tech</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/2009/09/11/hbstudy-3-bgp//blog/page/22/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
 		<a href="/2009/09/07/2009-with/">
 		
 			2009夏合宿してきた With クボケー</a>
@@ -1312,99 +1448,6 @@ $(document).ready(
 	
 </div></article>
 
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/2009/07/10/%e8%bb%8c%e9%81%93%e5%85%b1%e9%b3%b4%e3%81%ae%e3%83%a9%e3%82%a4%e3%83%96%e3%81%ab%e8%a1%8c%e3%81%a3%e3%81%a6%e3%81%8d%e3%81%9f-%e4%b9%85%e3%80%85%e3%81%ab%e7%94%9f%e9%9f%b3%e8%81%9e%e3%81%8d%e3%81%ab/">
-		
-			軌道共鳴のライブに行ってきた 久々に生音聞きにいった</a>
-	</h2>
-	<div class="entry-content">
-		<div class="section">
-  <p>
-    前に一緒の会社にいて遊びでスタジオ入ったことのある方に会社紹介かねて久々に会った。その時に「最近ライブに全然行ってないんですよね～」と言ったらちょうどよく今やっているバンドのライブがあるとのことだったので、行ってきた。
-  </p>
-  
-  <p>
-    そのバンド名は「軌道共鳴」。アマチュアバンドながらにすでに2枚目のミニアルバムを出していて iTunes からもダウンロードできるらしい。URL は <a href="http://or.kuro-music.com/" target="_blank"><a href="http://or.kuro-music.com/" target="_blank">http://or.kuro-music.com/</a></a>
-  </p>
-  
-  <p>
-    <a href="http://i2.wp.com/or.kuro-music.com/img/2nd_front-thumb.jpg" class="http-image" target="_blank"><img src="http://i2.wp.com/or.kuro-music.com/img/2nd_front-thumb.jpg?w=830" class="http-image" alt="http://i2.wp.com/or.kuro-music.com/img/2nd_front-thumb.jpg?w=830" data-recalc-dims="1" /></a>
-  </p>
-  
-  <p>
-    「和製 Dream Theater みたいですよ。」という感じの曲をやるらしい。
-  </p>
-  
-  <p>
-    ライブに行く前に音源を入手して聞いてみた。おー、Dream Theater ぽい。どこかで聞いたフレーズも取り入れつつ、しっかり変拍子とかいれてプログレになってる。曲の感じとしては Dream Theater の 2nd アルバム &#8220;Image and Words&#8221; からの印象が強いかな。&#8221;Take the Time&#8221; みたいな曲もあったし。キーボードの音色はそのまんまな感じ。ボーカルのメロディーは Dream Theater ほどメロディアスではなく独特な感じを受けた。日本語onlyの歌詞だからかもしれない。
-  </p>
-  
-  <p>
-    しかし、うまいなぁ。音いいなぁ。Dream Theater を弾きこなせるくらいだから当たり前なのかもしれないけど、
-  </p>
-  
-  <p>
-    Dream Theater 好きな自分としては当日が楽しみになった。ライブの生音を聞きに行くのは本当に何年ぶりだろう。多分5年以上はたっている気がする。
-  </p>
-  
-  <p>
-    ライブ当日の演奏もやはりうまかった。それぞれの演奏技術があるから難しい曲も演奏できている。特に目立ったミスはなかったと思う。特にドラム、すごいなこれは。安定しつつ手数の多い難しい変拍子とかたたけちゃうのか。。。ここまでうまい人たちは初めてかもしれない。大学の時に聞きにいった Dream Theater のライブよりちゃんと弾いているかもw
-  </p>
-  
-  <p>
-    演奏とは関係ないけど音作りと言うか、それぞれのパートの音がはっきり聞こえるための音作りとかバランスとかって難しいなと思った。ドラムの手数が多くなって盛り上がっていく時にギターとキーボードが聞こえなる。その時に難しいフレーズ弾いているんだろうけど残念ながら聞こえない。今回の箱は座れるシートで50席くらいの小さいところだったので、距離が近くドラムが大きく聞こえがちなのかもしれない。
-  </p>
-  
-  <p>
-    自分もスタジオで音を作る時に他のパートとかぶらないように気にしたいけどよく分からなくていつも適当にしている。
-  </p>
-  
-  <p>
-    しかし、うまい人の演奏聞けて楽しかった～。また自分も練習したくなった。軌道共鳴の方々お疲れ様でした。また、機会があえば聞きにいけたらと思ってます。
-  </p>
-  
-  <p>
-    Dream Theater 好きで興味ある方は今なら無料で音源が手に入るそうなので <a href="http://or.kuro-music.com/" target="_blank"><a href="http://or.kuro-music.com/" target="_blank">http://or.kuro-music.com/</a></a> をチェックしてみてください。
-  </p>
-</div>
-
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-07-11T00:00:00+09:00" pubdate data-updated="true">Jul 11<span>th</span>, 2009</time></div>
-	
-
-<div class="tags">
-
-	<a class='category' href='/blog/categories/music-slash-movie/'>Music/Movie</a>
-
-</div>
-
-
-	
-		<span class="comments"><a href="/2009/07/10/%e8%bb%8c%e9%81%93%e5%85%b1%e9%b3%b4%e3%81%ae%e3%83%a9%e3%82%a4%e3%83%96%e3%81%ab%e8%a1%8c%e3%81%a3%e3%81%a6%e3%81%8d%e3%81%9f-%e4%b9%85%e3%80%85%e3%81%ab%e7%94%9f%e9%9f%b3%e8%81%9e%e3%81%8d%e3%81%ab//blog/page/22/index.html#disqus_thread">Comments</a></span>
-	
-</div></article>
-
 <nav id="pagenavi">
     
         <a href="/blog/page/21/" class="prev">Prev</a>
@@ -1428,7 +1471,7 @@ $(document).ready(
 
 <br>
 
-Copyright &copy; 2014
+Copyright &copy; 2015
 
     HiroFukami
 
