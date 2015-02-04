@@ -1,0 +1,402 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<script data-cfasync="false" type="text/javascript" src="//use.typekit.net/axj3cfp.js"></script>
+	<script data-cfasync="false" type="text/javascript">try{Typekit.load();}catch(e){}</script>
+	<meta charset="utf-8">
+	<title>LEAN - 課題・ソリューションインタビューのやり方  | Hiro Fukami's Blog</title>
+
+<meta name="author" content="HiroFukami"> 
+
+<meta name="description" content="リーンスタートアップの手法を2013年後半からやってきて1年以上たった。 今まで2つのサービスアイデアに対してインタビューしてきたが、「ターゲットユーザは誰なのか」「お金を払うほどに解決したい課題は何なのか」という核心的な問への答えがインタビューを通じてはっきり見つけることができなかった。 &hellip;"> <meta name="keywords" content="">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link href="/atom.xml" rel="alternate" title="Hiro Fukami's Blog" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<link href="/favicon.png" rel="shortcut icon">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script type="text/javascript" src="/javascripts/jquery.fancybox.pack.js"></script>
+
+<script language="Javascript" type="text/javascript">
+$(document).ready(
+  function() {
+    (function($) {
+      $(".fancybox[data-content-id]").each(function() {
+        this.href = $(this).data('content-id');
+      });
+      $(".fancybox").fancybox({
+        beforeLoad: function() {
+          var el, 
+              id = $(this.element).data('title-id');
+
+          if (id) {
+            el = $('#' + id);
+
+            if (el.length) {
+              this.title = el.html();
+            }
+          }
+          if ($(this).data('content')) {
+            this.content = $(this).data('content');
+          }
+        },
+        helpers: {
+          title: {
+            type: 'inside'
+          }
+        }
+      });
+    })(jQuery);
+  }
+);
+</script>
+
+	
+	<meta property="twitter:card" content="summary" />
+    <meta property="twitter:site" content="d_sea">
+    <meta property="twitter:url" content="http://hirofukami.com">
+    <meta property="twitter:title" content="LEAN - 課題・ソリューションインタビューのやり方">
+    <meta property="twitter:description" content="リーンスタートアップの手法を2013年後半からやってきて1年以上たった。 今まで2つのサービスアイデアに対してインタビューしてきたが、「ターゲットユーザは誰なのか」「お金を払うほどに解決したい課題は何なのか」という核心的な問への答えがインタビューを通じてはっきり見つけることができなかった。 本の通りにやってみたり、自分なりにアレンジしてみたり、関連図書を読んでみたり、色々やってみたが、 &hellip;">
+    <meta property="twitter:creator" content="d_sea" />
+
+
+</head>
+
+
+<body>
+	<header id="header" class="inner"><h1><a href="/">Hiro Fukami's Blog</a></h1>
+<h4>My Life Log on Octopress</h4>
+<nav id="main-nav"><ul>
+	<li><a href="/">Blog</a></li>
+	<li><a href="/about">About</a></li>
+	<li><a href="/portfolio">Portfolio</a></li>
+	<li><a href="/archives">Archive</a></li>
+	<li><a href="/atom.xml">RSS</a></li>
+    
+	<li>
+        <form action="http://google.com/search" method="get">
+            <input type="text" name="q" results="0" placeholder="Search">
+            <input type="hidden" name="as_sitesearch" value="hirofukami.com">
+        </form>
+	</li>
+    
+</ul>
+</nav>
+<nav id="mobile-nav">
+	<div class="alignleft menu">
+		<a class="button">Menu</a>
+		<div class="container"><ul>
+	<li><a href="/">Blog</a></li>
+	<li><a href="/about">About</a></li>
+	<li><a href="/portfolio">Portfolio</a></li>
+	<li><a href="/archives">Archive</a></li>
+	<li><a href="/atom.xml">RSS</a></li>
+    
+	<li>
+        <form action="http://google.com/search" method="get">
+            <input type="text" name="q" results="0" placeholder="Search">
+            <input type="hidden" name="as_sitesearch" value="hirofukami.com">
+        </form>
+	</li>
+    
+</ul>
+</div>
+	</div>
+<!-- 	<div class="alignright search">
+		<a class="button"></a>
+		<div class="container">
+			<form action="http://google.com/search" method="get">
+				<input type="text" name="q" results="0">
+				<input type="hidden" name="q" value="site:hirofukami.com">
+			</form>
+		</div>
+	</div> -->
+</nav>
+
+</header>
+
+	<div id="content" class="inner"><article class="post">
+	<h2 class="title">LEAN - 課題・ソリューションインタビューのやり方</h2>
+	<div class="entry-content"><p><img src="/images/20150204-lean-startup.jpg" title="&#34;Lean Startup&#34;" alt="&#34;Lean Startup&#34;"></p>
+
+<p>リーンスタートアップの手法を2013年後半からやってきて1年以上たった。</p>
+
+<p>今まで2つのサービスアイデアに対してインタビューしてきたが、「ターゲットユーザは誰なのか」「お金を払うほどに解決したい課題は何なのか」という核心的な問への答えがインタビューを通じてはっきり見つけることができなかった。</p>
+
+<p>本の通りにやってみたり、自分なりにアレンジしてみたり、関連図書を読んでみたり、色々やってみたが、結果的にうまくやれた感触はなく、良くわからない感じになって、サービスもうまくいかずという感じだった。</p>
+
+<p>2014年12月に <a href="https://opsdeliver.com">OpsDeliver</a> の課題・ソリューションインタビューをして、ようやく自分なりにしっくり来る、OK/NGの判別がつきやすいやり方を見つけられた気がするのでまとめてみたい。</p>
+
+<p>今後、より良い方法が見つけられればアップデートしていきたいし、リーンスタートアップを実践する人で自分はこうやっているとかあれば是非交流してみたいので、コメントいただけると嬉しいです。</p>
+
+<h1>ベースとしているもの</h1>
+
+<p>実施方法のベースは <a href="http://www.amazon.co.jp/gp/product/4873115914/ref=as_li_ss_tl?ie=UTF8&amp;camp=247&amp;creative=7399&amp;creativeASIN=4873115914&amp;linkCode=as2&amp;tag=dsea-22">RUNNING LEAN</a> を使っている。</p>
+
+<p><a href="http://www.amazon.co.jp/gp/product/4873115914/ref=as_li_ss_tl?ie=UTF8&amp;camp=247&amp;creative=7399&amp;creativeASIN=4873115914&amp;linkCode=as2&amp;tag=dsea-22"><img src="http://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&amp;ASIN=4873115914&amp;Format=_SL250_&amp;ID=AsinImage&amp;MarketPlace=JP&amp;ServiceVersion=20070822&amp;WS=1&amp;tag=dsea-22" alt="RUNNING LEAN" /></a></p>
+
+<p><a href="http://www.amazon.co.jp/gp/product/4873115914/ref=as_li_ss_tl?ie=UTF8&amp;camp=247&amp;creative=7399&amp;creativeASIN=4873115914&amp;linkCode=as2&amp;tag=dsea-22">Running Lean ―実践リーンスタートアップ (THE LEAN SERIES)</a></p>
+
+<p>最も実践的な本だし、実際に筆者が実践したことや得られた気付きが載っている。</p>
+
+<p>リーンスタートアップの代表的な本として <a href="http://www.amazon.co.jp/gp/product/4822248976/ref=as_li_ss_tl?ie=UTF8&amp;camp=247&amp;creative=7399&amp;creativeASIN=4822248976&amp;linkCode=as2&amp;tag=dsea-22">リーンスタートアップ</a> がある。</p>
+
+<p><a href="http://www.amazon.co.jp/gp/product/4822248976/ref=as_li_ss_tl?ie=UTF8&amp;camp=247&amp;creative=7399&amp;creativeASIN=4822248976&amp;linkCode=as2&amp;tag=dsea-22"><img src="http://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&amp;ASIN=4822248976&amp;Format=_SL250_&amp;ID=AsinImage&amp;MarketPlace=JP&amp;ServiceVersion=20070822&amp;WS=1&amp;tag=dsea-22" alt="リーンスタートアップ" /></a></p>
+
+<p><a href="http://www.amazon.co.jp/gp/product/4822248976/ref=as_li_ss_tl?ie=UTF8&amp;camp=247&amp;creative=7399&amp;creativeASIN=4822248976&amp;linkCode=as2&amp;tag=dsea-22">リーン・スタートアップ　ムダのない起業プロセスでイノベーションを生みだす</a></p>
+
+<p>この本は最初の取っ掛かりとして概要理解には良いが、実践するには概念的過ぎて役にはたたないので、<a href="http://www.amazon.co.jp/gp/product/4822248976/ref=as_li_ss_tl?ie=UTF8&amp;camp=247&amp;creative=7399&amp;creativeASIN=4822248976&amp;linkCode=as2&amp;tag=dsea-22">リーンスタートアップ</a> を読んだ後に、<a href="http://www.amazon.co.jp/gp/product/4873115914/ref=as_li_ss_tl?ie=UTF8&amp;camp=247&amp;creative=7399&amp;creativeASIN=4873115914&amp;linkCode=as2&amp;tag=dsea-22">RUNNING LEAN</a> で実践の仕方を補う必要がある。</p>
+
+<p><a href="http://www.amazon.co.jp/gp/product/4873115914/ref=as_li_ss_tl?ie=UTF8&amp;camp=247&amp;creative=7399&amp;creativeASIN=4873115914&amp;linkCode=as2&amp;tag=dsea-22">RUNNING LEAN</a> は最も実践的な本ではあるが、少し簡潔すぎてそう述べる背景の理解が必要だったり一部不明瞭の部分な部分がある。
+それを補うために <a href="http://www.amazon.co.jp/gp/product/B00DIM673Q/ref=as_li_ss_tl?ie=UTF8&amp;camp=247&amp;creative=7399&amp;creativeASIN=B00DIM673Q&amp;linkCode=as2&amp;tag=dsea-22">スタートアップマニュアル</a> を使っている。</p>
+
+<p><a href="http://www.amazon.co.jp/gp/product/B00DIM673Q/ref=as_li_ss_tl?ie=UTF8&amp;camp=247&amp;creative=7399&amp;creativeASIN=B00DIM673Q&amp;linkCode=as2&amp;tag=dsea-22"><img src="http://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&amp;ASIN=B00DIM673Q&amp;Format=_SL250_&amp;ID=AsinImage&amp;MarketPlace=JP&amp;ServiceVersion=20070822&amp;WS=1&amp;tag=dsea-22" alt="スタートアップマニュアル" /></a></p>
+
+<p><a href="http://www.amazon.co.jp/gp/product/B00DIM673Q/ref=as_li_ss_tl?ie=UTF8&amp;camp=247&amp;creative=7399&amp;creativeASIN=B00DIM673Q&amp;linkCode=as2&amp;tag=dsea-22">スタートアップ・マニュアル ベンチャー創業から大企業の新事業立ち上げまで</a></p>
+
+<p>基本的には <a href="http://www.amazon.co.jp/gp/product/4873115914/ref=as_li_ss_tl?ie=UTF8&amp;camp=247&amp;creative=7399&amp;creativeASIN=4873115914&amp;linkCode=as2&amp;tag=dsea-22">RUNNING LEAN</a> に沿って、そこでうまくいかなかった部分を <a href="http://www.amazon.co.jp/gp/product/B00DIM673Q/ref=as_li_ss_tl?ie=UTF8&amp;camp=247&amp;creative=7399&amp;creativeASIN=B00DIM673Q&amp;linkCode=as2&amp;tag=dsea-22">スタートアップマニュアル</a> で解消した。</p>
+
+<!-- more -->
+
+
+<h1>インタビューはGoogle+ ハングアウトで行う</h1>
+
+<p><img src="/images/20150203-GooglePlus_hangout.jpg" width="480" title="&#34;Google+ Hangout&#34;" alt="&#34;Google+ Hangout&#34;"></p>
+
+<p><a href="http://www.amazon.co.jp/gp/product/4873115914/ref=as_li_ss_tl?ie=UTF8&amp;camp=247&amp;creative=7399&amp;creativeASIN=4873115914&amp;linkCode=as2&amp;tag=dsea-22">RUNNING LEAN</a> ではユーザ候補に対面でインタビューすることを勧めている。スティーブブランク曰く「オフィスを出てユーザと話せ」から来ている。</p>
+
+<p>今回、インタビューさせていただいた方が東北の方だったので、直接会えずに Google+ ハングアウトを使った。これが意外と良かったので、東京で会える方でもハングアウトを使い、結果的に全てのインタビューは対面せずにハングアウトを使った。</p>
+
+<p>メリットは以下、</p>
+
+<ul>
+<li>時間が効率的に使える : 1時間のインタビューだとしても支度・移動を含めるとトータル3時間くらい必要。こちらもインタビュー対象者にも時間が短いのは良い</li>
+<li>資料が見せやすい : こちらが想定している課題・ソリューションを説明する際にスライドを見せた(後述)が、集中してみてもらえた</li>
+<li>場所の確保の必要がない : 基本的に相手に近い場所に伺おうとするとカフェが多くなって席が空いていなかったり、周囲がうるさくて会話しづらい。ハングアウトはお互いの仕事部屋で行うことが多かった。邪魔が入らないので音声と映像に集中してくれる</li>
+</ul>
+
+
+<p>オンラインなので空気感みたいなものをつかむのは難しいので、インタビュー対象者の反応をつかめるか懸念していたが、説明資料を用意するなどして情報の伝達方法に工夫を加えれば、映像と音声に集中してくれるので、空気感はつかめないがしっかり反応してくれた。</p>
+
+<p>1人カメラがないという理由で、こちらはビデオ、向こうは音声のみという形態でインタビューしたが、相手が見ない・相手も自分が見えていないので緊張感が希薄になって、共感し合うような会話にならなかった。わりと向こうが思いついたことをしゃべり過ぎてしまう傾向があった。お互いに顔が見えるビデオチャット形式が必須と思っている。</p>
+
+<h1>課題とソリューション両方を1回のインタビューで行う</h1>
+
+<p><a href="http://www.amazon.co.jp/gp/product/4873115914/ref=as_li_ss_tl?ie=UTF8&amp;camp=247&amp;creative=7399&amp;creativeASIN=4873115914&amp;linkCode=as2&amp;tag=dsea-22">RUNNING LEAN</a> では30分の課題インタビューをして課題が把握できたら、再びそのユーザ候補に30分のソリューションインタビューをする。その後、MVPインタビューを行い、計3回ほどインタビューを実施することになる。それぞれ別の日に行うので <strong>ユーザ候補数 x 3回(日)</strong> 使うということになる。</p>
+
+<p>しかし、最初の課題インタビューは課題があるかどうか確認することが目的なので、そのためだけに相手に時間を取ってもらうのはもったいない。課題があることが確認できれば、そのまま想定しているソリューションを伝えてマッチするかどうかの確認にスムーズに進むことができる。
+ユーザ候補にとって大きな課題であればすでに現状何がしかの解決策を持っていて、それでもうまくいかないから困っているという状況のはず。そうなればソリューションを提示してそれが魅力的かどうか検証は可能。</p>
+
+<p>実際、課題インタビューとソリューションインタビューを1つにまとめて60分弱で実施した。</p>
+
+<p>課題がマッチしたユーザ候補は現状の解決策を持っていたし(それがベストでないことも自覚していた)、こちらが示したソリューションに対して是非使ってみたい！という反応を示した人もいた。逆に課題にマッチしなかった人は現状満足している解決策を持っていて、ソリューションを示しても使ってみたい程の強い反応は示さなかった。</p>
+
+<p>課題とソリューションを連動させたことで、よりはっきりした反応をユーザ候補から得られたと思っている。</p>
+
+<h1>想定している課題とソリューションをスライドに箇条書きにしておく</h1>
+
+<p><img src="/images/20150203-Interview_sheet.png" title="&#34;Inteview Sheet&#34;" alt="&#34;Inteview Sheet&#34;"></p>
+
+<p>想定している課題の説明は <a href="http://www.amazon.co.jp/gp/product/4873115914/ref=as_li_ss_tl?ie=UTF8&amp;camp=247&amp;creative=7399&amp;creativeASIN=4873115914&amp;linkCode=as2&amp;tag=dsea-22">RUNNING LEAN</a> では全て口頭で行うようにしているが、<a href="http://www.amazon.co.jp/gp/product/B00DIM673Q/ref=as_li_ss_tl?ie=UTF8&amp;camp=247&amp;creative=7399&amp;creativeASIN=B00DIM673Q&amp;linkCode=as2&amp;tag=dsea-22">スタートアップマニュアル</a> を真似て説明のために簡単な資料を作ってみせるようにした。</p>
+
+<p>以前対面インタビューをした時はカフェなどわりと騒がしい場所で、4つの課題を口頭で説明していたが、インタビュー対象者が全部覚えられずにはっきりとした反応が得られなかった。</p>
+
+<p>スライドにしておけばハングアウトのスクリーン切り替えではっきり文字として見せることができる。自分はMacのKyenoteに1枚スライドを作って見せるようにした。</p>
+
+<p>結果的に、当てはまるか、はまらないか明確に答えてくれた。</p>
+
+<p>このスライドを作れるかどうかは基本的にサービスアイデアを思いついた人であれば、少し客観的に考えればすぐに書けると思う。</p>
+
+<p>経験上、サービスアイデアを思いつたいときには、だいたい課題とソリューションまで発想しているはず。エンジニアならばどんなツールを使ってどんなUIやテーブル設計で行けるかとかまで考え始めてしまってどんどん膨らむような感覚かと思う。なので、想定している課題とソリューションはインタビュー前に準備できるだろう。</p>
+
+<p>想定した課題・ソリューションは多くあげる必要はなく、4つがベストかと思う。自分の中の重要度の順番に上から書いておいてユーザの反応と対比させると、どの程度想定とずれたかがわかる。</p>
+
+<p>やり方は、</p>
+
+<ol>
+<li>課題の列だけ見せる</li>
+<li>当てはまるものはどれかをあげてもらう</li>
+<li>当てはまるものがあれば、現在の解決策を教えてもらい、その場で空欄に書き込む</li>
+<li>こちらが想定しているソリューションの列を見せて、現状の解決策との差異があるかどうかを確認する</li>
+<li>示したソリューションを使ってみたいかどうかを聞く</li>
+<li>このソリューションに対していくら払うか聞く</li>
+</ol>
+
+
+<p>想定した課題が当てはまれば、その項目に対するソリューションを見せて反応を得る。もし、想定した課題が1つも当てはまらなければ、なぜ課題にならないのか理由を聞ける。そのユーザの状況・日常をさらに詳しく聞くことができる。そのまま無理にソリューションに進めようとする必要はない。</p>
+
+<p>自分が想定できていなかったもっと重要な課題が見つかるかもしれない。または、このインタビュー対象者はターゲットにならないのかもしれない。</p>
+
+<p>経験上、課題に共感してくれるかどうかは、あるターゲット層にマッチしていると共感を同じように得られ、そこから外れている人は共感を得られない、というわりとはっきりした反応が得られている。</p>
+
+<h1>ユーザの反応はスコアにつけて定量化して判断する</h1>
+
+<p>ユーザの反応を今は以下の式で数値化している。</p>
+
+<p><strong>( 興奮 x 2 + 緊急で必要 x 2 + ビジネスへの影響 x 2 + 自家製の代替 + 120日 + ディシジョンメーカー ) x 100/27</strong></p>
+
+<p><a href="http://www.amazon.co.jp/gp/product/4873115914/ref=as_li_ss_tl?ie=UTF8&amp;camp=247&amp;creative=7399&amp;creativeASIN=4873115914&amp;linkCode=as2&amp;tag=dsea-22">RUNNING LEAN</a> の課題インタビューとソリューションインタビューの終了条件は、以下のようになっている。</p>
+
+<blockquote><p><strong>課題インタビューの終了条件</strong></p>
+
+<p>以下のことが可能となれば終了です。</p>
+
+<ul>
+<li>アーリーアダプターとなる顧客が特定できた。</li>
+<li>「絶対に必要」な課題が見つかった。</li>
+<li>現在の顧客の解決方法がわかった。</li>
+</ul>
+
+
+<p><strong>ソリューションインタビューの終了条件</strong></p>
+
+<p>以下の確信が持てた時に終了します。</p>
+
+<ul>
+<li>アーリーアダプターの顧客情報が特定できた。</li>
+<li>「絶対に必要」な課題がわかった。</li>
+<li>課題を解決するのに必要な最低限の機能が定義できた。</li>
+<li>(概算で)うまくいきそうなビジネスが構築できた。</li>
+</ul>
+</blockquote>
+
+<p>実際インタビューした後にこの条件を眺めてみてもどの程度条件にあっているのか正直わからなかった。自分の「できた」という感覚はすごく曖昧でいい加減なものだと思っているので科学的でなくて困ってしまった。</p>
+
+<p>自分は流行って欲しい気持ちがあると条件をクリアした気になりやすいし、慎重だといつまでたっても条件をクリアした気にならない。困ったなぁと思っていたら、<a href="http://www.amazon.co.jp/gp/product/B00DIM673Q/ref=as_li_ss_tl?ie=UTF8&amp;camp=247&amp;creative=7399&amp;creativeASIN=B00DIM673Q&amp;linkCode=as2&amp;tag=dsea-22">スタートアップマニュアル</a> に良い記述があった。</p>
+
+<p>スコアを付けるやり方として、顧客発見スコアカードというものにまとめる。</p>
+
+<p>いくつかの評価項目があって3点満点で付ける。インタビューの時の様子を思い出しつつ、メモを見返しつつ採点していく。</p>
+
+<p>各項目3点ずつにしたらどうも自分の手応えと数字がリンクしていない気がしたので、「興奮」「緊急で必要」「ビジネスへの影響」は6点満点で付けるようにして比重を高めた。そうしたところ自分の手応えと数字がリンクするようになった。また、100点満点に換算して算出したほうが分かりやすい。</p>
+
+<p>結果的に、インタビューが終わって感触の良かった人は90点以上、逆にうまく当てはまらなかった人は50点を下回った。スコアの高い人はどんなターゲット層なのか、スコアの低い人はどこが違うのか、スコアの高い人と低い人から自分のサービスターゲットが見えてきた。</p>
+
+<p>今後はスコアの高かった人達をターゲット層に定め、MVPを提供するフェーズに進める。</p>
+
+<h1>まとめ</h1>
+
+<p>インタビューの仕方を紹介しました。今のところうまく行っていると思っている方法ですが、もっと良くなるための模索はしていきたいので、リーンスタートアップを実践している方のフィードバックをお待ちしています。</p>
+</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-02-04T17:00:00+09:00" pubdate data-updated="true">Feb 4<span>th</span>, 2015</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/lean-startup/'>Lean Startup</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/blog/2015/02/04/lean-how-to-interview/#disqus_thread">Comments</a></span>
+	
+</div></article>
+
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+	
+	<a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+	
+	
+	<a class="addthis_button_tweet"></a>
+	
+	
+<!---	<a class="addthis_counter addthis_pill_style"></a> --->
+	</div>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid="></script>
+</div>
+
+
+
+<section id="comment">
+    <h2 class="title">Comments</h2>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+	<footer id="footer" class="inner"><br>
+<div class="row">
+	<div class="col-sm-2 col-sm-offset-3 text-center">
+		<img src="https://graph.facebook.com/1282639350/picture?width=120" alt="Hiro Fukami" class="img-circle">
+	</div>
+	<div class="col-sm-4 text-left text-muted">
+		<h3>Hiro Fukami</h3>
+		<a href="http://twitter.com/d_sea">@d_sea</a>. Business Starter and Engineer in Tokyo.
+		Founder and CEO of <a href="http://www.shakesoul.net">ShakeSoul, inc.</a>. See more about me <a href="/about">here</a>.
+	</div>
+</div>
+
+<br>
+
+Copyright &copy; 2015
+
+    HiroFukami
+
+<br>
+Powered by Octopress.
+</footer>
+	<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
+
+<script type="text/javascript">
+      var disqus_shortname = 'hirofukamisblog';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://hirofukami.com/blog/2015/02/04/lean-how-to-interview/';
+        var disqus_url = 'http://hirofukami.com/blog/2015/02/04/lean-how-to-interview/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-44359867-3']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+
+
+
+</body>
+</html>

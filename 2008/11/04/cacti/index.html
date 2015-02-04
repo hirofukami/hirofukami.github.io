@@ -9,7 +9,7 @@
 
 <meta name="author" content="HiroFukami"> 
 
-<meta name="description" content="いつでも前のめり"> <meta name="keywords" content="">
+<meta name="description" content="サーバが複数台あるとwebのフロントだけで合計したらどれくらいのトラフィックになるかとか、運用上拡張を考慮しするやっぱり知りたくなる。Cactiでどうやるのか調べて出来たのでそのメモ。 以下は3つ以上のインターフェイスを合算する場合のカスタマイズ方法。 &hellip;"> <meta name="keywords" content="">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -62,7 +62,7 @@ $(document).ready(
     <meta property="twitter:site" content="d_sea">
     <meta property="twitter:url" content="http://hirofukami.com">
     <meta property="twitter:title" content="Cacti でトラフィックを合算したグラフを作成する方法">
-    <meta property="twitter:description" content="いつでも前のめり">
+    <meta property="twitter:description" content="サーバが複数台あるとwebのフロントだけで合計したらどれくらいのトラフィックになるかとか、運用上拡張を考慮しするやっぱり知りたくなる。Cactiでどうやるのか調べて出来たのでそのメモ。 以下は3つ以上のインターフェイスを合算する場合のカスタマイズ方法。2つインターフェイスの合算であれば途中のカスタマイズ作業は不要で5)からはじめればOK。 元ネタは Cactiの本家フォーラムから。 0) &hellip;">
     <meta property="twitter:creator" content="d_sea" />
 
 
@@ -80,11 +80,9 @@ $(document).ready(
 	<li><a href="/atom.xml">RSS</a></li>
     
 	<li>
-        <form class="pull-right navbar-search"action="http://google.com/search" method="get">
-            <fieldset role="search">
-                <input type="hidden" name="q" value="site:hirofukami.com" />
-                <input class="search" type="text" name="q" results="0" placeholder="Search"/>
-            </fieldset>
+        <form action="http://google.com/search" method="get">
+            <input type="text" name="q" results="0" placeholder="Search">
+            <input type="hidden" name="as_sitesearch" value="hirofukami.com">
         </form>
 	</li>
     
@@ -101,18 +99,16 @@ $(document).ready(
 	<li><a href="/atom.xml">RSS</a></li>
     
 	<li>
-        <form class="pull-right navbar-search"action="http://google.com/search" method="get">
-            <fieldset role="search">
-                <input type="hidden" name="q" value="site:hirofukami.com" />
-                <input class="search" type="text" name="q" results="0" placeholder="Search"/>
-            </fieldset>
+        <form action="http://google.com/search" method="get">
+            <input type="text" name="q" results="0" placeholder="Search">
+            <input type="hidden" name="as_sitesearch" value="hirofukami.com">
         </form>
 	</li>
     
 </ul>
 </div>
 	</div>
-	<div class="alignright search">
+<!-- 	<div class="alignright search">
 		<a class="button"></a>
 		<div class="container">
 			<form action="http://google.com/search" method="get">
@@ -120,9 +116,8 @@ $(document).ready(
 				<input type="hidden" name="q" value="site:hirofukami.com">
 			</form>
 		</div>
-	</div>
+	</div> -->
 </nav>
-
 
 </header>
 
@@ -165,7 +160,7 @@ $(document).ready(
   </ul>
   
   <p>
-    <a href="http://f.hatena.ne.jp/d_sea/20081105162455" class="hatena-fotolife" target="_blank"><img src="http://i2.wp.com/cdn-ak.f.st-hatena.com/images/fotolife/d/d_sea/20081105/20081105162455.png?w=830" alt="f:id:d_sea:20081105162455p:image" title="f:id:d_sea:20081105162455p:image" class="hatena-fotolife" data-recalc-dims="1" /></a>
+    <a href="http://f.hatena.ne.jp/d_sea/20081105162455" class="hatena-fotolife" target="_blank"><img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/d_sea/20081105/20081105162455.png?w=830" alt="f:id:d_sea:20081105162455p:image" title="f:id:d_sea:20081105162455p:image" class="hatena-fotolife" data-recalc-dims="1" /></a>
   </p>
   
   <ul>
@@ -188,7 +183,7 @@ $(document).ready(
   </ul>
   
   <p>
-    <a href="http://f.hatena.ne.jp/d_sea/20081105151321" class="hatena-fotolife" target="_blank"><img src="http://i2.wp.com/cdn-ak.f.st-hatena.com/images/fotolife/d/d_sea/20081105/20081105151321.png?w=830" alt="f:id:d_sea:20081105151321p:image" title="f:id:d_sea:20081105151321p:image" class="hatena-fotolife" data-recalc-dims="1" /></a>
+    <a href="http://f.hatena.ne.jp/d_sea/20081105151321" class="hatena-fotolife" target="_blank"><img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/d_sea/20081105/20081105151321.png?w=830" alt="f:id:d_sea:20081105151321p:image" title="f:id:d_sea:20081105151321p:image" class="hatena-fotolife" data-recalc-dims="1" /></a>
   </p>
   
   <h5>
@@ -346,7 +341,7 @@ $(document).ready(
   </ul>
   
   <p>
-    <a href="http://f.hatena.ne.jp/d_sea/20081105164306" class="hatena-fotolife" target="_blank"><img src="http://i2.wp.com/cdn-ak.f.st-hatena.com/images/fotolife/d/d_sea/20081105/20081105164306.png?w=830" alt="f:id:d_sea:20081105164306p:image" title="f:id:d_sea:20081105164306p:image" class="hatena-fotolife" data-recalc-dims="1" /></a>
+    <a href="http://f.hatena.ne.jp/d_sea/20081105164306" class="hatena-fotolife" target="_blank"><img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/d_sea/20081105/20081105164306.png?w=830" alt="f:id:d_sea:20081105164306p:image" title="f:id:d_sea:20081105164306p:image" class="hatena-fotolife" data-recalc-dims="1" /></a>
   </p>
   
   <ul>
@@ -409,7 +404,7 @@ $(document).ready(
   </p>
   
   <p>
-    <a href="http://f.hatena.ne.jp/d_sea/20081105174720" class="hatena-fotolife" target="_blank"><img src="http://i2.wp.com/cdn-ak.f.st-hatena.com/images/fotolife/d/d_sea/20081105/20081105174720.png?w=830" alt="f:id:d_sea:20081105174720p:image" title="f:id:d_sea:20081105174720p:image" class="hatena-fotolife" data-recalc-dims="1" /></a>
+    <a href="http://f.hatena.ne.jp/d_sea/20081105174720" class="hatena-fotolife" target="_blank"><img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/d_sea/20081105/20081105174720.png?w=830" alt="f:id:d_sea:20081105174720p:image" title="f:id:d_sea:20081105174720p:image" class="hatena-fotolife" data-recalc-dims="1" /></a>
   </p>
 </div>
 

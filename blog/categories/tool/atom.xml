@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Tool | Hiro Fukami's Blog]]></title>
   <link href="http://hirofukami.com/blog/categories/tool/atom.xml" rel="self"/>
   <link href="http://hirofukami.com/"/>
-  <updated>2015-02-01T16:21:57+09:00</updated>
+  <updated>2015-02-04T14:19:11+09:00</updated>
   <id>http://hirofukami.com/</id>
   <author>
     <name><![CDATA[HiroFukami]]></name>
@@ -248,7 +248,7 @@ echo &quot;###  Finish loading vimperatorrc.  ###&quot;</code></pre></noscript><
 
 <h2>Vimperaor</h2>
 
-<p><a href="https://addons.mozilla.org/en-US/firefox/addon/vimperator/"><img src="http://i2.wp.com/teramako.github.io/doc/browser-workshop-20101127/vimperator-logo.png?w=830" alt="vimperator" data-recalc-dims="1" /></a></p>
+<p><a href="https://addons.mozilla.org/en-US/firefox/addon/vimperator/"><img src="http://teramako.github.io/doc/browser-workshop-20101127/vimperator-logo.png?w=830" alt="vimperator" data-recalc-dims="1" /></a></p>
 
 <p>5年前くらいに Vimperator の存在を教えてもらって、それ以来ずっと使いづづけている。</p>
 
@@ -262,7 +262,7 @@ echo &quot;###  Finish loading vimperatorrc.  ###&quot;</code></pre></noscript><
 
 <p>Firefox + Vimperator から Chrome + Vichrome に移行しました。</p>
 
-<p><a href="https://chrome.google.com/webstore/detail/vichrome/gghkfhpblkcmlkmpcpgaajbbiikbhpdi?hl=en"><img src="http://i2.wp.com/3.bp.blogspot.com/-znVUKjoHsnw/ToMAQ9EvSTI/AAAAAAAAAHE/2yH3d7trWhg/s1600/128.png?w=830" alt="vichrome" data-recalc-dims="1" /></a></p>
+<p><a href="https://chrome.google.com/webstore/detail/vichrome/gghkfhpblkcmlkmpcpgaajbbiikbhpdi?hl=en"><img src="http://3.bp.blogspot.com/-znVUKjoHsnw/ToMAQ9EvSTI/AAAAAAAAAHE/2yH3d7trWhg/s1600/128.png?w=830" alt="vichrome" data-recalc-dims="1" /></a></p>
 
 <p>途中 Safari の Extensions でも Vimperatorのようなものを入れて試してみたけど、機能が少ないので Firefox に戻った経緯もあるが、今回の Chrome + Vichrome 自分が使う範囲の機能はほぼカバーしているので使い続けている。</p>
 
@@ -347,7 +347,7 @@ pagecmd * nmap y :copyurl</p>
 
 <h2>ブックマークをEvernoteで管理へ</h2>
 
-<p><a href="http://evernote.com/webclipper/"><img src="http://i1.wp.com/evernote.com/media/img/products/hero_webclipper.png?w=830" alt="evernote web clipper" data-recalc-dims="1" /></a></p>
+<p><a href="http://evernote.com/webclipper/"><img src="http://evernote.com/media/img/products/hero_webclipper.png?w=830" alt="evernote web clipper" data-recalc-dims="1" /></a></p>
 
 <p>ブラウザを変えようと思った理由は些細なことだけど、ブックマークをはてなブックマークからEvernoteに乗り換えようと思ったことがきっかけ。</p>
 

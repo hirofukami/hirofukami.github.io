@@ -9,7 +9,7 @@
 
 <meta name="author" content="HiroFukami"> 
 
-<meta name="description" content="いつでも前のめり"> <meta name="keywords" content="">
+<meta name="description" content="更新頻度が1年に1回だからその都度忘れてしまうのでメモ。 1) 秘密鍵を生成 openssl コマンドで生成擬似乱数情報の生成 (md5ダイジェスト値を擬似乱数をして使用) # ./openssl md5 * > rand.dat 擬似乱数ファイル(ここでは rand.dat) &hellip;"> <meta name="keywords" content="">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -62,7 +62,7 @@ $(document).ready(
     <meta property="twitter:site" content="d_sea">
     <meta property="twitter:url" content="http://hirofukami.com">
     <meta property="twitter:title" content="SSL証明書更新 on Apache + OpenSSL 手順メモ">
-    <meta property="twitter:description" content="いつでも前のめり">
+    <meta property="twitter:description" content="更新頻度が1年に1回だからその都度忘れてしまうのでメモ。 1) 秘密鍵を生成 openssl コマンドで生成擬似乱数情報の生成 (md5ダイジェスト値を擬似乱数をして使用) # ./openssl md5 * > rand.dat 擬似乱数ファイル(ここでは rand.dat)から秘密鍵を生成トリプルDESを使用、2048bitの秘密鍵(ここでは 2009key.pem を作成 # &hellip;">
     <meta property="twitter:creator" content="d_sea" />
 
 
@@ -80,11 +80,9 @@ $(document).ready(
 	<li><a href="/atom.xml">RSS</a></li>
     
 	<li>
-        <form class="pull-right navbar-search"action="http://google.com/search" method="get">
-            <fieldset role="search">
-                <input type="hidden" name="q" value="site:hirofukami.com" />
-                <input class="search" type="text" name="q" results="0" placeholder="Search"/>
-            </fieldset>
+        <form action="http://google.com/search" method="get">
+            <input type="text" name="q" results="0" placeholder="Search">
+            <input type="hidden" name="as_sitesearch" value="hirofukami.com">
         </form>
 	</li>
     
@@ -101,18 +99,16 @@ $(document).ready(
 	<li><a href="/atom.xml">RSS</a></li>
     
 	<li>
-        <form class="pull-right navbar-search"action="http://google.com/search" method="get">
-            <fieldset role="search">
-                <input type="hidden" name="q" value="site:hirofukami.com" />
-                <input class="search" type="text" name="q" results="0" placeholder="Search"/>
-            </fieldset>
+        <form action="http://google.com/search" method="get">
+            <input type="text" name="q" results="0" placeholder="Search">
+            <input type="hidden" name="as_sitesearch" value="hirofukami.com">
         </form>
 	</li>
     
 </ul>
 </div>
 	</div>
-	<div class="alignright search">
+<!-- 	<div class="alignright search">
 		<a class="button"></a>
 		<div class="container">
 			<form action="http://google.com/search" method="get">
@@ -120,9 +116,8 @@ $(document).ready(
 				<input type="hidden" name="q" value="site:hirofukami.com">
 			</form>
 		</div>
-	</div>
+	</div> -->
 </nav>
-
 
 </header>
 

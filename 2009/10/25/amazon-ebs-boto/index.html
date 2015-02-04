@@ -9,7 +9,7 @@
 
 <meta name="author" content="HiroFukami"> 
 
-<meta name="description" content="いつでも前のめり"> <meta name="keywords" content="">
+<meta name="description" content="Amazon EBS の特徴はマウントしたボリュームに対するスナップショットが取れることだろう。boto を使って簡単にバックアップ環境を以前に作業したメモを残しておく。 boto は python のライブラリで、Amazon EC2 のインスタンス上から AWS の API を操作できる。 &hellip;"> <meta name="keywords" content="">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -62,7 +62,7 @@ $(document).ready(
     <meta property="twitter:site" content="d_sea">
     <meta property="twitter:url" content="http://hirofukami.com">
     <meta property="twitter:title" content="Amazon EBS と boto を使って自動バックアップ環境を構築する">
-    <meta property="twitter:description" content="いつでも前のめり">
+    <meta property="twitter:description" content="Amazon EBS の特徴はマウントしたボリュームに対するスナップショットが取れることだろう。boto を使って簡単にバックアップ環境を以前に作業したメモを残しておく。 boto は python のライブラリで、Amazon EC2 のインスタンス上から AWS の API を操作できる。boto の機能は多種であるが、今回は EBS の API を操作して、 &hellip;">
     <meta property="twitter:creator" content="d_sea" />
 
 
@@ -80,11 +80,9 @@ $(document).ready(
 	<li><a href="/atom.xml">RSS</a></li>
     
 	<li>
-        <form class="pull-right navbar-search"action="http://google.com/search" method="get">
-            <fieldset role="search">
-                <input type="hidden" name="q" value="site:hirofukami.com" />
-                <input class="search" type="text" name="q" results="0" placeholder="Search"/>
-            </fieldset>
+        <form action="http://google.com/search" method="get">
+            <input type="text" name="q" results="0" placeholder="Search">
+            <input type="hidden" name="as_sitesearch" value="hirofukami.com">
         </form>
 	</li>
     
@@ -101,18 +99,16 @@ $(document).ready(
 	<li><a href="/atom.xml">RSS</a></li>
     
 	<li>
-        <form class="pull-right navbar-search"action="http://google.com/search" method="get">
-            <fieldset role="search">
-                <input type="hidden" name="q" value="site:hirofukami.com" />
-                <input class="search" type="text" name="q" results="0" placeholder="Search"/>
-            </fieldset>
+        <form action="http://google.com/search" method="get">
+            <input type="text" name="q" results="0" placeholder="Search">
+            <input type="hidden" name="as_sitesearch" value="hirofukami.com">
         </form>
 	</li>
     
 </ul>
 </div>
 	</div>
-	<div class="alignright search">
+<!-- 	<div class="alignright search">
 		<a class="button"></a>
 		<div class="container">
 			<form action="http://google.com/search" method="get">
@@ -120,9 +116,8 @@ $(document).ready(
 				<input type="hidden" name="q" value="site:hirofukami.com">
 			</form>
 		</div>
-	</div>
+	</div> -->
 </nav>
-
 
 </header>
 

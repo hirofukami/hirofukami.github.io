@@ -9,7 +9,7 @@
 
 <meta name="author" content="HiroFukami"> 
 
-<meta name="description" content="いつでも前のめり"> <meta name="keywords" content="">
+<meta name="description" content="執筆中・・・ 設計 BGP iBGP ではフルメッシュ peering が必要だが、複数台存在する時点でルートリフレクタ(RR)を用いる peerの本数が減らすことが出来るのでルータの負荷軽減につながる 複数 RR を置いている場合は同じ Cluster ID を付ける*1 同一 Cluster &hellip;"> <meta name="keywords" content="">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -62,7 +62,7 @@ $(document).ready(
     <meta property="twitter:site" content="d_sea">
     <meta property="twitter:url" content="http://hirofukami.com">
     <meta property="twitter:title" content="Knowledge of Internet Routing Protocols ～設計～">
-    <meta property="twitter:description" content="いつでも前のめり">
+    <meta property="twitter:description" content="執筆中・・・ 設計 BGP iBGP ではフルメッシュ peering が必要だが、複数台存在する時点でルートリフレクタ(RR)を用いる peerの本数が減らすことが出来るのでルータの負荷軽減につながる 複数 RR を置いている場合は同じ Cluster ID を付ける*1 同一 Cluster ID は同一経路情報を破棄するため、RR &hellip;">
     <meta property="twitter:creator" content="d_sea" />
 
 
@@ -80,11 +80,9 @@ $(document).ready(
 	<li><a href="/atom.xml">RSS</a></li>
     
 	<li>
-        <form class="pull-right navbar-search"action="http://google.com/search" method="get">
-            <fieldset role="search">
-                <input type="hidden" name="q" value="site:hirofukami.com" />
-                <input class="search" type="text" name="q" results="0" placeholder="Search"/>
-            </fieldset>
+        <form action="http://google.com/search" method="get">
+            <input type="text" name="q" results="0" placeholder="Search">
+            <input type="hidden" name="as_sitesearch" value="hirofukami.com">
         </form>
 	</li>
     
@@ -101,18 +99,16 @@ $(document).ready(
 	<li><a href="/atom.xml">RSS</a></li>
     
 	<li>
-        <form class="pull-right navbar-search"action="http://google.com/search" method="get">
-            <fieldset role="search">
-                <input type="hidden" name="q" value="site:hirofukami.com" />
-                <input class="search" type="text" name="q" results="0" placeholder="Search"/>
-            </fieldset>
+        <form action="http://google.com/search" method="get">
+            <input type="text" name="q" results="0" placeholder="Search">
+            <input type="hidden" name="as_sitesearch" value="hirofukami.com">
         </form>
 	</li>
     
 </ul>
 </div>
 	</div>
-	<div class="alignright search">
+<!-- 	<div class="alignright search">
 		<a class="button"></a>
 		<div class="container">
 			<form action="http://google.com/search" method="get">
@@ -120,9 +116,8 @@ $(document).ready(
 				<input type="hidden" name="q" value="site:hirofukami.com">
 			</form>
 		</div>
-	</div>
+	</div> -->
 </nav>
-
 
 </header>
 

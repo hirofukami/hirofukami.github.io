@@ -9,7 +9,7 @@
 
 <meta name="author" content="HiroFukami"> 
 
-<meta name="description" content="いつでも前のめり"> <meta name="keywords" content="">
+<meta name="description" content="物理的冗長構成にてルーティング的にECMP(Equal Cost Multi Path)を構成していても、実際流れるトラフィック量は 50:50 にはならない。 結局、forwarding でどっちの nexthop を採用するかに依存する。特別意識せずに設定していれば per-flow &hellip;"> <meta name="keywords" content="">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -62,7 +62,7 @@ $(document).ready(
     <meta property="twitter:site" content="d_sea">
     <meta property="twitter:url" content="http://hirofukami.com">
     <meta property="twitter:title" content="Hiro Fukami's Blog">
-    <meta property="twitter:description" content="いつでも前のめり">
+    <meta property="twitter:description" content="物理的冗長構成にてルーティング的にECMP(Equal Cost Multi Path)を構成していても、実際流れるトラフィック量は 50:50 にはならない。 結局、forwarding でどっちの nexthop を採用するかに依存する。特別意識せずに設定していれば per-flow で処理されるはずだけどその決定方法はメーカによって違う。そのパラメータをメーカごとにまとめると、 &hellip;">
     <meta property="twitter:creator" content="d_sea" />
 
 
@@ -80,11 +80,9 @@ $(document).ready(
 	<li><a href="/atom.xml">RSS</a></li>
     
 	<li>
-        <form class="pull-right navbar-search"action="http://google.com/search" method="get">
-            <fieldset role="search">
-                <input type="hidden" name="q" value="site:hirofukami.com" />
-                <input class="search" type="text" name="q" results="0" placeholder="Search"/>
-            </fieldset>
+        <form action="http://google.com/search" method="get">
+            <input type="text" name="q" results="0" placeholder="Search">
+            <input type="hidden" name="as_sitesearch" value="hirofukami.com">
         </form>
 	</li>
     
@@ -101,18 +99,16 @@ $(document).ready(
 	<li><a href="/atom.xml">RSS</a></li>
     
 	<li>
-        <form class="pull-right navbar-search"action="http://google.com/search" method="get">
-            <fieldset role="search">
-                <input type="hidden" name="q" value="site:hirofukami.com" />
-                <input class="search" type="text" name="q" results="0" placeholder="Search"/>
-            </fieldset>
+        <form action="http://google.com/search" method="get">
+            <input type="text" name="q" results="0" placeholder="Search">
+            <input type="hidden" name="as_sitesearch" value="hirofukami.com">
         </form>
 	</li>
     
 </ul>
 </div>
 	</div>
-	<div class="alignright search">
+<!-- 	<div class="alignright search">
 		<a class="button"></a>
 		<div class="container">
 			<form action="http://google.com/search" method="get">
@@ -120,13 +116,92 @@ $(document).ready(
 				<input type="hidden" name="q" value="site:hirofukami.com">
 			</form>
 		</div>
-	</div>
+	</div> -->
 </nav>
-
 
 </header>
 
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/2005/12/11/ecmp/">
+		
+			ECMP でのバランシングの精度</a>
+	</h2>
+	<div class="entry-content">
+		<div class="section">
+  <p>
+    物理的冗長構成にてルーティング的にECMP(Equal Cost Multi Path)を構成していても、実際流れるトラフィック量は 50:50 にはならない。
+  </p>
+  
+  <p>
+    結局、forwarding でどっちの nexthop を採用するかに依存する。特別意識せずに設定していれば per-flow で処理されるはずだけどその決定方法はメーカによって違う。そのパラメータをメーカごとにまとめると、
+  </p>
+  
+  <ul>
+    <li>
+      Cisco: source/destination address, Hash関数
+    </li>
+    <li>
+      Juniper: source/destination address, Hash関数
+    </li>
+    <li>
+      Foundry <ul>
+        <li>
+          BI4000: destination address
+        </li>
+        <li>
+          MG8:source/destination address, Hash関数
+        </li>
+      </ul>
+    </li>
+  </ul>
+  
+  <p>
+    Hashが絡むので、予測は不可能。。。結局、均等にならない理由は説明できても精度の幅は説明できない状態。
+  </p>
+  
+  <p>
+    なぜ均等分散されないのか？という問い合わせにツボを抑えて説明するのが難しい・・・
+  </p>
+</div>
+
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2005-12-12T00:00:00+09:00" pubdate data-updated="true">Dec 12<span>th</span>, 2005</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/tech/'>Tech</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/2005/12/11/ecmp//blog/page/62/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
 
 
     <article class="post">
@@ -825,103 +900,6 @@ $(document).ready(
 
 	
 		<span class="comments"><a href="/2005/11/05/%e8%80%83%e5%85%b7%e2%80%95%e8%80%83%e3%81%88%e3%82%8b%e3%81%9f%e3%82%81%e3%81%ae%e9%81%93%e5%85%b7%e3%80%81%e6%8c%81%e3%81%a3%e3%81%a6%e3%81%84%e3%81%be%e3%81%99%e3%81%8b//blog/page/62/index.html#disqus_thread">Comments</a></span>
-	
-</div></article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/2005/11/02/%e3%81%84%e3%81%96%e3%80%81%e3%83%87%e3%82%a3%e3%82%ba%e3%83%8b%e3%83%bc%e3%81%b8/">
-		
-			いざ、ディズニーへ</a>
-	</h2>
-	<div class="entry-content">
-		<div class="section">
-  <p>
-    5年ぶりくらいにディズニーランドに行った。自分の意志はかなり薄いが、(w
-  </p>
-  
-  <p>
-    すれた大人なので(wミッキ－にキャーキャー言うわけも無く、結構この特別な世界を見渡せた中で気付いたことが色々あった。
-  </p>
-  
-  <h4>
-    社員教育
-  </h4>
-  
-  <p>
-    ディズニーランドで働いている職種は多種多様だけど、とにかく社員教育が徹底されている。
-  </p>
-  
-  <p>
-    来場者へ絶対悪印象を与えずに受け答えをしたり、注意をしたりする。言葉遣いや表情/態度に表れてくることだけど、来場者に接する人たちはすべて出来ている。
-  </p>
-  
-  <p>
-    これはすごく教育が徹底できているということ。もともとディズニー大好きな人たちならば徹底しやすいかもしれないけど、これは会社の社員教育も同じ手法をとっても通用すると思った。どこの教育会社使ってるんだろう。。。
-  </p>
-  
-  <h4>
-    治安
-  </h4>
-  
-  <p>
-    休日のディズニーランドはどこも混む。食べ物持ち込み禁止だから、昼時のレストランも20分待ちはする。不思議なのは行列に割り込んだりする人がいなくって、みんなおとなしく並んで待ってる。ゴミをポイ捨てする人も見当たらず、すごく治安が良い。渋谷/新宿を歩いてたら捨てちゃいそうな感じの人もここだとしない。
-  </p>
-  
-  <p>
-    ファンタジーの世界にいることでそういう行為を自制しているのだろうけど、これを自治体に適用したらかなり安全に住みやすくなる。
-  </p>
-  
-  <h4>
-    格好
-  </h4>
-  
-  <p>
-    これが一番面白かった。この世界に漬かるのはやっぱり女性。しかも学生から主婦まで幅広い。
-  </p>
-  
-  <p>
-    で、ミッキーとかいろんなキャラの耳の部分が中で売ってるんだけど、これを付けて歩いている女性が多い多い。しかも、ヒョウ柄にヴィトンのバックとか持ってるギャルたちも付けちゃってるんだから面白いよなぁ。街中じゃあ絶対付けないでしょ！！と思うし。彼女らもファンタジーに憧れる女の子なんだと思わせる光景。
-  </p>
-  
-  <p>
-    ディズニーランドってとこは飽きさせない魅力と悪い印象を与えない努力の賜物で成り立っていると思う。だからリピーターが多い訳で、長い待ち時間や人ごみに嫌気が差すわけでもなくまた行ってしまうんだろう。ディズニー強し！！といった感想。by やっぱり次の日お疲れパパ
-  </p>
-</div>
-
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2005-11-03T00:00:00+09:00" pubdate data-updated="true">Nov 3<span>rd</span>, 2005</time></div>
-	
-
-<div class="tags">
-
-	<a class='category' href='/blog/categories/life/'>LIfe</a>
-
-</div>
-
-
-	
-		<span class="comments"><a href="/2005/11/02/%e3%81%84%e3%81%96%e3%80%81%e3%83%87%e3%82%a3%e3%82%ba%e3%83%8b%e3%83%bc%e3%81%b8//blog/page/62/index.html#disqus_thread">Comments</a></span>
 	
 </div></article>
 
