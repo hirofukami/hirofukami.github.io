@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Business | Hiro Fukami's Blog]]></title>
   <link href="http://hirofukami.com/blog/categories/business/atom.xml" rel="self"/>
   <link href="http://hirofukami.com/"/>
-  <updated>2015-02-08T14:35:46+09:00</updated>
+  <updated>2015-02-08T17:36:03+09:00</updated>
   <id>http://hirofukami.com/</id>
   <author>
     <name><![CDATA[HiroFukami]]></name>
@@ -12,6 +12,62 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[オフィスお引越し]]></title>
+    <link href="http://hirofukami.com/blog/2015/02/04/movie-office/"/>
+    <updated>2015-02-04T17:00:00+09:00</updated>
+    <id>http://hirofukami.com/blog/2015/02/04/movie-office</id>
+    <content type="html"><![CDATA[<p><img src="/images/2015/02/20150208-movie-office.jpg" alt="office" /></p>
+
+<p>仕事の作業場所を渋谷から新宿に引っ越しました。</p>
+
+<p>これからの作業場所のメインは新宿のほうになります。
+渋谷オフィスは5月末までの契約なので、今後も打ち合わせの時のミーティングスペースの利用や、1人で思考する場所として利用する予定ではあります。</p>
+
+<p>オフィスといっても自分の場合は <strong>パソコン作業を集中して行える場所</strong> としているため、基本的にThunderbolt displayと電源、ネットがあれば事は足ります。</p>
+
+<p>引っ越しは、Thunderbolt displayの箱の中にいくつかの荷物を一緒に入れ込んでタクシーで移動。ものの30分で完了でした。</p>
+
+<p>で、引越し先ですが、さくらインターネットさんの中にいます。</p>
+
+<p>さくらさんとは株式会社シェイクソウルとして契約して1月から開発に携わっています。</p>
+
+<p>開発するものはちゃんとお披露目する時に大々的発表したいと思いますが、簡単に言うと <strong>DevOps的な何か</strong> です。</p>
+
+<p>さくらの方とのコミニケーションがとりやすくなるし、自分の作業場所に求める要件が揃ってメリットも多いので引っ越すことにしました。</p>
+
+<p>メリット</p>
+
+<ul>
+<li>渋谷から新宿へ移ったことで自宅からのアクセスが良くなった
+
+<ul>
+<li>渋谷へは明大前駅で乗換が必要だったが、乗り換えなしで時間のロスがなくなりタイミングが良ければ座れる</li>
+<li>京王線は明大前駅で特急2本連続待ち＆八幡山駅で特急2本連続待ち合わせとか、時間のロスが激しいのでダイヤを早く見なおして欲しい</li>
+</ul>
+</li>
+<li>基本的に静か、人の動きも見えるから話し声が聞こえても嫌ではない</li>
+<li>新しいきれいなビル、設備は揃っているしきれい
+
+<ul>
+<li>住友不動産西新宿ビルは 2009年竣工</li>
+</ul>
+</li>
+<li>ドクターペッパーが￥90で買える</li>
+</ul>
+
+
+<p><a href="http://www.amazon.co.jp/s/?_encoding=UTF8&amp;camp=247&amp;creative=7399&amp;fst=as%3Aoff&amp;keywords=%E3%83%89%E3%82%AF%E3%82%BF%E3%83%BC%E3%83%9A%E3%83%83%E3%83%91%E3%83%BC&amp;linkCode=ur2&amp;qid=1423383467&amp;rh=i%3Aaps%2Ck%3A%E3%83%89%E3%82%AF%E3%82%BF%E3%83%BC%E3%83%9A%E3%83%83%E3%83%91%E3%83%BC%2Cp_89%3ADr%20Pepper(%E3%83%89%E3%82%AF%E3%82%BF%E3%83%BC%E3%83%9A%E3%83%83%E3%83%91%E3%83%BC)&amp;rnid=2321255051&amp;tag=dsea-22"><img src="/images/2015/02/dr_pepper.png" alt="Dr.Pepper" /></a>
+<a href="http://www.amazon.co.jp/s/?_encoding=UTF8&amp;camp=247&amp;creative=7399&amp;fst=as%3Aoff&amp;keywords=%E3%83%89%E3%82%AF%E3%82%BF%E3%83%BC%E3%83%9A%E3%83%83%E3%83%91%E3%83%BC&amp;linkCode=ur2&amp;qid=1423383467&amp;rh=i%3Aaps%2Ck%3A%E3%83%89%E3%82%AF%E3%82%BF%E3%83%BC%E3%83%9A%E3%83%83%E3%83%91%E3%83%BC%2Cp_89%3ADr%20Pepper(%E3%83%89%E3%82%AF%E3%82%BF%E3%83%BC%E3%83%9A%E3%83%83%E3%83%91%E3%83%BC)&amp;rnid=2321255051&amp;tag=dsea-22">ドクターペッパー</a></p>
+
+<p>ドクターペッパー大好きなんでスイマセン</p>
+
+<p>今まで集中しやすい環境を求めて個室にしていたのですが、意外にも人の姿が見えない方が音に対して敏感になってしまうことがわかり、普通の人とシェアするような場所の方が集中しやすいことがわかりました。</p>
+
+<p>と言うことでしばらくは新宿に通う毎日です。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[「クラウドを触ろう」というイベントを開催しました]]></title>
@@ -589,122 +645,6 @@
 <p>そこまで突き詰めるからこそ、ファンが作られリピーターが生まれるのだろう。</p>
 
 <p>サービスづくりにもつながる教訓だった。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Web制作者のためのクラウド&#8221;SmartDesigning&#8221;をリリースします]]></title>
-    <link href="http://hirofukami.com/2014/02/13/notify-smartdesigning/"/>
-    <updated>2014-02-13T19:38:13+09:00</updated>
-    <id>http://hirofukami.com/2014/02/13/notify-smartdesigning</id>
-    <content type="html"><![CDATA[<h2>SmartDesigning (スマートデザイニング)</h2>
-
-<p><a href="http://smartdesigning.me/"><img src="http://hirofukami.com/images/2014/02/SmartDesigning_icon_black.png?resize=256%2C206" alt="SmartDesigning_icon_black" class="alignnone size-full wp-image-2334" data-recalc-dims="1" /></a><br/>
-Webデザインするためのクラウドです。<br/>
-手軽にWebサイトをクラウド上に持てます。Dropboxを使ってローカルで作ったファイルをリアルタイムにクラウドに反映させます。</p>
-
-<p>アイコンはクラウドをキャンバスに見立てて自由に描いてもらうことをイメージして作りました。</p>
-
-<h2>2/17(月)リリース予定。現在サイト作成中</h2>
-
-<p>サービス自体のシステム構築とかは終わっていて、一部のユーザにトライアルとして使ってもらっています。</p>
-
-<p>サイト自体はすでに公開中で、コンテンツを充実させていっています。<a href="https://twitter.com/smart_designing">Twitterアカウント</a>、<a href="https://www.facebook.com/pages/Smart-Designing/662677490439988">Facebookページ</a> もあります。</p>
-
-<ul>
-<li>URL : <a href="http://smartdesigning.me/">http://smartdesigning.me</a></li>
-<li>Twitterアカウント : <a href="https://twitter.com/smart_designing">@smart_designing</a></li>
-<li>Facebookページ : <a href="https://www.facebook.com/pages/Smart-Designing/662677490439988">Smart Designing</a></li>
-</ul>
-
-
-<p>リリースは 2/17(月)ですが、そこに向かって作っていっている過程もオープンにしています。<br/>
-TwitterとFacebookページでアップデートをポストしているので、このサービスに興味ある方はフォロー＆Likeをお願いします。</p>
-
-<h2>何を解決するの？</h2>
-
-<h3>手軽に自由なキャンバスを手に入れる</h3>
-
-<!--more-->
-
-
-<p>もっとWeb制作者が自由に制作したり表現できるサービスが作れるのではないか。そんな思いがありました。<br/>
-色々模索した結果、クラウド上にWebサイトを手軽に持てるサービスにしました。</p>
-
-<p>自由に使えるので用途はいろいろあり得ると思います。</p>
-
-<ul>
-<li>自分のサイトを持つ</li>
-<li>受託案件、顧客にリモートレビューしてもらいつつ作る</li>
-<li>こんなデザイン作ってみた、技術習得の勉強</li>
-<li>etc&#8230;.</li>
-</ul>
-
-
-<h3>ローカルを開放する</h3>
-
-<p>Webサイトを作る時は、ローカル環境にXAMPなどをインストールして閉じた環境で制作していたが外部に見せにくいという、課題があります。</p>
-
-<p>例えば、受託案件で顧客にレビューしてもらう時など顧客と都度対面すると時間とコストが掛かります。</p>
-
-<p>ローカルで作っているものを素早く公開することはできないか。むしろ、ローカルがそのまま公開されてしまえばよいのでは。と思いました。</p>
-
-<h2>特徴は？</h2>
-
-<h3>Dropboxアップロード</h3>
-
-<p><img src="http://hirofukami.com/images/2013/10/dropbox-logos_dropbox-logotype-blue.png?resize=446%2C171" alt="dropbox-logos_dropbox-logotype-blue" class="alignnone size-full wp-image-1322" data-recalc-dims="1" /></p>
-
-<p>なんといっても特徴は Dropbox を使ってファイルをアップロードすることです。<br/>
-ローカル上の Dropbox にWebサイト用のディレクトリを作って、ファイルが変更されると同期が走ってクラウドに反映されます。</p>
-
-<p>Dropbox を使うことで今まで難しかったことを実現できるようになります。</p>
-
-<ul>
-<li>リアルタイムデプロイ : ファイルアップロードの手間がなくなる</li>
-<li>共同作業 : Dropbox 共有</li>
-<li>ファイルバージョン管理 : 古いバーションへ戻せる</li>
-</ul>
-
-
-<h2>時代背景</h2>
-
-<h3>「デザイニングインザブラウザ」を加速させる</h3>
-
-<p>国内ではインブラウザデザインとも言いますが、ブラウザ上でWeb制作を行っていく、レビューと修正のサクルを回す手法は一つのトレンドになっていて、今後ますます実践されていくでしょう。</p>
-
-<p><a href="http://smartdesigning.me/">SmartDesigning</a> を使うことでデザイニングインザブラウザを加速させることができます。</p>
-
-<p>リモートで顧客のレビューが受けて持ち帰ることなくその場で修正できる。スマホ・タブレットの実機からサイトをチェックできるなど。サイト制作の効率を上げてくれます。</p>
-
-<h3>Javascript 周りの発展</h3>
-
-<p>もう一つに傾向としては、Webアプリケーションをサーバで動かす時代から、Javascriptを中心にクライアントベースで作ってしまう動きが出てきていること。</p>
-
-<p>確かに Ruby on Rails はWebアプリケーション開発には強烈なツールですが、そこまで処理は重くなく作りたい場合、Javascript + MBaaS の組み合わせでできてしまうようになっています。</p>
-
-<p>そうなってくるとWebサーバ上に置くのは 静的HTML+Javascript だけで、従来のレンタルサーバのようにいろいろな言語が動いてMySQLも付けますというのはオーバースペックになってきて、もっとシンプルなWebサーバ環境で良くなります。</p>
-
-<p>ここら辺の時代の流れを上手く汲み取って、シンプルなWebサーバを手軽に手に入れることができるのが <a href="http://smartdesigning.me/">SmartDesiginig</a> になります。</p>
-
-<h2>サーバを意識しない世界を作りたかった</h2>
-
-<p>これは2009年に fluxflex, inc. を作った時から思っていることですが、サーバはクラウドサービスを提供することでもっと使いやすくできて、理想的にはサーバを全く意識しなくても知らないうちに使っているような感じになると思っています。</p>
-
-<p><a href="http://smartdesigning.me/">SmartDesigning</a> もその思想を継承していて、ローカル環境で作るようにWebサイトを持てたら、それはWeb制作者にとって <strong>魔法の杖</strong> になると思っています。</p>
-
-<p>そんな世界を作りたいなぁと思って作ったサービスです。</p>
-
-<p>興味をもっていただいた方は、<a href="https://twitter.com/smart_designing">Twitterアカウント</a> のフォローと <a href="https://www.facebook.com/pages/Smart-Designing/662677490439988">Facebookページ</a> のLikeをしていただけるとありがたいです。</p>
-
-<ul>
-<li>URL : <a href="http://smartdesigning.me/">http://smartdesigning.me</a></li>
-<li>Twitterアカウント : <a href="https://twitter.com/smart_designing">@smart_designing</a></li>
-<li>Facebookページ : <a href="https://www.facebook.com/pages/Smart-Designing/662677490439988">Smart Designing</a></li>
-</ul>
-
-
-<p>では、リリース日までもうしばらくお待ちくださいませ。</p>
 ]]></content>
   </entry>
   
