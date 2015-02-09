@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Tech | Hiro Fukami's Blog]]></title>
   <link href="http://hirofukami.com/blog/categories/tech/atom.xml" rel="self"/>
   <link href="http://hirofukami.com/"/>
-  <updated>2015-02-08T18:26:14+09:00</updated>
+  <updated>2015-02-09T19:25:03+09:00</updated>
   <id>http://hirofukami.com/</id>
   <author>
     <name><![CDATA[HiroFukami]]></name>
@@ -12,6 +12,132 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Mac - boot2docker 1.4.1 間共有フォルダ設定方法]]></title>
+    <link href="http://hirofukami.com/blog/2015/02/09/mac-docker-sharedfolder/"/>
+    <updated>2015-02-09T19:00:00+09:00</updated>
+    <id>http://hirofukami.com/blog/2015/02/09/mac-docker-sharedfolder</id>
+    <content type="html"><![CDATA[<p>{% img /images/2015/02/20150209-docker.png &lsquo;docker&rsquo; %}</p>
+
+<p>Mac で <a href="https://www.docker.com/">Docker</a> を動かそうとすると <a href="http://boot2docker.io/">boot2docker</a> は必須。</p>
+
+<p>Vagrant みたいに開発環境用サーバとして Docker を扱うには、共有フォルダの設定を自分でやらなくてはならない。</p>
+
+<p>自分的には Dockerfile も Mac のローカルフォルダで管理したいから、Mac &ndash; boot2docker 間で共有フォルダを設定して、</p>
+
+<ol>
+<li>Mac 上で Dockerfile を作る</li>
+<li>boot2docker ssh</li>
+<li>docker build -t centos:rails</li>
+</ol>
+
+
+<p>みたいにやりたい。</p>
+
+<p>もちろん、Dcoker container に Mac でコーディングしたソースは自動的にデプロイしたいので、boot2docker &ndash; docker container 間も共有フォルダにする必要はあるのだけど、まずは Mac &ndash; boot2docker 間を共有したい。</p>
+
+<p>調べてみたが検索に引っかかるのは古い情報で、Github の README.md に記載を見つけて動いた。</p>
+
+<p>2015.02.09現在 boot2docker 1.4.1 で動かすための方法をメモしておく。</p>
+
+<h1>情報のソース</h1>
+
+<p><a href="https://github.com/boot2docker/boot2docker">boot2docker の github</a> の README.md 内の <strong>VirtualBox Guest Additions</strong></p>
+
+<p><a href="https://github.com/boot2docker/boot2docker#virtualbox-guest-additions">https://github.com/boot2docker/boot2docker#virtualbox-guest-additions</a></p>
+
+<blockquote><p>The first of the following share names that exists (if any) will be automatically mounted at the location specified:</p>
+
+<ol>
+<li>Users share at /Users</li>
+<li>/Users share at /Users</li>
+<li>c/Users share at /c/Users</li>
+<li>/c/Users share at /c/Users</li>
+<li>c:/Users share at /c/Users</li>
+</ol>
+</blockquote>
+
+<p>という記述がある。</p>
+
+<!-- more -->
+
+
+<h1>古い boot2docker が入っている人</h1>
+
+<p>実行前には、<code>$ boot2docker stop</code> して boot2docker VM を停止しておく。</p>
+
+<p>boo2docker のアップグレードをします。Mac のターミナル上で、</p>
+
+<p><code>$ boot2docker upgrade</code></p>
+
+<p>を実行。</p>
+
+<p>すると、新しい iso ファイルが、<code>$HOME/.boot2docker/boot2docker.iso</code>(自分の場合は、<code>/Users/hironobu/.boot2docker/boot2docker.iso</code>) にダウンロードされます。</p>
+
+<p>確認したければ、<code>$ boot2docker up &amp;&amp; boot2docker ssh</code> してログインプロンプトに <code>Boot2Docker version 1.4.1</code> が見えればOK。</p>
+
+<h1>VirtualBox コマンドで共有する</h1>
+
+<p>VirtualBox の Share Name を <code>Users</code> にすればうまくマウントしてくれそう。以下を Mac のターミナル上で実行する。</p>
+
+<p><code>
+$ VBoxManage sharedfolder add boot2docker-vm --name Users --hostpath $HOME
+</code></p>
+
+<p><code>boot2docker-vm</code> は VirtualBox 上の boot2docker の VM 名。
+<code>$HOME</code> は自分の場合、 <code>/Users/hironobu</code> になる。</p>
+
+<p>VirtualBox 上の設定画面は以下のようになった。</p>
+
+<p>{% img /images/2015/02/20150209-ScreenShot.png &lsquo;VirualBox screen shot %}</p>
+
+<p>古い情報だと Share Name を <code>home</code> にすると書いてあるブログもあったが、やってみたが認識しなかった。</p>
+
+<h1>確認</h1>
+
+<p>```bash
+$ boot2docker up</p>
+
+<p>$ boot2docker ssh</p>
+
+<pre><code>                    ##        .
+              ## ## ##       ==
+           ## ## ## ##      ===
+       /""""""""""""""""\___/ ===
+  ~~~ {~~ ~~~~ ~~~ ~~~~ ~~ ~ /  ===- ~~~
+       \______ o          __/
+         \    \        __/
+          \____\______/
+</code></pre>
+
+<hr />
+
+<p>| |<strong>   </strong><em>   </em><strong> | |<em>|</em></strong> \ <strong>| | </strong><em>   </em><strong>| | </strong><em><strong> _ </strong>
+| &lsquo;</em> \ / _ \ / _ \| <strong>| </strong>) / <em>` |/ _ \ / <strong>| |/ / _ \ &rsquo;</strong>|
+| |</em>) | (<em>) | (</em>) | |<em> / __/ (</em>| | (<em>) | (<strong>|   &lt;  </strong>/ |
+|</em>.<strong>/ _</strong>/ _<strong>/ _<em>|</em></strong><strong>_<em>,</em>|_</strong>/ _<strong>|_|__</strong>|_|
+Boot2Docker version 1.4.1, build master : 86f7ec8 &ndash; Tue Dec 16 23:11:29 UTC 2014
+Docker version 1.4.1, build 5bc2ff8</p>
+
+<p>docker@boot2docker:~$ ll /
+total 4
+drwxr-xr-x    1 docker   staff         3332 Jan 27 23:34 Users/</p>
+
+<p>(snip)</p>
+
+<p>docker@boot2docker:~$ ll /Users/</p>
+
+<p>(snip)
+```</p>
+
+<p><code>/Users</code> が boot2docker 内に見えて、<code>/Users</code> 内を見ると Mac の $HOME(自分の場合は、<code>/Users/hironobu</code>)が見えるはず。</p>
+
+<p>ということでした (・ω&lt;)</p>
+
+<p>快適な docker 開発ライフを〜</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Docker Meetup Tokyo #2 に参加した]]></title>
@@ -208,7 +334,7 @@
     <link href="http://hirofukami.com/2014/01/31/chef-solo-knife-command-memo/"/>
     <updated>2014-01-31T19:53:16+09:00</updated>
     <id>http://hirofukami.com/2014/01/31/chef-solo-knife-command-memo</id>
-    <content type="html"><![CDATA[<p><img class="<a" src="href="http://upload.wikimedia.org/wikipedia/en/5/56/Chef_Software_Inc._company_logo.png">http://upload.wikimedia.org/wikipedia/en/5/56/Chef_Software_Inc._company_logo.png</a>" width="380"></p>
+    <content type="html"><![CDATA[<p>{% img <a href="http://upload.wikimedia.org/wikipedia/en/5/56/Chef_Software_Inc._company_logo.png">http://upload.wikimedia.org/wikipedia/en/5/56/Chef_Software_Inc._company_logo.png</a> 380 %}</p>
 
 <p>どうも Chef コマンドを覚えられず、入門 Chef solo を毎回読みなおしてしまっているので、コマンド覚書を作っておく。</p>
 
@@ -334,281 +460,15 @@
 
 <p>まずはベースの設定。recipe[swp_setup]です。</p>
 
-<p><div><script src='https://gist.github.com/8328203.js?file=swp_setup_default.rb'></script>
-<noscript><pre><code>#
-# Cookbook Name:: swp_setup
-# Recipe:: default
-#
-# Copyright 2014, YOUR_COMPANY_NAME
-#
-# All rights reserved - Do Not Redistribute
-#
-
-######### create SWAP for micro instance of AWS EC2 ##########
-bash &#39;create swapfile&#39; do
-  user &#39;root&#39;
-  code &lt;&lt;-EOC
-    dd if=/dev/zero of=/swap.img bs=1M count=2048 &amp;&amp;
-    chmod 600 /swap.img
-    mkswap /swap.img
-  EOC
-  only_if { &quot;test ! -f /swap.img -a `cat /proc/swaps | wc -l` -eq 1&quot; }
-end
-
-mount &#39;/dev/null&#39; do # swap file entry for fstab
-  action :enable # cannot mount; only add to fstab
-  device &#39;/swap.img&#39;
-  fstype &#39;swap&#39;
-end
-
-bash &#39;activate swap&#39; do
-  code &#39;swapon -ae&#39;
-  only_if &quot;test `cat /proc/swaps | wc -l` -eq 1&quot;
-end
-
-
-############## nginx ##############
-package &quot;nginx&quot; do
-    action :install
-end
-
-
-############## php ##############
-package &quot;php&quot; do
-    action :install
-end
-
-package &quot;php-fpm&quot; do
-    action :install
-end
-
-package &quot;php-mbstring&quot; do
-    action :install
-end
-
-package &quot;php-mysql&quot; do
-    action :install
-end
-
-package &quot;php-xml&quot; do
-    action :install
-end
-
-package &quot;php-gd&quot; do
-    action :install
-end
-
-############## mysql ##############
-package &quot;mysql&quot; do
-    action :install
-end</code></pre></noscript></div>
-</p>
+<p>{% gist 8328203 swp_setup_default.rb %}</p>
 
 <p>続いて、recipe[swap_scale-org]です。</p>
 
-<p><div><script src='https://gist.github.com/8328145.js?file=swp_scale-org_default.rb'></script>
-<noscript><pre><code>#
-# Cookbook Name:: swp_scale-org
-# Recipe:: default
-#
-# Copyright 2014, YOUR_COMPANY_NAME
-#
-# All rights reserved - Do Not Redistribute
-#
-
-############## s3fs install ###########
-package &quot;gcc&quot; do
-    action :install
-end
-
-package &quot;libstdc++-devel&quot; do
-    action :install
-end
-
-package &quot;gcc-c++&quot; do
-    action :install
-end
-
-package &quot;fuse&quot; do
-    action :install
-end
-
-package &quot;fuse-devel&quot; do
-    action :install
-end
-
-package &quot;curl-devel&quot; do
-    action :install
-end
-
-package &quot;libxml2-devel&quot; do
-    action :install
-end
-
-package &quot;openssl-devel&quot; do
-    action :install
-end
-
-package &quot;mailcap&quot; do
-    action :install
-end
-
-# install s3fs
-bash &quot;install s3fs&quot; do
-  user &#39;root&#39;
-  cwd &quot;/home/#{node[&#39;userinfo&#39;][&#39;username&#39;]}&quot;
-  environment &quot;HOME&quot; =&gt; &quot;/home/#{node[&#39;userinfo&#39;][&#39;username&#39;]}&quot;
-  code &lt;&lt;-EOH
-    wget -O - &quot;http://s3fs.googlecode.com/files/s3fs-#{node[&#39;s3fs&#39;][&#39;version&#39;]}.tar.gz&quot; | tar xzf -
-    cd s3fs-#{node[&#39;s3fs&#39;][&#39;version&#39;]}/
-    ./configure --prefix=/usr 
-    make
-    make install
-    touch /etc/passwd-s3fs
-    echo #{node[&#39;userinfo&#39;][&#39;accessley_id&#39;]}:#{node[&#39;userinfo&#39;][&#39;secret-accesskey_id&#39;]} &gt; /etc/passwd-s3fs
-    chmod 600 /etc/passwd-s3fs
-    echo s3fs smartwp:/manage/uploads-st /home/#{node[&#39;userinfo&#39;][&#39;username&#39;]}/Dropbox/SmartWP/demo00/html-staging/wp-content/uploads -o allow_other -o nonempty &gt;&gt; /etc/rc.local
-    echo s3fs smartwp:/manage/uploads /home/#{node[&#39;userinfo&#39;][&#39;username&#39;]}/Dropbox/SmartWP/demo00/html-production/wp-content/uploads -o allow_other -o nonempty &gt;&gt; /etc/rc.local
-    echo s3fs smartwp:/manage/shakesoul_uploads-st /home/#{node[&#39;userinfo&#39;][&#39;username&#39;]}/Dropbox/SmartWP/shakesoul.net/html-staging/wp-content/uploads -o allow_other -o nonempty &gt;&gt; /etc/rc.local
-    echo s3fs smartwp:/manage/shakesoul_uploads-pr /home/#{node[&#39;userinfo&#39;][&#39;username&#39;]}/Dropbox/SmartWP/shakesoul.net/html-production/wp-content/uploads -o allow_other -o nonempty &gt;&gt; /etc/rc.local
-    echo s3fs smartwp:/manage/hirofukami_uploads-st /home/#{node[&#39;userinfo&#39;][&#39;username&#39;]}/Dropbox/SmartWP/hirofukami.com/html-staging/wp-content/uploads -o allow_other -o nonempty &gt;&gt; /etc/rc.local
-    echo s3fs smartwp:/manage/hirofukami_uploads-pr /home/#{node[&#39;userinfo&#39;][&#39;username&#39;]}/Dropbox/SmartWP/hirofukami.com/html-production/wp-content/uploads -o allow_other -o nonempty &gt;&gt; /etc/rc.local
-    EOH
-  not_if {::File.exists?(&quot;/etc/passwd-s3fs&quot;)}
-end
-
-############## nginx and php-fpm ##################
-template &quot;nginx.conf&quot; do
-    path &quot;/etc/nginx/nginx.conf&quot;
-    source &quot;nginx.conf.erb&quot;
-    owner &quot;root&quot;
-    group &quot;root&quot;
-    mode 0644
-    notifies :reload, &#39;service[nginx]&#39;
-end
-
-template &quot;nginx demo00.conf&quot; do
-    path &quot;/etc/nginx/conf.d/demo00.conf&quot;
-    source &quot;nginx-demo00.conf.erb&quot;
-    owner &quot;root&quot;
-    group &quot;root&quot;
-    mode 0644
-    notifies :reload, &#39;service[nginx]&#39;
-end
-
-template &quot;nginx hirofukami.conf&quot; do
-    path &quot;/etc/nginx/conf.d/hirofukami.conf&quot;
-    source &quot;nginx-hirofukami.conf.erb&quot;
-    owner &quot;root&quot;
-    group &quot;root&quot;
-    mode 0644
-    notifies :reload, &#39;service[nginx]&#39;
-end
-
-template &quot;nginx shakesoul.conf&quot; do
-    path &quot;/etc/nginx/conf.d/shakesoul.conf&quot;
-    source &quot;nginx-shakesoul.conf.erb&quot;
-    owner &quot;root&quot;
-    group &quot;root&quot;
-    mode 0644
-    notifies :reload, &#39;service[nginx]&#39;
-end
-
-template &quot;php.ini&quot; do
-    path &quot;/etc/php.ini&quot;
-    source &quot;php.ini.erb&quot;
-    owner &quot;root&quot;
-    group &quot;root&quot;
-    mode 0644
-    notifies :reload, &#39;service[php-fpm]&#39;
-end
-
-template &quot;www.conf&quot; do
-    path &quot;/etc/php-fpm.d/www.conf&quot;
-    source &quot;php-fpm-www.conf.erb&quot;
-    owner &quot;root&quot;
-    group &quot;root&quot;
-    mode 0644
-    notifies :reload, &#39;service[php-fpm]&#39;
-end
-
-directory &quot;/var/lib/nginx&quot; do
-  owner node[&#39;userinfo&#39;][&#39;username&#39;]
-  group &quot;root&quot;
-  action :create
-end
-
-directory &quot;/var/lib/nginx/tmp&quot; do
-  owner node[&#39;userinfo&#39;][&#39;username&#39;]
-  group &quot;root&quot;
-  action :create
-end
-
-############## Dropbox and WordPress ##############
-# install Dropbox Linux
-bash &quot;install dropbox&quot; do
-  user node[&#39;userinfo&#39;][&#39;username&#39;]
-  group node[&#39;userinfo&#39;][&#39;username&#39;]
-  cwd &quot;/home/#{node[&#39;userinfo&#39;][&#39;username&#39;]}&quot;
-  environment &quot;HOME&quot; =&gt; &quot;/home/#{node[&#39;userinfo&#39;][&#39;username&#39;]}&quot;
-  code &lt;&lt;-EOH
-    wget -O - &quot;https://www.dropbox.com/download?plat=lnx.x86_64&quot; | tar xzf -
-    mkdir ~/bin
-    cd ~/bin
-    wget -O ~/bin/dropbox https://www.dropbox.com/download?dl=packages/dropbox.py
-    chmod a+x dropbox
-    EOH
-  not_if {::File.exists?(&quot;/home/#{node[&#39;userinfo&#39;][&#39;username&#39;]}/.dropbox&quot;)}
-end
-
-
-# dropbox start
-template &quot;/etc/init.d/dropbox&quot; do
-    path &quot;/etc/init.d/dropbox&quot;
-    source &quot;dropbox-initd.erb&quot;
-    owner &quot;root&quot;
-    group &quot;root&quot;
-    mode 0755
-    notifies :reload, &#39;service[dropbox]&#39;
-end
-
-service &quot;dropbox&quot; do
-    supports :start =&gt; true, :stop =&gt; true
-    action [:enable, :start]
-end
-
-############# Last process start ###############
-service &quot;nginx&quot; do
-    supports :status =&gt; true, :restart =&gt; true, :reload =&gt; true
-    action [:enable, :start]
-end
-
-service &quot;php-fpm&quot; do
-    supports :status =&gt; true, :restart =&gt; true, :reload =&gt; true
-    action [:enable, :start]
-end
-</code></pre></noscript></div>
-</p>
+<p>{% gist 8328145 swp_scale-org_default.rb %}</p>
 
 <p>これを nodes/[hostname].json で、</p>
 
-<p><div><script src='https://gist.github.com/8328241.js?file=node.json'></script>
-<noscript><pre><code>{
-	&quot;userinfo&quot; : {
-		&quot;username&quot; : [your username],
-		&quot;accessley_id&quot; : [your accesskey_id],
-		&quot;secret-accesskey_id&quot; : [your secret-accesskey_id]
-	},
-	&quot;s3fs&quot; : {
-		&quot;version&quot; : &quot;1.74&quot;
-	},
-	&quot;run_list&quot;:[
-	    	&quot;yum::epel&quot;,
-	    	&quot;recipe[swp_setup]&quot;,
-		&quot;recipe[swp_scale-org]&quot;
-	]
-}</code></pre></noscript></div>
-</p>
+<p>{% gist 8328241 node.json %}</p>
 
 <p>のように書いて適用させています。</p>
 
@@ -810,306 +670,6 @@ Available subcommands:
 <p>このやり方なら Chef インストールから vagrant が使えるところまで来れるはずです。</p>
 
 <p>本を読んだけど、あれ？うまくいかないなぁとつまずいてしまった方の参考になれば幸いです。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[AWS オートスケーリング設定方法 &#8211; 2013年版実践編]]></title>
-    <link href="http://hirofukami.com/2013/07/23/aws-autoscaling-setting-2013/"/>
-    <updated>2013-07-23T19:24:54+09:00</updated>
-    <id>http://hirofukami.com/2013/07/23/aws-autoscaling-setting-2013</id>
-    <content type="html"><![CDATA[<p>AWS が Auto Scaling、CloudWatch、Elastic Load Balancing を発表した時は興奮して、すぐに触ってブログに書きました。</p>
-
-<ul>
-<li><a title="Amazon EC2 新機能 Monitoring, Auto Scaling and Elastic Load Balancing を一通り触ってみた" href="http://hirofukami.com/2009/05/24/amazon-ec2-monitoring-auto-scaling-and-elastic/" target="_blank">Amazon EC2 新機能 Monitoring, Auto Scaling and Elastic Load Balancing を一通り触ってみた</a></li>
-<li><a title="Amazon EC2 Auto Scaling をもう少し詳しく見てみた" href="http://hirofukami.com/2010/03/05/amazon-ec2-auto-scaling/" target="_blank">Amazon EC2 Auto Scaling をもう少し詳しく見てみた</a></li>
-</ul>
-
-
-<p>その情報を元にして <a href="http://www.amazon.co.jp/gp/product/4774142840/ref=as_li_ss_tl?ie=UTF8&camp=247&creative=7399&creativeASIN=4774142840&linkCode=as2&tag=dsea-22" target="_blank">「よくわかるAmazonEC2/S3入門」を執筆した</a> のだけど、4年前の情報なのでもう古くオートスケーリングの設定方法も変わったようだったのでしっかり追いつきたいと思って再び触ってみた。</p>
-
-<p>結論的には以前と同じように思った通りの挙動が確認できた。AWS のドキュメントも充実していて理解をだいぶ助けたが、ちょいちょい間違っている点があったり、基本的にパラメータが多くて説明が少ないので、ユーザにはとっつきにくいというより、ちゃんと動かすまでに結構大変な思いをするものなのは変わらないようだ。<br/>
-ただ、実践でちゃんと使えるようになると魔法のツールになるので、設定方法を紹介してお役に立てれば幸いです。</p>
-
-<p>参考URLとしては、<a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/as-scale-based-on-demand.html" target="_blank">AWS のドキュメントサイトの Auto Scaling &#8211; Scale Based on Demand</a> に沿って進めるとできるが、その通りだと動かない部分もあり、ちょっとした解説や補足を加えて日本語で以下に書いていきます。</p>
-
-<h2>目指す挙動</h2>
-
-<p>オートスケーリングを活用して実戦的に使える設定方法としては、</p>
-
-<ul>
-<li>常にインスタンスの負荷状態をモニタリングしている</li>
-<li>モニタリングのある閾値を超えたら自動的にインスタンス数を増減させる</li>
-<li>起動したインスタンスは ELB の配下に置かれる</li>
-</ul>
-
-
-<p>これができると例えば、Webフロントサーバのスケーラブルな環境を作ることができる。<br/>
-自動的にスケールしてくれるので、今まで人間リソースに頼っていた部分が丸ごとなくなってコストカットも狙える。</p>
-
-<p>ただ注意点は、起動したインスタンスは起動後処理を開始できることを担保してあげないといけないので、ファイルのデプロイやアプリケーションの自動起動などを行うためのセッティングや起動スクリプトの用意などが必要。</p>
-
-<h2>Auto Scaling 設定概要</h2>
-
-<p>オートスケーリングの設定は複数の設定を組み合わせて動作させる。</p>
-
-<ul>
-<li>launch-config : インスタンスの起動情報を設定する。AMI、インスタンス、キーペア、セキュリティグループなどを指定する</li>
-<li>auto-scaling-group : オートスケーリングの中心となる設定。最大最小起動インスタンス数、ELB、アベイラビリティゾーンなどを指定する</li>
-<li>scaling policy : インスタンスを増減方法の設定。一度に立ち上げるインスタンス数などを指定する</li>
-<li>metric-alarm : CloudWatch における閾値の設定。どんな条件の時にアラートを出すかを指定する</li>
-</ul>
-
-
-<p>上の3つが Auto Scaling コマンドで実施し、最後は CloudWatch コマンドで実施する。<br/>
-各設定と挙動を整理すると以下の図のようになる。<br/>
-<a href="images/2013/07/130723aws-autoscaling-001.png"><img class="aligncenter size-large wp-image-1103" alt="130723AWS-AutoScaling.001" src="http://hirofukami.com/images/2013/07/130723aws-autoscaling-001.png?resize=830%2C622" data-recalc-dims="1" /></a><!--more--></p>
-
-<h2>準備</h2>
-
-<p>現在 オートスケーリングの設定はコマンドラインからのみのようなので、コマンドラインツールをダウンロードして、自分の環境に適用させる。</p>
-
-<ul>
-<li>Auto Scaling Command Line Tool : <a href="http://aws.amazon.com/developertools/2535">http://aws.amazon.com/developertools/2535</a></li>
-<li>CloudWatch Command Line Tool : <a href="http://aws.amazon.com/developertools/2534">http://aws.amazon.com/developertools/2534</a></li>
-</ul>
-
-
-<p>自分の環境への適用方法は割愛。<br/>
-結果として、ターミナルで as コマンドと mon コマンドが実行可能になっていること。</p>
-
-<p>各コマンドを理解するには [コマンド] -h としてヘルプを見る。必須項目は何か、オプションの意味などが分かる。</p>
-
-<h2>launch config の設定</h2>
-
-<p>as-create-launch-config で launch config の作成をする。<br/>
-以下は、</p>
-
-<ul>
-<li>launch-config 名 : demo00-test04</li>
-<li>AMI : ami-893cab88</li>
-<li>インスタンスタイプ : t1.micro</li>
-<li>キーペア : deesea</li>
-<li>セキュリティグループ : quick-start-1</li>
-<li>リージョン : ap-northeast-1 (Tokyo)</li>
-</ul>
-
-
-<p>とした場合の設定方法</p>
-
-<pre class="brush: bash; title: ; notranslate" title="">$ as-create-launch-config demo00-test04 --image-id ami-893cab88 --instance-type t1.micro --region ap-northeast-1 --key deesea --group quick-start-1
-</pre>
-
-
-<p>キーペアとセキュリティグループは必須項目ではないのだけど、設定しないとサーバにログイン出来ない、サービスできないことになるので現実的には必須項目。</p>
-
-<p>確認する時は、as-describe-launch-config する</p>
-
-<pre class="brush: bash; title: ; notranslate" title="">$ as-describe-launch-configs -H
-LAUNCH-CONFIG  NAME           IMAGE-ID      TYPE
-LAUNCH-CONFIG  demo00-test04  ami-893cab88  t1.micro
-</pre>
-
-
-<h2>Auto Scaling Group の設定</h2>
-
-<p>as-create-auto-scaling-group で auto scaling group を作成する。<br/>
-以下は、</p>
-
-<ul>
-<li>auto-scaling-group 名 : demo00-test00-group00</li>
-<li>適用させる launch config 名 : demo00-test04</li>
-<li>(必要であれば) 起動したインスタンスを配下につける ELB 名 : demo00</li>
-<li>起動最大インスタンス数 : 10</li>
-<li>起動最小インスタンス数 : 2</li>
-<li>アベイラビリティゾーン : ap-northeast-1a, ap-northeast-1c</li>
-<li>リージョン : ap-northeast-1 (Tokyo)</li>
-</ul>
-
-
-<p>とした場合の設定方法</p>
-
-<pre class="brush: bash; title: ; notranslate" title="">$ as-create-auto-scaling-group demo00-test00-group00 --launch-configuration demo00-test04 --load-balancers demo00 --max-size 10 --min-size 2 --availability-zones ap-northeast-1a,ap-northeast-1c --region ap-northeast-1
-</pre>
-
-
-<p>この設定をした時点で、min-size 数のインスタンスが自動的に起動する。<br/>
-min-size は「常に起動するインスタンス数」になるので、min-size 1 以上にすれば落ちない状態を作ることができる。</p>
-
-<p>確認する時は、as-describe-auto-scaling-groups する</p>
-
-<pre class="brush: bash; title: ; notranslate" title="">$ as-describe-auto-scaling-groups
-AUTO-SCALING-GROUP  demo00-test00-group00  demo00-test04  ap-northeast-1c,ap-northeast-1a  demo00  2  10  2  Default
-INSTANCE  i-eaea06ee  ap-northeast-1c  InService  Healthy  demo00-test04
-INSTANCE  i-48c9254c  ap-northeast-1a  InService  Healthy  demo00-test04
-</pre>
-
-
-<p>起動したインスタンスも表示される。この場合2つのインスタンスが ap-northeast-1a と ap-northeast-1c に分散して起動されていることが分かる。</p>
-
-<p>修正したい時は、as-update-auto-scaling-group を使う。修正したい部分だけ書けばアップデートされる。</p>
-
-<pre class="brush: bash; title: ; notranslate" title="">$ as-update-auto-scaling-group demo00-test00-group00 --launch-config demo00-test05
-</pre>
-
-
-<p>アップデートコマンドがあるのは auto scaling group だけなので、AMI を更新した時の適用方法は、</p>
-
-<ol>
-<li>as-create-launch-config で新しい launch config を作成</li>
-<li>as-update-auto-scaling-group で適用させる launch config を変更</li>
-<li>as-delete-launch config で古い launch config を削除</li>
-</ol>
-
-
-<p>という流れを踏む必要がある。</p>
-
-<h2>Scaling Policy の設定</h2>
-
-<p>as-put-scaling-policy で scaling policy を作成する。<br/>
-スケールアウトとスケールインそれぞれに対して設定する。<br/>
-以下は、スケールアウト用</p>
-
-<ul>
-<li>scaling policy 名 : demo00-test00-outpolicy00</li>
-<li>適用する auto scaling group 名 : demo00-test00-group00</li>
-<li>adjustment トリガーに引っかかった時に増やす値 : 50</li>
-<li>type adjustmentの単位 : PercentChangeInCapacity</li>
-<li>リージョン : ap-northeast-1 (Tokyo)</li>
-</ul>
-
-
-<p>adjustment 50 で type が PercentChangeInCapacity と言うことは。全体のキャパシティに対して 50% 増加する分のスケーリングをするという意味。現在の起動インスタンス数が2だったら、2の50％の1インスタンスを起動して合計3インスタンスになる。現在のインスタンス数が10だったら、5インスタンス増えて合計15インスタンスになる。</p>
-
-<pre class="brush: bash; title: スケールアウト; notranslate" title="スケールアウト">$ as-put-scaling-policy demo00-test00-outpolicy00 -g demo00-test00-group00 --adjustment 50 --type PercentChangeInCapacity --region ap-northeast-1
-</pre>
-
-
-<p>&nbsp;</p>
-
-<pre class="brush: bash; title: 出力結果; notranslate" title="出力結果">arn:aws:autoscaling:ap-northeast-1:910777643605:scalingPolicy:801eb489-69c7-4ecd-8b5c-60e7509c9dbf:autoScalingGroupName/demo00-test00-group00:policyName/demo00-test00-outpolicy00
-</pre>
-
-
-<p>以下は、スケールアウト用</p>
-
-<ul>
-<li>scaling policy 名 : demo00-test00-inpolicy00</li>
-<li>適用する auto scaling group 名 : demo00-test00-group00</li>
-<li>adjustment トリガーに引っかかった時に増やす値 : -1</li>
-<li>type adjustmentの単位 : ChangeInCapacity</li>
-<li>リージョン : ap-northeast-1 (Tokyo)</li>
-</ul>
-
-
-<p>インスタンス数を減らすので、adjustment はマイナスの数字になる。<br/>
-ここでは単純に1インスタンスを減らす設定内容。</p>
-
-<pre class="brush: bash; title: スケールイン; notranslate" title="スケールイン">$ as-put-scaling-policy demo00-test00-inpolicy00 -g demo00-test00-group00 --adjustment=-1 --type ChangeInCapacity --region ap-northeast-1
-</pre>
-
-
-<p>&nbsp;</p>
-
-<pre class="brush: bash; title: 出力結果; notranslate" title="出力結果">arn:aws:autoscaling:ap-northeast-1:910777643605:scalingPolicy:0ce7a750-7fa1-46fc-a316-d2647013aa3f:autoScalingGroupName/demo00-test00-group00:policyName/demo00-test00-inpolicy00
-</pre>
-
-
-<p>arn: から始まる出力結果は次で設定する CloudWatch の設定時に使うのでメモっておく。<br/>
-as-describe-policies コマンドの POLICY-ARN 項目でも確認できる。</p>
-
-<h2>metric alarm の設定</h2>
-
-<p>CloudWatch のコマンド mon-put-metric-alrm を使って閾値を設定する。<br/>
-これもスケールアウトとスケールインそれぞれ設定する。<br/>
-以下は、</p>
-
-<ul>
-<li>アラーム名 : スケールアウト demo00-test00-AddCapacity01、スケールイン demo00-test00-RemoveCapacity01</li>
-<li>モニタリングする項目 metric-name : CPUUtilization</li>
-<li>適用サービス名 namespace : AWS/EC2</li>
-<li>モニタリング値の統計項目 : Average</li>
-<li>監視間隔 : 60 (sec)</li>
-<li>閾値 : スケールアウト 90、スケールイン 40</li>
-<li>検出条件 : GreaterThanOrEqualToThreshold (閾値の値と等しくもしくは超えた時)</li>
-<li>監視対象 dimensions : AutoScalingGroupName=demo00-test00-group00 (スケーリンググループ全体に適用しているのがポイント)</li>
-<li>アラームを出すまでに連続で閾値を超えた回数 evaluation-periods : 2 (この場合、監視間隔60 x 2 = 120sec後にアラームを発生する)</li>
-<li>アラーム発生時の処理 :
-
-<ul>
-<li>スケールアウト arn:aws:autoscaling:ap-northeast-1:910777643605:scalingPolicy:801eb489-69c7-4ecd-8b5c-60e7509c9dbf:autoScalingGroupName/demo00-test00-group00:policyName/demo00-test00-outpolicy00</li>
-<li>スケールイン arn:aws:autoscaling:ap-northeast-1:910777643605:scalingPolicy:801eb489-69c7-4ecd-8b5c-60e7509c9dbf:autoScalingGroupName/demo00-test00-group00:policyName/demo00-test00-outpolicy00</li>
-<li>(as-put-scaling-policy 出力結果)</li>
-</ul>
-</li>
-<li>リージョン : ap-northeast-1 (Tokyo)</li>
-</ul>
-
-
-<p>とした場合の設定方法</p>
-
-<p>namespace は AWS のドキュメントだと &#8220;AWS/EC2&#8243; とダブルコーテーションで囲ってあるが、これだと設定はできるが挙動時にエラーになって動作してくれない。</p>
-
-<pre class="brush: bash; title: ; notranslate" title="">$ mon-put-metric-alarm --alarm-name demo00-test00-AddCapacity01 --metric-name CPUUtilization --namespace=AWS/EC2 --statistic Average --period 60 --threshold 90 --comparison-operator GreaterThanOrEqualToThreshold --dimensions &quot;AutoScalingGroupName=demo00-test00-group00&quot; --evaluation-periods 2 --alarm-actions arn:aws:autoscaling:ap-northeast-1:910777643605:scalingPolicy:801eb489-69c7-4ecd-8b5c-60e7509c9dbf:autoScalingGroupName/demo00-test00-group00:policyName/demo00-test00-outpolicy00 --region ap-northeast-1
-
-$ mon-put-metric-alarm --alarm-name demo00-test00-RemoveCapacity01 --metric-name CPUUtilization --namespace=AWS/EC2 --statistic Average --period 60 --threshold 40 --comparison-operator LessThanOrEqualToThreshold --dimensions &quot;AutoScalingGroupName=demo00-test00-group00&quot; --evaluation-periods 2 --alarm-actions arn:aws:autoscaling:ap-northeast-1:910777643605:scalingPolicy:0ce7a750-7fa1-46fc-a316-d2647013aa3f:autoScalingGroupName/demo00-test00-group00:policyName/demo00-test00-inpolicy00 --region ap-northeast-1
-</pre>
-
-
-<h2>確認</h2>
-
-<p>CloudWatch の設定が正しくできているか mon-describe-alarms コマンドで確認する。</p>
-
-<pre class="brush: bash; title: ; notranslate" title="">$ mon-describe-alarms --region ap-northeast-1 --headers
-ALARM                           STATE  ALARM_ACTIONS                             NAMESPACE  METRIC_NAME     PERIOD  STATISTIC  EVAL_PERIODS  COMPARISON                     THRESHOLD
-demo00-test00-AddCapacity01     OK     arn:aws:autoscalin...-test00-outpolicy00  AWS/EC2    CPUUtilization  60      Average    2             GreaterThanOrEqualToThreshold  90.0
-demo00-test00-RemoveCapacity01  ALARM     arn:aws:autoscalin...0-test00-inpolicy00  AWS/EC2    CPUUtilization  60      Average    2             LessThanOrEqualToThreshold     40.0
-</pre>
-
-
-<p>通常の状態であれば STATE 項目でスケールアウトが OK、スケールイン が ALARM になっていれば良い。ALARM は今現在閾値に引っかかって ALARM を出しているという状態。INSUFFICIENT_DATA になっていなければ何か設定がおかしいということ。</p>
-
-<p>CloudWatch のログは mon-describe-alarm-history で見れる。アラームに引っかかったものや設定の更新が時系列に表示される。</p>
-
-<pre class="brush: bash; title: ; notranslate" title="">$ mon-describe-alarm-history --region ap-northeast-1
-demo00-test00-RemoveCapacity01  2013-07-22T09:02:45.790Z  Action               Successfully executed action arn:aws:autoscaling:ap-northeast-1:910777643605:scalingPolicy:0ce7a750-7fa1-46fc-a316-d2647013aa3f:autoScalingGroupName/demo00-test00-group00:policyName/demo00-test00-inpolicy00
-demo00-test00-RemoveCapacity01  2013-07-22T09:02:45.759Z  StateUpdate          Alarm updated from OK to ALARM
-demo00-test00-RemoveCapacity01  2013-07-22T08:59:45.776Z  StateUpdate          Alarm updated from ALARM to OK
-demo00-test00-RemoveCapacity01  2013-07-22T08:55:45.772Z  Action               Successfully executed action arn:aws:autoscaling:ap-northeast-1:910777643605:scalingPolicy:0ce7a750-7fa1-46fc-a316-d2647013aa3f:autoScalingGroupName/demo00-test00-group00:policyName/demo00-test00-inpolicy00
-demo00-test00-RemoveCapacity01  2013-07-22T08:55:45.768Z  StateUpdate          Alarm updated from OK to ALARM
-demo00-test00-AddCapacity02     2013-07-22T08:46:41.129Z  ConfigurationUpdate  Alarm &quot;demo00-test00-AddCapacity02&quot; deleted
-demo00-test00-AddCapacity03     2013-07-22T08:46:33.759Z  ConfigurationUpdate  Alarm &quot;demo00-test00-AddCapacity03&quot; deleted
-demo00-test00-AddCapacity05     2013-07-22T08:46:24.615Z  ConfigurationUpdate  Alarm &quot;demo00-test00-AddCapacity05&quot; deleted
-demo00-test00-AddCapacity05     2013-07-22T08:43:21.129Z  StateUpdate          Alarm updated from ALARM to OK
-demo00-test00-AddCapacity05     2013-07-22T08:42:21.092Z  StateUpdate          Alarm updated from OK to ALARM
-demo00-test00-AddCapacity04     2013-07-22T08:41:07.031Z  ConfigurationUpdate  Alarm &quot;demo00-test00-AddCapacity04&quot; deleted
-demo00-test00-AddCapacity05     2013-07-22T08:40:25.609Z  StateUpdate          Alarm updated from INSUFFICIENT_DATA to OK
-demo00-test00-AddCapacity05     2013-07-22T08:40:24.983Z  ConfigurationUpdate  Alarm &quot;demo00-test00-AddCapacity05&quot; created
-demo00-test00-AddCapacity04     2013-07-22T08:39:33.834Z  Action               Successfully executed action arn:aws:autoscaling:ap-northeast-1:910777643605:scalingPolicy:801eb489-69c7-4ecd-8b5c-60e7509c9dbf:autoScalingGroupName/demo00-test00-group00:policyName/demo00-test00-outpolicy00
-demo00-test00-AddCapacity04     2013-07-22T08:39:33.815Z  StateUpdate          Alarm updated from INSUFFICIENT_DATA to ALARM
-</pre>
-
-
-<p>また、実際のモニタリングの値を見たい時は、mon-get-stats コマンドを使う。</p>
-
-<pre class="brush: bash; title: ; notranslate" title="">$ mon-get-stats CPUUtilization --region ap-northeast-1 --namespace AWS/EC2 --statistics Average --dimensions &quot;AutoScalingGroupName=demo00-test00-group00&quot;
-
-(snip)
-
-2013-07-23 00:22:00  25.615000000000002  Percent
-2013-07-23 00:23:00  19.310000000000002  Percent
-2013-07-23 00:24:00  23.115000000000002  Percent
-2013-07-23 00:25:00  19.13               Percent
-2013-07-23 00:26:00  23.505000000000003  Percent
-2013-07-23 00:27:00  19.04               Percent
-2013-07-23 00:28:00  15.985              Percent
-2013-07-23 00:29:00  6.665               Percent
-</pre>
-
-
-<p>これで auto scaling group 全体の値が確認できる。</p>
-
-<p>負荷テストして実際スケールさせる場合は、1インスタンスだけCPU使用率100％にしても複数インスタンス起動している場合は平均で見られるので、スケールしない。複数のインスタンスで負荷をかけて、mon-get-stats の値が閾値を超えたかどうか確認しつつ、インスタンスが自動的に起動されるか見ると良い。</p>
 ]]></content>
   </entry>
   

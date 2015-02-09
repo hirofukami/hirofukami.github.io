@@ -4,7 +4,7 @@
   <title><![CDATA[Hiro Fukami's Blog]]></title>
   <link href="http://hirofukami.com/atom.xml" rel="self"/>
   <link href="http://hirofukami.com/"/>
-  <updated>2015-02-08T18:26:14+09:00</updated>
+  <updated>2015-02-09T18:08:08+09:00</updated>
   <id>http://hirofukami.com/</id>
   <author>
     <name><![CDATA[HiroFukami]]></name>
@@ -12,6 +12,156 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Mac - boot2docker 1.4.1 間共有フォルダ設定方法]]></title>
+    <link href="http://hirofukami.com/blog/2015/02/09/mac-docker-sharedfolder/"/>
+    <updated>2015-02-09T19:00:00+09:00</updated>
+    <id>http://hirofukami.com/blog/2015/02/09/mac-docker-sharedfolder</id>
+    <content type="html"><![CDATA[<p><img src="http://hirofukami.com/images/2015/02/20150209-docker.png" title="'docker'" ></p>
+
+<p>Mac で <a href="https://www.docker.com/">Docker</a> を動かそうとすると <a href="http://boot2docker.io/">boot2docker</a> は必須。</p>
+
+<p>Vagrant みたいに開発環境用サーバとして Docker を扱うには、共有フォルダの設定を自分でやらなくてはならない。</p>
+
+<p>自分的には Dockerfile も Mac のローカルフォルダで管理したいから、Mac &ndash; boot2docker 間で共有フォルダを設定して、</p>
+
+<ol>
+<li>Mac 上で Dockerfile を作る</li>
+<li>boot2docker ssh</li>
+<li>docker build -t centos:rails</li>
+</ol>
+
+
+<p>みたいにやりたい。</p>
+
+<p>もちろん、Dcoker container に Mac でコーディングしたソースは自動的にデプロイしたいので、boot2docker &ndash; docker container 間も共有フォルダにする必要はあるのだけど、まずは Mac &ndash; boot2docker 間を共有したい。</p>
+
+<p>調べてみたが検索に引っかかるのは古い情報で、Github の README.md に記載を見つけて動いた。</p>
+
+<p>2015.02.09現在 boot2docker 1.4.1 で動かすための方法をメモしておく。</p>
+
+<h1>情報のソース</h1>
+
+<p><a href="https://github.com/boot2docker/boot2docker">boot2docker の github</a> の README.md 内の <strong>VirtualBox Guest Additions</strong></p>
+
+<p><a href="https://github.com/boot2docker/boot2docker#virtualbox-guest-additions">https://github.com/boot2docker/boot2docker#virtualbox-guest-additions</a></p>
+
+<blockquote><p>The first of the following share names that exists (if any) will be automatically mounted at the location specified:</p>
+
+<ol>
+<li>Users share at /Users</li>
+<li>/Users share at /Users</li>
+<li>c/Users share at /c/Users</li>
+<li>/c/Users share at /c/Users</li>
+<li>c:/Users share at /c/Users</li>
+</ol>
+</blockquote>
+
+<p>という記述がある。</p>
+
+<!-- more -->
+
+
+<h1>古い boot2docker が入っている人</h1>
+
+<p>実行前には、<code>$ boot2docker stop</code> して boot2docker VM を停止しておく。</p>
+
+<p>boo2docker のアップグレードをします。Mac のターミナル上で、</p>
+
+<p><code>$ boot2docker upgrade</code></p>
+
+<p>を実行。</p>
+
+<p>すると、新しい iso ファイルが、<code>$HOME/.boot2docker/boot2docker.iso</code>(自分の場合は、<code>/Users/hironobu/.boot2docker/boot2docker.iso</code>) にダウンロードされます。</p>
+
+<p>確認したければ、<code>$ boot2docker up &amp;&amp; boot2docker ssh</code> してログインプロンプトに <code>Boot2Docker version 1.4.1</code> が見えればOK。</p>
+
+<h1>VirtualBox コマンドで共有する</h1>
+
+<p>VirtualBox の Share Name を <code>Users</code> にすればうまくマウントしてくれそう。以下を Mac のターミナル上で実行する。</p>
+
+<p><code>
+$ VBoxManage sharedfolder add boot2docker-vm --name Users --hostpath $HOME
+</code></p>
+
+<p><code>boot2docker-vm</code> は VirtualBox 上の boot2docker の VM 名。
+<code>$HOME</code> は自分の場合、 <code>/Users/hironobu</code> になる。</p>
+
+<p>VirtualBox 上の設定画面は以下のようになった。</p>
+
+<p><img src="http://hirofukami.com/images/2015/02/20150209-ScreenShot.png" title="'VirualBox screen shot" ></p>
+
+<p>古い情報だと Share Name を <code>home</code> にすると書いてあるブログもあったが、やってみたが認識しなかった。</p>
+
+<h1>確認</h1>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>boot2docker up
+</span><span class='line'>
+</span><span class='line'><span class="nv">$ </span>boot2docker ssh
+</span><span class='line'>                        <span class="c">##        .</span>
+</span><span class='line'>                  <span class="c">## ## ##       ==</span>
+</span><span class='line'>               <span class="c">## ## ## ##      ===</span>
+</span><span class='line'>           /<span class="s2">&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;</span><span class="se">\_</span>__/ <span class="o">===</span>
+</span><span class='line'>      ~~~ <span class="o">{</span>~~ ~~~~ ~~~ ~~~~ ~~ ~ /  <span class="o">===</span>- ~~~
+</span><span class='line'>           <span class="se">\_</span>_____ o          __/
+</span><span class='line'>             <span class="se">\ </span>   <span class="se">\ </span>       __/
+</span><span class='line'>              <span class="se">\_</span>___<span class="se">\_</span>_____/
+</span><span class='line'> _                 _   ____     _            _
+</span><span class='line'>| |__   ___   ___ | |_|___ <span class="se">\ </span>__| | ___   ___| | _____ _ __
+</span><span class='line'>| <span class="s1">&#39;_ \ / _ \ / _ \| __| __) / _` |/ _ \ / __| |/ / _ \ &#39;</span>__|
+</span><span class='line'>| |_<span class="o">)</span> | <span class="o">(</span>_<span class="o">)</span> | <span class="o">(</span>_<span class="o">)</span> | |_ / __/ <span class="o">(</span>_| | <span class="o">(</span>_<span class="o">)</span> | <span class="o">(</span>__|   &lt;  __/ |
+</span><span class='line'>|_.__/ <span class="se">\_</span>__/ <span class="se">\_</span>__/ <span class="se">\_</span>_|_____<span class="se">\_</span>_,_|<span class="se">\_</span>__/ <span class="se">\_</span>__|_|<span class="se">\_\_</span>__|_|
+</span><span class='line'>Boot2Docker version 1.4.1, build master : 86f7ec8 - Tue Dec 16 23:11:29 UTC 2014
+</span><span class='line'>Docker version 1.4.1, build 5bc2ff8
+</span><span class='line'>
+</span><span class='line'>docker@boot2docker:~<span class="nv">$ </span>ll /
+</span><span class='line'>total 4
+</span><span class='line'>drwxr-xr-x    1 docker   staff         3332 Jan 27 23:34 Users/
+</span><span class='line'>
+</span><span class='line'><span class="o">(</span>snip<span class="o">)</span>
+</span><span class='line'>
+</span><span class='line'>docker@boot2docker:~<span class="nv">$ </span>ll /Users/
+</span><span class='line'>
+</span><span class='line'><span class="o">(</span>snip<span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>/Users</code> が boot2docker 内に見えて、<code>/Users</code> 内を見ると Mac の $HOME(自分の場合は、<code>/Users/hironobu</code>)が見えるはず。</p>
+
+<p>ということでした (・ω&lt;)</p>
+
+<p>快適な docker 開発ライフを〜</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[オフィスお引越し]]></title>
@@ -2820,100 +2970,6 @@ Swiftは唯一まったく新しいものとして登場できたと思うが、
 <p>やはりポジティブ思考はメリット大きいなと思う。新しい発見としては人への対応の仕方というか人を受け入れる許容とか興味とか人間性のような要素もあるのだなという部分。やっぱり人間は人との関わりの中で生きているからなぁと思うところだった。</p>
 
 <p>最近うまく行ってないけど、人生を前向きに生きたいと思っている人におすすめな本。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[ルノー キャプチャー 試乗レビュー]]></title>
-    <link href="http://hirofukami.com/blog/2014/05/14/car-review-renault-captur/"/>
-    <updated>2014-05-14T16:00:00+09:00</updated>
-    <id>http://hirofukami.com/blog/2014/05/14/car-review-renault-captur</id>
-    <content type="html"><![CDATA[<p><a href="http://www.renault.jp/car_lineup/captur/">ルノー キャプチャー</a> を試乗したレビューです。</p>
-
-<p><img src="http://www.renault.jp/car_lineup/captur/presentation/img/tabimg01_b.jpg" alt="RENAULT CAPTUR" /></p>
-
-<p>試乗したのは、上位モデルのキャプチャー インテンスの青白で、下位モデルのゼンとの差は装備が若干豪華になるのとホイールサイズが異なる点。エンジンは同じ。</p>
-
-<h2>運転性</h2>
-
-<p><img src="http://www.renault.jp/car_lineup/captur/popup/img/engine_img01.jpg" alt="engine" /></p>
-
-<p>プジョー 2008に比べてとても良い。ダブルクラッチのシフトチェンジは本当にスムーズ。減速感は全くない。</p>
-
-<p>プジョー 2008の場合、1速から2速、2速から3速の切り替わり時に減速感をかなり感じたが、これはとても大きなアドバンテージ。</p>
-
-<p>エンジンは1.2lターボチャージャー付きで、初速の加速感には乏しいがヨーロッパ車のコンパクトカーはみんな1.2-1.4lくらいのエンジンでターボ付きがトレンドなので、キャプチャーだけではない。</p>
-
-<p>路面のボコボコを吸収するサスペンションもかなり良い。プジョー 2008は後部座席の揺れが結構あるがキャプチャーは後部座席でも同じく静かに乗ることができる。
-この点もプジョー 2008よりアドバンテージ。</p>
-
-<h2>居住性</h2>
-
-<p><img src="http://www.renault.jp/car_lineup/captur/popup/img/space_img01.jpg" alt="inside" /></p>
-
-<p>意外と天井が高かった。運転席に座る時はだいたい一番低い位置で運転するのだけど、キャプチャーの場合は拳一個分以上天井まで開くので、座面を2段階くらいあげてちょうどよいポジションになった。</p>
-
-<p>サンルーフが付けば開放感に文句はないが、キャプチャーはサンルーフなし。
-しかし、天井が高いので室内空間のゆとりがあり、後部座席にいても圧迫感は感じない。</p>
-
-<p>後部座席の足元も十分。全長が若干長めなのでその分後部座席も後ろ目に配置できている気がする。</p>
-
-<p>トランクスペースはそれほどいらないので後部座席を広くして欲しいと思っているので、この点も要望にマッチしている。</p>
-
-<h2>見た目</h2>
-
-<p><img src="http://www.renault.jp/car_lineup/captur/img/feat_mainPh.jpg" alt="outside" /></p>
-
-<p>大きさは若干大きいかなと思えるが、SUVにしてみればコンパクト。幅・全長共にルーテシアよりちょっとだけ長い。</p>
-
-<p>外観は良いスタイリング、うまく曲線を使って可愛らしいフォルム。</p>
-
-<p>インテンスは天井と車体の色が異なるツートンカラーなので、オリジナリティが高い。色展開も豊富。</p>
-
-<p>スマート・フォーフォーに乗っていて思うのだけど、単色の車が多く走る中、ツートンカラーは良いキャラクターを主張できていると思う。</p>
-
-<p><img src="http://www.renault.jp/car_lineup/captur/presentation/img/tabimg02_b.jpg" alt="face" /></p>
-
-<p>顔は特徴的で国内ではこういうフロントデザインは作らないだろうと思う。この特徴的な顔はルーテシアとほぼ同じ、今年秋くらいに出るとされる新しいメガーヌも同じような顔になるとのこと。
-真ん中のルノーマークが大きく付いている。ルノー自体が日本でそんなに走っていないので、見た人はなんかのマークなのかな？くらいの認識で済まされるから、変な宣伝しちゃっています感はないだろう。</p>
-
-<p><img src="http://www.renault.jp/car_lineup/captur/presentation/img/tabimg04_b.jpg" alt="panel" /></p>
-
-<p>運転席に座った際、すぐ目につく範囲であるメーターパネル、ハンドル、エアコンスイッチはデザインが効いている。</p>
-
-<p>しかし、結構大胆にというか広範囲にいかにもプラスチックですよというパーツが使われている。</p>
-
-<p>フロントガラス下のパネルと、シートの裏は全部プラスチックだし、取り外し可能なシートカバーのジップもおおぶりなプラスチック製なので、このへんがチープ感に繋がっている。
-よって、内装全体の印象としては高級感はそんなに感じず、結構チープな印象になる。これはスポーティー狙いなのかもしれないが、自分としてはチープと感じた。</p>
-
-<h2>売れ行き</h2>
-
-<p>2週間の間で白黒3台のうち2台が売れたと言っていた。かなり好調のようだ。
-6月の成約で10月納車になるパターンもあると言っていた。</p>
-
-<p>最も売れている色は特になく、全体としてはまんべんなく売れているよう。
-ただ、地域差はあり、世田谷は水色・オレンジ。八王子は黒・白が出るみたい。人口密度が高い地域の方が希少性を狙って奇抜な色の方を好むのかな。</p>
-
-<p>営業には早めにおさえたいので、色が決まったら連絡くださいと言っていたが、今すぐ買おうと思っていないので自分たちのタイミングで行かせていただきますよと。</p>
-
-<h2>見積り</h2>
-
-<p>キャンペーンの時は1.9％だったが今は2.9％金利。</p>
-
-<p>最後の1回を残せる残金設定あり、残金設定の幅はかなり大きくすることもできるみたい。営業的には確実に払ってほしいから残金はなるべく少なくしたいが、100万弱くらいに設定。
-頭金50万、今の車の下取り10万、値引き10万で60回払いだとちょうど3万/月となった。</p>
-
-<p>んー、ETCとナビつけてもろもろ含め300万くらいになったので、まぁこんなもんか。</p>
-
-<h2>総評</h2>
-
-<p>同じくコンパクトSUVであるプジョー 2008に比べると、多くの点でキャプチャーにアドバンテージがある。特に運転性と居住性は良い。</p>
-
-<p>好みによってボディーカラーを選べるし、青やオレンジは若者ポップ狙い。白おとなしめではあるが、天井が黒なのでシックで品が出る感じかつボディーのコンパクトさと曲線から可愛らしい印象もある。</p>
-
-<p>運転をガシガシ楽しむというより、普段街乗り休日遠出の生活パターンにちょうどマッチするような、一緒に過ごしていて嫌味のなく楽しめる車だろう。</p>
-
-<p><a href="http://www.renault.jp/car_lineup/captur/">ルノー キャプチャー</a></p>
 ]]></content>
   </entry>
   
