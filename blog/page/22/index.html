@@ -9,7 +9,7 @@
 
 <meta name="author" content="HiroFukami"> 
 
-<meta name="description" content="あるパネルディスカッションを聞いた時にどうも面白くないと思った。話している人たちは知識も豊富で、それなりな地位の人たちらしいが、どの人が話す中身にも興味をそそられない。 話しているテーマは決して古くなく、先端的でチャレンジングであるのだが、なぜ自分がそこまではっきり思ったのか、 &hellip;"> <meta name="keywords" content="">
+<meta name="description" content="Amazon EBS の特徴はマウントしたボリュームに対するスナップショットが取れることだろう。boto を使って簡単にバックアップ環境を以前に作業したメモを残しておく。 boto は python のライブラリで、Amazon EC2 のインスタンス上から AWS の API を操作できる。 &hellip;"> <meta name="keywords" content="">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -62,7 +62,7 @@ $(document).ready(
     <meta property="twitter:site" content="d_sea">
     <meta property="twitter:url" content="http://hirofukami.com">
     <meta property="twitter:title" content="Hiro Fukami's Blog">
-    <meta property="twitter:description" content="あるパネルディスカッションを聞いた時にどうも面白くないと思った。話している人たちは知識も豊富で、それなりな地位の人たちらしいが、どの人が話す中身にも興味をそそられない。 話しているテーマは決して古くなく、先端的でチャレンジングであるのだが、なぜ自分がそこまではっきり思ったのか、もう少し具体的に理由を明確にしたいと思った。 少し考えてみていくつか理由を見つけてみた。 個人が見えない &hellip;">
+    <meta property="twitter:description" content="Amazon EBS の特徴はマウントしたボリュームに対するスナップショットが取れることだろう。boto を使って簡単にバックアップ環境を以前に作業したメモを残しておく。 boto は python のライブラリで、Amazon EC2 のインスタンス上から AWS の API を操作できる。boto の機能は多種であるが、今回は EBS の API を操作して、 &hellip;">
     <meta property="twitter:creator" content="d_sea" />
 
 
@@ -122,6 +122,311 @@ $(document).ready(
 </header>
 
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/2009/10/25/amazon-ebs-boto/">
+		
+			Amazon EBS と Boto を使って自動バックアップ環境を構築する</a>
+	</h2>
+	<div class="entry-content">
+		<div class="section">
+  <p>
+    Amazon EBS の特徴はマウントしたボリュームに対するスナップショットが取れることだろう。boto を使って簡単にバックアップ環境を以前に作業したメモを残しておく。
+  </p>
+  
+  <p>
+    boto は python のライブラリで、Amazon EC2 のインスタンス上から AWS の API を操作できる。boto の機能は多種であるが、今回は EBS の API を操作して、毎日1回スナップショットをとって5世代分保存する設定をしてみる。
+  </p>
+  
+  <ul>
+    <li>
+      botoのページ: <a href="http://code.google.com/p/boto/" target="_blank"><a href="http://code.google.com/p/boto/" target="_blank">http://code.google.com/p/boto/</a></a>
+    </li>
+    <li>
+      参考にしたURL <ul>
+        <li>
+          <a href="http://2606-36j.blogspot.com/2009/03/amazon-ebs-snapshot.html" target="_blank"><a href="http://2606-36j.blogspot.com/2009/03/amazon-ebs-snapshot.html" target="_blank">http://2606-36j.blogspot.com/2009/03/amazon-ebs-snapshot.html</a></a>
+        </li>
+        <li>
+          <a href="http://emutyworks.com/?Amazon%20EC2%2FEBS%E3%81%AESnapshot%E3%82%92%E5%AE%9A%E6%9C%9F%E7%9A%84%E3%81%AB%E5%8F%96%E3%82%8B" target="_blank"><a href="http://emutyworks.com/?Amazon%20EC2%2FEBS%E3%81%AESnapshot%E3%82%92%E5%AE%9A%E6%9C%9F%E7%9A%84%E3%81%AB%E5%8F%96%E3%82%8B" target="_blank">http://emutyworks.com/?Amazon%20EC2%2FEBS%E3%81%AESnapshot%E3%82%92%E5%AE%9A%E6%9C%9F%E7%9A%84%E3%81%AB%E5%8F%96%E3%82%8B</a></a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+  
+  <h4>
+    構築手順
+  </h4>
+  
+  <p>
+    1. boto インストール
+  </p>
+  
+  <ul>
+    <ul>
+      <li>
+        pythonで動作するのでインストール
+      </li>
+    </ul>
+  </ul>
+  
+  <pre>
+
+# yum -y install python-devel
+
+</pre>
+  
+  <ul>
+    <ul>
+      <li>
+        boto ページより最新版をダウンロード
+      </li>
+    </ul>
+  </ul>
+  
+  <pre>
+
+# wget <a href="http://boto.googlecode.com/files/boto-1.8d.tar.gz" target="_blank"><a href="http://boto.googlecode.com/files/boto-1.8d.tar.gz" target="_blank">http://boto.googlecode.com/files/boto-1.8d.tar.gz</a></a>
+
+# tar zvxf boto-1.8d.tar.gz
+
+# cd boto-1.8d
+
+# python setup.py install
+
+</pre>
+  
+  <p>
+    2. 自動処理用スクリプトの作成
+  </p>
+  
+  <ul>
+    <ul>
+      <li>
+        ファイルパスは &#8220;/home/snapshot.py&#8221; とした
+      </li>
+      <li>
+        aws_access_key_idとaws_secret_access_key の部分を書き換えるだけ。仮に aws_access_key_id は ACCESS KEY、aws_secret_access_key は SECRET KEY としてる。各環境によるそれぞれの値に置き換えてください。
+      </li>
+      <li>
+        作ったSnapshotのdescriptionも書けるのでお好みに変えてください。
+      </li>
+    </ul>
+  </ul>
+  
+  <pre class="syntax-highlight">
+
+<span class="synComment">#!/usr/bin/python </span>
+
+<span class="synPreProc">import</span> sys
+
+<span class="synPreProc">from</span> boto.ec2.connection <span class="synPreProc">import</span> EC2Connection
+
+<span class="synStatement">if</span>(len(sys.argv) != 3):
+
+<span class="synStatement">print</span> "<span class="synConstant">Usage: snapshot.py &lt;num&gt; &lt;volume-id&gt;</span>"
+
+sys.exit()
+
+conn = EC2Connection('<span class="synConstant">ACCESS KEY</span>','<span class="synConstant">SECRET KEY</span>')
+
+conn.create_snapshot(sys.argv[2], description='<span class="synConstant">This is Backup Snapshot by snapshot.py</span>')
+
+snapshot = {}
+
+<span class="synStatement">for</span> x <span class="synStatement">in</span> conn.get_all_snapshots():
+
+<span class="synStatement">if</span>(x.volume_id == sys.argv[2]):
+
+tmp = {x.id:x.start_time}
+
+snapshot.update(tmp)
+
+snapshot = sorted(snapshot.items(), key=<span class="synStatement">lambda</span> (k, v): (v, k), reverse=True)
+
+<span class="synStatement">for</span> i <span class="synStatement">in</span> range(int(sys.argv[1]), len(snapshot)):
+
+conn.delete_snapshot(snapshot[i][0])
+
+</pre>
+  
+  <p>
+    3. cron に仕込む
+  </p>
+  
+  <ul>
+    <ul>
+      <li>
+        EBS の vol ID は仮で &#8220;vol-12345678&#8221; としている。それぞれの環境に置き換えてください
+      </li>
+      <li>
+        &#8220;# crontab -e&#8221; して以下の内容を記述
+      </li>
+    </ul>
+  </ul>
+  
+  <pre>
+
+45 04 * * * /home/snapshot.py 5 vol-12345678
+
+</pre>
+  
+  <ul>
+    <ul>
+      <li>
+        記述方法は、&#8221; [分] [時] [日] [月] [曜日] [filepath] [残したい世代数] [EBSのVolume ID] &#8221; 例は毎日AM4:45に処理させる記述内容
+      </li>
+    </ul>
+  </ul>
+  
+  <h4>
+    動作確認
+  </h4>
+  
+  <p>
+    動作確認用として、
+  </p>
+  
+  <pre>
+
+45 * * * * /home/snapshot.py 5 vol-12345678
+
+</pre>
+  
+  <p>
+    として、分の部分を変化させながら動作確認。5世代分まで保存できた。確認してみる。
+  </p>
+  
+  <ul>
+    <ul>
+      <li>
+        -K で private key ファイルを指定している。仮に &#8220;pk-xxxxxxxx.pem&#8221; としているので、それぞれの環境に合わせて置き換えてください
+      </li>
+      <li>
+        -C で certificate file を指定している。仮に &#8220;cert-xxxxxxxx.pem&#8221; としているので、それぞれの環境に合わせて置き換えてください
+      </li>
+    </ul>
+  </ul>
+  
+  <pre>
+
+$ ec2-describe-snapshots -K pk-xxxxxxxx.pem -C cert-xxxxxxxx.pem
+
+SNAPSHOT    snap-42cc692b    vol-12345678
+
+completed    2009-08-12T03:03:01+0000    100%
+
+SNAPSHOT    snap-e9cc6980    vol-12345678
+
+completed    2009-08-12T03:10:02+0000    100%
+
+SNAPSHOT    snap-3ec96c57    vol-12345678
+
+completed    2009-08-12T03:55:01+0000    100%
+
+SNAPSHOT    snap-c6c86daf    vol-12345678
+
+completed    2009-08-12T04:05:01+0000    100%
+
+SNAPSHOT    snap-27cb6e4e    vol-12345678
+
+completed    2009-08-12T04:12:01+0000    100%
+
+</pre>
+  
+  <p>
+    さらにcronを回しても6世代分にはならず、最も古いものを削除して5世代分を保持してくれた。
+  </p>
+  
+  <pre>
+
+$ ec2-describe-snapshots -K pk-xxxxxxxx.pem -C cert-xxxxxxxx.pem
+
+SNAPSHOT    snap-e9cc6980    vol-12345678
+
+completed    2009-08-12T03:10:02+0000    100%
+
+SNAPSHOT    snap-3ec96c57    vol-12345678
+
+completed    2009-08-12T03:55:01+0000    100%
+
+SNAPSHOT    snap-c6c86daf    vol-12345678
+
+completed    2009-08-12T04:05:01+0000    100%
+
+SNAPSHOT    snap-27cb6e4e    vol-12345678
+
+completed    2009-08-12T04:12:01+0000    100%
+
+SNAPSHOT    snap-c4cb6ead    vol-12345678
+
+completed    2009-08-12T04:16:02+0000    100%
+
+</pre>
+  
+  <p>
+    最も古いタイムスタンプが消えて、新しいものが増えていることが分かる。
+  </p>
+  
+  <p>
+    crontab を
+  </p>
+  
+  <pre>
+
+45 04 * * * /home/snapshot.py 5 vol-581cf731
+
+</pre>
+  
+  <p>
+    に戻して確認終了。
+  </p>
+  
+  <p>
+    よく S3 にバックアップと言うが、まずは大事なファイルは EBS で作ってマウントしたボリューム上に置いて、この仕組みにのせればバックアップ環境としては十分だろう。
+  </p>
+  
+  <p>
+    シェルを駆使しして書いた頃が遠い昔のようだ。。。従来のような手間が AWS のサービスをうまく使うことで簡単に終わってしまう。この新しい感覚と手法は実践的に使ってみないと伝わらないんだろうな。
+  </p>
+</div>
+
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-10-26T00:00:00+09:00" pubdate data-updated="true">Oct 26<span>th</span>, 2009</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/tech/'>Tech</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/2009/10/25/amazon-ebs-boto//blog/page/22/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
 
 
     <article class="post">
@@ -1827,110 +2132,6 @@ Total number of prefixes 1
 
 	
 		<span class="comments"><a href="/2009/08/22/%ef%bc%9c%e5%8b%9d%e8%b2%a0%e8%84%b3%ef%bc%9e%e3%81%ae%e9%8d%9b%e3%81%88%e6%96%b9//blog/page/22/index.html#disqus_thread">Comments</a></span>
-	
-</div></article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/2009/08/21/%e3%82%8f%e3%81%8c%e5%8f%8b-%e6%9c%ac%e7%94%b0%e5%ae%97%e4%b8%80%e9%83%8e/">
-		
-			わが友 本田宗一郎</a>
-	</h2>
-	<div class="entry-content">
-		<div class="section">
-  <div class="hatena-asin-detail">
-    <p>
-      <a href="http://www.amazon.co.jp/gp/product/4341019082/ref=as_li_tf_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4341019082&linkCode=as2&tag=dsea-22" target="_blank"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4341019082&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=dsea-22" /></a><img src="http://www.assoc-amazon.jp/e/ir?t=dsea-22&l=as2&o=9&a=4341019082" width="1" height="1" border="0" alt="" style="border:none!important;margin:0!important;" /> <div class="hatena-asin-detail-info">
-        <p>
-          <a href="http://www.amazon.co.jp/gp/product/4341019082/ref=as_li_tf_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4341019082&linkCode=as2&tag=dsea-22" target="_blank">わが友 本田宗一郎</a><img src="http://www.assoc-amazon.jp/e/ir?t=dsea-22&l=as2&o=9&a=4341019082" width="1" height="1" border="0" alt="" style="border:none!important;margin:0!important;" /> <ul>
-            <li>
-              <span class="hatena-asin-detail-label">作者:</span> <a href="http://d.hatena.ne.jp/keyword/%B0%E6%BF%BC%C2%E7" class="keyword" target="_blank">井深大</a>
-            </li>
-            <li>
-              <span class="hatena-asin-detail-label">出版社/メーカー:</span> <a href="http://d.hatena.ne.jp/keyword/%CA%B8%E9%BA%BD%D5%BD%A9" class="keyword" target="_blank">文藝春秋</a>
-            </li>
-            <li>
-              <span class="hatena-asin-detail-label">発売日:</span> 1995/03
-            </li>
-            <li>
-              <span class="hatena-asin-detail-label">メディア:</span> 文庫
-            </li>
-            <li>
-              <span class="hatena-asin-detail-label">クリック</span>: 2回
-            </li>
-            <li>
-              <a href="http://d.hatena.ne.jp/asin/4167437023" target="_blank">この商品を含むブログ (5件) を見る</a>
-            </li>
-          </ul></div> 
-          
-          <div class="hatena-asin-detail-foot">
-          </div></div> 
-          
-          <p>
-            本田宗一郎の「やりたいことをやれ」の<a href="http://d.hatena.ne.jp/d_sea/20090705/p1" target="_blank">レビューを書いたら</a>、それを読んだパートナーさんがこの本を貸してくれた。ありがとうございます＞Oさん
-          </p>
-          
-          <p>
-            内容は本田宗一郎が亡くなった後に、もっと本田宗一郎の実績が評価されるべきとの思いから親友だった井深大氏が書いた本。
-          </p>
-          
-          <p>
-            ソニーの創業者とホンダの創業者がこんなにも仲が良いのは知らなかったことなのだが、二人とも技術者でありやってみなくては分からないというベンチャー指向があったりして、単にビジネスの昔話とは片付けられない面白い内容になっている。
-          </p>
-          
-          <p>
-            基本的には本田宗一郎と井深大との思い出話や対談内容の紹介になっているのだけど話題は経営的なものはほとんどなくて、新しいものへの取り組み方とか遊びとか考え方のようなものの紹介になっていて、この二人がどんな思いや考え方をしていたのかが分かる。
-          </p>
-          
-          <p>
-            自分の中で日本の大企業の創業者や経営者というのはひとくくりにしていた部分があって、みんな同じような考え方や振る舞い方を好んでいるような印象を持っていた。が、この二人のやり取りを見てみると古くささや右にならえ的な変な集団主義の発想がなく、むしろ技術に対して単純にチャレンジしてその結果よい製品が生まれて売れた。というすごく単純な思いでやってきていて、それは今でも十分に通用するというよりむしろ必要とされているところかと思う。
-          </p>
-          
-          <p>
-            二人の対談の中で、アメリカの能力主義への現状から「日本も終身雇用なんてことは、いっていられなくなると思う。」という言葉があってかなりビックリした。この対談は1966年で、40年以上前から現状の終身雇用崩壊を示唆していることになる。自分が1990年代に思い描いていた会社員＝大企業＝終身雇用のイメージはすでに崩れていたのか、という認識の違いからも2重にショックだった。
-          </p>
-          
-          <p>
-            ともあれ、二人の対談や文章からエンジニアとして新しいもの、世の中にないものを追求し続け、実際作り続けることこそが、会社の原動力であり最も大事にしてきたことが分かる。
-          </p>
-          
-          <p>
-            今のネットを中心とした数多くの小さなエンジニア会社を40年も前の実績から勇気づけてくれることは間違いない本になるといえる。
-          </p></div>
-
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-08-22T00:00:00+09:00" pubdate data-updated="true">Aug 22<span>nd</span>, 2009</time></div>
-	
-
-<div class="tags">
-
-	<a class='category' href='/blog/categories/book/'>Book</a>
-
-</div>
-
-
-	
-		<span class="comments"><a href="/2009/08/21/%e3%82%8f%e3%81%8c%e5%8f%8b-%e6%9c%ac%e7%94%b0%e5%ae%97%e4%b8%80%e9%83%8e//blog/page/22/index.html#disqus_thread">Comments</a></span>
 	
 </div></article>
 
