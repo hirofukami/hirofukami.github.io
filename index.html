@@ -9,7 +9,7 @@
 
 <meta name="author" content="HiroFukami"> 
 
-<meta name="description" content="http://www.shakesoul.net Linkedin の勤続記念にいいねが付いて気づいたのですが、個人でやっている株式会社シェイクソウル ShakeSoul, inc.を設立して6年たちました。 6年間といっても途中 fluxflex, inc. &hellip;"> <meta name="keywords" content="">
+<meta name="description" content="WordPressからOctopressにきれいに移行する方法を紹介したが、ちょっとした問題が残っていて、それを解消したので紹介。 パーマリンクの扱い パーマリンクはWordPressの管理画面のパーマリンク設定でカスタマイズできるので、 /%year%/%monthnum%/%day%/% &hellip;"> <meta name="keywords" content="">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -62,7 +62,7 @@ $(document).ready(
     <meta property="twitter:site" content="d_sea">
     <meta property="twitter:url" content="http://hirofukami.com">
     <meta property="twitter:title" content="Hiro Fukami's Blog">
-    <meta property="twitter:description" content="http://www.shakesoul.net Linkedin の勤続記念にいいねが付いて気づいたのですが、個人でやっている株式会社シェイクソウル ShakeSoul, inc.を設立して6年たちました。 6年間といっても途中 fluxflex, inc. を2年間やってその間は開店休業状態だったので、実質4年ほどですが、まぁそれだけ時間がたちました。 &hellip;">
+    <meta property="twitter:description" content="WordPressからOctopressにきれいに移行する方法を紹介したが、ちょっとした問題が残っていて、それを解消したので紹介。 パーマリンクの扱い パーマリンクはWordPressの管理画面のパーマリンク設定でカスタマイズできるので、 /%year%/%monthnum%/%day%/%postname%.html として設定していました。 それを 紹介した方法で やると以下の様な &hellip;">
     <meta property="twitter:creator" content="d_sea" />
 
 
@@ -122,6 +122,146 @@ $(document).ready(
 </header>
 
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2015/02/15/permalink-wordpress-to-octopress/">
+		
+			WordPress to Octopress 日本語パーマリンクを直す</a>
+	</h2>
+	<div class="entry-content">
+		<p><a href="/blog/2014/12/01/right-way-wordpress-to-octopress/">WordPressからOctopressにきれいに移行する方法を紹介した</a>が、ちょっとした問題が残っていて、それを解消したので紹介。</p>
+
+<h2>パーマリンクの扱い</h2>
+
+<p>パーマリンクはWordPressの管理画面のパーマリンク設定でカスタマイズできるので、</p>
+
+<p><code>/%year%/%monthnum%/%day%/%postname%.html</code></p>
+
+<p>として設定していました。</p>
+
+<p>それを <a href="/blog/2014/12/01/right-way-wordpress-to-octopress/">紹介した方法で</a> やると以下の様な markdown ファイルが生成されました。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>---
+</span><span class='line'>title: 仕事で本当に大切にしたいこと
+</span><span class='line'>date: Mon, 26 Jul 2004 15:00:00 +0000
+</span><span class='line'>author: Hiro Fukami
+</span><span class='line'>layout: post
+</span><span class='line'>permalink: /2004/07/26/%e4%bb%95%e4%ba%8b%e3%81%a7%e6%9c%ac%e5%bd%93%e3%81%ab%e5%a4%a7%e5%88%87%e3%81%ab%e3%81%97%e3%81%9f%e3%81%84%e3%81%93%e3%81%a8/
+</span><span class='line'>tumblr_hirofukami_permalink:
+</span><span class='line'>  - http://hirofukami.tumblr.com/post/29542403177
+</span><span class='line'>tumblr_hirofukami_id:
+</span><span class='line'>  - 29542403177
+</span><span class='line'>original_post_id:
+</span><span class='line'>  - 741
+</span><span class='line'>categories:
+</span><span class='line'>  - Book
+</span><span class='line'>tags:
+</span><span class='line'>  - book
+</span><span class='line'>  - reivew
+</span><span class='line'>---</span></code></pre></td></tr></table></div></figure>
+
+
+<p>WordPressパーマリンクでポスト名を日本語で書くと、Octopressのヘッダ内、<code>permalink</code>にURLエンコードされた文字列が並びます。</p>
+
+<h2>問題点</h2>
+
+<p>この<code>permalink</code>をOctopress上でみると、アーカイブやポスト一覧には並びますが、個別ポストのURLは <code>/2004/07/26/仕事で本当に大切にしたいこと/</code> になり、個別ポストのリンクを開くと真っ白になってしまいます。</p>
+
+<p>どうやら、正しく Octopress 上でエンコード・デコードの変換ができないまま html を生成しているみたいです。</p>
+
+<h2>とりあえずさくっと解決する方法</h2>
+
+<p>せっかくリンクは作れているのに個別ポストが見れないのはよろしくないので、手っ取り早く解決したいところ。</p>
+
+<ul>
+<li>まずは個別ポストが見れるように、パーマリンクに日本語エンコードした文字列はやめて英語に変更する</li>
+<li>permalink にポスト名を入れるこだわりを捨てる</li>
+</ul>
+
+
+<p>1ポストずつ日本語URLエンコードされている部分を変更するのも手間なので、複数ファイル同時に置換した。</p>
+
+<p>テキストエディターは <a href="http://www.sublimetext.com/">Sublimi Text</a> を使っているので、その置換方法を紹介します。</p>
+
+<p><code>Shift + Command + F</code> の全ファイル置換設定画面を出して、正規表現を有効にして以下のように入力。</p>
+
+<p><img src="/images/2015/02/20150215-sublime-text-screenshot.png" title="Sublime Text Screen Shot" ></p>
+
+<ul>
+<li><code>^(permalink: /..../../..)/%(..).*/$</code> のように日付の部分までマッチさせたものを格納してReplaceの$1で使う</li>
+<li>同じ日付のポストがあっても被りづらいようにエンコード1文字目を格納してReplaceの$2で使う
+
+<ul>
+<li>同じ日付で複数ポストしていないのなら、$2 の部分は不要</li>
+</ul>
+</li>
+<li>source/_posts/ 配下の全ファイルに対して</li>
+</ul>
+
+
+<p>Replace ボタンを押すと置換されます。</p>
+
+<p>先ほどのポストの permalink の部分は以下のように変わります。</p>
+
+<p><code>permalink: /2004/07/26/post-e4/</code></p>
+
+<p>あとは、<code>rake generate &amp;&amp; rake preview</code> で確認して、<code>rake deploy</code> でサイトに反映。</p>
+
+<p>ということでした。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-02-15T20:00:00+09:00" pubdate data-updated="true">Feb 15<span>th</span>, 2015</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/octopress/'>Octopress</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/blog/2015/02/15/permalink-wordpress-to-octopress//index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
 
 
     <article class="post">
@@ -826,69 +966,6 @@ $(document).ready(
 
 	
 		<span class="comments"><a href="/blog/2014/12/04/ibeacon-research//index.html#disqus_thread">Comments</a></span>
-	
-</div></article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2014/12/01/right-way-wordpress-to-octopress/">
-		
-			WordPressからOctopressへきれいに移行する方法</a>
-	</h2>
-	<div class="entry-content">
-		<p><img src="/images/20141201-octopress.png" alt="octopress" /></p>
-
-<p>自分のブログ <a href="http://hirofukami.com">hirofukami.com</a> は今、Octopress on <a href="https://pages.github.com/">Github Pages</a> で動いています。</p>
-
-<p>その前は自分サーバ上で WordPress を運用していたのですが、アップデートがめんどい、もうちょっとすっきり運用したい、あとOctopress結構クールじゃん(これが大きい)とか思って <a href="http://octopress.org/">Octopress</a> に移行しました。</p>
-
-<p>今までブログは以下のように渡り歩いてきたのですが、今までのポストは全て移行して蓄積してきました。</p>
-
-<ol>
-<li>はてなダイアリー</li>
-<li>Tumblr</li>
-<li>WordPress.com</li>
-<li>WordPress on 自分サーバ</li>
-<li>Octopress on Github Pages</li>
-</ol>
-
-
-<p>2002年12月が最初のポストで、12年間で738ポストあります。
-今回の移行も今までどおり全ポストを WordPress から Octopress に移行するためにあれこれやってみたのですが、Webに載っている方法でベストなものがなかったので、少しだけいじってきれいに移行できたというお話です。</p>
-
-
-		
-		<a href="/blog/2014/12/01/right-way-wordpress-to-octopress/" class="more-link">Read on &rarr;</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-12-01T20:00:00+09:00" pubdate data-updated="true">Dec 1<span>st</span>, 2014</time></div>
-	
-
-<div class="tags">
-
-	<a class='category' href='/blog/categories/octopress/'>Octopress</a>
-
-</div>
-
-
-	
-		<span class="comments"><a href="/blog/2014/12/01/right-way-wordpress-to-octopress//index.html#disqus_thread">Comments</a></span>
 	
 </div></article>
 

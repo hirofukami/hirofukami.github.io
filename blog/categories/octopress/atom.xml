@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Octopress | Hiro Fukami's Blog]]></title>
   <link href="http://hirofukami.com/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="http://hirofukami.com/"/>
-  <updated>2015-02-13T10:48:57+09:00</updated>
+  <updated>2015-02-15T19:51:08+09:00</updated>
   <id>http://hirofukami.com/</id>
   <author>
     <name><![CDATA[HiroFukami]]></name>
@@ -12,6 +12,95 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[WordPress to Octopress 日本語パーマリンクを直す]]></title>
+    <link href="http://hirofukami.com/blog/2015/02/15/permalink-wordpress-to-octopress/"/>
+    <updated>2015-02-15T20:00:00+09:00</updated>
+    <id>http://hirofukami.com/blog/2015/02/15/permalink-wordpress-to-octopress</id>
+    <content type="html"><![CDATA[<p><a href="/blog/2014/12/01/right-way-wordpress-to-octopress/">WordPressからOctopressにきれいに移行する方法を紹介した</a>が、ちょっとした問題が残っていて、それを解消したので紹介。</p>
+
+<h2>パーマリンクの扱い</h2>
+
+<p>パーマリンクはWordPressの管理画面のパーマリンク設定でカスタマイズできるので、</p>
+
+<p><code>/%year%/%monthnum%/%day%/%postname%.html</code></p>
+
+<p>として設定していました。</p>
+
+<p>それを <a href="/blog/2014/12/01/right-way-wordpress-to-octopress/">紹介した方法で</a> やると以下の様な markdown ファイルが生成されました。</p>
+
+<h2>```</h2>
+
+<p>title: 仕事で本当に大切にしたいこと
+date: Mon, 26 Jul 2004 15:00:00 +0000
+author: Hiro Fukami
+layout: post
+permalink: /2004/07/26/%e4%bb%95%e4%ba%8b%e3%81%a7%e6%9c%ac%e5%bd%93%e3%81%ab%e5%a4%a7%e5%88%87%e3%81%ab%e3%81%97%e3%81%9f%e3%81%84%e3%81%93%e3%81%a8/
+tumblr_hirofukami_permalink:
+  &ndash; <a href="http://hirofukami.tumblr.com/post/29542403177">http://hirofukami.tumblr.com/post/29542403177</a>
+tumblr_hirofukami_id:
+  &ndash; 29542403177
+original_post_id:
+  &ndash; 741
+categories:
+  &ndash; Book
+tags:
+  &ndash; book</p>
+
+<h2>  &ndash; reivew</h2>
+
+<p>```</p>
+
+<p>WordPressパーマリンクでポスト名を日本語で書くと、Octopressのヘッダ内、<code>permalink</code>にURLエンコードされた文字列が並びます。</p>
+
+<h2>問題点</h2>
+
+<p>この<code>permalink</code>をOctopress上でみると、アーカイブやポスト一覧には並びますが、個別ポストのURLは <code>/2004/07/26/仕事で本当に大切にしたいこと/</code> になり、個別ポストのリンクを開くと真っ白になってしまいます。</p>
+
+<p>どうやら、正しく Octopress 上でエンコード・デコードの変換ができないまま html を生成しているみたいです。</p>
+
+<h2>とりあえずさくっと解決する方法</h2>
+
+<p>せっかくリンクは作れているのに個別ポストが見れないのはよろしくないので、手っ取り早く解決したいところ。</p>
+
+<ul>
+<li>まずは個別ポストが見れるように、パーマリンクに日本語エンコードした文字列はやめて英語に変更する</li>
+<li>permalink にポスト名を入れるこだわりを捨てる</li>
+</ul>
+
+
+<p>1ポストずつ日本語URLエンコードされている部分を変更するのも手間なので、複数ファイル同時に置換した。</p>
+
+<p>テキストエディターは <a href="http://www.sublimetext.com/">Sublimi Text</a> を使っているので、その置換方法を紹介します。</p>
+
+<p><code>Shift + Command + F</code> の全ファイル置換設定画面を出して、正規表現を有効にして以下のように入力。</p>
+
+<p>{% img /images/2015/02/20150215-sublime-text-screenshot.png Sublime Text Screen Shot %}</p>
+
+<ul>
+<li><code>^(permalink: /..../../..)/%(..).*/$</code> のように日付の部分までマッチさせたものを格納してReplaceの$1で使う</li>
+<li>同じ日付のポストがあっても被りづらいようにエンコード1文字目を格納してReplaceの$2で使う
+
+<ul>
+<li>同じ日付で複数ポストしていないのなら、$2 の部分は不要</li>
+</ul>
+</li>
+<li>source/_posts/ 配下の全ファイルに対して</li>
+</ul>
+
+
+<p>Replace ボタンを押すと置換されます。</p>
+
+<p>先ほどのポストの permalink の部分は以下のように変わります。</p>
+
+<p><code>permalink: /2004/07/26/post-e4/</code></p>
+
+<p>あとは、<code>rake generate &amp;&amp; rake preview</code> で確認して、<code>rake deploy</code> でサイトに反映。</p>
+
+<p>ということでした。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[WordPressからOctopressへきれいに移行する方法]]></title>
@@ -136,6 +225,14 @@ tags:
 <p>OK、OK。思っていた通りに移行できた。すっきりした。</p>
 
 <p>良き Octopress Blog ライフを〜</p>
+
+<h2>追記</h2>
+
+<p>日本語エンコードされた文字の入ったパーマリンクだと、個別ページが真っ白になって見れなくなる事象がでたため、それを <a href="/blog/2015/02/15/permalink-wordpress-to-octopress/">解消したポストを書きました</a>。</p>
+
+<p><strong><a href="/blog/2015/02/15/permalink-wordpress-to-octopress/">WordPress to Octopress 日本語パーマリンクを直す</a></strong></p>
+
+<p>良かったら読んでやってください。</p>
 ]]></content>
   </entry>
   
