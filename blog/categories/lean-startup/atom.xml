@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Lean Startup | Hiro Fukami's Blog]]></title>
   <link href="http://hirofukami.com/blog/categories/lean-startup/atom.xml" rel="self"/>
   <link href="http://hirofukami.com/"/>
-  <updated>2015-02-16T22:45:19+09:00</updated>
+  <updated>2015-02-18T19:11:11+09:00</updated>
   <id>http://hirofukami.com/</id>
   <author>
     <name><![CDATA[HiroFukami]]></name>
@@ -18,7 +18,7 @@
     <link href="http://hirofukami.com/blog/2015/02/04/lean-how-to-interview/"/>
     <updated>2015-02-04T17:00:00+09:00</updated>
     <id>http://hirofukami.com/blog/2015/02/04/lean-how-to-interview</id>
-    <content type="html"><![CDATA[<p>{% img /images/20150204-lean-startup.jpg &ldquo;Lean Startup&rdquo; %}</p>
+    <content type="html"><![CDATA[<p><img src="/images/20150204-lean-startup.jpg" title="&ldquo;Lean Startup&rdquo;" ></p>
 
 <p>リーンスタートアップの手法を2013年後半からやってきて1年以上たった。</p>
 
@@ -62,7 +62,7 @@
 
 <h1>インタビューはGoogle+ ハングアウトで行う</h1>
 
-<p>{% img /images/20150203-GooglePlus_hangout.jpg 480 &ldquo;Google+ Hangout&rdquo; %}</p>
+<p><img src="/images/20150203-GooglePlus_hangout.jpg" width="480" title="&ldquo;Google+ Hangout&rdquo;" ></p>
 
 <p><a href="http://www.amazon.co.jp/gp/product/4873115914/ref=as_li_ss_tl?ie=UTF8&amp;camp=247&amp;creative=7399&amp;creativeASIN=4873115914&amp;linkCode=as2&amp;tag=dsea-22">RUNNING LEAN</a> ではユーザ候補に対面でインタビューすることを勧めている。スティーブブランク曰く「オフィスを出てユーザと話せ」から来ている。</p>
 
@@ -96,7 +96,7 @@
 
 <h1>想定している課題とソリューションをスライドに箇条書きにしておく</h1>
 
-<p>{% img /images/20150203-Interview_sheet.png &ldquo;Inteview Sheet&rdquo; %}</p>
+<p><img src="/images/20150203-Interview_sheet.png" title="&ldquo;Inteview Sheet&rdquo;" ></p>
 
 <p>想定している課題の説明は <a href="http://www.amazon.co.jp/gp/product/4873115914/ref=as_li_ss_tl?ie=UTF8&amp;camp=247&amp;creative=7399&amp;creativeASIN=4873115914&amp;linkCode=as2&amp;tag=dsea-22">RUNNING LEAN</a> では全て口頭で行うようにしているが、<a href="http://www.amazon.co.jp/gp/product/B00DIM673Q/ref=as_li_ss_tl?ie=UTF8&amp;camp=247&amp;creative=7399&amp;creativeASIN=B00DIM673Q&amp;linkCode=as2&amp;tag=dsea-22">スタートアップマニュアル</a> を真似て説明のために簡単な資料を作ってみせるようにした。</p>
 
