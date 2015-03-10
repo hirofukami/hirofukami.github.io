@@ -9,7 +9,7 @@
 
 <meta name="author" content="HiroFukami"> 
 
-<meta name="description" content="一日有給を使って2泊3日の伊豆旅行に行く。会社の補助が出るらしく安く泊まれるところだった。 天気がよく、空が広く青く、海が見えて樹がたくさんあって、それらに触れるだけで自分が浄化されていく。 城ヶ崎公園は策もなくって真下に海がうねる。落ちたら本当におしまい。 &hellip;"> <meta name="keywords" content="">
+<meta name="description" content="メールサーバを立てることになって作ったはいいけど、最近は迷惑メールにならないためにいくつかやることあるのね。 qregexのパッチをあてて、不正中継を防ぐ設定とチェックをする チェックサイト Mail relay testing: http://www.abuse.net/relay.html &hellip;"> <meta name="keywords" content="">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -62,7 +62,7 @@ $(document).ready(
     <meta property="twitter:site" content="d_sea">
     <meta property="twitter:url" content="http://hirofukami.com">
     <meta property="twitter:title" content="Hiro Fukami's Blog">
-    <meta property="twitter:description" content="一日有給を使って2泊3日の伊豆旅行に行く。会社の補助が出るらしく安く泊まれるところだった。 天気がよく、空が広く青く、海が見えて樹がたくさんあって、それらに触れるだけで自分が浄化されていく。 城ヶ崎公園は策もなくって真下に海がうねる。落ちたら本当におしまい。 日常のこまごましたことより真下に広がる危険性のほうがはるかに高い現実。 先が見えずに何がいいのか/正しいことなのか、 &hellip;">
+    <meta property="twitter:description" content="メールサーバを立てることになって作ったはいいけど、最近は迷惑メールにならないためにいくつかやることあるのね。 qregexのパッチをあてて、不正中継を防ぐ設定とチェックをする チェックサイト Mail relay testing: http://www.abuse.net/relay.html Third Party Relay Check: http://www.rbl.jp/svcheck &hellip;">
     <meta property="twitter:creator" content="d_sea" />
 
 
@@ -122,6 +122,96 @@ $(document).ready(
 </header>
 
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/2008/03/04/post/">
+		
+			メールサーバ迷惑メール対策</a>
+	</h2>
+	<div class="entry-content">
+		<div class="section">
+  <p>
+    メールサーバを立てることになって作ったはいいけど、最近は迷惑メールにならないためにいくつかやることあるのね。
+  </p>
+  
+  <ol>
+    <li>
+      qregexのパッチをあてて、不正中継を防ぐ設定とチェックをする</p> <ul>
+        <li>
+          チェックサイト</p> <ul>
+            <li>
+              Mail relay testing: <a href="http://www.abuse.net/relay.html" target="_blank"><a href="http://www.abuse.net/relay.html" target="_blank">http://www.abuse.net/relay.html</a></a>
+            </li>
+            <li>
+              Third Party Relay Check: <a href="http://www.rbl.jp/svcheck.php" target="_blank"><a href="http://www.rbl.jp/svcheck.php" target="_blank">http://www.rbl.jp/svcheck.php</a></a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    
+    <li>
+      DNS で SPF レコードを記載する <ul>
+        <li>
+          メールサーバのいるドメインを管理してる DNS サーバにて
+        </li>
+        <li>
+          BIND の記述方法を生成してしてくれるサイト(<a href="http://www.microsoft.com/mscorp/safety/content/technologies/senderid/wizard/" target="_blank"><a href="http://www.microsoft.com/mscorp/safety/content/technologies/senderid/wizard/" target="_blank">http://www.microsoft.com/mscorp/safety/content/technologies/senderid/wizard/</a></a>)があった
+        </li>
+        <li>
+          参考サイト <ul>
+            <li>
+              <a href="http://www.au.kddi.com/notice/manner/jyushin_policy/spf_record.html" target="_blank"><a href="http://www.au.kddi.com/notice/manner/jyushin_policy/spf_record.html" target="_blank">http://www.au.kddi.com/notice/manner/jyushin_policy/spf_record.html</a></a>
+            </li>
+            <li>
+              <a href="http://www.itmedia.co.jp/enterprise/articles/0603/24/news006.html" target="_blank"><a href="http://www.itmedia.co.jp/enterprise/articles/0603/24/news006.html" target="_blank">http://www.itmedia.co.jp/enterprise/articles/0603/24/news006.html</a></a>
+            </li>
+            <li>
+              <a href="http://www.atmarkit.co.jp/fsecurity/special/82senderid/sender101.html" target="_blank"><a href="http://www.atmarkit.co.jp/fsecurity/special/82senderid/sender101.html" target="_blank">http://www.atmarkit.co.jp/fsecurity/special/82senderid/sender101.html</a></a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ol>
+</div>
+
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-03-05T00:00:00+09:00" pubdate data-updated="true">Mar 5<span>th</span>, 2008</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/internet/'>Internet</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/2008/03/04/post//blog/page/41/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
 
 
     <article class="post">
@@ -1102,79 +1192,6 @@ $(document).ready(
 
 	
 		<span class="comments"><a href="/2008/02/05/post//blog/page/41/index.html#disqus_thread">Comments</a></span>
-	
-</div></article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/2008/02/04/post/">
-		
-			フィールドにちゃんと立っているか</a>
-	</h2>
-	<div class="entry-content">
-		<div class="section">
-  <p>
-    いつもプレイヤーでありたいと思っているけど、実際プレイするフィールドにちゃんと立てているかも同時に考える。
-  </p>
-  
-  <p>
-    一緒にやっているようでもフィールドに立っていなくて、スタンド席に座って何か叫んでいるのは本当に一緒にはやっていない。
-  </p>
-  
-  <p>
-    そのスタンスは本当にこのミッションを自分でやろうとしてないでしょうと思う。
-  </p>
-  
-  <p>
-    確かにそういうスタンスの人はいるし大きい会社には必要な存在なのかもしれないけど、やっぱりそれは価値を直接的に作り出すことはどうやってもできない。やっぱりそれは突き詰めれば本当に必要な部分にはならない。
-  </p>
-  
-  <p>
-    本当に必要なのは自分がプレイすること、コマンドを打つこと、プログラムを書くこと、ドキュメントを作ること。これらが無いと作れないという意味で、これらがしゃべることよりいかに大事なことかをいつも感じる。
-  </p>
-  
-  <p>
-    社内でもスタンド席からあれこれという人。社外なのにフィールドにちゃんと降りてきてくれて一緒にプレイしてくれる人。
-  </p>
-  
-  <p>
-    どっちが一緒に作ってる感があるか、また一緒にやりたいと思えるか。だから会社対会社の関係から個人対個人にフォーカスされていくのだろう。
-  </p>
-</div>
-
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-02-05T00:00:00+09:00" pubdate data-updated="true">Feb 5<span>th</span>, 2008</time></div>
-	
-
-<div class="tags">
-
-	<a class='category' href='/blog/categories/self-management/'>Self Management</a>
-
-</div>
-
-
-	
-		<span class="comments"><a href="/2008/02/04/post//blog/page/41/index.html#disqus_thread">Comments</a></span>
 	
 </div></article>
 
