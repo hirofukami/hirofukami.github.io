@@ -9,8 +9,7 @@
 
 <meta name="author" content="HiroFukami"> 
 
-<meta name="description" content="いや〜、かないました。
-日本の WordPress コミュニティにとっておそらく最大のイベント WordCamp Tokyo。ここで登壇することが決まりました。 WordCamp Tokyo 2013 の運用セッションのパネリストとして登壇します。 WordCamp Tokyo 2013 &hellip;"> <meta name="keywords" content="">
+<meta name="description" content="せっかくのチャレンジの機会なので開発中の スマートWordPress の取り組みをタイムリーに伝えてみるものいいかと思い、なるべく書いていこうと思っています。 スマートWordPress は WordPress デザイナーさんのための簡単自由な WordPress クラウドで、WordPress &hellip;"> <meta name="keywords" content="">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -63,8 +62,7 @@ $(document).ready(
     <meta property="twitter:site" content="d_sea">
     <meta property="twitter:url" content="http://hirofukami.com">
     <meta property="twitter:title" content="Hiro Fukami's Blog">
-    <meta property="twitter:description" content="いや〜、かないました。
-日本の WordPress コミュニティにとっておそらく最大のイベント WordCamp Tokyo。ここで登壇することが決まりました。 WordCamp Tokyo 2013 の運用セッションのパネリストとして登壇します。 WordCamp Tokyo 2013 のテーマは「舞台に立とう！」ということで、全てのセッションでパネルディスカッションを行うようで、 &hellip;">
+    <meta property="twitter:description" content="せっかくのチャレンジの機会なので開発中の スマートWordPress の取り組みをタイムリーに伝えてみるものいいかと思い、なるべく書いていこうと思っています。 スマートWordPress は WordPress デザイナーさんのための簡単自由な WordPress クラウドで、WordPress デザイナーさんが使いたくなるようなサービスを目指しています。 &hellip;">
     <meta property="twitter:creator" content="d_sea" />
 
 
@@ -124,6 +122,100 @@ $(document).ready(
 </header>
 
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/2013/08/14/smartwp-solutions/">
+		
+			スマートWordPress はどんな課題を解決するのか</a>
+	</h2>
+	<div class="entry-content">
+		<p><a href="http://www.shakesoul.net/smartwordpress" target="_blank"><img class="alignnone size-full wp-image-1084" alt="headerlogo" src="/images/2013/07/headerlogo.png?resize=787%2C272" data-recalc-dims="1" /></a><br/>
+せっかくのチャレンジの機会なので開発中の <a href="http://www.shakesoul.net/smartwordpress" target="_blank">スマートWordPress</a> の取り組みをタイムリーに伝えてみるものいいかと思い、なるべく書いていこうと思っています。</p>
+
+<p>スマートWordPress は WordPress デザイナーさんのための簡単自由な WordPress クラウドで、WordPress デザイナーさんが使いたくなるようなサービスを目指しています。<br/>
+今は本格的に作り始める前にターゲットにとって課題が大きく、それを解決するための価値(売上)が十分ありそうかという検証をしています。<br/>
+具体的アプローチ方法は <a title="RUNNING LEAN – アッシュ・マウリャ" href="http://hirofukami.com/2013/08/06/book-runninglean/" target="_blank">RUNNING LEAN</a> を大いに参考に(ほとんど真似して)います。</p>
+
+<p>WordPress デザイナーさんにインタビューをして、想定と合っている部分・異なっている部分を確認しながらサービスにフィードバックしています。初期に行うインタビューは1:1の形式で計10名からお話を聞いて、検証し結果をもとに次のアクションを決める予定です。あと5名にインタビューしていく必要がありますので、お知り合いで WordPress デザインの受託をお仕事にされているような方がいらっしゃれば是非サービスを紹介いただければ！</p>
+
+<ul>
+<li>サービス紹介ページ : <a href="http://www.shakesoul.net/smartwordpress">http://www.shakesoul.net/smartwordpress</a></li>
+</ul>
+
+
+<p>興味を示していただいたらインタビュー＆デモしに行きますが、サービスを修正するのが目的なので売り込みはしませんので、どうぞお気軽に会っていただければと思います。</p>
+
+<p>さて、まだ10名分のインタビューは終わっていませんが、現在のところ基本的な課題は想定通りもしくは想定以上に大きいようなので、想定は外れていないことが分かりました。</p>
+
+<p>前提として、WordPress デザイナーさんのお仕事は WordPress の見た目(テーマのカスタマイズ)、必要なプラグインの設定などを主に行って、Webサイトとして WordPress が機能するようにしてエンドユーザへ収めることを想定しています。<br/>
+そして、WordPress はサーバ上で動作するので、どうしてもサーバをどうするか？という問いはついて回ります。インフラエンジニアにお願いするまでもない(コストが割に合わない)し、エンドユーザからついでにセットアップも頼まれるケースが生じます。</p>
+
+<p>主に以下の課題が確認できています。</p>
+
+<ul>
+<li>主にレンタルサーバやAWS・VPSなどのサーバのどれかを選定しセットアップすることは、本業と異なるスキルセットが必要なので自信を持って取り組めない。何とかできても、チューニング・スケールの部分の考慮への対応はよくわからない。</li>
+<li>サーバのセットアップは毎回同じような手順だが手間がかかる。</li>
+<li>運用に関しては、プラグインとテーマの更新が主で、一部のファイル更新だけ出来ればよいが、サーバ運用まで絡むと障害・モニタリング・スケールなど項目が多くなりとても大きなリスクを抱えてしまう。</li>
+</ul>
+
+
+<p>インタビューしてわかったのは、セットアップへの不安の大きさで、いわゆる黒い画面(ターミナル)をなるべく使わないで済ませたいという気持ちが大きいことでした。Linux のコマンドライン操作を避けるために、共有ホスティングを選んだりしていてるのも結構新鮮な驚きでした。大きな規模になればDBバックアップなどの要求事項も出てきて、さすがにそこまでやれないという現状のようです。</p>
+
+<p>つまり、WordPress デザイナーさんにとってサーバは鬼門で、本業と大きなギャップがあることを求められてしまう課題があります。<br/>
+スマートWordPress はこのギャップを埋めて、この課題を解決するためのサービスと位置づけています。</p>
+
+<p>そのため、</p>
+
+<ol>
+<li>クラウド上に WordPress をプリインストールした環境</li>
+<li>ターミナルを使わず、必要なファイルをアップロードすると自動的にサーバにデプロイされる</li>
+<li>オートスケーリング(対障害性の向上も兼ねる)</li>
+<li>DBバックアップ(回/日)、ファイル消失可能性がほとんどないストレージにコードを保存</li>
+</ol>
+
+
+<p>を基本機能としています。今後、インタビューを続けることで追加されるものも出てくると思います。</p>
+
+<p>今のところ、WordPress デザイナーさんにとって、サーバをセットアップして運用するという課題は大きく、そこを解決してほしいというニーズは大きいことが分かりました。</p>
+
+<p>じゃあ、現状数多くあるサーバサービスでは解消できないのか？<br/>
+次回はもう少しビジネス寄りな市場のポジションについてお話したいと思います。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-08-15T00:01:16+09:00" pubdate data-updated="true">Aug 15<span>th</span>, 2013</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/business/'>Business</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/2013/08/14/smartwp-solutions//blog/page/10/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
 
 
     <article class="post">
@@ -891,74 +983,6 @@ drwxr-xr-x 2 root root 4096  7月  2 06:40 2013 testdir01
 
 	
 		<span class="comments"><a href="/2013/07/17/aws-s3cmd-sync-deploy//blog/page/10/index.html#disqus_thread">Comments</a></span>
-	
-</div></article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/2013/07/12/launch-service-my-challenge/">
-		
-			「サービスを作って食べていけるか」のチャレンジに移行します</a>
-	</h2>
-	<div class="entry-content">
-		<p>自分の会社シェイクソウルを作ったのが、2009年2月なので約4.5年ほどたったことになります。<br/>
-途中 fluxflex が2年あるので、その間は休眠状態だったのですが、まぁそれだけ月日がたちました。</p>
-
-<p>会社を作った時の課題は「自分だけのスキルで食べていけるか」で、この実験をしていくんだと意気込んで取り組んでいた。<br/>
-設立前懐かしの第1回JTPAシリコンバレーカンファレンス参加者の表参道での懇親会で、「会社作るなら受託しない宣言したほうがいいよ」と言われて、いやぁ無理無理と思っていたのは、まずは第一段階をクリアしないとという意識があったからだと思う。<br/>
-AWS で Web インフラ作ったりプロマネやったりして、受託のエンジニアリング案件でフルコミットすれば十分な売上になった。2010年はじめの段階で達成したと思った。</p>
-
-<p>fluxflex は「0からサービスを立ち上げて大きく成長できるか」という課題で、これは自分自身に色々な要素が足りなくってNGと判断して辞めた。</p>
-
-<p>2012年からまた自分の会社で稼いでいくことになるが、設立時より1段階レベルを上げて「自分がやりたいレベルや分野だけで食べていけるか」という課題にした。これは顧客にも恵まれて複数の受託をして fluxflex の金銭的損出もリカバーできるくらい稼げた。ここら辺は<a href="http://hirofukami.com/2012/10/29/2012-02-09/" title="2012.02-09 やってきたこと振り返り" target="_blank">ブログにまとめた</a>。</p>
-
-<p>2012年後半から2013年前半までは、サービス立ち上げの準備や試験期間の時間を入れていくことにしたので、課題は「自分が望むレベル、分野において、フルコミットの半分くらいの時間で食べていけるか」になった。<br/>
-これも顧客に恵まれて、MBaaS である <a href="http://www.kii.com/jp/technology" target="_blank">Kii Cloud</a> のプロモーションコンサルをさせていただき、エンジニアリングの時間は <a href="https://itunes.apple.com/jp/app/morning-latte/id585111783?mt=8" target="_blank">Morning Latte</a> の開発に割くことができたし、いろいろな本で勉強することができた。<br/>
-この形態はリスクを抑えてサービスを試すことができたので状況としては良かったのだけど、サービスづくりのスピードが出ず考える量も少なかったり、うまく時間配分ができずに(個人的にほっとけない気持ちになってしまうので)コンサルの方に比重が大きくなってしまった。</p>
-
-<p>そんな経過もありながら、2013年後半からの新しい課題は「サービスを作って食べていけるか」にすることにした。<br/>
-受託はせずに自分の作りたいサービスを作って、その売上だけで生活できるようにすることが目標。実際契約更新をお断りして今は何も請けていない。<br/>
-サービス以外の売上でありえるとしたら、サービスづくりで使ったテクノロジーのワークショップ、ドキュメント、講演や実績がついてきた後の自分的リーンな実践紹介を有料で提供するような、あくまでサービスづくりの関連したものだけにしていこうと思っている。</p>
-
-<p>サービスづくりの具体的手法としては、<a href="http://www.amazon.co.jp/gp/product/4822248976/ref=as_li_ss_tl?ie=UTF8&camp=247&creative=7399&creativeASIN=4822248976&linkCode=as2&tag=dsea-22" target="_blank">リーン・スタートアップ</a> や <a href="http://www.amazon.co.jp/gp/product/4873115914/ref=as_li_ss_tl?ie=UTF8&camp=247&creative=7399&creativeASIN=4873115914&linkCode=as2&tag=dsea-22" target="_blank">Running Lean</a> を参考にしつつ、「小さく作って少人数の顧客に試す」ことを始めている。<br/>
-今は自分一人だけでデモできる状態を作って芽も出ていないのでスタートアップとは呼ばないと思うし、チームにして資金を入れてという段階はこの課題をクリアした先にあることだと思っているので、まずはこの課題に集中して行こうと思う。</p>
-
-<p>資金的には、7月は売上が入って、給料3ヶ月分くらいのキャッシュがあるので、まずは10月までの3.5ヶ月間を見極めリミットとしてチャレンジしていきます。その間で芽が出なかったらまた受託に戻るか違うことをする必要があるのですが、その時はまぁ笑ってくださいｗ</p>
-
-<p>嫁と娘がいてローンもたくさん残っていて来年は恐ろしいことに40歳なのですが、自分の気持というか思った方向に対して妥協せずにステップアップしてきているので、周りの環境というより自分のやりたいことを狙い続けて行きたいなと思います。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-07-12T19:45:07+09:00" pubdate data-updated="true">Jul 12<span>th</span>, 2013</time></div>
-	
-
-<div class="tags">
-
-	<a class='category' href='/blog/categories/life/'>Life</a>
-
-</div>
-
-
-	
-		<span class="comments"><a href="/2013/07/12/launch-service-my-challenge//blog/page/10/index.html#disqus_thread">Comments</a></span>
 	
 </div></article>
 
