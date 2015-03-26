@@ -9,7 +9,7 @@
 
 <meta name="author" content="HiroFukami"> 
 
-<meta name="description" content="http://d.hatena.ne.jp/d_sea/20080211 のときに一緒に Amazon で注文したのがこれ。 Born to Do It アーティスト: Craig David 出版社/メーカー: Atlantic / Wea 発売日: 2001/07/17 メディア: CD &hellip;"> <meta name="keywords" content="">
+<meta name="description" content="以前にも trac に入れておいたほうがいい plugin をのせたが、チケットに対して目標日時だけでなく、もっとシビアに時間管理、工数管理がしたい場合に入れておいたほうがいい plugin を教えてもらったので入れてみた。今回もインストールに難儀してしまったなぁ。。。 ということで、 &hellip;"> <meta name="keywords" content="">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -62,7 +62,7 @@ $(document).ready(
     <meta property="twitter:site" content="d_sea">
     <meta property="twitter:url" content="http://hirofukami.com">
     <meta property="twitter:title" content="Hiro Fukami's Blog">
-    <meta property="twitter:description" content="http://d.hatena.ne.jp/d_sea/20080211 のときに一緒に Amazon で注文したのがこれ。 Born to Do It アーティスト: Craig David 出版社/メーカー: Atlantic / Wea 発売日: 2001/07/17 メディア: CD 購入: 1人 クリック: 8回 この商品を含むブログ (27件) を見る Craig David &hellip;">
+    <meta property="twitter:description" content="以前にも trac に入れておいたほうがいい plugin をのせたが、チケットに対して目標日時だけでなく、もっとシビアに時間管理、工数管理がしたい場合に入れておいたほうがいい plugin を教えてもらったので入れてみた。今回もインストールに難儀してしまったなぁ。。。 ということで、細かめに手順をメモ。細かなミスはご愛嬌。。。 前提として trac のプロジェクト作成済み Webadmin &hellip;">
     <meta property="twitter:creator" content="d_sea" />
 
 
@@ -122,6 +122,356 @@ $(document).ready(
 </header>
 
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/2008/02/12/trac-plugin-timing-and-estimation-scrumburndown/">
+		
+			Trac Plugin 追加 (Timing and Estimation, ScrumBurndown)</a>
+	</h2>
+	<div class="entry-content">
+		<div class="section">
+  <p>
+    <a href="http://d.hatena.ne.jp/d_sea/20070720" target="_blank">以前にも</a> trac に入れておいたほうがいい plugin をのせたが、チケットに対して目標日時だけでなく、もっとシビアに時間管理、工数管理がしたい場合に入れておいたほうがいい plugin を教えてもらったので入れてみた。今回もインストールに難儀してしまったなぁ。。。
+  </p>
+  
+  <p>
+    ということで、細かめに手順をメモ。細かなミスはご愛嬌。。。
+  </p>
+  
+  <ul>
+    <li>
+      前提として</p> <ul>
+        <li>
+          trac のプロジェクト作成済み
+        </li>
+        <li>
+          Webadmin インストール済み
+        </li>
+        <li>
+          /hogehoge/project/conf/trac.ini と /hogehoge/project/db/trac.db へ apache からの書き込み権限があること <ul>
+            <li>
+              /hogehoge/project は適当に読み変えて下さい
+            </li>
+          </ul>
+        </li>
+        
+        <li>
+          trac の log が見れること <ul>
+            <li>
+              Webadmin で Logging&#160;: [Type: File], [Log level: DEBUG] にしておくといいかも
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+  
+  <h4>
+    timing and estimation インストール
+  </h4>
+  
+  <p>
+    最初に timing and estimation をインストールする。
+  </p>
+  
+  <ul>
+    <li>
+      <a href="http://trac-hacks.org/wiki/TimingAndEstimationPlugin" target="_blank">ここ</a> の Getting the Plugin &#8212; Download the zipped source&#160;: から該当の zip ファイルをダウンロード(動かしているTracのバージョンが分かっていること)
+    </li>
+    <li>
+      適当なディレクトリで以下を実行
+    </li>
+  </ul>
+  
+  <blockquote>
+    <p>
+      # unzip timingandestimationplugin-branches-trac0.10.zip
+    </p>
+    
+    <p>
+      # cd timingandestimationplugin/branches/trac0.10/
+    </p>
+    
+    <p>
+      # python setup.py bdist_egg
+    </p>
+  </blockquote>
+  
+  <ul>
+    <li>
+      生成された egg ファイルをプロジェクトの plugin ディレクトリにコピー
+    </li>
+  </ul>
+  
+  <blockquote>
+    <p>
+      # cd ./dist/
+    </p>
+    
+    <p>
+      # cp timingandestimationplugin-0.5.3-py2.4.egg /hogehoge/project/plugins/
+    </p>
+  </blockquote>
+  
+  <ul>
+    <li>
+      chmod, chown する
+    </li>
+  </ul>
+  
+  <blockquote>
+    <p>
+      # cd /hogehoge/project/plugins/
+    </p>
+    
+    <p>
+      # chmod 755 timingandestimationplugin-0.5.3-py2.4.egg
+    </p>
+    
+    <p>
+      # chown apache:apache timingandestimationplugin-0.5.3-py2.4.egg
+    </p>
+  </blockquote>
+  
+  <ul>
+    <li>
+      httpd 再起動
+    </li>
+  </ul>
+  
+  <blockquote>
+    <p>
+      # /etc/rc.d/init.d/httpd graceful
+    </p>
+  </blockquote>
+  
+  <ul>
+    <li>
+      ブラウザでアクセス</p> <ul>
+        <li>
+          おそらく 500 が返ってきて、error log を見ろと言われる
+        </li>
+        <li>
+          trac の log をチェック おそらく DabataseError が出ているので、trac-admin で upgrade かける
+        </li>
+      </ul>
+    </li>
+  </ul>
+  
+  <blockquote>
+    <p>
+      # trac-admin /hogehoge/project upgrade
+    </p>
+  </blockquote>
+  
+  <ul>
+    <ul>
+      <li>
+        再度、ブラウザアクセス Admin &#8212; Plugins で追加されていることを確認
+      </li>
+      <li>
+        timingandestimationplugin をクリックして、すべてチェックボックスを入れて &#8220;Apply changes&#8221;
+      </li>
+    </ul>
+  </ul>
+  
+  <h4>
+    ScrumBurndown インストール
+  </h4>
+  
+  <ul>
+    <li>
+      <a href="http://trac-hacks.org/wiki/ScrumBurndownPlugin" target="_blank">ここ</a> の Download から zip ファイルをダウンロード(生 egg ファイルだと python のバージョンが合わないために動かない可能性あり)
+    </li>
+    <li>
+      適当なディレクトリで以下を実行
+    </li>
+  </ul>
+  
+  <blockquote>
+    <p>
+      # unzip burndown_src.zip
+    </p>
+    
+    <p>
+      # cd burndown_src
+    </p>
+    
+    <p>
+      # python setup.py bdist_egg
+    </p>
+  </blockquote>
+  
+  <ul>
+    <li>
+      生成された egg ファイルをプロジェクトの plugin ディレクトリにコピー
+    </li>
+  </ul>
+  
+  <blockquote>
+    <p>
+      # cd ./dist/
+    </p>
+    
+    <p>
+      # cp TracBurndown-01.06.10-py2.4.egg /hogehoge/project/plugins/
+    </p>
+  </blockquote>
+  
+  <ul>
+    <li>
+      chmod, chown する
+    </li>
+  </ul>
+  
+  <blockquote>
+    <p>
+      # cd /hogehoge/project/plugins/
+    </p>
+    
+    <p>
+      # chmod 755 TracBurndown-01.06.10-py2.4.egg
+    </p>
+    
+    <p>
+      # chown apache:apache TracBurndown-01.06.10-py2.4.egg
+    </p>
+  </blockquote>
+  
+  <ul>
+    <li>
+      httpd 再起動
+    </li>
+  </ul>
+  
+  <blockquote>
+    <p>
+      # /etc/rc.d/init.d/httpd graceful
+    </p>
+  </blockquote>
+  
+  <ul>
+    <li>
+      ブラウザでアクセス</p> <ul>
+        <li>
+          おそらく 500 が返ってきて、error log を見ろと言われる
+        </li>
+        <li>
+          trac の log をチェック おそらく DabataseError が出ているので、trac-admin で upgrade かける
+        </li>
+      </ul>
+    </li>
+  </ul>
+  
+  <blockquote>
+    <p>
+      # trac-admin /hogehoge/project upgrade
+    </p>
+  </blockquote>
+  
+  <ul>
+    <ul>
+      <li>
+        再度、ブラウザアクセス Admin &#8212; Plugins で追加されていることを確認(すでに Enabled になっているはず)
+      </li>
+    </ul>
+    
+    <li>
+      ユーザ権限追加 <ul>
+        <li>
+          Admin &#8212; permissions で Burndown への view と admin 権限を追加</p> <ul>
+            <li>
+              Grant Permission: Subject: (ユーザ名)
+            </li>
+            <li>
+              Action: BURNDOWN_VIEW or BURNDOWN_ADMIN を選んで、&#8221;Add&#8221; を押す
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    
+    <li>
+      権限のあるユーザでログインして、ブラウザ上で上部メニュー内に &#8220;Management&#8221; が見えればOK
+    </li>
+  </ul>
+  
+  <h4>
+    参考URL
+  </h4>
+  
+  <ul>
+    <li>
+      pluginのソースとインストール方法</p> <ul>
+        <li>
+          <a href="http://trac-hacks.org/wiki/TimingAndEstimationPlugin" target="_blank"><a href="http://trac-hacks.org/wiki/TimingAndEstimationPlugin" target="_blank">http://trac-hacks.org/wiki/TimingAndEstimationPlugin</a></a>
+        </li>
+        <li>
+          <a href="http://trac-hacks.org/wiki/ScrumBurndownPlugin" target="_blank"><a href="http://trac-hacks.org/wiki/ScrumBurndownPlugin" target="_blank">http://trac-hacks.org/wiki/ScrumBurndownPlugin</a></a>
+        </li>
+        <li>
+          <a href="http://simplate.aimy.jp/wiki/TracPlugins" target="_blank"><a href="http://simplate.aimy.jp/wiki/TracPlugins" target="_blank">http://simplate.aimy.jp/wiki/TracPlugins</a></a> [08/02/14追記]
+        </li>
+      </ul>
+    </li>
+    
+    <li>
+      インストール方法 <ul>
+        <li>
+          <a href="http://d.hatena.ne.jp/digo/20071027/1193473053" target="_blank"><a href="http://d.hatena.ne.jp/digo/20071027/1193473053" target="_blank">http://d.hatena.ne.jp/digo/20071027/1193473053</a></a>
+        </li>
+        <li>
+          <a href="http://ameblo.jp/itboy/entry-10039245666.html" target="_blank"><a href="http://ameblo.jp/itboy/entry-10039245666.html" target="_blank">http://ameblo.jp/itboy/entry-10039245666.html</a></a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+  
+  <h5>
+    08/02/14修正
+  </h5>
+  
+  <p>
+    # python setup.py install => # python setup.py bdist_egg へ修正
+  </p>
+</div>
+
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-02-13T00:00:00+09:00" pubdate data-updated="true">Feb 13<span>th</span>, 2008</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/tech/'>Tech</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/2008/02/12/trac-plugin-timing-and-estimation-scrumburndown//blog/page/42/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
 
 
     <article class="post">
@@ -888,79 +1238,6 @@ $(document).ready(
 
 	
 		<span class="comments"><a href="/2008/01/04/post//blog/page/42/index.html#disqus_thread">Comments</a></span>
-	
-</div></article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/2007/12/21/post/">
-		
-			ついにはずしてもらうぞと</a>
-	</h2>
-	<div class="entry-content">
-		<div class="section">
-  <p>
-    なかなか上下の中心線が揃わず、削ってみてもゴムで斜めに引っ張ってみてもなかなか効果が上がってない感じだったし、もう2年近くやってるし、2008年はすっきりして過ごしたいと、もろもろかこつけた理由もあったので、器具をはずす意思を伝えた。
-  </p>
-  
-  <p>
-    多分かみ合わせがもう合致しているので、これ以上の変化は難しいだろうと思っていた。一応理由は引越すかもしれないので、、、と消極的な感じにして。
-  </p>
-  
-  <p>
-    器具をはずした後に歯が戻らないように固定するリテーナーというマウスピースのようなものを作る期間が必要ということで、今日すぐにははずさず。上下の歯型を取られる。
-  </p>
-  
-  <p>
-    年明けにはリテーナーができるというので、年明け3週間後を予約。その時にはずすことになる。
-  </p>
-  
-  <p>
-    年末年始の飲み食い時に器具がまだあるのはしょうがないか、今まで散々我慢してきたし、これくらいの我慢ははずせると思えば簡単。
-  </p>
-  
-  <p>
-    年明けはずす時が楽しみだ。
-  </p>
-  
-  <p>
-    本日の清算：チェック代 ￥5,000
-  </p>
-</div>
-
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-12-22T00:00:00+09:00" pubdate data-updated="true">Dec 22<span>nd</span>, 2007</time></div>
-	
-
-<div class="tags">
-
-	<a class='category' href='/blog/categories/life/'>Life</a>
-
-</div>
-
-
-	
-		<span class="comments"><a href="/2007/12/21/post//blog/page/42/index.html#disqus_thread">Comments</a></span>
 	
 </div></article>
 

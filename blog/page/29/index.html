@@ -9,7 +9,7 @@
 
 <meta name="author" content="HiroFukami"> 
 
-<meta name="description" content="仕事で知り合いになった toshi さんからサービス作ったのでやってみてください！と言われてずいぶんたってしまったがやってみた。 Cotoe とは コトエ (Cotoe) は、 「ウェブをアクティブに読む」方法を提供することにより、 ネット上の膨大な情報から「重要な文章を浮き上がらせて共有する」 &hellip;"> <meta name="keywords" content="">
+<meta name="description" content="クラウドと一言でいってもいろいろな捉え方があるので、他の話も聞いてみようと思いパソナテック主催のセミナーに参加してきた。以下個人メモ。 講師：学びing 横田さん 学びing 紹介 デジタルサイネージへのコンテンツ提供(2008.11)もやっていて、結構新しめのことをやっている印象 &hellip;"> <meta name="keywords" content="">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -62,7 +62,7 @@ $(document).ready(
     <meta property="twitter:site" content="d_sea">
     <meta property="twitter:url" content="http://hirofukami.com">
     <meta property="twitter:title" content="Hiro Fukami's Blog">
-    <meta property="twitter:description" content="仕事で知り合いになった toshi さんからサービス作ったのでやってみてください！と言われてずいぶんたってしまったがやってみた。 Cotoe とは コトエ (Cotoe) は、 「ウェブをアクティブに読む」方法を提供することにより、 ネット上の膨大な情報から「重要な文章を浮き上がらせて共有する」ための装置です。 コトエには、たくさんのユーザによって、 &hellip;">
+    <meta property="twitter:description" content="クラウドと一言でいってもいろいろな捉え方があるので、他の話も聞いてみようと思いパソナテック主催のセミナーに参加してきた。以下個人メモ。 講師：学びing 横田さん 学びing 紹介 デジタルサイネージへのコンテンツ提供(2008.11)もやっていて、結構新しめのことをやっている印象 けんてーごっこが有名 本出している 「Amazon EC2/S3 クラウド入門」 クラウドとは 簡単に定義すると &hellip;">
     <meta property="twitter:creator" content="d_sea" />
 
 
@@ -122,6 +122,162 @@ $(document).ready(
 </header>
 
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/2009/02/25/post/">
+		
+			「クラウドコンピューティングの基礎の基礎」セミナー まとめ</a>
+	</h2>
+	<div class="entry-content">
+		<div class="section">
+  <p>
+    クラウドと一言でいってもいろいろな捉え方があるので、他の話も聞いてみようと思いパソナテック主催のセミナーに参加してきた。以下個人メモ。
+  </p>
+  
+  <p>
+    講師：<a href="http://www.manabing.jp/" target="_blank">学びing</a> 横田さん
+  </p>
+  
+  <h5>
+    学びing 紹介
+  </h5>
+  
+  <ul>
+    <li>
+      デジタルサイネージへのコンテンツ提供(2008.11)もやっていて、結構新しめのことをやっている印象
+    </li>
+    <li>
+      <a href="http://kentei.cc/" target="_blank">けんてーごっこ</a>が有名
+    </li>
+    <li>
+      本出している 「Amazon EC2/S3 クラウド入門」
+    </li>
+  </ul>
+  
+  <h5>
+    クラウドとは
+  </h5>
+  
+  <ul>
+    <li>
+      簡単に定義すると「CPUやストレージ、ソフト等のコンピューティングリソースを外部に預けたもの」
+    </li>
+    <li>
+      分類 <ul>
+        <li>
+          SaaS(Software as a Service) 使うだけ&#160;: Gmailなど
+        </li>
+        <li>
+          PaaS(Platform as a Service) 開発プラットフォームの提供 言語指定あり Google なら python&#160;: Force.com, Google App Engine
+        </li>
+        <li>
+          IaaS(Infrastructure as a Service) OSから提供可能&#160;: Amazon EC2/S3
+        </li>
+      </ul>
+    </li>
+    
+    <li>
+      SaaS実績&#160;: Gmail 採用例 日本の高等教育機関シェア 130/750
+    </li>
+    <li>
+      IaaSの特徴&#160;: 安い(従量課金)、拡張早い
+    </li>
+    <li>
+      Amazon EC2/S3実績&#160;: Animoto 3日でサーバ台数50=>3500台に、けんてーごっこもつかっている
+    </li>
+  </ul>
+  
+  <h5>
+    Amazon EC2/S3 デモ
+  </h5>
+  
+  <ul>
+    <li>
+      Firefox プラグインを入れて操作</p> <ul>
+        <li>
+          コマンドラインツールもあるらしい
+        </li>
+      </ul>
+    </li>
+    
+    <li>
+      サーバの起動、停止
+    </li>
+    <li>
+      任意の DNS がふられているらしい
+    </li>
+    <li>
+      サーバは Windows, Linux 各種ディストリビューションあり
+    </li>
+  </ul>
+  
+  <h5>
+    これから調べたい点
+  </h5>
+  
+  <ul>
+    <li>
+      firewall も使えるらしいが設定パラメータはどうなっているか
+    </li>
+    <li>
+      立ち上がったサーバに何してもいいのか <ul>
+        <li>
+          ssh のポート番号を変えるとか
+        </li>
+        <li>
+          シェルをクーロンで回すとか
+        </li>
+      </ul>
+    </li>
+    
+    <li>
+      L4レベルの分散処理ができないのでは
+    </li>
+    <li>
+      アドレスを固定化するために必要なことはあるか
+    </li>
+    <li>
+      何にいくらかかるのか
+    </li>
+  </ul>
+</div>
+
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-02-26T00:00:00+09:00" pubdate data-updated="true">Feb 26<span>th</span>, 2009</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/tech/'>Tech</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/2009/02/25/post//blog/page/29/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
 
 
     <article class="post">
@@ -1604,71 +1760,6 @@ $(document).ready(
 
 	
 		<span class="comments"><a href="/2009/02/11/with-m//blog/page/29/index.html#disqus_thread">Comments</a></span>
-	
-</div></article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/2009/02/06/post/">
-		
-			久しぶりに携帯を気にしない夜を過ごす</a>
-	</h2>
-	<div class="entry-content">
-		<div class="section">
-  <p>
-    ここ数年、障害対応をしていたので深夜でアラートは飛ぶし、電話もかかってくるので枕元には携帯を必ず置いていた。
-  </p>
-  
-  <p>
-    退職したのでそういえばもう枕元に携帯を置く必要はないのか、と昨日気づき枕元には置かずに寝てみた。
-  </p>
-  
-  <p>
-    気づいたのはかかってくるという緊張感が無意識のうちに結構あったのだなぁということ。夜中にかかってくることはもう慣れてしまっていたので、ここまで解放感を感じてしまうのかと若干驚いた。と同時に今まで体を張った自分にご苦労様と。。で、逆に解放されすぎて変な夢を見てしまったりw
-  </p>
-  
-  <p>
-    これから運用周りの仕事がとれればまた携帯で起こされるときもくると思うので、つかの間になるかもしれないけど。
-  </p>
-  
-  <p>
-    意外なところで、小さな気付きが。
-  </p>
-</div>
-
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-02-07T00:00:00+09:00" pubdate data-updated="true">Feb 7<span>th</span>, 2009</time></div>
-	
-
-<div class="tags">
-
-	<a class='category' href='/blog/categories/life/'>Life</a>
-
-</div>
-
-
-	
-		<span class="comments"><a href="/2009/02/06/post//blog/page/29/index.html#disqus_thread">Comments</a></span>
 	
 </div></article>
 

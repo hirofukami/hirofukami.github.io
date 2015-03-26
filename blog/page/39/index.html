@@ -9,7 +9,7 @@
 
 <meta name="author" content="HiroFukami"> 
 
-<meta name="description" content="Googleの人たちに直接触れたことがなかったので、登録していってきた。目的はプレゼンテーションの中身と言うよりかはそれを話している人たちがどんなものなのか。の方が興味があったりして。 3セッションほど聴けた。最後のエンジニアの日常の紹介では正に梅田望夫の本と同じ内容が紹介されていた。 &hellip;"> <meta name="keywords" content="">
+<meta name="description" content="異常にwebの表示が遅くなった時の原因が TIME_WAIT の大量発生だった。PHP だと生じやすいなぁ。 CentOS 4.5 finall にて TIME_WAIT を短くするための方法。 状況 web と DB を別サーバでネットワーク経由のデータやりとり DB サーバ側は &hellip;"> <meta name="keywords" content="">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -62,7 +62,7 @@ $(document).ready(
     <meta property="twitter:site" content="d_sea">
     <meta property="twitter:url" content="http://hirofukami.com">
     <meta property="twitter:title" content="Hiro Fukami's Blog">
-    <meta property="twitter:description" content="Googleの人たちに直接触れたことがなかったので、登録していってきた。目的はプレゼンテーションの中身と言うよりかはそれを話している人たちがどんなものなのか。の方が興味があったりして。 3セッションほど聴けた。最後のエンジニアの日常の紹介では正に梅田望夫の本と同じ内容が紹介されていた。それ以外の部分で気になった点は、 カルチャーを重んじる 人の邪魔をしないとか新しい人を受け入れる など &hellip;">
+    <meta property="twitter:description" content="異常にwebの表示が遅くなった時の原因が TIME_WAIT の大量発生だった。PHP だと生じやすいなぁ。 CentOS 4.5 finall にて TIME_WAIT を短くするための方法。 状況 web と DB を別サーバでネットワーク経由のデータやりとり DB サーバ側は TIME_WAIT ほとんどなし web(phpで作ったもの) にて TIME_WAIT 多めに残る それでも &hellip;">
     <meta property="twitter:creator" content="d_sea" />
 
 
@@ -122,6 +122,153 @@ $(document).ready(
 </header>
 
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/2008/06/18/time-wait-on-centos/">
+		
+			TIME_WAIT を早めに消す on CentOS</a>
+	</h2>
+	<div class="entry-content">
+		<div class="section">
+  <p>
+    異常にwebの表示が遅くなった時の原因が TIME_WAIT の大量発生だった。PHP だと生じやすいなぁ。
+  </p>
+  
+  <p>
+    CentOS 4.5 finall にて TIME_WAIT を短くするための方法。
+  </p>
+  
+  <ul>
+    <li>
+      状況</p> <ul>
+        <li>
+          web と DB を別サーバでネットワーク経由のデータやりとり
+        </li>
+        <li>
+          DB サーバ側は TIME_WAIT ほとんどなし
+        </li>
+        <li>
+          web(phpで作ったもの) にて TIME_WAIT 多めに残る それでも 150セッションくらいか
+        </li>
+      </ul>
+    </li>
+  </ul>
+  
+  <ul>
+    <li>
+      確認
+    </li>
+  </ul>
+  
+  <blockquote>
+    <p>
+      # netstat -an | grep -i time_
+    </p>
+    
+    <p>
+      (状況確認)
+    </p>
+    
+    <p>
+      # netstat -an | grep -i time_ | wc
+    </p>
+    
+    <p>
+      (行数として確認)
+    </p>
+  </blockquote>
+  
+  <ul>
+    <li>
+      作業
+    </li>
+  </ul>
+  
+  <blockquote>
+    <p>
+      # cd /proc/sys/net/ipv4/
+    </p>
+    
+    <p>
+      # more tcp_tw_recycle
+    </p>
+    
+    <p>
+    </p>
+    
+    <p>
+      # echo &#8216;1&#8217; > tcp_tw_recycle
+    </p>
+  </blockquote>
+  
+  <p>
+    特に再起動などいらず即反映される。
+  </p>
+  
+  <p>
+    重めなページを読み込ませつつ
+  </p>
+  
+  <blockquote>
+    <p>
+      # netstat -an | grep -i time_ | wc
+    </p>
+  </blockquote>
+  
+  <p>
+    を定期的に見れば数が減っていく速度が速いことが分かる。
+  </p>
+  
+  <ul>
+    <li>
+      参考サイト</p> <ul>
+        <li>
+          <a href="http://ohac.pun.jp/blog/2005/200502.html" target="_blank"><a href="http://ohac.pun.jp/blog/2005/200502.html" target="_blank">http://ohac.pun.jp/blog/2005/200502.html</a></a>
+        </li>
+        <li>
+          <a href="http://www.linux.or.jp/JF/JFdocs/Adv-Routing-HOWTO/lartc.kernel.obscure.html" target="_blank"><a href="http://www.linux.or.jp/JF/JFdocs/Adv-Routing-HOWTO/lartc.kernel.obscure.html" target="_blank">http://www.linux.or.jp/JF/JFdocs/Adv-Routing-HOWTO/lartc.kernel.obscure.html</a></a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-06-19T00:00:00+09:00" pubdate data-updated="true">Jun 19<span>th</span>, 2008</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/tech/'>Tech</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/2008/06/18/time-wait-on-centos//blog/page/39/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
 
 
     <article class="post">
@@ -2337,124 +2484,6 @@ $(document).ready(
 
 	
 		<span class="comments"><a href="/2008/05/16/post//blog/page/39/index.html#disqus_thread">Comments</a></span>
-	
-</div></article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/2008/05/06/post/">
-		
-			ブックストッパー</a>
-	</h2>
-	<div class="entry-content">
-		<div class="section">
-  <p>
-    自宅にて何か本を読みながらタイピングする時に本のページを開いたままにしたいから、今まではリモコンとか携帯とかを重石にしていたけど、技術書のような分厚い本は重さが足りなくて、
-  </p>
-  
-  <p>
-    <span style="font-weight:bold;">ズズズ、、パタン。。。あー。。。どこだったっけ。。。</span> のようにストレス感じてた。で、買ったのがこれ。
-  </p>
-  
-  <div class="hatena-asin-detail">
-    <p>
-      <a href="http://www.amazon.co.jp/dp/4902756064/?tag=hatena_st1-22&ascsubtag=d-4tfv" target="_blank"><img src="http://ecx.images-amazon.com/images/I/418TT5XXYXL._SL160_.jpg?w=830" class="hatena-asin-detail-image" alt="ブックストッパー" title="ブックストッパー" data-recalc-dims="1" /></a>
-    </p>
-    
-    <div class="hatena-asin-detail-info">
-      <p class="hatena-asin-detail-title">
-        <a href="http://www.amazon.co.jp/dp/4902756064/?tag=hatena_st1-22&ascsubtag=d-4tfv" target="_blank">ブックストッパー</a>
-      </p>
-      
-      <ul>
-        <li>
-          <span class="hatena-asin-detail-label">出版社/メーカー:</span> <a href="http://d.hatena.ne.jp/keyword/%A5%C8%A5%E2%A5%A8%BB%BB%C8%D7" class="keyword" target="_blank">トモエ算盤</a>
-        </li>
-        <li>
-          <span class="hatena-asin-detail-label">発売日:</span> 2004/07
-        </li>
-        <li>
-          <span class="hatena-asin-detail-label">メディア:</span>&#160;?
-        </li>
-        <li>
-          <span class="hatena-asin-detail-label">購入</span>: 121人 <span class="hatena-asin-detail-label">クリック</span>: 1,528回
-        </li>
-        <li>
-          <a href="http://d.hatena.ne.jp/asin/4902756064" target="_blank">この商品を含むブログ (103件) を見る</a>
-        </li>
-      </ul>
-    </div>
-    
-    <div class="hatena-asin-detail-foot">
-    </div>
-  </div>
-  
-  <p>
-    最初探していたのは映画に出てくるような西洋風の書斎で木製で作られた本を持たれかけさせて固定するような板の付いていたやつ
-  </p>
-  
-  <p>
-    ＃こんなやつ
-  </p>
-  
-  <p>
-    <a href="http://d.hatena.ne.jp/asin/B0001CQAAQ" class="asin" target="_blank"><img src="http://ecx.images-amazon.com/images/I/41F2YA0SWSL._SL160_.jpg?w=830" alt="ELECOM EDH-004 ブックスタンド" title="ELECOM EDH-004 ブックスタンド" class="asin" data-recalc-dims="1" /></a>
-  </p>
-  
-  <p>
-    をイメージしていていたのだけど。(書見台というらしいが)
-  </p>
-  
-  <p>
-    狭い机の上だとかさばるなぁと思っていたらやはり便利なものがあるもので、いくつか使っている人のレビューも見ながら決まり。
-  </p>
-  
-  <p>
-    色はグリーンとかいくつかあるらしいけど売り切れていたので、自宅で使うしまぁ色気はいらないということで白しか置いていないAmazonでレビューのとおりに2つ購入。
-  </p>
-  
-  <p>
-    実際使ってみると1つでも結構しっかりページを押えてくれるので、普段は1つで十分かも。1つの重みでもでも跳ね返しちゃうくらい分厚い本であれば2つ使う必要が出てくるかも。
-  </p>
-  
-  <p>
-    これで自宅での作業の効率化に貢献している。効率化への投資を考えれば安いものだ。
-  </p>
-</div>
-
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-05-07T00:00:00+09:00" pubdate data-updated="true">May 7<span>th</span>, 2008</time></div>
-	
-
-<div class="tags">
-
-	<a class='category' href='/blog/categories/shopping/'>Shopping</a>
-
-</div>
-
-
-	
-		<span class="comments"><a href="/2008/05/06/post//blog/page/39/index.html#disqus_thread">Comments</a></span>
 	
 </div></article>
 
