@@ -9,7 +9,7 @@
 
 <meta name="author" content="HiroFukami"> 
 
-<meta name="description" content="あまりに天気が良かったので、公園に行こうということになって今まで行ったことのない公園に行ってみる。 予想よりもかなり大きくって芝生も所々にあって、レジャーシートにお弁当広げてという人たちも結構いた。 桜も散り始めてしまってたけど、いくつか絵になるところを性能チェックもかねて L705iX &hellip;"> <meta name="keywords" content="">
+<meta name="description" content="細かい部分だけど久々の Network ネタ。 やりたいこと YAMAHA SRT100 へ YMS-VPN1(クライアントソフト)からいろんな場所からVPNを張りたい YMS-VPN1を入れたPCは一般的なブロードバンド環境下で使う ブロードバンドルータで NAT した下につながるので、 &hellip;"> <meta name="keywords" content="">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -62,7 +62,7 @@ $(document).ready(
     <meta property="twitter:site" content="d_sea">
     <meta property="twitter:url" content="http://hirofukami.com">
     <meta property="twitter:title" content="Hiro Fukami's Blog">
-    <meta property="twitter:description" content=" あまりに天気が良かったので、公園に行こうということになって今まで行ったことのない公園に行ってみる。 予想よりもかなり大きくって芝生も所々にあって、レジャーシートにお弁当広げてという人たちも結構いた。 桜も散り始めてしまってたけど、いくつか絵になるところを性能チェックもかねて L705iX でパチリ。 いい場所でいい時間を過ごせた。 Apr 6th, 2008 Life Comments ">
+    <meta property="twitter:description" content="細かい部分だけど久々の Network ネタ。 やりたいこと YAMAHA SRT100 へ YMS-VPN1(クライアントソフト)からいろんな場所からVPNを張りたい YMS-VPN1を入れたPCは一般的なブロードバンド環境下で使う ブロードバンドルータで NAT した下につながるので、NATトラバーサルを使いたい マニュアル上だとVPN部分の設定しか説明されていないけど、 &hellip;">
     <meta property="twitter:creator" content="d_sea" />
 
 
@@ -122,6 +122,132 @@ $(document).ready(
 </header>
 
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/2008/04/07/yamaha-srt100-yms-vpn1-nat-vpn/">
+		
+			YAMAHA SRT100 と YMS-VPN1(NATトラバーサルしたい)でVPN張る時の設定一工夫</a>
+	</h2>
+	<div class="entry-content">
+		<div class="section">
+  <p>
+    細かい部分だけど久々の Network ネタ。
+  </p>
+  
+  <ul>
+    <li>
+      やりたいこと</p> <ul>
+        <li>
+          YAMAHA SRT100 へ YMS-VPN1(クライアントソフト)からいろんな場所からVPNを張りたい
+        </li>
+        <li>
+          YMS-VPN1を入れたPCは一般的なブロードバンド環境下で使う <ul>
+            <li>
+              ブロードバンドルータで NAT した下につながるので、NATトラバーサルを使いたい
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+  
+  <p>
+    <a href="http://netvolante.jp/download/manual/index.html#manual_srt100" target="_blank">マニュアル</a>上だとVPN部分の設定しか説明されていないけど、NATトラバーサルをしたい場合は設定が全然不足。
+  </p>
+  
+  <h4>
+    NATトラバーサルしたい時に必要なこと
+  </h4>
+  
+  <ul>
+    <li>
+      静的IPマスカレードの設定</p> <ol>
+        <li>
+          [ルータ機能] &#8211; [NAT] &#8211; [インターフェイス] &#8211; [PPPoE] の設定を開く
+        </li>
+        <li>
+          [IPマスカレード] の設定を開く
+        </li>
+        <li>
+          最下部の [静的IPマスカレード] 内で以下項目を追加 <ul>
+            <li>
+              [内側のアドレス]:ルータ自身のLAN1側のip address、[プロトコル]:esp、[ポート番号]:なし
+            </li>
+            <li>
+              [内側のアドレス]:ルータ自身のLAN1側のip address、[プロトコル]:udp、[ポート番号]:500
+            </li>
+            <li>
+              [内側のアドレス]:ルータ自身のLAN1側のip address、[プロトコル]:udp、[ポート番号]:4500
+            </li>
+          </ul>
+        </li>
+      </ol>
+    </li>
+    
+    <li>
+      ポリシーフィルターの設定 <ol>
+        <li>
+          [セキュリティ機能] &#8211; [ポリシーフィルター] &#8211; [グループとユーザ定義サービスの一覧] の詳細を開く
+        </li>
+        <li>
+          [サービスグループの設定] で [IPsec] の設定を開く
+        </li>
+        <li>
+          [IKE]、[ESP] に続いて、[IPSEC-NAT-T] をプルダウンから選んで、確認/保存
+        </li>
+      </ol>
+    </li>
+  </ul>
+  
+  <p>
+    この2つの設定をしないとNATトラバーサルするパケットを受け付けてくれない。
+  </p>
+  
+  <p>
+    マニュアルに載ってないので問い合わせないと絶対分からない。
+  </p>
+  
+  <p>
+    ヤマハのカスタマーサポートに問い合わせたらサクッと答えていた。マニュアルにに載ってないからよく答えているんだろうなぁ。でも、サポートの技術的スキルが高い印象でよかったなぁ。
+  </p>
+</div>
+
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-04-08T00:00:00+09:00" pubdate data-updated="true">Apr 8<span>th</span>, 2008</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/tech/'>Tech</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/2008/04/07/yamaha-srt100-yms-vpn1-nat-vpn//blog/page/41/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
 
 
     <article class="post">
@@ -926,79 +1052,6 @@ $(document).ready(
 
 	
 		<span class="comments"><a href="/2008/02/21/post//blog/page/41/index.html#disqus_thread">Comments</a></span>
-	
-</div></article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/2008/02/20/post/">
-		
-			季節の変わり目か</a>
-	</h2>
-	<div class="entry-content">
-		<div class="section">
-  <p>
-    昨日くらいから夜があまり寒くなくなってきた。
-  </p>
-  
-  <p>
-    つらさも感じるくらい厳しかった冬が明けて、過ごしやすい春になっていく。
-  </p>
-  
-  <p>
-    1年を通じて繰り返される当たり前のことではあるが、寒い冬のあとには暖かい春が来る。
-  </p>
-  
-  <p>
-    つらく厳しい時の後には小さいながらにも幸せが来るということか。
-  </p>
-  
-  <p>
-    それは必ず来るのだろうか。
-  </p>
-  
-  <p>
-    個人的には &#8220;来る&#8221; というより &#8220;そうなるように自分でする&#8221; と思ってたけど、&#8221;来る&#8221; という感覚もあるのかもと思う今日この頃。
-  </p>
-  
-  <p>
-    丸くなったというか歳を取ったということか。
-  </p>
-</div>
-
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-02-21T00:00:00+09:00" pubdate data-updated="true">Feb 21<span>st</span>, 2008</time></div>
-	
-
-<div class="tags">
-
-	<a class='category' href='/blog/categories/life/'>Life</a>
-
-</div>
-
-
-	
-		<span class="comments"><a href="/2008/02/20/post//blog/page/41/index.html#disqus_thread">Comments</a></span>
 	
 </div></article>
 

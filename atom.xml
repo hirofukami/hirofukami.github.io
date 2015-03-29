@@ -4,7 +4,7 @@
   <title><![CDATA[Hiro Fukami's Blog]]></title>
   <link href="http://hirofukami.com/atom.xml" rel="self"/>
   <link href="http://hirofukami.com/"/>
-  <updated>2015-03-26T11:21:41+09:00</updated>
+  <updated>2015-03-30T08:44:07+09:00</updated>
   <id>http://hirofukami.com/</id>
   <author>
     <name><![CDATA[HiroFukami]]></name>
@@ -12,6 +12,63 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Docker で s3fs を使う方法]]></title>
+    <link href="http://hirofukami.com/blog/2015/03/30/docker-s3fs/"/>
+    <updated>2015-03-30T09:30:00+09:00</updated>
+    <id>http://hirofukami.com/blog/2015/03/30/docker-s3fs</id>
+    <content type="html"><![CDATA[<p><a href="http://www.shakesoul.net">会社Webサイト</a>の <a href="http://hirofukami.com/blog/2015/03/16/renewal-shakesoul-web/">リニューアル</a> の時にサーバの移設もした。移設先サーバを Docker ホスティング 環境にしてその上で Docker コンテナとして稼働させています。</p>
+
+<p>その時に s3fs がうまく動かなくてちょっとはまったのでその解決方法を記します。</p>
+
+<h1>現象</h1>
+
+<p>s3fs をインストールして、コマンド実行する。</p>
+
+<p><code>s3fs smartwp:/manage/uploads-st /home/shakesoul/Dropbox/SmartWP/demo00/html-staging/wp-content/uploads -o allow_other -o nonempty</code></p>
+
+<p>とすると以下のエラーが出てマウントできない。</p>
+
+<p><code>fuse: failed to open /dev/fuse: Operation not permitted</code></p>
+
+<h1>調査</h1>
+
+<p>エラーメッセージをみても解決方法が浮かばないし、今まで s3fs をセットアップしてきた経験上はじめてのエラーだったので、おそらく Docker 環境だらか生じているのだろうな。と当たりをつけて Google でエラーメッセージを検索。</p>
+
+<p>調べた結果、docker の github issue にあった。<a href="https://github.com/docker/docker/issues/9448">https://github.com/docker/docker/issues/9448</a></p>
+
+<p>やっぱり同じようなことをしたい人は世の中にいる。</p>
+
+<h1>解決方法</h1>
+
+<p><code>docker run</code> の時に <code>--cap-add SYS_ADMIN</code> と <code>--device /dev/fuse</code> をつける。</p>
+
+<p>実際の打ったコマンド
+<code>docker run -d -p 80:80 -p 443:443 -p 8080:8080 -p 1122:22 --cap-add SYS_ADMIN --device /dev/fuse centos6.6:origin01</code></p>
+
+<p>コンテナ上で s3fs コマンド実行と確認。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">[</span>shakesoul@05f602ff5289 ~<span class="o">]</span><span class="nv">$ </span>df -h | grep s3fs
+</span><span class='line'>s3fs                  256T     0  256T   0% /home/shakesoul/Dropbox/SmartWP/demo00/html-staging/wp-content/uploads
+</span><span class='line'>s3fs                  256T     0  256T   0% /home/shakesoul/Dropbox/SmartWP/demo00/html-production/wp-content/uploads
+</span><span class='line'>s3fs                  256T     0  256T   0% /home/shakesoul/Dropbox/SmartWP/shakesoul.net/html-staging/wp-content/uploads
+</span><span class='line'>s3fs                  256T     0  256T   0% /home/shakesoul/Dropbox/SmartWP/shakesoul.net/html-production/wp-content/uploads
+</span><span class='line'>s3fs                  256T     0  256T   0% /home/shakesoul/Dropbox/SmartWP/smartdesigning.me/html-staging/wp-content/uploads
+</span><span class='line'>s3fs                  256T     0  256T   0% /home/shakesoul/Dropbox/SmartWP/smartdesigning.me/html-production/wp-content/uploads
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>めでたしめでたし。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[年齢ごとの取得スキルをまとめてみた]]></title>
@@ -2098,88 +2155,6 @@ $ VBoxManage sharedfolder add boot2docker-vm --name Users --hostpath $HOME
 
 <p><a href="http://www.amazon.co.jp/gp/product/B00KF25RVA/ref=as_li_ss_tl?ie=UTF8&amp;camp=247&amp;creative=7399&amp;creativeASIN=B00KF25RVA&amp;linkCode=as2&amp;tag=dsea-22"><img src="http://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=B00KF25RVA&Format=_SL250_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=dsea-22" title="ニューモデル速報 統括シリーズ 2014-2015年 国産＆輸入SUVのすべて" ></a>
 <a href="http://hb.afl.rakuten.co.jp/hgc/1368ce62.540143f5.1368ce63.cb671705/?pc=http%3a%2f%2fitem.rakuten.co.jp%2fbook%2f12757210%2f%3fscid%3daf_link_txt&amp;m=http%3a%2f%2fm.rakuten.co.jp%2fbook%2fi%2f16919273%2f" target="_blank">ニューモデル速報 統括シリーズ 2014-2015年 国産＆輸入SUVのすべて</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Book ザッポス伝説]]></title>
-    <link href="http://hirofukami.com/blog/2014/11/25/book-delivering-happiness/"/>
-    <updated>2014-11-25T20:00:00+09:00</updated>
-    <id>http://hirofukami.com/blog/2014/11/25/book-delivering-happiness</id>
-    <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/447801373X/ref=as_li_ss_tl?ie=UTF8&amp;camp=247&amp;creative=7399&amp;creativeASIN=447801373X&amp;linkCode=as2&amp;tag=dsea-22"><img src="http://ecx.images-amazon.com/images/I/51AxOZRGdrL.jpg" alt="ザッポス伝説" /></a></p>
-
-<p>原題は Delivering Happiness。Delivering Happiness というのはザッポスの企業文化を良く表わしているキーワードで、この考え方を提唱するウェブサイトは <a href="http://www.deliveringhappiness.com">http://www.deliveringhappiness.com</a> となっている。</p>
-
-<p>電子書籍でも出ている。</p>
-
-<ul>
-<li><a href="http://www.amazon.co.jp/gp/product/B00HYREBJ8/ref=as_li_ss_tl?ie=UTF8&amp;camp=247&amp;creative=7399&amp;creativeASIN=B00HYREBJ8&amp;linkCode=as2&amp;tag=dsea-22">kindle</a></li>
-<li><a href="http://hb.afl.rakuten.co.jp/hgc/1360a562.9a5abdd9.1360a563.41a92e76/?pc=http%3a%2f%2fbooks.rakuten.co.jp%2frk%2fcc52e52aa4703a43807f87fdf4c644ce%2f%3fscid%3daf_link_urltxt&amp;amp;m=http%3a%2f%2fm.rakuten.co.jp%2fev%2fbook%2f">kobo</a></li>
-</ul>
-
-
-<h1>この本のサマリー</h1>
-
-<p>この本は、ザッポス CEO のトニー・シェイの自伝のような感じ。</p>
-
-<p>子どもの頃からビジネスをして、初めて創業した会社をマイクロソフトに売却、得られた潤沢な資金を元に投資家としてザッポスを支援、その後自らザッポスCEOになり、私財を投げ打って支え、成長を作る。そして、Amazonの買収。</p>
-
-<p>トニー・シェイの歴史に沿いながらも最後はザッポスの企業文化、それを維持するために実践していることの紹介をしている。</p>
-
-<!-- more -->
-
-
-<h1>単なる高額バイアウト成功秘話ではない</h1>
-
-<p>&ldquo;ザッポス&rdquo; と聞くと <strong>&ldquo;Amazonが830億円で買収した会社&rdquo;</strong> という印象が強いし、実際この本を手にとった理由としては &ldquo;どうやってそんな高額な金額でバイアウトできたのか&rdquo; という興味からだった。</p>
-
-<p>しかし、この本で書かれている実際の事柄はそんな華々しさとは無縁の非常に厳しい資金繰りの様子や、失敗から学び顧客に最高の体験を提供しようと目指す地道な姿だったりする。</p>
-
-<p>自分の中では、企業文化にフォーカスしたり顧客を重要視するはアメリカの成長企業にとって珍しいことかと思っていた。
-表向きは成長率や華々しいニュースが流れ、その企業が素敵に飾られているが、その会社の中でどんな考えのもと何をしているかは知られない。</p>
-
-<p>そんな本質を見えていない中での先入観であったことが自覚できた。</p>
-
-<p>Amazonが買収した理由としては、もちろんザッポスが高い成長率、黒字化、キャッシュフローがプラスで継続して増えている、とかあるだろうが <strong>「顧客に最高のサービスを」</strong> を掲げる文化を持っていたからというのが、第一の理由なのではないかと思われる。</p>
-
-<p>Amazonがそういった人間的な部分を重要視して買収したのはとても興味深い。</p>
-
-<p>あと、スタートアップ創業者なら痛いほどよくわかる、お金を工面する様子は生々しい。キャッシュをなんとかつきないように私財を投げ打って会社をぎりぎりの状態で継続させる。成功の前にはそういう苦労があったことがよくわかる。</p>
-
-<h1>スケールしないことをする</h1>
-
-<p>どうしてもスケールさせたいと考えると、顧客一人一人にコストを掛けるべきではないと思いがちだし、実際効率性を高める施策を取りやすい。
-マクドナルドのアルバイトのKPIは、顧客一人あたりの平均対応時間になっているのが分かりやすい例だと思う。</p>
-
-<p>最近そんな非効率なアプローチがすごく重要だったことを思い返させてくれる。<a href="http://postd.cc/do-things-that-dont-scale/">ポール・グレアムのブログ</a>然り、リーンスタートアップの手法も対面の繰り返しだったりする。</p>
-
-<p>昨年からリーンスタートアップの手法をしてきているが、インタビューしているとやっぱり目の前の人がユーザとして課題を克服した時に満足してくれるかということにフォーカスできる。Webサイトから大々的に宣伝して集客するのではなく、ターゲットユーザに直接会って話すことでユーザの様子がよく見えてくる。</p>
-
-<h1>顧客に最高の体験を</h1>
-
-<p>ザッポスは企業文化を維持するための様々な取り組みをしている。それが徹底している。</p>
-
-<p>自分たちの企業文化を重要視すると採用条件も厳しくなる。文化に同意するところから始まり、会社の研修にも時間をかける。しまいにはお金を与えて辞められることと働くことを選択させる。</p>
-
-<p>そう考えると古くからある日本の大企業が研修に何日もかけるのは、昔ながらの企業文化を大事にするスタンスの現れだったのかもしれない。
-私が新卒で入ったNTTは入社式後3週間泊まりがけの研修を行い、その後6ヶ月にわたって各部署をめぐる研修があって、正式に配属されるのは10月という流れだった。</p>
-
-<p>それらを&#8221;古いから&#8221;という理由で排除してしまうのは端的過ぎるといえるだろう。</p>
-
-<h1>サービス作りのポイントとしても面白い</h1>
-
-<p>ポーカーから得られた教訓はすごく面白い。サービスを作る時にそのまま活かせると思った。
-市場、競合、長期的な視点などすぐにでも取り入れられる。</p>
-
-<p>サービスのアイデアを持っている人は、事業として取り組む前に照らし合わせると、良いチェックリストになると思う。</p>
-
-<h1>起業を目指す人・実践中の人におすすめな本</h1>
-
-<p>この本は、起業の厳しさ、小さいチームが大きくなるということ、何を重要視するかなど、スタートアップが成長する際に必要な要素が実際起きたこととして学べる。</p>
-
-<p>良いことばかりではないし、本当にリスクの高いチャレンジであることがわかると思う。ただ、結果としてサービスが成長し、企業が継続するための指針を見つけ、バイアウトが成り立った。</p>
-
-<p>スタートアップで成長を狙う人たちにとって、活きた見本になる本だと思う。</p>
 ]]></content>
   </entry>
   
