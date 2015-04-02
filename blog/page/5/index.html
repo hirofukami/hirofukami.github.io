@@ -9,7 +9,7 @@
 
 <meta name="author" content="HiroFukami"> 
 
-<meta name="description" content="過去に MacBook Air 11インチにぴったりなバッグを紹介した けど、使っているうちにいくつか不満点があって最近はあまり使わなくなってしまっていた。 iPadとかのタブレット用の小さめバッグも出てきた雰囲気もあり、再びバッグ探しをしてみた。 そして買ったのがこれ。 HARVEST &hellip;"> <meta name="keywords" content="">
+<meta name="description" content="過去に Firefox + Vimperator から Chrome + Vichrome に乗り換えた というポストを書いたのだけど、あれから2ヶ月もたたないうちに Vimperator に戻りました。 Chrome 短い間だったけどありがとう。Frirefox 離れてみて君の良さがわかったよ &hellip;"> <meta name="keywords" content="">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -62,7 +62,7 @@ $(document).ready(
     <meta property="twitter:site" content="d_sea">
     <meta property="twitter:url" content="http://hirofukami.com">
     <meta property="twitter:title" content="Hiro Fukami's Blog">
-    <meta property="twitter:description" content="過去に MacBook Air 11インチにぴったりなバッグを紹介した けど、使っているうちにいくつか不満点があって最近はあまり使わなくなってしまっていた。 iPadとかのタブレット用の小さめバッグも出てきた雰囲気もあり、再びバッグ探しをしてみた。 そして買ったのがこれ。 HARVEST LABEL FY-0866 ボディバッグ タブレットのためのちょっと大人のバッグ &hellip;">
+    <meta property="twitter:description" content="過去に Firefox + Vimperator から Chrome + Vichrome に乗り換えた というポストを書いたのだけど、あれから2ヶ月もたたないうちに Vimperator に戻りました。 Chrome 短い間だったけどありがとう。Frirefox 離れてみて君の良さがわかったよ。ただいま。 理由は単純。体感的に Vichrome の不満点が大きくて、Vimperator &hellip;">
     <meta property="twitter:creator" content="d_sea" />
 
 
@@ -122,6 +122,91 @@ $(document).ready(
 </header>
 
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2014/04/04/chrome-to-firefox/">
+		
+			そして Vichrome から Vimperator に戻った</a>
+	</h2>
+	<div class="entry-content">
+		<p>過去に <a href="http://hirofukami.com/2014/02/04/firefox-vimperator-vs-chrome-vichrome/">Firefox + Vimperator から Chrome + Vichrome に乗り換えた</a> というポストを書いたのだけど、あれから2ヶ月もたたないうちに Vimperator に戻りました。</p>
+
+<p><img src="http://teramako.github.io/doc/browser-workshop-20101127/vimperator-logo.png" alt="Vimperator" /></p>
+
+<p>Chrome 短い間だったけどありがとう。Frirefox 離れてみて君の良さがわかったよ。ただいま。</p>
+
+<p>理由は単純。体感的に Vichrome の不満点が大きくて、Vimperator の方がレスポンスが良く気持よく使えると感じたから。</p>
+
+<h1>Vichrome の不満点</h1>
+
+<h2>デフォルトの処理待ちの遅さ</h2>
+
+<p>たとえば <code>d</code> キーを押してタブを閉じる動作をする時は、そのページの読み込みが終わっていないと動作しない。間違えて開いてしまったタブをすぐ閉じたい時もページの読み込みが終わるまで動作をしてくれないので、待ちが発生する。</p>
+
+<p>タブを閉じた時の動作も同じで、最後に選択していたタブにフォーカスさせる設定も、Chrome のデフォルト動作である最終タブ(右端)にいったんフォーカスしてから、Vichrome が最後に選択していたタブにフォーカスを変えるという動作をしていることが見てわかる。</p>
+
+<p>強制的に新しいウインドウではなくタブで開く動作も、一度ウインドウが開く => 閉じる => タブで新たに開く。という動作をしているのを見るはめになり非常にストレスを感じる。</p>
+
+<p>これだと先回りしてキーを押す流れを描いてサクサク操作することができないので、ストレスになる。</p>
+
+<h2>タブ周りの設定が少ない</h2>
+
+<p><code>u</code> キーで直近で閉じたタブを開く場合、Vimperator だとそのタブの回覧履歴も残っているので、<code>u</code> 押して、<code>Shift + h</code> で一つ前に見ていたページに戻るみたいなことができるけど、Vichrome だと回覧履歴の復元まではやってくれない。</p>
+
+<p>間違えて閉じてしまった時のリカバリーとしては履歴が残っていないのは痛い。</p>
+
+<p>基本的にタブ周りの設定項目が少なく Firefox Tab Mix Plus のようなことができない。デザイン周りはそんなに気にしないけど動作に関わる設定が少ないのは操作性に関わるからきつい。</p>
+
+<h2>根本原因は Chrome の設計思想</h2>
+
+<p>Vichrome が Chrome をコントロールできる権限はデフォルト設定より低いみたいで、デフォルトの動作待ちが発生しやすいのだと思う。</p>
+
+<p><code>Chrome 本体 &gt; デフォルトのセッティング &gt; Vichrome (extensions)</code></p>
+
+<p>Vichrome 的にはデフォルト動作が終わってからそれを修正するというスタンスになる。</p>
+
+<p>Firefox の Extensions はデフォルトの設定と同等で設定内容を書き換えることができるくらい高い権限を持っていると思う。</p>
+
+<p><code>Firefox 本体 &gt; デフォルトの設定 = Vimperator (extensions)</code></p>
+
+<p>Chrome が extensions に対して権限を与え過ぎないという考え方からくることなので、これは Chrome の設計思想を変えない限りどうにもならないのではと思っている。</p>
+
+
+		
+		<a href="/blog/2014/04/04/chrome-to-firefox/" class="more-link">Read on &rarr;</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-04-04T09:00:00+09:00" pubdate data-updated="true">Apr 4<span>th</span>, 2014</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/tool/'>Tool</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/blog/2014/04/04/chrome-to-firefox//blog/page/5/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
 
 
     <article class="post">
@@ -945,77 +1030,6 @@ FacebookやTwitterにポストするだけであとは何をしていいやら�
 
 	
 		<span class="comments"><a href="/2014/02/21/book-hirameki-brain//blog/page/5/index.html#disqus_thread">Comments</a></span>
-	
-</div></article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/2014/02/13/notify-smartdesigning/">
-		
-			Web制作者のためのクラウド&#8221;SmartDesigning&#8221;をリリースします</a>
-	</h2>
-	<div class="entry-content">
-		<h2>SmartDesigning (スマートデザイニング)</h2>
-
-<p><a href="http://smartdesigning.me/"><img src="/images/2014/02/SmartDesigning_icon_black.png?resize=256%2C206" alt="SmartDesigning_icon_black" class="alignnone size-full wp-image-2334" data-recalc-dims="1" /></a><br/>
-Webデザインするためのクラウドです。<br/>
-手軽にWebサイトをクラウド上に持てます。Dropboxを使ってローカルで作ったファイルをリアルタイムにクラウドに反映させます。</p>
-
-<p>アイコンはクラウドをキャンバスに見立てて自由に描いてもらうことをイメージして作りました。</p>
-
-<h2>2/17(月)リリース予定。現在サイト作成中</h2>
-
-<p>サービス自体のシステム構築とかは終わっていて、一部のユーザにトライアルとして使ってもらっています。</p>
-
-<p>サイト自体はすでに公開中で、コンテンツを充実させていっています。<a href="https://twitter.com/smart_designing">Twitterアカウント</a>、<a href="https://www.facebook.com/pages/Smart-Designing/662677490439988">Facebookページ</a> もあります。</p>
-
-<ul>
-<li>URL : <a href="http://smartdesigning.me/">http://smartdesigning.me</a></li>
-<li>Twitterアカウント : <a href="https://twitter.com/smart_designing">@smart_designing</a></li>
-<li>Facebookページ : <a href="https://www.facebook.com/pages/Smart-Designing/662677490439988">Smart Designing</a></li>
-</ul>
-
-
-<p>リリースは 2/17(月)ですが、そこに向かって作っていっている過程もオープンにしています。<br/>
-TwitterとFacebookページでアップデートをポストしているので、このサービスに興味ある方はフォロー＆Likeをお願いします。</p>
-
-<h2>何を解決するの？</h2>
-
-<h3>手軽に自由なキャンバスを手に入れる</h3>
-
-
-		
-		<a href="/2014/02/13/notify-smartdesigning/" class="more-link">Read on &rarr;</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-02-13T19:38:13+09:00" pubdate data-updated="true">Feb 13<span>th</span>, 2014</time></div>
-	
-
-<div class="tags">
-
-	<a class='category' href='/blog/categories/business/'>Business</a>
-
-</div>
-
-
-	
-		<span class="comments"><a href="/2014/02/13/notify-smartdesigning//blog/page/5/index.html#disqus_thread">Comments</a></span>
 	
 </div></article>
 
