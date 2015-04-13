@@ -4,7 +4,7 @@
   <title><![CDATA[Hiro Fukami's Blog]]></title>
   <link href="http://hirofukami.com/atom.xml" rel="self"/>
   <link href="http://hirofukami.com/"/>
-  <updated>2015-04-02T11:33:13+09:00</updated>
+  <updated>2015-04-13T18:10:40+09:00</updated>
   <id>http://hirofukami.com/</id>
   <author>
     <name><![CDATA[HiroFukami]]></name>
@@ -12,6 +12,197 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[LEAN - OpsDeliver課題・ソリューションインタビュー]]></title>
+    <link href="http://hirofukami.com/blog/2015/04/13/opsdeliver-problem-solution-interview/"/>
+    <updated>2015-04-13T18:20:00+09:00</updated>
+    <id>http://hirofukami.com/blog/2015/04/13/opsdeliver-problem-solution-interview</id>
+    <content type="html"><![CDATA[<p>OpsDeliver の想定している課題とソリューションのインタビュー実施した結果。</p>
+
+<p>課題インタビューとソリューションインタビューを一度に行っている。</p>
+
+<h1>実施環境</h1>
+
+<p>実施時間 : 1時間</p>
+
+<p>ハングアウトにてビデオチャット</p>
+
+<h1>全体の流れ</h1>
+
+<ol>
+<li>自己紹介</li>
+<li>現状把握</li>
+<li>課題把握</li>
+<li>現状の解決策</li>
+<li>新たなソリューションの提示</li>
+<li>価格確認</li>
+<li>その他に聞くべきこと</li>
+<li>紹介依頼</li>
+<li>質問受ける</li>
+</ol>
+
+
+<!-- more -->
+
+
+<h2>自己紹介</h2>
+
+<p>自分が何者で何をしているかを提示。確保したい時間枠を予め伝える。</p>
+
+<blockquote><p>クラウドやサーバ周辺の受託・サービス開発してきました。
+作っているサービスの想定があるのですが、想定があっているか確認するために質問させてください。
+1時間ほどお時間大丈夫でしょうか、急ぐことも可能です。</p></blockquote>
+
+<h2>現状把握</h2>
+
+<p>普段の様子を教えてもらう。</p>
+
+<blockquote><p>お仕事内容を教えて下さい :
+顧客は誰ですか？ :
+何を売り物にしていますか？ :
+月どれくらいの案件数ですか？ :
+誰かと一緒にやることはありますか？ :
+開発言語やフレームワークを教えて下さい？ :
+どんなサーバサービスを使っていますか？ :</p></blockquote>
+
+<h2>課題把握</h2>
+
+<p>こちらが予め想定した課題を提示してマッチするものがあるかどうか。</p>
+
+<blockquote><p>サービスの解決する課題はこのように考えているのですが、xxxさんが課題に当てはまるものはどれでしょうか？</p></blockquote>
+
+<p>ハングアウトの画面共有に切り替えて見せる。一つ一つ読み上げる。</p>
+
+<p><img src="http://hirofukami.com/images/2015/04/20150413-problem-sheet.png"></p>
+
+<blockquote><p>当てはまるものの優先度を教えて下さい。</p></blockquote>
+
+<p>当てはまらなかったものは隠す。</p>
+
+<p>当てはまるものがなければ何か教えてもらう。こちらが気づいていない大きな課題があるかも知れない。</p>
+
+<p>あまり困っていない場合、現状どんな解決方法をとっているか聞く。想定できてないソリューションがあるかも知れない。</p>
+
+<blockquote><p>具体的エピソードがあれば教えて下さい</p></blockquote>
+
+<p>失敗談や苦労話など具体的なシーンが見えると良い。</p>
+
+<h3>現在の解決策</h3>
+
+<blockquote><p>現在、この課題に対して何か解決策は持っていますか？</p></blockquote>
+
+<p>当てはまった課題に対して解決策を持っている場合はそれに満足しているかどうかを確認する。</p>
+
+<h3>新たなソリューションの提示</h3>
+
+<blockquote><p>こういったソリューションではいかがでしょう？</p></blockquote>
+
+<p><img src="http://hirofukami.com/images/2015/04/20150413-solution-sheet.png"></p>
+
+<p>当てはまった課題に対してこちらの想定しているソリューションを提示し説明する。
+反応をもらう。</p>
+
+<blockquote><p>使ってみたいですか？
+使いたい度合い、あったらいいな or 是非使いたい どちらですか？</p></blockquote>
+
+<p>飛びつくような反応がなければ、どんな点が良くなればよいか質問する。</p>
+
+<h1>価格確認</h1>
+
+<blockquote><p>いくらなら払えますか？</p></blockquote>
+
+<p>スポットが良いか月額が良いか。スポットだったらいくらか聞く。</p>
+
+<h1>その他に聞くべきこと</h1>
+
+<blockquote><p>欲しいアプリは何ですか？</p></blockquote>
+
+<p>具体的に利用してもらうために必要な事項を聞く。</p>
+
+<blockquote><p>その他にこちらが聞いておくべきことはありますか？</p></blockquote>
+
+<p>相手が自由に語られる時間にする。聞き取れていない部分のエピソードが分かるかもしれない。</p>
+
+<h1>紹介依頼</h1>
+
+<blockquote><p>最後にxxxさんと同じような課題を持っていらっしゃる同じような方を3名あげられますか？
+その方をご紹介いただくことは可能ですか？</p></blockquote>
+
+<p>あたってもらってOKだったらFacebookメッセージでつないでもらう流れにする。</p>
+
+<h1>質問受ける</h1>
+
+<blockquote><p>こちらへの質問はありますか？</p></blockquote>
+
+<p>質問の想定外の要素が探れる。</p>
+
+<h1>インタビュー後</h1>
+
+<h2>スコアをつける</h2>
+
+<p>インタビュー終了後、すぐにスコアにまとめる。</p>
+
+<p>採点要素と満点</p>
+
+<p>興奮、緊急で必要、ビジネスへの影響の3つの要素は初期の見込みユーザとしては重要項目なので配点を倍にしている。</p>
+
+<ul>
+<li>興奮 6</li>
+<li>緊急で必要 6</li>
+<li>ビジネスへの影響 6</li>
+<li>自家製の代替 3</li>
+<li>120日(120日以内に購入判断ができるか) 3</li>
+<li>ディシジョンメーカー(決済判断権を持っているか) 3</li>
+</ul>
+
+
+<p>27点満点</p>
+
+<p>わかりやすくするために100点満点に換算。</p>
+
+<p><code>スコア = 合計点数 x 100 / 27</code></p>
+
+<h2>スコア結果</h2>
+
+<p>合計6名にインタビュー実施した。</p>
+
+<ul>
+<li>フリーランス受託Web開発エンジニア・数名程度の受託Web開発会社 3名 平均 87.7点</li>
+<li>エンジニアが潤沢な受託Web開発会社 41点</li>
+<li>インフラ受託会社 40点</li>
+<li>アプリ開発エンジニア 29.6点</li>
+</ul>
+
+
+<h1>結果</h1>
+
+<h2>スコアより</h2>
+
+<p>小さいサイズのWeb開発エンジニアが得点が高かった。逆にエンジニアが潤沢な会社は必要性が低かった。</p>
+
+<p>インフラレイヤの会社はすでにそれなりに満足するサーバセットアップ方法を用意していた。</p>
+
+<p>仕事の形態や体制によってスコアが同じようになり、数値が明確に別れた。特定のセグメントをターゲットにできることがわかった。</p>
+
+<h2>課題とソリューション</h2>
+
+<p>スコアの数値が高い人は、課題に関して現状有用な解決策がなくソリューションに対して是非使いたい反応を示した。</p>
+
+<p>課題だと思う背景には、過去に非常に苦労したエピソードがあり、なかなか自力では解決できないことをはっきり認識している。</p>
+
+<p>価格は現状費やしている工数単価を基準に算出し、想定以上の金額が示された。</p>
+
+<h1>結論</h1>
+
+<p>ターゲットとしては、
+<strong>小さいサイズの個人Web開発エンジニア、もしくはインフラ部分の知識が乏しいWeb開発会社</strong> と言える。</p>
+
+<p>想定した課題を持ち、想定したソリューションを是非使ってみたいと反応したターゲット層を見つけたので、課題・ソリューションインタビューの終了条件を満たしたと言える。</p>
+
+<p>次のフェーズであるプロトタイプインタビューに進む。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[サッカー日本代表xウズベキスタン観戦記]]></title>
@@ -2026,171 +2217,6 @@ $ VBoxManage sharedfolder add boot2docker-vm --name Users --hostpath $HOME
 <li>iBeacon Developer Kit estimote.com iBeacon デバイス制作会社</li>
 </ol>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[WordPressからOctopressへきれいに移行する方法]]></title>
-    <link href="http://hirofukami.com/blog/2014/12/01/right-way-wordpress-to-octopress/"/>
-    <updated>2014-12-01T20:00:00+09:00</updated>
-    <id>http://hirofukami.com/blog/2014/12/01/right-way-wordpress-to-octopress</id>
-    <content type="html"><![CDATA[<p><img src="http://hirofukami.com/images/20141201-octopress.png" alt="octopress" /></p>
-
-<p>自分のブログ <a href="http://hirofukami.com">hirofukami.com</a> は今、Octopress on <a href="https://pages.github.com/">Github Pages</a> で動いています。</p>
-
-<p>その前は自分サーバ上で WordPress を運用していたのですが、アップデートがめんどい、もうちょっとすっきり運用したい、あとOctopress結構クールじゃん(これが大きい)とか思って <a href="http://octopress.org/">Octopress</a> に移行しました。</p>
-
-<p>今までブログは以下のように渡り歩いてきたのですが、今までのポストは全て移行して蓄積してきました。</p>
-
-<ol>
-<li>はてなダイアリー</li>
-<li>Tumblr</li>
-<li>WordPress.com</li>
-<li>WordPress on 自分サーバ</li>
-<li>Octopress on Github Pages</li>
-</ol>
-
-
-<p>2002年12月が最初のポストで、12年間で738ポストあります。
-今回の移行も今までどおり全ポストを WordPress から Octopress に移行するためにあれこれやってみたのですが、Webに載っている方法でベストなものがなかったので、少しだけいじってきれいに移行できたというお話です。</p>
-
-<!-- more -->
-
-
-<h2>Webに載っている方法たち</h2>
-
-<p>Octopress の元になっている <a href="http://import.jekyllrb.com/">Jekyll</a> には<a href="http://import.jekyllrb.com/docs/wordpress/">WordPressからの移行方法も紹介しているページ</a>があったり、検索すると出てきたりして3つほど試してみた。</p>
-
-<h3>1. WordPress to Jekyll Exporter</h3>
-
-<p>Github から取得可能 <a href="https://github.com/benbalter/wordpress-to-jekyll-exporter">https://github.com/benbalter/wordpress-to-jekyll-exporter</a></p>
-
-<p>さすがに wordpress.org のプラグインには登録されていない。</p>
-
-<p>WordPress プラグインとしてインストールして、WordPress管理画面上で操作する。
-全てのポストを <code>.md</code> ファイルに変換してくれる。</p>
-
-<p>動作は問題ないのだけど、生成された <code>.md</code> ファイルを見ると、最初の行のyaml front matterが以下のようになっている。</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>---
-</span><span class='line'>title: 仕事で本当に大切にしたいこと
-</span><span class='line'>author: Hiro Fukami
-</span><span class='line'>layout: post
-</span><span class='line'>permalink: /2004/07/26/%e4%bb%95%e4%ba%8b%e3%81%a7%e6%9c%ac%e5%bd%93%e3%81%ab%e5%a4%a7%e5%88%87%e3%81%ab%e3%81%97%e3%81%9f%e3%81%84%e3%81%93%e3%81%a8/
-</span><span class='line'>tumblr_hirofukami_permalink:
-</span><span class='line'>  - http://hirofukami.tumblr.com/post/29542403177
-</span><span class='line'>tumblr_hirofukami_id:
-</span><span class='line'>  - 29542403177
-</span><span class='line'>original_post_id:
-</span><span class='line'>  - 741
-</span><span class='line'>categories:
-</span><span class='line'>  - Book
-</span><span class='line'>tags:
-</span><span class='line'>  - book
-</span><span class='line'>  - reivew
-</span><span class='line'>---</span></code></pre></td></tr></table></div></figure>
-
-
-<p>日付(date)がない。。。</p>
-
-<p>試しに <code>rake generate</code> からの <code>rake preview</code> で見てみると、確かに日付が表示されない。日付がわからないのはブログとしてダメだ。何とかせねば。</p>
-
-<h3>2. jekyll-import</h3>
-
-<p><a href="http://import.jekyllrb.com/docs/wordpress/">Jekyllのページに紹介されていて</a> ruby の gem で提供されれている。</p>
-
-<p>ソース : <a href="https://github.com/jekyll/jekyll-import/tree/v0.4.1">https://github.com/jekyll/jekyll-import/tree/v0.4.1</a></p>
-
-<p>WordPress の動いているサーバ上で実行させるようなのだけど、うまく動かなかった。</p>
-
-<h3>3. Exitwp</h3>
-
-<p>もっと他にないのかと思って調べて見つけたもの。</p>
-
-<p>ソース : <a href="https://github.com/thomasf/exitwp">https://github.com/thomasf/exitwp</a></p>
-
-<p>WordPress管理画面からexportツールを使ってxmlファイルで出力させて、それを python スクリプトで変換してくれるもの。</p>
-
-<p>XMLファイルを落として、手元のMacで実行してみたが色々足りないよエラーが出て、あまりMacにインストールしたくない派の自分としてはここでストップした。</p>
-
-<h2>結局、WordPress to Jekyll Exporter に1行足すだけで解決した</h2>
-
-<p>WordPress to Jekyll Exporter のソースを見てみると、jekyll-export.php の中で yaml front matterの部分をWordPress関数から持ってきている部分があり、そこに WordPress 関数の <code>get_the_time</code> を足したらうまく日付が加わった。</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>---
-</span><span class='line'>title: 仕事で本当に大切にしたいこと
-</span><span class='line'>date: Mon, 26 Jul 2004 15:00:00 +0000
-</span><span class='line'>author: Hiro Fukami
-</span><span class='line'>layout: post
-</span><span class='line'>permalink: /2004/07/26/%e4%bb%95%e4%ba%8b%e3%81%a7%e6%9c%ac%e5%bd%93%e3%81%ab%e5%a4%a7%e5%88%87%e3%81%ab%e3%81%97%e3%81%9f%e3%81%84%e3%81%93%e3%81%a8/
-</span><span class='line'>tumblr_hirofukami_permalink:
-</span><span class='line'>  - http://hirofukami.tumblr.com/post/29542403177
-</span><span class='line'>tumblr_hirofukami_id:
-</span><span class='line'>  - 29542403177
-</span><span class='line'>original_post_id:
-</span><span class='line'>  - 741
-</span><span class='line'>categories:
-</span><span class='line'>  - Book
-</span><span class='line'>tags:
-</span><span class='line'>  - book
-</span><span class='line'>  - reivew
-</span><span class='line'>---</span></code></pre></td></tr></table></div></figure>
-
-
-<p>preview もOK。日付のフォーマットは調べたらOctopress側でも変更する必要なく解釈できるようだったので、シンプルな1行になった。</p>
-
-<p><code>'date' =&gt; get_the_time( 'r', $post ),</code></p>
-
-<p>差分は<a href="https://github.com/d-sea/wordpress-to-jekyll-exporter/commit/50b7a10276dd8f799558502e8f4a0b7462968188">こちら</a></p>
-
-<p><a href="https://github.com/d-sea/wordpress-to-jekyll-exporter">Github で fork している</a>ので、使い方はご自由にどうぞ。</p>
-
-<p>OK、OK。思っていた通りに移行できた。すっきりした。</p>
-
-<p>良き Octopress Blog ライフを〜</p>
-
-<h2>追記</h2>
-
-<p>日本語エンコードされた文字の入ったパーマリンクだと、個別ページが真っ白になって見れなくなる事象がでたため、それを <a href="http://hirofukami.com/blog/2015/02/15/permalink-wordpress-to-octopress/">解消したポストを書きました</a>。</p>
-
-<p><strong><a href="http://hirofukami.com/blog/2015/02/15/permalink-wordpress-to-octopress/">WordPress to Octopress 日本語パーマリンクを直す</a></strong></p>
-
-<p>良かったら読んでやってください。</p>
 ]]></content>
   </entry>
   
