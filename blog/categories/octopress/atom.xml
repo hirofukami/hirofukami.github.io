@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Octopress | Hiro Fukami's Blog]]></title>
   <link href="http://hirofukami.com/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="http://hirofukami.com/"/>
-  <updated>2015-04-13T18:14:16+09:00</updated>
+  <updated>2015-04-13T18:19:16+09:00</updated>
   <id>http://hirofukami.com/</id>
   <author>
     <name><![CDATA[HiroFukami]]></name>
@@ -76,7 +76,7 @@ tags:
 
 <p><code>Shift + Command + F</code> の全ファイル置換設定画面を出して、正規表現を有効にして以下のように入力。</p>
 
-<p>{% img /images/2015/02/20150215-sublime-text-screenshot.png Sublime Text Screen Shot %}</p>
+<p><img src="/images/2015/02/20150215-sublime-text-screenshot.png" title="Sublime Text Screen Shot" ></p>
 
 <ul>
 <li><code>^(permalink: /..../../..)/%(..).*/$</code> のように日付の部分までマッチさせたものを格納してReplaceの$1で使う</li>
