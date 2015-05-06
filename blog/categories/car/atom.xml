@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Car | Hiro Fukami's Blog]]></title>
   <link href="http://hirofukami.com/blog/categories/car/atom.xml" rel="self"/>
   <link href="http://hirofukami.com/"/>
-  <updated>2015-04-27T20:44:43+09:00</updated>
+  <updated>2015-05-07T07:55:20+09:00</updated>
   <id>http://hirofukami.com/</id>
   <author>
     <name><![CDATA[HiroFukami]]></name>
@@ -20,7 +20,7 @@
     <id>http://hirofukami.com/blog/2014/11/26/car-review-honda-vezel</id>
     <content type="html"><![CDATA[<p><a href="http://www.honda.co.jp/VEZEL/">ホンダ VEZEL</a>を試乗したレビューです。</p>
 
-<p><img src="http://www.honda.co.jp/VEZEL/webcatalog/styling/image/dsn_photo01.jpg" alt="Honda VEZEL" /></p>
+<p><img src="/images/2014/11/dsn_photo01.jpg" alt="Honda VEZEL" /></p>
 
 <p>試乗したのは、ハイブリッド Xタイプにオプションの17インチアルミホイールをはかせて、いくつかのアクセサリーを付けたもの。</p>
 
@@ -47,7 +47,7 @@
 
 <p>それでいてトランクが非常に広い。大きな荷物も置ける。足りなければ後部座席を倒してフラットにもできる。</p>
 
-<p><img src="http://www.honda.co.jp/VEZEL/webcatalog/interior/image/lgg_photo01_3.jpg" alt="トランク" /></p>
+<p><img src="/images/2014/11/lgg_photo01_3.jpg" alt="トランク" /></p>
 
 <p>良く設計したなぁと感心した。</p>
 
@@ -56,7 +56,7 @@
 
 <h2>内装</h2>
 
-<p><img src="http://www.honda.co.jp/VEZEL/webcatalog/interior/image/cbn_photo01_1.jpg" alt="インテリア" /></p>
+<p><img src="/images/2014/11/cbn_photo01_1.jpg" alt="インテリア" /></p>
 
 <p>結構今どきのデザインの要素をしっかり反映させていると思う。</p>
 
@@ -67,11 +67,11 @@
 </ul>
 
 
-<p><img src="http://www.honda.co.jp/VEZEL/image/a_interface_slide3.jpg" alt="フルオート・エアコンディショナー" /></p>
+<p><img src="/images/2014/11/a_interface_slide3.jpg" alt="フルオート・エアコンディショナー" /></p>
 
 <h2>外の見た目</h2>
 
-<p><img src="http://www.honda.co.jp/VEZEL/webcatalog/styling/image/dsn_photo03.jpg" alt="front" /></p>
+<p><img src="/images/2014/11/dsn_photo03.jpg" alt="front" /></p>
 
 <p>&ldquo;フィットをベースにしたコンパクトSUV&rdquo; というコンセプトの通り、顔はフィットを大きくした感じ。
 でも、フィットを知らない人が見たら特に違和感なく見れるはず。
@@ -110,13 +110,13 @@
 
 <h2>チェックした雑誌など</h2>
 
-<p><a href="http://www.amazon.co.jp/gp/product/B00IHUDRQO/ref=as_li_ss_il?ie=UTF8&amp;camp=247&amp;creative=7399&amp;creativeASIN=B00IHUDRQO&amp;linkCode=as2&amp;tag=dsea-22">{% img http://ws-fe.amazon-adsystem.com/widgets/q?<em>encoding=UTF8&amp;ASIN=B00IHUDRQO&amp;Format=</em>SL250_&amp;ID=AsinImage&amp;MarketPlace=JP&amp;ServiceVersion=20070822&amp;WS=1&amp;tag=dsea-22 ニューモデル速報 第490弾 ホンダ・ヴェゼルのすべて %}</a>
+<p><a href="http://www.amazon.co.jp/gp/product/B00IHUDRQO/ref=as_li_ss_il?ie=UTF8&amp;camp=247&amp;creative=7399&amp;creativeASIN=B00IHUDRQO&amp;linkCode=as2&amp;tag=dsea-22"><img src="http://ws-fe.amazon-adsystem.com/widgets/q?<em>encoding=UTF8&amp;ASIN=B00IHUDRQO&amp;Format=</em>SL250_&amp;ID=AsinImage&amp;MarketPlace=JP&amp;ServiceVersion=20070822&amp;WS=1&amp;tag=dsea-22" title="ニューモデル速報 第490弾 ホンダ・ヴェゼルのすべて" ></a>
 <a href="http://hb.afl.rakuten.co.jp/hgc/1360a562.9a5abdd9.1360a563.41a92e76/?pc=http%3a%2f%2fitem.rakuten.co.jp%2frakutenkobo-ebooks%2f4b4e9a1bb32835b698ed212674b8ca9b%2f%3fscid%3daf_link_txt&amp;m=http%3a%2f%2fm.rakuten.co.jp%2frakutenkobo-ebooks%2fi%2f13164853%2f" target="_blank">ニューモデル速報 第490弾 ホンダ・ヴェゼルのすべて-【電子書籍】</a></p>
 
-<p><a href="http://www.amazon.co.jp/gp/product/4865420096/ref=as_li_ss_il?ie=UTF8&amp;camp=247&amp;creative=7399&amp;creativeASIN=4865420096&amp;linkCode=as2&amp;tag=dsea-22">{% img http://ws-fe.amazon-adsystem.com/widgets/q?<em>encoding=UTF8&amp;ASIN=4865420096&amp;Format=</em>SL250_&amp;ID=AsinImage&amp;MarketPlace=JP&amp;ServiceVersion=20070822&amp;WS=1&amp;tag=dsea-22 ニューカー速報プラス HONDA新型VEZEL(ヴェゼル)(CARTOPMOOK) (CARTOP MOOK ニューカー速報プラス) %}</a>
+<p><a href="http://www.amazon.co.jp/gp/product/4865420096/ref=as_li_ss_il?ie=UTF8&amp;camp=247&amp;creative=7399&amp;creativeASIN=4865420096&amp;linkCode=as2&amp;tag=dsea-22"><img src="http://ws-fe.amazon-adsystem.com/widgets/q?<em>encoding=UTF8&amp;ASIN=4865420096&amp;Format=</em>SL250_&amp;ID=AsinImage&amp;MarketPlace=JP&amp;ServiceVersion=20070822&amp;WS=1&amp;tag=dsea-22" title="ニューカー速報プラス HONDA新型VEZEL(ヴェゼル)(CARTOPMOOK) (CARTOP MOOK ニューカー速報プラス)" ></a>
 <a href="http://hb.afl.rakuten.co.jp/hgc/1368ce62.540143f5.1368ce63.cb671705/?pc=http%3a%2f%2fitem.rakuten.co.jp%2fbook%2f12612420%2f%3fscid%3daf_link_txt&amp;m=http%3a%2f%2fm.rakuten.co.jp%2fbook%2fi%2f16755758%2f" target="_blank">ニューカー速報プラス HONDA新型VEZEL(ヴェゼル)(CARTOPMOOK)</a></p>
 
-<p><a href="http://www.amazon.co.jp/gp/product/B00KF25RVA/ref=as_li_ss_tl?ie=UTF8&amp;camp=247&amp;creative=7399&amp;creativeASIN=B00KF25RVA&amp;linkCode=as2&amp;tag=dsea-22">{% img http://ws-fe.amazon-adsystem.com/widgets/q?<em>encoding=UTF8&amp;ASIN=B00KF25RVA&amp;Format=</em>SL250_&amp;ID=AsinImage&amp;MarketPlace=JP&amp;ServiceVersion=20070822&amp;WS=1&amp;tag=dsea-22 ニューモデル速報 統括シリーズ 2014-2015年 国産＆輸入SUVのすべて %}</a>
+<p><a href="http://www.amazon.co.jp/gp/product/B00KF25RVA/ref=as_li_ss_tl?ie=UTF8&amp;camp=247&amp;creative=7399&amp;creativeASIN=B00KF25RVA&amp;linkCode=as2&amp;tag=dsea-22"><img src="http://ws-fe.amazon-adsystem.com/widgets/q?<em>encoding=UTF8&amp;ASIN=B00KF25RVA&amp;Format=</em>SL250_&amp;ID=AsinImage&amp;MarketPlace=JP&amp;ServiceVersion=20070822&amp;WS=1&amp;tag=dsea-22" title="ニューモデル速報 統括シリーズ 2014-2015年 国産＆輸入SUVのすべて" ></a>
 <a href="http://hb.afl.rakuten.co.jp/hgc/1368ce62.540143f5.1368ce63.cb671705/?pc=http%3a%2f%2fitem.rakuten.co.jp%2fbook%2f12757210%2f%3fscid%3daf_link_txt&amp;m=http%3a%2f%2fm.rakuten.co.jp%2fbook%2fi%2f16919273%2f" target="_blank">ニューモデル速報 統括シリーズ 2014-2015年 国産＆輸入SUVのすべて</a></p>
 ]]></content>
   </entry>

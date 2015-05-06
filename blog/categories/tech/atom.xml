@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Tech | Hiro Fukami's Blog]]></title>
   <link href="http://hirofukami.com/blog/categories/tech/atom.xml" rel="self"/>
   <link href="http://hirofukami.com/"/>
-  <updated>2015-04-27T20:44:43+09:00</updated>
+  <updated>2015-05-07T07:55:20+09:00</updated>
   <id>http://hirofukami.com/</id>
   <author>
     <name><![CDATA[HiroFukami]]></name>
@@ -68,7 +68,7 @@ s3fs                  256T     0  256T   0% /home/shakesoul/Dropbox/SmartWP/smar
     <link href="http://hirofukami.com/blog/2015/02/09/mac-docker-sharedfolder/"/>
     <updated>2015-02-09T19:00:00+09:00</updated>
     <id>http://hirofukami.com/blog/2015/02/09/mac-docker-sharedfolder</id>
-    <content type="html"><![CDATA[<p>{% img /images/2015/02/20150209-docker.png &lsquo;docker&rsquo; %}</p>
+    <content type="html"><![CDATA[<p><img src="/images/2015/02/20150209-docker.png" title="&lsquo;docker&rsquo;" ></p>
 
 <p>Mac で <a href="https://www.docker.com/">Docker</a> を動かそうとすると <a href="http://boot2docker.io/">boot2docker</a> は必須。</p>
 
@@ -140,7 +140,7 @@ $ VBoxManage sharedfolder add boot2docker-vm --name Users --hostpath $HOME
 
 <p>VirtualBox 上の設定画面は以下のようになった。</p>
 
-<p>{% img /images/2015/02/20150209-ScreenShot.png &lsquo;VirualBox screen shot %}</p>
+<p><img src="/images/2015/02/20150209-ScreenShot.png" title="&lsquo;VirualBox screen shot" ></p>
 
 <p>古い情報だと Share Name を <code>home</code> にすると書いてあるブログもあったが、やってみたが認識しなかった。</p>
 
@@ -384,7 +384,7 @@ drwxr-xr-x    1 docker   staff         3332 Jan 27 23:34 Users/</p>
     <link href="http://hirofukami.com/2014/01/31/chef-solo-knife-command-memo/"/>
     <updated>2014-01-31T19:53:16+09:00</updated>
     <id>http://hirofukami.com/2014/01/31/chef-solo-knife-command-memo</id>
-    <content type="html"><![CDATA[<p>{% img <a href="http://upload.wikimedia.org/wikipedia/en/5/56/Chef_Software_Inc._company_logo.png">http://upload.wikimedia.org/wikipedia/en/5/56/Chef_Software_Inc._company_logo.png</a> 380 %}</p>
+    <content type="html"><![CDATA[<p><img class="<a" src="href="http://upload.wikimedia.org/wikipedia/en/5/56/Chef_Software_Inc._company_logo.png">http://upload.wikimedia.org/wikipedia/en/5/56/Chef_Software_Inc._company_logo.png</a>" width="380"></p>
 
 <p>どうも Chef コマンドを覚えられず、入門 Chef solo を毎回読みなおしてしまっているので、コマンド覚書を作っておく。</p>
 
@@ -510,15 +510,281 @@ drwxr-xr-x    1 docker   staff         3332 Jan 27 23:34 Users/</p>
 
 <p>まずはベースの設定。recipe[swp_setup]です。</p>
 
-<p>{% gist 8328203 swp_setup_default.rb %}</p>
+<p><div><script src='https://gist.github.com/8328203.js?file=swp_setup_default.rb'></script>
+<noscript><pre><code>#
+# Cookbook Name:: swp_setup
+# Recipe:: default
+#
+# Copyright 2014, YOUR_COMPANY_NAME
+#
+# All rights reserved - Do Not Redistribute
+#
+
+######### create SWAP for micro instance of AWS EC2 ##########
+bash &#39;create swapfile&#39; do
+  user &#39;root&#39;
+  code &lt;&lt;-EOC
+    dd if=/dev/zero of=/swap.img bs=1M count=2048 &amp;&amp;
+    chmod 600 /swap.img
+    mkswap /swap.img
+  EOC
+  only_if { &quot;test ! -f /swap.img -a `cat /proc/swaps | wc -l` -eq 1&quot; }
+end
+
+mount &#39;/dev/null&#39; do # swap file entry for fstab
+  action :enable # cannot mount; only add to fstab
+  device &#39;/swap.img&#39;
+  fstype &#39;swap&#39;
+end
+
+bash &#39;activate swap&#39; do
+  code &#39;swapon -ae&#39;
+  only_if &quot;test `cat /proc/swaps | wc -l` -eq 1&quot;
+end
+
+
+############## nginx ##############
+package &quot;nginx&quot; do
+    action :install
+end
+
+
+############## php ##############
+package &quot;php&quot; do
+    action :install
+end
+
+package &quot;php-fpm&quot; do
+    action :install
+end
+
+package &quot;php-mbstring&quot; do
+    action :install
+end
+
+package &quot;php-mysql&quot; do
+    action :install
+end
+
+package &quot;php-xml&quot; do
+    action :install
+end
+
+package &quot;php-gd&quot; do
+    action :install
+end
+
+############## mysql ##############
+package &quot;mysql&quot; do
+    action :install
+end</code></pre></noscript></div>
+</p>
 
 <p>続いて、recipe[swap_scale-org]です。</p>
 
-<p>{% gist 8328145 swp_scale-org_default.rb %}</p>
+<p><div><script src='https://gist.github.com/8328145.js?file=swp_scale-org_default.rb'></script>
+<noscript><pre><code>#
+# Cookbook Name:: swp_scale-org
+# Recipe:: default
+#
+# Copyright 2014, YOUR_COMPANY_NAME
+#
+# All rights reserved - Do Not Redistribute
+#
+
+############## s3fs install ###########
+package &quot;gcc&quot; do
+    action :install
+end
+
+package &quot;libstdc++-devel&quot; do
+    action :install
+end
+
+package &quot;gcc-c++&quot; do
+    action :install
+end
+
+package &quot;fuse&quot; do
+    action :install
+end
+
+package &quot;fuse-devel&quot; do
+    action :install
+end
+
+package &quot;curl-devel&quot; do
+    action :install
+end
+
+package &quot;libxml2-devel&quot; do
+    action :install
+end
+
+package &quot;openssl-devel&quot; do
+    action :install
+end
+
+package &quot;mailcap&quot; do
+    action :install
+end
+
+# install s3fs
+bash &quot;install s3fs&quot; do
+  user &#39;root&#39;
+  cwd &quot;/home/#{node[&#39;userinfo&#39;][&#39;username&#39;]}&quot;
+  environment &quot;HOME&quot; =&gt; &quot;/home/#{node[&#39;userinfo&#39;][&#39;username&#39;]}&quot;
+  code &lt;&lt;-EOH
+    wget -O - &quot;http://s3fs.googlecode.com/files/s3fs-#{node[&#39;s3fs&#39;][&#39;version&#39;]}.tar.gz&quot; | tar xzf -
+    cd s3fs-#{node[&#39;s3fs&#39;][&#39;version&#39;]}/
+    ./configure --prefix=/usr 
+    make
+    make install
+    touch /etc/passwd-s3fs
+    echo #{node[&#39;userinfo&#39;][&#39;accessley_id&#39;]}:#{node[&#39;userinfo&#39;][&#39;secret-accesskey_id&#39;]} &gt; /etc/passwd-s3fs
+    chmod 600 /etc/passwd-s3fs
+    echo s3fs smartwp:/manage/uploads-st /home/#{node[&#39;userinfo&#39;][&#39;username&#39;]}/Dropbox/SmartWP/demo00/html-staging/wp-content/uploads -o allow_other -o nonempty &gt;&gt; /etc/rc.local
+    echo s3fs smartwp:/manage/uploads /home/#{node[&#39;userinfo&#39;][&#39;username&#39;]}/Dropbox/SmartWP/demo00/html-production/wp-content/uploads -o allow_other -o nonempty &gt;&gt; /etc/rc.local
+    echo s3fs smartwp:/manage/shakesoul_uploads-st /home/#{node[&#39;userinfo&#39;][&#39;username&#39;]}/Dropbox/SmartWP/shakesoul.net/html-staging/wp-content/uploads -o allow_other -o nonempty &gt;&gt; /etc/rc.local
+    echo s3fs smartwp:/manage/shakesoul_uploads-pr /home/#{node[&#39;userinfo&#39;][&#39;username&#39;]}/Dropbox/SmartWP/shakesoul.net/html-production/wp-content/uploads -o allow_other -o nonempty &gt;&gt; /etc/rc.local
+    echo s3fs smartwp:/manage/hirofukami_uploads-st /home/#{node[&#39;userinfo&#39;][&#39;username&#39;]}/Dropbox/SmartWP/hirofukami.com/html-staging/wp-content/uploads -o allow_other -o nonempty &gt;&gt; /etc/rc.local
+    echo s3fs smartwp:/manage/hirofukami_uploads-pr /home/#{node[&#39;userinfo&#39;][&#39;username&#39;]}/Dropbox/SmartWP/hirofukami.com/html-production/wp-content/uploads -o allow_other -o nonempty &gt;&gt; /etc/rc.local
+    EOH
+  not_if {::File.exists?(&quot;/etc/passwd-s3fs&quot;)}
+end
+
+############## nginx and php-fpm ##################
+template &quot;nginx.conf&quot; do
+    path &quot;/etc/nginx/nginx.conf&quot;
+    source &quot;nginx.conf.erb&quot;
+    owner &quot;root&quot;
+    group &quot;root&quot;
+    mode 0644
+    notifies :reload, &#39;service[nginx]&#39;
+end
+
+template &quot;nginx demo00.conf&quot; do
+    path &quot;/etc/nginx/conf.d/demo00.conf&quot;
+    source &quot;nginx-demo00.conf.erb&quot;
+    owner &quot;root&quot;
+    group &quot;root&quot;
+    mode 0644
+    notifies :reload, &#39;service[nginx]&#39;
+end
+
+template &quot;nginx hirofukami.conf&quot; do
+    path &quot;/etc/nginx/conf.d/hirofukami.conf&quot;
+    source &quot;nginx-hirofukami.conf.erb&quot;
+    owner &quot;root&quot;
+    group &quot;root&quot;
+    mode 0644
+    notifies :reload, &#39;service[nginx]&#39;
+end
+
+template &quot;nginx shakesoul.conf&quot; do
+    path &quot;/etc/nginx/conf.d/shakesoul.conf&quot;
+    source &quot;nginx-shakesoul.conf.erb&quot;
+    owner &quot;root&quot;
+    group &quot;root&quot;
+    mode 0644
+    notifies :reload, &#39;service[nginx]&#39;
+end
+
+template &quot;php.ini&quot; do
+    path &quot;/etc/php.ini&quot;
+    source &quot;php.ini.erb&quot;
+    owner &quot;root&quot;
+    group &quot;root&quot;
+    mode 0644
+    notifies :reload, &#39;service[php-fpm]&#39;
+end
+
+template &quot;www.conf&quot; do
+    path &quot;/etc/php-fpm.d/www.conf&quot;
+    source &quot;php-fpm-www.conf.erb&quot;
+    owner &quot;root&quot;
+    group &quot;root&quot;
+    mode 0644
+    notifies :reload, &#39;service[php-fpm]&#39;
+end
+
+directory &quot;/var/lib/nginx&quot; do
+  owner node[&#39;userinfo&#39;][&#39;username&#39;]
+  group &quot;root&quot;
+  action :create
+end
+
+directory &quot;/var/lib/nginx/tmp&quot; do
+  owner node[&#39;userinfo&#39;][&#39;username&#39;]
+  group &quot;root&quot;
+  action :create
+end
+
+############## Dropbox and WordPress ##############
+# install Dropbox Linux
+bash &quot;install dropbox&quot; do
+  user node[&#39;userinfo&#39;][&#39;username&#39;]
+  group node[&#39;userinfo&#39;][&#39;username&#39;]
+  cwd &quot;/home/#{node[&#39;userinfo&#39;][&#39;username&#39;]}&quot;
+  environment &quot;HOME&quot; =&gt; &quot;/home/#{node[&#39;userinfo&#39;][&#39;username&#39;]}&quot;
+  code &lt;&lt;-EOH
+    wget -O - &quot;https://www.dropbox.com/download?plat=lnx.x86_64&quot; | tar xzf -
+    mkdir ~/bin
+    cd ~/bin
+    wget -O ~/bin/dropbox https://www.dropbox.com/download?dl=packages/dropbox.py
+    chmod a+x dropbox
+    EOH
+  not_if {::File.exists?(&quot;/home/#{node[&#39;userinfo&#39;][&#39;username&#39;]}/.dropbox&quot;)}
+end
+
+
+# dropbox start
+template &quot;/etc/init.d/dropbox&quot; do
+    path &quot;/etc/init.d/dropbox&quot;
+    source &quot;dropbox-initd.erb&quot;
+    owner &quot;root&quot;
+    group &quot;root&quot;
+    mode 0755
+    notifies :reload, &#39;service[dropbox]&#39;
+end
+
+service &quot;dropbox&quot; do
+    supports :start =&gt; true, :stop =&gt; true
+    action [:enable, :start]
+end
+
+############# Last process start ###############
+service &quot;nginx&quot; do
+    supports :status =&gt; true, :restart =&gt; true, :reload =&gt; true
+    action [:enable, :start]
+end
+
+service &quot;php-fpm&quot; do
+    supports :status =&gt; true, :restart =&gt; true, :reload =&gt; true
+    action [:enable, :start]
+end
+</code></pre></noscript></div>
+</p>
 
 <p>これを nodes/[hostname].json で、</p>
 
-<p>{% gist 8328241 node.json %}</p>
+<p><div><script src='https://gist.github.com/8328241.js?file=node.json'></script>
+<noscript><pre><code>{
+	&quot;userinfo&quot; : {
+		&quot;username&quot; : [your username],
+		&quot;accessley_id&quot; : [your accesskey_id],
+		&quot;secret-accesskey_id&quot; : [your secret-accesskey_id]
+	},
+	&quot;s3fs&quot; : {
+		&quot;version&quot; : &quot;1.74&quot;
+	},
+	&quot;run_list&quot;:[
+	    	&quot;yum::epel&quot;,
+	    	&quot;recipe[swp_setup]&quot;,
+		&quot;recipe[swp_scale-org]&quot;
+	]
+}</code></pre></noscript></div>
+</p>
 
 <p>のように書いて適用させています。</p>
 
