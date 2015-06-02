@@ -9,7 +9,7 @@
 
 <meta name="author" content="HiroFukami"> 
 
-<meta name="description" content="Amazon EC2/S3 を触ってみた。調べつつ行うのは時間がもったいなかったので本に頼ってしまった。 学びingさんの以下の本を読みつつ進めれば、問題なく行えた。 Amazon EC2/S3クラウド入門 作者: 学びing 出版社/メーカー: 秀和システム 発売日: 2008/12 メディア &hellip;"> <meta name="keywords" content="">
+<meta name="description" content="技術的にコアで刺激になるような勉強会はないかなと思っていていたら、BP Study をすすめられた。前から BP Study の存在は知っていて気にはなっていたけど、機会がなくて行ったことがなかった。 今回時間もあったこともあって初参加。 内容は OpenID Authentication 2. &hellip;"> <meta name="keywords" content="">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -62,7 +62,7 @@ $(document).ready(
     <meta property="twitter:site" content="d_sea">
     <meta property="twitter:url" content="http://hirofukami.com">
     <meta property="twitter:title" content="Hiro Fukami's Blog">
-    <meta property="twitter:description" content="Amazon EC2/S3 を触ってみた。調べつつ行うのは時間がもったいなかったので本に頼ってしまった。 学びingさんの以下の本を読みつつ進めれば、問題なく行えた。 Amazon EC2/S3クラウド入門 作者: 学びing 出版社/メーカー: 秀和システム 発売日: 2008/12 メディア: 単行本 購入: 4人 クリック: 79回 この商品を含むブログ (22件) を見る &hellip;">
+    <meta property="twitter:description" content="技術的にコアで刺激になるような勉強会はないかなと思っていていたら、BP Study をすすめられた。前から BP Study の存在は知っていて気にはなっていたけど、機会がなくて行ったことがなかった。 今回時間もあったこともあって初参加。 内容は OpenID Authentication 2.0 protocol の解説と XMPP and AMQP の紹介 資料の紹介は BP Study &hellip;">
     <meta property="twitter:creator" content="d_sea" />
 
 
@@ -122,6 +122,503 @@ $(document).ready(
 </header>
 
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/2009/05/20/bp-study-21/">
+		
+			BP Study#21 に参加してきました</a>
+	</h2>
+	<div class="entry-content">
+		<div class="section">
+  <p>
+    技術的にコアで刺激になるような勉強会はないかなと思っていていたら、BP Study をすすめられた。前から BP Study の存在は知っていて気にはなっていたけど、機会がなくて行ったことがなかった。
+  </p>
+  
+  <p>
+    今回時間もあったこともあって初参加。
+  </p>
+  
+  <p>
+    内容は OpenID Authentication 2.0 protocol の解説と XMPP and AMQP の紹介
+  </p>
+  
+  <p>
+    資料の紹介は BP Study の web にリンクされています&#160;: <a href="http://beproud.jp/bpstudy/?p=31" target="_blank"><a href="http://beproud.jp/bpstudy/?p=31" target="_blank">http://beproud.jp/bpstudy/?p=31</a></a>
+  </p>
+  
+  <p>
+    どちらも技術的にはニッチかつコアな内容で専門ではないので概略くらいしか理解できなかったが、それだけコアなものに触れられてよかった。細かくはなんだか分からないけど技術的に先端的だったりニッチだけどすごいことが世の中にはあるんだなぁ思うこと、それを感じるのが結構大事なのかと思う。
+  </p>
+  
+  <p>
+    個人的には後半の AMQP みたいな大量な処理をひたすら効率的にさばくための仕組みは結構興味深かった。Google 内部でもこんなようなひたすら高速に処理するためのシステムが作られて web で紹介されているのはごく一部なんだろう。
+  </p>
+  
+  <p>
+    全体的な雰囲気としては懐かしの IRI でやっていたエンジニア勉強会に近い感じを受けた。そこそこで技術的コアな情報を知っているエンジニアが集まることでエンジニア集団全体としての幅と厚さが出る。この技術の幅と厚さが価値になる。そう考えると BP Study は結構な幅と厚さのある勉強会になっているので価値は高いな。
+  </p>
+  
+  <p>
+    # この技術に対する価値の見いだし方がちゃんと理解できている人はなかなか少ない。シリコンバレーではベースとなる考え方になっている
+  </p>
+  
+  <p>
+    懇親会でも色々な方と面識を作れたのもよかった。ShakeSoul として何か一緒にやれることを見いだせればラッキーだろう。
+  </p>
+  
+  <p>
+    継続的に参加したい勉強会になりそうだ。
+  </p>
+  
+  <p>
+    以下、当日とったメモ
+  </p>
+  
+  <p>
+    <a name="seemore"></a>
+  </p>
+  
+  <p>
+    090521 BPstudy #21
+  </p>
+  
+  <p>
+    19:00-21:30
+  </p>
+  
+  <h4>
+    Introduction OpenID Authenticasion 2.0 Revival
+  </h4>
+  
+  <ul>
+    <li>
+      OpenID tech night やった もうちょっと分かりやすくした初心者向け
+    </li>
+    <li>
+      OpenID Authentication 2.0 protocol がある
+    </li>
+    <li>
+      ケーススタディ smart.fm <ul>
+        <li>
+          smart.fm のアカウントあり
+        </li>
+        <li>
+          openIDとの関連付け済み
+        </li>
+        <li>
+          OpenID アカウント入れると myopenid.com のサイトにユーザ側でのリダイレクトされた <ul>
+            <li>
+              これは smart.fm のサーバがクライアントにリクエストしている
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    
+    <li>
+      用語 <ul>
+        <li>
+          Claimed Identifier クライアント側の所属情報
+        </li>
+        <li>
+          Relying party 使おうとしているサービス smart.fm
+        </li>
+        <li>
+          User-Suppolied Identifier <ul>
+            <li>
+              Claimed Identifier と OP Identifier をひとくくりにしたもの
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    
+    <li>
+      コマンド myopenid にアクセスする時 Yadis Discovery <ul>
+        <li>
+          lwp-request -S -e- d <a href="http://zigorou.myopenid.com/" target="_blank"><a href="http://zigorou.myopenid.com/" target="_blank">http://zigorou.myopenid.com/</a></a> | grep -i xrds
+        </li>
+        <li>
+          X-XRDS-Location: http;//zigorou.myopenid.com/?xrds=1
+        </li>
+        <li>
+          http;//zigorou.myopenid.com/?xrds=1
+        </li>
+        <li>
+          # 色々出てくる
+        </li>
+        <li>
+          XRDS 文章を見つけるやりとり
+        </li>
+      </ul>
+    </li>
+  </ul>
+  
+  <h5>
+    自分メモ
+  </h5>
+  
+  <ul>
+    <li>
+      大まかに言えば</p> <ul>
+        <li>
+          smart.fm がクライアントにリダイレクト要求
+        </li>
+        <li>
+          クライアントが openid.com にリダイレクト
+        </li>
+        <li>
+          認証をする
+        </li>
+        <li>
+          openid.com よりクライアントへリダイレクト要求
+        </li>
+        <li>
+          クライアントが最初の smart.fm にリダイレクトする
+        </li>
+      </ul>
+    </li>
+    
+    <li>
+      という感じの流れのようだ
+    </li>
+  </ul>
+  
+  <h5>
+    QA
+  </h5>
+  
+  <ul>
+    <li>
+      Q1 A1 OpenID ライブラリが出ているようだ</p> <ul>
+        <li>
+          セキュリティホールがあるようだ バージョン上げる必要があるとのこと
+        </li>
+      </ul>
+    </li>
+    
+    <li>
+      Q2 return-to-url が書き換えられる場合は <ul>
+        <li>
+          どの OP も安全という訳ではない verification でチェックされて促すくらいのやり方
+        </li>
+      </ul>
+    </li>
+    
+    <li>
+      Q3 いろいろな OP があって開発めんどい <ul>
+        <li>
+          めんどいので Google は画一的な画面を出して共通化する動きもある
+        </li>
+      </ul>
+    </li>
+  </ul>
+  
+  <h4>
+    XMPP and AMQP
+  </h4>
+  
+  <ul>
+    <li>
+      両方を知っている人少ないのでは、、、
+    </li>
+    <li>
+      XMPP <ul>
+        <li>
+          XML 実装
+        </li>
+        <li>
+          Google Talk のプロトコル
+        </li>
+        <li>
+          非同期な通信
+        </li>
+      </ul>
+    </li>
+    
+    <li>
+      AMQP
+    </li>
+    <li>
+      Erlang <ul>
+        <li>
+          並列処理指向言語、分散処理指向言語、Open Telecom Platform(OTP)
+        </li>
+        <li>
+          facebook Online chat, AWS SimpleDB, Apache CouchDB, 分散ハッシュDB Kai / scalaris で使っている
+        </li>
+        <li>
+          はてなダイヤリ higepon/20090509/1241863278
+        </li>
+        <li>
+          井上 武 たけまるさんの資料公開されている プログラミング言語 Erlang の動向
+        </li>
+      </ul>
+    </li>
+  </ul>
+  
+  <h5>
+    XMPP
+  </h5>
+  
+  <ul>
+    <li>
+      RFC にもなっている
+    </li>
+    <li>
+      XMLベースのプロトコル
+    </li>
+    <li>
+      動きはメールサーバと一緒
+    </li>
+    <li>
+      TCPコネクション張りっぱなし
+    </li>
+    <li>
+      XMPP Server 接続、友人、状態を管理 <ul>
+        <li>
+          クライアント間は直接メッセージ通信する
+        </li>
+      </ul>
+    </li>
+    
+    <li>
+      基本的には NAT を通らない <ul>
+        <li>
+          Google は UDP Hole panching をするライブラリを適用している
+        </li>
+        <li>
+          プッシュ型のメッセージ交換 張りっぱなし
+        </li>
+      </ul>
+    </li>
+  </ul>
+  
+  <h5>
+    XMPP サーバの動き
+  </h5>
+  
+  <ul>
+    <li>
+      ログイン、IDとIP情報を伝える
+    </li>
+    <li>
+      相互認証になる ブロックしたい相手には情報を送らない
+    </li>
+  </ul>
+  
+  <h5>
+    セキュリティ
+  </h5>
+  
+  <ul>
+    <li>
+      SSL/TLSm DNSの逆引きチェック、SASL。。(シンプルな認証のようだ）
+    </li>
+    <li>
+      複数チャットも可能
+    </li>
+  </ul>
+  
+  <h5>
+    ejabberd
+  </h5>
+  
+  <ul>
+    <li>
+      Erlang による XMPP 実装
+    </li>
+    <li>
+      Group Chat も実装済み、部屋が作れる
+    </li>
+    <li>
+      大量のコネクションが来ても大丈夫
+    </li>
+  </ul>
+  
+  <h5>
+    Ejabberd Cloud Editon
+  </h5>
+  
+  <ul>
+    <li>
+      AWS の SDB と S3 においてしまう
+    </li>
+    <li>
+      スケールすることを
+    </li>
+  </ul>
+  
+  <h5>
+    AWS import/Export
+  </h5>
+  
+  <ul>
+    <li>
+      HDD を Amazon へ送る
+    </li>
+    <li>
+      S3 にインポート
+    </li>
+    <li>
+      1TB HDD 1TB転送して 1万円くらい
+    </li>
+    <li>
+      バックアップ HDD を送ってもらう
+    </li>
+  </ul>
+  
+  <h5>
+    AMQP
+  </h5>
+  
+  <ul>
+    <li>
+      Advanced Message Queue Protocol
+    </li>
+    <li>
+      今年中に 1.0 が公開されるはず
+    </li>
+    <li>
+      メッセージ指向ミドルウエア
+    </li>
+    <li>
+      アプリケーション間の通信プロトコル
+    </li>
+    <li>
+      5億くらいのメーッセージをさばく
+    </li>
+    <li>
+      非同期なのにトランザクション
+    </li>
+    <li>
+      TCP であることを利用
+    </li>
+    <li>
+      マルチキャスト
+    </li>
+    <li>
+      ルーティングキーが一致するところに送る
+    </li>
+    <li>
+      大規模向けすごい負荷がかかるところを抜けるためのソリューション
+    </li>
+  </ul>
+  
+  <h5>
+    RabbitMQ
+  </h5>
+  
+  <ul>
+    <li>
+      Erlang による AMQP 実装
+    </li>
+    <li>
+      130万/sec リクエスト可能
+    </li>
+    <li>
+      3億メッセージ/日
+    </li>
+    <li>
+      AMQP 0.8 まで実装済み
+    </li>
+    <li>
+      ニュース配信、ラジオとか 情報がとにかく出すところが使っている
+    </li>
+  </ul>
+  
+  <h5>
+    Kay
+  </h5>
+  
+  <ul>
+    <li>
+      Google App Engine Python 専用フレームワーク作ってます
+    </li>
+  </ul>
+  
+  <h5>
+    AMQP サイトがある
+  </h5>
+  
+  <ul>
+    <li>
+      送る側とクライアントの作り込で設けているようだ
+    </li>
+    <li>
+      送る部分はオープンソースにしている
+    </li>
+  </ul>
+  
+  <h4>
+    etc
+  </h4>
+  
+  <ul>
+    <li>
+      アーラン
+    </li>
+    <li>
+      Tokyo キャビネット
+    </li>
+  </ul>
+  
+  <h5>
+    etc&#160;: Google libjingle
+  </h5>
+  
+  <ul>
+    <li>
+      Google Code より
+    </li>
+    <li>
+      techtalk もある コアエンジニアが話しているらしい
+    </li>
+    <li>
+      xmpp.org にも libjingle
+    </li>
+    <li>
+      95%は Google 社外に出てないらしい
+    </li>
+  </ul>
+</div>
+
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-05-21T00:00:00+09:00" pubdate data-updated="true">May 21<span>st</span>, 2009</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/tech/'>Tech</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/2009/05/20/bp-study-21//blog/page/26/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
 
 
     <article class="post">
@@ -1777,190 +2274,6 @@ $(document).ready(
 
 	
 		<span class="comments"><a href="/2009/04/13/post//blog/page/26/index.html#disqus_thread">Comments</a></span>
-	
-</div></article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/2009/04/03/post/">
-		
-			シリコンバレーの環境としての魅力</a>
-	</h2>
-	<div class="entry-content">
-		<div class="section">
-  <p>
-    環境といっても会社の環境は他のエントリーに書いているので、ここではシリコンバレーと呼ばれる地の地理的情報や町の様子などを書いてみたい。
-  </p>
-  
-  <p>
-    シリコンバレーに暮らす日本人の方に「なんでシリコンバレーに住むんですか」と若干真面目に聞いてみても、「お天気がいいから」と返されることがしばしばだったが、実は結構まじめな答えかも。と思うほどシリコンバレーは天気がいい。
-  </p>
-  
-  <p>
-    シリコンバレーという地名はないがサンフランシスコの南からサンノゼ手前くらいのエリアが該当するのだろう。地名で言えば Palo Alto, Mountain View, Los Altos, Sunnyvale あたりかと思う。
-  </p>
-  
-  <p>
-    これらの場所に行ってみて感じたことを一眼レフでもないデジカメで撮ってきた写真をあわせつつ並べると、
-  </p>
-  
-  <ul>
-    <li>
-      とにかく天気がいい</p> <ul>
-        <li>
-          からっと晴れていて日本の夏のようなジメジメさがない
-        </li>
-      </ul>
-    </li>
-    
-    <li>
-      とにかく空が青い
-    </li>
-    <li>
-      とにかく空が広い <ul>
-        <li>
-          高い建物がない ビルも3階建てまでの低層 住居も2階建ての一戸建てがほとんど
-        </li>
-      </ul>
-    </li>
-  </ul>
-  
-  <p>
-    <a href="http://f.hatena.ne.jp/d_sea/20090324021001" class="hatena-fotolife" target="_blank"><img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/d_sea/20090324/20090324021001.jpg?w=830" alt="f:id:d_sea:20090324021001j:image" title="f:id:d_sea:20090324021001j:image" class="hatena-fotolife" data-recalc-dims="1" /></a>
-  </p>
-  
-  <ul>
-    <li>
-      緑が豊富</p> <ul>
-        <li>
-          ちょっとした公園もこんな感じ
-        </li>
-      </ul>
-    </li>
-  </ul>
-  
-  <p>
-    <a href="http://f.hatena.ne.jp/d_sea/20090321102644" class="hatena-fotolife" target="_blank"><img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/d_sea/20090321/20090321102644.jpg?w=830" alt="f:id:d_sea:20090321102644j:image" title="f:id:d_sea:20090321102644j:image" class="hatena-fotolife" data-recalc-dims="1" /></a>
-  </p>
-  
-  <ul>
-    <li>
-      町並みがきれい
-    </li>
-  </ul>
-  
-  <p>
-    <a href="http://f.hatena.ne.jp/d_sea/20090321070804" class="hatena-fotolife" target="_blank"><img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/d_sea/20090321/20090321070804.jpg?w=830" alt="f:id:d_sea:20090321070804j:image" title="f:id:d_sea:20090321070804j:image" class="hatena-fotolife" data-recalc-dims="1" /></a>
-  </p>
-  
-  <ul>
-    <li>
-      区画が広々取ってある
-    </li>
-    <li>
-      芝が濃い緑色をしている
-    </li>
-    <li>
-      建物が映画に出てくるようなかわいらしいきれいなデザイン <ul>
-        <li>
-          モダンな一戸建てはない
-        </li>
-      </ul>
-    </li>
-  </ul>
-  
-  <p>
-    <a href="http://f.hatena.ne.jp/d_sea/20090321102705" class="hatena-fotolife" target="_blank"><img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/d_sea/20090321/20090321102705.jpg?w=830" alt="f:id:d_sea:20090321102705j:image" title="f:id:d_sea:20090321102705j:image" class="hatena-fotolife" data-recalc-dims="1" /></a>
-  </p>
-  
-  <p>
-    生活するのにデメリットなところは
-  </p>
-  
-  <ul>
-    <li>
-      車がないと成り立たない</p> <ul>
-        <li>
-          近所のお店に行くにも車
-        </li>
-      </ul>
-    </li>
-    
-    <li>
-      ファッションは期待できない <ul>
-        <li>
-          おしゃれな服は売ってないし、着ている人も見かけない
-        </li>
-      </ul>
-    </li>
-    
-    <li>
-      コンビニがない 小さなスーパーマーケットやドラッグストアはあったが コンビニは見事にない <ul>
-        <li>
-          田舎生活を決めるならいい割り切りかも
-        </li>
-      </ul>
-    </li>
-    
-    <li>
-      お店が閉まる時間が早い 21:00 には大体しまってしま <ul>
-        <li>
-          早めに切り上げて夕飯に行かなくては
-        </li>
-      </ul>
-    </li>
-  </ul>
-  
-  <p>
-    というところだろうか。
-  </p>
-  
-  <p>
-    こん詰めたり嫌なことがあったとしても、この天気のもとに出たらそんなことも忘れられるくらい強烈ないい天気だと思う。
-  </p>
-  
-  <p>
-    こういう最高なお天気の田舎町でハイテク産業が生まれたりベンチャーが爆発的な勢いで成長したりするアンバランスさが、また一つシリコンバレーの魅力かと思う。逆にこの最高なお天気が救ってくれるからこそタフなゲームをできるのかもしれない。会社がこんないい場所にあったら会社に行くのが楽しくなるかもしれない。少なくとも東京のコンクリートジャングルよりかは精神衛生上は良いはず。
-  </p>
-  
-  <p>
-    純粋に自分もこの最高なお天気にすっかり魅了されて、近いうちにまたこのお天気のもとに戻ってきて、出来れば何らかの仕事で絡めたらいいな、と思っている訳で。今まで仕事内容とか成功を求めて仕事をするような動機だったが、町並みとか天候とか普段あまり気にしなかった要素が先行することもあるのだなと自分でもちょっと驚いている。
-  </p>
-</div>
-
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-04-04T00:00:00+09:00" pubdate data-updated="true">Apr 4<span>th</span>, 2009</time></div>
-	
-
-<div class="tags">
-
-	<a class='category' href='/blog/categories/business/'>Business</a>
-
-</div>
-
-
-	
-		<span class="comments"><a href="/2009/04/03/post//blog/page/26/index.html#disqus_thread">Comments</a></span>
 	
 </div></article>
 
