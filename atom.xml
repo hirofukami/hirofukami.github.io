@@ -4,7 +4,7 @@
   <title><![CDATA[Hiro Fukami's Blog]]></title>
   <link href="http://hirofukami.com/atom.xml" rel="self"/>
   <link href="http://hirofukami.com/"/>
-  <updated>2015-06-02T10:41:34+09:00</updated>
+  <updated>2015-06-04T10:54:52+09:00</updated>
   <id>http://hirofukami.com/</id>
   <author>
     <name><![CDATA[HiroFukami]]></name>
@@ -12,6 +12,128 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[LEAN - サービスの関連で稼ぐことがわかってきた]]></title>
+    <link href="http://hirofukami.com/blog/2015/06/04/lean-make-related-products/"/>
+    <updated>2015-06-04T10:00:00+09:00</updated>
+    <id>http://hirofukami.com/blog/2015/06/04/lean-make-related-products</id>
+    <content type="html"><![CDATA[<p><img src="http://hirofukami.com/images/2015/06/20150604-make-money.png" width="480"></p>
+
+<p><a href="http://hb.afl.rakuten.co.jp/hgc/1368ce62.540143f5.1368ce63.cb671705/?pc=http%3a%2f%2fitem.rakuten.co.jp%2fbook%2f12147296%2f%3fscid%3daf_link_txt&amp;amp;m=http%3a%2f%2fm.rakuten.co.jp%2fbook%2fi%2f16245034%2f">RUNNING LEAN</a> はリーンスタートアップを実践するのに最も参考にするべき本で、自分も何度も読み直しては実践を繰り返している。</p>
+
+<p><a href="http://hb.afl.rakuten.co.jp/hgc/1368ce62.540143f5.1368ce63.cb671705/?pc=http%3a%2f%2fitem.rakuten.co.jp%2fbook%2f12147296%2f%3fscid%3daf_link_img&amp;m=http%3a%2f%2fm.rakuten.co.jp%2fbook%2fi%2f16245034%2f" target="_blank"><img src ="http://hbb.afl.rakuten.co.jp/hgb/?pc=http%3a%2f%2fthumbnail.image.rakuten.co.jp%2f%400_mall%2fbook%2fcabinet%2f5917%2f9784873115917.jpg%3f_ex%3d400x400&amp;m=http%3a%2f%2fthumbnail.image.rakuten.co.jp%2f%400_mall%2fbook%2fcabinet%2f5917%2f9784873115917.jpg%3f_ex%3d80x80" border="0"></a></p>
+
+<ul>
+<li><a href="http://hb.afl.rakuten.co.jp/hgc/1368ce62.540143f5.1368ce63.cb671705/?pc=http%3a%2f%2fitem.rakuten.co.jp%2fbook%2f12147296%2f%3fscid%3daf_link_txt&amp;m=http%3a%2f%2fm.rakuten.co.jp%2fbook%2fi%2f16245034%2f" target="_blank">楽天ブックス</a></li>
+<li><a href="http://www.amazon.co.jp/gp/product/4873115914/ref=as_li_ss_tl?ie=UTF8&camp=247&creative=7399&creativeASIN=4873115914&linkCode=as2&tag=dsea-22">Amazon</a></li>
+</ul>
+
+
+<p>重要な要素をとてもシンプルな文章にまとめていて読みやすい。しかし、文章が簡潔であるがゆえに言葉の背景や意図が捉えきれず、実行に移すまでの理解度に満たない部分もある。</p>
+
+<p>まだよくわからない部分はいくつかあるが、<strong>関連する製品を売りましょう。</strong> はそのひとつだった。</p>
+
+<blockquote><p>他の仕事をするのではなく、サービスに関連した製品を探しましょう。ライセンス販売・(本書のような)書籍の執筆・ワークショップの開催・講演などです。これらはビジネスに関連しているだけでなく、オンラインの評判やブランドの形成にも役立ちます。いずれ収益にも貢献するでしょう。圧倒的な優位性につながる可能性もあります。</p></blockquote>
+
+<p>じゃあ、自分のサービスの関連する製品ってなんだ？
+<a href="https://opsdeliver.com">OpsDeliver</a> をリーンスタートアップ実践中のサービスとしているが、これの関連製品って何になるのだろう？</p>
+
+<p>正直よくわからなかった。</p>
+
+<p>よくわからないながらに生活費を稼がないといけないので、色々もがいていた。結果的に今売り上げているものがサービスの関連になっていた。</p>
+
+<p>このことを整理してみる。</p>
+
+<!-- more -->
+
+
+<h1>現状の売り上げているもの</h1>
+
+<p><a href="https://opsdeliver.com">OpsDeliver</a> の売上はまだほとんどないので内訳は入らない。</p>
+
+<p>最近の売上内訳は以下。</p>
+
+<ol>
+<li>OpsDeliver の開発要素を使っての開発案件</li>
+<li>Chef(knife solo) 研修講師</li>
+<li>エンジニア社内勉強会講師</li>
+</ol>
+
+
+<p>開発案件は、とあるクラウド事業者さんが同じようなものを社内で作りたいというリクエストに対しての開発案件。現在進行形。</p>
+
+<p>コードそのものは使いまわせていないけど、モデル設計など基本部分はそのままにカスタマイズ対応している。</p>
+
+<p>これ1本で生活費＋経費がギリギリまかなえている。カスタマイズの部分が予想よりも膨らんだので本当はあと+20万/月くらい欲しいところ。</p>
+
+<p>2つ目 Chef研修講師は、  <a href="https://opsdeliver.com">OpsDeliver</a> を作っている時に見せていた方から、Chef研修講師を探している会社があるよと紹介いただいた。</p>
+
+<p>2月から5月まで全6回で実施済み。まとめは <a href="http://hirofukami.com/blog/2015/06/02/chef-teacher/">Chefこうしをしたのでまとめ</a> に書いた。</p>
+
+<p>3つ目 エンジニア社内勉強会講師は、<a href="https://opsdeliver.com">OpsDeliver</a> をビジネス用途に売れないかと思って、知り合いのホスティング事業者さんに紹介しに行った結果、モノは売れなかったけど社内のエンジニア向けに勉強会をして欲しいとリクエストをいただいた。1月から6月まで月1回。次回が最終回。</p>
+
+<p>今まで、インフラ革命の概要、Chef概要、Docker概要、新しい業務スタイルなどの話をしてきて、最近はその会社の業務課題をディスカッションする司会みたいなことをやっている。</p>
+
+<h1>どう関連しているか</h1>
+
+<p>開発案件はそのものだけど、講師仕事は <a href="https://opsdeliver.com">OpsDeliver</a> の技術要素が使える。</p>
+
+<p><a href="https://opsdeliver.com">OpsDeliver</a> は Chef + Ruby on Rails で開発されているので、Chef のノウハウは開発上も必要で、それを伝えるのが講師仕事。</p>
+
+<p>開発環境として Docker を使っているので、Docker/Chef あたりの話は特に新しく調べることなく話せる。業務スタイルも今までの実績を元に紹介できる。</p>
+
+<p>という感じで、勝負したいサービスの技術要素を使ったものになっている。</p>
+
+<p>ポイントは自分の今手にしている要素だけですんでいることで、仕事のためにサービスと関連しない新しい要素を取り入れる必要がないことかと思う。</p>
+
+<h1>仕事を作る上でのポリシー</h1>
+
+<p>結果的にサービスの関連で稼げているが、そうなるためには自分なりのポリシーをいくつか持ってアプローチしていた。</p>
+
+<p>マッチしないものは断ってっきた。断るとその案件の売上は得られないけどが、自分のやりたいものと関係無いものに時間を使ってしまうのことになる。</p>
+
+<p>金銭的リスクだけではなくて、やりたいことをやる時間を確保するリスクもあるので、お金だけを追ってしまうとチャレンジする時間がなくなる。</p>
+
+<h2>何でもやるような常駐はしない</h2>
+
+<p>自分の作っているものと全く関係ない状態になってしまう状態が <strong>常駐して何でもやります</strong>。昔売上がほしい時にゲーム会社に常駐していたが、自分のサービスづくりや他のことができなかった。</p>
+
+<p>同じようなことで、単発の受託開発はしないとも言える。単発の受託開発は顧客の要件がはっきりしていているので、自分のサービスとは違うものを作らなくてはいけない。</p>
+
+<p><strong>時間を売っている</strong> だけの感じになってしまうことからは避ける。</p>
+
+<h2>ソースコードのライセンスは渡さない</h2>
+
+<p>書いたソースコードを自分のサービスにフィードバックするには、ライセンスを渡しては使えないので、顧客側と同意しておく必要がある。</p>
+
+<p>ライセンスには自分のサービスの将来的な価値が反映されるべきなので、本当は単なる時間単価ではない金額が反映されるべきで、あまりそのことを意識せずに交渉しているケースが多いのではないかと思う。</p>
+
+<h2>フルコミットしない</h2>
+
+<p>関連する仕事を作れたとしても、週5日全て埋めてしまって自分のサービスにチャレンジする時間がなくなってしまえば何もしていないのと同じ。</p>
+
+<p>最近は週に1日もしくは2日は自由にできる時間を確保している。同じように開発案件ではリモートワークOKと常駐時他の業務してもOKの条件も得ている。</p>
+
+<h1>今後</h1>
+
+<p>開発案件で生まれたコードを <a href="https://opsdeliver.com">OpsDeliver</a> にフィードバックしていき、リニューアルをかける予定。</p>
+
+<p>講師案件はChef/Dockerを中心に研修講師を今後もしていきたいと思っているし、ホスティング・クラウド事業者さんは Chef のような DevOps 的なツールを使えるエンジニアを確保できていないようなので、トレーニング講師として需要あるのではと思っている。</p>
+
+<p>ただ今講師仕事を依頼いただける会社さんを絶賛募集中です！</p>
+
+<h1>まとめ</h1>
+
+<p>ポール・グレアムのラーメン代を稼げとか色々な言い方があるが、自分なりに動いてみてようやくサービスの関連製品で稼ぐことの意味ややり方がわかってきた。</p>
+
+<p>結局、人は稼いで食べていかないといけないので、<strong>どう稼ぐか</strong> が明確にならないとチャレンジも単なる掛け声にしかならなかったり、あっという間にキャッシュが尽きてチャレンジ終了になる。</p>
+
+<p>本当はこういった日常的な振る舞い方がすごく重要で、もっと創業者同士で交流して良いノウハウ・情報が飛び交わないといけないと思っている。そんな場所はないのだろうか？</p>
+
+<p>ということで、これを読んで何か気づいたりしたことがあれば、フィードバックを是非いただきたいです。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Chef講師をしたのでまとめ]]></title>
@@ -1751,160 +1873,6 @@ $ VBoxManage sharedfolder add boot2docker-vm --name Users --hostpath $HOME
 <h1>まとめ</h1>
 
 <p>インタビューの仕方を紹介しました。今のところうまく行っていると思っている方法ですが、もっと良くなるための模索はしていきたいので、リーンスタートアップを実践している方のフィードバックをお待ちしています。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[「クラウドを触ろう」というイベントを開催しました]]></title>
-    <link href="http://hirofukami.com/blog/2015/01/29/studycloud-event/"/>
-    <updated>2015-01-29T09:00:00+09:00</updated>
-    <id>http://hirofukami.com/blog/2015/01/29/studycloud-event</id>
-    <content type="html"><![CDATA[<p><img src="http://hirofukami.com/images/20150129-cloud.png" alt="Cloud Logo" /></p>
-
-<p>1/20(火)にクラウドを実践的に学ぶイベントを主催しました。</p>
-
-<p><a href="http://connpass.com/event/10656/">イベント概要 connpass</a></p>
-
-<p>イベントに呼ばれて話す機会はあるものの、自分で主催するのはほとんど経験がなかったりして、実は新鮮なチャレンジだったりしました。</p>
-
-<p>タイトルは <strong>「クラウドを触ろう」Web制作者のための入門ハンズオン</strong> ということで、Web制作者がクラウドを学ぶ場として無料のイベントを企画しました。</p>
-
-<h1>きっかけ</h1>
-
-<p>イベントをやることになったきっかけは、Web制作者に対して AWS EC2 の立ち上げをデモしながら解説したら、なかなか評判が良かったから勢いでやっちゃったという感じ。</p>
-
-<p>EC2の立ち上げ解説は、<a href="http://www.amazon.co.jp/gp/product/4774167878/ref=as_li_ss_tl?ie=UTF8&amp;camp=247&amp;creative=7399&amp;creativeASIN=4774167878&amp;linkCode=as2&amp;tag=dsea-22">WordPressの本</a>を書いた時に原稿をレビューしてもらったお礼としてやったもので、レビューしていただいた方は今回のイベントで登壇してもらった、<a href="https://h2o-space.com/">H2O Spaceのたにぐちまこと</a>さんと<a href="http://www.tsukuri.be/">ツクリべの小川さん</a>のお二人。</p>
-
-<p>その後、3人で飲んでいる時に「AWS の解説を聞きたいと思うWeb制作者は多いと思う」という話を聞いて、「じゃあ、3人が登壇するイベントをやってみよう」ということで決めました。</p>
-
-<!-- more -->
-
-
-<h1>イベントで確認したかったこと</h1>
-
-<p>対象の <strong>Web制作者</strong> の様子を知りたかったという意図があります。</p>
-
-<p>具体的には、Web制作者の</p>
-
-<ul>
-<li>クラウドサービス(IaaS)への理解度</li>
-<li>クラウドサービス(IaaS)への学習意欲の度合い</li>
-<li>そもそもLinuxが触れるのか</li>
-</ul>
-
-
-<p>をそれぞれ把握しようと思いました。</p>
-
-<p>サービスづくりを活動の中心にしている今、ターゲットの持っている課題を理解するのはとても重要で、手法としてはユーザへのインタビューが推奨されますがこういったイベントでも様子を知り、課題を理解することができるのでは？という考えもあったりします。</p>
-
-<p>ターゲットの理解度やスキルが足りなくて学習意欲が高ければ、課題は大きいわけでそこを埋めてあげるソリューションをサービスとして出せれば熱心に使ってくれるでしょう。</p>
-
-<p>今回はWeb制作者がクラウドを使う際の課題が何か、そもそも大きな課題があるのかを確認したいと思いました。</p>
-
-<h1>イベントの様子</h1>
-
-<p>今回会場を提供していただいた <a href="http://geechs-magazine.com/21cafe/index">21cafe</a> のブログに <a href="http://geechs-magazine.com/20150127">イベントレポート</a> を書いていただきましたので、そちらをどうぞ。</p>
-
-<p><a href="http://geechs-magazine.com/21cafe/index">21cafe</a> はエンジニアの無料の勉強会・イベント向けに無償で提供してくれるイベントスペースで、渋谷駅の井の頭線出口から5分以内で着ける素晴らしく立地の良い、しかもおしゃれな場所です。無料の勉強会を企画している方にはオススメです。</p>
-
-<p>21cafe : <a href="http://geechs-magazine.com/21cafe/about">http://geechs-magazine.com/21cafe/about</a></p>
-
-<h2>自分のパート</h2>
-
-<p>私は <strong>クラウド実践入門 クラウドを使ってみよう</strong> というタイトルで、クラウドサービスの基本から AWS EC2 でサーバを立ち上げるフローを解説するという内容です。</p>
-
-<iframe src="//www.slideshare.net/slideshow/embed_code/43724487" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
-
-
-<p> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/d_sea/ss-43724487" title="クラウド実践入門 クラウドを使ってみよう" target="_blank">クラウド実践入門 クラウドを使ってみよう</a> </strong> from <strong><a href="//www.slideshare.net/d_sea" target="_blank">Hiro Fukami</a></strong> </div></p>
-
-<p>デモの部分では AWS EC2 の立ち上げ方を1ステップずつ解説しながら参加者と一緒に進めることをしました。</p>
-
-<h2>他の二人のパート</h2>
-
-<p>「サーバの種別を理解しよう」小川さん</p>
-
-<iframe src="//www.slideshare.net/slideshow/embed_code/43729016" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
-
-
-<p> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/HiroyukiOgawa/ss-43729016" title="サーバの種別を理解しよう" target="_blank">サーバの種別を理解しよう</a> </strong> from <strong><a href="//www.slideshare.net/HiroyukiOgawa" target="_blank">Hiroyuki Ogawa</a></strong> </div></p>
-
-<p>「Gitを使ったWebサイトリリース実践」たにぐちさん</p>
-
-<script async class="speakerdeck-embed" data-id="7425eb6083a10132a6110e56394bf5c7" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
-
-
-<h1>振り返り</h1>
-
-<h2>アンケート結果</h2>
-
-<p>事前につくっておいたアンケートを当日受付で配布して最後に回収しました。</p>
-
-<p><img src="http://hirofukami.com/images/20150129-Results.002.png" alt="満足度" /></p>
-
-<p>85%の方が満足いただいたようで、提供した内容は有用だったことがわかりました。</p>
-
-<p><img src="http://hirofukami.com/images/20150129-Results.004.png" alt="クラウド実践入門反応" /></p>
-
-<p>私のセッションは9割の方が何らかの学びがあったようです。おそらくLinuxとAWSをはじめて触るような方には用語からして知らない状態だったと思いますので、難しかったと思います。この点は参加者の条件にLinuxが触れることなどスキルセットを定義しておいたほうが、スキルのミスマッチが防げると後になって思いました。</p>
-
-<h2>実はWeb制作者ではなくWeb開発エンジニアの方がニーズが強い？</h2>
-
-<p>参加者はタイトル通りWeb制作者かと思ったのですが、たにぐちさんのセッションで自分の職種に手を上げてもらったところ、3分の1くらいはWeb開発エンジニアで、デザインをやられる方もいたと思います。</p>
-
-<p>様子を見ているとどうやらWeb開発エンジニアの方が学びたい度合いが高いのではと思えてきました。確かにWeb制作者もクラウドに触れたいという欲求がありますが、CSSとLinux・クラウドのレイアの間にWeb開発フレームワーク(Ruby, PHPなど)があるので触れる機会が少なく、触れなくても仕事は進むという状況かと思います。</p>
-
-<p>Web開発エンジニアの方はプログラミングしたものを動かすために、言語やWeb開発フレームワークをインストールする必要があるのでより直接的な関わりになってくる。だから、もっとLinux・クラウドを理解したい、理解しないと仕事がスムーズに進まないという状況なのかなと思いました。</p>
-
-<p>そういう意味ではデザインから制作をメインにしつつ、CakePHPで開発してVPSでWebサービスを提供している小川さんの努力は素晴らしいなぁと思ったり。</p>
-
-<h2>ドタキャンの多さ</h2>
-
-<p>一番困ったのはドタキャンの多さでした。</p>
-
-<p><a href="http://connpass.com/event/10656/">connpass</a> 上は最終的に50名定員で40名参加、キャンセルが22名になっていますが、実際当日会場で受け付けた数は22名です。connpass上でキャンセル処理をせず当日来なかったことを「ぶっち」としましたが18名います。</p>
-
-<p><img src="http://hirofukami.com/images/20150129-Results.001.png" alt="参加状況" /></p>
-
-<p>トータルの申し込み数に対して実際きた割合が35％、申込んだのに来なかったのが65%というのはある程度は予想していたのですが、ここまで悪い数字になるとは正直ショックでした。
-キャンセルが出ればキャンセル待ちの人が参加できますが、キャンセル待ちは行けるかどうかわからない状態でスケジュールが確定できないので嫌がる・申し込みを諦める人が多い。</p>
-
-<p>やっぱりFREEイベントはキャンセル・ぶっちしてもコスト負担は参加者側に全くないので、そういう振る舞いが可能になってしまうのだな、と思いました。主催者側としては目論んだ参加数の半分以上が不参加になるのはやっぱりつらいので、何らか改善する方法を探したいところ。ここらへんの考察はまた後日。</p>
-
-<h1>今後</h1>
-
-<p>今回のイベントより、次回どういったイベントにしようか考えていますが今のところ以下の様な感じ。</p>
-
-<ul>
-<li>イベント目的: AWS/さくらのクラウドあたりのクラウドサービスを立ち上げる際に必要な情報を理解して、ハンズオンする
-
-<ul>
-<li>参加者の手を動かすペースを中心に、講義は必要最低限にする</li>
-</ul>
-</li>
-<li>対象者: Web開発エンジニア
-
-<ul>
-<li>Linuxを触ることに苦手意識がある、クラウドサービスを使いこなせない</li>
-<li>仕事上、触れざるをえない環境の方</li>
-</ul>
-</li>
-<li>参加費用: 1000〜3000円
-
-<ul>
-<li>ぶっちを防ぐ、参加意志の強い人のみを対象</li>
-</ul>
-</li>
-<li>定員数: 10〜20名
-
-<ul>
-<li>広くだれでもではなく、意志を持った人が濃く学べる場にする</li>
-</ul>
-</li>
-</ul>
-
-
-<p>次回は未定ですが、上記のようなイベントなら参加したいという方、もっとこんなイベントだったら参加したいなどご意見あればフィードバックいただければです。</p>
 ]]></content>
   </entry>
   
