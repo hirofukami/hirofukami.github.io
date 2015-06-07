@@ -9,7 +9,7 @@
 
 <meta name="author" content="HiroFukami"> 
 
-<meta name="description" content="5/18に Amazon AWS から発表になった Amazon EC2 の新機能は Auto Scaling や Load Blanacing など、今までユーザ側でなんとかしていた or 提供事業者が飯の種にしていた部分に Amazon がカバーしてしまった。と言う点で結構注目が集まっていた &hellip;"> <meta name="keywords" content="">
+<meta name="description" content="メーリングリストの仮想化友の会は入っていたのですが、勉強会には行ったことがなかったのとネタが KVM らしいので聞いてみたい＆どんなもんか見てみたいということで、初参加してみた。 2008年のOSCの仮想化系のセッションを聞いた時に会場にいらっしゃった方々が多くみられていた。内容は Red &hellip;"> <meta name="keywords" content="">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -62,7 +62,7 @@ $(document).ready(
     <meta property="twitter:site" content="d_sea">
     <meta property="twitter:url" content="http://hirofukami.com">
     <meta property="twitter:title" content="Hiro Fukami's Blog">
-    <meta property="twitter:description" content="5/18に Amazon AWS から発表になった Amazon EC2 の新機能は Auto Scaling や Load Blanacing など、今までユーザ側でなんとかしていた or 提供事業者が飯の種にしていた部分に Amazon がカバーしてしまった。と言う点で結構注目が集まっていた。 細かな点はさておき、 &hellip;">
+    <meta property="twitter:description" content="メーリングリストの仮想化友の会は入っていたのですが、勉強会には行ったことがなかったのとネタが KVM らしいので聞いてみたい＆どんなもんか見てみたいということで、初参加してみた。 2008年のOSCの仮想化系のセッションを聞いた時に会場にいらっしゃった方々が多くみられていた。内容は Red Hat の方々による KVM の技術概要と Red Hat としての取り組み予定紹介。 &hellip;">
     <meta property="twitter:creator" content="d_sea" />
 
 
@@ -122,6 +122,365 @@ $(document).ready(
 </header>
 
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/2009/05/27/9-5/">
+		
+			仮想化友の会 第9回 5月勉強会に参加してきました</a>
+	</h2>
+	<div class="entry-content">
+		<div class="section">
+  <p>
+    <a href="http://list.ospn.jp/mailman/listinfo/v-tomo" target="_blank">メーリングリストの仮想化友の会</a>は入っていたのですが、勉強会には行ったことがなかったのとネタが KVM らしいので聞いてみたい＆どんなもんか見てみたいということで、初参加してみた。
+  </p>
+  
+  <p>
+    2008年のOSCの仮想化系のセッションを聞いた時に会場にいらっしゃった方々が多くみられていた。内容は Red Hat の方々による KVM の技術概要と Red Hat としての取り組み予定紹介。
+  </p>
+  
+  <p>
+    資料は仮想化友の会webより入手できます&#160;: <a href="http://sites.google.com/site/kasotomo/study" target="_blank"><a href="http://sites.google.com/site/kasotomo/study" target="_blank">http://sites.google.com/site/kasotomo/study</a></a>
+  </p>
+  
+  <p>
+    参加者は Unix/Linux をいじってきましたと言う世代の方々と思われるので、web 開発系なコミュニティに比べれば平均年齢は+5したくらいか。2002年くらいにいた IRI のエンジニアたちが FreeBSD をいじり倒していた時代に軽くフラッシュバックする。
+  </p>
+  
+  <p>
+    思ったのは、仮想化といっても完全ソフトウエアの話にはならず、必ずハードウエアとの絡みも出てくるので、ハードも含めて検証なりを進める敷居は高く、お手軽さはないので自然とちゃんとできるプレイヤーも少なくなる分野なのかと思う。
+  </p>
+  
+  <p>
+    特に KVM は CPU でフォローする仕組みなので、ハードウエア依存が強い。ハートウエアに依存しないサーバ環境を作るための仮想化なのだけど、やはり大事なところでハードウエアがしっかり絡んできてしまうのはなんともしょうがないことなのだろうか。
+  </p>
+  
+  <p>
+    何にせよ、仮想化は1つの手法であって目的ではないのだけどツールの一つとして利用する場合、仮想化するメリットやパフォーマンスを分かっておくことは大事なことなのだろう。
+  </p>
+  
+  <p>
+    ということで、そろそろ仮想化環境についてもう少し詳細な技術情報なりノウハウなりを貯めたいと軽く思った次第。
+  </p>
+  
+  <p>
+    以下、当日メモ
+  </p>
+  
+  <p>
+    <a name="seemore"></a>
+  </p>
+  
+  <p>
+    20090528
+  </p>
+  
+  <p>
+    仮想化友の会 5月勉強会
+  </p>
+  
+  <p>
+    19:00-20:40
+  </p>
+  
+  <h4>
+    KVM 技術解説
+  </h4>
+  
+  <p>
+    Red Hat 森若
+  </p>
+  
+  <ul>
+    <li>
+      QEMU&#160;: Windows/Mac/Linux 対応 便利だった</p> <ul>
+        <li>
+          dynamic なので遅い
+        </li>
+        <li>
+          色々使えた ia64 使えた
+        </li>
+      </ul>
+    </li>
+    
+    <li>
+      KVM&#160;: QEMU を工夫して早くしてみた <ul>
+        <li>
+          ゲスト OS が I/O したい場合は仮想 I/O に対して、一度 QEMU に渡して
+        </li>
+        <li>
+          KVM-Linux 経由で実際の I/O する
+        </li>
+      </ul>
+    </li>
+    
+    <li>
+      新しいモード Guest mode <ul>
+        <li>
+          センシティブ命令は実行できない
+        </li>
+      </ul>
+    </li>
+    
+    <li>
+      virtio
+    </li>
+    <li>
+      共有メモリがあるから早くなる
+    </li>
+    <li>
+      シャドウページテーブル <ul>
+        <li>
+          ゲストの仮想アドレス=>ホストの物理アドレスのテーブル
+        </li>
+        <li>
+          MMU の仮想化の問題を助ける <ul>
+            <li>
+              ゲストの物理アドレス=>ホストの物理アドレスの変換がない
+            </li>
+          </ul>
+        </li>
+        
+        <li>
+          EPT の CPU だとすごく早かった
+        </li>
+      </ul>
+    </li>
+    
+    <li>
+      viroio について <ul>
+        <li>
+          virtio_ring のスライドの絵がすべて
+        </li>
+      </ul>
+    </li>
+    
+    <li>
+      virtio_pci <ul>
+        <li>
+          仮想 PCI バス上に仮想デバイスが並んでいる
+        </li>
+        <li>
+          I/O命令は仮想環境がフックする
+        </li>
+        <li>
+          virtio_ring での virtqueue を作成して共有する処理もここで行う
+        </li>
+      </ul>
+    </li>
+    
+    <li>
+      virtio_balloon <ul>
+        <li>
+          共有するバッファは virtio_baloon 構造体1つだけ
+        </li>
+        <li>
+          仮想化側がいろいろやってくれるだろう前提とした仕組み
+        </li>
+      </ul>
+    </li>
+    
+    <li>
+      block/virtio_blk <ul>
+        <li>
+          仮想ブロックデバイスを提供
+        </li>
+        <li>
+          リクエスト用の1つの virtqueue を使う
+        </li>
+        <li>
+          read, write, SCSI cmd を発行できる
+        </li>
+        <li>
+          リクエスト完了 used リングに追加のみ
+        </li>
+      </ul>
+    </li>
+    
+    <li>
+      net/virtio_net <ul>
+        <li>
+          仮想ネットワークでバイスを提供
+        </li>
+        <li>
+          送信、受信、コマンド送信用の3つの virtqueue を使用
+        </li>
+        <li>
+          送信処理終了後に送信できなかったデータの送信、送信済みのskbの回収
+        </li>
+        <li>
+          block より工夫されている
+        </li>
+      </ul>
+    </li>
+    
+    <li>
+      char/virtio_console <ul>
+        <li>
+          仮想コンソールでバイスを提供
+        </li>
+        <li>
+          送信用、受信用の2つの virtqueue を利用
+        </li>
+        <li>
+          一度のやり取りは PAGE_SIZE まで
+        </li>
+      </ul>
+    </li>
+  </ul>
+  
+  <h4>
+    Red Hat の仮想化戦略
+  </h4>
+  
+  <p>
+    Red Hat マーケティング 中井
+  </p>
+  
+  <ul>
+    <li>
+      Red Hat と MS 仮想化の相互運用制で合意</p> <ul>
+        <li>
+          合意内容</p> <ul>
+            <li>
+              Red Hat 仮想化上で Windows 2000/2003/2008 サポート
+            </li>
+            <li>
+              Windows Hyper-V 上で Red Hat Enterprise Linux5.2/5.3 が動きます
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    
+    <li>
+      KVM について <ul>
+        <li>
+          Qumranet イスラエルの会社を Red Hat が買収
+        </li>
+        <li>
+          SolidCE/SPICE も買収した 管理テクノロジ次世代仮想化
+        </li>
+      </ul>
+    </li>
+    
+    <li>
+      今後 <ul>
+        <li>
+          KVM は OS に統合、Xen は継続サポート
+        </li>
+        <li>
+          GUI ベースの管理ソフトを出す VMware Virtual Center みたいなもの <ul>
+            <li>
+              .Net でできている Windows で動くよ
+            </li>
+            <li>
+              ライブマイグレーション機能もあり
+            </li>
+            <li>
+              HA機能、イメージ管理の機能
+            </li>
+          </ul>
+        </li>
+        
+        <li>
+          Desktop の仮想化も提供
+        </li>
+        <li>
+          Hypervisor&#160;: VMware ESX みたいなもの
+        </li>
+      </ul>
+    </li>
+    
+    <li>
+      Qumranet はもともとクライアントデスクトップの仮想化用のソフトだった <ul>
+        <li>
+          Solid ICE VDI サービス名
+        </li>
+        <li>
+          仮想化のエンジンは Linux, 管理のソフトとデスクトップの表示は Windows
+        </li>
+        <li>
+          デスクトップの表示は IE で ActiveX 利用
+        </li>
+        <li>
+          早いのは独自のプロトコルを持っている SPICE? windows remote desktopより早い
+        </li>
+      </ul>
+    </li>
+    
+    <li>
+      Hypervisor <ul>
+        <li>
+          KVM&#160;: みる角度によって Linux と Hypervisor
+        </li>
+        <li>
+          ホスト 96コア、1TBメモリ # Linux そのもののスペックが適用される
+        </li>
+      </ul>
+    </li>
+    
+    <li>
+      今後 3ヶ月から18ヶ月にわたって製品提供予定
+    </li>
+    <li>
+      価格まだ秘密 でも VMware よりかは安くなるかも
+    </li>
+  </ul>
+  
+  <h4>
+    QA
+  </h4>
+  
+  <ul>
+    <li>
+      KVM は API 公開するの？</p> <ul>
+        <li>
+          VDSM 最初はクローズド、リブバートに持っていく構想あり
+        </li>
+        <li>
+          今はリブバートに対応していない
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-05-28T00:00:00+09:00" pubdate data-updated="true">May 28<span>th</span>, 2009</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/tech/'>Tech</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/2009/05/27/9-5//blog/page/26/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
 
 
     <article class="post">
@@ -2735,147 +3094,6 @@ INSTANCE-ID  i-f315539a  InService
 
 	
 		<span class="comments"><a href="/2009/04/19/2009-3//blog/page/26/index.html#disqus_thread">Comments</a></span>
-	
-</div></article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/2009/04/18/jtpa/">
-		
-			JTPAシリコンバレーカンファレンス 帰国報告会に参加してきました</a>
-	</h2>
-	<div class="entry-content">
-		<div class="section">
-  <p>
-    <a href="http://d.hatena.ne.jp/katsu8/" target="_blank">id:katsu8</a> の呼びかけでJTPAシリコンバレーカンファレンス参加者で帰国報告会がひらかれ参加してきた。SVCからもう3週間以上が経過していて、参加したみんながそれぞれ何らかの動き出しを始めているだろうし、振り返るにはちょうどいい時期だったと思う。
-  </p>
-  
-  <p>
-    そういう自分の目的は
-  </p>
-  
-  <ul>
-    <li>
-      自分の中でまだもやもやしている短期的、中期的な身の振る舞い方を確信にすること
-    </li>
-    <li>
-      みんなのSVCに参加して、何を考え何を思ったか。と何をし始めたか。を知ること
-    </li>
-  </ul>
-  
-  <p>
-    だった。実はまだシリコンバレーから帰ってきて、自分なりの今後の行動(自分なりの戦略といったほうが良いかもしれない)が明確に描ききれずに悶々としていた。だから帰国報告会でこの悶々としているものを払拭する場にしたいと思っていた。
-  </p>
-  
-  <p>
-    振り返ってみれば、この2つに対してはある程度達成できたと思うのと、さらに
-  </p>
-  
-  <ul>
-    <li>
-      仕事のスタンス(ShakeSoul のビジネスとしてのスタンス)を再確認して、確信できた
-    </li>
-    <li>
-      参加者間でビジネスぽいアプローチがいくつかとれた
-    </li>
-  </ul>
-  
-  <p>
-    ことは予想外の収穫だった。
-  </p>
-  
-  <p>
-    結果的にあまり確信が持てていなかった思い切った戦略案を進めてみようと思えたし、今まで自分が ShakeSoul を通じてやってきていたアプローチは間違いではなく、今後の戦略につながる良い過程を歩んでいると思えた。この戦略については別エントリーでまとめたいと思う。
-  </p>
-  
-  <p>
-    全員がどう変わったかは分からずとも、個々に色々考えそれなりの結論を出して前を向いて進み始めていることが分かっただけでも参加した甲斐があった。そうやって考えながら前を向いて進む姿は触発されるし、それは世代とか学生だとか社会人だとかは関係なく影響を与えてくれる。もやもやしている自分はきっとこの参加者の話を聞けば触発されるだろうと思っていたが、やっぱり触発されて元気になれた。参加者メンバが集まったときの力は本当に大きいと感じる。
-  </p>
-  
-  <p>
-    やっぱり思うのが自分を材料に自分のフィルターを通して、自分でどうするか考える、ところまで詰めないと自分は何も変わらない。というより行動として何も示せないので自分に変化を起こすことはできないだろうと思っている。逆にその人自身を通じた考えた過程が見えないと、あまり触発されない=結構どうでも良いこと と思うようになっている。
-  </p>
-  
-  <p>
-    そういう意味で、参加者のほとんどが自分をフィルターを通した言葉で自分の行動に対して話していたのは良かった。だから、<a href="http://d.hatena.ne.jp/Spiny-anteater/" target="_blank">id:Spiny-anteater</a> が思い立ってアイデアをプレゼンしたのはよかったし、自分を材料にした意見をくれる人が参加者には多いのだから、その中で今後ブラッシュアップして良いサービスになれば素敵だと思う。あと、<a href="http://d.hatena.ne.jp/toyo213/" target="_blank">id:toyo213</a> が参加者メンバに呼びかけてプロジェクトをスタートさせたことも素敵なことだし、そこに自分も入って手伝い始められたこともうれしいこと。
-  </p>
-  
-  <p>
-    そういう自分も SVC 参加者とサービスを作るべく議論を進めつつ、少しずつ形にできてきていることも参加者メンバに何がしかの影響を与えられることかと思う。
-  </p>
-  
-  <p>
-    ところで、SVC参加前の1回目の事前ミーティングと同じで実感するのが、やはりこの参加者たちはスキルが高い。とうこと、どういう点で高いと思うのかというと、
-  </p>
-  
-  <ul>
-    <li>
-      ネガティブなことを言わない 常にポジティブな雰囲気を持っている
-    </li>
-    <li>
-      自分の考えたこと、意見、やっていること、やりたいことを明確に持っている
-    </li>
-    <li>
-      しっかり話して伝えることのできるコミュニケーション能力
-    </li>
-    <li>
-      専門分野について知識が深く、よく考えている
-    </li>
-    <li>
-      今現在取り組んでいることがあって、漠然と生きていない
-    </li>
-  </ul>
-  
-  <p>
-    こんなことを感じるので刺激が多い。社会人はコンサルタントもエンジニアもいるし、文系学生も理系学生もいる。メンバは若干流動しながらも常に30名くらい集まっているだろうか。なかなか普通に過ごしていてはこんなメンバは集まれない。
-  </p>
-  
-  <p>
-    このメンバで会社を作ったらすごいことができるかも、と思ったことがあるが、緩やかなプロジェクト単位で現に始まっているので、やりようによっては冗談ではなく行けそうに思う。
-  </p>
-  
-  <p>
-    このメンバでサービスを作ったり新しい自分の動きの紹介をしながら、鮮度よく刺激し合う関係を継続できるのが良いのだろう。自分としては最も触発され、刺激を受けるこのメンバとの関わりを大事にしながら、自分自身もまた触発された結果をフィードバックして鮮度を保つ力になっていきたいと思っている。
-  </p>
-  
-  <p>
-    自分に取ってシリコンバレーカンファレンスは1日限りの出来事だったが、その周辺に生まれたものは確かに大きく価値の高いものになっている。
-  </p>
-</div>
-
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-04-19T00:00:00+09:00" pubdate data-updated="true">Apr 19<span>th</span>, 2009</time></div>
-	
-
-<div class="tags">
-
-	<a class='category' href='/blog/categories/business/'>Business</a>
-
-</div>
-
-
-	
-		<span class="comments"><a href="/2009/04/18/jtpa//blog/page/26/index.html#disqus_thread">Comments</a></span>
 	
 </div></article>
 
