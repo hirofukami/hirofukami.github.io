@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Music/Movie | Hiro Fukami's Blog]]></title>
   <link href="http://hirofukami.com/blog/categories/music-slash-movie/atom.xml" rel="self"/>
   <link href="http://hirofukami.com/"/>
-  <updated>2015-06-07T19:41:00+09:00</updated>
+  <updated>2015-06-09T09:56:36+09:00</updated>
   <id>http://hirofukami.com/</id>
   <author>
     <name><![CDATA[HiroFukami]]></name>
@@ -18,7 +18,7 @@
     <link href="http://hirofukami.com/blog/2015/06/07/inside-architecture/"/>
     <updated>2015-06-07T19:30:00+09:00</updated>
     <id>http://hirofukami.com/blog/2015/06/07/inside-architecture</id>
-    <content type="html"><![CDATA[<p><img src="/images/2015/06/20150607-inside-architecture.jpg"></p>
+    <content type="html"><![CDATA[<p>{% img /images/2015/06/20150607-inside-architecture.jpg %}</p>
 
 <p><a href="http://www.tfm.co.jp/podcasts/museum/">The Lifestyle MUSEUM</a> という Tokyo FM がやっているラジオ番組のポッドキャストを聞いているのだけど、監督の石山友美さんがゲストでこの映画を紹介されていて面白そうと思って観に行った。</p>
 

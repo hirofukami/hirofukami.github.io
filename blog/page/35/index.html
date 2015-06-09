@@ -9,7 +9,7 @@
 
 <meta name="author" content="HiroFukami"> 
 
-<meta name="description" content="また何かのときに使えるかもしれないのでメモ。 ちまたにはバックアップソフトを買うだとかするようですが、rsync コマンドを使ってクーロンで動かせば基本的なことは足りてしまう。以下、バックアップサーバ(バックアップファイルをためるサーバ)にてクーロンでまわしているシェルの基本部分抜粋。 &hellip;"> <meta name="keywords" content="">
+<meta name="description" content="今は去年と打って変わって、SecondLife のイメージダウンがありメタバースはもうだめみたいな風潮がある。だた、これは今まで電通と博報堂がお金かけて SecondLife キャンペーンを打ってきたのが終わって、そのしっぺ返しがきただけでイメージの話でしかないので、正確に事態を表してないと思う &hellip;"> <meta name="keywords" content="">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -62,7 +62,7 @@ $(document).ready(
     <meta property="twitter:site" content="d_sea">
     <meta property="twitter:url" content="http://hirofukami.com">
     <meta property="twitter:title" content="Hiro Fukami's Blog">
-    <meta property="twitter:description" content="また何かのときに使えるかもしれないのでメモ。 ちまたにはバックアップソフトを買うだとかするようですが、rsync コマンドを使ってクーロンで動かせば基本的なことは足りてしまう。以下、バックアップサーバ(バックアップファイルをためるサーバ)にてクーロンでまわしているシェルの基本部分抜粋。 参考にしたのはいつもお世話になっているところからココ。ただ、バッククライアント側で rsync &hellip;">
+    <meta property="twitter:description" content="今は去年と打って変わって、SecondLife のイメージダウンがありメタバースはもうだめみたいな風潮がある。だた、これは今まで電通と博報堂がお金かけて SecondLife キャンペーンを打ってきたのが終わって、そのしっぺ返しがきただけでイメージの話でしかないので、正確に事態を表してないと思う。 今、メタバースサービスを運用している立場から言ってもう少しまじめに考えたいと思う。 &hellip;">
     <meta property="twitter:creator" content="d_sea" />
 
 
@@ -122,6 +122,116 @@ $(document).ready(
 </header>
 
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/2008/10/15/web-3d/">
+		
+			webとメタバース(3D仮想世界)サービスの違いについてまじめに考えてみる</a>
+	</h2>
+	<div class="entry-content">
+		<div class="section">
+  <p>
+    今は去年と打って変わって、SecondLife のイメージダウンがありメタバースはもうだめみたいな風潮がある。だた、これは今まで電通と博報堂がお金かけて SecondLife キャンペーンを打ってきたのが終わって、そのしっぺ返しがきただけでイメージの話でしかないので、正確に事態を表してないと思う。
+  </p>
+  
+  <p>
+    今、メタバースサービスを運用している立場から言ってもう少しまじめに考えたいと思う。メタバースがwebの次に来るかどうかはまだよく分からないが、成熟しているwebとまだ未熟なメタバースを比較しつつメタバースの可能性をもう少し考えたい。
+  </p>
+  
+  <p>
+    まず、webとメタバースは基本的特徴が全く違う。
+  </p>
+  
+  <ul>
+    <li>
+      webは非リアルタイム
+    </li>
+    <li>
+      メタバースはリアルタイム
+    </li>
+  </ul>
+  
+  <p>
+    非リアルタイムは頻度を上げればリアルタイムに近づくが、リアルタイムは非リアルタイムに近づけない。例えばブログのコメントも気付いてから書くまでが早ければ会話しているような感じになるが、その逆はない。
+  </p>
+  
+  <p>
+    メタバースは基本的にログインしてその場で何が起きているかに注力されているサービスが多い。webは後から気付いたり自由なタイミングでみれたりする。そういう意味ではwebに比べればメタバースは時間的幅が非常に狭いので、生み出されるシーン(機会)が少ない状況はもともとある。ログインしたけど誰もいなかったと言うのは典型で、その瞬間にその場に誰かがいる必要がある。5分前に同じ場所周辺に誰かがいたとしてもシーンは生まれない。
+  </p>
+  
+  <p>
+    サービスを測る基本的指針としては、webはページビューでメタバースは<del datetime="2008-10-17T08:36:06+09:00">ユニーク</del>ログイン数になるだろう。なぜこれが指針にあるかというと、サービスに触れる機会が増えれば広告価値として高まる面を持っているから。
+  </p>
+  
+  <p>
+    メタバースはもともと生み出すシーンが少ない性質なので、非リアルタイム的な機能を持たせていかないと価値が高まらないだろう。
+  </p>
+  
+  <p>
+    オフラインでもフレンド申請ができる。フレンドにいつでもプレゼントが送られる。自分が作ったアイテムを今まで見てくれた人がこれだけいた。参加できなかったイベントの様子が後から見れる。など、非リアルタイムな機能をもっと充実させていくことが必要。ただ、これは難しいことではなくて最近webが当たり前のように有している機能や視点を真似すればいい。
+  </p>
+  
+  <p>
+    そうすればメタバースがwebをもカバーして、ブラウザに変わりうるユーザインターフェイスになるかもしれない。
+  </p>
+  
+  <p>
+    あとwebにはないメタバースの最大の特徴は生のコミュニケーションに近い臨場感を味わえることだと思う。
+  </p>
+  
+  <p>
+    テキストチャットでは生み出しにくい臨場感。この点は今までにない新しい価値が出る部分で、会議のようなシーンを考えてみてもテレビ会議のようにリアルな姿が平面で見えているよりも、お互いのアバターが全身見える状態で身振り手振りを交えてテキストチャットするほうが会議に参加している感は出ると思う。
+  </p>
+  
+  <p>
+    これはリアルタイムの特徴をうまく生かしつつ、コミュニケーションを重視するようなサービスの肝になるのでは。と思っている。
+  </p>
+  
+  <p>
+    今まで SecondLife の創設者フィリップ・ローズデール会長や3DiのCTOの話とか聞いてきたけど、ちゃんとwebと機能的な特徴の視点で話していることがなくって捕らえ方が足りない気がしていたんだなぁ。
+  </p>
+  
+  <p>
+    ご意見ある方、是非コメントください！
+  </p>
+</div>
+
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-10-16T00:00:00+09:00" pubdate data-updated="true">Oct 16<span>th</span>, 2008</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/internet/'>Internet</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/2008/10/15/web-3d//blog/page/35/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
 
 
     <article class="post">
@@ -1351,71 +1461,6 @@ error_exit
 
 	
 		<span class="comments"><a href="/2008/09/13/google-insights//blog/page/35/index.html#disqus_thread">Comments</a></span>
-	
-</div></article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/2008/09/11/acer-x223w-22/">
-		
-			Acer X223W 22インチワイドモニター</a>
-	</h2>
-	<div class="entry-content">
-		<div class="section">
-  <p>
-    自宅PCのモニターは7年前の15インチ液晶(もちろんワイドではない)だったりして、ブラウザみるのも範囲が狭いのでスクロール回数が多めで、結構作業効率は悪かった。さすがに変え時かとも思い調べてみる。
-  </p>
-  
-  <p>
-    やはりワイドだと今までより縦幅が欲しいので22インチに、予算は￥2.5万以下。<a href="http://www.kakaku.com" target="_blank">価格.com</a> の評判でも結構満足度高かったので、acer X223W に決定。グレアパネルものの P223Wd は高めだし自宅で使う際には天井の照明からの距離が近いので反射を懸念してやめにした。
-  </p>
-  
-  <p>
-    <a href="http://d.hatena.ne.jp/rakuten/dtc/10018424" target="_blank">[rakuten:dtc:10018424:detail]</a>
-  </p>
-  
-  <p>
-    ツールでチェックしたらドット落ちもなさそうだし、細かい調整をしなくても満足できる映りかたなので慣れもあるだろうからこのまま使ってみる。さすがに横に広いので、今までのようにフルにブラウザ表示させなくてもOK。左にブラウザ、右にテキストエディターみたいにするとweb作りには結構効率いいなぁ。
-  </p>
-  
-  <p>
-    確かにレビューに多かったようにこの値段でこのパフォーマンスだったら確かに買い！満足度高い。いい買い物でした。
-  </p>
-</div>
-
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-09-12T00:00:00+09:00" pubdate data-updated="true">Sep 12<span>th</span>, 2008</time></div>
-	
-
-<div class="tags">
-
-	<a class='category' href='/blog/categories/shopping/'>Shopping</a>
-
-</div>
-
-
-	
-		<span class="comments"><a href="/2008/09/11/acer-x223w-22//blog/page/35/index.html#disqus_thread">Comments</a></span>
 	
 </div></article>
 
