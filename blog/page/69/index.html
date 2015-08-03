@@ -9,7 +9,7 @@
 
 <meta name="author" content="HiroFukami"> 
 
-<meta name="description" content="初めて自分のためだけに有給休暇を取った。 最近なんとなく周りの状況とか仕事の流れとかにのまれて、一人でいられる時間が欲しかった。 電車に乗ってひたすら小説を読んだ。学生のころにもやったことがあるが、結構いろんなことが考えられる。ふと本から目をはずすと景色や乗り降りする人が見れるので、 &hellip;"> <meta name="keywords" content="">
+<meta name="description" content="Cisco/Juniper では BGP で受けた経路情報の Nexthop を IGP で解決するとき、IGP的Nexthop が複数あっても &#8220;show ip route&#8221; で BGP からの経路情報には Nexthop が全てエントリーされる。 例えば BGP の &hellip;"> <meta name="keywords" content="">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -62,7 +62,7 @@ $(document).ready(
     <meta property="twitter:site" content="d_sea">
     <meta property="twitter:url" content="http://hirofukami.com">
     <meta property="twitter:title" content="Hiro Fukami's Blog">
-    <meta property="twitter:description" content="初めて自分のためだけに有給休暇を取った。 最近なんとなく周りの状況とか仕事の流れとかにのまれて、一人でいられる時間が欲しかった。 電車に乗ってひたすら小説を読んだ。学生のころにもやったことがあるが、結構いろんなことが考えられる。ふと本から目をはずすと景色や乗り降りする人が見れるので、あまり内にこもり過ぎず飽きずに過ごせる。 多分小説をちゃんと読むのは10年ぶりかも。 &hellip;">
+    <meta property="twitter:description" content="Cisco/Juniper では BGP で受けた経路情報の Nexthop を IGP で解決するとき、IGP的Nexthop が複数あっても &#8220;show ip route&#8221; で BGP からの経路情報には Nexthop が全てエントリーされる。 例えば BGP の Nexthop が loopback で、そこまでは OSPF の Equal Cost Multi &hellip;">
     <meta property="twitter:creator" content="d_sea" />
 
 
@@ -122,6 +122,75 @@ $(document).ready(
 </header>
 
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/2005/07/28/foundry-bi4000-bgp-igp/">
+		
+			[Foundry] BI4000 BGP->IGP</a>
+	</h2>
+	<div class="entry-content">
+		<div class="section">
+  <p>
+    Cisco/Juniper では BGP で受けた経路情報の Nexthop を IGP で解決するとき、IGP的Nexthop が複数あっても &#8220;show ip route&#8221; で BGP からの経路情報には Nexthop が全てエントリーされる。
+  </p>
+  
+  <p>
+    例えば BGP の Nexthop が loopback で、そこまでは OSPF の Equal Cost Multi Path(ECMP) で 2path 見えてたとするとき、ちゃんとルーティングテーブルの Nexthop は2つ見えてる。
+  </p>
+  
+  <p>
+    しかし、なぜか Foundry BI4000 だと、BGP からの経路情報は Nexthop がデフォルトひとつまでしかエントリーできない。2つ Nexthop をエントリーしたいときは &#8220;BGP multi path 2&#8221; としなければ載らない。
+  </p>
+  
+  <p>
+    この挙動は多分正しくない。BGP の経路情報を IGP で正しく解決できていないことになる。BGP -> IGP が出来ていない。
+  </p>
+  
+  <p>
+    &#8220;BGP は常に Best な経路しか乗せない&#8221; という意味が間違って反映されてる。
+  </p>
+  
+  <p>
+    この挙動に気づくのに結構時間かかったなぁ。。。
+  </p>
+</div>
+
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2005-07-29T00:00:00+09:00" pubdate data-updated="true">Jul 29<span>th</span>, 2005</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/tech/'>Tech</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/2005/07/28/foundry-bi4000-bgp-igp//blog/page/69/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
 
 
     <article class="post">
@@ -813,83 +882,6 @@ $(document).ready(
 
 	
 		<span class="comments"><a href="/2005/07/12/post//blog/page/69/index.html#disqus_thread">Comments</a></span>
-	
-</div></article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/2005/07/08/puma-h-street/">
-		
-			PUMA H-Street</a>
-	</h2>
-	<div class="entry-content">
-		<div class="section">
-  <p>
-    持ってるスニーカーは表面革なので、夏は結構むれる・・・
-  </p>
-  
-  <p>
-    ということで、会社に履いていけそうな夏向きのスニーカーないかなぁと思ってた。
-  </p>
-  
-  <p>
-    対象はやっぱり好きな PUMA。買っちゃいました。
-  </p>
-  
-  <p>
-    <a href="http://www.pistacchio.jp/shop/photo/PM2005991_1.jpg" class="http-image" target="_blank"><img src="http://www.pistacchio.jp/shop/photo/PM2005991_1.jpg?fit=830%2C200" class="http-image" alt="http://www.pistacchio.jp/shop/photo/PM2005991_1.jpg?fit=830%2C200" data-recalc-dims="1" /></a>
-  </p>
-  
-  <p>
-    軽くって、穴あきだから涼しくって(昔こういう靴下のことを&#8221;水虫靴下&#8221;とか言っていた様な。。。)、でも表面は革製で思った以上にいいっす。SALE だったし、いい買い物だった。
-  </p>
-  
-  <p>
-    ちなみに買ったとこはココ
-  </p>
-  
-  <p>
-    <a href="http://www.pistacchio.jp/" target="_blank"><a href="http://www.pistacchio.jp/" target="_blank">http://www.pistacchio.jp/</a></a>
-  </p>
-  
-  <p>
-    PUMA のセンスのいいモデル(ちょい高め15,000-30,000)はなかなか扱ってるショップがなくって見つけられなかった。と思っていたら見つけました。
-  </p>
-</div>
-
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2005-07-09T00:00:00+09:00" pubdate data-updated="true">Jul 9<span>th</span>, 2005</time></div>
-	
-
-<div class="tags">
-
-	<a class='category' href='/blog/categories/shopping/'>Shopping</a>
-
-</div>
-
-
-	
-		<span class="comments"><a href="/2005/07/08/puma-h-street//blog/page/69/index.html#disqus_thread">Comments</a></span>
 	
 </div></article>
 
