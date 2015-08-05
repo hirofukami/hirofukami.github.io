@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Life | Hiro Fukami's Blog]]></title>
   <link href="http://hirofukami.com/blog/categories/life/atom.xml" rel="self"/>
   <link href="http://hirofukami.com/"/>
-  <updated>2015-08-05T14:33:54+09:00</updated>
+  <updated>2015-08-05T15:19:09+09:00</updated>
   <id>http://hirofukami.com/</id>
   <author>
     <name><![CDATA[HiroFukami]]></name>
@@ -29,7 +29,7 @@
 
 <p>昨日の海とプールでの疲れがあったので、水着にはならずビーチでのんびり寝転がる。</p>
 
-<p><img src="/images/2015/07/20150722-beach.jpg"></p>
+<p>{% img /images/2015/07/20150722-beach.jpg %}</p>
 
 <p>サーフスクールもやっている。</p>
 
@@ -52,16 +52,16 @@
 いくつかのレストランのメニューを見て、だいたいナシゴレン400-500円くらい。
 左から５つ目？の緑の看板お店にした。味は濃い目、辛目。</p>
 
-<p><img src="/images/2015/07/20150722-dinner01.jpg"></p>
+<p>{% img /images/2015/07/20150722-dinner01.jpg %}</p>
 
-<p><img src="/images/2015/07/20150722-dinner02.jpg"></p>
+<p>{% img /images/2015/07/20150722-dinner02.jpg %}</p>
 
 <p>ナシゴレン(炒めご飯・チャーハン)、ミーゴレン(炒め麺・焼きそば)、フライドチキン、飲み物で2800円ほど。観光客向けで高いのだろうけど東京と比べれば安い。
 味は美味しくボリュームもあった。昨日のお店は高めで量が少なかったことがわかったが、料金は同じだった。</p>
 
 <p>このビーチ沿いのレストランは横に7店舗くらい並んでいるので、毎回違う店にして比べてみることができる。</p>
 
-<p><img src="/images/2015/07/20150722-evening.jpg"></p>
+<p>{% img /images/2015/07/20150722-evening.jpg %}</p>
 
 <p>帰りがけホテル内で露店が出ていた。値段を聞くと安い。ミサンガ200円。娘のブレスレットが500円。これが定価だから値切ることも可能。でも100-200円程度まけても大した額ではないので定価で買う。もしかしたらここが一番買うには最適なのかも。</p>
 
@@ -69,7 +69,7 @@
 
 <p>そのレストラン内で民族舞踊というか劇のそうなものがされていた。英語のセリフ付き。遺跡まで行かないつもりだったので、見れてよかった。</p>
 
-<p><img src="/images/2015/07/20150722-dance.jpg"></p>
+<p>{% img /images/2015/07/20150722-dance.jpg %}</p>
 
 <h1>4日目</h1>
 
@@ -106,7 +106,7 @@
 
 <p>前日のショッキングな出来事から回復できず、ショッピングはもうコリゴリという感じ。娘も体調が良くないようだ。自分は今日もビーチで過ごす。</p>
 
-<p><img src="/images/2015/07/20150723-beach.jpg"></p>
+<p>{% img /images/2015/07/20150723-beach.jpg %}</p>
 
 <p>結局ビーチが一番癒やされる。</p>
 
@@ -114,7 +114,7 @@
 
 <p>娘の体調が風邪っぽくなってしまった。外出もする気がないので、今日もビーチ。</p>
 
-<p><img src="/images/2015/07/20150724-beach.jpg"></p>
+<p>{% img /images/2015/07/20150724-beach.jpg %}</p>
 
 <p>チェックアウトは14時で夜中の0時半のフライトなので、その時間までどこかで潰すつもりだったけど、22時くらいまでホテルいにることにする。</p>
 
@@ -122,7 +122,7 @@
 
 <p>夕飯はホテル近くのコンビニでカップ麺を。日本のせんべいのようなものも買ってみて、味的にはせんべいそのものなんだけど湿気ていて食べれず。</p>
 
-<p><img src="/images/2015/07/20150724-flowers.jpg"></p>
+<p>{% img /images/2015/07/20150724-flowers.jpg %}</p>
 
 <p>コンビニ途中で見つけた花。</p>
 
@@ -199,7 +199,7 @@
 <p>朝5時に目覚める。
 6時からレストランの朝食の準備で食器を並べる音と鳥の鳴き声がする。うっすら外が明るい。</p>
 
-<p><img src="/images/2015/07/20150721-morning.jpg"></p>
+<p>{% img /images/2015/07/20150721-morning.jpg %}</p>
 
 <p>6:30くらいに鳩のような鳴き声が大きくなって外がだいぶ明るくなってきた。</p>
 
@@ -209,18 +209,18 @@
 
 <p>朝は涼しい。蒸していない。とても爽やか。これは気候は人工では作れない。東京は人工が作った気候かもしれないが。</p>
 
-<p><img src="/images/2015/07/20150721-sun-morning.jpg"></p>
+<p>{% img /images/2015/07/20150721-sun-morning.jpg %}</p>
 
-<p><img src="/images/2015/07/20150721-sun-morning-middle.jpg"></p>
+<p>{% img /images/2015/07/20150721-sun-morning-middle.jpg %}</p>
 
-<p><img src="/images/2015/07/20150721-sun-morning-left.jpg"></p>
+<p>{% img /images/2015/07/20150721-sun-morning-left.jpg %}</p>
 
 <p>部屋の冷房を止めているがかなり寒い。
 ホテル内の冷房もきいているので、日本人は長袖、長ズボンがあったほうが良い。</p>
 
 <p>7時前にホテル中央の水辺に水が入れられる。音が結構する。宿泊者も動き出している。朝日がフロント建物から顔を出す。</p>
 
-<p><img src="/images/2015/07/20150721-sunrise.jpg"></p>
+<p>{% img /images/2015/07/20150721-sunrise.jpg %}</p>
 
 <p>二度寝してから朝食に向かう。
 海近くのレストランでは洋風、インドネシア、バリ料理と多彩。その場でフレッシュジュースも作ってくれる。試しにミックスを飲んでみたが、スイカの水っぽさが強くてイマイチ。
@@ -228,9 +228,9 @@
 
 <p>部屋に戻りながらビーチを見る。幅広く伸びるビーチは人もまばらで、テント下にチェアーを置いて寝そべられる。</p>
 
-<p><img src="/images/2015/07/20150721-beach-panorama.jpg"></p>
+<p>{% img /images/2015/07/20150721-beach-panorama.jpg %}</p>
 
-<p><img src="/images/2015/07/20150721-beach.jpg"></p>
+<p>{% img /images/2015/07/20150721-beach.jpg %}</p>
 
 <p>娘が興奮してすぐに入りたいと言う。
 そのまま場所を妻に抑えてもらって、部屋に戻って水着に着替え。</p>
@@ -244,11 +244,11 @@
 締め切りのために急ぐこともなく、他人の行動に怒ることもなく、ただ心地よい風に身をまかせる。
 これがバカンスでリフレッシュするということか。妻がリフレクトということを教えてくれた。なるほど、もっと意図的に日常から遠ざかるのか。やっとわかった気がする。</p>
 
-<p><img src="/images/2015/07/20150721-court.jpg"></p>
+<p>{% img /images/2015/07/20150721-court.jpg %}</p>
 
 <p>このまま sunset までいた。水平線に落ちる太陽はやっぱり美しかった。</p>
 
-<p><img src="/images/2015/07/20150721-sunset.jpg"></p>
+<p>{% img /images/2015/07/20150721-sunset.jpg %}</p>
 
 <p>妻も娘もこの環境に感激しているようだ。よかった。娘はふわふわしていると言っていた。ジョブスが娘を連れて日本に旅行した時の話を例にこういう経験をしてもらいたかったことを話した。</p>
 
@@ -262,7 +262,7 @@
 
 <p>鳥のソテーは焼き鳥だった。そのままが一番うまい。付けるたのめピーナッツペーストは味噌っぽく自分には合わなかった。</p>
 
-<p><img src="/images/2015/07/20150721-chicken-satay.jpg"></p>
+<p>{% img /images/2015/07/20150721-chicken-satay.jpg %}</p>
 
 <p>カレーはあまり辛くなくマイルド。コンソメスープに近い。
 一番うまかったのはとものチキンチャーハン。程よく塩とニンニクが効いていて本当にうまかった。高田純次情報が役に立った。
@@ -276,7 +276,7 @@
 
 <p>夜のホテルの中庭が素敵だった。</p>
 
-<p><img src="/images/2015/07/20150721-night.jpg"></p>
+<p>{% img /images/2015/07/20150721-night.jpg %}</p>
 ]]></content>
   </entry>
   
@@ -290,7 +290,7 @@
 <p>レイヤの分類はそのツールがコントロールしている部分をイメージして大雑把に配置しているので、厳密ではない。
 細かいツールはまだあるかも知れないが、印象に残っているものをプロット。</p>
 
-<p><img src="/images/2015/03/20150326-MySkillsxYear.png"></p>
+<p>{% img /images/2015/03/20150326-MySkillsxYear.png %}</p>
 
 <p>こういった振り返りは自分にとって重要。</p>
 
@@ -362,20 +362,20 @@
     <link href="http://hirofukami.com/blog/2015/02/22/thinking-aging-society/"/>
     <updated>2015-02-22T10:00:00+09:00</updated>
     <id>http://hirofukami.com/blog/2015/02/22/thinking-aging-society</id>
-    <content type="html"><![CDATA[<p><img src="/images/2015/02/20150222-old-people.jpg" title="Old People by flickr" ></p>
+    <content type="html"><![CDATA[<p>{% img /images/2015/02/20150222-old-people.jpg Old People by flickr %}</p>
 
 <p>私は第2次ベビーブームの世代。今まで同世代が多いことはなんか友だちが多いみたいで良いことだと思っていた。でも、最近はとても危機感を持つようになった。</p>
 
 <p>「自分たちの老後はどうなってしまうのだろうか。」単純だが重要な疑問に答えは出ない。</p>
 
-<p><img class="<a" src="href="http://www.stat.go.jp/data/jinsui/2013np/img/05k25-p.gif">http://www.stat.go.jp/data/jinsui/2013np/img/05k25-p.gif</a>" title="総務省統計局平成25年10月1日現在人口ピラミッド" >
+<p>{% img <a href="http://www.stat.go.jp/data/jinsui/2013np/img/05k25-p.gif">http://www.stat.go.jp/data/jinsui/2013np/img/05k25-p.gif</a> 総務省統計局平成25年10月1日現在人口ピラミッド %}
 <a href="http://www.stat.go.jp/data/jinsui/2013np/">http://www.stat.go.jp/data/jinsui/2013np/</a></p>
 
 <p>これは平成25年10月1日現在の人口ピラミッド。これが現実。</p>
 
 <p>第2次ベビーブーム世代である40歳前後を頂点に減少し続けている。生まれてしまった数はもうどうにも操作できないので、今後起きるであろうことは想像しやすい。</p>
 
-<p><img class="<a" src="href="http://www.stat.go.jp/data/kokusei/2010/kouhou/useful/img/u01_z22.gif">http://www.stat.go.jp/data/kokusei/2010/kouhou/useful/img/u01_z22.gif</a>" title="国勢調査2040年人口ピラミッド" >
+<p>{% img <a href="http://www.stat.go.jp/data/kokusei/2010/kouhou/useful/img/u01_z22.gif">http://www.stat.go.jp/data/kokusei/2010/kouhou/useful/img/u01_z22.gif</a> 国勢調査2040年人口ピラミッド %}
 <a href="http://www.stat.go.jp/data/kokusei/2010/kouhou/useful/u01_z22.htm">http://www.stat.go.jp/data/kokusei/2010/kouhou/useful/u01_z22.htm</a></p>
 
 <p>25年後の2040年には第2次ベビーブーム世代の65歳前後が比率が最も高くなり、それ以下の世代は徐々に少なくなる逆三角形型になると予想されている。</p>
@@ -488,7 +488,7 @@
     <link href="http://hirofukami.com/blog/2015/02/11/weak-in-telephone/"/>
     <updated>2015-02-11T19:00:00+09:00</updated>
     <id>http://hirofukami.com/blog/2015/02/11/weak-in-telephone</id>
-    <content type="html"><![CDATA[<p><img src="/images/2015/02/20150210-telephone.jpg" title="telephone" ></p>
+    <content type="html"><![CDATA[<p>{% img /images/2015/02/20150210-telephone.jpg telephone %}</p>
 
 <p>基本的に電話にはでない。</p>
 

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Sport | Hiro Fukami's Blog]]></title>
   <link href="http://hirofukami.com/blog/categories/sport/atom.xml" rel="self"/>
   <link href="http://hirofukami.com/"/>
-  <updated>2015-08-05T14:33:54+09:00</updated>
+  <updated>2015-08-05T15:19:09+09:00</updated>
   <id>http://hirofukami.com/</id>
   <author>
     <name><![CDATA[HiroFukami]]></name>
@@ -18,7 +18,7 @@
     <link href="http://hirofukami.com/blog/2015/07/06/wwc2015/"/>
     <updated>2015-07-06T18:30:00+09:00</updated>
     <id>http://hirofukami.com/blog/2015/07/06/wwc2015</id>
-    <content type="html"><![CDATA[<p><img src="/images/2015/07/20150706-wwc2015.jpg"></p>
+    <content type="html"><![CDATA[<p>{% img /images/2015/07/20150706-wwc2015.jpg %}</p>
 
 <p>まずは、なでしこ準優勝おめでとう！</p>
 
@@ -101,13 +101,96 @@
   </entry>
   
   <entry>
+    <title type="html"><![CDATA[Fリーグ観戦記 ペスカドーラ町田xデウソン神戸]]></title>
+    <link href="http://hirofukami.com/blog/2015/06/19/fleage-machidaxkobe/"/>
+    <updated>2015-06-19T21:30:00+09:00</updated>
+    <id>http://hirofukami.com/blog/2015/06/19/fleage-machidaxkobe</id>
+    <content type="html"><![CDATA[<p><a href="http://www.fleague.jp/">Fリーグ</a> 観戦 2試合目 <a href="http://www.pescadola-machida.com/">ペスカドーラ町田</a> x <a href="http://www.deucao-kobe.com/">デウソン神戸</a></p>
+
+<p>{% img /images/2015/06/20150619-game02-before.JPG %}</p>
+
+<p>試合前チアリーダー6名のパフォーマンス。その後会場を盛り上げ、ホームぽさを会場に充満させていく。
+音楽もペスカドーラ町田オリジナル、アップテンポ。素人にしてはクオリティ高い音楽だと思っていて後で調べたら、
+Mr.Children の桜井和寿氏と GAKU−MC によるユニット <a href="http://mifa.co.jp/member">UKASUKA-G</a> が優勝賞品として作った「勝て！ペスカドーラ町田」という曲だった。<a href="http://www.pescadola-machida.com/news/2013/news/058.html">http://www.pescadola-machida.com/news/2013/news/058.html</a></p>
+
+<p>夜の時間になってきたので、観客が増えてきた。町田のホームゲームなので地元の人が集まってきている感じ。隣に座った親子の子供がペスカドーラ町田のチアリーダーやってるぽく友達がチラシに載ってて嬉しそう。</p>
+
+<p>ホームの雰囲気出てる。平日だけど子供多い。</p>
+
+<h1>試合開始</h1>
+
+<p>{% img /images/2015/06/20150619-game02.JPG %}</p>
+
+<p>立ち上がりは神戸の方がうまく広がりながら縦の深いところを狙う、いくつかチャンスを作る。</p>
+
+<!-- more -->
+
+
+<p>町田のボール回しはなんかスムーさがない。
+近くに寄っているけど、相手が騙せてないからゴール前に迫れない。
+ボール回しがわかりやすい。
+あまり縦の深いところを使えてない。</p>
+
+<p>神戸速攻から先制。神戸のダイナミック動きからゴール前に迫る。斜めにゴール前に入るからディフェンスついていけない。</p>
+
+<p>神戸は継続してチャンス多く作り出せている。
+町田は個人が持ちすぎかも、リズム悪い。
+相手のやな所に入っていけてない感じ。</p>
+
+<p>パスカットから町田一点かえす、同点。</p>
+
+<p>神戸10番左利き、半身かわしてシュート、ゴール前へのパスうまい。</p>
+
+<p>前半終了、1-1。神戸チャンス多かったが一点止まり、町田はなんか一点とって粘る。</p>
+
+<p>前半は正味35分くらい、休憩15分。</p>
+
+<h1>後半開始</h1>
+
+<p>やっぱり神戸は10番がうまさを見せる。
+広いスペースでは抜いて、ファール誘う。
+ボールを奪われない。</p>
+
+<p>お互い攻め合う感じになってきた。
+速攻からお互いシュートまで行く。
+町田が攻めれるようになってきた。</p>
+
+<p>町田6番がゴール前でボールを受ける動きがうまい。</p>
+
+<p>お互い一点取りたい、オープンな感じ。ファー詰めは定番な形なのかやっぱり警戒されやすい。うまくディフェンスした。</p>
+
+<p>町田は焦るとボールを周りのスムーズさがなくなる、ミスが出る。</p>
+
+<p>第2試合 来場者数 1201名。第1試合の倍程度。千人超え会場がどよめく。</p>
+
+<p>神戸ちょっと疲れてきたかミス出てる。町田は助かっている。五分五分の攻め合い。</p>
+
+<p>結果 1-1 同点</p>
+
+<p>{% img /images/2015/06/20150619-game02-score.JPG %}</p>
+
+<h1>総評</h1>
+
+<p>町田は会場の後多しをうまく力に変えられず気をってしまったか。スムーズさがなかった。</p>
+
+<p>逆に神戸はチャンスが多かっただけにもう1点取りたかっただろう。</p>
+
+<p>会場の雰囲気はとても地元愛に満ちていた。小学生の子どもを持つ家族が子ども、お母さんだけでなく熱心なお父さんも来ていた。</p>
+
+<p>このサポーターが継続的に見に来て応援してくれればクラブは継続できるだろう。そして、その熱量はじわじわと新たなFリーグファンを作ってくれるかもしれない。</p>
+
+<p>ただ、もっと速く大きく広まるためには異なるアプローチが必要であることも感じる。課題は大きいのだから大きな効果をもたらすソリューションがあっていいはずだ。それを自分が作り出せたら今日ここに集まった人達をもっと笑顔にできるかもしれない。</p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Fリーグ観戦記 バルドラール浦安xシュライカー大阪]]></title>
     <link href="http://hirofukami.com/blog/2015/06/19/fleage-urayasuxosaka/"/>
     <updated>2015-06-19T17:30:00+09:00</updated>
     <id>http://hirofukami.com/blog/2015/06/19/fleage-urayasuxosaka</id>
     <content type="html"><![CDATA[<p><a href="http://www.fleague.jp/">Fリーグ</a> は日本最高峰のフットサルのリーグ</p>
 
-<p><img src="/images/2015/06/20150619-game01.JPG"></p>
+<p>{% img /images/2015/06/20150619-game01.JPG %}</p>
 
 <p>といってもJリーグよりも知名度は低いし、テレビ中継もなければスポーツニュースで取り上げられることもない。
 フットサルは休日に友達とやるけど、Fリーグの存在は知らない人が多いのではないだろうか。メディアに取り上げられるスポーツは少ないので、フットサルも含め日の当たらないスポーツは山ほどある。</p>
@@ -124,11 +207,11 @@
 
 <p>道すがらペスカドーラ町田の応援フラッグが目についた。</p>
 
-<p><img src="/images/2015/06/20150619-machida-support.JPG"></p>
+<p>{% img /images/2015/06/20150619-machida-support.JPG %}</p>
 
 <p>会場につくとこのノボリ。町田市がしっかりチームをサポートしていることが分かる。クラブが地域に根ざした取り組みをした結果が見て分かる。</p>
 
-<p><img src="/images/2015/06/20150619-arena.JPG"></p>
+<p>{% img /images/2015/06/20150619-arena.JPG %}</p>
 
 <p>会場入口でフットサル日本代表 ミゲル・ロドリゴ監督を見かけた。ロドリゴ監督が子どもたちにサッカーを教えるNHKの番組を見て、とても感心してリスペクトしていたので見れて感動した。</p>
 
@@ -139,19 +222,19 @@
 
 <p>スポンサーの看板。地元企業もありそう。</p>
 
-<p><img src="/images/2015/06/20150619-sponsors.JPG"></p>
+<p>{% img /images/2015/06/20150619-sponsors.JPG %}</p>
 
-<p>1試合目、<a href="http://bardral-urayasu.com/">バルドラール浦安</a>x<a href="http://shriker.osaka.jp/">シュライカー大阪</a>戦。</p>
+<p>1試合目、<a href="http://bardral-urayasu.com/">バルドラール浦安</a> x <a href="http://shriker.osaka.jp/">シュライカー大阪</a>戦。</p>
 
 <p>浦安は日本代表 星選手9番がいないのが大きそう。</p>
 
 <p>浦安サポーター席</p>
 
-<p><img src="/images/2015/06/20150619-urayasu-supporters.JPG"></p>
+<p>{% img /images/2015/06/20150619-urayasu-supporters.JPG %}</p>
 
 <p>シュライカー大阪サポーター席。平日に大阪から東京に来れるものではないなという数。</p>
 
-<p><img src="/images/2015/06/20150619-osaka-supporters.JPG"></p>
+<p>{% img /images/2015/06/20150619-osaka-supporters.JPG %}</p>
 
 <p>大阪の外人2名は動きすぎない。サイドにはって広げる。大阪10番外人は左利き。
 余裕を持ってプレイ、ここぞのところで裏をかいて決めた。

@@ -9,7 +9,7 @@
 
 <meta name="author" content="HiroFukami"> 
 
-<meta name="description" content="シリコンバレーカンファレンスに参加して、渡辺千賀さんのセッションがあって初めてお目にかかったのだが、それまでは何となくブログを読んでいただけであったが、もう少し考え方に触れたいと思い本を買ってみた。 ヒューマン2.0―web新時代の働き方(かもしれない) (朝日新書) 作者: 渡辺千賀 出版社/ &hellip;"> <meta name="keywords" content="">
+<meta name="description" content="Amazon EC2/S3 を触ってみた。調べつつ行うのは時間がもったいなかったので本に頼ってしまった。 学びingさんの以下の本を読みつつ進めれば、問題なく行えた。 Amazon EC2/S3クラウド入門 作者: 学びing 出版社/メーカー: 秀和システム 発売日: 2008/12 メディア &hellip;"> <meta name="keywords" content="">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -62,7 +62,7 @@ $(document).ready(
     <meta property="twitter:site" content="d_sea">
     <meta property="twitter:url" content="http://hirofukami.com">
     <meta property="twitter:title" content="Hiro Fukami's Blog">
-    <meta property="twitter:description" content="シリコンバレーカンファレンスに参加して、渡辺千賀さんのセッションがあって初めてお目にかかったのだが、それまでは何となくブログを読んでいただけであったが、もう少し考え方に触れたいと思い本を買ってみた。 ヒューマン2.0―web新時代の働き方(かもしれない) (朝日新書) 作者: 渡辺千賀 出版社/メーカー: 朝日新聞社 発売日: 2006/12/08 メディア: 新書 購入: 7人 クリック: &hellip;">
+    <meta property="twitter:description" content="Amazon EC2/S3 を触ってみた。調べつつ行うのは時間がもったいなかったので本に頼ってしまった。 学びingさんの以下の本を読みつつ進めれば、問題なく行えた。 Amazon EC2/S3クラウド入門 作者: 学びing 出版社/メーカー: 秀和システム 発売日: 2008/12 メディア: 単行本 購入: 4人 クリック: 79回 この商品を含むブログ (22件) を見る &hellip;">
     <meta property="twitter:creator" content="d_sea" />
 
 
@@ -122,6 +122,421 @@ $(document).ready(
 </header>
 
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/2009/05/01/amazon-ec2-s3-2/">
+		
+			Amazon EC2/S3をいじってみた</a>
+	</h2>
+	<div class="entry-content">
+		<div class="section">
+  <p>
+    Amazon EC2/S3 を触ってみた。調べつつ行うのは時間がもったいなかったので本に頼ってしまった。
+  </p>
+  
+  <p>
+    学びingさんの以下の本を読みつつ進めれば、問題なく行えた。
+  </p>
+  
+  <div class="hatena-asin-detail">
+    <p>
+      <a href="http://www.amazon.co.jp/dp/4798021555/?tag=hatena_st1-22&ascsubtag=d-4tfv" target="_blank"><img src="http://ecx.images-amazon.com/images/I/41QHzR8v3aL._SL160_.jpg?w=830" class="hatena-asin-detail-image" alt="Amazon EC2/S3クラウド入門" title="Amazon EC2/S3クラウド入門" data-recalc-dims="1" /></a>
+    </p>
+    
+    <div class="hatena-asin-detail-info">
+      <p class="hatena-asin-detail-title">
+        <a href="http://www.amazon.co.jp/dp/4798021555/?tag=hatena_st1-22&ascsubtag=d-4tfv" target="_blank">Amazon EC2/S3クラウド入門</a>
+      </p>
+      
+      <ul>
+        <li>
+          <span class="hatena-asin-detail-label">作者:</span> <a href="http://d.hatena.ne.jp/keyword/%B3%D8%A4%D3ing" class="keyword" target="_blank">学びing</a>
+        </li>
+        <li>
+          <span class="hatena-asin-detail-label">出版社/メーカー:</span> <a href="http://d.hatena.ne.jp/keyword/%BD%A8%CF%C2%A5%B7%A5%B9%A5%C6%A5%E0" class="keyword" target="_blank">秀和システム</a>
+        </li>
+        <li>
+          <span class="hatena-asin-detail-label">発売日:</span> 2008/12
+        </li>
+        <li>
+          <span class="hatena-asin-detail-label">メディア:</span> 単行本
+        </li>
+        <li>
+          <span class="hatena-asin-detail-label">購入</span>: 4人 <span class="hatena-asin-detail-label">クリック</span>: 79回
+        </li>
+        <li>
+          <a href="http://d.hatena.ne.jp/asin/4798021555" target="_blank">この商品を含むブログ (22件) を見る</a>
+        </li>
+      </ul>
+    </div>
+    
+    <div class="hatena-asin-detail-foot">
+    </div>
+  </div>
+  
+  <p>
+    本には記述されていなかったことや自分で気づいた点もあったのでまとめておく。
+  </p>
+  
+  <h4>
+    準備
+  </h4>
+  
+  <ul>
+    <li>
+      ログインは Amazon.com のショッピング IDと同じでログインできた</p> <ul>
+        <li>
+          クレジット情報も事前に登録済みならそれで決済される
+        </li>
+      </ul>
+    </li>
+    
+    <li>
+      ブラウザ上で privatekey と x509証明書 を生成＆ダウンロード可能 <ul>
+        <li>
+          コマンドラインでオペレーションする EC2 API tools を使う際にこの2つのファイルを指定する
+        </li>
+      </ul>
+    </li>
+    
+    <li>
+      firefox アドオンの xpiファイルがダウンロードされるだけで firefox にインストールできない <ul>
+        <li>
+          firefox メニューから ファイル＞ファイルを開く＞xpiファイルを指定＞インストール開始でできた</p> <ul>
+            <li>
+              windows/mac 両方で同じ現象だった
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    
+    <li>
+      web の Your account 情報から <ul>
+        <li>
+          Your Access Key ID と Your Secret Access Key を確認
+        </li>
+        <li>
+          firefox addon elasticfox のアカウント情報に設定する
+        </li>
+      </ul>
+    </li>
+  </ul>
+  
+  <h4>
+    E2を触る images 選択から instance 起動まで
+  </h4>
+  
+  <h5>
+    firefox addon operation (GUIな操作)
+  </h5>
+  
+  <ul>
+    <li>
+      images 一覧より選択</p> <ul>
+        <li>
+          最初なかなか表示されなかった
+        </li>
+      </ul>
+    </li>
+    
+    <li>
+      Fedora を選択してみて起動 起動ボタンを押してから2分くらいで running status になる
+    </li>
+  </ul>
+  
+  <h5>
+    api tools operation (コマンドラインな操作)
+  </h5>
+  
+  <ul>
+    <li>
+      なかなか ssh login できなかった</p> <ul>
+        <li>
+          よく分からんけど root でログインしたらノーパスワードで入れた
+        </li>
+        <li>
+          一部の AMI はパスワードを聞かれて入れなかった <ul>
+            <li>
+              そうか知っている人だけ入れるにしてしまうことがこれでできるのか
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    
+    <li>
+      OKだったやり方
+    </li>
+  </ul>
+  
+  <p>
+    $ ssh -i [keyname] root@ec2-67-202-43-106.compute-1.amazonaws.com
+  </p>
+  
+  <ul>
+    <li>
+      root@ を付けないと
+    </li>
+  </ul>
+  
+  <p>
+    Permission denied (publickey,gssapi-with-mic).
+  </p>
+  
+  <p>
+    と言われてログインできない
+  </p>
+  
+  <ul>
+    <li>
+      基本的に作ったばかりの instance は root でログインしてからということだった
+    </li>
+  </ul>
+  
+  <h4>
+    S3を触る
+  </h4>
+  
+  <ul>
+    <li>
+      ユーザごとに割り当てたファイルサーバのイメージ</p> <ul>
+        <li>
+          自分のローカルPC上のファイルをコピーできる
+        </li>
+        <li>
+          ここに AMI の元となる bundle された image ファイルを保存できる
+        </li>
+      </ul>
+    </li>
+    
+    <li>
+      firefox addon S3fox を入れる
+    </li>
+    <li>
+      起動後ログイン情報を入力 manage account <ul>
+        <li>
+          elasticfox のときと同じ情報
+        </li>
+        <li>
+          Your Access Key ID と Your Secret Access Key を適用
+        </li>
+      </ul>
+    </li>
+    
+    <li>
+      ログイン完了 <ul>
+        <li>
+          ローカルのファルだ構成とS3側の構成が左右に配置されている
+        </li>
+        <li>
+          見た目は WinSCP みたいなイメージ
+        </li>
+      </ul>
+    </li>
+  </ul>
+  
+  <h5>
+    ディレクトリを作ってみる
+  </h5>
+  
+  <ul>
+    <li>
+      create directory して作る
+    </li>
+    <li>
+      Edit ACL でそのフォルダのパーミッションが変更できる <ul>
+        <li>
+          設定できる user は</p> <ul>
+            <li>
+              Everyone, Authenticated Users, [自分のAmazon.comアカウント]
+            </li>
+            <li>
+              Linuxのアクセス権とは若干違い独自のパーミッション管理ができるようだ
+            </li>
+            <li>
+              Shareしたいユーザを追加できる Email or UserID で指定できる
+            </li>
+          </ul>
+        </li>
+        
+        <li>
+          権限は Read/Write/FullControl
+        </li>
+      </ul>
+    </li>
+  </ul>
+  
+  <h5>
+    立ち上げたinstanceのAMI をS3までもってくる on Fedora
+  </h5>
+  
+  <ul>
+    <li>
+      まず 立ち上げた instance に privatekey, certificationkey を /mnt まで持ってくる
+    </li>
+    <li>
+      立ち上げた instance 上で ec2-bundle-vol コマンドを実行 <ul>
+        <li>
+          あらかじめ各instance(Linux)には既にec2コマンドが実行できるようになっているということか
+        </li>
+        <li>
+          image* ファイルがたくさんできる
+        </li>
+      </ul>
+    </li>
+    
+    <li>
+      終わったらS3にコピーするコマンドを実施 instance 上で実行 <ul>
+        <li>
+          S3 上で image* がいっぱいできている
+        </li>
+      </ul>
+    </li>
+    
+    <li>
+      ami に登録する 手元のPCから ec2-register コマンドを実行 <ul>
+        <li>
+          これでいつでも 自分用 AMI が起動できるようになる
+        </li>
+        <li>
+          private な登録なので他のひとには見られない
+        </li>
+      </ul>
+    </li>
+  </ul>
+  
+  <h5>
+    まとめ
+  </h5>
+  
+  <ul>
+    <li>
+      EC2 => EC2 /mnt => S3 => AMI 登録 の流れ
+    </li>
+    <li>
+      AMI登録するにはS3に持ってこないとできない
+    </li>
+    <li>
+      AMI登録されると private なので自分の ID(keypair) でないと見れない <ul>
+        <li>
+          public にするためにはどうすれば良いんだろう [Q]
+        </li>
+      </ul>
+    </li>
+  </ul>
+  
+  <h4>
+    その他
+  </h4>
+  
+  <ul>
+    <li>
+      Security Group(簡易firewall) は destinasion ごとに設定できない</p> <ul>
+        <li>
+          アドレスが変わってしまうから
+        </li>
+      </ul>
+    </li>
+    
+    <li>
+      そのかわり instance を group 化して group ごとに filter できる
+    </li>
+    <li>
+      作業手順は security groups を作っておいて instance を起動して group 属性を変更する順番になる
+    </li>
+  </ul>
+  
+  <h4>
+    windows instance の立ち上げ方
+  </h4>
+  
+  <ul>
+    <li>
+      keypair を指定して起動
+    </li>
+    <li>
+      status が running になってしばらくしたら <ul>
+        <li>
+          ec2-get-password i-**** -k ec2_instance_key.id と入力</p> <ul>
+            <li>
+              elasticfox 上でも右クリックで行える
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    
+    <li>
+      password が表示される
+    </li>
+    <li>
+      Administrator login 時に使用する
+    </li>
+  </ul>
+  
+  <h5>
+    windows instance の AMI 登録方法
+  </h5>
+  
+  <ul>
+    <li>
+      elasticfox 上でオペレーションが完結する方法</p> <ul>
+        <li>
+          windows OS 上での方法は分からず Linux とは違ってできないのかもしれない
+        </li>
+      </ul>
+    </li>
+    
+    <li>
+      elasticfox で instance を右クリックして &#8220;bundle windows AMI&#8221;
+    </li>
+    <li>
+      bundle 終了後 右クリックで &#8220;register as an AMI&#8221; を選択で完了
+    </li>
+  </ul>
+  
+  <p>
+    <p>
+      基本的な操作はこんなところ。今後はもう少し他の付加的機能についても触っていってみたい。
+    </p></div>
+
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-05-02T00:00:00+09:00" pubdate data-updated="true">May 2<span>nd</span>, 2009</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/tech/'>Tech</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/2009/05/01/amazon-ec2-s3-2//blog/page/27/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
 
 
     <article class="post">
@@ -1546,155 +1961,6 @@ $(document).ready(
 
 	
 		<span class="comments"><a href="/2009/04/03/post//blog/page/27/index.html#disqus_thread">Comments</a></span>
-	
-</div></article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/2009/04/02/post/">
-		
-			シリコンバレーで働く時の形態について</a>
-	</h2>
-	<div class="entry-content">
-		<div class="section">
-  <p>
-    シリコンバレーで色々見てきたり話を聞いたりして自分なりに分かったことをまとめる。正確ではないかもしれないが自分なりのまとめ。
-  </p>
-  
-  <p>
-    シリコンバレーで働こうとした時の形態についてまとめておく。あくまで先端的なフィールドのエンジニアとして日本からシリコンバレーに行った場合の形態ということなので、現地大学を出て、みたいな想定はしていない。
-  </p>
-  
-  <p>
-    大体いかに示す3パターンくらいかと思う。この中間とかその他の存在はシリコンバレーでは中途半端に見られて相手にされないというか、既に淘汰されてしまっている経験がこの地にはあると思う。
-  </p>
-  
-  <h5>
-    1.大企業
-  </h5>
-  
-  <p>
-    いわゆる有名どころ。Google, Yahoo, Adobeなど既に上場をして有名になっていて社員を多く抱えているところ。
-  </p>
-  
-  <p>
-    現地のエージェント経由で試験を受けるのがスタンダードだと思うが、日本から行く場合は人づてに近いレベルでたまたまポストが空いたから受けてみた、というケースもある。
-  </p>
-  
-  <p>
-    今は採用がシステマチックになっているので日本から直接行くケースがどれくらいあるか不明。日本法人からアプローチするとしての時間と手間がかかるので、現地の案件を探した方が良さそう。
-  </p>
-  
-  <p>
-    入社すれば安定して働きやすい環境が用意された中で過ごすことができる。ストックオプションもいくらかもらえるらしい。ただし公使期間は4年で結構長い。
-  </p>
-  
-  <h5>
-    2.ベンチャー
-  </h5>
-  
-  <p>
-    ベンチャーに途中から社員として採用試験を受けてみる際には 1.大企業 と変わりないが、VCから資金を調達する前の時期は人づてで集めるので、人脈力を生かして創業者に近いポジションで入る可能性もあるかと思う。前提として現地の人との人脈が構築できていることが必要。
-  </p>
-  
-  <p>
-    もう一つの選択肢として、ベンチャーを自分で立ち上げるなら誰にでも開かれた可能性かと思われる。アイデアが良くて VC がついてくれればそこからベンチャーとして exit に向けたゲームをスタートできる。
-  </p>
-  
-  <p>
-    どちらにせよベンチャーに入る訳だから、変化に順応することとスピードが必要だし、最も失敗するリスクの多いパターンの中で働くことになる。
-  </p>
-  
-  <p>
-    ただ、シリコンバレーの人が循環する仕組みの中に入れれば、次に生まれてくるベンチャーに入ることもできるし、日本と違い失敗しても汚点と思われずに経験を積んでいると思われるので、失敗したことによるデメリットはないと思った方がいい。
-  </p>
-  
-  <h5>
-    3.ライフカンパニー
-  </h5>
-  
-  <p>
-    自分で自分の会社を自己資金で作るので障害になることは少ない。ただ、企業形態として売り上げが爆発的に伸びて莫大な富を得ることはあきらめる必要がある。
-  </p>
-  
-  <p>
-    働くフィールドに最も立ちやすいがその後にビジネスが展開できて、生活していけるかはまた別問題。
-  </p>
-  
-  <p>
-    資金的にも自腹を切ることになるし、自分を中心とした人脈が作られていなければ売り上げを得ていくことが難しい。売り上げがなければ自己資金を切り崩して生活する必要があるので、自分の生活に最も影響が出やすい形態と言える。
-  </p>
-  
-  <p>
-    これはシリコンバレーであろうが日本であろうがライフカンパニーであれば同じ。
-  </p>
-  
-  <h5>
-    番外編&#160;: 大企業とベンチャーのエンジニアの給料
-  </h5>
-  
-  <p>
-    大企業とベンチャーにおけるエンジニアの給料は変わらない。駆け出し 800万、ちょっといって 1000万、シニア 1200-1500万という具合らしい。
-  </p>
-  
-  <p>
-    違いとしては大企業は安定性、福利厚生の手厚さがあるが、ベンチャーはいつつぶれるか分からないので、不安定だがそのかわりストックオプションを付与する。そうすることで exit できた時の gain が期待できる。シニア級にあがるほど株数を多くするらしい。
-  </p>
-  
-  <p>
-    基本的にはシリコンバレーのエンジニア採用は新卒とかの考え方がなく実力主義、実績主義。今までどこでどのくらいのことをやってきたかが基準なので、それがアピールできる必要がある。最近では Linkedin からコンタクト受ける方法もあるけど、現地のエージェントがコンタクトしているケースもあるので、どれくらい実践的に活用できるのか不明。
-  </p>
-  
-  <h5>
-    番外編&#160;: シリコンバレーでは SIer はいない
-  </h5>
-  
-  <p>
-    いわゆる日本で古くからある Enterprise SI (NEC, Hitachi, IBM, CTC, 受託だけをしている会社 等々)はここに該当しない。
-  </p>
-  
-  <p>
-    シリコンバレーはハイテク産業の生成地で、現状で言えばwebを中心としたインターネットサービスであり、先行投資的なのはバイオになる。だから今まである Enterprise SI の産業をわざわざシリコンバレーでやる意味はない。という方が正確かと思う。そもそも日本のような政治色の強い SI の手法はアメリカでは通用しないと思うが。
-  </p>
-  
-  <p>
-    そういう意味では、日本で言う IT に古くから関わっている人のかなりの部分がシリコンバレーで働く形態にマッチしなくなっていることもはっきり認識しておいた方がいいポイントだと思う。
-  </p>
-</div>
-
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-04-03T00:00:00+09:00" pubdate data-updated="true">Apr 3<span>rd</span>, 2009</time></div>
-	
-
-<div class="tags">
-
-	<a class='category' href='/blog/categories/business/'>Business</a>
-
-</div>
-
-
-	
-		<span class="comments"><a href="/2009/04/02/post//blog/page/27/index.html#disqus_thread">Comments</a></span>
 	
 </div></article>
 
