@@ -9,8 +9,7 @@
 
 <meta name="author" content="HiroFukami"> 
 
-<meta name="description" content="日経に「洋画・海外ドラマで英会話」という記事があった。 英会話のアプリとかWebサービスはいくつかやったことがあるけど、いまいちぐっとハマるようなものがなかったので、確かにこれは良いなぁと思った。
-けど、DVDを毎回買ったりレンタルしたりするのはなんかコストがかかりそうだと思った。iTunes &hellip;"> <meta name="keywords" content="">
+<meta name="description" content="去年夏に Chef に出会い、スマートWPのセットアップ方法を変えました。 今までは「AWS EC2 を手動でセットアップして AMI 保存」を繰り返すことでサーバをバージョンアップしてきた方法から、まっさらな AWS AMI を Chef で一気にセットアップするように切り替えました。 &hellip;"> <meta name="keywords" content="">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -63,8 +62,7 @@ $(document).ready(
     <meta property="twitter:site" content="d_sea">
     <meta property="twitter:url" content="http://hirofukami.com">
     <meta property="twitter:title" content="Hiro Fukami's Blog">
-    <meta property="twitter:description" content="日経に「洋画・海外ドラマで英会話」という記事があった。 英会話のアプリとかWebサービスはいくつかやったことがあるけど、いまいちぐっとハマるようなものがなかったので、確かにこれは良いなぁと思った。
-けど、DVDを毎回買ったりレンタルしたりするのはなんかコストがかかりそうだと思った。iTunes や Amazon でも映画のレンタルや購入もできるので実際どれくらいコストがかかるのか調べてみた。 &hellip;">
+    <meta property="twitter:description" content="去年夏に Chef に出会い、スマートWPのセットアップ方法を変えました。 今までは「AWS EC2 を手動でセットアップして AMI 保存」を繰り返すことでサーバをバージョンアップしてきた方法から、まっさらな AWS AMI を Chef で一気にセットアップするように切り替えました。 何が良いかというと、 最新のバージョンが常に保たれる AWS AMI もバージョンアップされるし、 &hellip;">
     <meta property="twitter:creator" content="d_sea" />
 
 
@@ -124,6 +122,88 @@ $(document).ready(
 </header>
 
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/2014/01/09/smartwp-setup-chef-recipe/">
+		
+			スマートWP構築のChefレシピを公開します</a>
+	</h2>
+	<div class="entry-content">
+		<p>去年夏に Chef に出会い、<a href="http://www.shakesoul.net/smartwp">スマートWP</a>のセットアップ方法を変えました。<br/>
+<img src="http://docs.opscode.com/chef/_static/opscode_chef_html_logo.png?w=830" alt="" data-recalc-dims="1" /><br/>
+今までは「AWS EC2 を手動でセットアップして AMI 保存」を繰り返すことでサーバをバージョンアップしてきた方法から、まっさらな AWS AMI を Chef で一気にセットアップするように切り替えました。</p>
+
+<p>何が良いかというと、</p>
+
+<ul>
+<li>最新のバージョンが常に保たれる
+
+<ul>
+<li>AWS AMI もバージョンアップされるし、各アプリケーションも常にバージョンアップされるので</li>
+<li>AMIを更新し続けると古いバージョンのままになってどこかでバージョンアップの作業が必要になる</li>
+</ul>
+</li>
+<li>すべての作業内容がレシピに残る
+
+<ul>
+<li>どうしても手動だとやったことの記録漏れが出がち</li>
+</ul>
+</li>
+<li>手動よりも圧倒的に早い</li>
+</ul>
+
+
+<p>というところかと思う。</p>
+
+<p>そんな Cehf で作った<a href="http://www.shakesoul.net/smartwp">スマートWP</a>のレシピを公開します。</p>
+
+<p>このレシピで作られたスマートWPのサーバ環境は私の個人ブログ <a href="http://hirofukami.com">hirofukami.com</a> と会社のサイト <a href="http://www.shakesoul.net">ShakeSoul inc.</a> があって、負荷状況に応じて自動的にサーバを増減させるオートスケーリングが動くようになっています。</p>
+
+<p>ご興味のある方は <a href="http://www.shakesoul.net/smartwp">スマートWPのサービス紹介ページ</a>を見てみてください。</p>
+
+<center>
+  <br /> <a href="http://www.shakesoul.net/smartwp"><img src="http://www.shakesoul.net/wp-content/uploads/2013/05/SmartWP-Scale-h300.png?resize=327%2C180" class="alignnone" data-recalc-dims="1" /></a><br />
+</center>
+
+
+
+
+
+		
+		<a href="/2014/01/09/smartwp-setup-chef-recipe/" class="more-link">Read on &rarr;</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-01-09T20:52:32+09:00" pubdate data-updated="true">Jan 9<span>th</span>, 2014</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/tech/'>Tech</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/2014/01/09/smartwp-setup-chef-recipe//blog/page/9/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
 
 
     <article class="post">
@@ -828,102 +908,6 @@ $(document).ready(
 
 	
 		<span class="comments"><a href="/2013/12/09/report-bpstudy75-smartwp-lean//blog/page/9/index.html#disqus_thread">Comments</a></span>
-	
-</div></article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/2013/12/08/orthokeratology-3month/">
-		
-			オルソレンズはじめました 3ヶ月後</a>
-	</h2>
-	<div class="entry-content">
-		<p>あっという間に3ヶ月がたってしまった。<br/>
-今までの体験をまとめておく。検討している方の参考になれば幸いです。</p>
-
-<h2>見え方の不安定さは変わらず</h2>
-
-<p>3ヶ月経過しているがいまだに視力は安定していない。<br/>
-前回の検診時は右は1.0、左は0.6ないくらいかも。まぁ始めた時の裸眼が左右ともに0.1なかった状態に比べれば良いが、もうちょっと欲しいと思ってしまう。</p>
-
-<p>2ヶ月経過時は右目がおそらく1.2くらいはあるくらいはっきりくっきり見える状態が1ヶ月くらい続いた。<br/>
-でも、そのあとはまたぼやける状態に戻ってしまった。</p>
-
-<p>始めた当初の単純に視力がない状態というよりは、乱視のように見え方がダブってよく見えない状態になる。<br/>
-眼科医のところに検診に行って毎回視力を測るのだが、見えない時は乱視レンズを入れて記録しているみたい。</p>
-
-<h2>寝相も結構影響する？</h2>
-
-<p>寝ている間にレンズを付けるのは効率的なのだけど、寝ている間は自分が意識せずにやってしまっていることがあるので、そこを制御できないのが困ったところ。</p>
-
-<p>寝相が悪くて右に左に体の向きを変えた時に枕にまぶたがあたってレンズが微妙にずれたり、明け方寝ぼけながら目をこすってしまったり。そんな時は必ず視力が出ない。ダブり方が大きく近くのものも見えない状態になる。</p>
-
-<p>しかたがないので昼間からレンズを付けて過ごすようにしている。</p>
-
-<p>全く動いてはいけないのだろうか。それもなかなかつらいし、良い寝相を見つけたいところ。</p>
-
-<h2>7時間睡眠は最低ラインらしい</h2>
-
-<p>オルソレンズを検討する際に眼科医に睡眠時間の確保が必要ですよと言われたのだけど、7時間は最低ラインとのことをこの間の検診ではじめて言われた。</p>
-
-<p>割りと睡眠時間は確保している方で7時間は取るようにしているけど、それ以上の確保はなかなか厳しい。</p>
-
-<p>いっその事睡眠時間だけではなくて、昼間の仕事をしている時のはめてみてもいいのだろうか。<br/>
-基本的にはパソコンに向かって作業しているだけなので、レンズをはめて仕事をすることはできる。<br/>
-視力が出ない場合の昼間の装着は2時間程度と眼科医からもらった資料に書いてあるのだけど、一度4時間程度つけたらその後割と安定して夜まで見えていた。自分の場合はまだ装着時間が足りないのかもしれない。</p>
-
-<p>次回の検診時に眼科医にそれをやってみていいか聞いてみるか。</p>
-
-<h2>特に眼科医からのアドバイスらしいものはなし</h2>
-
-<p>最近は1月に一回のペースで検診に行っているが、視力が出ていない時の眼科医からのアドバイスはあまり有用ではない。</p>
-
-<p>「レンズをはめて寝る前にレンズが眼球の中心にあるかどうかセンタリングを確かめてくださいね。」だけ言われた。<br/>
-一応やってはいるのだけど、レンズは眼球に張り付いて指で触っても元に戻るのとそもそも中央の場所がわからないので、本当にセンタリングという手法が有用なのか疑問。</p>
-
-<p>細かなアドバイスをもらえないので、自分なり日々模索していいる状態。</p>
-
-<h2>安定した見え方になる日は来るのだろうか</h2>
-
-<p>理想的には両目で1.0以上乱視のようなダブった見え方なく毎日安定している状態になることだけど、まだまだ道は遠そう。<br/>
-オルソレンズを試したけど途中で辞めた人もいるようで、見え方の不安定さやそこへの我慢と効果が吊り合わないと思う人も出てくるのは納得できる。やってみたけどどんどん良くなるというよりは思ったよりも不安定で我慢が必要だった。という現実があったと思う。</p>
-
-<p>自分の仕事は激しく運動したり視力の度合いを毎日求められるようなものではないので、まだこの視力矯正法を続けてみようと思っている。最初に払った￥14.7万円の中に6ヶ月間の検診料も入っているので、6ヶ月間は続ける予定。</p>
-
-<p>またアップデートをレポートしていきます。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-12-08T18:48:43+09:00" pubdate data-updated="true">Dec 8<span>th</span>, 2013</time></div>
-	
-
-<div class="tags">
-
-	<a class='category' href='/blog/categories/life/'>Life</a>
-
-</div>
-
-
-	
-		<span class="comments"><a href="/2013/12/08/orthokeratology-3month//blog/page/9/index.html#disqus_thread">Comments</a></span>
 	
 </div></article>
 

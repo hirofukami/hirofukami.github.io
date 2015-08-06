@@ -9,7 +9,7 @@
 
 <meta name="author" content="HiroFukami"> 
 
-<meta name="description" content="子どもの小学校の授業参観が土曜日にあったので行ってきた。はじめて子どもが通っている学校の教室へ入る。 事前に嫁からは先生の話がが聞けない子。席を立ってしまう子がいてなかなか授業にならない状況を聞いていた。 &hellip;"> <meta name="keywords" content="">
+<meta name="description" content="サーバが複数台あるとwebのフロントだけで合計したらどれくらいのトラフィックになるかとか、運用上拡張を考慮しするやっぱり知りたくなる。Cactiでどうやるのか調べて出来たのでそのメモ。 以下は3つ以上のインターフェイスを合算する場合のカスタマイズ方法。 &hellip;"> <meta name="keywords" content="">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -62,7 +62,7 @@ $(document).ready(
     <meta property="twitter:site" content="d_sea">
     <meta property="twitter:url" content="http://hirofukami.com">
     <meta property="twitter:title" content="Hiro Fukami's Blog">
-    <meta property="twitter:description" content="子どもの小学校の授業参観が土曜日にあったので行ってきた。はじめて子どもが通っている学校の教室へ入る。 事前に嫁からは先生の話がが聞けない子。席を立ってしまう子がいてなかなか授業にならない状況を聞いていた。その話を聞くと原因は核家族とか子供同士の関わり方の変化とかそういうものが精神的に影響してしまっていて、それが表面化してしまっている。と思っていたが、実際授業を見てどうやら違うと思えた。 &hellip;">
+    <meta property="twitter:description" content="サーバが複数台あるとwebのフロントだけで合計したらどれくらいのトラフィックになるかとか、運用上拡張を考慮しするやっぱり知りたくなる。Cactiでどうやるのか調べて出来たのでそのメモ。 以下は3つ以上のインターフェイスを合算する場合のカスタマイズ方法。2つインターフェイスの合算であれば途中のカスタマイズ作業は不要で5)からはじめればOK。 元ネタは Cactiの本家フォーラムから。 0) &hellip;">
     <meta property="twitter:creator" content="d_sea" />
 
 
@@ -122,6 +122,334 @@ $(document).ready(
 </header>
 
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/2008/11/04/cacti/">
+		
+			Cacti でトラフィックを合算したグラフを作成する方法</a>
+	</h2>
+	<div class="entry-content">
+		<div class="section">
+  <p>
+    サーバが複数台あるとwebのフロントだけで合計したらどれくらいのトラフィックになるかとか、運用上拡張を考慮しするやっぱり知りたくなる。Cactiでどうやるのか調べて出来たのでそのメモ。
+  </p>
+  
+  <p>
+    以下は3つ以上のインターフェイスを合算する場合のカスタマイズ方法。2つインターフェイスの合算であれば途中のカスタマイズ作業は不要で5)からはじめればOK。
+  </p>
+  
+  <p>
+    元ネタは Cactiの本家フォーラムから。
+  </p>
+  
+  <h5>
+    0) 作業前の前提条件
+  </h5>
+  
+  <ul>
+    <li>
+      合算させたいインターフェイスを持つサーバやスイッチはすでに Cacti 上の Devices として登録済みであること
+    </li>
+    <li>
+      SNMP Interface Statistics にて該当 Devices のトラフィックが Cacti にて取得できていること
+    </li>
+  </ul>
+  
+  <h5>
+    1) トラフィック合計をしてくれるテンプレートを入手する
+  </h5>
+  
+  <ul>
+    <li>
+      <a href="http://forums.cacti.net/about2305-0-asc-45.html" target="_blank">Cacti本家フォーラム</a>からcacti_graph_template_aggregate_2_graph.xmlをダウンロードする(ページ中央らへん)
+    </li>
+  </ul>
+  
+  <p>
+    <a href="http://f.hatena.ne.jp/d_sea/20081105162455" class="hatena-fotolife" target="_blank"><img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/d_sea/20081105/20081105162455.png?w=830" alt="f:id:d_sea:20081105162455p:image" title="f:id:d_sea:20081105162455p:image" class="hatena-fotolife" data-recalc-dims="1" /></a>
+  </p>
+  
+  <ul>
+    <ul>
+      <li>
+        直接ダウンロードは<a href="http://forums.cacti.net/download.php?id=3676" target="_blank">こちら</a>を右クリックしてリンク先を保存する (いきなりクリックすると xml の中身が見えてしまいます)
+      </li>
+    </ul>
+    
+    <li>
+      Cacti コンソール画面からインポート
+    </li>
+    <li>
+      Cacti画面で、[console] &#8211; [Import/Export] &#8211; [ImportTemplates] をクリックして、ダウンロードした xml ファイルを選択して save <ul>
+        <li>
+          この時、Import RRA Settings は <span style="font-weight:bold;">Use Defaults for this installation</span> を選択
+        </li>
+      </ul>
+    </li>
+  </ul>
+  
+  <p>
+    <a href="http://f.hatena.ne.jp/d_sea/20081105151321" class="hatena-fotolife" target="_blank"><img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/d_sea/20081105/20081105151321.png?w=830" alt="f:id:d_sea:20081105151321p:image" title="f:id:d_sea:20081105151321p:image" class="hatena-fotolife" data-recalc-dims="1" /></a>
+  </p>
+  
+  <h5>
+    2) カスタマイズ用テンプレートの作成
+  </h5>
+  
+  <ul>
+    <li>
+      [console] &#8211; [Templates] &#8211; [Graph Templates] をクリックして、<span style="font-weight:bold;">Aggregate 2 Graph</span> が追加されていることを確認
+    </li>
+    <li>
+      一応、カスタマイズ用のテンプレートを別で用意するため、Aggregate 2 Graph のチェックボックスにチェックを入れて、下の Choose an action: で Duplicate を選択して go を押す
+    </li>
+    <li>
+      Title Format を任意に決めて yes を押す <ul>
+        <li>
+          例えばインターフェイス8つ分であれば Aggregate 8 Graph とかにする
+        </li>
+      </ul>
+    </li>
+  </ul>
+  
+  <h5>
+    3) カスタマイズ用 CDEFs を作成
+  </h5>
+  
+  <ul>
+    <li>
+      [console] &#8211; [Management] &#8211; [Graph Management] &#8211; [CDEFs] をクリック
+    </li>
+    <li>
+      右端の Add をクリック
+    </li>
+    <li>
+      Name を任意につけて create をクリック <ul>
+        <li>
+          Name はトラフィックのIN/OUT用2つ作るのでわかりやすいように、Combine 8 IN とか Combine 8 OUTとかにしておく
+        </li>
+      </ul>
+    </li>
+    
+    <li>
+      続いて、CDEF Items の Add をクリック
+    </li>
+    <li>
+      CDEF Items の CDEF Item Type を Custom String を選択し、下の CDEF Item Value が空白になるので、そこに記入して save を押す
+    </li>
+  </ul>
+  
+  <blockquote>
+    <p>
+      ここでは逆ポーランド記法(RPN)で対象インターフェイスのトラフィックデータを加算してbit表示する式を書く。
+    </p>
+    
+    <p>
+      合算させたいインターフェイスの数ごとに以下のようになる
+    </p>
+    
+    <table>
+      <tr>
+        <th>
+          インターフェイス数
+        </th>
+        
+        <th>
+          IN側
+        </th>
+        
+        <th>
+          OUT側
+        </th>
+      </tr>
+      
+      <tr>
+        <td>
+          2
+        </td>
+        
+        <td>
+          a,b,+,8,*
+        </td>
+        
+        <td>
+          c,d,+,8,*
+        </td>
+      </tr>
+      
+      <tr>
+        <td>
+          8
+        </td>
+        
+        <td>
+          a,b,c,d,e,f,g,h,+,+,+,+,+,+,+,8,*
+        </td>
+        
+        <td>
+          i,j,ba,bb,bc,bd,be,bf,+,+,+,+,+,+,+,8,*
+        </td>
+      </tr>
+      
+      <tr>
+        <td>
+          14
+        </td>
+        
+        <td>
+          a,b,c,d,e,f,g,h,i,j,ba,bb,bc,bd,+,+,+,+,+,+,+,+,+,+,+,+,+,8,*
+        </td>
+        
+        <td>
+          be,bf,bg,bh,bi,bj,ca,cb,cc,cd,ce,cf,cg,ch,+,+,+,+,+,+,+,+,+,+,+,+,+,8,*
+        </td>
+      </tr>
+    </table>
+    
+    <p>
+      インターフェイス数が増えれば対応するアルファベットを増やせば適用される。アルファベットの順番は a~j まで行ったら、ba~bj、その後は ca~cj というようになるようだ。INのアルファベット順に続けてOUTのアルファベットにする。
+    </p>
+  </blockquote>
+  
+  <h5>
+    4) Graph Templates をカスタマイズ
+  </h5>
+  
+  <ul>
+    <li>
+      再び [console] &#8211; [Templates] &#8211; [Graph Templates] をクリックして、新しく作成された Template Title をクリック
+    </li>
+    <li>
+      合算させたいインターフェイス数に対して足りない分の Item # を IN/OUT ともに作成する <ul>
+        <li>
+          Graph Template Items の Add をクリックする
+        </li>
+        <li>
+          設定内容は既存の Data Source が (traffic_in) と (traffic_out) の内容と同様にする
+        </li>
+        <li>
+          作成された Item # を IN/OUT それぞれ Data Source (No Task):Inbound の上になるよう上向き矢印ボタンで移動させる
+        </li>
+      </ul>
+    </li>
+    
+    <li>
+      Data Source が (No task):Inbound/Outbound/Current/Average/Maximum の Item # をそれぞれ変更する <ul>
+        <li>
+          それぞれをクリックして CDEF Function を先ほど作成した CDEFs を選択して save を押す</p> <ul>
+            <li>
+              例では Combine 8 IN とした部分。IN側/OUT側を間違えないように
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+  
+  <p>
+    <a href="http://f.hatena.ne.jp/d_sea/20081105164306" class="hatena-fotolife" target="_blank"><img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/d_sea/20081105/20081105164306.png?w=830" alt="f:id:d_sea:20081105164306p:image" title="f:id:d_sea:20081105164306p:image" class="hatena-fotolife" data-recalc-dims="1" /></a>
+  </p>
+  
+  <ul>
+    <li>
+      Graph Item Inputs を確認</p> <ul>
+        <li>
+          Graph Item Inputs の Item ** が合算させたいインターフェイスの数になっているか確認</p> <ul>
+            <li>
+              一通り、記載されている Graph Item Inputs の内容を確認する
+            </li>
+            <li>
+              Name は 連番で命名。FeildType は DataSource、Associated Graph Items は順番どおりの位置にチェックされているか
+            </li>
+            <li>
+              チェックが2つ付いてしまっているケースもあるので、順番どおり1つがチェックされるように変更する
+            </li>
+          </ul>
+        </li>
+        
+        <li>
+          [Graph Template] &#8211; [Upper Limit] が 100 になっているので、1Gbpsまでトラフィックが流れる場合は 1000 に変更する
+        </li>
+        <li>
+          一通り変更が終わったら save を押す
+        </li>
+      </ul>
+    </li>
+  </ul>
+  
+  <h5>
+    5) グラフを作成
+  </h5>
+  
+  <ul>
+    <li>
+      [console] &#8211; [Management] &#8211; [Graph Management] をクリックして、Graph Management 右端の Add をクリック
+    </li>
+    <li>
+      Selected Graph Template にて、作成した Graph Template 名を選択(例だと Aggregate 8 Graph)
+    </li>
+    <li>
+      Host のプルダウンは None を選んだまま create を押す
+    </li>
+    <li>
+      Supplemental Graph Template Data &#8211; Graph Item Fields にて合算させたいインターフェイスを選択する
+    </li>
+    <li>
+      選択したら最下部の save を押す
+    </li>
+    <li>
+      グラフが描けていればOK
+    </li>
+    <li>
+      RRDTool Command での動作確認は上部の Turn On Graph Debug Mode をクリックすれば下部に出力結果がでる
+    </li>
+  </ul>
+  
+  <p>
+    合計のみのグラフとして1つ作成させるとこんな感じに見れます。クリックするとホストのグラフと同様、weekly, monthly, yearlyのグラフが見られます。
+  </p>
+  
+  <p>
+    <a href="http://f.hatena.ne.jp/d_sea/20081105174720" class="hatena-fotolife" target="_blank"><img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/d_sea/20081105/20081105174720.png?w=830" alt="f:id:d_sea:20081105174720p:image" title="f:id:d_sea:20081105174720p:image" class="hatena-fotolife" data-recalc-dims="1" /></a>
+  </p>
+</div>
+
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-11-05T00:00:00+09:00" pubdate data-updated="true">Nov 5<span>th</span>, 2008</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/tech/'>Tech</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/2008/11/04/cacti//blog/page/35/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
 
 
     <article class="post">
@@ -2094,210 +2422,6 @@ error_exit
 
 	
 		<span class="comments"><a href="/2008/10/08/2008-2//blog/page/35/index.html#disqus_thread">Comments</a></span>
-	
-</div></article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/2008/09/28/post/">
-		
-			メールプロバイダごとにみる迷惑メール対策</a>
-	</h2>
-	<div class="entry-content">
-		<div class="section">
-  <p>
-    09年4月くらいだったかメールサーバを構築した際にメールプロバイダ(メールアカウントを発行してサービスしているところ)ごとにだいぶメールの扱い方が違ったのでメモ。すでに忘れている部分もありうろ覚えだけど書いてみる。現在はすでに対応内容は変わっている可能性があるかもしれない。
-  </p>
-  
-  <p>
-    大体やってみたところ以下の項目をみつつSPAM扱いにするなり、受信拒否なりしているようだ。項目は上から順番に重複させて設定していく。例えば項目3は項目1と2を実施してある状態に3を行っている。
-  </p>
-  
-  <ol>
-    <li>
-      メールのヘッダに送信元のサーバ名があるかどうか
-    </li>
-    <li>
-      メールヘッダの送信元のサーバ名の逆引きができるかどうか <ul>
-        <li>
-          このとき送信元IPアドレスはバックアップ回線の他プロバイダから送信
-        </li>
-      </ul>
-    </li>
-    
-    <li>
-      メールヘッダの送信元のサーバ名の逆引きされたIPアドレスが、実際の送信元IPアドレスブロックと同じかどうか
-    </li>
-    <li>
-      DNS 上で SPF に設定されているメールサーバかどうか
-    </li>
-  </ol>
-  
-  <p>
-    アカウントは Gmail、Yahoo!Japanメール、MSN(hotmail)、WADAX の4つで試してみた。
-  </p>
-  
-  <p>
-    受信できたら○。SPAMフォルダに入れられたら SPAM、受信すらできなかったら×
-  </p>
-  
-  <table>
-    <tr>
-      <td>
-      </td>
-      
-      <th>
-        Gmail
-      </th>
-      
-      <th>
-        Yahoo!Japanメール
-      </th>
-      
-      <th>
-        MSN(hotmail)
-      </th>
-      
-      <th>
-        WADAX
-      </th>
-    </tr>
-    
-    <tr>
-      <td>
-        1
-      </td>
-      
-      <td>
-        ○
-      </td>
-      
-      <td>
-        ×
-      </td>
-      
-      <td>
-        ×
-      </td>
-      
-      <td>
-        ×
-      </td>
-    </tr>
-    
-    <tr>
-      <td>
-        2
-      </td>
-      
-      <td>
-        ○
-      </td>
-      
-      <td>
-        ×
-      </td>
-      
-      <td>
-        ×
-      </td>
-      
-      <td>
-        ×
-      </td>
-    </tr>
-    
-    <tr>
-      <td>
-        3
-      </td>
-      
-      <td>
-        ○
-      </td>
-      
-      <td>
-        SPAM
-      </td>
-      
-      <td>
-        ×
-      </td>
-      
-      <td>
-        ×
-      </td>
-    </tr>
-    
-    <tr>
-      <td>
-        4
-      </td>
-      
-      <td>
-        ○
-      </td>
-      
-      <td>
-        ○
-      </td>
-      
-      <td>
-        SPAM
-      </td>
-      
-      <td>
-        ○
-      </td>
-    </tr>
-  </table>
-  
-  <p>
-    MSNは結局最後までちゃんと受信できず。ウワサではこんだけウチのメールサーバはちゃんと設定してるので、受け取るようにしてくださいね。のようなメールを出して相当時間がたってから対応してくれた話もあり。
-  </p>
-  
-  <p>
-    GmailはユーザのSPAM申告によって出来上がったブラックリストに引っかかるものはSPAMフォルダに入るようになるが、それ以外の要因は全く関係なく受信してくれる。ある意味良く分からない色々なこねくり回した条件をもとにメール拒否されるよりかは、シンプルで分かりやすい。
-  </p>
-  
-  <p>
-    ネットワーク環境はさておき、メールサーバとしての動作確認をまず純粋に行いたい場合は Gmail に出してみる。ということは覚えておいて損はないかと思う。
-  </p>
-</div>
-
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-09-29T00:00:00+09:00" pubdate data-updated="true">Sep 29<span>th</span>, 2008</time></div>
-	
-
-<div class="tags">
-
-	<a class='category' href='/blog/categories/tech/'>Tech</a>
-
-</div>
-
-
-	
-		<span class="comments"><a href="/2008/09/28/post//blog/page/35/index.html#disqus_thread">Comments</a></span>
 	
 </div></article>
 

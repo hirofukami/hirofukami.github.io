@@ -9,7 +9,7 @@
 
 <meta name="author" content="HiroFukami"> 
 
-<meta name="description" content="以前使っていた audio-technica のインナーイヤーヘッドホンはケーブル分岐部分の中の断線で片耳が聞こえなくなってしまったので、新しいのを買う。またすぐ使えなくなっても悲しいので同じくらいの値段の3000円以下くらいで、ビックカメラで audio-technica &hellip;"> <meta name="keywords" content="">
+<meta name="description" content="09年4月くらいだったかメールサーバを構築した際にメールプロバイダ(メールアカウントを発行してサービスしているところ)ごとにだいぶメールの扱い方が違ったのでメモ。すでに忘れている部分もありうろ覚えだけど書いてみる。現在はすでに対応内容は変わっている可能性があるかもしれない。 &hellip;"> <meta name="keywords" content="">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -62,7 +62,7 @@ $(document).ready(
     <meta property="twitter:site" content="d_sea">
     <meta property="twitter:url" content="http://hirofukami.com">
     <meta property="twitter:title" content="Hiro Fukami's Blog">
-    <meta property="twitter:description" content="以前使っていた audio-technica のインナーイヤーヘッドホンはケーブル分岐部分の中の断線で片耳が聞こえなくなってしまったので、新しいのを買う。またすぐ使えなくなっても悲しいので同じくらいの値段の3000円以下くらいで、ビックカメラで audio-technica 内だとコレだったので決め。 audio-technica 密閉型インナーイヤーヘッドホン ATH-CK52 BK 出版社 &hellip;">
+    <meta property="twitter:description" content="09年4月くらいだったかメールサーバを構築した際にメールプロバイダ(メールアカウントを発行してサービスしているところ)ごとにだいぶメールの扱い方が違ったのでメモ。すでに忘れている部分もありうろ覚えだけど書いてみる。現在はすでに対応内容は変わっている可能性があるかもしれない。 大体やってみたところ以下の項目をみつつSPAM扱いにするなり、受信拒否なりしているようだ。 &hellip;">
     <meta property="twitter:creator" content="d_sea" />
 
 
@@ -122,6 +122,210 @@ $(document).ready(
 </header>
 
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/2008/09/28/post/">
+		
+			メールプロバイダごとにみる迷惑メール対策</a>
+	</h2>
+	<div class="entry-content">
+		<div class="section">
+  <p>
+    09年4月くらいだったかメールサーバを構築した際にメールプロバイダ(メールアカウントを発行してサービスしているところ)ごとにだいぶメールの扱い方が違ったのでメモ。すでに忘れている部分もありうろ覚えだけど書いてみる。現在はすでに対応内容は変わっている可能性があるかもしれない。
+  </p>
+  
+  <p>
+    大体やってみたところ以下の項目をみつつSPAM扱いにするなり、受信拒否なりしているようだ。項目は上から順番に重複させて設定していく。例えば項目3は項目1と2を実施してある状態に3を行っている。
+  </p>
+  
+  <ol>
+    <li>
+      メールのヘッダに送信元のサーバ名があるかどうか
+    </li>
+    <li>
+      メールヘッダの送信元のサーバ名の逆引きができるかどうか <ul>
+        <li>
+          このとき送信元IPアドレスはバックアップ回線の他プロバイダから送信
+        </li>
+      </ul>
+    </li>
+    
+    <li>
+      メールヘッダの送信元のサーバ名の逆引きされたIPアドレスが、実際の送信元IPアドレスブロックと同じかどうか
+    </li>
+    <li>
+      DNS 上で SPF に設定されているメールサーバかどうか
+    </li>
+  </ol>
+  
+  <p>
+    アカウントは Gmail、Yahoo!Japanメール、MSN(hotmail)、WADAX の4つで試してみた。
+  </p>
+  
+  <p>
+    受信できたら○。SPAMフォルダに入れられたら SPAM、受信すらできなかったら×
+  </p>
+  
+  <table>
+    <tr>
+      <td>
+      </td>
+      
+      <th>
+        Gmail
+      </th>
+      
+      <th>
+        Yahoo!Japanメール
+      </th>
+      
+      <th>
+        MSN(hotmail)
+      </th>
+      
+      <th>
+        WADAX
+      </th>
+    </tr>
+    
+    <tr>
+      <td>
+        1
+      </td>
+      
+      <td>
+        ○
+      </td>
+      
+      <td>
+        ×
+      </td>
+      
+      <td>
+        ×
+      </td>
+      
+      <td>
+        ×
+      </td>
+    </tr>
+    
+    <tr>
+      <td>
+        2
+      </td>
+      
+      <td>
+        ○
+      </td>
+      
+      <td>
+        ×
+      </td>
+      
+      <td>
+        ×
+      </td>
+      
+      <td>
+        ×
+      </td>
+    </tr>
+    
+    <tr>
+      <td>
+        3
+      </td>
+      
+      <td>
+        ○
+      </td>
+      
+      <td>
+        SPAM
+      </td>
+      
+      <td>
+        ×
+      </td>
+      
+      <td>
+        ×
+      </td>
+    </tr>
+    
+    <tr>
+      <td>
+        4
+      </td>
+      
+      <td>
+        ○
+      </td>
+      
+      <td>
+        ○
+      </td>
+      
+      <td>
+        SPAM
+      </td>
+      
+      <td>
+        ○
+      </td>
+    </tr>
+  </table>
+  
+  <p>
+    MSNは結局最後までちゃんと受信できず。ウワサではこんだけウチのメールサーバはちゃんと設定してるので、受け取るようにしてくださいね。のようなメールを出して相当時間がたってから対応してくれた話もあり。
+  </p>
+  
+  <p>
+    GmailはユーザのSPAM申告によって出来上がったブラックリストに引っかかるものはSPAMフォルダに入るようになるが、それ以外の要因は全く関係なく受信してくれる。ある意味良く分からない色々なこねくり回した条件をもとにメール拒否されるよりかは、シンプルで分かりやすい。
+  </p>
+  
+  <p>
+    ネットワーク環境はさておき、メールサーバとしての動作確認をまず純粋に行いたい場合は Gmail に出してみる。ということは覚えておいて損はないかと思う。
+  </p>
+</div>
+
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-09-29T00:00:00+09:00" pubdate data-updated="true">Sep 29<span>th</span>, 2008</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/tech/'>Tech</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/2008/09/28/post//blog/page/36/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
 
 
     <article class="post">
@@ -1094,105 +1298,6 @@ $(document).ready(
 
 	
 		<span class="comments"><a href="/2008/09/09/with-t-n//blog/page/36/index.html#disqus_thread">Comments</a></span>
-	
-</div></article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/2008/09/06/post/">
-		
-			今思う やりたいこと 好きなこと</a>
-	</h2>
-	<div class="entry-content">
-		<div class="section">
-  <p>
-    メモ。仕事のスタンス色が強いけど。好きなことは望ましいことのほうがふさわしいかも。
-  </p>
-  
-  <h5>
-    やりたいこと
-  </h5>
-  
-  <ul>
-    <li>
-      高いクオリティをスピード感をもってアウトプットする
-    </li>
-    <li>
-      質の高いパフォーマンスをする
-    </li>
-    <li>
-      実践的なスキル的に足りない部分をちゃんと足す
-    </li>
-    <li>
-      技術的にちゃんと見る、設計する、判断する
-    </li>
-    <li>
-      技術における信頼性、パフォーマンスの事実に沿って判断する
-    </li>
-    <li>
-      顧客自身が技術的ノウハウをためていけるようにする そこにいるエンジニアがちゃんとエンジニアとして確立されること
-    </li>
-  </ul>
-  
-  <h5>
-    好きなこと
-  </h5>
-  
-  <ul>
-    <li>
-      ハイレベルなやり取り
-    </li>
-    <li>
-      自分自身がすばらしいパフォーマンスをして、その成果を評価してもらうこと
-    </li>
-    <li>
-      相手のパフォーマンスに感激して刺激を受けること
-    </li>
-    <li>
-      個としての志が確立されている人と一緒にビジネスを行うこと
-    </li>
-    <li>
-      いつも未来は前向きに進歩していくものとして認識していること
-    </li>
-    <li>
-      未経験部分のチャレンジをすること
-    </li>
-  </ul>
-</div>
-
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-09-07T00:00:00+09:00" pubdate data-updated="true">Sep 7<span>th</span>, 2008</time></div>
-	
-
-<div class="tags">
-
-	<a class='category' href='/blog/categories/business/'>Business</a>
-
-</div>
-
-
-	
-		<span class="comments"><a href="/2008/09/06/post//blog/page/36/index.html#disqus_thread">Comments</a></span>
 	
 </div></article>
 
