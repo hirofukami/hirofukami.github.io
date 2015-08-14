@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Business | Hiro Fukami's Blog]]></title>
   <link href="http://hirofukami.com/blog/categories/business/atom.xml" rel="self"/>
   <link href="http://hirofukami.com/"/>
-  <updated>2015-08-06T18:45:01+09:00</updated>
+  <updated>2015-08-14T11:45:53+09:00</updated>
   <id>http://hirofukami.com/</id>
   <author>
     <name><![CDATA[HiroFukami]]></name>
@@ -14,17 +14,90 @@
 
   
   <entry>
+    <title type="html"><![CDATA[バリ島のビーチで浄化されながら仕事を見つめなおす]]></title>
+    <link href="http://hirofukami.com/blog/2015/08/14/at-bali-beach/"/>
+    <updated>2015-08-14T12:30:00+09:00</updated>
+    <id>http://hirofukami.com/blog/2015/08/14/at-bali-beach</id>
+    <content type="html"><![CDATA[<p>{% img /images/2015/08/20150814-at-bali-beach.JPG %}</p>
+
+<p>ビーチはいいよビーチは。</p>
+
+<p>自分が浄化されていくのが分かる。焦り、心配、妬み。そういったものが抜けていく。締め切りのために急ぐこともなく、他人の行動に怒ることもなく、繰り返す波の音にまかせる。 何しろイライラしなくなったのは良かった。</p>
+
+<p>そんな中、自分の仕事について現状を見つめ直した時のメモ。</p>
+
+<h1>現状おさえ</h1>
+
+<p>ちょっと今年は安全運転しすぎていたと思う。</p>
+
+<p>まず自分の環境について押さえておく。</p>
+
+<ul>
+<li>年齢が2015年9月で41歳になる</li>
+<li>家族を養う必要がある</li>
+<li>新しく始める事業については誰も正解を知らない</li>
+<li>事業の可能性を検証し本格的にスタートさせるという手順を踏む必要がある</li>
+</ul>
+
+
+<p>以上のことから、</p>
+
+<ul>
+<li>チャレンジできる時間はあと5年ない</li>
+<li>生活費にプラスアルファの収入が必要</li>
+<li>残り1年以内に次なるスタートアップを始める必要がある</li>
+</ul>
+
+
+<p>アプローチとしては、</p>
+
+<p><strong>事業になりそうなものはすぐ検証をスタートし可能性を探る必要がある</strong></p>
+
+<p>スピードと確実性の両方をバランスさせるスキルが必要。</p>
+
+<h1>基本スタンス</h1>
+
+<p>基本的なスタンスは以下のように定める。</p>
+
+<ul>
+<li>アウトプットを増やし自分の中に考えを止めない</li>
+<li>不確定な情報でもいいのでには自分の頭の中にある事柄を出す</li>
+<li>自分のやっていることを秘密にしない</li>
+<li>誰もやっていない新しいことをアクティブに挑戦している人というポジションを確立する</li>
+<li>否定や反発ではなく、共感を創り出すことを主とする</li>
+</ul>
+
+
+<p>以下のことをすぐにスタートさせる。</p>
+
+<ol>
+<li>講師事業。Chefの実践ハンズオン 目標40万円/回、早急に具体化し実施確定する</li>
+<li>スポーツサービスの検証のスピードを早める</li>
+<li>OpsDeliver Web版の開発を進め、早く課金を始める</li>
+<li>OpsDeliverパッケージは現顧客のDevOpsサービスリリースに合わせてPRする、おそらく11月以降</li>
+</ol>
+
+
+<p><strong>共感をいかに創り出すか</strong> がこれからの大きなテーマになる。</p>
+
+<p>と、水平線に沈みゆく夕日を観ながら思うのでした。</p>
+
+<p>{% img /images/2015/08/20150814-sunset.JPG %}</p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Chef講師をしたのでまとめ]]></title>
     <link href="http://hirofukami.com/blog/2015/06/02/chef-teacher/"/>
     <updated>2015-06-02T10:00:00+09:00</updated>
     <id>http://hirofukami.com/blog/2015/06/02/chef-teacher</id>
-    <content type="html"><![CDATA[<p><img src="/images/2015/06/20150602-teacher.png" width="640"></p>
+    <content type="html"><![CDATA[<p>{% img /images/2015/06/20150602-teacher.png 640 %}</p>
 
 <p>Chef の研修講師をしました。</p>
 
 <p>具体的には、近年のインフラ業界での様子解説とDevOpsの概要、chef の knife solo の演習です。</p>
 
-<p><img src="/images/2015/06/20150602-chef-logo.png"></p>
+<p>{% img /images/2015/06/20150602-chef-logo.png %}</p>
 
 <p>今年1月からとあるエンタープライズSIerさんの企業内研修の1プログラムとして実施してきました。</p>
 
@@ -152,7 +225,7 @@
     <link href="http://hirofukami.com/blog/2015/03/17/start-tech-lecture/"/>
     <updated>2015-03-17T10:00:00+09:00</updated>
     <id>http://hirofukami.com/blog/2015/03/17/start-tech-lecture</id>
-    <content type="html"><![CDATA[<p><img src="/images/2015/03/20150317-students.jpg" title="Learning" ></p>
+    <content type="html"><![CDATA[<p>{% img /images/2015/03/20150317-students.jpg Learning %}</p>
 
 <p>プライベートカンパニーである<a href="http://www.shakesoul.net">株式会社シェイクソウル</a>でテクニカルレクチャーサービスを開始しました。</p>
 
@@ -204,7 +277,7 @@ DevOpsツールとしては、<a href="http://chef.io" target="_blank">Chef</a>�
     <link href="http://hirofukami.com/blog/2015/03/16/renewal-shakesoul-web/"/>
     <updated>2015-03-16T10:00:00+09:00</updated>
     <id>http://hirofukami.com/blog/2015/03/16/renewal-shakesoul-web</id>
-    <content type="html"><![CDATA[<p><img src="/images/2015/03/20150316-visiable-shakesoul-web.png" title="ShakeSoul web site" ></p>
+    <content type="html"><![CDATA[<p>{% img /images/2015/03/20150316-visiable-shakesoul-web.png ShakeSoul web site %}</p>
 
 <p>前回リニューアルしたのが<a href="http://www.shakesoul.net/2014/05/16/renewal-web.html">このポスト</a>なので、1年弱で変えたことになります。</p>
 
@@ -258,7 +331,7 @@ DevOpsツールとしては、<a href="http://chef.io" target="_blank">Chef</a>�
 
 <p>トップページの全体ビュー</p>
 
-<p><img src="/images/2015/03/20150316-full-shakesoul-web.png" width="240" title="ShakeSoul web site full" ></p>
+<p>{% img /images/2015/03/20150316-full-shakesoul-web.png 240 ShakeSoul web site full %}</p>
 
 <h1>やった作業</h1>
 
@@ -284,7 +357,7 @@ DevOpsツールとしては、<a href="http://chef.io" target="_blank">Chef</a>�
     <link href="http://hirofukami.com/blog/2015/02/13/shakesoul-6th-anniversary/"/>
     <updated>2015-02-13T11:00:00+09:00</updated>
     <id>http://hirofukami.com/blog/2015/02/13/shakesoul-6th-anniversary</id>
-    <content type="html"><![CDATA[<p><img src="/images/2015/02/20150213-ShakeSoul-logo.png" width="250" title="ShakeSoul, inc." ></p>
+    <content type="html"><![CDATA[<p>{% img /images/2015/02/20150213-ShakeSoul-logo.png 250 ShakeSoul, inc. %}</p>
 
 <p><a href="http://www.shakesoul.net">http://www.shakesoul.net</a></p>
 
@@ -357,62 +430,6 @@ DevOpsツールとしては、<a href="http://chef.io" target="_blank">Chef</a>�
 <p>その方法が分かればノウハウになるし、人に伝えることができる。若い世代に伝えて間接的に世の中に貢献することができる。歳をとってからの社会貢献のイメージ。</p>
 
 <p>サービス作りに没頭するのはあと5年から7年くらいかなぁ。それまでにノウハウを身につけることができるようになりたい。というのが今現在の考え。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[オフィスお引越し]]></title>
-    <link href="http://hirofukami.com/blog/2015/02/04/movie-office/"/>
-    <updated>2015-02-04T17:00:00+09:00</updated>
-    <id>http://hirofukami.com/blog/2015/02/04/movie-office</id>
-    <content type="html"><![CDATA[<p><img src="/images/2015/02/20150208-movie-office.jpg" alt="office" /></p>
-
-<p>仕事の作業場所を渋谷から新宿に引っ越しました。</p>
-
-<p>これからの作業場所のメインは新宿のほうになります。
-渋谷オフィスは5月末までの契約なので、今後も打ち合わせの時のミーティングスペースの利用や、1人で思考する場所として利用する予定ではあります。</p>
-
-<p>オフィスといっても自分の場合は <strong>パソコン作業を集中して行える場所</strong> としているため、基本的にThunderbolt displayと電源、ネットがあれば事は足ります。</p>
-
-<p>引っ越しは、Thunderbolt displayの箱の中にいくつかの荷物を一緒に入れ込んでタクシーで移動。ものの30分で完了でした。</p>
-
-<p>で、引越し先ですが、さくらインターネットさんの中にいます。</p>
-
-<p>さくらさんとは株式会社シェイクソウルとして契約して1月から開発に携わっています。</p>
-
-<p>開発するものはちゃんとお披露目する時に大々的発表したいと思いますが、簡単に言うと <strong>DevOps的な何か</strong> です。</p>
-
-<p>さくらの方とのコミニケーションがとりやすくなるし、自分の作業場所に求める要件が揃ってメリットも多いので引っ越すことにしました。</p>
-
-<p>メリット</p>
-
-<ul>
-<li>渋谷から新宿へ移ったことで自宅からのアクセスが良くなった
-
-<ul>
-<li>渋谷へは明大前駅で乗換が必要だったが、乗り換えなしで時間のロスがなくなりタイミングが良ければ座れる</li>
-<li>京王線は明大前駅で特急2本連続待ち＆八幡山駅で特急2本連続待ち合わせとか、時間のロスが激しいのでダイヤを早く見なおして欲しい</li>
-</ul>
-</li>
-<li>基本的に静か、人の動きも見えるから話し声が聞こえても嫌ではない</li>
-<li>新しいきれいなビル、設備は揃っているしきれい
-
-<ul>
-<li>住友不動産西新宿ビルは 2009年竣工</li>
-</ul>
-</li>
-<li>ドクターペッパーが￥90で買える</li>
-</ul>
-
-
-<p><a href="http://www.amazon.co.jp/s/?_encoding=UTF8&amp;camp=247&amp;creative=7399&amp;fst=as%3Aoff&amp;keywords=%E3%83%89%E3%82%AF%E3%82%BF%E3%83%BC%E3%83%9A%E3%83%83%E3%83%91%E3%83%BC&amp;linkCode=ur2&amp;qid=1423383467&amp;rh=i%3Aaps%2Ck%3A%E3%83%89%E3%82%AF%E3%82%BF%E3%83%BC%E3%83%9A%E3%83%83%E3%83%91%E3%83%BC%2Cp_89%3ADr%20Pepper(%E3%83%89%E3%82%AF%E3%82%BF%E3%83%BC%E3%83%9A%E3%83%83%E3%83%91%E3%83%BC)&amp;rnid=2321255051&amp;tag=dsea-22"><img src="/images/2015/02/dr_pepper.png" alt="Dr.Pepper" /></a>
-<a href="http://www.amazon.co.jp/s/?_encoding=UTF8&amp;camp=247&amp;creative=7399&amp;fst=as%3Aoff&amp;keywords=%E3%83%89%E3%82%AF%E3%82%BF%E3%83%BC%E3%83%9A%E3%83%83%E3%83%91%E3%83%BC&amp;linkCode=ur2&amp;qid=1423383467&amp;rh=i%3Aaps%2Ck%3A%E3%83%89%E3%82%AF%E3%82%BF%E3%83%BC%E3%83%9A%E3%83%83%E3%83%91%E3%83%BC%2Cp_89%3ADr%20Pepper(%E3%83%89%E3%82%AF%E3%82%BF%E3%83%BC%E3%83%9A%E3%83%83%E3%83%91%E3%83%BC)&amp;rnid=2321255051&amp;tag=dsea-22">ドクターペッパー</a></p>
-
-<p>ドクターペッパー大好きなんでスイマセン</p>
-
-<p>今まで集中しやすい環境を求めて個室にしていたのですが、意外にも人の姿が見えない方が音に対して敏感になってしまうことがわかり、普通の人とシェアするような場所の方が集中しやすいことがわかりました。</p>
-
-<p>と言うことでしばらくは新宿に通う毎日です。</p>
 ]]></content>
   </entry>
   

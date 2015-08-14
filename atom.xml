@@ -4,7 +4,7 @@
   <title><![CDATA[Hiro Fukami's Blog]]></title>
   <link href="http://hirofukami.com/atom.xml" rel="self"/>
   <link href="http://hirofukami.com/"/>
-  <updated>2015-08-06T18:45:01+09:00</updated>
+  <updated>2015-08-14T11:41:54+09:00</updated>
   <id>http://hirofukami.com/</id>
   <author>
     <name><![CDATA[HiroFukami]]></name>
@@ -12,6 +12,79 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[バリ島のビーチで浄化されながら仕事を見つめなおす]]></title>
+    <link href="http://hirofukami.com/blog/2015/08/14/at-bali-beach/"/>
+    <updated>2015-08-14T12:30:00+09:00</updated>
+    <id>http://hirofukami.com/blog/2015/08/14/at-bali-beach</id>
+    <content type="html"><![CDATA[<p><img src="http://hirofukami.com/images/2015/08/20150814-at-bali-beach.JPG"></p>
+
+<p>ビーチはいいよビーチは。</p>
+
+<p>自分が浄化されていくのが分かる。焦り、心配、妬み。そういったものが抜けていく。締め切りのために急ぐこともなく、他人の行動に怒ることもなく、繰り返す波の音にまかせる。 何しろイライラしなくなったのは良かった。</p>
+
+<p>そんな中、自分の仕事について現状を見つめ直した時のメモ。</p>
+
+<h1>現状おさえ</h1>
+
+<p>ちょっと今年は安全運転しすぎていたと思う。</p>
+
+<p>まず自分の環境について押さえておく。</p>
+
+<ul>
+<li>年齢が2015年9月で41歳になる</li>
+<li>家族を養う必要がある</li>
+<li>新しく始める事業については誰も正解を知らない</li>
+<li>事業の可能性を検証し本格的にスタートさせるという手順を踏む必要がある</li>
+</ul>
+
+
+<p>以上のことから、</p>
+
+<ul>
+<li>チャレンジできる時間はあと5年ない</li>
+<li>生活費にプラスアルファの収入が必要</li>
+<li>残り1年以内に次なるスタートアップを始める必要がある</li>
+</ul>
+
+
+<p>アプローチとしては、</p>
+
+<p><strong>事業になりそうなものはすぐ検証をスタートし可能性を探る必要がある</strong></p>
+
+<p>スピードと確実性の両方をバランスさせるスキルが必要。</p>
+
+<h1>基本スタンス</h1>
+
+<p>基本的なスタンスは以下のように定める。</p>
+
+<ul>
+<li>アウトプットを増やし自分の中に考えを止めない</li>
+<li>不確定な情報でもいいのでには自分の頭の中にある事柄を出す</li>
+<li>自分のやっていることを秘密にしない</li>
+<li>誰もやっていない新しいことをアクティブに挑戦している人というポジションを確立する</li>
+<li>否定や反発ではなく、共感を創り出すことを主とする</li>
+</ul>
+
+
+<p>以下のことをすぐにスタートさせる。</p>
+
+<ol>
+<li>講師事業。Chefの実践ハンズオン 目標40万円/回、早急に具体化し実施確定する</li>
+<li>スポーツサービスの検証のスピードを早める</li>
+<li>OpsDeliver Web版の開発を進め、早く課金を始める</li>
+<li>OpsDeliverパッケージは現顧客のDevOpsサービスリリースに合わせてPRする、おそらく11月以降</li>
+</ol>
+
+
+<p><strong>共感をいかに創り出すか</strong> がこれからの大きなテーマになる。</p>
+
+<p>と、水平線に沈みゆく夕日を観ながら思うのでした。</p>
+
+<p><img src="http://hirofukami.com/images/2015/08/20150814-sunset.JPG"></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Movie インサイド・ヘッド]]></title>
@@ -1719,86 +1792,6 @@ DevOpsツールとしては、<a href="http://chef.io" target="_blank">Chef</a>�
 
 <p>問い合わせは<a href="http://www.shakesoul.net/#contact">コンタクトフォーム</a>で受け付けています。
 興味を持ってもらえたら幸いです。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[会社Webリニューアル]]></title>
-    <link href="http://hirofukami.com/blog/2015/03/16/renewal-shakesoul-web/"/>
-    <updated>2015-03-16T10:00:00+09:00</updated>
-    <id>http://hirofukami.com/blog/2015/03/16/renewal-shakesoul-web</id>
-    <content type="html"><![CDATA[<p><img src="http://hirofukami.com/images/2015/03/20150316-visiable-shakesoul-web.png" title="ShakeSoul web site" ></p>
-
-<p>前回リニューアルしたのが<a href="http://www.shakesoul.net/2014/05/16/renewal-web.html">このポスト</a>なので、1年弱で変えたことになります。</p>
-
-<p>Webサイトのデザインは洋服のファッションと同じように流行り廃りが早くて、トレンドがどんどん変わっていきます。だから流行りの服を買うように、そのトレンドに乗り遅れている感じが出ないためにも、割りと気軽にリニューアルはしたいと思っています。</p>
-
-<p>サイトはWordPressなので、テーマを入れ替えてそれにそって設定すればリニューアルは完了。保存済のブログやページに手を入れる必要がないのが、WordPressの良いところですね。</p>
-
-<p>せっかく変えるなら、トレンドを盛り込むだけでなく、改善もしたい。ということで、ページ遷移のすっきり感やコンテンツ情報の重複をなくすことを改善ポイントにして作業しました。</p>
-
-<h1>トレンドを把握</h1>
-
-<p>最近は以下の様な感じかと思います。</p>
-
-<ul>
-<li>もちろんレスポンシブデザイン</li>
-<li>トップページは縦長でスクロールさせる</li>
-<li>トップページに大きめなバックグライドイメージ(写真)</li>
-<li>ページ遷移は少なめに</li>
-<li>メニューリンク先はトップページのスクロース先も含める</li>
-<li>より詳細な情報提供をしたいものは個別ページヘ遷移</li>
-</ul>
-
-
-<h1>採用したWordPressテーマ</h1>
-
-<p>zerif-lite というフリーのテーマです。機能を足すと有料になります。</p>
-
-<p><a href="https://themeisle.com/themes/zerif-lite/">https://themeisle.com/themes/zerif-lite/</a></p>
-
-<p>特に色目とかいじらずにそのまま使っています。</p>
-
-<!-- more -->
-
-
-<h1>改善ポイント</h1>
-
-<ul>
-<li>会社ページあくまで自社のスタンスの提示とサービスへのリンクの役割
-
-<ul>
-<li>総情報量は少なく</li>
-<li>ページ遷移は少なく</li>
-</ul>
-</li>
-<li>サービス説明用の Portfolio ページはなくす</li>
-<li>サービスの説明はワンフレーズにして、リンク先はサービスサイトへ誘導</li>
-</ul>
-
-
-<p>総ページ数を少なくできたし、コンテンツの整理もできて、スッキリした。</p>
-
-<p>トップページの全体ビュー</p>
-
-<p><img src="http://hirofukami.com/images/2015/03/20150316-full-shakesoul-web.png" width="240" title="ShakeSoul web site full" ></p>
-
-<h1>やった作業</h1>
-
-<p>今回、WordPressテーマ更新以外にサーバの移設もしました。</p>
-
-<p>多分日本で最も安いVPSだったお名前.comのVPSから <a href="http://cloud.sakura.ad.jp/">さくらのクラウド</a> に変えています。
-さくらのクラウドは <a href="http://www.shakesoul.net">シェイクソウル</a> のパートナーでもあり、今DevOps的なシステムを一緒に開発しているので、近しい関係でもあるしコストメリットもあるので移ることにしました。</p>
-
-<p>でも、ただ移るだけではサーバインストール・セットアップの手間が都度発生してしまいます。
-会社Webサイトのインストールセットアップは <a href="http://chef.io">Chef</a> で自動化していますが、細かいところは結局 ssh ログインして作業している部分もあり、何よりもMySQLダンプとインポートが必要なのでそれなりに時間はかかっています。</p>
-
-<p>なので、現状動いているものをそのままの状態で移設できることがベストです。</p>
-
-<p>ということで、<a href="http://docker.com">Docker</a> コンテナにセットアップしてそれをさくらのクラウドのサーバ上で動かしています。
-これでスケールアップ時に簡単に移設できます。</p>
-
-<p>ここらへんの手順は需要が大きそうだったら別ポストで書きたいと思います。</p>
 ]]></content>
   </entry>
   
