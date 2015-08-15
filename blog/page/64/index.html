@@ -9,7 +9,7 @@
 
 <meta name="author" content="HiroFukami"> 
 
-<meta name="description" content="今年の年賀状はすんげー届くのが遅い。 引越したとはいえ、転送される期間ではあるので普通の郵便もちゃんと届く。 1/5過ぎてから届くものもあるし、いまだに出したことが分かっても届いていないものもあり。 民営化決まって引き締めてやってるのかと思えば、どうなっちゃってんの？＞郵便やさん Jan 7th &hellip;"> <meta name="keywords" content="">
+<meta name="description" content="治療確認書サインをして最初に行う治療は奥歯に装置を入れるための隙間をつけるためにゴムを入れること。 奥歯と奥から2番目の間、奥から2番目と3番目の間にそれぞれドーナッツ型の厚さ1mm程度のゴムを入れる。ドーナッツの中心にはフッ素が入れ込まれ虫歯の原因になることを防ぐようになってる。 &hellip;"> <meta name="keywords" content="">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -62,7 +62,7 @@ $(document).ready(
     <meta property="twitter:site" content="d_sea">
     <meta property="twitter:url" content="http://hirofukami.com">
     <meta property="twitter:title" content="Hiro Fukami's Blog">
-    <meta property="twitter:description" content=" 今年の年賀状はすんげー届くのが遅い。 引越したとはいえ、転送される期間ではあるので普通の郵便もちゃんと届く。 1/5過ぎてから届くものもあるし、いまだに出したことが分かっても届いていないものもあり。 民営化決まって引き締めてやってるのかと思えば、どうなっちゃってんの？＞郵便やさん Jan 7th, 2006 Life Comments ">
+    <meta property="twitter:description" content="治療確認書サインをして最初に行う治療は奥歯に装置を入れるための隙間をつけるためにゴムを入れること。 奥歯と奥から2番目の間、奥から2番目と3番目の間にそれぞれドーナッツ型の厚さ1mm程度のゴムを入れる。ドーナッツの中心にはフッ素が入れ込まれ虫歯の原因になることを防ぐようになってる。 コレを入れた状態で10日以上そのまま。 人よりも歯と歯の隙間がきついので相当先生は苦労してた。 &hellip;">
     <meta property="twitter:creator" content="d_sea" />
 
 
@@ -122,6 +122,79 @@ $(document).ready(
 </header>
 
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/2006/01/07/post/">
+		
+			最初の治療</a>
+	</h2>
+	<div class="entry-content">
+		<div class="section">
+  <p>
+    治療確認書サインをして最初に行う治療は奥歯に装置を入れるための隙間をつけるためにゴムを入れること。
+  </p>
+  
+  <p>
+    奥歯と奥から2番目の間、奥から2番目と3番目の間にそれぞれドーナッツ型の厚さ1mm程度のゴムを入れる。ドーナッツの中心にはフッ素が入れ込まれ虫歯の原因になることを防ぐようになってる。
+  </p>
+  
+  <p>
+    コレを入れた状態で10日以上そのまま。
+  </p>
+  
+  <p>
+    人よりも歯と歯の隙間がきついので相当先生は苦労してた。
+  </p>
+  
+  <p>
+    入れた瞬間はすごい違和感。。。硬いものを噛むと奥歯が痛むのでやめておこう。
+  </p>
+  
+  <p>
+    一気に4mm程度隙間を空けていると思うので、余計前歯が出てきそうな感じ。
+  </p>
+  
+  <p>
+    本日の清算：￥0
+  </p>
+</div>
+
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2006-01-08T00:00:00+09:00" pubdate data-updated="true">Jan 8<span>th</span>, 2006</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/life/'>Life</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/2006/01/07/post//blog/page/64/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
 
 
     <article class="post">
@@ -1166,86 +1239,6 @@ $(document).ready(
 
 	
 		<span class="comments"><a href="/2005/12/12/ip-ngn-fmc//blog/page/64/index.html#disqus_thread">Comments</a></span>
-	
-</div></article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/2005/12/11/ecmp/">
-		
-			ECMP でのバランシングの精度</a>
-	</h2>
-	<div class="entry-content">
-		<div class="section">
-  <p>
-    物理的冗長構成にてルーティング的にECMP(Equal Cost Multi Path)を構成していても、実際流れるトラフィック量は 50:50 にはならない。
-  </p>
-  
-  <p>
-    結局、forwarding でどっちの nexthop を採用するかに依存する。特別意識せずに設定していれば per-flow で処理されるはずだけどその決定方法はメーカによって違う。そのパラメータをメーカごとにまとめると、
-  </p>
-  
-  <ul>
-    <li>
-      Cisco: source/destination address, Hash関数
-    </li>
-    <li>
-      Juniper: source/destination address, Hash関数
-    </li>
-    <li>
-      Foundry <ul>
-        <li>
-          BI4000: destination address
-        </li>
-        <li>
-          MG8:source/destination address, Hash関数
-        </li>
-      </ul>
-    </li>
-  </ul>
-  
-  <p>
-    Hashが絡むので、予測は不可能。。。結局、均等にならない理由は説明できても精度の幅は説明できない状態。
-  </p>
-  
-  <p>
-    なぜ均等分散されないのか？という問い合わせにツボを抑えて説明するのが難しい・・・
-  </p>
-</div>
-
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2005-12-12T00:00:00+09:00" pubdate data-updated="true">Dec 12<span>th</span>, 2005</time></div>
-	
-
-<div class="tags">
-
-	<a class='category' href='/blog/categories/tech/'>Tech</a>
-
-</div>
-
-
-	
-		<span class="comments"><a href="/2005/12/11/ecmp//blog/page/64/index.html#disqus_thread">Comments</a></span>
 	
 </div></article>
 

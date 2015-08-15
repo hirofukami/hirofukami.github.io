@@ -9,7 +9,7 @@
 
 <meta name="author" content="HiroFukami"> 
 
-<meta name="description" content="原因はおそらくwebサーバ～DBサーバ間のセッションがネットワーク的に不安定だったからだと思うけど、DBサーバで netstat -an すると 大量の CLOSE_WAIT のセッションが残ってしまって、MySQL の最大コネクション数にまで達してしまってwebの表示が出来なかった。 &hellip;"> <meta name="keywords" content="">
+<meta name="description" content="今行っているものはたいして数がないので、まとめておく。 他にもこれはいいよ！というのあれば教えてくださいませ。 ネットワーク系 ping 到達性の確認 traceroute -n 経路の確認 名前は引かないほうが早く出力される nslookup 名前は引けているのか arp -a arp &hellip;"> <meta name="keywords" content="">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -62,7 +62,7 @@ $(document).ready(
     <meta property="twitter:site" content="d_sea">
     <meta property="twitter:url" content="http://hirofukami.com">
     <meta property="twitter:title" content="Hiro Fukami's Blog">
-    <meta property="twitter:description" content="原因はおそらくwebサーバ～DBサーバ間のセッションがネットワーク的に不安定だったからだと思うけど、DBサーバで netstat -an すると 大量の CLOSE_WAIT のセッションが残ってしまって、MySQL の最大コネクション数にまで達してしまってwebの表示が出来なかった。 CLOSE_WAIT をいきなり消すことは出来ないので、早めに消えるようにしたいときは &hellip;">
+    <meta property="twitter:description" content="今行っているものはたいして数がないので、まとめておく。 他にもこれはいいよ！というのあれば教えてくださいませ。 ネットワーク系 ping 到達性の確認 traceroute -n 経路の確認 名前は引かないほうが早く出力される nslookup 名前は引けているのか arp -a arp テーブルを見る 1つもなければ link down の可能性あり netstat -rn &hellip;">
     <meta property="twitter:creator" content="d_sea" />
 
 
@@ -122,6 +122,189 @@ $(document).ready(
 </header>
 
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/2008/08/12/linux/">
+		
+			障害対応時によく使う Linux コマンド</a>
+	</h2>
+	<div class="entry-content">
+		<div class="section">
+  <p>
+    今行っているものはたいして数がないので、まとめておく。
+  </p>
+  
+  <p>
+    他にもこれはいいよ！というのあれば教えてくださいませ。
+  </p>
+  
+  <h4>
+    ネットワーク系
+  </h4>
+  
+  <dl>
+    <dt>
+      ping
+    </dt>
+    
+    <dd>
+      到達性の確認
+    </dd>
+    
+    <dt>
+      traceroute -n
+    </dt>
+    
+    <dd>
+      経路の確認 名前は引かないほうが早く出力される
+    </dd>
+    
+    <dt>
+      nslookup
+    </dt>
+    
+    <dd>
+      名前は引けているのか
+    </dd>
+    
+    <dt>
+      arp -a
+    </dt>
+    
+    <dd>
+      arp テーブルを見る 1つもなければ link down の可能性あり
+    </dd>
+    
+    <dt>
+      netstat -rn
+    </dt>
+    
+    <dd>
+      ルーティングテーブル どのセグメントに行くにはどのNICを通るようになっているのか
+    </dd>
+  </dl>
+  
+  <h4>
+    プロセスの確認
+  </h4>
+  
+  <dl>
+    <dt>
+      ps auxf
+    </dt>
+    
+    <dd>
+      プロセス実行ユーザ<br />CPU 利用率<br />プロセス親子の依存関係 が分かる
+    </dd>
+    
+    <dt>
+      netstat -anp
+    </dt>
+    
+    <dd>
+      あいているポート番号<br />クライアントとのセッション(アドレス/ポート番号)<br />PID
+    </dd>
+  </dl>
+  
+  <h4>
+    サーバ状況確認
+  </h4>
+  
+  <dl>
+    <dt>
+      date
+    </dt>
+    
+    <dd>
+      ログにタイムスタンプを残すため
+    </dd>
+    
+    <dt>
+      w
+    </dt>
+    
+    <dd>
+      現状のログインしているユーザ オペレーションバッティングしないように
+    </dd>
+    
+    <dt>
+      top
+    </dt>
+    
+    <dd>
+      ロードアベレージが分かる
+    </dd>
+    
+    <dt>
+      free
+    </dt>
+    
+    <dd>
+      メモリ使用量
+    </dd>
+    
+    <dt>
+      df -h
+    </dt>
+    
+    <dd>
+      残りのディスク容量
+    </dd>
+    
+    <dt>
+      du [該当ディレクトリ] | sort -n
+    </dt>
+    
+    <dd>
+      最も大きいファイル/ディレクトリが下に表示される
+    </dd>
+    
+    <dt>
+      find [該当ディレクトリ] -mmin -15
+    </dt>
+    
+    <dd>
+      15分前に変更、作成されたファイル/ディレクトリ
+    </dd>
+  </dl>
+</div>
+
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-08-13T00:00:00+09:00" pubdate data-updated="true">Aug 13<span>th</span>, 2008</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/tech/'>Tech</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/2008/08/12/linux//blog/page/38/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
 
 
     <article class="post">
@@ -1224,59 +1407,6 @@ $(document).ready(
 
 	
 		<span class="comments"><a href="/2008/07/21/post//blog/page/38/index.html#disqus_thread">Comments</a></span>
-	
-</div></article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/2008/07/20/for-technorati/">
-		
-			For Technorati</a>
-	</h2>
-	<div class="entry-content">
-		<div class="section">
-  <p>
-    <a rel="me" href="http://www.technorati.jp/claim/umfuct5r6s" target="_blank">テクノラティプロフィール</a>
-  </p>
-  
-  <p>
-    登録してみる。
-  </p>
-</div>
-
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-07-21T00:00:00+09:00" pubdate data-updated="true">Jul 21<span>st</span>, 2008</time></div>
-	
-
-<div class="tags">
-
-	<a class='category' href='/blog/categories/internet/'>Internet</a>
-
-</div>
-
-
-	
-		<span class="comments"><a href="/2008/07/20/for-technorati//blog/page/38/index.html#disqus_thread">Comments</a></span>
 	
 </div></article>
 
