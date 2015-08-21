@@ -9,7 +9,7 @@
 
 <meta name="author" content="HiroFukami"> 
 
-<meta name="description" content="audio-technica AT-FMT5 SV カーFMトランスミッター 出版社/メーカー: オーディオテクニカ 発売日: 2000/12/31 メディア: エレクトロニクス クリック: 34回 この商品を含むブログ (6件) を見る 長時間のドライブにはやっぱりお気に入りの曲を聞きたいので &hellip;"> <meta name="keywords" content="">
+<meta name="description" content="Equal Cost Multi Path を使っても、BI4000だと結構片寄る。 Foundry は destination address によって決まるので、destination が 1つだとすると完全に1つの interface に片寄ってしまう。 http://www. &hellip;"> <meta name="keywords" content="">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -62,7 +62,7 @@ $(document).ready(
     <meta property="twitter:site" content="d_sea">
     <meta property="twitter:url" content="http://hirofukami.com">
     <meta property="twitter:title" content="Hiro Fukami's Blog">
-    <meta property="twitter:description" content="audio-technica AT-FMT5 SV カーFMトランスミッター 出版社/メーカー: オーディオテクニカ 発売日: 2000/12/31 メディア: エレクトロニクス クリック: 34回 この商品を含むブログ (6件) を見る 長時間のドライブにはやっぱりお気に入りの曲を聞きたいので、FMトランスミッターを買ってみました。 これに買ったばかりの Rio Carbon &hellip;">
+    <meta property="twitter:description" content="Equal Cost Multi Path を使っても、BI4000だと結構片寄る。 Foundry は destination address によって決まるので、destination が 1つだとすると完全に1つの interface に片寄ってしまう。 http://www.foundrynet.com/services/documentation/ecmg/IP.html#57702 &hellip;">
     <meta property="twitter:creator" content="d_sea" />
 
 
@@ -122,6 +122,71 @@ $(document).ready(
 </header>
 
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/2004/11/16/foundry-load-sharing/">
+		
+			[Foundry] Load Sharing</a>
+	</h2>
+	<div class="entry-content">
+		<div class="section">
+  <p>
+    Equal Cost Multi Path を使っても、BI4000だと結構片寄る。
+  </p>
+  
+  <p>
+    Foundry は destination address によって決まるので、destination が 1つだとすると完全に1つの interface に片寄ってしまう。
+  </p>
+  
+  <p>
+    <a href="http://www.foundrynet.com/services/documentation/ecmg/IP.html#57702" target="_blank"><a href="http://www.foundrynet.com/services/documentation/ecmg/IP.html#57702" target="_blank">http://www.foundrynet.com/services/documentation/ecmg/IP.html#57702</a></a>
+  </p>
+  
+  <p>
+    Juniper、Cisco はほぼ均等に見える。
+  </p>
+  
+  <p>
+    仕組みについては未調査
+  </p>
+</div>
+
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2004-11-17T00:00:00+09:00" pubdate data-updated="true">Nov 17<span>th</span>, 2004</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/tech/'>Tech</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/2004/11/16/foundry-load-sharing//blog/page/77/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
 
 
     <article class="post">
@@ -970,85 +1035,6 @@ $(document).ready(
 
 	
 		<span class="comments"><a href="/2004/07/21/foundry-seting-routing-table-value//blog/page/77/index.html#disqus_thread">Comments</a></span>
-	
-</div></article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/2004/07/11/redistribute-static-metric/">
-		
-			Redistribute Static Metric</a>
-	</h2>
-	<div class="entry-content">
-		<div class="section">
-  <p>
-    Cisco と Extreme での redistribute static metric の足し方(type 1)が異なることに気づく。
-  </p>
-  
-  <p>
-    上流から見た場合
-  </p>
-  
-  <ul>
-    <li>
-      Cisco</p> <ul>
-        <li>
-          core interface cost + redistribute metric
-        </li>
-      </ul>
-    </li>
-    
-    <li>
-      Extreme <ul>
-        <li>
-          core interface cost + redistribute metric + edge interface cost
-        </li>
-      </ul>
-    </li>
-  </ul>
-  
-  <p>
-    確か、Juniper も Ciscoと同じだったはず。
-  </p>
-  
-  <p>
-    でもホントにメーカの仕様 issue？
-  </p>
-</div>
-
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2004-07-12T00:00:00+09:00" pubdate data-updated="true">Jul 12<span>th</span>, 2004</time></div>
-	
-
-<div class="tags">
-
-	<a class='category' href='/blog/categories/tech/'>Tech</a>
-
-</div>
-
-
-	
-		<span class="comments"><a href="/2004/07/11/redistribute-static-metric//blog/page/77/index.html#disqus_thread">Comments</a></span>
 	
 </div></article>
 

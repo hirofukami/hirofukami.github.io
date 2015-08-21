@@ -9,8 +9,7 @@
 
 <meta name="author" content="HiroFukami"> 
 
-<meta name="description" content="仕事の作業場所を渋谷から新宿に引っ越しました。 これからの作業場所のメインは新宿のほうになります。
-渋谷オフィスは5月末までの契約なので、今後も打ち合わせの時のミーティングスペースの利用や、1人で思考する場所として利用する予定ではあります。 オフィスといっても自分の場合は &hellip;"> <meta name="keywords" content="">
+<meta name="description" content="Mac で Docker を動かそうとすると boot2docker は必須。 Vagrant みたいに開発環境用サーバとして Docker を扱うには、共有フォルダの設定を自分でやらなくてはならない。 自分的には Dockerfile も Mac のローカルフォルダで管理したいから、Mac & &hellip;"> <meta name="keywords" content="">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -63,8 +62,7 @@ $(document).ready(
     <meta property="twitter:site" content="d_sea">
     <meta property="twitter:url" content="http://hirofukami.com">
     <meta property="twitter:title" content="Hiro Fukami's Blog">
-    <meta property="twitter:description" content="仕事の作業場所を渋谷から新宿に引っ越しました。 これからの作業場所のメインは新宿のほうになります。
-渋谷オフィスは5月末までの契約なので、今後も打ち合わせの時のミーティングスペースの利用や、1人で思考する場所として利用する予定ではあります。 オフィスといっても自分の場合は パソコン作業を集中して行える場所 としているため、基本的にThunderbolt displayと電源、 &hellip;">
+    <meta property="twitter:description" content="Mac で Docker を動かそうとすると boot2docker は必須。 Vagrant みたいに開発環境用サーバとして Docker を扱うには、共有フォルダの設定を自分でやらなくてはならない。 自分的には Dockerfile も Mac のローカルフォルダで管理したいから、Mac &ndash; boot2docker 間で共有フォルダを設定して、 Mac 上で &hellip;">
     <meta property="twitter:creator" content="d_sea" />
 
 
@@ -124,6 +122,91 @@ $(document).ready(
 </header>
 
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2015/02/09/mac-docker-sharedfolder/">
+		
+			Mac - Boot2docker 1.4.1 間共有フォルダ設定方法</a>
+	</h2>
+	<div class="entry-content">
+		<p><img src="/images/2015/02/20150209-docker.png" title="'docker'" ></p>
+
+<p>Mac で <a href="https://www.docker.com/">Docker</a> を動かそうとすると <a href="http://boot2docker.io/">boot2docker</a> は必須。</p>
+
+<p>Vagrant みたいに開発環境用サーバとして Docker を扱うには、共有フォルダの設定を自分でやらなくてはならない。</p>
+
+<p>自分的には Dockerfile も Mac のローカルフォルダで管理したいから、Mac &ndash; boot2docker 間で共有フォルダを設定して、</p>
+
+<ol>
+<li>Mac 上で Dockerfile を作る</li>
+<li>boot2docker ssh</li>
+<li>docker build -t centos:rails</li>
+</ol>
+
+
+<p>みたいにやりたい。</p>
+
+<p>もちろん、Dcoker container に Mac でコーディングしたソースは自動的にデプロイしたいので、boot2docker &ndash; docker container 間も共有フォルダにする必要はあるのだけど、まずは Mac &ndash; boot2docker 間を共有したい。</p>
+
+<p>調べてみたが検索に引っかかるのは古い情報で、Github の README.md に記載を見つけて動いた。</p>
+
+<p>2015.02.09現在 boot2docker 1.4.1 で動かすための方法をメモしておく。</p>
+
+<h1>情報のソース</h1>
+
+<p><a href="https://github.com/boot2docker/boot2docker">boot2docker の github</a> の README.md 内の <strong>VirtualBox Guest Additions</strong></p>
+
+<p><a href="https://github.com/boot2docker/boot2docker#virtualbox-guest-additions">https://github.com/boot2docker/boot2docker#virtualbox-guest-additions</a></p>
+
+<blockquote><p>The first of the following share names that exists (if any) will be automatically mounted at the location specified:</p>
+
+<ol>
+<li>Users share at /Users</li>
+<li>/Users share at /Users</li>
+<li>c/Users share at /c/Users</li>
+<li>/c/Users share at /c/Users</li>
+<li>c:/Users share at /c/Users</li>
+</ol>
+</blockquote>
+
+<p>という記述がある。</p>
+
+
+		
+		<a href="/blog/2015/02/09/mac-docker-sharedfolder/" class="more-link">Read on &rarr;</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-02-09T19:00:00+09:00" pubdate data-updated="true">Feb 9<span>th</span>, 2015</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/tech/'>Tech</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/blog/2015/02/09/mac-docker-sharedfolder//blog/page/4/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
 
 
     <article class="post">
@@ -753,72 +836,6 @@ $(document).ready(
 
 	
 		<span class="comments"><a href="/blog/2014/11/25/book-delivering-happiness//blog/page/4/index.html#disqus_thread">Comments</a></span>
-	
-</div></article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2014/11/18/published-wordpress-book/">
-		
-			WordPressプロフェッショナル養成読本という本を書きました</a>
-	</h2>
-	<div class="entry-content">
-		<p><a href="http://www.amazon.co.jp/gp/product/4774167878/ref=as_li_ss_tl?ie=UTF8&amp;camp=247&amp;creative=7399&amp;creativeASIN=4774167878&amp;linkCode=as2&amp;tag=dsea-22"><img src="/images/20141118-wordpress-book.jpg" alt="WordPress本" /></a></p>
-
-<p>本を書きました。WordPress関連の本になります。
-株式会社シェイクソウルを作ってから2冊目になります。
-合計7名による共著で、各章ごとに1筆者担当でした。</p>
-
-<p>最初は会社を作ってすぐの頃に <a href="http://www.amazon.co.jp/gp/product/4774142840/ref=as_li_ss_il?ie=UTF8&amp;camp=247&amp;creative=7399&amp;creativeASIN=4774142840&amp;linkCode=as2&amp;tag=dsea-22">「よくわかるAmazon EC2/S3」</a> を共著したので、本を出すのは4年ぶりになります。</p>
-
-<p>タイトルは、
-<a href="http://www.amazon.co.jp/gp/product/4774167878/ref=as_li_ss_tl?ie=UTF8&amp;camp=247&amp;creative=7399&amp;creativeASIN=4774167878&amp;linkCode=as2&amp;tag=dsea-22">「WordPress プロフェッショナル 養成読本 [Webサイト運用の現場で役立つ知識が満載！] (Software Design plus)」</a></p>
-
-<p>エンジニアの方にはお馴染みの技術評論社から出ている Software Design 系列の雑誌形態で、&#8221;WordPressを幅広くより実践的に学ぶための本&#8221; というコンセプトです。</p>
-
-<p>すでに発売中で、電子書籍化もされています。</p>
-
-<p><a href="http://www.amazon.co.jp/gp/product/B00OJVW65I/ref=as_li_ss_tl?ie=UTF8&amp;camp=247&amp;creative=7399&amp;creativeASIN=B00OJVW65I&amp;linkCode=as2&amp;tag=dsea-22"><img src="http://ecx.images-amazon.com/images/I/610lYz15VZL.jpg" alt="WordPress プロフェッショナル 養成読本" /></a></p>
-
-<ul>
-<li><a href="http://www.amazon.co.jp/gp/product/B00OJVW65I/ref=as_li_ss_tl?ie=UTF8&amp;camp=247&amp;creative=7399&amp;creativeASIN=B00OJVW65I&amp;linkCode=as2&amp;tag=dsea-22">Amazon Kindle</a></li>
-<li><a href="http://hb.afl.rakuten.co.jp/hgc/1360a562.9a5abdd9.1360a563.41a92e76/?pc=http%3a%2f%2fitem.rakuten.co.jp%2frakutenkobo-ebooks%2f9a39447a0f8b32cfa7753d907d110ab3%2f%3fscid%3daf_link_txt&amp;amp;m=http%3a%2f%2fm.rakuten.co.jp%2frakutenkobo-ebooks%2fi%2f13693951%2f">楽天 Kobo</a></li>
-</ul>
-
-
-
-		
-		<a href="/blog/2014/11/18/published-wordpress-book/" class="more-link">Read on &rarr;</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-11-18T08:00:00+09:00" pubdate data-updated="true">Nov 18<span>th</span>, 2014</time></div>
-	
-
-<div class="tags">
-
-	<a class='category' href='/blog/categories/book/'>Book</a>, <a class='category' href='/blog/categories/wordpress/'>WordPress</a>
-
-</div>
-
-
-	
-		<span class="comments"><a href="/blog/2014/11/18/published-wordpress-book//blog/page/4/index.html#disqus_thread">Comments</a></span>
 	
 </div></article>
 

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Tool | Hiro Fukami's Blog]]></title>
   <link href="http://hirofukami.com/blog/categories/tool/atom.xml" rel="self"/>
   <link href="http://hirofukami.com/"/>
-  <updated>2015-08-17T22:03:24+09:00</updated>
+  <updated>2015-08-21T18:17:55+09:00</updated>
   <id>http://hirofukami.com/</id>
   <author>
     <name><![CDATA[HiroFukami]]></name>
@@ -123,7 +123,92 @@
 
 <p><strong><a href="https://gist.github.com/d-sea/ca08b0cb765f9a255d26">GitHub Gist vimperatorrc</a></strong></p>
 
-<p>{% gist ca08b0cb765f9a255d26 %}</p>
+<p><div><script src='https://gist.github.com/ca08b0cb765f9a255d26.js'></script>
+<noscript><pre><code>&quot; Hiro Fukami&#39;s Vimperatorrc
+
+&quot;------------------------+
+&quot; 基本設定
+&quot;+-----------------------+
+
+&quot;メニュー/ツール/リンクを表示
+set toolbars=addons
+&quot;ページ全体で検索語を強調表示
+set hlsearch
+set ignorecase
+&quot;ビープ音を鳴らさずビジュアルベルを使用
+set visualbell
+
+set complete=S
+set focuscontent
+
+let g:ex_ime_mode = &quot;inactive&quot; 
+let g:textarea_ime_mode = &quot;inactive&quot; 
+
+&quot;+------------------------+
+&quot; キーマップ設定
+&quot;+------------------------+
+
+&quot;j/kの移動量を7倍に
+map j 7&lt;C-e&gt;
+map k 7&lt;C-y&gt;
+&quot;&lt;BS&gt;で「戻る」
+map &lt;BS&gt; H
+map &lt;S-j&gt; &lt;C-p&gt;
+map &lt;S-k&gt; &lt;C-n&gt;
+&quot;&lt;S-Left&gt;/&lt;S-Right&gt;で現在のタブの位置変更
+map &lt;S-Left&gt;  :tabmove! -1&lt;CR&gt;
+map &lt;S-Right&gt; :tabmove! +1&lt;CR&gt;
+
+map @ :sp -b &lt;S-Insert&gt;&lt;CR&gt;
+map ^ :sp -r &lt;S-Insert&gt;&lt;CR&gt;
+
+map c :history! 
+map s :stop
+map d &lt;M-w&gt;
+
+map gf :t http://facebook.com&lt;CR&gt;
+map gl :t http://gmail.com&lt;CR&gt;
+map gm :t https://www.facebook.com/messages&lt;CR&gt;
+map gn :t https://www.facebook.com/notifications&lt;CR&gt;
+map gt :t http://www.twitter.com&lt;CR&gt;
+map ga :t http://www.amazon.co.jp&lt;CR&gt;
+map gr :t http://www.rakuten.co.jp&lt;CR&gt;
+map gw :t http://console.aws.amazon.com/ec2/home&lt;CR&gt;
+
+
+&quot;+------------------------+
+&quot; プラグイン設定
+&quot;+------------------------+
+
+command calc -nargs=* echo JSON.parse(util.httpGet(&quot;http://suggestqueries.google.com/complete/search?client=firefox&amp;hl=ja&amp;q=&quot;+encodeURIComponent(&quot;&lt;args&gt;&quot;)).responseText)[1].filter(function(r) r.indexOf(&quot;=&quot;) == 0)[0].replace(&quot;= &quot;,&quot;&quot;)
+
+&quot; .vimperatorrcを再読み込み
+map &lt;C-r&gt; :source ~/.vimperatorrc&lt;CR&gt;
+
+let g:direct_sbm_use_services_by_tag = &quot;h&quot;
+let g:direct_sbm_use_services_by_post = &quot;h&quot; 
+
+&quot;For FeedSomeKeys_3.js plugin
+&quot; autocmd VimperatorEnter .* &lt;args&gt; を lazy コマンドとして登録
+&quot;command! -nargs=+ lazy autocmd VimperatorEnter .* &lt;args&gt;
+&quot;Gmail
+lazy fmaps -urls=&#39;mail\.google\.com/mail&#39; c / j k n p o u e x s r a # [ ] z ? gi gs gt gd ga gb gc gl b &lt;S-i&gt; &lt;C-h&gt; &lt;C-Enter&gt;
+
+&quot;Google Calendar
+lazy fmaps -urls=&#39;www\.google\.com/calendar&#39; -events=vkeydown k j r t d w m c &lt;Del&gt; / + q s ?
+
+&quot;Google Docs
+lazy fmaps -urls=&#39;docs\.google\.com/&#39; &lt;Del&gt; &lt;C-x&gt; &lt;C-d&gt; &lt;C-v&gt; &lt;C-c&gt; &lt;C-y&gt; &lt;C-z&gt; &lt;C-a&gt; 
+
+&quot;Feedly
+lazy fmaps -urls=&#39;feedly\.com/&#39; gm ga gg r j k n p o v m x s e t ? &lt;S-m&gt;
+
+set hintchars=hjklasdfgyuiopqwertnmzxcvb
+hi Hint z-index:5000; font-size:12px; color:white; background-color:gray; border-color:lightgray; border-width:2px; border-style:solid; padding:0px 2px 0px 2px; position:absolute; font-family: Menlo, Consolas, Monaco, monospace; text-transform: uppercase;
+
+&quot; 最後に読み込み完了を表示
+echo &quot;###  Finish loading vimperatorrc.  ###&quot;</code></pre></noscript></div>
+</p>
 
 <p><a href="https://github.com/vimpr/vimperator-plugins">Vimperator プラグインの Github</a> を見ると、更新も止まっているしコミットのコメントも何ともな感じなので、Vimperator プラグインは使わないようにしています。</p>
 
