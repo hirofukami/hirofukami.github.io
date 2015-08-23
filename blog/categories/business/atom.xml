@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Business | Hiro Fukami's Blog]]></title>
   <link href="http://hirofukami.com/blog/categories/business/atom.xml" rel="self"/>
   <link href="http://hirofukami.com/"/>
-  <updated>2015-08-23T12:29:14+09:00</updated>
+  <updated>2015-08-23T22:13:50+09:00</updated>
   <id>http://hirofukami.com/</id>
   <author>
     <name><![CDATA[HiroFukami]]></name>
@@ -18,7 +18,7 @@
     <link href="http://hirofukami.com/blog/2015/08/14/at-bali-beach/"/>
     <updated>2015-08-14T12:30:00+09:00</updated>
     <id>http://hirofukami.com/blog/2015/08/14/at-bali-beach</id>
-    <content type="html"><![CDATA[<p><img src="/images/2015/08/20150814-at-bali-beach.JPG"></p>
+    <content type="html"><![CDATA[<p>{% img /images/2015/08/20150814-at-bali-beach.JPG %}</p>
 
 <p>ビーチはいいよビーチは。</p>
 
@@ -82,7 +82,7 @@
 
 <p>と、水平線に沈みゆく夕日を観ながら思うのでした。</p>
 
-<p><img src="/images/2015/08/20150814-sunset.JPG"></p>
+<p>{% img /images/2015/08/20150814-sunset.JPG %}</p>
 ]]></content>
   </entry>
   
@@ -91,13 +91,13 @@
     <link href="http://hirofukami.com/blog/2015/06/02/chef-teacher/"/>
     <updated>2015-06-02T10:00:00+09:00</updated>
     <id>http://hirofukami.com/blog/2015/06/02/chef-teacher</id>
-    <content type="html"><![CDATA[<p><img src="/images/2015/06/20150602-teacher.png" width="640"></p>
+    <content type="html"><![CDATA[<p>{% img /images/2015/06/20150602-teacher.png 640 %}</p>
 
 <p>Chef の研修講師をしました。</p>
 
 <p>具体的には、近年のインフラ業界での様子解説とDevOpsの概要、chef の knife solo の演習です。</p>
 
-<p><img src="/images/2015/06/20150602-chef-logo.png"></p>
+<p>{% img /images/2015/06/20150602-chef-logo.png %}</p>
 
 <p>今年1月からとあるエンタープライズSIerさんの企業内研修の1プログラムとして実施してきました。</p>
 
@@ -225,7 +225,7 @@
     <link href="http://hirofukami.com/blog/2015/03/17/start-tech-lecture/"/>
     <updated>2015-03-17T10:00:00+09:00</updated>
     <id>http://hirofukami.com/blog/2015/03/17/start-tech-lecture</id>
-    <content type="html"><![CDATA[<p><img src="/images/2015/03/20150317-students.jpg" title="Learning" ></p>
+    <content type="html"><![CDATA[<p>{% img /images/2015/03/20150317-students.jpg Learning %}</p>
 
 <p>プライベートカンパニーである<a href="http://www.shakesoul.net">株式会社シェイクソウル</a>でテクニカルレクチャーサービスを開始しました。</p>
 
@@ -277,7 +277,7 @@ DevOpsツールとしては、<a href="http://chef.io" target="_blank">Chef</a>�
     <link href="http://hirofukami.com/blog/2015/03/16/renewal-shakesoul-web/"/>
     <updated>2015-03-16T10:00:00+09:00</updated>
     <id>http://hirofukami.com/blog/2015/03/16/renewal-shakesoul-web</id>
-    <content type="html"><![CDATA[<p><img src="/images/2015/03/20150316-visiable-shakesoul-web.png" title="ShakeSoul web site" ></p>
+    <content type="html"><![CDATA[<p>{% img /images/2015/03/20150316-visiable-shakesoul-web.png ShakeSoul web site %}</p>
 
 <p>前回リニューアルしたのが<a href="http://www.shakesoul.net/2014/05/16/renewal-web.html">このポスト</a>なので、1年弱で変えたことになります。</p>
 
@@ -331,7 +331,7 @@ DevOpsツールとしては、<a href="http://chef.io" target="_blank">Chef</a>�
 
 <p>トップページの全体ビュー</p>
 
-<p><img src="/images/2015/03/20150316-full-shakesoul-web.png" width="240" title="ShakeSoul web site full" ></p>
+<p>{% img /images/2015/03/20150316-full-shakesoul-web.png 240 ShakeSoul web site full %}</p>
 
 <h1>やった作業</h1>
 
@@ -357,7 +357,7 @@ DevOpsツールとしては、<a href="http://chef.io" target="_blank">Chef</a>�
     <link href="http://hirofukami.com/blog/2015/02/13/shakesoul-6th-anniversary/"/>
     <updated>2015-02-13T11:00:00+09:00</updated>
     <id>http://hirofukami.com/blog/2015/02/13/shakesoul-6th-anniversary</id>
-    <content type="html"><![CDATA[<p><img src="/images/2015/02/20150213-ShakeSoul-logo.png" width="250" title="ShakeSoul, inc." ></p>
+    <content type="html"><![CDATA[<p>{% img /images/2015/02/20150213-ShakeSoul-logo.png 250 ShakeSoul, inc. %}</p>
 
 <p><a href="http://www.shakesoul.net">http://www.shakesoul.net</a></p>
 

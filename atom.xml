@@ -4,7 +4,7 @@
   <title><![CDATA[Hiro Fukami's Blog]]></title>
   <link href="http://hirofukami.com/atom.xml" rel="self"/>
   <link href="http://hirofukami.com/"/>
-  <updated>2015-08-23T12:29:14+09:00</updated>
+  <updated>2015-08-23T22:10:26+09:00</updated>
   <id>http://hirofukami.com/</id>
   <author>
     <name><![CDATA[HiroFukami]]></name>
@@ -12,6 +12,41 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Book ジーン・ワルツ]]></title>
+    <link href="http://hirofukami.com/blog/2015/08/23/book-gene-waltz/"/>
+    <updated>2015-08-23T22:00:00+09:00</updated>
+    <id>http://hirofukami.com/blog/2015/08/23/book-gene-waltz</id>
+    <content type="html"><![CDATA[<p>最近は嫁におすすめの小説を聞いて読むようにしている。紹介されて読んだ4冊目の小説がこれ。</p>
+
+<p><a href="http://hb.afl.rakuten.co.jp/hgc/1368ce62.540143f5.1368ce63.cb671705/?pc=http%3a%2f%2fitem.rakuten.co.jp%2fbook%2f6528344%2f%3fscid%3daf_link_img&amp;m=http%3a%2f%2fm.rakuten.co.jp%2fbook%2fi%2f13707873%2f" target="_blank"><img src ="http://hbb.afl.rakuten.co.jp/hgb/?pc=http%3a%2f%2fthumbnail.image.rakuten.co.jp%2f%400_mall%2fbook%2fcabinet%2f3113%2f9784101333113.jpg%3f_ex%3d400x400&amp;m=http%3a%2f%2fthumbnail.image.rakuten.co.jp%2f%400_mall%2fbook%2fcabinet%2f3113%2f9784101333113.jpg%3f_ex%3d80x80" border="0"></a></p>
+
+<ul>
+<li><a href="http://hb.afl.rakuten.co.jp/hgc/1368ce62.540143f5.1368ce63.cb671705/?pc=http%3a%2f%2fitem.rakuten.co.jp%2fbook%2f6528344%2f%3fscid%3daf_link_txt&amp;m=http%3a%2f%2fm.rakuten.co.jp%2fbook%2fi%2f13707873%2f" target="_blank">楽天ブックス</a></li>
+<li><a href="http://www.amazon.co.jp/gp/product/4101333114/ref=as_li_ss_tl?ie=UTF8&camp=247&creative=7399&creativeASIN=4101333114&linkCode=as2&tag=dsea-22">Amazon</a></li>
+</ul>
+
+
+<p>産婦人科医と大学講師として勤務する女性医師を主人公にした、出産にまつわる様々な出来事のドラマ。</p>
+
+<p>各人の色々な出産事情。妊娠、不妊治療、人工授精、そして代理母。出産にまつわる様々な事柄が起きてゆく。</p>
+
+<p>会話の描写も面白い。頭の良い者同士の会話の駆け引き。権力のある者のあしらい。高度なやりとりを冷静に描写していく。</p>
+
+<p>また、医療現場で起きている悲劇の描写が復習のように何度も出てくる。地方の病院や医療施設が次々と潰れていっていること。地方での出産は必要な医療技術の提供が受けられない現状があり、その原因が官僚がもたらした医療制度改革であるというもの。</p>
+
+<p>医療現場にたずさわった筆者だけあって、詳しい。そして、主張したいことを登場人物に乗せてまっすぐ伝える。
+小説を通じて世の中に提示する。小説が一つのメディアになっている。そういう方法もあるのかと新鮮な発見だった。</p>
+
+<p>読み終わって思ったことは、女性はいかにクールに論理的に振る舞えるスキルを有していても、&#8221;子どもを産みたい&#8221; この一言に勝るものはなかったということだった。</p>
+
+<p>産むことのない男には理解できない心境と計り知れない意志の強さ。</p>
+
+<p>子どもができる。そして無事に生まれることがどれほど低い確率なのかを知る。
+妻に娘を産んでくれてありがとう。と言った。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[NKHのデータ分析サッカー中継に新しい価値を感じた]]></title>
@@ -1974,63 +2009,6 @@ Mr.Children の桜井和寿氏と GAKU−MC によるユニット <a href="http:
 
 <p>家族でスタジアムに行ってフットボールの魅力を十分楽しめたのは本当に良かった。宝物のような経験だったと思う。
 次に代表が味スタに来るかはわからないけど、また家族でフットボール観戦を楽しめたら幸せだと思う。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Docker で s3fs を使う方法]]></title>
-    <link href="http://hirofukami.com/blog/2015/03/30/docker-s3fs/"/>
-    <updated>2015-03-30T09:30:00+09:00</updated>
-    <id>http://hirofukami.com/blog/2015/03/30/docker-s3fs</id>
-    <content type="html"><![CDATA[<p><a href="http://www.shakesoul.net">会社Webサイト</a>の <a href="http://hirofukami.com/blog/2015/03/16/renewal-shakesoul-web/">リニューアル</a> の時にサーバの移設もした。移設先サーバを Docker ホスティング 環境にしてその上で Docker コンテナとして稼働させています。</p>
-
-<p>その時に s3fs がうまく動かなくてちょっとはまったのでその解決方法を記します。</p>
-
-<h1>現象</h1>
-
-<p>s3fs をインストールして、コマンド実行する。</p>
-
-<p><code>s3fs smartwp:/manage/uploads-st /home/shakesoul/Dropbox/SmartWP/demo00/html-staging/wp-content/uploads -o allow_other -o nonempty</code></p>
-
-<p>すると以下のエラーが出てマウントできない。</p>
-
-<p><code>fuse: failed to open /dev/fuse: Operation not permitted</code></p>
-
-<h1>調査</h1>
-
-<p>エラーメッセージをみても解決方法が浮かばないし、今まで s3fs をセットアップしてきた経験上はじめてのエラーだったので、おそらく Docker 環境だらか生じているのだろうな。と当たりをつけて Google でエラーメッセージを検索。</p>
-
-<p>調べた結果、docker の github issue にあった。<a href="https://github.com/docker/docker/issues/9448">https://github.com/docker/docker/issues/9448</a></p>
-
-<p>やっぱり同じようなことをしたい人は世の中にいる。</p>
-
-<h1>解決方法</h1>
-
-<p><code>docker run</code> の時に <code>--cap-add SYS_ADMIN</code> と <code>--device /dev/fuse</code> をつける。</p>
-
-<p>実際の打ったコマンド
-<code>docker run -d -p 80:80 -p 443:443 -p 8080:8080 -p 1122:22 --cap-add SYS_ADMIN --device /dev/fuse centos6.6:origin01</code></p>
-
-<p>コンテナ上で s3fs コマンド実行と確認。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">[</span>shakesoul@05f602ff5289 ~<span class="o">]</span><span class="nv">$ </span>df -h | grep s3fs
-</span><span class='line'>s3fs                  256T     0  256T   0% /home/shakesoul/Dropbox/SmartWP/demo00/html-staging/wp-content/uploads
-</span><span class='line'>s3fs                  256T     0  256T   0% /home/shakesoul/Dropbox/SmartWP/demo00/html-production/wp-content/uploads
-</span><span class='line'>s3fs                  256T     0  256T   0% /home/shakesoul/Dropbox/SmartWP/shakesoul.net/html-staging/wp-content/uploads
-</span><span class='line'>s3fs                  256T     0  256T   0% /home/shakesoul/Dropbox/SmartWP/shakesoul.net/html-production/wp-content/uploads
-</span><span class='line'>s3fs                  256T     0  256T   0% /home/shakesoul/Dropbox/SmartWP/smartdesigning.me/html-staging/wp-content/uploads
-</span><span class='line'>s3fs                  256T     0  256T   0% /home/shakesoul/Dropbox/SmartWP/smartdesigning.me/html-production/wp-content/uploads
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>めでたしめでたし。</p>
 ]]></content>
   </entry>
   

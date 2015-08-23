@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Football | Hiro Fukami's Blog]]></title>
   <link href="http://hirofukami.com/blog/categories/football/atom.xml" rel="self"/>
   <link href="http://hirofukami.com/"/>
-  <updated>2015-08-23T12:29:14+09:00</updated>
+  <updated>2015-08-23T22:13:50+09:00</updated>
   <id>http://hirofukami.com/</id>
   <author>
     <name><![CDATA[HiroFukami]]></name>
@@ -18,7 +18,7 @@
     <link href="http://hirofukami.com/blog/2015/04/02/football-jpnxuzb/"/>
     <updated>2015-04-02T09:30:00+09:00</updated>
     <id>http://hirofukami.com/blog/2015/04/02/football-jpnxuzb</id>
-    <content type="html"><![CDATA[<p><img src="/images/2015/04/20150401-football.jpg"></p>
+    <content type="html"><![CDATA[<p>{% img /images/2015/04/20150401-football.jpg %}</p>
 
 <p>行ってきました！サッカー日本代表xウズベキスタン戦@味の素スタジアム。</p>
 
@@ -26,11 +26,11 @@
 
 <p>家から味スタは割と近い(と言っても、車で20分以上かかるのでそうでもないが)ので、家族で見に行きたいねと話して、ヤフオクでキックオフ2時間前になんとか滑りこみ競り落としに成功。</p>
 
-<p><img src="/images/2015/04/20150401-tickets.jpg"></p>
+<p>{% img /images/2015/04/20150401-tickets.jpg %}</p>
 
 <p>急いで支度をしてスタジアムに到着。</p>
 
-<p><img src="/images/2015/04/20150401-ajinomoto-studium.jpg"></p>
+<p>{% img /images/2015/04/20150401-ajinomoto-studium.jpg %}</p>
 
 <p>せっかくなので観戦記を示しておく。</p>
 
@@ -39,7 +39,7 @@
 
 <h1>全体の雰囲気</h1>
 
-<p><img src="/images/2015/04/20150401-football-jpnxuzb.jpg"></p>
+<p>{% img /images/2015/04/20150401-football-jpnxuzb.jpg %}</p>
 
 <p>完全なホーム。観客全員が日本を応援している。</p>
 
