@@ -1,0 +1,432 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<script data-cfasync="false" type="text/javascript" src="//use.typekit.net/axj3cfp.js"></script>
+	<script data-cfasync="false" type="text/javascript">try{Typekit.load();}catch(e){}</script>
+	<meta charset="utf-8">
+	<title>LEAN - 学ばずに始めると起きるありがちな失敗と対策  | Hiro Fukami's Blog</title>
+
+<meta name="author" content="HiroFukami"> 
+
+<meta name="description" content="とあるサービスづくりをされている方の話を聞いた。サービスづくりにチャレンジすることは素敵だし応援したいことだ。 取り組み方が自分の最初のスタートアップ fluxflex の失敗したやり方と見事に同じだった。 サービスづくりでの失敗の経験がないと、そういう発想になるな。とも思った。本を読んでみても、 &hellip;"> <meta name="keywords" content="">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link href="/atom.xml" rel="alternate" title="Hiro Fukami's Blog" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<link href="/favicon.png" rel="shortcut icon">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script type="text/javascript" src="/javascripts/jquery.fancybox.pack.js"></script>
+
+<script language="Javascript" type="text/javascript">
+$(document).ready(
+  function() {
+    (function($) {
+      $(".fancybox[data-content-id]").each(function() {
+        this.href = $(this).data('content-id');
+      });
+      $(".fancybox").fancybox({
+        beforeLoad: function() {
+          var el, 
+              id = $(this.element).data('title-id');
+
+          if (id) {
+            el = $('#' + id);
+
+            if (el.length) {
+              this.title = el.html();
+            }
+          }
+          if ($(this).data('content')) {
+            this.content = $(this).data('content');
+          }
+        },
+        helpers: {
+          title: {
+            type: 'inside'
+          }
+        }
+      });
+    })(jQuery);
+  }
+);
+</script>
+
+	
+	<meta property="twitter:card" content="summary" />
+    <meta property="twitter:site" content="d_sea">
+    <meta property="twitter:url" content="http://hirofukami.com">
+    <meta property="twitter:title" content="LEAN - 学ばずに始めると起きるありがちな失敗と対策">
+    <meta property="twitter:description" content="とあるサービスづくりをされている方の話を聞いた。サービスづくりにチャレンジすることは素敵だし応援したいことだ。 取り組み方が自分の最初のスタートアップ fluxflex の失敗したやり方と見事に同じだった。 サービスづくりでの失敗の経験がないと、そういう発想になるな。とも思った。本を読んでみても、テック系のキラキラしたスタートアップたちの話題を眺めても分からないことだと思う。 &hellip;">
+    <meta property="twitter:creator" content="d_sea" />
+
+
+</head>
+
+
+<body>
+	<header id="header" class="inner"><h1><a href="/">Hiro Fukami's Blog</a></h1>
+<h4>My Life Log on Octopress</h4>
+<nav id="main-nav"><ul>
+	<li><a href="/">Blog</a></li>
+	<li><a href="/about">About</a></li>
+	<li><a href="/portfolio">Portfolio</a></li>
+	<li><a href="/archives">Archive</a></li>
+	<li><a href="/atom.xml">RSS</a></li>
+    
+	<li>
+        <form action="http://google.com/search" method="get">
+            <input type="text" name="q" results="0" placeholder="Search">
+            <input type="hidden" name="as_sitesearch" value="hirofukami.com">
+        </form>
+	</li>
+    
+</ul>
+</nav>
+<nav id="mobile-nav">
+	<div class="alignleft menu">
+		<a class="button">Menu</a>
+		<div class="container"><ul>
+	<li><a href="/">Blog</a></li>
+	<li><a href="/about">About</a></li>
+	<li><a href="/portfolio">Portfolio</a></li>
+	<li><a href="/archives">Archive</a></li>
+	<li><a href="/atom.xml">RSS</a></li>
+    
+	<li>
+        <form action="http://google.com/search" method="get">
+            <input type="text" name="q" results="0" placeholder="Search">
+            <input type="hidden" name="as_sitesearch" value="hirofukami.com">
+        </form>
+	</li>
+    
+</ul>
+</div>
+	</div>
+<!-- 	<div class="alignright search">
+		<a class="button"></a>
+		<div class="container">
+			<form action="http://google.com/search" method="get">
+				<input type="text" name="q" results="0">
+				<input type="hidden" name="q" value="site:hirofukami.com">
+			</form>
+		</div>
+	</div> -->
+</nav>
+
+</header>
+
+	<div id="content" class="inner"><article class="post">
+	<h2 class="title">LEAN - 学ばずに始めると起きるありがちな失敗と対策</h2>
+	<div class="entry-content"><p>とあるサービスづくりをされている方の話を聞いた。サービスづくりにチャレンジすることは素敵だし応援したいことだ。</p>
+
+<p><img src="/images/2015/09/20150903-startup-team.jpg"></p>
+
+<p>取り組み方が自分の最初のスタートアップ fluxflex の失敗したやり方と見事に同じだった。</p>
+
+<p>サービスづくりでの失敗の経験がないと、そういう発想になるな。とも思った。本を読んでみても、テック系のキラキラしたスタートアップたちの話題を眺めても分からないことだと思う。</p>
+
+<p>陥りやすいパターンのようなので、彼らにアドバイスするつもりで少しまとめてみたい。</p>
+
+<h1>失敗パターン</h1>
+
+<p>まずは状況。いくつか質問して分かったことは以下。</p>
+
+<ul>
+<li>顧客にはまだ会っていない</li>
+<li>開発を始めた</li>
+<li>既存製品の代わりになるもの</li>
+<li>ビックプレイヤーに協業の話を頻繁にしに行っている</li>
+</ul>
+
+
+<p>恐らく彼らのリリースまでの順番はこう。</p>
+
+<ol>
+<li>サービスアイデアを思いつく</li>
+<li>サービス仕様・機能を決める</li>
+<li>開発する</li>
+<li>リリースを打つ(なるべく大きく派手に)</li>
+<li>顧客を探して製品を売り込む</li>
+</ol>
+
+
+<p>十中八九この順番だと失敗(作り直し・製品が無駄になる)する。自分も含めてこの順番で過去に数多くのスタートアップたちが失敗してきた。</p>
+
+<p>なぜこのやり方が失敗するのか。その理由と自分が今失敗を経て実施している方法を解説してみる。</p>
+
+<!-- more -->
+
+
+<h1>見込み顧客と話していない</h1>
+
+<p>一番の問題はこれ。こんなに恐ろしいことはない。</p>
+
+<p>失敗する順番では顧客に出会うのは開発が終わった後の段階になる。
+ということは、誰も使わないものを作ってしまったことに最後のフェーズで気づく。</p>
+
+<p>ダメだと気づくタイミングが遅すぎて、開発の労力がムダになる。何しろ単なるアイデアが行ける！と根拠なく勝手に思い込んでいる状態が長過ぎる。</p>
+
+<p>自分の順番は以下。リーンスタートアップの手法そのものだが、まず最初に見込顧客を探しだして話をする。</p>
+
+<ol>
+<li>サースアイデアを思いつく</li>
+<li>見込顧客を探し、会って課題を探る</li>
+<li>特定の課題を見つける</li>
+<li>最も小さい製品(MVP)を作る</li>
+<li>一部の見込顧客に使ってもらいアクティビティから改善を重ねる</li>
+<li>アクティビティが改善されたらスケールさせる</li>
+</ol>
+
+
+<p>自分たちの単なるアイデア(思いつき)を顧客と話すことでリアルな課題に変えていく。
+その課題を解決するための製品を定義し開発する。</p>
+
+<p>事の始まりはまず <strong>見込み顧客と話す</strong> こと。</p>
+
+<h1>何を作るべきか検証できていないのに作り始めている</h1>
+
+<p>顧客と話していないにもかかわらず開発を始めるのは、開発の労力を捨てても良いと思っていることと同じ。</p>
+
+<p>いきなり作り始めるということは、開発するものの定義は単なるアイデア(思いつき)がベースになっている。
+そして、最初のアイデアはたいてい良くない。思いつきを形にした所で誰が使うのだろうか。</p>
+
+<p>アイデアだけを握りしめて作り始めようという人がいるなら一度考えてみて欲しい。</p>
+
+<p><strong>誰がどんな課題を解決するためにお金を払ってまで or 既存の製品を捨ててまであなたの製品を使おうとするのか？</strong></p>
+
+<p>はっきり答えられるだろうか。</p>
+
+<p>大抵の思いつきアイデアの場合、</p>
+
+<ul>
+<li>ターゲット</li>
+<li>課題</li>
+<li>ソリューション</li>
+<li>競合比較</li>
+</ul>
+
+
+<p>の項目がどれか1つ以上は欠ける。エンジニアにありがちなのは、流行りの技術やツールから発想したアイデアだと全部の項目がないということもあったりする。</p>
+
+<p>逆にこの問いに答えられたら、作るべきものがはっきり定義できたということになる。</p>
+
+<p><strong>例: この製品は、小学校前の子を持つ主婦(ターゲット)が短時間でも子どもから離れて用事を済ますため(課題)の、ご近所ネットワーキングサービス(ソリューション)です。ローカル性が高く、同世代同士で助けあう仕組みのため、Facebookよりも信頼のおける者同士で助け合いができます(競合比較)。</strong></p>
+
+<p>上記例はとっさに思いついた文章だが、各要素がちゃんと入るともっともらしいサービスに見える。</p>
+
+<h1>作る理由が熱い思いだけ</h1>
+
+<p>開発をスタートしたと話していたが、不思議なことに製品についての説明をしなかった。</p>
+
+<p>どんな課題を解決するのか、どんな機能なのか、既存製品と何が違うのか。分からない。</p>
+
+<p>なぜその製品を作るのか聞いてみたが、彼らは「作りたいんだ！」と言った。おそらく何を作るべきか良くはわかっていないが、作りたいということのようだ。</p>
+
+<p>情熱のアピールは結構だけど、情熱の大きさは顧客が買う際のポイントにはならない。
+情熱のアピールが有効なのは投資を得る時と、人を自分のチームにジョインさせたい時だけ。顧客に対してはどうでもよい。</p>
+
+<p>顧客がどんなことのために製品を使うのか。それは今までと何が違うのか。それを使うことでどんなストーリが生まれるのか。もっと想像しないといけない。</p>
+
+<p>その想像を現実的なものにするためにも、最初の段階で見込み顧客と話をするのは有効で、製品が &ldquo;自分が思いつき&rdquo; から &ldquo;顧客が使うもの&rdquo; に変わっていく。それではじめて何を作るべきかが見える。</p>
+
+<p>なぜ作るのか？を問た時に自分の熱い思いしか出ないとしたら、<strong>作り始める前にまだまだ考えるべきことはたくさんある</strong>ということ。</p>
+
+<h1>競合との違いが不明確</h1>
+
+<p>別に既存製品とぶつける気はないとのコメントも引っかかった。</p>
+
+<p>ターゲットは既存製品を持っている人たちになるだろうとのことだったので、この時点で自分たちは後発で競合がすでに存在していることになる。</p>
+
+<p>自分たちの都合の良い解釈で競合はいないと思ってしまっている。競合と戦いたくない、全く新規の顧客たちに売って行けると思ったほうが楽かもしれない。実際、自分も競合の存在を最小化してなるべく対策は取らないようにしていた。</p>
+
+<p>しかし、顧客から見て既存製品と同じカテゴリーかと思われれば、自分たちは競合に当たる。</p>
+
+<p>既存製品を使っているユーザに説明して自分たちの製品のほうを使ってくれるように話すならば、競合対策は必須。無視できない。
+<strong>顧客から見て既存製品と何が違うのか、どういう効果をもたらすのかということを開発しだす前に考えなければ、決して売れない</strong>だろう。</p>
+
+<p>顧客がせっかく作った製品を既存製品と同じようなものか思ったならば、あえて既存製品を捨てる理由はない。乗り換えるだけの何かが自分たちの製品にはあるということを見せれないといけない。</p>
+
+<p>その違いをはっきり認識できることこそが競合への対策と言える。</p>
+
+<h1>ビックプレイヤーに頼る</h1>
+
+<p>ビジネスモデルキャンバス上ではパートナーの欄がある。
+確かにパートナーは要素の一つではあるが、それが最も重要ではない。</p>
+
+<p>また、パートナーの会社が大きいから、有名な企業だからなんとか助けてくれるだろうという期待してしまいがち。</p>
+
+<p>パートナーは商品を売る時に自分たちよりパートナーのほうがターゲットにリーチしやすいかどうか。
+ターゲットにリーチできないならパートナーにふさわしくない。</p>
+
+<p>大企業はいろいろな取組をしているので興味は持ってくれるかもしれない。ただ自分たちの商品を買ってくれる顧客を連れてきてくれるかどうかをよく見ないといけない。</p>
+
+<p>有名な企業との協業のプレスリリースは大きなPRになるかもしれない。ただ、その<strong>プレスリリースを読んで果たしてどれくらいのユーザが獲得できるだろう。</strong>
+プレスリリースによるPRは花火を打ち上げるようにその効果は単発で終わる。パートナーシップは永遠と自分たちのビジネスモデル上でエンジンのように回り続けて稼ぎだしてくれないといけない。1発花火を打ち上げるために協業を考えるべきではない。</p>
+
+<p>ユーザも課題もはっきりしない最初の段階でパートナーを見つけるのは順番が違う。</p>
+
+<h1>まとめ</h1>
+
+<p>どうしても自分のアイデアを形するためにすぐ開発して世に出したい！と思う人はいるかもしれない。</p>
+
+<p>自分の自由時間を使った趣味としてトライする分には、個人の責任なので誰も何も言わないが、
+それはビジネスにおけるスタートアップとは言わないし、まわりの共感や大きな成長を狙うこはできない。</p>
+
+<p>スタートアップは自分たちの生活費以上の大きな価値を少人数の最初の段階で生み出す、とても難しい(成功率の低い)チャレンジ。</p>
+
+<p>特にエンジニアの人はアイデアを思いついたらすぐにでも形にしたくなる傾向があるので(自分もいまだにそうなる時がある)、それをぐっとこらえるのはなかなかきつい。</p>
+
+<p>しかし、やってみると分かるが自分のアイデアを形にして全く売れなかった時の絶望感・無力感や、強い思い込みだけできてしまった恥ずかしさなどは気が滅入るし、いかに非科学的でムダな時間を過ごしてしまったかを実感させてくれる。</p>
+
+<p>無数の失敗例の上にリーンスタートアップは出来上がったので、自分なりの発想でそのまま進めてしまうよりも、一度リーンスタートアップ関連の本を読んで学び、この手法をチャレンジする価値は大いにあることを伝えたい。</p>
+
+<p>以下は、リーンスタートアップを実践する際に参考にしている本。</p>
+
+<p>今のところ日本にはリーンスタートアップのノウハウはほとんど流通していないので、本が頼りになる。</p>
+
+<h2>リーン顧客開発</h2>
+
+<p>最も顧客開発するやり方について詳細に解説している本。インタビューの仕方や心得など実践する際の重要なノウハウを享受してくれる。</p>
+
+<p><a href="http://hb.afl.rakuten.co.jp/hgc/1368ce62.540143f5.1368ce63.cb671705/?pc=http%3a%2f%2fitem.rakuten.co.jp%2fbook%2f13223977%2f%3fscid%3daf_link_img&amp;m=http%3a%2f%2fm.rakuten.co.jp%2fbook%2fi%2f17428736%2f" target="_blank"><img src ="http://hbb.afl.rakuten.co.jp/hgb/?pc=http%3a%2f%2fthumbnail.image.rakuten.co.jp%2f%400_mall%2fbook%2fcabinet%2f7218%2f9784873117218.jpg%3f_ex%3d400x400&amp;m=http%3a%2f%2fthumbnail.image.rakuten.co.jp%2f%400_mall%2fbook%2fcabinet%2f7218%2f9784873117218.jpg%3f_ex%3d80x80" border="0"></a></p>
+
+<ul>
+<li><a href="http://hb.afl.rakuten.co.jp/hgc/1368ce62.540143f5.1368ce63.cb671705/?pc=http%3a%2f%2fitem.rakuten.co.jp%2fbook%2f13223977%2f%3fscid%3daf_link_txt&amp;m=http%3a%2f%2fm.rakuten.co.jp%2fbook%2fi%2f17428736%2f" target="_blank">楽天ブックス</a></li>
+<li><a href="http://www.amazon.co.jp/gp/product/4873117216/ref=as_li_ss_tl?ie=UTF8&camp=247&creative=7399&creativeASIN=4873117216&linkCode=as2&tag=dsea-22">Amazon</a></li>
+</ul>
+
+
+<h2>RUNNING LEAN</h2>
+
+<p>リーンスタートアップを実践するための情報を端的にまとめている。端的過ぎる部分もあるので、リーン顧客開発で補完すると良い。</p>
+
+<p><a href="http://hb.afl.rakuten.co.jp/hgc/1368ce62.540143f5.1368ce63.cb671705/?pc=http%3a%2f%2fitem.rakuten.co.jp%2fbook%2f12147296%2f%3fscid%3daf_link_img&amp;m=http%3a%2f%2fm.rakuten.co.jp%2fbook%2fi%2f16245034%2f" target="_blank"><img src ="http://hbb.afl.rakuten.co.jp/hgb/?pc=http%3a%2f%2fthumbnail.image.rakuten.co.jp%2f%400_mall%2fbook%2fcabinet%2f5917%2f9784873115917.jpg%3f_ex%3d400x400&amp;m=http%3a%2f%2fthumbnail.image.rakuten.co.jp%2f%400_mall%2fbook%2fcabinet%2f5917%2f9784873115917.jpg%3f_ex%3d80x80" border="0"></a></p>
+
+<ul>
+<li><a href="http://hb.afl.rakuten.co.jp/hgc/1368ce62.540143f5.1368ce63.cb671705/?pc=http%3a%2f%2fitem.rakuten.co.jp%2fbook%2f12147296%2f%3fscid%3daf_link_txt&amp;m=http%3a%2f%2fm.rakuten.co.jp%2fbook%2fi%2f16245034%2f" target="_blank">楽天ブックス</a></li>
+<li><a href="http://www.amazon.co.jp/gp/product/4873115914/ref=as_li_ss_tl?ie=UTF8&camp=247&creative=7399&creativeASIN=4873115914&linkCode=as2&tag=dsea-22">Amazon</a></li>
+</ul>
+
+</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-09-03T16:00:00+09:00" pubdate data-updated="true">Sep 3<span>rd</span>, 2015</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/lean-startup/'>Lean Startup</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/blog/2015/09/03/lean-failures/#disqus_thread">Comments</a></span>
+	
+</div></article>
+
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+	
+	<a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+	
+	
+	<a class="addthis_button_tweet"></a>
+	
+	
+<!---	<a class="addthis_counter addthis_pill_style"></a> --->
+	</div>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid="></script>
+</div>
+
+
+
+<section id="comment">
+    <h2 class="title">Comments</h2>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+	<footer id="footer" class="inner"><br>
+<div class="row">
+	<div class="col-sm-2 col-sm-offset-3 text-center">
+		<img src="/images/hirofukami.jpg" alt="Hiro Fukami" class="img-circle">
+	</div>
+	<div class="col-sm-4 text-left text-muted">
+		<h3>Hiro Fukami</h3>
+		<a href="http://twitter.com/d_sea">@d_sea</a>. Business Starter and Engineer in Tokyo.
+		Founder and CEO of <a href="http://www.shakesoul.net">ShakeSoul, inc.</a>. See more about me <a href="/about">here</a>.
+	</div>
+</div>
+
+<br>
+
+Copyright &copy; 2015
+
+    HiroFukami
+
+<br>
+Powered by Octopress.
+</footer>
+	<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
+
+<script type="text/javascript">
+      var disqus_shortname = 'hirofukamisblog';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://hirofukami.com/blog/2015/09/03/lean-failures/';
+        var disqus_url = 'http://hirofukami.com/blog/2015/09/03/lean-failures/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-44359867-3']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+
+
+
+</body>
+</html>
