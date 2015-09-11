@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Tech | Hiro Fukami's Blog]]></title>
   <link href="http://hirofukami.com/blog/categories/tech/atom.xml" rel="self"/>
   <link href="http://hirofukami.com/"/>
-  <updated>2015-09-05T09:28:34+09:00</updated>
+  <updated>2015-09-12T01:56:31+09:00</updated>
   <id>http://hirofukami.com/</id>
   <author>
     <name><![CDATA[HiroFukami]]></name>
@@ -12,6 +12,173 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Retweet されたら自動ポストする Twitter bot 作った]]></title>
+    <link href="http://hirofukami.com/blog/2015/09/11/twitter-rt-bot/"/>
+    <updated>2015-09-11T16:00:00+09:00</updated>
+    <id>http://hirofukami.com/blog/2015/09/11/twitter-rt-bot</id>
+    <content type="html"><![CDATA[<h1><i class="fa fa-twitter-square fa-5x"></i></h1>
+
+
+<p>ちょっと前から <a href="https://twitter.com/jptechcrunch">TechCrunch Japan の Twitter</a> でキリ番RT bot 運用している様子を目にして、同じようなものを作りたくなった。</p>
+
+<p>Retweet(RT) は Retweet してくれた人の followers には届くが、自分の followers には届かない。
+だから、あえて followers にお知らせすることはちょっとした tweet のアピールになるかもと思う。</p>
+
+<p>で、ついでに Favorites(Fav) も付けたいところ。Favorites の方はもっとクローズドなフラグで、tweet した人しか見えないので同じように見せれるといいなと。</p>
+
+<p>土曜の半日で出来た。以下のような仕様</p>
+
+<ul>
+<li>大げさにせずとりあえず最新の Retweet されたものを検出</li>
+<li>DBを置くのは大げさなので、テキストファイルにID、RT数、Fav数を書き込む</li>
+<li>Ruby の gem twitter の力を借りる</li>
+<li>自分の場合、RT数は少なくキリ番まで行かないので、1RTでもついた時点で自動 tweet</li>
+</ul>
+
+
+<p>Ruby の <a href="https://github.com/sferik/twitter">gem twitter</a> があるのでこれを使った。</p>
+
+<p>手元の MacBook の cron で動かしています。</p>
+
+<p>環境</p>
+
+<ul>
+<li>MacBook 12inch Retina OS X Yosemite</li>
+<li>Ruby 2.0.0 (rvm)</li>
+</ul>
+
+
+<p>以下、ソース</p>
+
+<!-- more -->
+
+
+<p>``` ruby rt-fav-bot.rb
+require &lsquo;twitter&rsquo;</p>
+
+<h2>login</h2>
+
+<p>client = Twitter::REST::Client.new do |config|
+  config.consumer_key        = ENV[&lsquo;CONSUMER_KEY&rsquo;]
+  config.consumer_secret     = ENV[&lsquo;CONSUMER_SECRET&rsquo;]
+  config.access_token        = ENV[&lsquo;ACCESS_TOKEN&rsquo;]
+  config.access_token_secret = ENV[&lsquo;ACCESS_TOKEN_SECRET&rsquo;]
+end</p>
+
+<h1>last since_id from a file</h1>
+
+<p>file_id  = open(&ldquo;current.txt&rdquo;).readlines[0].to_i
+file_rt  = open(&ldquo;current.txt&rdquo;).readlines[1].to_i
+file_fav = open(&ldquo;current.txt&rdquo;).readlines[2].to_i</p>
+
+<h1>access to Twitter API</h1>
+
+<p>results = client.retweets_of_me(count: 1)
+current_id = results[0].id
+current_rt = results[0].retweet_count
+current_fav = results[0].favorite_count</p>
+
+<p>unless file_id == current_id &amp;&amp; file_rt == current_rt &amp;&amp; file_fav == current_fav
+  # update a file
+  f = File.open(&ldquo;current.txt&rdquo;, &ldquo;w&rdquo;)
+  f.puts current_id
+  f.puts current_rt
+  f.puts current_fav
+  f.close</p>
+
+<p>  results.each do |tweet|</p>
+
+<pre><code>rt = tweet.retweet_count
+fav = tweet.favorite_count
+text = tweet.text[0..40]
+if tweet.text.length &gt; 41
+  text += "..."
+end
+status_url = "https://twitter.com/" + tweet.user.screen_name + "/status/" + tweet.id.to_s
+
+## Fav only ##
+if rt == 0 &amp;&amp; fav &gt; 0
+  status = fav.to_s + "Fav " + "My tweet's response: " + text + " " + status_url
+  client.update(status, in_reply_to_status_id: tweet.id)
+  puts "Post Response:" + status
+## RT only ##
+elsif rt &gt; 0 &amp;&amp; fav == 0
+  status =  rt.to_s + "RT " + "My tweet's response: " + text + " " + status_url
+  client.update(status, in_reply_to_status_id: tweet.id)
+  puts "Post Response:" + status
+## both ##
+elsif rt &gt; 0 &amp;&amp; fav &gt; 0
+  status = rt.to_s + "RT, " + fav.to_s + "Fav " + "My tweet's response: " + text + " " + status_url
+  client.update(status, in_reply_to_status_id: tweet.id)
+  puts "Post Response:" + status
+end
+</code></pre>
+
+<p>  end
+end
+```</p>
+
+<h1>解説</h1>
+
+<p>Twitter REST APIs から <a href="https://dev.twitter.com/rest/reference/get/statuses/retweets_of_me">retweets_of_me</a> を使って、直近の1件を取得する。</p>
+
+<p>current.txt には TwitterID, RT数、Fav数を各行に書き込むようにする。</p>
+
+<p>TwitterID, RT数, Fav数をそれぞれ比較して、差分があった場合に Tweet する。</p>
+
+<p>Tweet には元の TwitterID の <code>in_reply_to_status_id</code> を付ける。こうすることでこの Tweet から元の Tweet が追える。</p>
+
+<h1>使い方</h1>
+
+<h2>事前準備</h2>
+
+<ol>
+<li><code>$ gem install twitter</code></li>
+<li>ソースと同じディレクトリに current.txt を置く : $ touch current.txt</li>
+<li>~/.bash_profile に Twitter consumer key, access token などを追記</li>
+</ol>
+
+
+<p>``` bash</p>
+
+<h2>Twitter API</h2>
+
+<p>export CONSUMER_KEY=&ldquo;SET YOUR KEY&rdquo;
+export CONSUMER_SECRET=&ldquo;SET YOUR SECRET&rdquo;
+export ACCESS_TOKEN=&ldquo;SET YOUR TOKEN&rdquo;
+export ACCESS_TOKEN_SECRET=&ldquo;SET YOUR SECRET&rdquo;
+```
+自分のものに置き換えてください。</p>
+
+<p>これらの情報は <a href="https://apps.twitter.com/">Twitter Application Management</a> でアプリ追加をした時に発行されます。</p>
+
+<h2>cron に仕込む</h2>
+
+<p><code>$ crontab -e</code></p>
+
+<p><code>0 * * * * cd $HOME/Development/Twitter-bot &amp;&amp; $HOME/.rvm/wrappers/ruby-2.0.0-p353/ruby rt-fav-bot.rb</code></p>
+
+<p>ruby は rvm を使っているためパスの指定が必要でした。毎時0分の時に実行されます。</p>
+
+<p>MacBook を閉じてしまっている時は実行されないので、実質実行時間は自分がPCに向かっている間だけということになります。</p>
+
+<h1>結果</h1>
+
+<p>ということで、以下の様な tweet が自動的にされましたと。</p>
+
+<blockquote class="twitter-tweet" lang="en"><p lang="ja" dir="ltr">19RT, 8Fav - Response to My Tweet: お金のない時の精神的ダメージって想像以上だった。だから、経済的貧困と精神的貧困は同... <a href="https://t.co/j6I9EEF8PJ">https://t.co/j6I9EEF8PJ</a></p>&mdash; Hiro Fukami (@d_sea) <a href="https://twitter.com/d_sea/status/616182566350028800">July 1, 2015</a></blockquote>
+
+
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
+<p>思ったよりも簡単に作れました。</p>
+
+<p>Twitter の仕組みは単純で、 API も欲しいものが全部揃っているわけではないですが、わかりやすく楽しく作れました。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Docker で s3fs を使う方法]]></title>
@@ -68,7 +235,7 @@ s3fs                  256T     0  256T   0% /home/shakesoul/Dropbox/SmartWP/smar
     <link href="http://hirofukami.com/blog/2015/02/09/mac-docker-sharedfolder/"/>
     <updated>2015-02-09T19:00:00+09:00</updated>
     <id>http://hirofukami.com/blog/2015/02/09/mac-docker-sharedfolder</id>
-    <content type="html"><![CDATA[<p>{% img /images/2015/02/20150209-docker.png &lsquo;docker&rsquo; %}</p>
+    <content type="html"><![CDATA[<p><img src="/images/2015/02/20150209-docker.png" title="&lsquo;docker&rsquo;" ></p>
 
 <p>Mac で <a href="https://www.docker.com/">Docker</a> を動かそうとすると <a href="http://boot2docker.io/">boot2docker</a> は必須。</p>
 
@@ -140,7 +307,7 @@ $ VBoxManage sharedfolder add boot2docker-vm --name Users --hostpath $HOME
 
 <p>VirtualBox 上の設定画面は以下のようになった。</p>
 
-<p>{% img /images/2015/02/20150209-ScreenShot.png &lsquo;VirualBox screen shot %}</p>
+<p><img src="/images/2015/02/20150209-ScreenShot.png" title="&lsquo;VirualBox screen shot" ></p>
 
 <p>古い情報だと Share Name を <code>home</code> にすると書いてあるブログもあったが、やってみたが認識しなかった。</p>
 
@@ -384,7 +551,7 @@ drwxr-xr-x    1 docker   staff         3332 Jan 27 23:34 Users/</p>
     <link href="http://hirofukami.com/2014/01/31/chef-solo-knife-command-memo/"/>
     <updated>2014-01-31T19:53:16+09:00</updated>
     <id>http://hirofukami.com/2014/01/31/chef-solo-knife-command-memo</id>
-    <content type="html"><![CDATA[<p>{% img <a href="http://upload.wikimedia.org/wikipedia/en/5/56/Chef_Software_Inc._company_logo.png">http://upload.wikimedia.org/wikipedia/en/5/56/Chef_Software_Inc._company_logo.png</a> 380 %}</p>
+    <content type="html"><![CDATA[<p><img class="<a" src="href="http://upload.wikimedia.org/wikipedia/en/5/56/Chef_Software_Inc._company_logo.png">http://upload.wikimedia.org/wikipedia/en/5/56/Chef_Software_Inc._company_logo.png</a>" width="380"></p>
 
 <p>どうも Chef コマンドを覚えられず、入門 Chef solo を毎回読みなおしてしまっているので、コマンド覚書を作っておく。</p>
 
@@ -454,79 +621,6 @@ drwxr-xr-x    1 docker   staff         3332 Jan 27 23:34 Users/</p>
 
 
 <p>とする。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[スマートWP構築のChefレシピを公開します]]></title>
-    <link href="http://hirofukami.com/2014/01/09/smartwp-setup-chef-recipe/"/>
-    <updated>2014-01-09T20:52:32+09:00</updated>
-    <id>http://hirofukami.com/2014/01/09/smartwp-setup-chef-recipe</id>
-    <content type="html"><![CDATA[<p>去年夏に Chef に出会い、<a href="http://www.shakesoul.net/smartwp">スマートWP</a>のセットアップ方法を変えました。<br/>
-<img src="http://docs.opscode.com/chef/_static/opscode_chef_html_logo.png?w=830" alt="" data-recalc-dims="1" /><br/>
-今までは「AWS EC2 を手動でセットアップして AMI 保存」を繰り返すことでサーバをバージョンアップしてきた方法から、まっさらな AWS AMI を Chef で一気にセットアップするように切り替えました。</p>
-
-<p>何が良いかというと、</p>
-
-<ul>
-<li>最新のバージョンが常に保たれる
-
-<ul>
-<li>AWS AMI もバージョンアップされるし、各アプリケーションも常にバージョンアップされるので</li>
-<li>AMIを更新し続けると古いバージョンのままになってどこかでバージョンアップの作業が必要になる</li>
-</ul>
-</li>
-<li>すべての作業内容がレシピに残る
-
-<ul>
-<li>どうしても手動だとやったことの記録漏れが出がち</li>
-</ul>
-</li>
-<li>手動よりも圧倒的に早い</li>
-</ul>
-
-
-<p>というところかと思う。</p>
-
-<p>そんな Cehf で作った<a href="http://www.shakesoul.net/smartwp">スマートWP</a>のレシピを公開します。</p>
-
-<p>このレシピで作られたスマートWPのサーバ環境は私の個人ブログ <a href="http://hirofukami.com">hirofukami.com</a> と会社のサイト <a href="http://www.shakesoul.net">ShakeSoul inc.</a> があって、負荷状況に応じて自動的にサーバを増減させるオートスケーリングが動くようになっています。</p>
-
-<p>ご興味のある方は <a href="http://www.shakesoul.net/smartwp">スマートWPのサービス紹介ページ</a>を見てみてください。</p>
-
-<center>
-  <br /> <a href="http://www.shakesoul.net/smartwp"><img src="http://www.shakesoul.net/wp-content/uploads/2013/05/SmartWP-Scale-h300.png?resize=327%2C180" class="alignnone" data-recalc-dims="1" /></a><br />
-</center>
-
-
-
-
-<!--more-->
-
-
-<p>レシピは2つ使っていて、他の環境とも共用しているベースとなるセットアップの後にスケーラブルな構成のためのレシピを適用しています。</p>
-
-<p>では、以下。私の <a href="https://gist.github.com/d-sea">Github Gist</a> からの貼付けです。</p>
-
-<p>まずはベースの設定。recipe[swp_setup]です。</p>
-
-<p>{% gist 8328203 swp_setup_default.rb %}</p>
-
-<p>続いて、recipe[swap_scale-org]です。</p>
-
-<p>{% gist 8328145 swp_scale-org_default.rb %}</p>
-
-<p>これを nodes/[hostname].json で、</p>
-
-<p>{% gist 8328241 node.json %}</p>
-
-<p>のように書いて適用させています。</p>
-
-<p>こんな感じで、Webサーバとしては nginx + php-fpm、それに Dropbox linux と s3fs を使っているのがお分かりかと思います。 今後、ここで読み込んでいるテンプレートの nginx のコンフィグとかなんかも公開しようかなと思っています。</p>
-
-<p>色々やっている方とディスカッションしてみたいので、違うやり方しているよとかこっちのほうが良いよみたいなのがあればフィードバックください〜</p>
-
-<p>あと、Chef 学びたいとかスケーラブルなサーバ環境つくりたいとかもあれば相談いただければです。</p>
 ]]></content>
   </entry>
   

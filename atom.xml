@@ -4,7 +4,7 @@
   <title><![CDATA[Hiro Fukami's Blog]]></title>
   <link href="http://hirofukami.com/atom.xml" rel="self"/>
   <link href="http://hirofukami.com/"/>
-  <updated>2015-09-05T09:24:46+09:00</updated>
+  <updated>2015-09-12T01:56:31+09:00</updated>
   <id>http://hirofukami.com/</id>
   <author>
     <name><![CDATA[HiroFukami]]></name>
@@ -12,6 +12,229 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Retweet されたら自動ポストする Twitter bot 作った]]></title>
+    <link href="http://hirofukami.com/blog/2015/09/11/twitter-rt-bot/"/>
+    <updated>2015-09-11T16:00:00+09:00</updated>
+    <id>http://hirofukami.com/blog/2015/09/11/twitter-rt-bot</id>
+    <content type="html"><![CDATA[<h1><i class="fa fa-twitter-square fa-5x"></i></h1>
+
+
+<p>ちょっと前から <a href="https://twitter.com/jptechcrunch">TechCrunch Japan の Twitter</a> でキリ番RT bot 運用している様子を目にして、同じようなものを作りたくなった。</p>
+
+<p>Retweet(RT) は Retweet してくれた人の followers には届くが、自分の followers には届かない。
+だから、あえて followers にお知らせすることはちょっとした tweet のアピールになるかもと思う。</p>
+
+<p>で、ついでに Favorites(Fav) も付けたいところ。Favorites の方はもっとクローズドなフラグで、tweet した人しか見えないので同じように見せれるといいなと。</p>
+
+<p>土曜の半日で出来た。以下のような仕様</p>
+
+<ul>
+<li>大げさにせずとりあえず最新の Retweet されたものを検出</li>
+<li>DBを置くのは大げさなので、テキストファイルにID、RT数、Fav数を書き込む</li>
+<li>Ruby の gem twitter の力を借りる</li>
+<li>自分の場合、RT数は少なくキリ番まで行かないので、1RTでもついた時点で自動 tweet</li>
+</ul>
+
+
+<p>Ruby の <a href="https://github.com/sferik/twitter">gem twitter</a> があるのでこれを使った。</p>
+
+<p>手元の MacBook の cron で動かしています。</p>
+
+<p>環境</p>
+
+<ul>
+<li>MacBook 12inch Retina OS X Yosemite</li>
+<li>Ruby 2.0.0 (rvm)</li>
+</ul>
+
+
+<p>以下、ソース</p>
+
+<!-- more -->
+
+
+
+
+<figure class='code'><figcaption><span>rt-fav-bot.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;twitter&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">## login ##</span>
+</span><span class='line'><span class="n">client</span> <span class="o">=</span> <span class="ss">Twitter</span><span class="p">:</span><span class="ss">:REST</span><span class="o">::</span><span class="no">Client</span><span class="o">.</span><span class="n">new</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
+</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">consumer_key</span>        <span class="o">=</span> <span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;CONSUMER_KEY&#39;</span><span class="o">]</span>
+</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">consumer_secret</span>     <span class="o">=</span> <span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;CONSUMER_SECRET&#39;</span><span class="o">]</span>
+</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">access_token</span>        <span class="o">=</span> <span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;ACCESS_TOKEN&#39;</span><span class="o">]</span>
+</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">access_token_secret</span> <span class="o">=</span> <span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;ACCESS_TOKEN_SECRET&#39;</span><span class="o">]</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># last since_id from a file</span>
+</span><span class='line'><span class="n">file_id</span>  <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;current.txt&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="o">[</span><span class="mi">0</span><span class="o">].</span><span class="n">to_i</span>
+</span><span class='line'><span class="n">file_rt</span>  <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;current.txt&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="o">[</span><span class="mi">1</span><span class="o">].</span><span class="n">to_i</span>
+</span><span class='line'><span class="n">file_fav</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;current.txt&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="o">[</span><span class="mi">2</span><span class="o">].</span><span class="n">to_i</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># access to Twitter API</span>
+</span><span class='line'><span class="n">results</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">retweets_of_me</span><span class="p">(</span><span class="ss">count</span><span class="p">:</span> <span class="mi">1</span><span class="p">)</span>
+</span><span class='line'><span class="n">current_id</span> <span class="o">=</span> <span class="n">results</span><span class="o">[</span><span class="mi">0</span><span class="o">].</span><span class="n">id</span>
+</span><span class='line'><span class="n">current_rt</span> <span class="o">=</span> <span class="n">results</span><span class="o">[</span><span class="mi">0</span><span class="o">].</span><span class="n">retweet_count</span>
+</span><span class='line'><span class="n">current_fav</span> <span class="o">=</span> <span class="n">results</span><span class="o">[</span><span class="mi">0</span><span class="o">].</span><span class="n">favorite_count</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">unless</span> <span class="n">file_id</span> <span class="o">==</span> <span class="n">current_id</span> <span class="o">&amp;&amp;</span> <span class="n">file_rt</span> <span class="o">==</span> <span class="n">current_rt</span> <span class="o">&amp;&amp;</span> <span class="n">file_fav</span> <span class="o">==</span> <span class="n">current_fav</span>
+</span><span class='line'>  <span class="c1"># update a file</span>
+</span><span class='line'>  <span class="n">f</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;current.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">f</span><span class="o">.</span><span class="n">puts</span> <span class="n">current_id</span>
+</span><span class='line'>  <span class="n">f</span><span class="o">.</span><span class="n">puts</span> <span class="n">current_rt</span>
+</span><span class='line'>  <span class="n">f</span><span class="o">.</span><span class="n">puts</span> <span class="n">current_fav</span>
+</span><span class='line'>  <span class="n">f</span><span class="o">.</span><span class="n">close</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">results</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">tweet</span><span class="o">|</span>
+</span><span class='line'>    <span class="n">rt</span> <span class="o">=</span> <span class="n">tweet</span><span class="o">.</span><span class="n">retweet_count</span>
+</span><span class='line'>    <span class="n">fav</span> <span class="o">=</span> <span class="n">tweet</span><span class="o">.</span><span class="n">favorite_count</span>
+</span><span class='line'>    <span class="n">text</span> <span class="o">=</span> <span class="n">tweet</span><span class="o">.</span><span class="n">text</span><span class="o">[</span><span class="mi">0</span><span class="o">.</span><span class="n">.</span><span class="mi">40</span><span class="o">]</span>
+</span><span class='line'>    <span class="k">if</span> <span class="n">tweet</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">length</span> <span class="o">&gt;</span> <span class="mi">41</span>
+</span><span class='line'>      <span class="n">text</span> <span class="o">+=</span> <span class="s2">&quot;...&quot;</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>    <span class="n">status_url</span> <span class="o">=</span> <span class="s2">&quot;https://twitter.com/&quot;</span> <span class="o">+</span> <span class="n">tweet</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">screen_name</span> <span class="o">+</span> <span class="s2">&quot;/status/&quot;</span> <span class="o">+</span> <span class="n">tweet</span><span class="o">.</span><span class="n">id</span><span class="o">.</span><span class="n">to_s</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1">## Fav only ##</span>
+</span><span class='line'>    <span class="k">if</span> <span class="n">rt</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">fav</span> <span class="o">&gt;</span> <span class="mi">0</span>
+</span><span class='line'>      <span class="n">status</span> <span class="o">=</span> <span class="n">fav</span><span class="o">.</span><span class="n">to_s</span> <span class="o">+</span> <span class="s2">&quot;Fav &quot;</span> <span class="o">+</span> <span class="s2">&quot;My tweet&#39;s response: &quot;</span> <span class="o">+</span> <span class="n">text</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="n">status_url</span>
+</span><span class='line'>      <span class="n">client</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">status</span><span class="p">,</span> <span class="n">in_reply_to_status_id</span><span class="p">:</span> <span class="n">tweet</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+</span><span class='line'>      <span class="nb">puts</span> <span class="s2">&quot;Post Response:&quot;</span> <span class="o">+</span> <span class="n">status</span>
+</span><span class='line'>    <span class="c1">## RT only ##</span>
+</span><span class='line'>    <span class="k">elsif</span> <span class="n">rt</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">fav</span> <span class="o">==</span> <span class="mi">0</span>
+</span><span class='line'>      <span class="n">status</span> <span class="o">=</span>  <span class="n">rt</span><span class="o">.</span><span class="n">to_s</span> <span class="o">+</span> <span class="s2">&quot;RT &quot;</span> <span class="o">+</span> <span class="s2">&quot;My tweet&#39;s response: &quot;</span> <span class="o">+</span> <span class="n">text</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="n">status_url</span>
+</span><span class='line'>      <span class="n">client</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">status</span><span class="p">,</span> <span class="n">in_reply_to_status_id</span><span class="p">:</span> <span class="n">tweet</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+</span><span class='line'>      <span class="nb">puts</span> <span class="s2">&quot;Post Response:&quot;</span> <span class="o">+</span> <span class="n">status</span>
+</span><span class='line'>    <span class="c1">## both ##</span>
+</span><span class='line'>    <span class="k">elsif</span> <span class="n">rt</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">fav</span> <span class="o">&gt;</span> <span class="mi">0</span>
+</span><span class='line'>      <span class="n">status</span> <span class="o">=</span> <span class="n">rt</span><span class="o">.</span><span class="n">to_s</span> <span class="o">+</span> <span class="s2">&quot;RT, &quot;</span> <span class="o">+</span> <span class="n">fav</span><span class="o">.</span><span class="n">to_s</span> <span class="o">+</span> <span class="s2">&quot;Fav &quot;</span> <span class="o">+</span> <span class="s2">&quot;My tweet&#39;s response: &quot;</span> <span class="o">+</span> <span class="n">text</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="n">status_url</span>
+</span><span class='line'>      <span class="n">client</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">status</span><span class="p">,</span> <span class="n">in_reply_to_status_id</span><span class="p">:</span> <span class="n">tweet</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+</span><span class='line'>      <span class="nb">puts</span> <span class="s2">&quot;Post Response:&quot;</span> <span class="o">+</span> <span class="n">status</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h1>解説</h1>
+
+<p>Twitter REST APIs から <a href="https://dev.twitter.com/rest/reference/get/statuses/retweets_of_me">retweets_of_me</a> を使って、直近の1件を取得する。</p>
+
+<p>current.txt には TwitterID, RT数、Fav数を各行に書き込むようにする。</p>
+
+<p>TwitterID, RT数, Fav数をそれぞれ比較して、差分があった場合に Tweet する。</p>
+
+<p>Tweet には元の TwitterID の <code>in_reply_to_status_id</code> を付ける。こうすることでこの Tweet から元の Tweet が追える。</p>
+
+<h1>使い方</h1>
+
+<h2>事前準備</h2>
+
+<ol>
+<li><code>$ gem install twitter</code></li>
+<li>ソースと同じディレクトリに current.txt を置く : $ touch current.txt</li>
+<li>~/.bash_profile に Twitter consumer key, access token などを追記</li>
+</ol>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c">## Twitter API</span>
+</span><span class='line'><span class="nb">export </span><span class="nv">CONSUMER_KEY</span><span class="o">=</span><span class="s2">&quot;SET YOUR KEY&quot;</span>
+</span><span class='line'><span class="nb">export </span><span class="nv">CONSUMER_SECRET</span><span class="o">=</span><span class="s2">&quot;SET YOUR SECRET&quot;</span>
+</span><span class='line'><span class="nb">export </span><span class="nv">ACCESS_TOKEN</span><span class="o">=</span><span class="s2">&quot;SET YOUR TOKEN&quot;</span>
+</span><span class='line'><span class="nb">export </span><span class="nv">ACCESS_TOKEN_SECRET</span><span class="o">=</span><span class="s2">&quot;SET YOUR SECRET&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>自分のものに置き換えてください。</p>
+
+<p>これらの情報は <a href="https://apps.twitter.com/">Twitter Application Management</a> でアプリ追加をした時に発行されます。</p>
+
+<h2>cron に仕込む</h2>
+
+<p><code>$ crontab -e</code></p>
+
+<p><code>0 * * * * cd $HOME/Development/Twitter-bot &amp;&amp; $HOME/.rvm/wrappers/ruby-2.0.0-p353/ruby rt-fav-bot.rb</code></p>
+
+<p>ruby は rvm を使っているためパスの指定が必要でした。毎時0分の時に実行されます。</p>
+
+<p>MacBook を閉じてしまっている時は実行されないので、実質実行時間は自分がPCに向かっている間だけということになります。</p>
+
+<h1>結果</h1>
+
+<p>ということで、以下の様な tweet が自動的にされましたと。</p>
+
+<blockquote class="twitter-tweet" lang="en"><p lang="ja" dir="ltr">19RT, 8Fav - Response to My Tweet: お金のない時の精神的ダメージって想像以上だった。だから、経済的貧困と精神的貧困は同&#8230; <a href="https://t.co/j6I9EEF8PJ">https://t.co/j6I9EEF8PJ</a></p>&mdash; Hiro Fukami (@d_sea) <a href="https://twitter.com/d_sea/status/616182566350028800">July 1, 2015</a></blockquote>
+
+
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
+<p>思ったよりも簡単に作れました。</p>
+
+<p>Twitter の仕組みは単純で、 API も欲しいものが全部揃っているわけではないですが、わかりやすく楽しく作れました。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[LEAN - 学ばずに始めると起きるありがちな失敗と対策]]></title>
@@ -1866,203 +2089,6 @@ Mr.Children の桜井和寿氏と GAKU−MC によるユニット <a href="http:
 <p>SPINは有名な営業メソッドで大手外資系はこぞって採用しているにもかかわらず、日本ではこれらの手法を活用した営業に出会うことは少ない印象。もっと営業は成果を得られるためのアプローチを探求する必要があると思う。</p>
 
 <p>商品説明や営業活動に指針がなく、我流でなんとなく行っている方にとてもおすすめな本。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[LEAN - OpsDeliver課題・ソリューションインタビュー]]></title>
-    <link href="http://hirofukami.com/blog/2015/04/13/opsdeliver-problem-solution-interview/"/>
-    <updated>2015-04-13T18:20:00+09:00</updated>
-    <id>http://hirofukami.com/blog/2015/04/13/opsdeliver-problem-solution-interview</id>
-    <content type="html"><![CDATA[<p>OpsDeliver の想定している課題とソリューションのインタビュー実施した結果。</p>
-
-<p>課題インタビューとソリューションインタビューを一度に行っている。</p>
-
-<h1>実施環境</h1>
-
-<p>実施時間 : 1時間</p>
-
-<p>ハングアウトにてビデオチャット</p>
-
-<h1>全体の流れ</h1>
-
-<ol>
-<li>自己紹介</li>
-<li>現状把握</li>
-<li>課題把握</li>
-<li>現状の解決策</li>
-<li>新たなソリューションの提示</li>
-<li>価格確認</li>
-<li>その他に聞くべきこと</li>
-<li>紹介依頼</li>
-<li>質問受ける</li>
-</ol>
-
-
-<!-- more -->
-
-
-<h2>自己紹介</h2>
-
-<p>自分が何者で何をしているかを提示。確保したい時間枠を予め伝える。</p>
-
-<blockquote><p>クラウドやサーバ周辺の受託・サービス開発してきました。
-作っているサービスの想定があるのですが、想定があっているか確認するために質問させてください。
-1時間ほどお時間大丈夫でしょうか、急ぐことも可能です。</p></blockquote>
-
-<h2>現状把握</h2>
-
-<p>普段の様子を教えてもらう。</p>
-
-<blockquote><p>お仕事内容を教えて下さい :</p>
-
-<p>顧客は誰ですか？ :</p>
-
-<p>何を売り物にしていますか？ :</p>
-
-<p>月どれくらいの案件数ですか？ :</p>
-
-<p>誰かと一緒にやることはありますか？ :</p>
-
-<p>開発言語やフレームワークを教えて下さい？ :</p>
-
-<p>どんなサーバサービスを使っていますか？ :</p></blockquote>
-
-<h2>課題把握</h2>
-
-<p>こちらが予め想定した課題を提示してマッチするものがあるかどうか。</p>
-
-<blockquote><p>サービスの解決する課題はこのように考えているのですが、xxxさんが課題に当てはまるものはどれでしょうか？</p></blockquote>
-
-<p>ハングアウトの画面共有に切り替えて見せる。一つ一つ読み上げる。</p>
-
-<p><img src="http://hirofukami.com/images/2015/04/20150413-problem-sheet.png"></p>
-
-<blockquote><p>当てはまるものの優先度を教えて下さい。</p></blockquote>
-
-<p>当てはまらなかったものは隠す。</p>
-
-<p>当てはまるものがなければ何か教えてもらう。こちらが気づいていない大きな課題があるかも知れない。</p>
-
-<p>あまり困っていない場合、現状どんな解決方法をとっているか聞く。想定できてないソリューションがあるかも知れない。</p>
-
-<blockquote><p>具体的エピソードがあれば教えて下さい</p></blockquote>
-
-<p>失敗談や苦労話など具体的なシーンが見えると良い。</p>
-
-<h3>現在の解決策</h3>
-
-<blockquote><p>現在、この課題に対して何か解決策は持っていますか？</p></blockquote>
-
-<p>当てはまった課題に対して解決策を持っている場合はそれに満足しているかどうかを確認する。</p>
-
-<h3>新たなソリューションの提示</h3>
-
-<blockquote><p>こういったソリューションではいかがでしょう？</p></blockquote>
-
-<p><img src="http://hirofukami.com/images/2015/04/20150413-solution-sheet.png"></p>
-
-<p>当てはまった課題に対してこちらの想定しているソリューションを提示し説明する。
-反応をもらう。</p>
-
-<blockquote><p>使ってみたいですか？
-使いたい度合い、あったらいいな or 是非使いたい どちらですか？</p></blockquote>
-
-<p>飛びつくような反応がなければ、どんな点が良くなればよいか質問する。</p>
-
-<h1>価格確認</h1>
-
-<blockquote><p>いくらなら払えますか？</p></blockquote>
-
-<p>スポットが良いか月額が良いか。スポットだったらいくらか聞く。</p>
-
-<h1>その他に聞くべきこと</h1>
-
-<blockquote><p>欲しいアプリは何ですか？</p></blockquote>
-
-<p>具体的に利用してもらうために必要な事項を聞く。</p>
-
-<blockquote><p>その他にこちらが聞いておくべきことはありますか？</p></blockquote>
-
-<p>相手が自由に語れる時間にする。聞き取れていない部分のエピソードが分かるかもしれない。</p>
-
-<h1>紹介依頼</h1>
-
-<blockquote><p>最後にxxxさんと同じような課題を持っていらっしゃる同じような方を3名あげられますか？
-その方をご紹介いただくことは可能ですか？</p></blockquote>
-
-<p>あたってもらってOKだったらFacebookメッセージでつないでもらう流れにする。</p>
-
-<h1>質問受ける</h1>
-
-<blockquote><p>こちらへの質問はありますか？</p></blockquote>
-
-<p>質問の想定外の要素が探れる。</p>
-
-<h1>インタビュー後</h1>
-
-<h2>スコアをつける</h2>
-
-<p>インタビュー終了後、すぐにスコアにまとめる。</p>
-
-<p>採点要素と満点</p>
-
-<p>興奮、緊急で必要、ビジネスへの影響の3つの要素は初期の見込みユーザとしては重要項目なので配点を倍にしている。</p>
-
-<ul>
-<li>興奮 6</li>
-<li>緊急で必要 6</li>
-<li>ビジネスへの影響 6</li>
-<li>自家製の代替 3</li>
-<li>120日(120日以内に購入判断ができるか) 3</li>
-<li>ディシジョンメーカー(決済判断権を持っているか) 3</li>
-</ul>
-
-
-<p>27点満点</p>
-
-<p>わかりやすくするために100点満点に換算。</p>
-
-<p><code>スコア = 合計点数 x 100 / 27</code></p>
-
-<h2>スコア結果</h2>
-
-<p>合計6名にインタビュー実施した。</p>
-
-<ul>
-<li>フリーランス受託Web開発エンジニア・数名程度の受託Web開発会社 3名 平均 87.7点</li>
-<li>エンジニアが潤沢な受託Web開発会社 41点</li>
-<li>インフラ受託会社 40点</li>
-<li>アプリ開発エンジニア 29.6点</li>
-</ul>
-
-
-<h1>結果</h1>
-
-<h2>スコアより</h2>
-
-<p>小さいサイズのWeb開発エンジニアが得点が高かった。逆にエンジニアが潤沢な会社は必要性が低かった。</p>
-
-<p>インフラレイヤの会社はすでにそれなりに満足するサーバセットアップ方法を用意していた。</p>
-
-<p>仕事の形態や体制によってスコアが同じようになり、数値が明確に別れた。特定のセグメントをターゲットにできることがわかった。</p>
-
-<h2>課題とソリューション</h2>
-
-<p>スコアの数値が高い人は、課題に関して現状有用な解決策がなくソリューションに対して是非使いたい反応を示した。</p>
-
-<p>課題だと思う背景には、過去に非常に苦労したエピソードがあり、なかなか自力では解決できないことをはっきり認識している。</p>
-
-<p>価格は現状費やしている工数単価を基準に算出し、想定以上の金額が示された。</p>
-
-<h1>結論</h1>
-
-<p>ターゲットとしては、
-<strong>小さいサイズの個人Web開発エンジニア、もしくはインフラ部分の知識が乏しいWeb開発会社</strong> と言える。</p>
-
-<p>想定した課題を持ち、想定したソリューションを是非使ってみたいと反応したターゲット層を見つけたので、課題・ソリューションインタビューの終了条件を満たしたと言える。</p>
-
-<p>次のフェーズであるプロトタイプインタビューに進む。</p>
 ]]></content>
   </entry>
   

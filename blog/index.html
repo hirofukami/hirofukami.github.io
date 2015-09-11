@@ -9,7 +9,8 @@
 
 <meta name="author" content="HiroFukami"> 
 
-<meta name="description" content="とあるサービスづくりをされている方の話を聞いた。サービスづくりにチャレンジすることは素敵だし応援したいことだ。 取り組み方が自分の最初のスタートアップ fluxflex の失敗したやり方と見事に同じだった。 サービスづくりでの失敗の経験がないと、そういう発想になるな。とも思った。本を読んでみても &hellip;"> <meta name="keywords" content="">
+<meta name="description" content="ちょっと前から TechCrunch Japan の Twitter でキリ番RT bot 運用している様子を目にして、同じようなものを作りたくなった。 Retweet(RT) は Retweet してくれた人の followers には届くが、自分の followers には届かない。
+だから &hellip;"> <meta name="keywords" content="">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -18,6 +19,7 @@
 	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
 	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
 	<link href="/favicon.png" rel="shortcut icon">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
@@ -62,7 +64,8 @@ $(document).ready(
     <meta property="twitter:site" content="d_sea">
     <meta property="twitter:url" content="http://hirofukami.com">
     <meta property="twitter:title" content="Hiro Fukami's Blog">
-    <meta property="twitter:description" content="とあるサービスづくりをされている方の話を聞いた。サービスづくりにチャレンジすることは素敵だし応援したいことだ。 取り組み方が自分の最初のスタートアップ fluxflex の失敗したやり方と見事に同じだった。 サービスづくりでの失敗の経験がないと、そういう発想になるな。とも思った。本を読んでみても、テック系のキラキラしたスタートアップたちの話題を眺めても分からないことだと思う。 &hellip;">
+    <meta property="twitter:description" content="ちょっと前から TechCrunch Japan の Twitter でキリ番RT bot 運用している様子を目にして、同じようなものを作りたくなった。 Retweet(RT) は Retweet してくれた人の followers には届くが、自分の followers には届かない。
+だから、あえて followers にお知らせすることはちょっとした tweet &hellip;">
     <meta property="twitter:creator" content="d_sea" />
 
 
@@ -122,6 +125,83 @@ $(document).ready(
 </header>
 
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2015/09/11/twitter-rt-bot/">
+		
+			Retweet されたら自動ポストする Twitter Bot 作った</a>
+	</h2>
+	<div class="entry-content">
+		<h1><i class="fa fa-twitter-square fa-5x"></i></h1>
+
+
+<p>ちょっと前から <a href="https://twitter.com/jptechcrunch">TechCrunch Japan の Twitter</a> でキリ番RT bot 運用している様子を目にして、同じようなものを作りたくなった。</p>
+
+<p>Retweet(RT) は Retweet してくれた人の followers には届くが、自分の followers には届かない。
+だから、あえて followers にお知らせすることはちょっとした tweet のアピールになるかもと思う。</p>
+
+<p>で、ついでに Favorites(Fav) も付けたいところ。Favorites の方はもっとクローズドなフラグで、tweet した人しか見えないので同じように見せれるといいなと。</p>
+
+<p>土曜の半日で出来た。以下のような仕様</p>
+
+<ul>
+<li>大げさにせずとりあえず最新の Retweet されたものを検出</li>
+<li>DBを置くのは大げさなので、テキストファイルにID、RT数、Fav数を書き込む</li>
+<li>Ruby の gem twitter の力を借りる</li>
+<li>自分の場合、RT数は少なくキリ番まで行かないので、1RTでもついた時点で自動 tweet</li>
+</ul>
+
+
+<p>Ruby の <a href="https://github.com/sferik/twitter">gem twitter</a> があるのでこれを使った。</p>
+
+<p>手元の MacBook の cron で動かしています。</p>
+
+<p>環境</p>
+
+<ul>
+<li>MacBook 12inch Retina OS X Yosemite</li>
+<li>Ruby 2.0.0 (rvm)</li>
+</ul>
+
+
+<p>以下、ソース</p>
+
+
+		
+		<a href="/blog/2015/09/11/twitter-rt-bot/" class="more-link">Read on &rarr;</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-09-11T16:00:00+09:00" pubdate data-updated="true">Sep 11<span>th</span>, 2015</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/tech/'>Tech</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/blog/2015/09/11/twitter-rt-bot//blog/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
 
 
     <article class="post">
@@ -768,58 +848,6 @@ $(document).ready(
 
 	
 		<span class="comments"><a href="/blog/2015/07/26/bali-travel-1st//blog/index.html#disqus_thread">Comments</a></span>
-	
-</div></article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2015/07/06/wwc2015/">
-		
-			女子ワールドカップ決勝 なでしこジャパンxアメリカ</a>
-	</h2>
-	<div class="entry-content">
-		<p><img src="/images/2015/07/20150706-wwc2015.jpg"></p>
-
-<p>まずは、なでしこ準優勝おめでとう！</p>
-
-<p>4年前のワールドカップで優勝、オリンピックで銀メダル、そして今回準優勝。結果を積み上げた実績はほんとうに素晴らしいと思う。
-選手・スタッフの努力もあるが、佐々木監督のマネージメントには脱帽。本当に素晴らしい。</p>
-
-<p>テレビ観戦だけど、観ながら思ったことをまとめておく。</p>
-
-
-		
-		<a href="/blog/2015/07/06/wwc2015/" class="more-link">Read on &rarr;</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2015-07-06T18:30:00+09:00" pubdate data-updated="true">Jul 6<span>th</span>, 2015</time></div>
-	
-
-<div class="tags">
-
-	<a class='category' href='/blog/categories/sports/'>Sports</a>
-
-</div>
-
-
-	
-		<span class="comments"><a href="/blog/2015/07/06/wwc2015//blog/index.html#disqus_thread">Comments</a></span>
 	
 </div></article>
 
