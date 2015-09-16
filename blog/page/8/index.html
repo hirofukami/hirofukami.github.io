@@ -9,7 +9,7 @@
 
 <meta name="author" content="HiroFukami"> 
 
-<meta name="description" content="やっぱり世の中にないサービスを作るには創造性が必要だと思っていて、それをどうやって意識的に身につけられるか考えた。 自分の育ってきた環境では学校教育は知識の詰め込みだったし、おとなしい子が良しとされる時代だったので、創造性を発揮する術や考え方が不足している気がしていて、 &hellip;"> <meta name="keywords" content="">
+<meta name="description" content="きっかけ &ndash; 静的HTMLはえー 今まで スマートWP や Smart Designing などをリリースしてきて、Webホスティングクラウドを運用してみて思ったことは、静的HTMLファイルのWebサーバのパフォーマンスは圧倒的に低負荷にできるなぁというところだった。 Nginx &hellip;"> <meta name="keywords" content="">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -63,7 +63,7 @@ $(document).ready(
     <meta property="twitter:site" content="d_sea">
     <meta property="twitter:url" content="http://hirofukami.com">
     <meta property="twitter:title" content="Hiro Fukami's Blog">
-    <meta property="twitter:description" content="やっぱり世の中にないサービスを作るには創造性が必要だと思っていて、それをどうやって意識的に身につけられるか考えた。 自分の育ってきた環境では学校教育は知識の詰め込みだったし、おとなしい子が良しとされる時代だったので、創造性を発揮する術や考え方が不足している気がしていて、意識的に学ぼうと思って買った。 著者の茂木健一郎氏の既存の知識詰め込み教育への批判的主張も共感するとこがあって、 &hellip;">
+    <meta property="twitter:description" content="きっかけ &ndash; 静的HTMLはえー 今まで スマートWP や Smart Designing などをリリースしてきて、Webホスティングクラウドを運用してみて思ったことは、静的HTMLファイルのWebサーバのパフォーマンスは圧倒的に低負荷にできるなぁというところだった。 Nginx + 静的HTML on AWS EC2 micro でパフォーマンステストするとサーバのCPUは0.2 &hellip;">
     <meta property="twitter:creator" content="d_sea" />
 
 
@@ -123,6 +123,72 @@ $(document).ready(
 </header>
 
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2014/03/03/sart-octopress/">
+		
+			Octopress にブログ乗り換えました</a>
+	</h2>
+	<div class="entry-content">
+		<h1>きっかけ &ndash; 静的HTMLはえー</h1>
+
+<p>今まで <a href="http://www.shakesoul.net/smartwp">スマートWP</a> や <a href="http://smartdesigning.me/">Smart Designing</a>  などをリリースしてきて、Webホスティングクラウドを運用してみて思ったことは、静的HTMLファイルのWebサーバのパフォーマンスは圧倒的に低負荷にできるなぁというところだった。</p>
+
+<p>Nginx + 静的HTML on AWS EC2 micro でパフォーマンステストするとサーバのCPUは0.2−0.3%程度で、先にネットワーク帯域が足りなくてエラーが起きる。
+静的HTMLのWebホスティングにかかるサーバのランニングコストは最小限にできることがわかった。</p>
+
+<p>逆に Wordpress とか Rails など php/ruby が HTML を生成する場合は、php が走っている間はCPUがMaxになるしメモリも使う。micro で毎回ページ生成させると CPU 使用量の上限に達して steal 発生しまくりでとてもじゃないけど運用できない。</p>
+
+<h1>原点回帰の流れ</h1>
+
+<p>古いけど静的HTMLでWebサイト運用できれば最もコストが低く、最もパフォーマンスの良い環境が作れる。</p>
+
+<p>原点回帰というかそんな流れを感じていた今日このごろ、<a href="http://octopress.org/">Octopress</a> を知った。</p>
+
+<p>Markdown で書いてローカルで静的HTMLをジェネレートしてサーバにデプロイ。
+テーマはシンプルで個人的には好きだし、これでいいじゃん。ということで今後のブログの新しいポストは Octopress で作ったこのブログにしていきます。</p>
+
+<p>ちなみにこのブログは <a href="http://smartdesigning.me/">Smart Designing</a> 上で動いていて、デプロイ先をローカルの Dropbox フォルダに変えて実現しています。</p>
+
+<p>この方法は後々紹介できればです。</p>
+
+<p>では、新しいブログをよろしくお願いします。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-03-03T10:41:55+09:00" pubdate data-updated="true">Mar 3<span>rd</span>, 2014</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/news/'>News</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/blog/2014/03/03/sart-octopress//blog/page/8/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
 
 
     <article class="post">
@@ -796,63 +862,6 @@ Facebookのフレンドが増えるとますますチェックせざるを得な
 
 	
 		<span class="comments"><a href="/2014/01/26/review-panasonic-diga-dmr-bwt500//blog/page/8/index.html#disqus_thread">Comments</a></span>
-	
-</div></article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/2014/01/22/tanemaki-wordpress/">
-		
-			タネマキのWordPress部に行ってきた</a>
-	</h2>
-	<div class="entry-content">
-		<p>年末にWeb制作のフリーランスの仕事環境についてヒアリングさせてもらうために小川さんにお会いして話していたら、横浜のコワーキングスペース <a href="http://tane-maki.net/">タネマキ</a> のWordPress部の参加を勧められた。</p>
-
-<p>WordPress部は毎週火曜日19時からやっているようで、下北沢オープンソースカフェは隔週だからそんなに頻繁にやっているだ、と思って参加してみた。</p>
-
-<p><a href="http://tane-maki.net/"><img src="http://tane-maki.net/system/wp-content/themes/tane-maki2011/images/logo.png?w=830" alt="タネマキ" data-recalc-dims="1" /></a></p>
-
-<p>タネマキは横浜駅から徒歩8分(東横線の改札口からだと12分くらいか)のところにあるコワーキングスペース。</p>
-
-<p>ちょっと中の様子がわからず入りづらいドアをちょっとした勇気を持って開けてみるとすでに10名程度が机に向かって作業したりソファーで話したりしていた。 WordPress 部は後から来られた人も含めて5名程度、その他の作業している人もあり。</p>
-
-<p>WordPress 部で実際何をするのかよく分からず行ってしまったが、基本的には WordPress に関することであれば何でも良さそうで、作っていてわからない点を聞いたり作業をしたりしていた。 確かにWordPress初心者にとっては詳しい人に聞ける駆け込み寺的な意味合いもあるみたい。</p>
-
-<p>自分は <a href="http://www.shakesoul.net/smartwp-works">スマートWP Works</a> をデモした時のWeb制作者の反応が知りたかったので、自己紹介も兼ねてデモさせてもらった。</p>
-
-
-		
-		<a href="/2014/01/22/tanemaki-wordpress/" class="more-link">Read on &rarr;</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-01-22T20:00:37+09:00" pubdate data-updated="true">Jan 22<span>nd</span>, 2014</time></div>
-	
-
-<div class="tags">
-
-	<a class='category' href='/blog/categories/business/'>Business</a>
-
-</div>
-
-
-	
-		<span class="comments"><a href="/2014/01/22/tanemaki-wordpress//blog/page/8/index.html#disqus_thread">Comments</a></span>
 	
 </div></article>
 
