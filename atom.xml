@@ -4,7 +4,7 @@
   <title><![CDATA[Hiro Fukami's Blog]]></title>
   <link href="http://hirofukami.com/atom.xml" rel="self"/>
   <link href="http://hirofukami.com/"/>
-  <updated>2015-09-16T10:55:52+09:00</updated>
+  <updated>2015-09-18T13:59:11+09:00</updated>
   <id>http://hirofukami.com/</id>
   <author>
     <name><![CDATA[HiroFukami]]></name>
@@ -12,6 +12,80 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Chefテクニカルトレーニング事業始めました]]></title>
+    <link href="http://hirofukami.com/blog/2015/09/18/chef-tech-training/"/>
+    <updated>2015-09-18T14:30:00+09:00</updated>
+    <id>http://hirofukami.com/blog/2015/09/18/chef-tech-training</id>
+    <content type="html"><![CDATA[<p><img src="http://hirofukami.com/images/2015/09/2015-918-chef-tech-training.jpg"></p>
+
+<p><a href="https://flic.kr/p/o9MtPp">https://flic.kr/p/o9MtPp</a></p>
+
+<p>Chef テクニカルトレーニングを <a href="http://www.shakesoul.net">シェイクソウル</a> で始めることにしました。</p>
+
+<p>会社のテクニカルトレーニング事業の一環で、9月から12月にかけて <a href="https://www.chef.io/">Chef</a> のハンズオンを行います。</p>
+
+<p><img src="http://hirofukami.com/images/2015/06/20150602-chef-logo.png"></p>
+
+<p>参加自由のオープン型での有料講義、PCを使っての実践的な演習になります。短期間で Chef を業務で使えるレベルにすることが目標です。</p>
+
+<p>全6回分のプログラムを企画して、1回毎個別に申し込みできるようになっています。参加者が必要な回だけ申し込みできるようにしました。
+講義内容や申し込みは Connpass で行っています。</p>
+
+<p><a href="http://chef-training.connpass.com/">http://chef-training.connpass.com/</a></p>
+
+<h1>きっかけ</h1>
+
+<p>実は Chef の講師をするのは初めてではなく、今までいくつかの会社の中で行ってきていました。</p>
+
+<p>最初は Chef の講師を探している方から頼まれ、とあるシステム開発会社のエンジニア向け社内研修の1つとして行いました。</p>
+
+<p>この振り返りは <a href="http://hirofukami.com/blog/2015/06/02/chef-teacher/">こちらのポスト</a> に書いています。</p>
+
+<p>研修後の感想が非常にポジティブなものをいただいて、個人的にも参加者の成長を実感していたので、手応えはかなりありました。</p>
+
+<p>何より、「作る楽しさを実感できた」との感想をいただけたのが嬉しく、また演習で必要なことなので、今回も <strong>自ら作る</strong> ことを中心にした PC 演習としています。</p>
+
+<h1>育てる</h1>
+
+<p>今までは人前で何かを &ldquo;教える&rdquo; ことは、ちょっと恥ずかしいというか、今の自分はそんなに偉くないと思い、あまり気が進みませんでした。</p>
+
+<p>ただ、将来的には &ldquo;人を育てる&rdquo; 方面に仕事をシフトしくイメージは持っていました。やはり、未来に繋がる人を育てることは非常に重要なやりがいのあることだと思っています。</p>
+
+<p>オープンに募集をする形式は一つのチャレンジですが、自分の未来を少し早めて小さく試す1歩にもなります。</p>
+
+<h1>Chef のトレーニングが少ない</h1>
+
+<p>やるかどうかの判断時の市場調査で、Chef トレーニングを実施してる会社や無償のコミュニティーベースのイベントも含め調べてみましたが、ほとんどありませんでした。</p>
+
+<p>Chef が認知され始めたのは数年前ですが、今現在は認知が深まり、導入方法も多く提示されて会社内で本格的な導入を検討している時期になっています。しかし、学ぶ場がない。
+学びたい人たちの要望を満たせていない現状があることがわかりました。</p>
+
+<p>また、導入部分のポストはQiitaにも多いですが、仕事で使う場合に必要な継続性を前提とした作成・運用し続けるためのノウハウが非常に少ないこともわかりました。</p>
+
+<p>今回は導入部分も行いますが、作るためのノウハウ、継続して運用・メンテナンスするためのノウハウを特に意識して盛り込んでいきます。</p>
+
+<h1>参加してほしい方</h1>
+
+<p>いくつかのクラウド事業者さんの Chef の習熟度を見てきましたが、Chef のメリットや使う必要性はよく理解されているのに、Chef を使えるエンジニアがほとんどいない。しかも独学で学んだエンジニアは自分の範囲でのみ使っているので広まらない現状があることがわかりました。</p>
+
+<p>なので今回の利用ケースは、Chef を利用したいが日常業務でなかなか機会を作れない会社さんが、エンジニアを研修の一環として参加いただくようなイメージをしています。</p>
+
+<p>また、金額も個人で参加するには高い設定にしています。会社の事業として行うので、売上規模がないとやる意味がないということも理由としてありますが、
+金額が高い分、こちらも本気で成長させることにコミットしますし、参加いただく方も本気でモノにする意志を持って参加いただければと思います。</p>
+
+<p>今回の Chef テクニカルトレーニングは、フリーのコミュニティーベースのイベントとは異なる <strong>ビジネスレベルに耐えうる学びの場</strong> と思っていただければと思います。</p>
+
+<h1>申し込み受付中</h1>
+
+<p>第一回目は 9/29(火) 19:00- になります。基本的に火曜日の19時から、さくらインターネットさん協力のもと、イベントスペースをお借りして行います。</p>
+
+<p>お申し込みお待ちしております！！</p>
+
+<p><a href="http://chef-training.connpass.com/">http://chef-training.connpass.com/</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[41歳になりました]]></title>
@@ -24,7 +98,7 @@
 
 <p>9月16日は41回目の誕生日になります。41歳になりました。</p>
 
-<p>今までの振り返りと簡単に決意表明をまとめようかと思います。</p>
+<p>今までの振り返りと決意表明を簡単にまとめようと思います。</p>
 
 <h1>やりたいことをやる</h1>
 
@@ -58,7 +132,7 @@
 
 <p>41歳とはどういう年なんだろう。子どもの頃のイメージとはだいぶ違う。</p>
 
-<p>最近はあまり同世代の人や新卒で入った会社の同期とは全く会わなくなっているので、一般的に見て自分の立ち位置や経験がどう映るのかはよくわからない。</p>
+<p>最近はあまり同世代の人や新卒で入った会社の同期とは会わなくなっているので、一般的に見て自分の立ち位置や経験がどう映るのかはよくわからない。</p>
 
 <p>今まで自分と同じような歩み方をしている人も見かけないので、まぁ希少なのかもしれないと良いように解釈している。</p>
 
@@ -2084,38 +2158,6 @@ Mr.Children の桜井和寿氏と GAKU−MC によるユニット <a href="http:
 <p>2015年後半も引き続き Dev と Ops 間を埋めるような講師事業をやっていきます。ただ今募集中です。</p>
 
 <p>参考に <a href="http://www.shakesoul.net/tech-lecture">会社のWebにも講師事業ページ</a> も見ていただいて、ご興味あれば <a href="https://twitter.com/d_sea">@d_sea</a> や <a href="http://www.shakesoul.net/#contact">会社のコンタクトフォーム</a> から連絡いただければです。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Book 舟を編む]]></title>
-    <link href="http://hirofukami.com/blog/2015/05/29/book-funewoamu/"/>
-    <updated>2015-05-29T15:00:00+09:00</updated>
-    <id>http://hirofukami.com/blog/2015/05/29/book-funewoamu</id>
-    <content type="html"><![CDATA[<p><a href="http://hb.afl.rakuten.co.jp/hgc/1368ce62.540143f5.1368ce63.cb671705/?pc=http%3a%2f%2fitem.rakuten.co.jp%2fbook%2f13158690%2f%3fscid%3daf_link_img&amp;m=http%3a%2f%2fm.rakuten.co.jp%2fbook%2fi%2f17364811%2f" target="_blank"><img src ="http://hbb.afl.rakuten.co.jp/hgb/?pc=http%3a%2f%2fthumbnail.image.rakuten.co.jp%2f%400_mall%2fbook%2fcabinet%2f8805%2f9784334768805.jpg%3f_ex%3d400x400&amp;m=http%3a%2f%2fthumbnail.image.rakuten.co.jp%2f%400_mall%2fbook%2fcabinet%2f8805%2f9784334768805.jpg%3f_ex%3d80x80" border="0"></a></p>
-
-<ul>
-<li><a href="http://www.amazon.co.jp/gp/product/4334768806/ref=as_li_ss_tl?ie=UTF8&camp=247&creative=7399&creativeASIN=4334768806&linkCode=as2&tag=dsea-22">Amazon</a></li>
-<li><a href="http://hb.afl.rakuten.co.jp/hgc/1368ce62.540143f5.1368ce63.cb671705/?pc=http%3a%2f%2fitem.rakuten.co.jp%2fbook%2f13158690%2f%3fscid%3daf_link_txt&amp;m=http%3a%2f%2fm.rakuten.co.jp%2fbook%2fi%2f17364811%2f" target="_blank">楽天ブックス</a></li>
-</ul>
-
-
-<p>本当に面白い小説だった。</p>
-
-<p>映画化されるだろうなと思っていたらすでに2013年に<a href="http://movies.yahoo.co.jp/movie/%E8%88%9F%E3%82%92%E7%B7%A8%E3%82%80/343711/">上映されていた</a>。</p>
-
-<p>辞書や百科事典と聞くと無骨で完璧な印象持つが、それを作り出す人間の作業は揺らぎながら検討を重ねて生み出している。膨大な作業の賜物であることがわかった。</p>
-
-<p>一つの言葉でも複数の意味合いを持つので、単純ではない。日本語の豊かさ、言葉の深さが辞書作りの作業ににじみ出る。</p>
-
-<p>全体的に硬派な文章ながらユーモラスなシーンがあったりして、このギャップも1つの魅力になる。
-それぞれの登場人物の内面の描写も様々で豊かだ。読者が何かしら一致する点を見いだして、知らないうちに物語にのめり込んで行く。</p>
-
-<p>筆者の三浦しをんさんは辞書編集者にインタビューをしてこの辞書を作る物語を書き上げた。まるで実際に編集者で働いていたのではないかと思えるくらい、詳しい作業内容や働いているものの心理まで描写していたので、驚いた。小説家とはよきインタビューアーなのかもしれない。</p>
-
-<p>主人公、馬締の人柄も興味深い。真っ直ぐに辞書作りに励む姿が人を動かし、いつの間にか熱中させる。馬締本人はその影響を自覚していない。小手先のテクニックやごまかしではなく、ただただまっすぐに向かうことこそが真であることを示しているようにも思えた。</p>
-
-<p>小説を読んで楽しいという感覚はなかなかなかったが、読み終えるのが惜しいくらい読んでいる時間が楽しい本だった。</p>
 ]]></content>
   </entry>
   
