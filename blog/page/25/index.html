@@ -9,7 +9,7 @@
 
 <meta name="author" content="HiroFukami"> 
 
-<meta name="description" content="ひさびさにブログを書く。やっぱり2009年は会社設立という新しいチャレンジをしたという意味で、大きなターニングポイントになるのでちゃんと振り返っておきたい。 仕事とプライベートが混ざるけどもつらつらと残しておく。 1月 1/7 立ち上げから運用まで関わった meet-me のインフラ面、 &hellip;"> <meta name="keywords" content="">
+<meta name="description" content="いつもどおりに、チェック。引越してからこの地に行くのに1時間ほどかかるので結構つらい。こんな時でないとここまで来ないなぁ。 口の中の写真を撮られる。矯正を始めた頃に比べてかなり変わっているんだろう。できれば、最初の頃の写真と見比べられさせて欲しい。 今回も特に問題なく20分ほどで終了。 &hellip;"> <meta name="keywords" content="">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -63,7 +63,7 @@ $(document).ready(
     <meta property="twitter:site" content="d_sea">
     <meta property="twitter:url" content="http://hirofukami.com">
     <meta property="twitter:title" content="Hiro Fukami's Blog">
-    <meta property="twitter:description" content="ひさびさにブログを書く。やっぱり2009年は会社設立という新しいチャレンジをしたという意味で、大きなターニングポイントになるのでちゃんと振り返っておきたい。 仕事とプライベートが混ざるけどもつらつらと残しておく。 1月 1/7 立ち上げから運用まで関わった meet-me のインフラ面、運用面の引継ぎ資料づくり(wiki)を行ってから有給取得スタート 1/16 &hellip;">
+    <meta property="twitter:description" content="いつもどおりに、チェック。引越してからこの地に行くのに1時間ほどかかるので結構つらい。こんな時でないとここまで来ないなぁ。 口の中の写真を撮られる。矯正を始めた頃に比べてかなり変わっているんだろう。できれば、最初の頃の写真と見比べられさせて欲しい。 今回も特に問題なく20分ほどで終了。20分のために1時間往復、、、しょうがないあと1回だし。 本日の精算&#160;: チェック料 ￥5,000 &hellip;">
     <meta property="twitter:creator" content="d_sea" />
 
 
@@ -123,6 +123,67 @@ $(document).ready(
 </header>
 
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/2010/01/22/post/">
+		
+			終了間近</a>
+	</h2>
+	<div class="entry-content">
+		<div class="section">
+  <p>
+    いつもどおりに、チェック。引越してからこの地に行くのに1時間ほどかかるので結構つらい。こんな時でないとここまで来ないなぁ。
+  </p>
+  
+  <p>
+    口の中の写真を撮られる。矯正を始めた頃に比べてかなり変わっているんだろう。できれば、最初の頃の写真と見比べられさせて欲しい。
+  </p>
+  
+  <p>
+    今回も特に問題なく20分ほどで終了。20分のために1時間往復、、、しょうがないあと1回だし。
+  </p>
+  
+  <p>
+    本日の精算&#160;: チェック料 ￥5,000
+  </p>
+</div>
+
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-01-23T00:00:00+09:00" pubdate data-updated="true">Jan 23<span>rd</span>, 2010</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/life/'>Life</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/2010/01/22/post//blog/page/25/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
 
 
     <article class="post">
@@ -1705,198 +1766,6 @@ completed    2009-08-12T04:16:02+0000    100%
 
 	
 		<span class="comments"><a href="/2009/10/22/post//blog/page/25/index.html#disqus_thread">Comments</a></span>
-	
-</div></article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/2009/10/14/amazon-cloudfront/">
-		
-			Amazon CloudFront スループットを測ってみた</a>
-	</h2>
-	<div class="entry-content">
-		<div class="section">
-  <p>
-    Amazon EC2系の記事を書く際にちゃんと動く内容を示さないといけないと思い、実際動作させながら確認していった。その中でも Amazon CloudFront のスループット測定はデータとしてちゃんと取れたので、導入効果が分かりやすかった。
-  </p>
-  
-  <p>
-    実際どれくらいパフォーマンスに差が出るのか、ファイルのダウンロードのスループット結果は以下。
-  </p>
-  
-  <ul>
-    <li>
-      ダウンロードに使ったファイルは &#8220;Office2004-1154UpdateJA.dmg&#8221; で 9.8MB ほどのファイル
-    </li>
-    <li>
-      Amazon S3 上の &#8220;test&#8221; bucket 上にファイルを保存
-    </li>
-    <li>
-      &#8220;test&#8221; bucket を CloudFront に適用させる
-    </li>
-    <li>
-      割り当てられたダウンロード可能なサーバのそれぞれの FQDN は以下 <ul>
-        <li>
-          オリジンサーバ&#160;: hironobu-bucket.s3.amazonaws.com</p> <ul>
-            <li>
-              Region: Us-East なので、日本からだと太平洋を渡って、アメリカをwestからeastまで横断する経路になるはず
-            </li>
-          </ul>
-        </li>
-        
-        <li>
-          キャッシュサーバ&#160;: dql6mokzq0d1p.cloudfront.net
-        </li>
-        <li>
-          オリジンは ****.s3.amazonaws.com, キャッシュサーバは ****.cloudfront.net という名前になるのが特徴
-        </li>
-      </ul>
-    </li>
-    
-    <li>
-      Mac からそれぞれのサーバの URL に対して curl コマンドでダウンロードする
-    </li>
-    <li>
-      3回ほど測定
-    </li>
-  </ul>
-  
-  <p>
-    <span style="font-weight:bold;">オリジンサーバからのダウンロード</span>
-  </p>
-  
-  <pre>
-
-dsea-MacBook:~ hironobu$ curl -o /dev/null -w time_total <a href="http://hironobu-bucket.s3.amazonaws.com/test/Office2004-1154UpdateJA.dmg" target="_blank">http://hironobu-bucket.s3.amazonaws.com/test/Office2004-1154UpdateJA.dmg</a>
-
-% Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-
-Dload  Upload   Total   Spent    Left  Speed
-
-100  9.8M  100  9.8M    0     0   355k      0  0:00:28  0:00:28 --:--:--  736k
-
-time_totaldsea-MacBook:~ hironobu$ curl -o /dev/null -w time_total <a href="http://hironobu-bucket.s3.amazonawsOffice2004-1154UpdateJA.dmg" target="_blank">http://hironobu-bucket.s3.amazonawsOffice2004-1154UpdateJA.dmg</a>
-
-% Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-
-Dload  Upload   Total   Spent    Left  Speed
-
-100  9.8M  100  9.8M    0     0   370k      0  0:00:27  0:00:27 --:--:--  401k
-
-time_totaldsea-MacBook:~ hironobu$ curl -o /dev/null -w time_total <a href="http://hironobu-bucket.s3.amazonawsOffice2004-1154UpdateJA.dmg" target="_blank">http://hironobu-bucket.s3.amazonawsOffice2004-1154UpdateJA.dmg</a>
-
-% Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-
-Dload  Upload   Total   Spent    Left  Speed
-
-100  9.8M  100  9.8M    0     0   404k      0  0:00:24  0:00:24 --:--:--  377k
-
-</pre>
-  
-  <p>
-    ばらつきがあるが、400kB = 3.2Mbps くらい。太平洋とアメリカを横断するからこんなもんでしょう。
-  </p>
-  
-  <p>
-    <span style="font-weight:bold;">キャッシュサーバからのダウンロード</span>
-  </p>
-  
-  <pre>
-
-dsea-MacBook:~ hironobu$ curl -o /dev/null -w time_total <a href="http://dql6mokzq0d1p.cloudfront.net/test/Office2004-1154UpdateJA.dmg" target="_blank">http://dql6mokzq0d1p.cloudfront.net/test/Office2004-1154UpdateJA.dmg</a>
-
-
-
-% Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-
-Dload  Upload   Total   Spent    Left  Speed
-
-100  9.8M  100  9.8M    0     0  2364k      0  0:00:04  0:00:04 --:--:-- 2374k
-
-time_totaldsea-MacBook:~ hironobu$ curl -o /dev/null -w time_total <a href="http://dql6mokzq0d1p.cloudfront.netce2004-1154UpdateJA.dmg" target="_blank">http://dql6mokzq0d1p.cloudfront.netce2004-1154UpdateJA.dmg</a>
-
-% Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-
-Dload  Upload   Total   Spent    Left  Speed
-
-100  9.8M  100  9.8M    0     0  2370k      0  0:00:04  0:00:04 --:--:-- 2380k
-
-time_totaldsea-MacBook:~ hironobu$ curl -o /dev/null -w time_total <a href="http://dql6mokzq0d1p.cloudfront.netce2004-1154UpdateJA.dmg" target="_blank">http://dql6mokzq0d1p.cloudfront.netce2004-1154UpdateJA.dmg</a>
-
-% Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-
-Dload  Upload   Total   Spent    Left  Speed
-
-100  9.8M  100  9.8M    0     0  2344k      0  0:00:04  0:00:04 --:--:-- 2355k
-
-</pre>
-  
-  <p>
-    大体、2300kB/s = 18.4Mbps くらい
-  </p>
-  
-  <p>
-    国内ならばもうちょっとでても良いかもだがこんなもんか。オリジンと比べて約6倍速い。
-  </p>
-  
-  <p>
-    AWS を利用するにはインスタンスの物理位置は US or EU になってしまうので、どうしても日本からアクセスする際のネットワーク遅延の問題は付いて回る。これが日本においたキャッシュサーバを利用すれば解消できてしまうのは、あまり解決策として注目されていないかもしれない。
-  </p>
-  
-  <p>
-    ただ、静的ファイルだけがキャッシュに置けるので、動的なページ生成には適用できない。
-  </p>
-  
-  <p>
-    確か、学びing さんが一緒にやった Amazon EC2/S3 実践セミナーの時に動的に生成する部分の容量はすごく小さいから、重たい画像などをどんどん CloudFront においてパフォーマンスを上げるノウハウを紹介していたな。
-  </p>
-  
-  <p>
-    AWS は単に Amazon EC2/S3 だけを利用するだけではそのメリットはあまり生かせていなくて、その周辺のサービスも含めて利用することで日本からでも十分パフォーマンスの良いサイトが提供できると思っている。
-  </p>
-  
-  <p>
-    ただ、これを利用するには AWS に対する独自なノウハウが必要で、よく分からないながらも手探りで経験しながら体得していった貴重な価値になるだろう。やってみてしまえばそれほど難しい世界ではないことが分かる。
-  </p>
-  
-  <p>
-    幸い日本にはこれを活かしきれるノウハウを持った人たちがまだ少ないと思うので、価値を高めてくれていると感じる。
-  </p>
-</div>
-
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-10-15T00:00:00+09:00" pubdate data-updated="true">Oct 15<span>th</span>, 2009</time></div>
-	
-
-<div class="tags">
-
-	<a class='category' href='/blog/categories/tech/'>Tech</a>
-
-</div>
-
-
-	
-		<span class="comments"><a href="/2009/10/14/amazon-cloudfront//blog/page/25/index.html#disqus_thread">Comments</a></span>
 	
 </div></article>
 

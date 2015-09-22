@@ -9,7 +9,7 @@
 
 <meta name="author" content="HiroFukami"> 
 
-<meta name="description" content="物理的冗長構成にてルーティング的にECMP(Equal Cost Multi Path)を構成していても、実際流れるトラフィック量は 50:50 にはならない。 結局、forwarding でどっちの nexthop を採用するかに依存する。特別意識せずに設定していれば per-flow &hellip;"> <meta name="keywords" content="">
+<meta name="description" content="ある場所で携帯網の今後の展開として交換機を使った独自仕様の網から IEEE に準拠した IP ペースの網になっていく話を聞いた。 一方、無線LANの規格も進んでいく、そうなると携帯と無線LANの区別があいまいになって行きますよね。という話をした。 結局、真中にでっかい IP &hellip;"> <meta name="keywords" content="">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -63,7 +63,7 @@ $(document).ready(
     <meta property="twitter:site" content="d_sea">
     <meta property="twitter:url" content="http://hirofukami.com">
     <meta property="twitter:title" content="Hiro Fukami's Blog">
-    <meta property="twitter:description" content="物理的冗長構成にてルーティング的にECMP(Equal Cost Multi Path)を構成していても、実際流れるトラフィック量は 50:50 にはならない。 結局、forwarding でどっちの nexthop を採用するかに依存する。特別意識せずに設定していれば per-flow で処理されるはずだけどその決定方法はメーカによって違う。そのパラメータをメーカごとにまとめると、 &hellip;">
+    <meta property="twitter:description" content="ある場所で携帯網の今後の展開として交換機を使った独自仕様の網から IEEE に準拠した IP ペースの網になっていく話を聞いた。 一方、無線LANの規格も進んでいく、そうなると携帯と無線LANの区別があいまいになって行きますよね。という話をした。 結局、真中にでっかい IP &hellip;">
     <meta property="twitter:creator" content="d_sea" />
 
 
@@ -123,6 +123,87 @@ $(document).ready(
 </header>
 
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/2005/12/12/ip-ngn-fmc/">
+		
+			IP NGN と FMC</a>
+	</h2>
+	<div class="entry-content">
+		<div class="section">
+  <p>
+    ある場所で携帯網の今後の展開として交換機を使った独自仕様の網から IEEE に準拠した IP ペースの網になっていく話を聞いた。
+  </p>
+  
+  <p>
+    一方、無線LANの規格も進んでいく、そうなると携帯と無線LANの区別があいまいになって行きますよね。という話をした。
+  </p>
+  
+  <p>
+    結局、真中にでっかい IP 網があってそのアクセス回線は携帯だろうが無線LANだろうがFTTHだろうが何でもいいとう形態に集約されてくると話の中で出た。ユーザはそのでっかい網にシームレスにアクセスできさえるればいいという感覚で使うだろうと、
+  </p>
+  
+  <p>
+    このでっかい網が IP NGN で、Cisco もココを目指してセッション管理の出来るルータの開発に取り組んでいる。携帯/無線LAN/メーカ ともども1つの方向 IP NGN に向かっていることは確実そうだ。
+  </p>
+  
+  <p>
+    これはネットワークからの視点以外でも言えている部分があって、LSIの集積技術が進むとモバイル端末1つにPC、携帯、デジカメ、オーディオプレーヤー などなどいろんな機能が集約されてくるという話がある。
+  </p>
+  
+  <p>
+    携帯には法律で縛られている部分や総務省に電波管理されていたりと、ISP の網に比べるとスピード感が無く規制への縛りがあって、融合というと乗り越えるステップは多そうだが、方向性は確実に見えている。
+  </p>
+  
+  <p>
+    最近急に出てきた 「FMC」はここら辺を見越した単語なのだろう。
+  </p>
+  
+  <p>
+    そういう目で見てみると、NTT再々編(NTT東西とDocomoのネットワーク統合)とか KDDI の PoweredCom 合併の意図が見えてきたりする。
+  </p>
+  
+  <p>
+    その時 Vodafone は・・？どっかに吸収されるかなぁ。
+  </p>
+</div>
+
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2005-12-13T00:00:00+09:00" pubdate data-updated="true">Dec 13<span>th</span>, 2005</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/internet/'>Internet</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/2005/12/12/ip-ngn-fmc//blog/page/66/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
 
 
     <article class="post">
@@ -801,106 +882,6 @@ $(document).ready(
 
 	
 		<span class="comments"><a href="/2005/11/10/post//blog/page/66/index.html#disqus_thread">Comments</a></span>
-	
-</div></article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/2005/11/05/post/">
-		
-			考具―考えるための道具、持っていますか?</a>
-	</h2>
-	<div class="entry-content">
-		<div class="section">
-  <div class="hatena-asin-detail">
-    <p>
-      <a href="http://www.amazon.co.jp/gp/product/4484032058/ref=as_li_tf_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4484032058&linkCode=as2&tag=dsea-22" target="_blank"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4484032058&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=dsea-22" /></a><img src="http://www.assoc-amazon.jp/e/ir?t=dsea-22&l=as2&o=9&a=4484032058" width="1" height="1" border="0" alt="" style="border:none!important;margin:0!important;" /> <div class="hatena-asin-detail-info">
-        <p>
-          <a href="http://www.amazon.co.jp/gp/product/4484032058/ref=as_li_tf_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4484032058&linkCode=as2&tag=dsea-22" target="_blank">考具 ―考えるための道具、持っていますか?</a><img src="http://www.assoc-amazon.jp/e/ir?t=dsea-22&l=as2&o=9&a=4484032058" width="1" height="1" border="0" alt="" style="border:none!important;margin:0!important;" /> <ul>
-            <li>
-              <span class="hatena-asin-detail-label">作者:</span> <a href="http://d.hatena.ne.jp/keyword/%B2%C3%C6%A3%BE%BB%BC%A3" class="keyword" target="_blank">加藤昌治</a>
-            </li>
-            <li>
-              <span class="hatena-asin-detail-label">出版社/メーカー:</span> <a href="http://d.hatena.ne.jp/keyword/%BA%E5%B5%DE%A5%B3%A5%DF%A5%E5%A5%CB%A5%B1%A1%BC%A5%B7%A5%E7%A5%F3%A5%BA" class="keyword" target="_blank">阪急コミュニケーションズ</a>
-            </li>
-            <li>
-              <span class="hatena-asin-detail-label">発売日:</span> 2003/04/04
-            </li>
-            <li>
-              <span class="hatena-asin-detail-label">メディア:</span> 単行本
-            </li>
-            <li>
-              <span class="hatena-asin-detail-label">購入</span>: 29人 <span class="hatena-asin-detail-label">クリック</span>: 228回
-            </li>
-            <li>
-              <a href="http://d.hatena.ne.jp/asin/4484032058" target="_blank">この商品を含むブログ (291件) を見る</a>
-            </li>
-          </ul></div> 
-          
-          <div class="hatena-asin-detail-foot">
-          </div></div> 
-          
-          <p>
-            人から借りた本。
-          </p>
-          
-          <p>
-            アイデアを出すことを仕事にしている人が書いた、アイデアをたくさん出すための道具/方法の紹介。
-          </p>
-          
-          <p>
-            最近読んだ本はメモとかノートを取る必要性を謳ってるのだけど、やっぱり人間ってすぐ忘れちゃう生き物なんだよなぁとつくづく思う。最近はやりの「＊＊の手帳活用法」みたいなのもこの延長で、だから思いついたらどんどん書こうというスタンスはこの本も同じ。
-          </p>
-          
-          <p>
-            とにかくテーマを中心にどんどん思いつくまま、派生していくままにメモって広げていくことが大事ということ。現実可能性とかおもしろい/おもしろくないの判断は一切抜きでというのがポイント。
-          </p>
-          
-          <p>
-            結構今まで自分がやったことが無かったアプローチの仕方で、是非実践してみようと思った。
-          </p>
-          
-          <p>
-            やってみると現実可能性がちらついて狭くなったり、テーマに忠実に沿ってしまったりしてなかなかたくさんは書けないもの。繰り返しが必要かなぁ。
-          </p>
-          
-          <p>
-            創造性の面をもっと豊かに出来ないかなぁと思っていたから、ちょうど良かった。
-          </p></div>
-
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2005-11-06T00:00:00+09:00" pubdate data-updated="true">Nov 6<span>th</span>, 2005</time></div>
-	
-
-<div class="tags">
-
-	<a class='category' href='/blog/categories/book/'>Book</a>
-
-</div>
-
-
-	
-		<span class="comments"><a href="/2005/11/05/post//blog/page/66/index.html#disqus_thread">Comments</a></span>
 	
 </div></article>
 
