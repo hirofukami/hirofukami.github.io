@@ -9,7 +9,7 @@
 
 <meta name="author" content="HiroFukami"> 
 
-<meta name="description" content="ユーザがアプリをどんなふうに利用しているかは、最近ではトラッキングして分析するのが当たり前になっているが、ではどうやって？というところの解は Google Analytics を使うか、MBaaS の分析機能＆イベントと絡ませてデータを投げる(Titanium の場合、 &hellip;"> <meta name="keywords" content="">
+<meta name="description" content="最近クラウドコンピューティングEXPOに行ったりしてやっぱり AWS のオートスケールはサーバ運用の大きな課題を解消してくれる強烈なツールだよな。と感じて、これを活用しつつちゃんと動くプラットフォームを確立したいと思い始めた。 オートスケールを使ったシステムを作ろうとする時、 &hellip;"> <meta name="keywords" content="">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -63,7 +63,7 @@ $(document).ready(
     <meta property="twitter:site" content="d_sea">
     <meta property="twitter:url" content="http://hirofukami.com">
     <meta property="twitter:title" content="Hiro Fukami's Blog">
-    <meta property="twitter:description" content="ユーザがアプリをどんなふうに利用しているかは、最近ではトラッキングして分析するのが当たり前になっているが、ではどうやって？というところの解は Google Analytics を使うか、MBaaS の分析機能＆イベントと絡ませてデータを投げる(Titanium の場合、基本Analyticsでは情報不足なのでACSのオブジェクト作成をしてデータを貯める)とかが考えられる。 ACS &hellip;">
+    <meta property="twitter:description" content="最近クラウドコンピューティングEXPOに行ったりしてやっぱり AWS のオートスケールはサーバ運用の大きな課題を解消してくれる強烈なツールだよな。と感じて、これを活用しつつちゃんと動くプラットフォームを確立したいと思い始めた。 オートスケールを使ったシステムを作ろうとする時、最大の課題は複数インスタンス内のファイル同期の担保だろう。複数のインスタンスでディレクトリ内が共有できないと、 &hellip;">
     <meta property="twitter:creator" content="d_sea" />
 
 
@@ -123,6 +123,100 @@ $(document).ready(
 </header>
 
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/2013/06/08/aws-s3fs-multi-ec2/">
+		
+			AWS s3fsを使って複数EC2インスタンスに共有ストレージを作る</a>
+	</h2>
+	<div class="entry-content">
+		<p>最近クラウドコンピューティングEXPOに行ったりしてやっぱり AWS のオートスケールはサーバ運用の大きな課題を解消してくれる強烈なツールだよな。と感じて、これを活用しつつちゃんと動くプラットフォームを確立したいと思い始めた。 オートスケールを使ったシステムを作ろうとする時、最大の課題は複数インスタンス内のファイル同期の担保だろう。複数のインスタンスでディレクトリ内が共有できないと、インスタンス内でファイルを生成する時にインスタンスごとにファイルの有無が生じて不具合が起きる。 基本的にはインスタンスはいつ消滅してしまうかわからないものとして、インスタンス以外の場所に保持されていて、同期が取れるようなNFSとか共有ストレージのようなものが必要になる。そうなるとやっぱり落ちる確率の低い S3 をストレージ代わりに使いたくなる。ということで <a href="http://code.google.com/p/s3fs/" target="_blank">s3fs</a> が期待できる。</p>
+
+<p><a href="http://code.google.com/p/s3fs/" target="_blank">s3fs</a> は S3 を外付けストレージ化できるのは知っていたが、複数インスタンスでも共有して使えるよと <a href="http://blog.hansode.org/archives/52009455.html" target="_blank">Wakame の中の人が書いていた</a>けど、検証した結果が載っていたわけではなかった。あと、S3 の管理コンソールからファイルを置いた時でもインスタンス上から見えるかどうか気になったので、そこら辺もろもろ確認したかったので検証した。</p>
+
+<p>結論的には、複数インスタンスで共有できるし、S3 にファイルを置いてもインスタンス内から確認できた。結構反映速度も早かったので、実用的に使えるツールだということが分かった。</p>
+
+<p>セットアップからテストの手順を示しておく。 検証した s3fs のバージョンは 1.69。</p>
+
+<p>参考URL</p>
+
+<ul>
+<li><a href="http://blog.hansode.org/archives/52009455.html">http://blog.hansode.org/archives/52009455.html</a></li>
+<li><a href="http://rock-and-hack.blogspot.jp/2011/08/s3fs-amazon-linux.html">http://rock-and-hack.blogspot.jp/2011/08/s3fs-amazon-linux.html</a></li>
+<li><a href="http://lab.eli-sys.jp/2013/02/03/amazon-s3%E3%82%92%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0%E3%81%A8%E3%81%97%E3%81%A6%E3%83%9E%E3%82%A6%E3%83%B3%E3%83%88%E3%81%99%E3%82%8B/">http://lab.eli-sys.jp/2013/02/03/amazon-s3%E3%82%92%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0%E3%81%A8%E3%81%97%E3%81%A6%E3%83%9E%E3%82%A6%E3%83%B3%E3%83%88%E3%81%99%E3%82%8B/</a></li>
+<li><a href="http://www.mornin.org/blog/scalable-wordpress-amazon-web-services/">http://www.mornin.org/blog/scalable-wordpress-amazon-web-services/</a></li>
+</ul>
+
+
+<h2>インスタンス起動、s3fsをセットアップ</h2>
+
+<p>S3 のバケット内にマウントさせたいディレクトリを作っておく。 AWS Management Console にてバケット内にディレクトリを作成する。今回は deesea-bucket 内に test-s3fs ディレクトリを作った。</p>
+
+<p>AWS Management Console からインスタンス1つを起動(以下、Instance A とする)。AMI は AWS 提供のにした。 起動後 ec2-user で ssh login。作業ユーザは ec2-user。s3fs のインストール手順に従って必要なものをインストールする。</p>
+
+<pre class="brush: bash; title: Instance A; notranslate" title="Instance A">$ sudo yum -y install gcc
+$ sudo yum -y install libstdc++-devel
+$ sudo yum -y install gcc-c++
+$ sudo yum -y install fuse
+$ sudo yum -y install fuse-devel
+$ sudo yum -y install curl-devel
+$ sudo yum -y install libxml2-devel
+$ sudo yum -y install openssl-devel
+$ sudo yum -y install mailcap </pre>
+
+
+<p></p></p>
+
+<p>s3fs をダウンロードしてインストール。</p>
+
+<pre class="brush: bash; title: Instance A; notranslate" title="Instance A">$ wget http://s3fs.googlecode.com/files/s3fs-1.69.tar.gz
+$ tar xvzf s3fs-1.69.tar.gz
+$ cd s3fs-1.69/
+$ ./configure --prefix=/usr
+$ make
+$ sudo make install </pre>
+
+
+<p></p></p>
+
+<p>s3fs コマンドが使えるようになっているはず。 <a href="http://code.google.com/p/s3fs/wiki/FuseOverAmazon" target="_blank">s3fs の Wikiにある手順</a>を見つつ設定する。</p>
+
+
+		
+		<a href="/2013/06/08/aws-s3fs-multi-ec2/" class="more-link">Read on &rarr;</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-06-08T21:25:56+09:00" pubdate data-updated="true">Jun 8<span>th</span>, 2013</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/tech/'>Tech</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/2013/06/08/aws-s3fs-multi-ec2//blog/page/15/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
 
 
     <article class="post">
@@ -944,158 +1038,6 @@ fb.requestWithGraphPath('me/likes', {}, &quot;GET&quot;, function(r) {....
 
 	
 		<span class="comments"><a href="/2013/05/15/cloudexpo-mbaas//blog/page/15/index.html#disqus_thread">Comments</a></span>
-	
-</div></article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/2013/05/14/titanium-in-app-purchase/">
-		
-			Titanium で in App Purchase する手順(StoreKit)</a>
-	</h2>
-	<div class="entry-content">
-		<p>Apple の審査も <a href="https://itunes.apple.com/jp/app/dm-chat/id447521974" target="_blank">DmAtChat</a> と <a href="https://itunes.apple.com/jp/app/ftupdater-facebook-twitterniposutosurudakeno/id448808656?mt=8" target="_blank">FTupdater</a> 両方通ったことだし、Titanium Mobile 上で In-App Purchase を導入する手順をまとめておく。</p>
-
-<p>基本的には4つの環境にまたがって実現する。</p>
-
-<ol>
-<li>iTunes Connect</li>
-<li>コーディング、Titanium Studio</li>
-<li>Xcode</li>
-<li>iPhone実機</li>
-</ol>
-
-
-<p>参考にしたURL</p>
-
-<ul>
-<li><a href="http://kray.jp/blog/iphone-in-app-purchase/">http://kray.jp/blog/iphone-in-app-purchase/</a></li>
-<li><a href="http://d.hatena.ne.jp/glass-_-onion/20111201/1322697417">http://d.hatena.ne.jp/glass-_-onion/20111201/1322697417</a></li>
-</ul>
-
-
-<p>前提</p>
-
-<ul>
-<li>すでに iTunes Connect 上でアプリが登録されていること</li>
-<li>開発環境に Titanium Studio でプロジェクトが作成され、iPhone シミュレータが起動できること</li>
-<li>開発環境に Xcodeがインストールされていること</li>
-</ul>
-
-
-<h2>iTunes Connect 上での作業</h2>
-
-<h3>In-App Purchase の Product を作る</h3>
-
-<ol>
-<li>iTunes Connect へログイン、&#8221;Manage Your Apps&#8221; をクリック、In-App Purchase を導入したいAppをクリック</li>
-<li>&#8220;Manage In-App Purchases&#8221; をクリック</li>
-<li>&#8220;Create New&#8221; をクリック</li>
-<li>Select Type にて選択する
-
-<ul>
-<li>消費する一時的なアイテムなら Consumable</li>
-<li>ある機能を有効にするなら Non-Consumable</li>
-<li>定期購読系なら各 Subscription : 審査基準が厳しいなどあるようでまだ試したことはない</li>
-</ul>
-</li>
-<li>プロダクト情報を入力する
-
-<ol>
-<li>Reference Name : 内部管理用の表示名</li>
-<li>Product ID : 内部管理用ID、他の App も含めてユニークにする必用があるので、&#8221;AppName_ProductName&#8221; みたいにするといいかも</li>
-<li>価格を決める</li>
-<li>Detail部分を入力する
-
-<ol>
-<li>Language : デフォルトだと英語。Display Name は App/App Sore 内で表示される名前なので、ユーザにわかりやすいものにする</li>
-<li>Hosting Content with Apple : Apple の中にコンテンツを預けていなければ &#8220;No&#8221;。通常 No でいいはず</li>
-<li>Screenshot for Review : Appleが審査するときのため用のスクリーンショットで App Store内には表示されない。何かしらアップロードしないと Status が変わらずプロダクト登録完了しないので、適当なものをあげておいて、動作確認後取ったスクリーンショットをAppサブミット前に変更する。</li>
-</ol>
-</li>
-<li>&#8220;Save&#8221; をクリック</li>
-</ol>
-</li>
-<li>In-App Purchases の一覧表にて、Status が Ready to Submit になったらOK</li>
-<li>タイプが Auto-renew subscriptions の場合、一覧表の下にある View or generate shared secret のリンクを押す、キーをメモっておく</li>
-</ol>
-
-
-<h3>iTunes Connect テストユーザを作る</h3>
-
-<ol>
-<li>iTunes Connect のトップページに戻り、Manage Users > Test User > Add New User して作成する</li>
-<li>クレジットカードの情報はいらない。入力するとテスト時に購入処理ができない。登録時に必須になっている場合は一度登録してあとで削除する
-
-<ul>
-<li>参考QA <a href="http://iphonedevsdk.com/forum/iphone-sdk-development/63008-in-app-purchase-test-account-verification-required-cant-get-passed.html">http://iphonedevsdk.com/forum/iphone-sdk-development/63008-in-app-purchase-test-account-verification-required-cant-get-passed.html</a></li>
-</ul>
-</li>
-</ol>
-
-
-<h2>StoreKit をプロジェクトに配置する</h2>
-
-<ol>
-<li>Appcelerator Marketplace で StoreKit module のページを開く
-
-<ul>
-<li><a href="https://marketplace.appcelerator.com/apps/794">https://marketplace.appcelerator.com/apps/794</a></li>
-</ul>
-</li>
-<li>Download してPCローカルに保存された zip ファイルを解凍する</li>
-<li>In App Purchase を適用したいプロジェクトのディレクトリに StoreKit module を配置する
-
-<ul>
-<li>iPhone用なのでパスは、ProjectName/modules/iphone/ti.storekit となる</li>
-</ul>
-</li>
-<li>Titanium Studio にて該当のプロジェクトの tiapp.xml ファイルにて確認する
-
-<ul>
-<li>Modules の一覧表に &#8220;ti.sorekit&#8221; が確認出来ればOK</li>
-<li>XMLファイルのソース的には <modules>タブの中に以下の様な記述があればOK
-<pre>&lt;module platform=&ldquo;iphone&rdquo; version=&ldquo;1.6.4&rdquo;&gt;ti.storekit&lt;/module&gt;</pre></li>
-</ul>
-</li>
-</ol>
-
-
-<h2>コードを書く</h2>
-
-
-		
-		<a href="/2013/05/14/titanium-in-app-purchase/" class="more-link">Read on &rarr;</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-05-15T01:00:19+09:00" pubdate data-updated="true">May 15<span>th</span>, 2013</time></div>
-	
-
-<div class="tags">
-
-	<a class='category' href='/blog/categories/tech/'>Tech</a>
-
-</div>
-
-
-	
-		<span class="comments"><a href="/2013/05/14/titanium-in-app-purchase//blog/page/15/index.html#disqus_thread">Comments</a></span>
 	
 </div></article>
 
