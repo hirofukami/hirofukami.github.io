@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Apple | Hiro Fukami's Blog]]></title>
   <link href="http://hirofukami.com/blog/categories/apple/atom.xml" rel="self"/>
   <link href="http://hirofukami.com/"/>
-  <updated>2015-09-25T14:50:54+09:00</updated>
+  <updated>2015-09-28T15:18:57+09:00</updated>
   <id>http://hirofukami.com/</id>
   <author>
     <name><![CDATA[HiroFukami]]></name>
@@ -18,7 +18,7 @@
     <link href="http://hirofukami.com/blog/2015/03/10/apple-special-event-review/"/>
     <updated>2015-03-10T19:00:00+09:00</updated>
     <id>http://hirofukami.com/blog/2015/03/10/apple-special-event-review</id>
-    <content type="html"><![CDATA[<p><img src="/images/2015/03/20150310-apple-watch.jpg" title=" WATCH" ></p>
+    <content type="html"><![CDATA[<p>{% img /images/2015/03/20150310-apple-watch.jpg  WATCH %}</p>
 
 <p>いつものように <a href="http://www.apple.com/live/2015-mar-event/">Apple のスペシャルイベント</a> をみた雑感をつらつら。</p>
 
@@ -62,7 +62,7 @@
 
 <h1>MacBook</h1>
 
-<p><img src="/images/2015/03/20150310-macbook.jpg" title="MacBook" ></p>
+<p>{% img /images/2015/03/20150310-macbook.jpg MacBook %}</p>
 
 <p>&ldquo;Reinvent&rdquo;</p>
 
