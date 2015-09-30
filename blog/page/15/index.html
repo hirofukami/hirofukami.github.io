@@ -9,7 +9,7 @@
 
 <meta name="author" content="HiroFukami"> 
 
-<meta name="description" content="最近クラウドコンピューティングEXPOに行ったりしてやっぱり AWS のオートスケールはサーバ運用の大きな課題を解消してくれる強烈なツールだよな。と感じて、これを活用しつつちゃんと動くプラットフォームを確立したいと思い始めた。 オートスケールを使ったシステムを作ろうとする時、 &hellip;"> <meta name="keywords" content="">
+<meta name="description" content="Appke Keynotes のポッドキャストで見た WWDC 2013 の雑感をまとめておく。 OS X Finder Tabs は使える。結局今6つくらいのFinder が表示されていて切り替えているので、画面をふさぐしどのFinderだったか探す手間が必要だった。 &hellip;"> <meta name="keywords" content="">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -63,7 +63,7 @@ $(document).ready(
     <meta property="twitter:site" content="d_sea">
     <meta property="twitter:url" content="http://hirofukami.com">
     <meta property="twitter:title" content="Hiro Fukami's Blog">
-    <meta property="twitter:description" content="最近クラウドコンピューティングEXPOに行ったりしてやっぱり AWS のオートスケールはサーバ運用の大きな課題を解消してくれる強烈なツールだよな。と感じて、これを活用しつつちゃんと動くプラットフォームを確立したいと思い始めた。 オートスケールを使ったシステムを作ろうとする時、最大の課題は複数インスタンス内のファイル同期の担保だろう。複数のインスタンスでディレクトリ内が共有できないと、 &hellip;">
+    <meta property="twitter:description" content="Appke Keynotes のポッドキャストで見た WWDC 2013 の雑感をまとめておく。 OS X Finder Tabs は使える。結局今6つくらいのFinder が表示されていて切り替えているので、画面をふさぐしどのFinderだったか探す手間が必要だった。ショートカットでタブが切り替えられるといいな。 tagはなんでキーワードにすると実用的なんだろう。&#8221; &hellip;">
     <meta property="twitter:creator" content="d_sea" />
 
 
@@ -123,6 +123,102 @@ $(document).ready(
 </header>
 
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/2013/06/13/apple-wwdc2013/">
+		
+			Apple WWDC 2013 雑感</a>
+	</h2>
+	<div class="entry-content">
+		<p><a href="https://itunes.apple.com/jp/podcast/apple-keynotes/id275834665?l=en&mt=2" target="_blank">Appke Keynotes のポッドキャスト</a>で見た WWDC 2013 の雑感をまとめておく。</p>
+
+<h2>OS X</h2>
+
+<ul>
+<li>Finder Tabs は使える。結局今6つくらいのFinder が表示されていて切り替えているので、画面をふさぐしどのFinderだったか探す手間が必要だった。ショートカットでタブが切り替えられるといいな。
+
+<ul>
+<li>tagはなんでキーワードにすると実用的なんだろう。&#8221;Important&#8221; とか重要度は良いけど、&#8221;すぐやる&#8221; みたいなのは都度変更が必要だからマッチしなそう。</li>
+</ul>
+</li>
+<li>iCloud keychains 楽だけど単に iCloud にログインできていれば自動で入力されちゃうのはセキュリティ的にゆるゆるになっちゃう。個人が求めるセキュリティ度合いによるな。自分なら設定しない。</li>
+<li>Notification/Map/iBooksなど iOS の機能を確実に OS X に移植して、iPhoneとの連携をさらに高める方向なのだろう。堅実な路線。</li>
+<li>iWork for iCloud ブラウザだけであれくらいのできるのはすごいなぁ。
+
+<ul>
+<li>やっぱり買わないといけないのだろうけど、ライセンスはどうなるのだろう。すでに買ってPCで使っている自分が使うシーンは無さそう。</li>
+</ul>
+</li>
+</ul>
+
+
+<h2>Mac Pro</h2>
+
+<ul>
+<li>円筒真っ黒は強烈だったなぁ。ジョブズの失敗したnextで立方体のPCを思い出した。今はテクノロジーが進化したからできたということか。実物は出て来なかったし、今年末にリリースだから詳細はこれからなんだろう。唯一の新ハードの発表だった。</li>
+</ul>
+
+
+<h2>iOS 7</h2>
+
+<ul>
+<li>基本的にはフラットデザインだけど、必要なところは紙質がわかるようにしたり、グラデーションをきかせたりしていた。</li>
+<li>Retinaの解像度を活かして息を呑むように画面を見入ってしまうような感じに調整できていればいいけど、単なる単色になると高解像度の魅力を殺してしまう。</li>
+<li>Windows8 の本当にフラットな単色バックイメージなのに対して、iOS7はアイコンやテキストをフラットな印象(実はグラデーションを加えて本当にフラットではない)にしつつ、背景をモーションと高解像度の画像を組み合わせて、つまらなくならないようにしている。</li>
+<li>スワイプで1つ目のウインドウに戻るのはデフォルトの動作として認識された。アプリに盛り込む必要があるな。</li>
+<li>Windows8の模倣ではなく、Apple の思想であるシンプルさの追求の結果とすれば、格好は付くな。</li>
+<li>Multitask が出来ればサーバ側でバックグラウンドの動作を補完する必要がなくなるな。でもユーザが起動を切ってしまえば何も起こせないけど。</li>
+<li>Photos 写真一覧は探しづらかったからこれは確実な改善。Instagramのようなエフェクトも簡単にできてシェア出来れば、Instagram を使う必要がなくなる。</li>
+<li>AppStore のオートアップデートとか Photos の一覧表示などは今までの改善項目。</li>
+<li>新機能も盛りだくさん、新しい使い方ができそうだけど、紹介しきれないので詳細わからず。</li>
+</ul>
+
+
+<h2>全体として</h2>
+
+<ul>
+<li>クックにCEOなって以降の Keynote は盛り込んでいる感がある。時間も1.5時間から2時間になっているし、紹介点数も多い。しゃべりも早くなるし、本当に伝えたい部分にフォーカスするようなシンプルさの探求がなくなった。「<a href="http://www.amazon.co.jp/gp/product/482224816X/ref=as_li_ss_tl?ie=UTF8&camp=247&creative=7399&creativeASIN=482224816X&linkCode=as2&tag=dsea-22" target="_blank">スティーブ・ジョブズ脅威のプレゼン</a>」のような観点はもう持ってないようだ。</li>
+<li>シンプルさの探求がなくなったのは、焦りの裏返しかも。</li>
+<li>iOS7は確かに新しい発見がいくつかあったので、会場が興奮するのは分かるけど、少し時間がたってみると新ハードの発表が Mac Pro だけだったことでその興奮が早くに覚めるように思った。</li>
+<li>Apple に期待されている世の中に衝撃を与えるようなデバイスの登場は次回以降に持ち越しということで。厳しい視線は今後も降り注ぎ続けるのだろう。</li>
+</ul>
+
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-06-13T17:02:54+09:00" pubdate data-updated="true">Jun 13<span>th</span>, 2013</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/business/'>Business</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/2013/06/13/apple-wwdc2013//blog/page/15/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
 
 
     <article class="post">
@@ -966,78 +1062,6 @@ fb.requestWithGraphPath('me/likes', {}, &quot;GET&quot;, function(r) {....
 
 	
 		<span class="comments"><a href="/2013/05/15/diary-nikkei-2013-05-15//blog/page/15/index.html#disqus_thread">Comments</a></span>
-	
-</div></article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/2013/05/15/cloudexpo-mbaas/">
-		
-			クラウドコンピューティングEXPOの中で MBaaS を語ってみた後の雑感</a>
-	</h2>
-	<div class="entry-content">
-		<p>バタバタしてなかなかタイムリーにお知らせできなかったが、先週末の5/8-10で行われた<a href="http://www.cloud-japan.jp/" target="_blank">クラウドコンピューティングEXPO2013春</a>で国内MBaaSである <a href="http://www.kii.com/jp/technology" target="_blank">Kii Cloud</a> について語って来ました。</p>
-
-<p>いろいろな角度から感じたことがあったので、雑感としてあげておく。</p>
-
-<h2>発表したスライド</h2>
-
-<p>Kii Cloud の紹介の内容ですが、MBaaS とIaaS/PaaSなどとの比較もしてあるので、概要理解には使えると思います。</p>
-
-<!-- SlideShare error: doc is missing or has illegal characters -->
-
-
-
-
-<div style="margin-bottom:5px;">
-  <strong> <a title="Kii Cloud 紹介 - モバイルクラウド MBaaS とは？" href="http://www.slideshare.net/d_sea/kii-cloud-mbaas-21182172" target="_blank">Kii Cloud 紹介 &#8211; モバイルクラウド MBaaS とは？</a> </strong> from <strong><a href="http://www.slideshare.net/d_sea" target="_blank">Hiro Fukami</a></strong>
-</div>
-
-
-<h2>MBaaS の認識度</h2>
-
-<ul>
-<li>とても低い、ほとんどが知らない。実際アプリを開発するエンジニアでもほぼ100％知らない。</li>
-<li>知っていた人は大手通信キャリアと電機メーカーで研究開発や新規事業を検討する部署の方。認識度は概念までで利用イメージまではあまりわかってない様子だった。</li>
-<li>SDKを使ってクライアントアプリのコードに仕込むとか、Web上で作成されたデータオブジェクトがグラフィカルに見れる。とか実際どう使うのかのようなことはほとんど知らない様子。</li>
-<li>他のブースでは BaaS について語ったところもあるようだが、日本国内では BaaS 自体もサービス提供されていないと思うので、サービス提供者としてプレゼンできたのは Kii だけだったようだ。</li>
-<li>加えて、Kii 株式会社自身の認知度も同じようになかった。</li>
-</ul>
-
-
-<h2>
-		
-		<a href="/2013/05/15/cloudexpo-mbaas/" class="more-link">Read on &rarr;</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-05-16T00:01:14+09:00" pubdate data-updated="true">May 16<span>th</span>, 2013</time></div>
-	
-
-<div class="tags">
-
-	<a class='category' href='/blog/categories/business/'>Business</a>
-
-</div>
-
-
-	
-		<span class="comments"><a href="/2013/05/15/cloudexpo-mbaas//blog/page/15/index.html#disqus_thread">Comments</a></span>
 	
 </div></article>
 

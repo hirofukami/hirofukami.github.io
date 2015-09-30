@@ -9,7 +9,7 @@
 
 <meta name="author" content="HiroFukami"> 
 
-<meta name="description" content="前から気になっていた Amazon RDS を触ってみた。gumiは自前でインスタンスにMySQLをセットアップせずにRDS使っているし、read replicaも出てスケーリングに関してどの程度カバーできるのか興味もあった。やっぱりMySQLの構築や運用は任せられたほうが楽なので。 &hellip;"> <meta name="keywords" content="">
+<meta name="description" content="今回アメリカ法人の日本支店を作ったので、東京にあるアメリカ大使館へ公証を受けに行きました。アメリカで公証を受けることもできるようですが、アメリカ大使館に行けば日本で手続きを全て済ませることができます。 具体的にはアメリカ大使館の職員のもと宣誓して事前に作っておいた宣誓書に印を押してもらいます。 &hellip;"> <meta name="keywords" content="">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -63,7 +63,7 @@ $(document).ready(
     <meta property="twitter:site" content="d_sea">
     <meta property="twitter:url" content="http://hirofukami.com">
     <meta property="twitter:title" content="Hiro Fukami's Blog">
-    <meta property="twitter:description" content="前から気になっていた Amazon RDS を触ってみた。gumiは自前でインスタンスにMySQLをセットアップせずにRDS使っているし、read replicaも出てスケーリングに関してどの程度カバーできるのか興味もあった。やっぱりMySQLの構築や運用は任せられたほうが楽なので。 作り方はとても簡単。AWS Management &hellip;">
+    <meta property="twitter:description" content="今回アメリカ法人の日本支店を作ったので、東京にあるアメリカ大使館へ公証を受けに行きました。アメリカで公証を受けることもできるようですが、アメリカ大使館に行けば日本で手続きを全て済ませることができます。 具体的にはアメリカ大使館の職員のもと宣誓して事前に作っておいた宣誓書に印を押してもらいます。宣誓自体は数分で終わる簡単なものです。準備も含め流れとしては以下のようになります。 宣誓書を作る &hellip;">
     <meta property="twitter:creator" content="d_sea" />
 
 
@@ -123,6 +123,189 @@ $(document).ready(
 </header>
 
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/2011/03/02/post/">
+		
+			外国法人の日本支店設立 アメリカ大使館での公証</a>
+	</h2>
+	<div class="entry-content">
+		<div class="section">
+  <p>
+    今回アメリカ法人の日本支店を作ったので、東京にあるアメリカ大使館へ公証を受けに行きました。アメリカで公証を受けることもできるようですが、アメリカ大使館に行けば日本で手続きを全て済ませることができます。
+  </p>
+  
+  <p>
+    具体的にはアメリカ大使館の職員のもと宣誓して事前に作っておいた宣誓書に印を押してもらいます。宣誓自体は数分で終わる簡単なものです。準備も含め流れとしては以下のようになります。
+  </p>
+  
+  <ol>
+    <li>
+      宣誓書を作る
+    </li>
+    <li>
+      アメリカ大使館のWebサイトで予約をする
+    </li>
+    <li>
+      アメリカ大使館へ行って、交渉を受ける
+    </li>
+  </ol>
+  
+  <h4>
+    宣誓書の作り方
+  </h4>
+  
+  <p>
+    宣誓書に記述する内容は本社住所、資本金、発行株数など、Certificate of Incorporation に記載している内容で埋められます。
+  </p>
+  
+  <p>
+    <a href="http://www.markresearch.com/doc/" target="_blank">ここにあるサンプル</a>をベースに作りました。自分の会社の情報に合わせて書き換えて使ってもらえればと思います。公証を受けるのは英文のみですが、公証が終わった後に法務局に和訳を提出するので、ついでに作ってしまいましょう。
+  </p>
+  
+  <h4>
+    Webサイトからの予約
+  </h4>
+  
+  <ul>
+    <li>
+      <a href="https://evisaforms.state.gov/acs/default.asp?postcode=TKY&appcode=1" target="_blank">ここ</a>から予約をします</p> <ul>
+        <li>
+          予約をしなくても手続きはできるようですが、大使館内での処理は予約者が優先されることと、大使館前の警察官の検問の時に予約がある、と言うとスムーズにパスできるので、予約したほうが何かと良いと思います。
+        </li>
+      </ul>
+    </li>
+    
+    <li>
+      「Make Appointment」&#8212; 「Request notarial and other services not listed above.」と進んで名前などを入力し登録すると、登録完了のページが表示されるのでこのページをプリントアウトしておきます。大使館で受付するときにこの紙を提出するので必要です。Appointment UIDが分かればあとで日付も変更できます。
+    </li>
+  </ul>
+  
+  <h4>
+    いざアメリカ大使館へ
+  </h4>
+  
+  <p>
+    なかなかアメリカ大使館に入る経験もないと思うので、少し細かめにその様子を書きます。
+  </p>
+  
+  <h5>
+    受付に到着するまで
+  </h5>
+  
+  <p>
+    9.11のテロ以降だからだと思うのですが、アメリカ大使館入口周辺の警備はとても厳重でした。大使館前に渡る横断歩道を挟むように警察官がいて、大使館入口の前には装甲車2台でしかもエンジンかけてレディー状態。こわごわ前を通り正門横にある小屋のような受付に進みます。
+  </p>
+  
+  <ol>
+    <li>
+      小屋の前にいる警察官に用件を聞かれ、カバンの中から金属探知機に反応するようなPCや携帯を出します。携帯は電源を切ります。
+    </li>
+    <li>
+      小屋の入口前に立ち、中にいる警察官に開けてもらい中に入ります。空港によくあるゲート状の金属探知機があるので、PCと携帯を出した状態でゲートをくぐります。ゲートをくぐった後、PCと携帯は敷地内に持ち込まないよう預け、引換番号券を受け取ります。
+    </li>
+    <li>
+      小屋を出るとアメリカ大使館の敷地に入り一気に景色が広がります。案内板にしたがって手前右の建物にむかいます。
+    </li>
+    <li>
+      建物の入口に受付があり、そこでもカバンの中身チェックとゲート状の金属探知機をくぐります。問題なければやっと建物の中に入れます。
+    </li>
+  </ol>
+  
+  <p>
+    中に入ると銀行の窓口前の待合室のように椅子がたくさん並んだフロアに出ます。入った左側の窓口が並ぶエリアが公証を受けれる場所です。順番待ち用の発券機があるのですが、予約がある場合にはその券は取らずにそのまま左手に進みます。平日の昼前に行ったのですが、4組くらいの人たちがいました。壁から吊るした液晶テレビには画質の悪いESPNが流れていてNBAの試合を中継していました。ここはもうアメリカなのだなと思える光景でした。
+  </p>
+  
+  <h5>
+    公証してもらう
+  </h5>
+  
+  <p>
+    予約の登録完了ページを印刷した紙を窓口にあるトレイに出します。予約した時間になると中の職員が紙をとって中で処理を進めます。待合席と職員のいるエリアには透明なガラス or アクリル板で区切られていて、小さな穴がいくつか開いた部分で会話をするようになっています。
+  </p>
+  
+  <ol>
+    <li>
+      名前が呼ばれ、支店設立の公証を受けに来たと伝えると、まず料金を払って来るようにと言われました。
+    </li>
+    <li>
+      入口すぐ左にあった購入場所で払います。$50でした。クレジットカードでの支払いもできます。
+    </li>
+    <li>
+      再び窓口に持って行き、呼ばれるのを待ちます。
+    </li>
+    <li>
+      アメリカ人のおじいちゃんくらいの歳の人に呼ばれて、アクリル板越しに宣誓を始めます。 <ul>
+        <li>
+          右手をあげるように言われて、ここに書いてあることは正しいか？みたいなことを聞かれるので、Yesと答える。
+        </li>
+        <li>
+          そうすると宣誓書に刻印を押してくれます。
+        </li>
+        <li>
+          押した後に軽い会話のように会社の場所はどこだ？みたいな事を聞かれて、デラウエア州です。と答えたら宣誓書を返してくれた。 <ul>
+            <li>
+              会社の住所は宣誓書に書いてあるのに聞いたということは、中身はちゃんと読んでいないようだ。
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    
+    <li>
+      刻印の押された宣誓書が手に入ればもうOK、完了です
+    </li>
+  </ol>
+  
+  <h5>
+    宣誓書の内容は？
+  </h5>
+  
+  <p>
+    これはやってみて分かったことですが、アメリカ大使館では記載内容に間違いはないね。という宣誓をさせる場なので、宣誓書の内容が正しいかどうかはチェックしません。この後、公証の終わった宣誓書を元に法務局で支店登記を行うので、実は会社情報に対するチェック機能はどこにもないことになります。結局、宣誓書を書いた自分の責任で全て完結させることになります。国をまたいだ制度なのでグレーゾーンというか微妙な部分はあるのでしょうね。
+  </p>
+  
+  <p>
+    <p>
+      次回は法務局への登記について説明します。
+    </p></div>
+
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-03-02T11:03:31+09:00" pubdate data-updated="true">Mar 2<span>nd</span>, 2011</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/business/'>Business</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/2011/03/02/post//blog/page/23/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
 
 
     <article class="post">
@@ -2526,122 +2709,6 @@ Last_SQL_Error:
 
 	
 		<span class="comments"><a href="/2010/06/25/post//blog/page/23/index.html#disqus_thread">Comments</a></span>
-	
-</div></article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/2010/06/23/post/">
-		
-			芸術起業論</a>
-	</h2>
-	<div class="entry-content">
-		<div class="section">
-  <div class="hatena-asin-detail">
-    <p>
-      <a href="http://www.amazon.co.jp/gp/product/4344011783/ref=as_li_tf_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4344011783&linkCode=as2&tag=dsea-22" target="_blank"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4344011783&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=dsea-22" /></a><img src="http://www.assoc-amazon.jp/e/ir?t=dsea-22&l=as2&o=9&a=4344011783" width="1" height="1" border="0" alt="" style="border:none!important;margin:0!important;" /> <div class="hatena-asin-detail-info">
-        <p>
-          <a href="http://www.amazon.co.jp/gp/product/4344011783/ref=as_li_tf_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4344011783&linkCode=as2&tag=dsea-22" target="_blank">芸術起業論</a><img src="http://www.assoc-amazon.jp/e/ir?t=dsea-22&l=as2&o=9&a=4344011783" width="1" height="1" border="0" alt="" style="border:none!important;margin:0!important;" /> <ul>
-            <li>
-              <span class="hatena-asin-detail-label">作者:</span> <a href="http://d.hatena.ne.jp/keyword/%C2%BC%BE%E5%CE%B4" class="keyword" target="_blank">村上隆</a>
-            </li>
-            <li>
-              <span class="hatena-asin-detail-label">出版社/メーカー:</span> <a href="http://d.hatena.ne.jp/keyword/%B8%B8%C5%DF%BC%CB" class="keyword" target="_blank">幻冬舎</a>
-            </li>
-            <li>
-              <span class="hatena-asin-detail-label">発売日:</span> 2006/06
-            </li>
-            <li>
-              <span class="hatena-asin-detail-label">メディア:</span> 単行本
-            </li>
-            <li>
-              <span class="hatena-asin-detail-label">購入</span>: 16人 <span class="hatena-asin-detail-label">クリック</span>: 246回
-            </li>
-            <li>
-              <a href="http://d.hatena.ne.jp/asin/4344011783" target="_blank">この商品を含むブログ (185件) を見る</a>
-            </li>
-          </ul></div> 
-          
-          <div class="hatena-asin-detail-foot">
-          </div></div> 
-          
-          <p>
-            絵画をわざわざ見に行く習慣がない自分には芸術という世界は、何か感覚的なものが価値になっているという点でかなり縁遠い業界かと思っていた。
-          </p>
-          
-          <p>
-            この本を読んでみて始めて分かったのは、そんな主観的な扱いをして作品の評価基準があやふやなイメージになっているのは日本だけで、本場の欧米のアート業界はお金が回るためのフレームワークと明確なルールがちゃんとあって、アーティストはそのフィールドの中で戦略的な振る舞いをして作品の価値を最大化することを狙っている。
-          </p>
-          
-          <p>
-            これは芸術というフィールドではあるが、巨大なお金の回るマーケット上のビジネスであって、アーティストは絵がうまいとかそういう次元でなく、作品の背景を思考し、周りの人を動かし、プレゼンテーションする、まさに起業家なのだと。なるほどまさに「芸術起業論」のタイトル通りだと思った。
-          </p>
-          
-          <p>
-            この本は単なる芸術業界のお話ではなく、自分が後ろ盾がない状態からどうやって生きていくか、また競争の激しい評価がつきまとう環境の中で、いかにして成功していくか、一人の人間がビジネスの舞台で本当に勝負するための思考、割り切り、実践を示していると言っていいと思う。
-          </p>
-          
-          <p>
-            業界は違えど、ネットの世界でスタートアップしたばかりの自分と重なる点があった。
-          </p>
-          
-          <p>
-            作品の歴史的な背景を知り、意味付けをして客観的評価を高めていくことは、ビジネスプランを作ることと全く同じ。ひとつのアイデアだったものが、客観的評価を得るには思いつきのレベルでは資金を得ることはできないし、それはビジネスの土台すらのっていないことになる。
-          </p>
-          
-          <p>
-            シリコンバレーというフィールドも同じだなぁと思う。ひとつのサービスが大きな富を生むようになるために、最初に何が必要かを確かめるために実際現地に入ったが、単にアイデアもしくは作ったものの紹介止まりではやはりそれは単なる思いつき、個人の趣味レベルの話。創業者に求められることはそこから先にビジネスとしてどう意味付けをして、可能性を示してサービスの価値を高く思わせるかということにつきるように思える。さらにシリコンバレーではトラックレコードや強烈なコネクションがないとスタートアップが順風満帆に最初から資金を取り付けてスタートするのは難しい。
-          </p>
-          
-          <p>
-            もうひとつの共通点は、日本の芸術の世界でも評価を曖昧にしたまま、生きて行けてしまう人たちがたくさんいるということ。これは世界のトップの舞台ではいない人たちで日本のITの業界でも同じ。日本のベンチャーでは余りない傾向だと思いたいが、昔からの大企業、それに依存するだけの中小企業ではまだまだ根深いところだろう。
-          </p>
-          
-          <p>
-            もう自分はそういう世界にいた経験を反面教師にして今は埋没しない場所に立っているが、入ってくる情報の中に変わらずに壊れていない部分が見えるたびにすごいフラストレーションを感じる。自分の問題というよりも、フラストレーションを自分は絶対そうならないというモチベーションにしているのは村上氏も同じだった。
-          </p>
-          
-          <p>
-            最近、日本人が世界の舞台で本当に勝負していくためには、どう振舞うことが必要なのだろうと考えていて、この本の中でもそのふるまい方が具体的に紹介されていた。自分が出した結論と大まかには村上氏も同じで、すでに村上氏は実際作品の価値を作るために利用してきていた。それは、いくら日本を出て現地に飛び込んでも日本人であることは捨てきれず、むしろそれを新鮮なアピールポイントにしたほうがいい、むしろ利用しないことにはその他大勢に埋没してしまう、ということだった。本場にはない日本だけが持っている特徴もしくはまだ知られていないポイント、これらは本場にはまだ浸透していない特徴であり新しさになるので、取り込もうとするから差別化のポイントになりやすいだろう。これはこれからの自分の振舞い方で利用の仕方を模索したいところだった。
-          </p>
-          
-          <p>
-            世界のフィールドでビジネスを展開し始めようとする自分にとっては、先駆者としての村上氏の意識の共通点があったことが嬉しかったし、苦悩しながらつかんできた実践は生きたガイドラインになると思う。
-          </p></div>
-
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-06-24T00:00:00+09:00" pubdate data-updated="true">Jun 24<span>th</span>, 2010</time></div>
-	
-
-<div class="tags">
-
-	<a class='category' href='/blog/categories/book/'>Book</a>
-
-</div>
-
-
-	
-		<span class="comments"><a href="/2010/06/23/post//blog/page/23/index.html#disqus_thread">Comments</a></span>
 	
 </div></article>
 

@@ -9,7 +9,7 @@
 
 <meta name="author" content="HiroFukami"> 
 
-<meta name="description" content="訳の分からないシステムからなんとか申し込んだが、一向に進捗が変わらない。 これはシステムの障害なのか、向こうが怠慢でまだ処理をしていないだけなのかこちらからは切り分けがつかないため、この訳の分からないシステムの問い合わせメールアドレスに出してみても返事が無いまま1週間が経過する。 &hellip;"> <meta name="keywords" content="">
+<meta name="description" content="余計な雑音に抗議をして、とりあえずシステムへの対応に取り掛かった。テストで出したオーダが窓口君との電話を切ったすぐ後に送られて来た。「遅くなり申し訳ありません。」だって、、、完全に見落としていたようだ、呆れるわ、ホント怠慢。 ただこのメールもシステム登録先のメールアドレスに来たメールで、 &hellip;"> <meta name="keywords" content="">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -63,7 +63,7 @@ $(document).ready(
     <meta property="twitter:site" content="d_sea">
     <meta property="twitter:url" content="http://hirofukami.com">
     <meta property="twitter:title" content="Hiro Fukami's Blog">
-    <meta property="twitter:description" content="訳の分からないシステムからなんとか申し込んだが、一向に進捗が変わらない。 これはシステムの障害なのか、向こうが怠慢でまだ処理をしていないだけなのかこちらからは切り分けがつかないため、この訳の分からないシステムの問い合わせメールアドレスに出してみても返事が無いまま1週間が経過する。 問い合わせ窓口として公表していながら機能していないので、怠慢としかいいようが無い。 &hellip;">
+    <meta property="twitter:description" content="余計な雑音に抗議をして、とりあえずシステムへの対応に取り掛かった。テストで出したオーダが窓口君との電話を切ったすぐ後に送られて来た。「遅くなり申し訳ありません。」だって、、、完全に見落としていたようだ、呆れるわ、ホント怠慢。 ただこのメールもシステム登録先のメールアドレスに来たメールで、システムは相変わらず変化なし。本文は文章というより DB を操作する時のコマンドになんとなく似ている。 &hellip;">
     <meta property="twitter:creator" content="d_sea" />
 
 
@@ -123,6 +123,119 @@ $(document).ready(
 </header>
 
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/2005/02/03/post/">
+		
+			システム攻略 編</a>
+	</h2>
+	<div class="entry-content">
+		<div class="section">
+  <p>
+    余計な雑音に抗議をして、とりあえずシステムへの対応に取り掛かった。テストで出したオーダが窓口君との電話を切ったすぐ後に送られて来た。「遅くなり申し訳ありません。」だって、、、完全に見落としていたようだ、呆れるわ、ホント怠慢。
+  </p>
+  
+  <p>
+    ただこのメールもシステム登録先のメールアドレスに来たメールで、システムは相変わらず変化なし。本文は文章というより DB を操作する時のコマンドになんとなく似ている。
+  </p>
+  
+  <p>
+    どうせシステムの問い合わせ窓口の連中だって、この訳の分からないシステムの仕組みなんて分かってないだろうと予想し、自分でこのシステムの仕組みを攻略することを決める。# 他の仕事もあるけどしょうがない。進まないんだから。
+  </p>
+  
+  <p>
+    メールに来た文章とこのシステムへの事前登録シートをよくよく見ていたらひらめいたっ！！！
+  </p>
+  
+  <p>
+    おそらくこのシステムのアップデート情報は事前に登録したメールアドレス宛にコマンドチックな body をもたせて、それを独自アプリ(受信プログラム)で読み取り、クライアントのローカルレベル表示させている。
+  </p>
+  
+  <p>
+    つまり、システムアドレス宛てに出されたメールが受信プログラムで受信できなければアップデートはされない。どこかでメールを吸い取ってしまうと、再送もされないので、更新もされない。オンラインの意味が無いシステムなのだ。
+  </p>
+  
+  <p>
+    その後の対応
+  </p>
+  
+  <ul>
+    <li>
+      システムメールアドレス用のアカウントを社内で作ってもう # 専用アカウント
+    </li>
+    <li>
+      窓口君へシステムアドレスの変更申込書を送る
+    </li>
+    <li>
+      窓口君にお願いしてオーダの進捗データを新しいシステムアドレスへ再送してもらう
+    </li>
+  </ul>
+  
+  <p>
+    結果、受信プログラムにて受信完了。進捗画面にて受付IDと納期が表示された。
+  </p>
+  
+  <p>
+    はあ～。(自分で)解決したけど何だこの仕組み？加入・局内システムみたく、Webにしないんだろう？そもそも何で2つに分けてるの？いじめとしか言いようが無い。
+  </p>
+  
+  <p>
+    教訓
+  </p>
+  
+  <ul>
+    <li>
+      必ずこのシステム専用のメールアカウントを1つ用意する必要がある
+    </li>
+    <li>
+      このメールアドレスを接続契約締結前の事前登録情報のシステムアドレスの欄に記載する
+    </li>
+    <li>
+      システムの仕組みは自分で解決するしかない #提供してるくせに詳しくない＆作っているのはグループ会社
+    </li>
+  </ul>
+  
+  <p>
+    <p>
+      # タイトルの「DF敷設への格闘」とは仕事上やり取りしているある会社とのしょうもない出来事を後世に敷設を試みる方たちのために記したものです。(DF=暗い＋繊維 英語にしてみれば・・・)
+    </p></div>
+
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2005-02-04T00:00:00+09:00" pubdate data-updated="true">Feb 4<span>th</span>, 2005</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/business/'>Business</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/2005/02/03/post//blog/page/76/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
 
 
     <article class="post">
@@ -1112,73 +1225,6 @@ $(document).ready(
 
 	
 		<span class="comments"><a href="/2005/01/02/post//blog/page/76/index.html#disqus_thread">Comments</a></span>
-	
-</div></article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/2005/01/01/2005-3/">
-		
-			ことよろ２００５</a>
-	</h2>
-	<div class="entry-content">
-		<div class="section">
-  <p>
-    あけましておめでとうございます。
-  </p>
-  
-  <p>
-    2004年はだいぶ病院に行ったので、今年の願い事はただ一つ
-  </p>
-  
-  <blockquote>
-    <p>
-      今年一年健康でありますように
-    </p>
-  </blockquote>
-  
-  <p>
-    です。
-  </p>
-  
-  <p>
-    で近くの神社でひいたおみくじの結果 &#8220;末吉&#8221; 。。。
-  </p>
-</div>
-
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2005-01-02T00:00:00+09:00" pubdate data-updated="true">Jan 2<span>nd</span>, 2005</time></div>
-	
-
-<div class="tags">
-
-	<a class='category' href='/blog/categories/life/'>Life</a>
-
-</div>
-
-
-	
-		<span class="comments"><a href="/2005/01/01/2005-3//blog/page/76/index.html#disqus_thread">Comments</a></span>
 	
 </div></article>
 
