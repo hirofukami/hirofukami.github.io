@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Tech | Hiro Fukami's Blog]]></title>
   <link href="http://hirofukami.com/blog/categories/tech/atom.xml" rel="self"/>
   <link href="http://hirofukami.com/"/>
-  <updated>2015-10-02T08:18:54+09:00</updated>
+  <updated>2015-10-03T13:50:17+09:00</updated>
   <id>http://hirofukami.com/</id>
   <author>
     <name><![CDATA[HiroFukami]]></name>
@@ -14,10 +14,124 @@
 
   
   <entry>
+    <title type="html"><![CDATA[キーワードにマッチする Tweet を Retweet する bot 作った]]></title>
+    <link href="http://hirofukami.com/2015/10/03/search-rt-bot/"/>
+    <updated>2015-10-03T15:00:00+09:00</updated>
+    <id>http://hirofukami.com/2015/10/03/search-rt-bot</id>
+    <content type="html"><![CDATA[<h1><i class="fa fa-twitter-square fa-5x"></i></h1>
+
+
+<p>前回の <a href="/2015/09/11/twitter-rt-bot/">自動Retweet bot 作った</a> のに続き、今度はあるキーワードにヒットした Tweet を 自動 Retweet する bot を作った。</p>
+
+<p>自分のブログ <a href="http://hirofukami.com">hirofukami.com</a> について Tweet されたものを自分のフォロワーにもアピールしたいかなと思ったのがきっかけ。
+評価はポジティブでもネガティブでも問わないという、オープンスタンスで。</p>
+
+<p>tweet id 情報を手元に置きたくないのでまずは Retweet して、すでに Retweet していた場合はエラーで逃げてしまうように。</p>
+
+<p>今回も Ruby の <a href="https://github.com/sferik/twitter">gem twitter</a> を使って簡単 Ruby スクリプト。
+手元の MacBook の cron で動かしています。</p>
+
+<p>環境</p>
+
+<ul>
+<li>MacBook 12inch Retina OS X El Capitan</li>
+<li>Ruby 2.0.0 (rvm)</li>
+</ul>
+
+
+<p>以下、gist ソース</p>
+
+<!-- more -->
+
+
+<p><div><script src='https://gist.github.com/b03f4fef85a06267faca.js?file=search-retweet-bot.rb'></script>
+<noscript><pre><code>require &#39;twitter&#39;
+
+# login
+client = Twitter::REST::Client.new do |config|
+  config.consumer_key        = ENV[&#39;CONSUMER_KEY&#39;]
+  config.consumer_secret     = ENV[&#39;CONSUMER_SECRET&#39;]
+  config.access_token        = ENV[&#39;ACCESS_TOKEN&#39;]
+  config.access_token_secret = ENV[&#39;ACCESS_TOKEN_SECRET&#39;]
+end
+
+keyword = &quot;hirofukami.com&quot;
+results = client.search(keyword, :result_type =&gt; &quot;recent&quot;)
+
+results.each do |tweet|
+  if tweet.user.screen_name != &quot;d_sea&quot;
+    text = tweet.user.screen_name + &quot;: &quot; + tweet.text
+    begin
+      puts text
+      client.retweet(tweet.id)
+    rescue Exception =&gt; e
+      puts e.message
+    end
+  end
+end
+</code></pre></noscript></div>
+</p>
+
+<h1>解説</h1>
+
+<p>Twitter REST APIs から <a href="https://dev.twitter.com/rest/reference/get/search/tweets">search/tweets</a> を使って、最近のキーワードにヒットしたtweetを取得する。</p>
+
+<p>tweet が自分自身以外だった場合(screen_name で引っ掛けた)にその tweet を Retweet する。
+すでに Retweet していた場合はエラー扱いになるので、 <code>begin</code> ~ <code>rescue</code> で逃げれるようにしてメッセージだけ出力して終了。</p>
+
+<h1>使い方</h1>
+
+<h2>事前準備</h2>
+
+<ol>
+<li><code>$ gem install twitter</code></li>
+<li>~/.bash_profile に Twitter consumer key, access token などを追記</li>
+</ol>
+
+
+<p>``` bash</p>
+
+<h2>Twitter API</h2>
+
+<p>export CONSUMER_KEY=&ldquo;SET YOUR KEY&rdquo;
+export CONSUMER_SECRET=&ldquo;SET YOUR SECRET&rdquo;
+export ACCESS_TOKEN=&ldquo;SET YOUR TOKEN&rdquo;
+export ACCESS_TOKEN_SECRET=&ldquo;SET YOUR SECRET&rdquo;
+```</p>
+
+<p>自分のものに置き換えてください。</p>
+
+<p>これらの情報は <a href="https://apps.twitter.com/">Twitter Application Management</a> でアプリ追加をした時に発行されます。</p>
+
+<h2>cron に仕込む</h2>
+
+<p><code>$ crontab -e</code></p>
+
+<p><code>10 * * * * cd $HOME/Development/Twitter-bot &amp;&amp; $HOME/.rvm/wrappers/ruby-2.0.0-p353/ruby search-retweet-bot.rb</code></p>
+
+<p>ruby は rvm を使っているためパスの指定が必要でした。毎時10分の時に実行されます。</p>
+
+<p>MacBook を閉じてしまっている時は実行されないので、実質実行時間は自分がPCに向かっている間だけということになります。</p>
+
+<h1>結果</h1>
+
+<p>ということで、以下の様な tweet に対して自動 Retweet していますと。</p>
+
+<blockquote class="twitter-tweet" lang="en"><p lang="ja" dir="ltr">LEAN – インタビューやってみて失敗したあれこれ | Hiro Fukami&#39;s Blog: <a href="http://t.co/WMG3JvjEaP">http://t.co/WMG3JvjEaP</a></p>&mdash; Dyki Ogawa (@Dyki01) <a href="https://twitter.com/Dyki01/status/620883998680571904">July 14, 2015</a></blockquote>
+
+
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
+<p>自分もやりたい！けど、敷居が高い。と思った方はついでに動かすことはできるので相談ください。</p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Retweet されたら自動ポストする Twitter bot 作った]]></title>
-    <link href="http://hirofukami.com/blog/2015/09/11/twitter-rt-bot/"/>
+    <link href="http://hirofukami.com/2015/09/11/twitter-rt-bot/"/>
     <updated>2015-09-11T16:00:00+09:00</updated>
-    <id>http://hirofukami.com/blog/2015/09/11/twitter-rt-bot</id>
+    <id>http://hirofukami.com/2015/09/11/twitter-rt-bot</id>
     <content type="html"><![CDATA[<h1><i class="fa fa-twitter-square fa-5x"></i></h1>
 
 
@@ -177,15 +291,17 @@ export ACCESS_TOKEN_SECRET=&ldquo;SET YOUR SECRET&rdquo;
 <p>思ったよりも簡単に作れました。</p>
 
 <p>Twitter の仕組みは単純で、 API も欲しいものが全部揃っているわけではないですが、わかりやすく楽しく作れました。</p>
+
+<p>自分もやりたい！けど、敷居が高い。と思った方はついでに動かすことはできるので相談ください。</p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[Docker で s3fs を使う方法]]></title>
-    <link href="http://hirofukami.com/blog/2015/03/30/docker-s3fs/"/>
+    <link href="http://hirofukami.com/2015/03/30/docker-s3fs/"/>
     <updated>2015-03-30T09:30:00+09:00</updated>
-    <id>http://hirofukami.com/blog/2015/03/30/docker-s3fs</id>
-    <content type="html"><![CDATA[<p><a href="http://www.shakesoul.net">会社Webサイト</a>の <a href="/blog/2015/03/16/renewal-shakesoul-web/">リニューアル</a> の時にサーバの移設もした。移設先サーバを Docker ホスティング 環境にしてその上で Docker コンテナとして稼働させています。</p>
+    <id>http://hirofukami.com/2015/03/30/docker-s3fs</id>
+    <content type="html"><![CDATA[<p><a href="http://www.shakesoul.net">会社Webサイト</a>の <a href="/2015/03/16/renewal-shakesoul-web/">リニューアル</a> の時にサーバの移設もした。移設先サーバを Docker ホスティング 環境にしてその上で Docker コンテナとして稼働させています。</p>
 
 <p>その時に s3fs がうまく動かなくてちょっとはまったのでその解決方法を記します。</p>
 
@@ -232,9 +348,9 @@ s3fs                  256T     0  256T   0% /home/shakesoul/Dropbox/SmartWP/smar
   
   <entry>
     <title type="html"><![CDATA[Mac - boot2docker 1.4.1 間共有フォルダ設定方法]]></title>
-    <link href="http://hirofukami.com/blog/2015/02/09/mac-docker-sharedfolder/"/>
+    <link href="http://hirofukami.com/2015/02/09/mac-docker-sharedfolder/"/>
     <updated>2015-02-09T19:00:00+09:00</updated>
-    <id>http://hirofukami.com/blog/2015/02/09/mac-docker-sharedfolder</id>
+    <id>http://hirofukami.com/2015/02/09/mac-docker-sharedfolder</id>
     <content type="html"><![CDATA[<p><img src="/images/2015/02/20150209-docker.png" title="&lsquo;docker&rsquo;" ></p>
 
 <p>Mac で <a href="https://www.docker.com/">Docker</a> を動かそうとすると <a href="http://boot2docker.io/">boot2docker</a> は必須。</p>
@@ -358,9 +474,9 @@ drwxr-xr-x    1 docker   staff         3332 Jan 27 23:34 Users/</p>
   
   <entry>
     <title type="html"><![CDATA[Docker Meetup Tokyo #2 に参加した]]></title>
-    <link href="http://hirofukami.com/blog/2014/04/11/docker-meetup-tokyo2/"/>
+    <link href="http://hirofukami.com/2014/04/11/docker-meetup-tokyo2/"/>
     <updated>2014-04-11T22:00:00+09:00</updated>
-    <id>http://hirofukami.com/blog/2014/04/11/docker-meetup-tokyo2</id>
+    <id>http://hirofukami.com/2014/04/11/docker-meetup-tokyo2</id>
     <content type="html"><![CDATA[<p><img src="https://connpass-tokyo.s3.amazonaws.com/thumbs/7f/d1/7fd16d32367bb52155ca416e032071fc.png" alt="Docker Meetup Tokyo #2" /></p>
 
 <ul>
@@ -543,84 +659,6 @@ drwxr-xr-x    1 docker   staff         3332 Jan 27 23:34 Users/</p>
 <p>ユーザも増えるだろうし、Docker 自身もすごいスピードでリリースされているので充実した内容になることが楽しみです。</p>
 
 <p>スピーカーの皆様、企画いただいたオーガナイザーの方々へ感謝いたします。ありがとうございました！</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Chef solo knife コマンド覚書]]></title>
-    <link href="http://hirofukami.com/2014/01/31/chef-solo-knife-command-memo/"/>
-    <updated>2014-01-31T19:53:16+09:00</updated>
-    <id>http://hirofukami.com/2014/01/31/chef-solo-knife-command-memo</id>
-    <content type="html"><![CDATA[<p><img class="<a" src="href="http://upload.wikimedia.org/wikipedia/en/5/56/Chef_Software_Inc._company_logo.png">http://upload.wikimedia.org/wikipedia/en/5/56/Chef_Software_Inc._company_logo.png</a>" width="380"></p>
-
-<p>どうも Chef コマンドを覚えられず、入門 Chef solo を毎回読みなおしてしまっているので、コマンド覚書を作っておく。</p>
-
-<ul>
-<li>レポジトリ名 : chef-repo</li>
-<li>chef クライアントホスト名 : chef-client</li>
-<li>クックブック名 : cookbook-name</li>
-</ul>
-
-
-<p>適当に置き換えてください。</p>
-
-<h1>新規</h1>
-
-<h2>レポジトリ作成</h2>
-
-<p>Chef レポジトリを作る。</p>
-
-<pre class="brush: plain; title: ; notranslate" title="">$ knife solo init [chef-repo-name]</pre>
-
-
-<h2>クックブック作成</h2>
-
-<p>レシピを新規作成する。</p>
-
-<pre class="brush: plain; title: ; notranslate" title="">$ knife cookbook create [cookbook-name] -o site-cookbooks</pre>
-
-
-<h2>ノード設定</h2>
-
-<p>chef クライアントに仕立てる。</p>
-
-<pre class="brush: plain; title: ; notranslate" title="">$ knife solo prepare [chef-client-hostname]</pre>
-
-
-<p>AWS EC2 に適用する場合はキーとユーザ名の指定が必要なので、ec2-user ユーザで作業すると、</p>
-
-<pre class="brush: plain; title: ; notranslate" title="">$ knife solo prepare -i ~/Keypair/[key-file] ec2-user@[chef-client-hostname]</pre>
-
-
-<p>とする。</p>
-
-<p>nodesディレクトリに [chef-client-hostname].json が作成される。</p>
-
-<h1>更新</h1>
-
-<h2>レシピを編集する</h2>
-
-<p>site-cookbooks/[cookbook-name]/recipes/default.rb を編集する。 適用したいレシピが複数に渡る場合はそれぞれの recipes/default.rb を編集する。</p>
-
-<h2>適用したいnodeファイルを確認</h2>
-
-<p>AWS EC2 AMI からの起動する際のように、すでに chef クライアントとして設定されているがホスト名が変わってしまう場合は、[chef-client-hostname].json ファイル名を割り当てられたホスト名に変更する。</p>
-
-<p>適用したいクックブックが記述されているか、nodes/[chef-client-hostname].json ファイルの中身を確認。</p>
-
-<h2>ノードに適用</h2>
-
-<p>ノードに適用。</p>
-
-<pre class="brush: plain; title: ; notranslate" title="">$ knife solo cook [chef-client-hostname]</pre>
-
-
-<p>AWS EC2 に適用する場合はキーとユーザ名の指定が必要なので、ec2-user ユーザで作業すると、</p>
-
-<pre class="brush: plain; title: ; notranslate" title="">$ knife solo cook -i ~/Keypair/[key-file] ec2-user@[chef-client-hostname]</pre>
-
-
-<p>とする。</p>
 ]]></content>
   </entry>
   

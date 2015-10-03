@@ -4,7 +4,7 @@
   <title><![CDATA[Category: News | Hiro Fukami's Blog]]></title>
   <link href="http://hirofukami.com/blog/categories/news/atom.xml" rel="self"/>
   <link href="http://hirofukami.com/"/>
-  <updated>2015-10-02T08:18:54+09:00</updated>
+  <updated>2015-10-03T13:50:17+09:00</updated>
   <id>http://hirofukami.com/</id>
   <author>
     <name><![CDATA[HiroFukami]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Octopress にブログ乗り換えました]]></title>
-    <link href="http://hirofukami.com/blog/2014/03/03/sart-octopress/"/>
+    <link href="http://hirofukami.com/2014/03/03/sart-octopress/"/>
     <updated>2014-03-03T10:41:55+09:00</updated>
-    <id>http://hirofukami.com/blog/2014/03/03/sart-octopress</id>
+    <id>http://hirofukami.com/2014/03/03/sart-octopress</id>
     <content type="html"><![CDATA[<h1>きっかけ &ndash; 静的HTMLはえー</h1>
 
 <p>今まで <a href="http://www.shakesoul.net/smartwp">スマートWP</a> や <a href="http://smartdesigning.me/">Smart Designing</a>  などをリリースしてきて、Webホスティングクラウドを運用してみて思ったことは、静的HTMLファイルのWebサーバのパフォーマンスは圧倒的に低負荷にできるなぁというところだった。</p>

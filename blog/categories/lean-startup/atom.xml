@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Lean Startup | Hiro Fukami's Blog]]></title>
   <link href="http://hirofukami.com/blog/categories/lean-startup/atom.xml" rel="self"/>
   <link href="http://hirofukami.com/"/>
-  <updated>2015-10-02T08:18:54+09:00</updated>
+  <updated>2015-10-03T13:50:17+09:00</updated>
   <id>http://hirofukami.com/</id>
   <author>
     <name><![CDATA[HiroFukami]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[LEAN - 学ばずに始めると起きるありがちな失敗と対策]]></title>
-    <link href="http://hirofukami.com/blog/2015/09/03/lean-failures/"/>
+    <link href="http://hirofukami.com/2015/09/03/lean-failures/"/>
     <updated>2015-09-03T16:00:00+09:00</updated>
-    <id>http://hirofukami.com/blog/2015/09/03/lean-failures</id>
+    <id>http://hirofukami.com/2015/09/03/lean-failures</id>
     <content type="html"><![CDATA[<p>とあるサービスづくりをされている方の話を聞いた。サービスづくりにチャレンジすることは素敵だし応援したいことだ。</p>
 
 <p><img src="/images/2015/09/20150903-startup-team.jpg"></p>
@@ -213,9 +213,9 @@
   
   <entry>
     <title type="html"><![CDATA[LEAN - サービスの関連で稼ぐことがわかってきた]]></title>
-    <link href="http://hirofukami.com/blog/2015/06/04/lean-make-related-products/"/>
+    <link href="http://hirofukami.com/2015/06/04/lean-make-related-products/"/>
     <updated>2015-06-04T10:00:00+09:00</updated>
-    <id>http://hirofukami.com/blog/2015/06/04/lean-make-related-products</id>
+    <id>http://hirofukami.com/2015/06/04/lean-make-related-products</id>
     <content type="html"><![CDATA[<p><img src="/images/2015/06/20150604-make-money.png" width="480"></p>
 
 <p><a href="http://hb.afl.rakuten.co.jp/hgc/1368ce62.540143f5.1368ce63.cb671705/?pc=http%3a%2f%2fitem.rakuten.co.jp%2fbook%2f12147296%2f%3fscid%3daf_link_txt&amp;amp;m=http%3a%2f%2fm.rakuten.co.jp%2fbook%2fi%2f16245034%2f">RUNNING LEAN</a> はリーンスタートアップを実践するのに最も参考にするべき本で、自分も何度も読み直しては実践を繰り返している。</p>
@@ -267,7 +267,7 @@
 
 <p>2つ目 Chef研修講師は、  <a href="https://opsdeliver.com">OpsDeliver</a> を作っている時に見せていた方から、Chef研修講師を探している会社があるよと紹介いただいた。</p>
 
-<p>2月から5月まで全6回で実施済み。まとめは <a href="/blog/2015/06/02/chef-teacher/">Chef講師をしたのでまとめ</a> に書いた。</p>
+<p>2月から5月まで全6回で実施済み。まとめは <a href="/2015/06/02/chef-teacher/">Chef講師をしたのでまとめ</a> に書いた。</p>
 
 <p>3つ目 エンジニア社内勉強会講師は、<a href="https://opsdeliver.com">OpsDeliver</a> をビジネス用途に売れないかと思って、知り合いのホスティング事業者さんに紹介しに行った結果、モノは売れなかったけど社内のエンジニア向けに勉強会をして欲しいとリクエストをいただいた。1月から6月まで月1回。次回が最終回。</p>
 
@@ -335,9 +335,9 @@
   
   <entry>
     <title type="html"><![CDATA[LEAN - OpsDeliver課題・ソリューションインタビュー]]></title>
-    <link href="http://hirofukami.com/blog/2015/04/13/opsdeliver-problem-solution-interview/"/>
+    <link href="http://hirofukami.com/2015/04/13/opsdeliver-problem-solution-interview/"/>
     <updated>2015-04-13T18:20:00+09:00</updated>
-    <id>http://hirofukami.com/blog/2015/04/13/opsdeliver-problem-solution-interview</id>
+    <id>http://hirofukami.com/2015/04/13/opsdeliver-problem-solution-interview</id>
     <content type="html"><![CDATA[<p>OpsDeliver の想定している課題とソリューションのインタビュー実施した結果。</p>
 
 <p>課題インタビューとソリューションインタビューを一度に行っている。</p>
@@ -532,9 +532,9 @@
   
   <entry>
     <title type="html"><![CDATA[LEAN - 課題・ソリューションインタビューのやり方]]></title>
-    <link href="http://hirofukami.com/blog/2015/02/04/lean-how-to-interview/"/>
+    <link href="http://hirofukami.com/2015/02/04/lean-how-to-interview/"/>
     <updated>2015-02-04T17:00:00+09:00</updated>
-    <id>http://hirofukami.com/blog/2015/02/04/lean-how-to-interview</id>
+    <id>http://hirofukami.com/2015/02/04/lean-how-to-interview</id>
     <content type="html"><![CDATA[<p><img src="/images/20150204-lean-startup.jpg" title="&ldquo;Lean Startup&rdquo;" ></p>
 
 <p>リーンスタートアップの手法を2013年後半からやってきて1年以上たった。</p>
@@ -700,9 +700,9 @@
   
   <entry>
     <title type="html"><![CDATA[LEAN - ターゲットを変えるのは最後]]></title>
-    <link href="http://hirofukami.com/blog/2014/03/28/lean-risk-changing-target/"/>
+    <link href="http://hirofukami.com/2014/03/28/lean-risk-changing-target/"/>
     <updated>2014-03-28T20:00:00+09:00</updated>
-    <id>http://hirofukami.com/blog/2014/03/28/lean-risk-changing-target</id>
+    <id>http://hirofukami.com/2014/03/28/lean-risk-changing-target</id>
     <content type="html"><![CDATA[<h2>何かを変えなきゃな時に何を変えるか</h2>
 
 <p>まずは課題インタビューでターゲットに課題があるかどうかを探るわけだけど、思った反応が得られず何かを変えなきゃいけない時に何を変えるかとなる。</p>

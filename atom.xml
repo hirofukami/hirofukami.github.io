@@ -4,7 +4,7 @@
   <title><![CDATA[Hiro Fukami's Blog]]></title>
   <link href="http://hirofukami.com/atom.xml" rel="self"/>
   <link href="http://hirofukami.com/"/>
-  <updated>2015-10-02T08:18:54+09:00</updated>
+  <updated>2015-10-03T13:50:17+09:00</updated>
   <id>http://hirofukami.com/</id>
   <author>
     <name><![CDATA[HiroFukami]]></name>
@@ -14,10 +14,129 @@
 
   
   <entry>
+    <title type="html"><![CDATA[キーワードにマッチする Tweet を Retweet する bot 作った]]></title>
+    <link href="http://hirofukami.com/2015/10/03/search-rt-bot/"/>
+    <updated>2015-10-03T15:00:00+09:00</updated>
+    <id>http://hirofukami.com/2015/10/03/search-rt-bot</id>
+    <content type="html"><![CDATA[<h1><i class="fa fa-twitter-square fa-5x"></i></h1>
+
+
+<p>前回の <a href="http://hirofukami.com/2015/09/11/twitter-rt-bot/">自動Retweet bot 作った</a> のに続き、今度はあるキーワードにヒットした Tweet を 自動 Retweet する bot を作った。</p>
+
+<p>自分のブログ <a href="http://hirofukami.com">hirofukami.com</a> について Tweet されたものを自分のフォロワーにもアピールしたいかなと思ったのがきっかけ。
+評価はポジティブでもネガティブでも問わないという、オープンスタンスで。</p>
+
+<p>tweet id 情報を手元に置きたくないのでまずは Retweet して、すでに Retweet していた場合はエラーで逃げてしまうように。</p>
+
+<p>今回も Ruby の <a href="https://github.com/sferik/twitter">gem twitter</a> を使って簡単 Ruby スクリプト。
+手元の MacBook の cron で動かしています。</p>
+
+<p>環境</p>
+
+<ul>
+<li>MacBook 12inch Retina OS X El Capitan</li>
+<li>Ruby 2.0.0 (rvm)</li>
+</ul>
+
+
+<p>以下、gist ソース</p>
+
+<!-- more -->
+
+
+
+
+<div><script src='https://gist.github.com/b03f4fef85a06267faca.js?file=search-retweet-bot.rb'></script>
+<noscript><pre><code>require &#39;twitter&#39;
+
+# login
+client = Twitter::REST::Client.new do |config|
+  config.consumer_key        = ENV[&#39;CONSUMER_KEY&#39;]
+  config.consumer_secret     = ENV[&#39;CONSUMER_SECRET&#39;]
+  config.access_token        = ENV[&#39;ACCESS_TOKEN&#39;]
+  config.access_token_secret = ENV[&#39;ACCESS_TOKEN_SECRET&#39;]
+end
+
+keyword = &quot;hirofukami.com&quot;
+results = client.search(keyword, :result_type =&gt; &quot;recent&quot;)
+
+results.each do |tweet|
+  if tweet.user.screen_name != &quot;d_sea&quot;
+    text = tweet.user.screen_name + &quot;: &quot; + tweet.text
+    begin
+      puts text
+      client.retweet(tweet.id)
+    rescue Exception =&gt; e
+      puts e.message
+    end
+  end
+end
+</code></pre></noscript></div>
+
+
+<h1>解説</h1>
+
+<p>Twitter REST APIs から <a href="https://dev.twitter.com/rest/reference/get/search/tweets">search/tweets</a> を使って、最近のキーワードにヒットしたtweetを取得する。</p>
+
+<p>tweet が自分自身以外だった場合(screen_name で引っ掛けた)にその tweet を Retweet する。
+すでに Retweet していた場合はエラー扱いになるので、 <code>begin</code> ~ <code>rescue</code> で逃げれるようにしてメッセージだけ出力して終了。</p>
+
+<h1>使い方</h1>
+
+<h2>事前準備</h2>
+
+<ol>
+<li><code>$ gem install twitter</code></li>
+<li>~/.bash_profile に Twitter consumer key, access token などを追記</li>
+</ol>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c">## Twitter API</span>
+</span><span class='line'><span class="nb">export </span><span class="nv">CONSUMER_KEY</span><span class="o">=</span><span class="s2">&quot;SET YOUR KEY&quot;</span>
+</span><span class='line'><span class="nb">export </span><span class="nv">CONSUMER_SECRET</span><span class="o">=</span><span class="s2">&quot;SET YOUR SECRET&quot;</span>
+</span><span class='line'><span class="nb">export </span><span class="nv">ACCESS_TOKEN</span><span class="o">=</span><span class="s2">&quot;SET YOUR TOKEN&quot;</span>
+</span><span class='line'><span class="nb">export </span><span class="nv">ACCESS_TOKEN_SECRET</span><span class="o">=</span><span class="s2">&quot;SET YOUR SECRET&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>自分のものに置き換えてください。</p>
+
+<p>これらの情報は <a href="https://apps.twitter.com/">Twitter Application Management</a> でアプリ追加をした時に発行されます。</p>
+
+<h2>cron に仕込む</h2>
+
+<p><code>$ crontab -e</code></p>
+
+<p><code>10 * * * * cd $HOME/Development/Twitter-bot &amp;&amp; $HOME/.rvm/wrappers/ruby-2.0.0-p353/ruby search-retweet-bot.rb</code></p>
+
+<p>ruby は rvm を使っているためパスの指定が必要でした。毎時10分の時に実行されます。</p>
+
+<p>MacBook を閉じてしまっている時は実行されないので、実質実行時間は自分がPCに向かっている間だけということになります。</p>
+
+<h1>結果</h1>
+
+<p>ということで、以下の様な tweet に対して自動 Retweet していますと。</p>
+
+<blockquote class="twitter-tweet" lang="en"><p lang="ja" dir="ltr">LEAN – インタビューやってみて失敗したあれこれ | Hiro Fukami&#39;s Blog: <a href="http://t.co/WMG3JvjEaP">http://t.co/WMG3JvjEaP</a></p>&mdash; Dyki Ogawa (@Dyki01) <a href="https://twitter.com/Dyki01/status/620883998680571904">July 14, 2015</a></blockquote>
+
+
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
+<p>自分もやりたい！けど、敷居が高い。と思った方はついでに動かすことはできるので相談ください。</p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Book 五体不満足 完全版]]></title>
-    <link href="http://hirofukami.com/blog/2015/10/01/book-gotaifumanzoku/"/>
+    <link href="http://hirofukami.com/2015/10/01/book-gotaifumanzoku/"/>
     <updated>2015-10-01T18:20:00+09:00</updated>
-    <id>http://hirofukami.com/blog/2015/10/01/book-gotaifumanzoku</id>
+    <id>http://hirofukami.com/2015/10/01/book-gotaifumanzoku</id>
     <content type="html"><![CDATA[<p><a href="http://hb.afl.rakuten.co.jp/hgc/1368ce62.540143f5.1368ce63.cb671705/?pc=http%3a%2f%2fitem.rakuten.co.jp%2fbook%2f1330759%2f%3fscid%3daf_link_img&amp;m=http%3a%2f%2fm.rakuten.co.jp%2fbook%2fi%2f10965056%2f" target="_blank"><img src ="http://hbb.afl.rakuten.co.jp/hgb/?pc=http%3a%2f%2fthumbnail.image.rakuten.co.jp%2f%400_mall%2fbook%2fcabinet%2f0626%2f06264980.jpg%3f_ex%3d300x300&amp;m=http%3a%2f%2fthumbnail.image.rakuten.co.jp%2f%400_mall%2fbook%2fcabinet%2f0626%2f06264980.jpg%3f_ex%3d80x80" border="0"></a></p>
 
 <ul>
@@ -73,9 +192,9 @@
   
   <entry>
     <title type="html"><![CDATA[Jリーグのアジア戦略を学ぶ]]></title>
-    <link href="http://hirofukami.com/blog/2015/09/30/spors-seminar-jleague/"/>
+    <link href="http://hirofukami.com/2015/09/30/spors-seminar-jleague/"/>
     <updated>2015-09-30T23:00:00+09:00</updated>
-    <id>http://hirofukami.com/blog/2015/09/30/spors-seminar-jleague</id>
+    <id>http://hirofukami.com/2015/09/30/spors-seminar-jleague</id>
     <content type="html"><![CDATA[<p>スポーツビジネスに関するセミナーに参加してきました。</p>
 
 <p>開催しているのは <a href="http://www.vantan-sports.com/">バンタンスポーツアカデミー</a>。</p>
@@ -321,9 +440,9 @@
   
   <entry>
     <title type="html"><![CDATA[スポーツサービスづくり始めました]]></title>
-    <link href="http://hirofukami.com/blog/2015/09/25/sports-service/"/>
+    <link href="http://hirofukami.com/2015/09/25/sports-service/"/>
     <updated>2015-09-25T15:00:00+09:00</updated>
-    <id>http://hirofukami.com/blog/2015/09/25/sports-service</id>
+    <id>http://hirofukami.com/2015/09/25/sports-service</id>
     <content type="html"><![CDATA[<p><img src="http://hirofukami.com/images/2015/09/20150925-sports-service01.jpg" alt="Sports Service" /></p>
 
 <p><a href="https://flic.kr/p/asprB7">https://flic.kr/p/asprB7</a></p>
@@ -402,9 +521,9 @@ Jリーグクラブ経営、スポーツメーカーのプロモーション、�
   
   <entry>
     <title type="html"><![CDATA[ガンダム展にみる普遍的価値]]></title>
-    <link href="http://hirofukami.com/blog/2015/09/22/the-art-of-gundam/"/>
+    <link href="http://hirofukami.com/2015/09/22/the-art-of-gundam/"/>
     <updated>2015-09-22T16:40:00+09:00</updated>
-    <id>http://hirofukami.com/blog/2015/09/22/the-art-of-gundam</id>
+    <id>http://hirofukami.com/2015/09/22/the-art-of-gundam</id>
     <content type="html"><![CDATA[<p>ファーストガンダムが大好きです。</p>
 
 <p>小学校低学年で見たアニメはいいおっさんになっても不滅です。ガンダムは僕の中で永遠です。</p>
@@ -473,9 +592,9 @@ Jリーグクラブ経営、スポーツメーカーのプロモーション、�
   
   <entry>
     <title type="html"><![CDATA[近所のフットサルコートの予約率を調べてみた]]></title>
-    <link href="http://hirofukami.com/blog/2015/09/21/futsal-court/"/>
+    <link href="http://hirofukami.com/2015/09/21/futsal-court/"/>
     <updated>2015-09-21T16:00:00+09:00</updated>
-    <id>http://hirofukami.com/blog/2015/09/21/futsal-court</id>
+    <id>http://hirofukami.com/2015/09/21/futsal-court</id>
     <content type="html"><![CDATA[<p>自分がフットサルをしていることもあって、フットサルまわりのサービスアイデアをよく思いつく。</p>
 
 <p><img src="http://hirofukami.com/images/2015/09/20150921-futsal-court.jpg"></p>
@@ -581,9 +700,9 @@ Jリーグクラブ経営、スポーツメーカーのプロモーション、�
   
   <entry>
     <title type="html"><![CDATA[9/11 Fリーグ観戦記 府中アスレティックxバサジィ大分]]></title>
-    <link href="http://hirofukami.com/blog/2015/09/19/fleague-fuchuxoita/"/>
+    <link href="http://hirofukami.com/2015/09/19/fleague-fuchuxoita/"/>
     <updated>2015-09-19T11:00:00+09:00</updated>
-    <id>http://hirofukami.com/blog/2015/09/19/fleague-fuchuxoita</id>
+    <id>http://hirofukami.com/2015/09/19/fleague-fuchuxoita</id>
     <content type="html"><![CDATA[<p>9/11(金) に行われたフットサルの最高峰リーグ <a href="http://www.fleague.jp/">Fリーグ</a>観戦記 <a href="http://www.fuchu-athletic.com/">府中アスレティック</a> x <a href="http://vasagey.com/">バサジィ大分</a> 戦を観に行った時のメモ。</p>
 
 <p><img src="http://hirofukami.com/images/2015/09/20150919-fleage-fuchuxoita01.jpg"></p>
@@ -653,9 +772,9 @@ Jリーグクラブ経営、スポーツメーカーのプロモーション、�
   
   <entry>
     <title type="html"><![CDATA[9/4 Fリーグ観戦記 府中アスレティックxアグレミーナ浜松]]></title>
-    <link href="http://hirofukami.com/blog/2015/09/19/fleague-fuchuxhamamatsu/"/>
+    <link href="http://hirofukami.com/2015/09/19/fleague-fuchuxhamamatsu/"/>
     <updated>2015-09-19T10:00:00+09:00</updated>
-    <id>http://hirofukami.com/blog/2015/09/19/fleague-fuchuxhamamatsu</id>
+    <id>http://hirofukami.com/2015/09/19/fleague-fuchuxhamamatsu</id>
     <content type="html"><![CDATA[<p>ちょっと前になってしまうが、9/4 に行われたフットサルの最高峰リーグ <a href="http://www.fleague.jp/">Fリーグ</a>観戦記 <a href="http://www.fuchu-athletic.com/">府中アスレティック</a> x <a href="http://agleymina.jp/">アグレミーナ浜松</a> 戦を観に行った時のメモ。</p>
 
 <p>選手入場。府中アスレのメンバー。
@@ -750,9 +869,9 @@ Jリーグクラブ経営、スポーツメーカーのプロモーション、�
   
   <entry>
     <title type="html"><![CDATA[Chefテクニカルトレーニング事業始めました]]></title>
-    <link href="http://hirofukami.com/blog/2015/09/18/chef-tech-training/"/>
+    <link href="http://hirofukami.com/2015/09/18/chef-tech-training/"/>
     <updated>2015-09-18T14:30:00+09:00</updated>
-    <id>http://hirofukami.com/blog/2015/09/18/chef-tech-training</id>
+    <id>http://hirofukami.com/2015/09/18/chef-tech-training</id>
     <content type="html"><![CDATA[<p><img src="http://hirofukami.com/images/2015/09/20150918-chef-tech-training.jpg"></p>
 
 <p><a href="https://flic.kr/p/o9MtPp">https://flic.kr/p/o9MtPp</a></p>
@@ -776,7 +895,7 @@ Jリーグクラブ経営、スポーツメーカーのプロモーション、�
 
 <p>最初は Chef の講師を探している方から頼まれ、とあるシステム開発会社のエンジニア向け社内研修の1つとして行いました。</p>
 
-<p>この振り返りは <a href="http://hirofukami.com/blog/2015/06/02/chef-teacher/">こちらのポスト</a> に書いています。</p>
+<p>この振り返りは <a href="http://hirofukami.com/2015/06/02/chef-teacher/">こちらのポスト</a> に書いています。</p>
 
 <p>研修後の感想が非常にポジティブなものをいただいて、個人的にも参加者の成長を実感していたので、手応えはかなりありました。</p>
 
@@ -824,9 +943,9 @@ Jリーグクラブ経営、スポーツメーカーのプロモーション、�
   
   <entry>
     <title type="html"><![CDATA[41歳になりました]]></title>
-    <link href="http://hirofukami.com/blog/2015/09/16/41th-birthday/"/>
+    <link href="http://hirofukami.com/2015/09/16/41th-birthday/"/>
     <updated>2015-09-16T10:30:00+09:00</updated>
-    <id>http://hirofukami.com/blog/2015/09/16/41th-birthday</id>
+    <id>http://hirofukami.com/2015/09/16/41th-birthday</id>
     <content type="html"><![CDATA[<p><img src="http://hirofukami.com/images/2015/09/20150916-birthday.jpg"></p>
 
 <p><a href="https://flic.kr/p/pFAJwF">https://flic.kr/p/pFAJwF</a></p>
@@ -891,9 +1010,9 @@ Jリーグクラブ経営、スポーツメーカーのプロモーション、�
   
   <entry>
     <title type="html"><![CDATA[Retweet されたら自動ポストする Twitter bot 作った]]></title>
-    <link href="http://hirofukami.com/blog/2015/09/11/twitter-rt-bot/"/>
+    <link href="http://hirofukami.com/2015/09/11/twitter-rt-bot/"/>
     <updated>2015-09-11T16:00:00+09:00</updated>
-    <id>http://hirofukami.com/blog/2015/09/11/twitter-rt-bot</id>
+    <id>http://hirofukami.com/2015/09/11/twitter-rt-bot</id>
     <content type="html"><![CDATA[<h1><i class="fa fa-twitter-square fa-5x"></i></h1>
 
 
@@ -1109,14 +1228,16 @@ Jリーグクラブ経営、スポーツメーカーのプロモーション、�
 <p>思ったよりも簡単に作れました。</p>
 
 <p>Twitter の仕組みは単純で、 API も欲しいものが全部揃っているわけではないですが、わかりやすく楽しく作れました。</p>
+
+<p>自分もやりたい！けど、敷居が高い。と思った方はついでに動かすことはできるので相談ください。</p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[LEAN - 学ばずに始めると起きるありがちな失敗と対策]]></title>
-    <link href="http://hirofukami.com/blog/2015/09/03/lean-failures/"/>
+    <link href="http://hirofukami.com/2015/09/03/lean-failures/"/>
     <updated>2015-09-03T16:00:00+09:00</updated>
-    <id>http://hirofukami.com/blog/2015/09/03/lean-failures</id>
+    <id>http://hirofukami.com/2015/09/03/lean-failures</id>
     <content type="html"><![CDATA[<p>とあるサービスづくりをされている方の話を聞いた。サービスづくりにチャレンジすることは素敵だし応援したいことだ。</p>
 
 <p><img src="http://hirofukami.com/images/2015/09/20150903-startup-team.jpg"></p>
@@ -1312,9 +1433,9 @@ Jリーグクラブ経営、スポーツメーカーのプロモーション、�
   
   <entry>
     <title type="html"><![CDATA[Book ジーン・ワルツ]]></title>
-    <link href="http://hirofukami.com/blog/2015/08/23/book-gene-waltz/"/>
+    <link href="http://hirofukami.com/2015/08/23/book-gene-waltz/"/>
     <updated>2015-08-23T22:00:00+09:00</updated>
-    <id>http://hirofukami.com/blog/2015/08/23/book-gene-waltz</id>
+    <id>http://hirofukami.com/2015/08/23/book-gene-waltz</id>
     <content type="html"><![CDATA[<p>最近は嫁におすすめの小説を聞いて読むようにしている。紹介されて読んだ4冊目の小説がこれ。</p>
 
 <p><a href="http://hb.afl.rakuten.co.jp/hgc/1368ce62.540143f5.1368ce63.cb671705/?pc=http%3a%2f%2fitem.rakuten.co.jp%2fbook%2f6528344%2f%3fscid%3daf_link_img&amp;m=http%3a%2f%2fm.rakuten.co.jp%2fbook%2fi%2f13707873%2f" target="_blank"><img src ="http://hbb.afl.rakuten.co.jp/hgb/?pc=http%3a%2f%2fthumbnail.image.rakuten.co.jp%2f%400_mall%2fbook%2fcabinet%2f3113%2f9784101333113.jpg%3f_ex%3d400x400&amp;m=http%3a%2f%2fthumbnail.image.rakuten.co.jp%2f%400_mall%2fbook%2fcabinet%2f3113%2f9784101333113.jpg%3f_ex%3d80x80" border="0"></a></p>
@@ -1347,9 +1468,9 @@ Jリーグクラブ経営、スポーツメーカーのプロモーション、�
   
   <entry>
     <title type="html"><![CDATA[NKHのデータ分析サッカー中継に新しい価値を感じた]]></title>
-    <link href="http://hirofukami.com/blog/2015/08/21/nhk-trackingdata/"/>
+    <link href="http://hirofukami.com/2015/08/21/nhk-trackingdata/"/>
     <updated>2015-08-21T18:00:00+09:00</updated>
-    <id>http://hirofukami.com/blog/2015/08/21/nhk-trackingdata</id>
+    <id>http://hirofukami.com/2015/08/21/nhk-trackingdata</id>
     <content type="html"><![CDATA[<p>これは革新だ！サッカー中継の新しい試みを NHK がしてくれた。</p>
 
 <p>「必見! データがサッカー中継を変える」というタイトルで、8/16 Jリーグ 2ndステージ 第7節 第鹿島アントラーズ x ベガルタ仙台 戦をリアルタイムに集計されるトラッキングデータを分析しながら中継するというもの。</p>
@@ -1514,9 +1635,9 @@ GK以外の選手たちはピッチ縦の1/3くらいの幅に収まっていた
   
   <entry>
     <title type="html"><![CDATA[Book 怖い絵]]></title>
-    <link href="http://hirofukami.com/blog/2015/08/17/book-kowaie/"/>
+    <link href="http://hirofukami.com/2015/08/17/book-kowaie/"/>
     <updated>2015-08-17T22:30:00+09:00</updated>
-    <id>http://hirofukami.com/blog/2015/08/17/book-kowaie</id>
+    <id>http://hirofukami.com/2015/08/17/book-kowaie</id>
     <content type="html"><![CDATA[<p><a href="http://hb.afl.rakuten.co.jp/hgc/1368ce62.540143f5.1368ce63.cb671705/?pc=http%3a%2f%2fitem.rakuten.co.jp%2fbook%2f12397529%2f%3fscid%3daf_link_img&amp;m=http%3a%2f%2fm.rakuten.co.jp%2fbook%2fi%2f16524654%2f" target="_blank"><img src ="http://hbb.afl.rakuten.co.jp/hgb/?pc=http%3a%2f%2fthumbnail.image.rakuten.co.jp%2f%400_mall%2fbook%2fcabinet%2f9123%2f9784041009123.jpg%3f_ex%3d400x400&amp;m=http%3a%2f%2fthumbnail.image.rakuten.co.jp%2f%400_mall%2fbook%2fcabinet%2f9123%2f9784041009123.jpg%3f_ex%3d80x80" border="0"></a></p>
 
 <ul>
@@ -1547,9 +1668,9 @@ GK以外の選手たちはピッチ縦の1/3くらいの幅に収まっていた
   
   <entry>
     <title type="html"><![CDATA[バリ島旅行で知っておくと良いことまとめ]]></title>
-    <link href="http://hirofukami.com/blog/2015/08/15/bali-travel/"/>
+    <link href="http://hirofukami.com/2015/08/15/bali-travel/"/>
     <updated>2015-08-15T22:30:00+09:00</updated>
-    <id>http://hirofukami.com/blog/2015/08/15/bali-travel</id>
+    <id>http://hirofukami.com/2015/08/15/bali-travel</id>
     <content type="html"><![CDATA[<p>今年2015年夏にバリ島に行ってみて実際色々わかったことを、今後行ってみようかと思われている方のお役に立てればと思いまとめてました。</p>
 
 <p><img src="http://hirofukami.com/images/2015/07/20150722-dance.jpg"></p>
@@ -1750,9 +1871,9 @@ GK以外の選手たちはピッチ縦の1/3くらいの幅に収まっていた
   
   <entry>
     <title type="html"><![CDATA[バリ島のビーチで浄化されながら仕事を見つめなおす]]></title>
-    <link href="http://hirofukami.com/blog/2015/08/14/at-bali-beach/"/>
+    <link href="http://hirofukami.com/2015/08/14/at-bali-beach/"/>
     <updated>2015-08-14T12:30:00+09:00</updated>
-    <id>http://hirofukami.com/blog/2015/08/14/at-bali-beach</id>
+    <id>http://hirofukami.com/2015/08/14/at-bali-beach</id>
     <content type="html"><![CDATA[<p><img src="http://hirofukami.com/images/2015/08/20150814-at-bali-beach.JPG"></p>
 
 <p>ビーチはいいよビーチは。</p>
@@ -1823,9 +1944,9 @@ GK以外の選手たちはピッチ縦の1/3くらいの幅に収まっていた
   
   <entry>
     <title type="html"><![CDATA[Movie インサイド・ヘッド]]></title>
-    <link href="http://hirofukami.com/blog/2015/08/02/movie-insideout/"/>
+    <link href="http://hirofukami.com/2015/08/02/movie-insideout/"/>
     <updated>2015-08-02T16:30:00+09:00</updated>
-    <id>http://hirofukami.com/blog/2015/08/02/movie-insideout</id>
+    <id>http://hirofukami.com/2015/08/02/movie-insideout</id>
     <content type="html"><![CDATA[<p>娘が紹介してくれて、見たくなるようなストーリーだったので家族で見に行った。</p>
 
 <p><img src="https://pbs.twimg.com/media/CKsTEMXUcAQs9Io.jpg:large"></p>
@@ -1856,9 +1977,9 @@ GK以外の選手たちはピッチ縦の1/3くらいの幅に収まっていた
   
   <entry>
     <title type="html"><![CDATA[バリ島旅行記 後半]]></title>
-    <link href="http://hirofukami.com/blog/2015/07/27/bali-travel-2nd/"/>
+    <link href="http://hirofukami.com/2015/07/27/bali-travel-2nd/"/>
     <updated>2015-07-27T16:30:00+09:00</updated>
-    <id>http://hirofukami.com/blog/2015/07/27/bali-travel-2nd</id>
+    <id>http://hirofukami.com/2015/07/27/bali-travel-2nd</id>
     <content type="html"><![CDATA[<h1>3日目</h1>
 
 <p>朝食はもう一つのロビー近くのレストランに行ってみた。置いてあるものは同じだけどこちらのほうが種類が豊富。巻きずしなどの日本食もあった。
@@ -1975,9 +2096,9 @@ GK以外の選手たちはピッチ縦の1/3くらいの幅に収まっていた
   
   <entry>
     <title type="html"><![CDATA[バリ島旅行記 前半]]></title>
-    <link href="http://hirofukami.com/blog/2015/07/26/bali-travel-1st/"/>
+    <link href="http://hirofukami.com/2015/07/26/bali-travel-1st/"/>
     <updated>2015-07-26T16:30:00+09:00</updated>
-    <id>http://hirofukami.com/blog/2015/07/26/bali-travel-1st</id>
+    <id>http://hirofukami.com/2015/07/26/bali-travel-1st</id>
     <content type="html"><![CDATA[<p>娘の学校夏休みが早めにスタートするので、あまり人がいない時に旅行してしまおうということで家族で行ってきました、バリ島へ。
 ビーチリゾートでリフレッシュというのをいつかやりたかったし、今年に入り色々やってきたので頭のなかを整理するために間を置きたかったこともあり。</p>
 
@@ -2118,93 +2239,6 @@ GK以外の選手たちはピッチ縦の1/3くらいの幅に収まっていた
 <p>夜のホテルの中庭が素敵だった。</p>
 
 <p><img src="http://hirofukami.com/images/2015/07/20150721-night.jpg"></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[女子ワールドカップ決勝 なでしこジャパンxアメリカ]]></title>
-    <link href="http://hirofukami.com/blog/2015/07/06/wwc2015/"/>
-    <updated>2015-07-06T18:30:00+09:00</updated>
-    <id>http://hirofukami.com/blog/2015/07/06/wwc2015</id>
-    <content type="html"><![CDATA[<p><img src="http://hirofukami.com/images/2015/07/20150706-wwc2015.jpg"></p>
-
-<p>まずは、なでしこ準優勝おめでとう！</p>
-
-<p>4年前のワールドカップで優勝、オリンピックで銀メダル、そして今回準優勝。結果を積み上げた実績はほんとうに素晴らしいと思う。
-選手・スタッフの努力もあるが、佐々木監督のマネージメントには脱帽。本当に素晴らしい。</p>
-
-<p>テレビ観戦だけど、観ながら思ったことをまとめておく。</p>
-
-<!-- more -->
-
-
-<h1>前半</h1>
-
-<p>観客は会場は完全にアメリカのホーム。歓声の大きさで声の掛け合いが聞こえない模様。</p>
-
-<p>立ち上がりアメリカの追い越す動きとバスの連動性に日本のディフェンスが後手に回る。</p>
-
-<p>アメリカの1点目。後から走り込んだ選手に低めのクロス。高ボールを想定して日本は裏をかかれた。</p>
-
-<p>アメリカの2点目。背後から走り込んでくるアメリカの動きに対応しきれず失点。あまりにも短い時間での失点に日本は精神的に動揺している模様。</p>
-
-<p>前半12分。日本は落ち着きを取り戻しボールを回せている。アメリカはブロックを作り高い位置でのプレッシャーにはもう来ない。サイドバックからのクロスは入れるようになっているが、精度が低い。ゴールを脅かすような攻撃にはならない。</p>
-
-<p>アメリカの3点目。日本のパスミスから早い展開の攻撃。ディフェンスのミスからシュート。技術がぶれてしまった。</p>
-
-<p>アメリカの4点目。これも日本のパスミスからの失点。相手が落ち着いてゴールキーパーの位置をよく見ていた。やはり他国ではないアメリカの攻撃性の高さが示された。落ち着きもあった。</p>
-
-<p>振り返ると日本の3失点目、4失点目は防げたかもしれない。ただそれを引き出したアメリカの攻撃性の高さはやはり他国にはないものだった。</p>
-
-<p>アメリカのディフェンスが良い。日本のパスワークを止めている。</p>
-
-<p>日本はスリーバックにして宮間中心にボールが回るようになる。大儀見のテクニカルな1点目。</p>
-
-<p>29分、なでしこの良い連動、パスがつながる。アメリカはアプローチできない。なでしこの攻撃、ディフェンスともに良く機能している。</p>
-
-<p>前半のうちに2人の交代枠を使う。やはり残り時間あとの3点を取らなければいけない逆算をしての答えだろう。リズムが良くなっていただけにこれは大きな判断。賭けに出た交代だったが、菅澤はちょっとチームの力になれていないなぁ。</p>
-
-<h1>後半</h1>
-
-<p>アメリカはの攻撃。なかなか止めれない。</p>
-
-<p>なでしこ2点目。やはりあきらめない。アメリカから2点取ったことは未来につながる。大きい。</p>
-
-<p>アメリカの5点目。ライン際のボールで若干ボールウォッチャーになっていた。戻りぎみのボールはマークが確認しにくい。
-日本に傾いていた流れをアメリカが引き寄せるような大きな得点。</p>
-
-<p>アタッキングサードからのボールの失い方が悪い。自分たちのミスからシュートまでいけない。</p>
-
-<p>アメリカは点差もあるので引いて守って少ない人数でカウンターの方法もあるが攻撃の手を緩めない。アメリカこそ攻撃は最大の防御をというように自分達の攻撃のペースを緩めない。</p>
-
-<p>後半27分、スリーバックにして立て続けにシュートまでいける。菅澤も機能しだした。鮫島のクロスの精度がもっと高ければ、攻撃の可能性を高めるんだけどなあ。</p>
-
-<p>澤のヘディング、惜しい！</p>
-
-<p>日本もボールを放り込むがアメリカも守りを固める。</p>
-
-<p>アメリカは点差があるからか精神的余裕がある。相手をいなすプレーでボールを奪い切れない。アメリカの技術が光る。</p>
-
-<h1>試合が終わってみて</h1>
-
-<p>アメリカは日本に勝つための準備を徹底してやってきていた。ボール回しではかなわないので、セットプレーのパターンを工夫してきた。試合立ち上がりから見事にはまった。それが2点。</p>
-
-<p>そこからの動揺に漬け込んだ2点。</p>
-
-<p>アメリカは強かった。
-放り込むのではなく、ボールを持ち仕掛け、いなしなかなか日本はボールを奪えなかった。シュート数がいかなかったのは、アメリカの守備の良さと個々の技術の高さが理由だろう。</p>
-
-<p>日本は立ち上がりの失点でとても難しい状況だったが、粘り強く攻めて2点をとった。アメリカから複数得点できるほど差は縮まってきているのかもしれない。</p>
-
-<h1>これから</h1>
-
-<p>なでしこの成し遂げたものは大きい。が、今後継続できるかが日本女子サッカー界にとって重要な課題だろう。</p>
-
-<p>今回の選手たちの主力メンバは8年以上も佐々木監督と一緒にやってきていて成熟度が高い。年齢的にも20代後半の選手が多く、来年のオリンピックまではこのメンバで続けると思うが、4年後のワールドカップは若い世代を入れていかねばならないだろう。</p>
-
-<p>そうした時に新たな血となるのは誰なのか。4年後にチームの成熟度はどれくらい高まっているのか。</p>
-
-<p><strong>世代交代</strong> が今後のなでしこのキーワードになる。</p>
 ]]></content>
   </entry>
   

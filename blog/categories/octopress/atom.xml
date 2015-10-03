@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Octopress | Hiro Fukami's Blog]]></title>
   <link href="http://hirofukami.com/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="http://hirofukami.com/"/>
-  <updated>2015-10-02T08:18:54+09:00</updated>
+  <updated>2015-10-03T13:50:17+09:00</updated>
   <id>http://hirofukami.com/</id>
   <author>
     <name><![CDATA[HiroFukami]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[WordPress to Octopress 日本語パーマリンクを直す]]></title>
-    <link href="http://hirofukami.com/blog/2015/02/15/permalink-wordpress-to-octopress/"/>
+    <link href="http://hirofukami.com/2015/02/15/permalink-wordpress-to-octopress/"/>
     <updated>2015-02-15T20:00:00+09:00</updated>
-    <id>http://hirofukami.com/blog/2015/02/15/permalink-wordpress-to-octopress</id>
+    <id>http://hirofukami.com/2015/02/15/permalink-wordpress-to-octopress</id>
     <content type="html"><![CDATA[<p><a href="/blog/2014/12/01/right-way-wordpress-to-octopress/">WordPressからOctopressにきれいに移行する方法を紹介した</a>が、ちょっとした問題が残っていて、それを解消したので紹介。</p>
 
 <h2>パーマリンクの扱い</h2>
@@ -104,9 +104,9 @@ tags:
   
   <entry>
     <title type="html"><![CDATA[WordPressからOctopressへきれいに移行する方法]]></title>
-    <link href="http://hirofukami.com/blog/2014/12/01/right-way-wordpress-to-octopress/"/>
+    <link href="http://hirofukami.com/2014/12/01/right-way-wordpress-to-octopress/"/>
     <updated>2014-12-01T20:00:00+09:00</updated>
-    <id>http://hirofukami.com/blog/2014/12/01/right-way-wordpress-to-octopress</id>
+    <id>http://hirofukami.com/2014/12/01/right-way-wordpress-to-octopress</id>
     <content type="html"><![CDATA[<p><img src="/images/20141201-octopress.png" alt="octopress" /></p>
 
 <p>自分のブログ <a href="http://hirofukami.com">hirofukami.com</a> は今、Octopress on <a href="https://pages.github.com/">Github Pages</a> で動いています。</p>

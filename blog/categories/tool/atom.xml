@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Tool | Hiro Fukami's Blog]]></title>
   <link href="http://hirofukami.com/blog/categories/tool/atom.xml" rel="self"/>
   <link href="http://hirofukami.com/"/>
-  <updated>2015-10-02T08:18:54+09:00</updated>
+  <updated>2015-10-03T13:50:17+09:00</updated>
   <id>http://hirofukami.com/</id>
   <author>
     <name><![CDATA[HiroFukami]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[そして Vichrome から Vimperator に戻った]]></title>
-    <link href="http://hirofukami.com/blog/2014/04/04/chrome-to-firefox/"/>
+    <link href="http://hirofukami.com/2014/04/04/chrome-to-firefox/"/>
     <updated>2014-04-04T09:00:00+09:00</updated>
-    <id>http://hirofukami.com/blog/2014/04/04/chrome-to-firefox</id>
+    <id>http://hirofukami.com/2014/04/04/chrome-to-firefox</id>
     <content type="html"><![CDATA[<p>過去に <a href="http://hirofukami.com/2014/02/04/firefox-vimperator-vs-chrome-vichrome/">Firefox + Vimperator から Chrome + Vichrome に乗り換えた</a> というポストを書いたのだけど、あれから2ヶ月もたたないうちに Vimperator に戻りました。</p>
 
 <p><img src="http://teramako.github.io/doc/browser-workshop-20101127/vimperator-logo.png" alt="Vimperator" /></p>

@@ -9,7 +9,7 @@
 
 <meta name="author" content="HiroFukami"> 
 
-<meta name="description" content="フリー~〈無料〉からお金を生みだす新戦略 作者: クリス・アンダーソン,小林弘人,高橋則明 出版社/メーカー: 日本放送出版協会 発売日: 2009/11/21 メディア: ハードカバー 購入: 126人 クリック: 3,642回 この商品を含むブログ (529件) を見る 今、 &hellip;"> <meta name="keywords" content="">
+<meta name="description" content="Amazon EC2 の Elastic Load Balancing について、最初にまず触ってみたことは以下のエントリーに書いた。 Amazon EC2 新機能 Monitoring, Auto Scaling and Elastic Load Balancing を一通り触ってみた &# &hellip;"> <meta name="keywords" content="">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -63,7 +63,7 @@ $(document).ready(
     <meta property="twitter:site" content="d_sea">
     <meta property="twitter:url" content="http://hirofukami.com">
     <meta property="twitter:title" content="Hiro Fukami's Blog">
-    <meta property="twitter:description" content="フリー~〈無料〉からお金を生みだす新戦略 作者: クリス・アンダーソン,小林弘人,高橋則明 出版社/メーカー: 日本放送出版協会 発売日: 2009/11/21 メディア: ハードカバー 購入: 126人 クリック: 3,642回 この商品を含むブログ (529件) を見る 今、日常過ごす上で利用しているネットサービスは Gmail、Evernote、Remember The Milk、 &hellip;">
+    <meta property="twitter:description" content="Amazon EC2 の Elastic Load Balancing について、最初にまず触ってみたことは以下のエントリーに書いた。 Amazon EC2 新機能 Monitoring, Auto Scaling and Elastic Load Balancing を一通り触ってみた &#8211; つれづれなる・・・ (このエントリーで分かったことを元に修正しています。) &hellip;">
     <meta property="twitter:creator" content="d_sea" />
 
 
@@ -123,6 +123,199 @@ $(document).ready(
 </header>
 
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/2010/03/04/amazon-ec2-elastic-load-balancing/">
+		
+			Amazon EC2 Elastic Load Balancing をもう少し詳しく見てみた</a>
+	</h2>
+	<div class="entry-content">
+		<div class="section">
+  <p>
+    Amazon EC2 の Elastic Load Balancing について、最初にまず触ってみたことは以下のエントリーに書いた。
+  </p>
+  
+  <p>
+    <a href="http://d.hatena.ne.jp/d_sea/20090525/p1" target="_blank"> Amazon EC2 新機能 Monitoring, Auto Scaling and Elastic Load Balancing を一通り触ってみた &#8211; つれづれなる・・・</a><a href="http://b.hatena.ne.jp/entry/http://d.hatena.ne.jp/d_sea/20090525/p1" class="http-bookmark" target="_blank"><img src="http://b.hatena.ne.jp/entry/image/http://d.hatena.ne.jp/d_sea/20090525/p1" alt="" class="http-bookmark" /></a>
+  </p>
+  
+  <p>
+    (このエントリーで分かったことを元に修正しています。)
+  </p>
+  
+  <p>
+    この時に疑問に思った点とか新しく気づいたことをのせます。
+  </p>
+  
+  <h4>
+    Load Balancer からのヘルスチェックがHTTP GETに対応していた
+  </h4>
+  
+  <p>
+    今までは単なるポートレベルでのチェックだったのが、html指定できるようになっている。
+  </p>
+  
+  <p>
+    Amazon Management Console から Load Balancer の設定ができるようになっているが、ヘルスチェックの画面でHTTP用にURLパスが設定できるようになっていた。
+  </p>
+  
+  <p>
+    「Ping Path」という部分が該当する。デフォルトは「index.html」になっている。
+  </p>
+  
+  <p>
+    <a href="http://f.hatena.ne.jp/d_sea/20100308123659" class="hatena-fotolife" target="_blank"><img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/d_sea/20100308/20100308123659.png?w=830" alt="f:id:d_sea:20100308123659p:image" title="f:id:d_sea:20100308123659p:image" class="hatena-fotolife" data-recalc-dims="1" /></a>
+  </p>
+  
+  <p>
+    ちなみに、プルダウンを「TCP」にすると、「Ping Path」が消える。HTTP以外で単純にポート番号に対してヘルスチェックを行う場合はこっちで設定する。
+  </p>
+  
+  <p>
+    <a href="http://f.hatena.ne.jp/d_sea/20100308123658" class="hatena-fotolife" target="_blank"><img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/d_sea/20100308/20100308123658.png?w=830" alt="f:id:d_sea:20100308123658p:image" title="f:id:d_sea:20100308123658p:image" class="hatena-fotolife" data-recalc-dims="1" /></a>
+  </p>
+  
+  <h4>
+    Load Balancer のヘルスチェックは AWS のローカルネットワーク内から任意のインスタンスで行われていた
+  </h4>
+  
+  <p>
+    通常、security group に最初に設定されている default には全てのポート番号に対して source IP address に default group が設定されている。これで自分が立ち上げたインスタンス間の通信は何でも通って、外部からのアクセスからは守られる状況が簡単に作れている。
+  </p>
+  
+  <p>
+    Amazon Management Console からは以下の画面で分かる。
+  </p>
+  
+  <p>
+    <a href="http://f.hatena.ne.jp/d_sea/20100308160819" class="hatena-fotolife" target="_blank"><img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/d_sea/20100308/20100308160819.png?w=830" alt="f:id:d_sea:20100308160819p:image" title="f:id:d_sea:20100308160819p:image" class="hatena-fotolife" data-recalc-dims="1" /></a>
+  </p>
+  
+  <p>
+    Elastic Load Balancing を利用するときに悩ましかったのが、ヘルスチェックパケットを送ってくる誰かは default group に該当しないらしく、Security Group でアドレスを追加して accept する必要があるけども、ヘルスチェックパケットを送ってくる source IP が画面上やコマンド上では分からないこと。
+  </p>
+  
+  <p>
+    Web用で利用するときは、0.0.0.0/0 で開けてしまうので問題ないのだけど、例えば MySQL のレプリケーションのスレーブ複数台を分散するために使いたい場合は any であけるのは、これはセキュリティ的によろしくない。
+  </p>
+  
+  <p>
+    実際、どの source IP から送ってくるのか tcpdump してみた。
+  </p>
+  
+  <ul>
+    <li>
+      ヘルスチェックはHTTPのデフォルト値を採用
+    </li>
+    <li>
+      起動したインスタンスで tcpdump を実施
+    </li>
+    <li>
+      作成した Load Balancer は web-load-balancer-833540296.us-east-1.elb.amazonaws.com(IP address:184.73.238.21)
+    </li>
+  </ul>
+  
+  <pre>
+
+[root@ip-10-242-119-83 ~]# tcpdump -n port 80
+
+
+
+22:03:42.962921 IP 10.212.66.130.55786 &gt; 10.242.119.83.http: S 1970301109:1970301109(0) win 5840 &lt;mss 1460,sackOK,timestamp 1108158 0,nop,wscale 3&gt;
+
+22:03:42.962970 IP 10.242.119.83.http &gt; 10.212.66.130.55786: S 2350734762:2350734762(0) ack 1970301110 win 5792 &lt;mss 1460,sackOK,timestamp 1345800047 1108158,nop,wscale 2&gt;
+
+22:03:42.962981 IP 10.212.66.130.55776 &gt; 10.242.119.83.http: F 1:1(0) ack 1 win 730 &lt;nop,nop,timestamp 1108158 1345793614&gt;
+
+22:03:42.963169 IP 10.242.119.83.http &gt; 10.212.66.130.55776: F 1:1(0) ack 2 win 1448 &lt;nop,nop,timestamp 1345800047 1108158&gt;
+
+22:03:42.963410 IP 10.212.66.130.55786 &gt; 10.242.119.83.http: . ack 1 win 730 &lt;nop,nop,timestamp 1108158 1345800047&gt;
+
+22:03:42.963454 IP 10.212.66.130.55776 &gt; 10.242.119.83.http: . ack 2 win 730 &lt;nop,nop,timestamp 1108158 1345800047&gt;
+
+</pre>
+  
+  <p>
+    10.212.66.130 がヘルスチェックパケットを送って来ていた。10.242.119.83 は自分のインスタンス。
+  </p>
+  
+  <p>
+    AWS 内で名前を引くと、
+  </p>
+  
+  <pre>
+
+[root@ip-10-242-119-83 ~]# host 10.242.119.83
+
+83.119.242.10.in-addr.arpa domain name pointer ip-10-242-119-83.ec2.internal.
+
+</pre>
+  
+  <p>
+    EC2のインスタンスにつけるホスト名のような感じに見える。なので、ヘルスチェックするのは Load Balancer 用に立ち上げられているインスタンスが行っているようだ。
+  </p>
+  
+  <p>
+    ちなみに、Load Balancer のローカルアドレスでは？と思ってインスタンス上から Load Balancer の FQDN を引いてみると、
+  </p>
+  
+  <pre>
+
+[root@ip-10-242-119-83 ~]# host web-load-balancer-833540296.us-east-1.elb.amazonaws.com
+
+web-load-balancer-833540296.us-east-1.elb.amazonaws.com has address 184.73.238.21
+
+</pre>
+  
+  <p>
+    グローバルアドレスが返ってきているので、ヘルスチェックしているのは Load Balancer <del datetime="2010-10-28T22:42:15+09:00">とは別物</del>のインターナル側のIPアドレスのようだ。(追記: ヘルスチェックしているのは別物ではなく同一インスタンスだった、という<a href="http://d.hatena.ne.jp/d_sea/comment?date=20100305#c112920840" target="_blank">コメントからの指摘</a>があったので修正)
+  </p>
+  
+  <p>
+    ヘルスチェックを通すために security group を広くあけるのが嫌だなぁと思っている方は、このホストだけを accept するように security group を設定すればいい。<del datetime="2010-10-28T22:42:15+09:00">このアドレスはおそらく動的には変わらないと思うので。条件は tcpdump のようなパケットキャプチャができることになるけど。</del>のだけど、ELBがEC2と同じようにアドレスが変わる可能性もありそうという話もあるので、10.0.0.0/255.0.0.0の広めにあけておくのが無難になりそう。(追記: こちらも<a href="http://d.hatena.ne.jp/d_sea/comment?date=20100305#c112920840" target="_blank">コメントからの指摘</a>があったので修正)
+  </p>
+  
+  <p>
+    Load Balancer はネットワークレベルでの分散を簡単に行えるので、使いようによっては結構便利。今回のこのティップスでひとまずanyで開けない程度の環境で利用できる。
+  </p>
+</div>
+
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-03-05T00:00:00+09:00" pubdate data-updated="true">Mar 5<span>th</span>, 2010</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/tech/'>Tech</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/2010/03/04/amazon-ec2-elastic-load-balancing//blog/page/25/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
 
 
     <article class="post">
@@ -1738,79 +1931,6 @@ $(document).ready(
 
 	
 		<span class="comments"><a href="/2009/10/31/post//blog/page/25/index.html#disqus_thread">Comments</a></span>
-	
-</div></article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/2009/10/30/2/">
-		
-			いつも通りの定期チェック＋あと2回と言われた</a>
-	</h2>
-	<div class="entry-content">
-		<div class="section">
-  <p>
-    いつも通り、定期チェックをしにいく。引っ越後だったので、矯正歯科へ行くまでに1時間以上かかる。ちょっと行き来がつらい。
-  </p>
-  
-  <p>
-    リテーナーを外しても、前ほど動かなくなったと報告したが、先生としてはもう動かなくていい時期と思っているようだ。一般に比べて歯への圧迫が大きいのだろう。
-  </p>
-  
-  <p>
-    いつも通りでそのまま終了か、と思っていた時に先生から「あと2回で定期チェックも終わりになります」と言われた。リテーナーになってからあと6ヶ月で、まる2年間になるかららしい。どうやら器具を外してリテーナーにに移行したら2年間は見るとしているみたい。
-  </p>
-  
-  <p>
-    その後は自分でリテーナー続けてもいいし、外しちゃってもいいし決めてください。と言われた。これはなかなか判断が難しい。今は明らかにリテーナーを外すと歯が動いてしまう。あと6ヶ月経ってもそれほど状況は変わらないだろう。
-  </p>
-  
-  <p>
-    今歯が動いているのは多分2つあって、上の左の歯の間が右に比べて空いているので横方向に動こうとすることと、上の前歯間がきついので前に出ようとする。横に動いてくれるのは隙間を均一にしてくれるので良いし、上下の歯の中心線がそろう方向に動いてくれることになるのでそういう意味でも良い。でも、前に出てしまうのは絶対避けたい。そもそも前歯が出ていたのを直すために矯正を始めたのだから。
-  </p>
-  
-  <p>
-    今後どう動くかは予想もできないが、リテーナー生活ももう飽きたのでいっそ自分の歯の動くがままに信じてみてもいいかもしれないと、急に寛容に考え始めた帰り道だった。
-  </p>
-  
-  <p>
-    本日の清算&#160;: チェック料 ￥5,000
-  </p>
-</div>
-
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-10-31T00:00:00+09:00" pubdate data-updated="true">Oct 31<span>st</span>, 2009</time></div>
-	
-
-<div class="tags">
-
-	<a class='category' href='/blog/categories/life/'>Life</a>
-
-</div>
-
-
-	
-		<span class="comments"><a href="/2009/10/30/2//blog/page/25/index.html#disqus_thread">Comments</a></span>
 	
 </div></article>
 

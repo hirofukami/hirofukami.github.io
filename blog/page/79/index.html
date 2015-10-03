@@ -9,7 +9,7 @@
 
 <meta name="author" content="HiroFukami"> 
 
-<meta name="description" content="仕事で本当に大切にしたいこと 作者: 大竹美喜 出版社/メーカー: かんき出版 発売日: 2004/05/31 メディア: 単行本（ソフトカバー） クリック: 8回 この商品を含むブログ (11件) を見る 職場の人が読んでいました。 最近こういう仕事上の自己啓発のような本を読んでなかったので、 &hellip;"> <meta name="keywords" content="">
+<meta name="description" content="階層的には bgp { advertise-inactive; &#160;: BGPでもIGPでも同じ prefix を広報している場合。 # 顧客割り当てblockがそのままBGPのnetworkで設定されるなどの場合 Juniper的 administrative distance &hellip;"> <meta name="keywords" content="">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -63,7 +63,7 @@ $(document).ready(
     <meta property="twitter:site" content="d_sea">
     <meta property="twitter:url" content="http://hirofukami.com">
     <meta property="twitter:title" content="Hiro Fukami's Blog">
-    <meta property="twitter:description" content="仕事で本当に大切にしたいこと 作者: 大竹美喜 出版社/メーカー: かんき出版 発売日: 2004/05/31 メディア: 単行本（ソフトカバー） クリック: 8回 この商品を含むブログ (11件) を見る 職場の人が読んでいました。 最近こういう仕事上の自己啓発のような本を読んでなかったので、読んでみました。 仕事をする人間としての考え方への説明はちょっと浅い気がしますが、 &hellip;">
+    <meta property="twitter:description" content="階層的には bgp { advertise-inactive; &#160;: BGPでもIGPでも同じ prefix を広報している場合。 # 顧客割り当てblockがそのままBGPのnetworkで設定されるなどの場合 Juniper的 administrative distance ではOSPFが勝つのでBGPには乗らない。 BGPのエントリーはBestではないけど、 &hellip;">
     <meta property="twitter:creator" content="d_sea" />
 
 
@@ -123,6 +123,97 @@ $(document).ready(
 </header>
 
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/2004/07/28/juniper-advertise-inactive/">
+		
+			[Juniper]advertise-inactive</a>
+	</h2>
+	<div class="entry-content">
+		<div class="section">
+  <p>
+    階層的には
+  </p>
+  
+  <blockquote>
+    <p>
+      bgp {
+    </p>
+    
+    <p>
+      advertise-inactive;
+    </p>
+    
+    <p>
+      &#160;:
+    </p>
+  </blockquote>
+  
+  <p>
+    BGPでもIGPでも同じ prefix を広報している場合。
+  </p>
+  
+  <p>
+    # 顧客割り当てblockがそのままBGPのnetworkで設定されるなどの場合
+  </p>
+  
+  <p>
+    Juniper的 administrative distance ではOSPFが勝つのでBGPには乗らない。
+  </p>
+  
+  <p>
+    BGPのエントリーはBestではないけど、乗せてあげるという意味。
+  </p>
+  
+  <p>
+    eBGPで広報してるつもりが出来ていないことになるのでこれは必須。
+  </p>
+  
+  <p>
+    <p>
+      参考URL
+    </p>
+    
+    <p>
+      <a href="http://www.juniper.net/techpubs/software/junos/junos62/swconfig62-policy/html/policy-overview-framework4.html#1021027" target="_blank"><a href="http://www.juniper.net/techpubs/software/junos/junos62/swconfig62-policy/html/policy-overview-framework4.html#1021027" target="_blank">http://www.juniper.net/techpubs/software/junos/junos62/swconfig62-policy/html/policy-overview-framework4.html#1021027</a></a>
+    </p></div>
+
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2004-07-29T00:00:00+09:00" pubdate data-updated="true">Jul 29<span>th</span>, 2004</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/tech/'>Tech</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/2004/07/28/juniper-advertise-inactive//blog/page/79/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
 
 
     <article class="post">
