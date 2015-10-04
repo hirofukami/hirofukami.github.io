@@ -9,7 +9,7 @@
 
 <meta name="author" content="HiroFukami"> 
 
-<meta name="description" content="リーンスタートアップを読んでからの流れで、この本に行き着いた。 プランＢ　破壊的イノベーションの戦略 リーンスタートアップは、プランB + トヨタ生産方式 + アントレプレナーの教科書で構成されていると思って良い。その構成要素の1つがこの本「プランB」になる。リーンスタートアップを行う前提である &hellip;"> <meta name="keywords" content="">
+<meta name="description" content="Titanium SDK/Studio 3.1.0 に対応した Morning Latte がリリースできたので、対応するために色々大変だったメモを残しておく。 今までのコードをそのまま Titanium SDK 3.1.0 で動かすとエラーやワーニングでてまともに動かなかったので、 &hellip;"> <meta name="keywords" content="">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -63,7 +63,7 @@ $(document).ready(
     <meta property="twitter:site" content="d_sea">
     <meta property="twitter:url" content="http://hirofukami.com">
     <meta property="twitter:title" content="Hiro Fukami's Blog">
-    <meta property="twitter:description" content="リーンスタートアップを読んでからの流れで、この本に行き着いた。 プランＢ　破壊的イノベーションの戦略 リーンスタートアップは、プランB + トヨタ生産方式 + アントレプレナーの教科書で構成されていると思って良い。その構成要素の1つがこの本「プランB」になる。リーンスタートアップを行う前提である「最初のアイデアはほとんど間違っている」という考え方をこの本では解説し、 &hellip;">
+    <meta property="twitter:description" content="Titanium SDK/Studio 3.1.0 に対応した Morning Latte がリリースできたので、対応するために色々大変だったメモを残しておく。 今までのコードをそのまま Titanium SDK 3.1.0 で動かすとエラーやワーニングでてまともに動かなかったので、色々対応が必要だった。Titanium3.1.0 のリリース内容は Appcelerator Blog &hellip;">
     <meta property="twitter:creator" content="d_sea" />
 
 
@@ -123,6 +123,123 @@ $(document).ready(
 </header>
 
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/2013/05/17/titanium-sdk-3-1-0-trouble/">
+		
+			Titanium SDK 3.1.0 対応で色々大変だったというメモ</a>
+	</h2>
+	<div class="entry-content">
+		<p>Titanium SDK/Studio 3.1.0 に対応した <a href="https://itunes.apple.com/jp/app/morning-latte/id585111783?mt=8" target="_blank">Morning Latte</a> がリリースできたので、対応するために色々大変だったメモを残しておく。</p>
+
+<p>今までのコードをそのまま Titanium SDK 3.1.0 で動かすとエラーやワーニングでてまともに動かなかったので、色々対応が必要だった。Titanium3.1.0 のリリース内容は <a href="http://developer.appcelerator.com/blog/2013/04/titanium-sdkstudio-3-1-0-release-candidate-now-available.html" target="_blank">Appcelerator Blog でも紹介されいてる</a>通りで、その中で <a href="https://itunes.apple.com/jp/app/morning-latte/id585111783?mt=8" target="_blank">Morning Latte</a> に関係しそうだったのは、</p>
+
+<ul>
+<li>iOS Retina simulator Support</li>
+<li>Facebook V3 モジュール提供</li>
+</ul>
+
+
+<p>の2つ。それ以外に対応が必要だったのは、</p>
+
+<ul>
+<li>そもそも Titanium Studio 3.1.0 へのアップデートが出来ない</li>
+<li>せっかく設定した fb module で Facebook アプリ認証をさせると、他のページで fb.module 読むとセッションエラーが出る</li>
+<li>tabGroup を close() しようとするとワーニングが出た後、アプリがクラッシュして落ちる</li>
+</ul>
+
+
+<p>とかとか、トラブルになってしまいこれを解消する必要があった。行った順に1つ1つ解消メモを残しておく。</p>
+
+<h2>Titanium Studio 3.1.0 にアップデート出来ない</h2>
+
+<p>のっけからつまずいてしまったのはこれ。Titanium Studio から、Help > Check for Updates すると、レポジトリエラーのメッセージが出て処理が止まってしまう。</p>
+
+<p>上書きインストールを試みるために、Titanium Studio の<a href="https://my.appcelerator.com/resources" target="_blank">ダウンロードサイト</a>からファイルをダウンロードして、Mac の Applications > Titanium Studio に保存して起動してみると、エラーが出て起動できなくなってしまった。</p>
+
+<p>結局解決した方法は、</p>
+
+<ol>
+<li>AppCleaner.app などのアンインストールツールを使って一度 Titanium Studio をアンインストールする
+
+<ul>
+<li>Mac にはアプリアンインストールツールがないと思うので、こういったツールをインストールする必要がある</li>
+<li>Applications の中には Titanium のディレクトリがなくなる</li>
+</ul>
+</li>
+<li>Titanium Studio 3.1.0 を新規にインストール、Applications に Titanium Studio ディレクトリをコピー</li>
+<li>起動する</li>
+<li>最初にプロジェクト用のディレクトリを指定するので今までのプロジェクトがあるパスを設定する</li>
+<li>プロジェクト内にある tiapp.xml をちゃんと読んでくれるので、特にこれ以上の設定は必要なく今までどおり使える</li>
+</ol>
+
+
+<p>結局、必要な設定情報は tiapp.xml にあるので、あまり悩まずアンインストールしてしまってよかったというお話。今後にも使えそうなティップス。</p>
+
+<h2>Facebook V3 モジュール対応</h2>
+
+<p>既存の Titanium.Facebook が使えなくなって、モジュールの一つとして位置づけられ Modules.Facebook  になりました。ということなので記述的には、</p>
+
+<p>いままで</p>
+
+<pre class="brush: jscript; title: ; notranslate" title="">Ti.Facebook.appid = &lt;Your App ID&gt;;
+Ti.Facebook.permissions = ['publish_stream', 'read_stream', 'user_likes'];
+
+Ti.Facebook.requestWithGraphPath('me/likes', {}, &quot;GET&quot;, function(r) {....
+</pre>
+
+
+<p>のように書いていたものを、</p>
+
+<pre class="brush: jscript; title: ; notranslate" title="">var fb = require('facebook');
+
+fb.appid = &lt;Your App ID&gt;;
+fb.permissions = ['read_stream', 'user_likes', 'publish_stream'];
+fb.forceDialogAuth = true;
+fb.authorize();
+
+fb.requestWithGraphPath('me/likes', {}, &quot;GET&quot;, function(r) {....
+</pre>
+
+
+<p>このように基本 Ti.Facebook. を fb. に置き換えればOK。</p>
+
+
+		
+		<a href="/2013/05/17/titanium-sdk-3-1-0-trouble/" class="more-link">Read on &rarr;</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-17T20:02:27+09:00" pubdate data-updated="true">May 17<span>th</span>, 2013</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/tech/'>Tech</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/2013/05/17/titanium-sdk-3-1-0-trouble//blog/page/16/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
 
 
     <article class="post">
@@ -800,115 +917,6 @@ $(document).ready(
 
 	
 		<span class="comments"><a href="/2013/03/26/moved-blog-wordpresscom//blog/page/16/index.html#disqus_thread">Comments</a></span>
-	
-</div></article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/2013/03/19/wordpress-com-vs-tumblr/">
-		
-			WordPress.com と Tumblr 比較</a>
-	</h2>
-	<div class="entry-content">
-		<p><img class="aligncenter size-full wp-image-804" alt="tumblr-to-wordpress-migration" src="/images/2013/03/tumblr-to-wordpress-migration.jpg?resize=800%2C325" data-recalc-dims="1" /></p>
-
-<p>hirofukami.com を自分のブログにして色々発信していこうと思っているのだけど、はてなダイアリーから Tumblr に移ったはいいけど、純粋にブログとして運営するにはちょっと足りない点も出てきたので、Wordpress.com もテスト的に使ってみて比較してみた。</p>
-
-<h2>Tumblr</h2>
-
-<p>良い点</p>
-
-<ul>
-<li>テーマのデザイン性が高い、おしゃれなものが多い</li>
-<li>写真を複数枚表示させる際のレイアウトが豊富で良い</li>
-<li>ポストのタイプによってレイアウトが大きく変わるので、見ていて分かりやすい</li>
-<li>Tumblr ユーザ同士のコミュニケーションがしやすい、スキ!やリブログから面白いコンテンツがまわってきやすい</li>
-<li>独自ドメイン設定がタダでできる</li>
-<li>Markdown で記述できる</li>
-</ul>
-
-
-<p>悪い点</p>
-
-<ul>
-<li>記事に対してコメントをすることができない、シェア用のソーシャルアイコンはあるけど
-
-<ul>
-<li>読んでくれた人とのコミュニケーションをなるべくしたいと思っているからこれは辛い</li>
-</ul>
-</li>
-<li>ブログ内検索の対象がタグのみ、全文検索できない
-
-<ul>
-<li>自分でも過去の記事を探したい時があるのでかなり困る</li>
-<li>検索性が悪い、アーカイブを見直すよりリアルタイムを見せ合うような設計なのだろう</li>
-</ul>
-</li>
-<li>サイドバーに表示できるガジェットがテーマに依存して限定的</li>
-</ul>
-
-
-<h2>WordPress.com</h2>
-
-<p>良い点</p>
-
-<ul>
-<li>コメント、トラックバックなどブログの基本機能は揃っていて、細かめな設定も可能</li>
-<li>ブログ内全文検索が出来る</li>
-<li>ガジェットが豊富でレイアウトも自由にできる
-
-<ul>
-<li>個人的にはタグクラウド、About.me、アーカイブリンクなどがほしい</li>
-</ul>
-</li>
-</ul>
-
-
-<p>悪い点</p>
-
-<ul>
-<li>ビジュアルモードは書きづらい</li>
-<li>独自ドメインが$13/年かかる、しかも広告が出るかもしれない、非表示にするには$30/年かかる</li>
-<li>フリーのテーマはデザインがいまいち、カスタマイズするには$30/年かかる</li>
-</ul>
-
-
-<p>やっぱりパブリックにいろいろな人にみてもらうブログとして運用するには WordPress の方がコストは掛かったり入力しづらかったりするけど、機能がちゃんと揃っている。Tumblr はブログというより Tumblr ユーザ同士だけで楽しみ合うようなサービスに思える。</p>
-
-<p>ということで、hirofukami.com を WordPress.com で運営し始める日は近そうだ。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-03-20T01:55:59+09:00" pubdate data-updated="true">Mar 20<span>th</span>, 2013</time></div>
-	
-
-<div class="tags">
-
-	<a class='category' href='/blog/categories/internet/'>Internet</a>
-
-</div>
-
-
-	
-		<span class="comments"><a href="/2013/03/19/wordpress-com-vs-tumblr//blog/page/16/index.html#disqus_thread">Comments</a></span>
 	
 </div></article>
 
