@@ -9,7 +9,7 @@
 
 <meta name="author" content="HiroFukami"> 
 
-<meta name="description" content="ハートビーツさん主催で行われているインフラエンジニアのための勉強会 hbstudy の3回目で、BGP の話をしてきた。 私が1つ目のネタで、2つ目のネタはTOMOYO Linuxの紹介で、NTT-DATA 沼口さんだった。 タイトルは「BGPのお話」。思いっきりネットワークのみの世界の話なのと &hellip;"> <meta name="keywords" content="">
+<meta name="description" content="最近、仕事でお世話になっているコミュニティーエンジンの ringo さんと打ち合わせの帰り道での会話。 d_sea&#160;: プロジェクトマネージャ(PM)って、今までの経験上、「この人すばらしいPMだ！！」って思った人は一人もいないんですよね～ ringo&#160;: 僕もそうだなぁ &hellip;"> <meta name="keywords" content="">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -63,7 +63,7 @@ $(document).ready(
     <meta property="twitter:site" content="d_sea">
     <meta property="twitter:url" content="http://hirofukami.com">
     <meta property="twitter:title" content="Hiro Fukami's Blog">
-    <meta property="twitter:description" content="ハートビーツさん主催で行われているインフラエンジニアのための勉強会 hbstudy の3回目で、BGP の話をしてきた。 私が1つ目のネタで、2つ目のネタはTOMOYO Linuxの紹介で、NTT-DATA 沼口さんだった。 タイトルは「BGPのお話」。思いっきりネットワークのみの世界の話なのと、BGP自身なじみがないと思ったので、どの程度伝わったのかはよく分からずとも、 &hellip;">
+    <meta property="twitter:description" content="最近、仕事でお世話になっているコミュニティーエンジンの ringo さんと打ち合わせの帰り道での会話。 d_sea&#160;: プロジェクトマネージャ(PM)って、今までの経験上、「この人すばらしいPMだ！！」って思った人は一人もいないんですよね～ ringo&#160;: 僕もそうだなぁ。。。 d_sea&#160;: そう言えば、これができれば PM &hellip;">
     <meta property="twitter:creator" content="d_sea" />
 
 
@@ -123,6 +123,118 @@ $(document).ready(
 </header>
 
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/2009/09/13/post/">
+		
+			プロジェクトマネージャという単語の持つ無意味さ</a>
+	</h2>
+	<div class="entry-content">
+		<div class="section">
+  <p>
+    最近、仕事でお世話になっているコミュニティーエンジンの ringo さんと打ち合わせの帰り道での会話。
+  </p>
+  
+  <ul>
+    <li>
+      d_sea&#160;: プロジェクトマネージャ(PM)って、今までの経験上、「この人すばらしいPMだ！！」って思った人は一人もいないんですよね～
+    </li>
+    <li>
+      ringo&#160;: 僕もそうだなぁ。。。
+    </li>
+    <li>
+      d_sea&#160;: そう言えば、これができれば PM としてOKという明確なものがないですね。スケジュール管理だけではないし、会議に出ていれば良い訳でもない。実は PM って、イメージだけの言葉なのかも。。。
+    </li>
+    <li>
+      ringo&#160;: それはおもしろい！！PM という仕事の実体は実はないかも。
+    </li>
+  </ul>
+  
+  <p>
+    こんなことを話した訳だけど、ちょっと振り返っても実はかなり的を得ている気がしている。
+  </p>
+  
+  <p>
+    ここ3年くらい前から確信していることとして、「平均的なスキルを持った人が20人いたとしてもできないことがあって、スペシャルな一人がそれをできてしまう世界が確かにある」ということ。
+  </p>
+  
+  <p>
+    これは特にネットのサービス作りで顕著な気がしていて、スキルの高い最小人数ですごいパフォーマンスで作り上げるのが一番早いという結果が出ている。あまり日本では表に出ない事実かもしれないけど、結果を残せているサービスには必ずそういうスペシャルな人がいるはず。
+  </p>
+  
+  <p>
+    そういう現実がある一方、この PM とか PL とか言う響きは複数人で行う際に前提とされる象徴的な言葉かと思っている。
+  </p>
+  
+  <p>
+    PMとかPLだから偉い。みたいな印象が結構強くって、あとのメンバはそれに従う歩兵みたいな感じがする。本当は偉いとかはプロジェクトを取り組む際に全然意味をなさない項目なのだけど、妙にその印象が強くついてしまう現実はあるかと思う。
+  </p>
+  
+  <p>
+    その偉い PM が実は何ができれば良いのかの定義がなかったことに気づけたのはすごく面白かった。
+  </p>
+  
+  <p>
+    もう少し考えると、集団主義的な発想で解決する時に PM がコミットすべき TODO が実は決まってないということは、人の数はそれなりにいるが機能してない人が出やすくって、しかもそれが偉いと思われやすい PM だったりするのはかなりのクリティカルポイントだと思う。
+  </p>
+  
+  <p>
+    自分の経験上、Enterprise SI の SE をやっていた時に必ず PM とか PL を立てて案件を取り組んでいたのだけど、最もパフォーマンスが悪かった(案件に対して直接的に推進する力になれていない)人は PM だったりする記憶がよみがえって、つじつまがあった。
+  </p>
+  
+  <p>
+    別に集団主義を否定している訳でもなんでもなくて、ネットの世界で新しいアプローチをしようとした場合にはムダとかパフォーマンスをしないとかはいらないことなのは明らかなこと。そこで集団主義で複数名で解決する手法をとるにせよ、ちゃんと自分の役割や TODO くらいは明確化してないと、どうにでもなってしまう危険性を元々はらんでいるということを分かっておいた方が良いと思った。その原因が偉いと思われて気を良くしている PM の機能不全だったりするとプロジェクトとしては本当に不幸な自体になる。
+  </p>
+  
+  <p>
+    今回は今思う自分なりの確信になったのだけど、今後自分が本当にすばらしいPMだ！！と思える方に出会えたら、この確信はまた変わるんだろう。
+  </p>
+  
+  <p>
+    その前に仕事のやり方が全く変わって、オンライン上でそれぞれが流動的に関わり合いながら、完全にフラットな体制でプロジェクトを取り組むことが当たり前な世の中になっているかもしれない。
+  </p>
+  
+  <p>
+    自分としてはそうなってくれる方が面白いし、実際その兆候は現れていると思っている。
+  </p>
+</div>
+
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-09-14T00:00:00+09:00" pubdate data-updated="true">Sep 14<span>th</span>, 2009</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/self-management/'>Self Management</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/2009/09/13/post//blog/page/27/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
 
 
     <article class="post">
@@ -1298,157 +1410,6 @@ $(document).ready(
 
 	
 		<span class="comments"><a href="/2009/07/12/tokyo2-0//blog/page/27/index.html#disqus_thread">Comments</a></span>
-	
-</div></article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/2009/07/11/hbstudy-1/">
-		
-			Hbstudy#1 に行ってきました</a>
-	</h2>
-	<div class="entry-content">
-		<div class="section">
-  <p>
-    <a href="http://heartbeats.jp/hbstudy/" target="_blank">hbstudy</a> は株式会社ハートビーツが主催するインフラエンジニア勉強会で、記念すべき第1回目に参加してきた。
-  </p>
-  
-  <p>
-    この「インフラエンジニア」という響きはやっと最近になってなじみがでてきたかなと思うが、組織に埋没しがちな裏方的な立場になるのであまり表にでてくる機会もなかったのだと思う。自称インフラエンジニアとしてはこういうインフラをキーとしたバプリックな集まりが開催されるのはうれしいし、ハートビーツさんの持っている経験、スキルがアピールできるいいきっかけになればとも思う。
-  </p>
-  
-  <p>
-    最初にハートビーツ馬場さんからインフラエンジニアになろう、というお話で元ネタは<a href="http://netmark.jp/2009/06/post-13.html" target="_blank">ここ</a>とほぼ同じかな。
-  </p>
-  
-  <p>
-    あとは他社の方からKVMとWakameのお話。
-  </p>
-  
-  <h4>
-    KVM
-  </h4>
-  
-  <ul>
-    <li>
-      実際のコマンド紹介
-    </li>
-    <li>
-      うまく動かないところがあるらしい
-    </li>
-    <li>
-      当日の資料は Google Docs で公開されている <a href="http://docs.google.com/present/view?id=ddd43nk8_6g5mpht7x" target="_blank"><a href="http://docs.google.com/present/view?id=ddd43nk8_6g5mpht7x" target="_blank">http://docs.google.com/present/view?id=ddd43nk8_6g5mpht7x</a></a>
-    </li>
-  </ul>
-  
-  <h4>
-    Wakame 紹介
-  </h4>
-  
-  <ul>
-    <li>
-      Wakame はスケジュールにそったスケーリングが可能だけど、負荷状態によってスケールするのは難しい
-    </li>
-    <li>
-      負荷が急に来たとき(Y!のニュースに載っちゃったとか)スケールする速度が追いつくかどうか起動に数分かかってしまう時点でダメなのではというところなのだろう
-    </li>
-    <li>
-      # Y!アタックはさばこうとしてはダメなのかも。スケールの閾値を大幅に上回る場合は sorry page に飛ばすところまで自動化すればいいかと思った
-    </li>
-  </ul>
-  
-  <h4>
-    懇親会では色々話した
-  </h4>
-  
-  <ul>
-    <li>
-      preferred infrastructure がすごいらしい</p> <ul>
-        <li>
-          クラウドコンペ優勝者が絡んでいたらしい
-        </li>
-      </ul>
-    </li>
-    
-    <li>
-      深海は好きなことをしながら一人で食っていけるかの実験をしています
-    </li>
-    <li>
-      オートスケーリングは開発するソフトウエアエンジニアとインフラエンジニアが一緒になって作らなきゃだね
-    </li>
-    <li>
-      Ylastic(Amazon AWSのwebビューア)を教えてもらった
-    </li>
-    <li>
-      AWS が出したロードバランサはL4スイッチとして簡単に使えますよ
-    </li>
-    <li>
-      ただ、オートスケーリングで増えたインスタンスは分散対象に自動で入ってくれないので何らかの仕組みが必要だよ
-    </li>
-    <li>
-      開発に専念できる環境ができているのは会社の資本形態も結構影響するものだ
-    </li>
-  </ul>
-  
-  <h4>
-    自分が話すとしたら
-  </h4>
-  
-  <ul>
-    <li>
-      馬場さんからは iPhone アプリを開発してサーバ間パフォーマンスをこんなにあげました的なものがよいとのこと
-    </li>
-    <li>
-      藤崎さんから BGP4 について。みんな知らない世界だからよいとな。でも、誰もついてこれないかも？ <ul>
-        <li>
-          話はしやすいけど
-        </li>
-      </ul>
-    </li>
-    
-    <li>
-      Amazon EC2使ったモデルや新機能を紹介してもいいかも
-    </li>
-  </ul>
-  
-  <p>
-    今後この場がインフラエンジニアのノウハウや勉強したことを交流するような、新しい流れを作ってくれればいいなと思う。
-  </p>
-</div>
-
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-07-12T00:00:00+09:00" pubdate data-updated="true">Jul 12<span>th</span>, 2009</time></div>
-	
-
-<div class="tags">
-
-	<a class='category' href='/blog/categories/tech/'>Tech</a>
-
-</div>
-
-
-	
-		<span class="comments"><a href="/2009/07/11/hbstudy-1//blog/page/27/index.html#disqus_thread">Comments</a></span>
 	
 </div></article>
 
