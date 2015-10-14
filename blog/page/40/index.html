@@ -9,7 +9,7 @@
 
 <meta name="author" content="HiroFukami"> 
 
-<meta name="description" content="今さらながらにニコニコ動画を見まくってしまったりな訳ですが、ひさびさにすごいうまいの見た。 結構プロじゃなくてもうまい人はいっぱいいるし、YouTubeも見てきたからあまりびっくりしないのだけど、この人は安定感がありつつもちゃんと弾くし音がええよなぁ。 この方のマイリストはこちら http:// &hellip;"> <meta name="keywords" content="">
+<meta name="description" content="原因はおそらくwebサーバ～DBサーバ間のセッションがネットワーク的に不安定だったからだと思うけど、DBサーバで netstat -an すると 大量の CLOSE_WAIT のセッションが残ってしまって、MySQL の最大コネクション数にまで達してしまってwebの表示が出来なかった。 &hellip;"> <meta name="keywords" content="">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -63,7 +63,7 @@ $(document).ready(
     <meta property="twitter:site" content="d_sea">
     <meta property="twitter:url" content="http://hirofukami.com">
     <meta property="twitter:title" content="Hiro Fukami's Blog">
-    <meta property="twitter:description" content="今さらながらにニコニコ動画を見まくってしまったりな訳ですが、ひさびさにすごいうまいの見た。 結構プロじゃなくてもうまい人はいっぱいいるし、YouTubeも見てきたからあまりびっくりしないのだけど、この人は安定感がありつつもちゃんと弾くし音がええよなぁ。 この方のマイリストはこちら http://www.nicovideo.jp/mylist/7612494 http://www. &hellip;">
+    <meta property="twitter:description" content="原因はおそらくwebサーバ～DBサーバ間のセッションがネットワーク的に不安定だったからだと思うけど、DBサーバで netstat -an すると 大量の CLOSE_WAIT のセッションが残ってしまって、MySQL の最大コネクション数にまで達してしまってwebの表示が出来なかった。 CLOSE_WAIT をいきなり消すことは出来ないので、早めに消えるようにしたいときは &hellip;">
     <meta property="twitter:creator" content="d_sea" />
 
 
@@ -123,6 +123,254 @@ $(document).ready(
 </header>
 
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/2008/08/11/close-wait/">
+		
+			CLOSE_WAITのセッションを早く消す方法</a>
+	</h2>
+	<div class="entry-content">
+		<div class="section">
+  <p>
+    原因はおそらくwebサーバ～DBサーバ間のセッションがネットワーク的に不安定だったからだと思うけど、DBサーバで netstat -an すると 大量の CLOSE_WAIT のセッションが残ってしまって、MySQL の最大コネクション数にまで達してしまってwebの表示が出来なかった。
+  </p>
+  
+  <p>
+    CLOSE_WAIT をいきなり消すことは出来ないので、早めに消えるようにしたいときは
+  </p>
+  
+  <dl>
+    <dt>
+      tcp_keepalive_time
+    </dt>
+    
+    <dd>
+      TCPセッションが確立されて検査が実施されるまでの時間<br />時間になると tcp_keepalive_intvl と tcp_keepalive_probes の値にしたがって検査を実施する
+    </dd>
+    
+    <dt>
+      tcp_keepalive_intvl
+    </dt>
+    
+    <dd>
+      次の検査を実行するときの待ち時間
+    </dd>
+    
+    <dt>
+      tcp_keepalive_probes
+    </dt>
+    
+    <dd>
+      検査の回数
+    </dd>
+  </dl>
+  
+  <p>
+    のそれぞれの値を小さくしてあげればよい。
+  </p>
+  
+  <p>
+    変更方法は vi で :wq すると error がでておこられるので、echo を使う。反映に再起動などはいらない。
+  </p>
+  
+  <blockquote>
+    <p>
+      # echo 10 > /proc/sys/net/ipv4/tcp_keepalive_time
+    </p>
+    
+    <p>
+      # echo 2 > /proc/sys/net/ipv4/tcp_keepalive_probes
+    </p>
+    
+    <p>
+      # echo 3 > /proc/sys/net/ipv4/tcp_keepalive_intvl
+    </p>
+  </blockquote>
+  
+  <p>
+    デフォルト値と変更後の値と CLOSE_WAIT が切れるまでの時間を表にする
+  </p>
+  
+  <table>
+    <tr>
+      <th>
+        項目
+      </th>
+      
+      <th>
+        デフォルト
+      </th>
+      
+      <th>
+        変更後
+      </th>
+    </tr>
+    
+    <tr>
+      <td>
+        tcp_keepalive_time
+      </td>
+      
+      <td>
+        7200(sec)
+      </td>
+      
+      <td>
+        10(sec)
+      </td>
+    </tr>
+    
+    <tr>
+      <td>
+        tcp_keepalive_probes
+      </td>
+      
+      <td>
+        9(回)
+      </td>
+      
+      <td>
+        2(回)
+      </td>
+    </tr>
+    
+    <tr>
+      <td>
+        tcp_keepalive_intvl
+      </td>
+      
+      <td>
+        75(sec)
+      </td>
+      
+      <td>
+        3(sec)
+      </td>
+    </tr>
+    
+    <tr>
+      <td>
+        TCPセッションが確立して最短で落ちるまでの時間
+      </td>
+      
+      <td>
+        7200+9*75=7875(sec) (2時間10分くらい)
+      </td>
+      
+      <td>
+        10+2*3=16(sec)
+      </td>
+    </tr>
+  </table>
+  
+  <p>
+    緊急時だったのでこのくらいにして、期待通りに CLOSE_WAIT がどんどん消えていった。
+  </p>
+  
+  <p>
+    今でもこの設定のまま様子見だけど、TCPセッションが確立されているものを切ってしまうわけではないので、問題はないのでは？と勝手に思っている
+  </p>
+  
+  <p>
+    上記は一時的な反映をしたい時の実施方法で、OS再起動で消えてしまう。
+  </p>
+  
+  <p>
+    消えないためには、
+  </p>
+  
+  <blockquote>
+    <p>
+      # vi /etc/sysctl.conf
+    </p>
+    
+    <p>
+      net.ipv4.tcp_keepalive_time = 10
+    </p>
+    
+    <p>
+      net.ipv4.tcp_keepalive_probes = 2
+    </p>
+    
+    <p>
+      net.ipv4.tcp_keepalive_intvl = 3
+    </p>
+    
+    <p>
+      を追記
+    </p>
+    
+    <p>
+      # sysctl -w
+    </p>
+    
+    <p>
+      変更を反映
+    </p>
+    
+    <p>
+      # sysctl -p
+    </p>
+    
+    <p>
+      確認
+    </p>
+  </blockquote>
+  
+  <p>
+    のようにする
+  </p>
+  
+  <ul>
+    <li>
+      参考サイト</p> <ul>
+        <li>
+          <a href="http://d.hatena.ne.jp/koseki2/20070331/closewait" target="_blank"><a href="http://d.hatena.ne.jp/koseki2/20070331/closewait" target="_blank">http://d.hatena.ne.jp/koseki2/20070331/closewait</a></a>
+        </li>
+        <li>
+          <a href="http://unix-study.com/weblog+index.date+200704.htm" target="_blank"><a href="http://unix-study.com/weblog+index.date+200704.htm" target="_blank">http://unix-study.com/weblog+index.date+200704.htm</a></a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-08-12T00:00:00+09:00" pubdate data-updated="true">Aug 12<span>th</span>, 2008</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/tech/'>Tech</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/2008/08/11/close-wait//blog/page/40/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
 
 
     <article class="post">
@@ -1030,95 +1278,6 @@ $(document).ready(
 
 	
 		<span class="comments"><a href="/2008/07/20/for-technorati//blog/page/40/index.html#disqus_thread">Comments</a></span>
-	
-</div></article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/2008/07/19/j-f-vs/">
-		
-			Jリーグ観戦 横浜Fマリノス vs 鹿島アントラーズ</a>
-	</h2>
-	<div class="entry-content">
-		<div class="section">
-  <p>
-    今回も家族割引が使えるようだったので、日産スタジアムへ。もちろんマリノス側の自由席へ。
-  </p>
-  
-  <p>
-    3連休の中日で明日はみんなお休みということもあり、すでに1F自由席は満席。仕方なく2F席に行くも結構上のほうしか席が空いておらず、今回はちょっと遠目から観戦。でも、意外とボールや選手の動きは良く見えた。アウェイ側の歓声のタイムラグが気になるくらいかな。
-  </p>
-  
-  <p>
-    <a href="http://f.hatena.ne.jp/d_sea/20080720192727" class="hatena-fotolife" target="_blank"><img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/d_sea/20080720/20080720192727.jpg?w=830" alt="f:id:d_sea:20080720192727j:image" title="f:id:d_sea:20080720192727j:image" class="hatena-fotolife" data-recalc-dims="1" /></a>
-  </p>
-  
-  <p>
-    <a href="http://f.hatena.ne.jp/d_sea/20080720194610" class="hatena-fotolife" target="_blank"><img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/d_sea/20080720/20080720194610.jpg?w=830" alt="f:id:d_sea:20080720194610j:image" title="f:id:d_sea:20080720194610j:image" class="hatena-fotolife" data-recalc-dims="1" /></a>
-  </p>
-  
-  <p>
-    <a href="http://f.hatena.ne.jp/d_sea/20080720194643" class="hatena-fotolife" target="_blank"><img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/d_sea/20080720/20080720194643.jpg?w=830" alt="f:id:d_sea:20080720194643j:image" title="f:id:d_sea:20080720194643j:image" class="hatena-fotolife" data-recalc-dims="1" /></a>
-  </p>
-  
-  <p>
-    2F席までびっちりのマリノス側自由席
-  </p>
-  
-  <p>
-    <a href="http://f.hatena.ne.jp/d_sea/20080720194626" class="hatena-fotolife" target="_blank"><img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/d_sea/20080720/20080720194626.jpg?w=830" alt="f:id:d_sea:20080720194626j:image" title="f:id:d_sea:20080720194626j:image" class="hatena-fotolife" data-recalc-dims="1" /></a>
-  </p>
-  
-  <p>
-    しかしアントラーズのサポータの応援は迫力あったなぁ。
-  </p>
-  
-  <p>
-    試合はここ最近のマリノスの弱さがまんま出てしまっていた。逆にアントラーズはアウェイの試合運びでムリせず速攻を主体にして効率的に2点を取る。
-  </p>
-  
-  <p>
-    負けたマリノスの攻め見て悪い時の日本代表そのものだと思った。ペナルティエリアの少し外まではボールは運べてもそこからサイドに流すか横パスしかなくて、ゴールに向かう縦の動きで抜いていこうとする or パスをもらう選手が誰もいない。結構惜しいシーンはマリノスの方が多いように見えたけど、惜しいのではなくて決定的な動きが出来ていないから相手の守りが間に合っているだけのように思えた。
-  </p>
-  
-  <p>
-    結構悪い時の試合運びって共通点があるものだなぁと思った。とにもかくにも頑張れマリノス！！地元だから応援しつづけるから。
-  </p>
-</div>
-
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-07-20T00:00:00+09:00" pubdate data-updated="true">Jul 20<span>th</span>, 2008</time></div>
-	
-
-<div class="tags">
-
-	<a class='category' href='/blog/categories/sports/'>Sports</a>
-
-</div>
-
-
-	
-		<span class="comments"><a href="/2008/07/19/j-f-vs//blog/page/40/index.html#disqus_thread">Comments</a></span>
 	
 </div></article>
 
