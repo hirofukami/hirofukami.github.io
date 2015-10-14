@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Music/Movie | Hiro Fukami's Blog]]></title>
   <link href="http://hirofukami.com/blog/categories/music-slash-movie/atom.xml" rel="self"/>
   <link href="http://hirofukami.com/"/>
-  <updated>2015-10-14T16:28:16+09:00</updated>
+  <updated>2015-10-14T16:37:06+09:00</updated>
   <id>http://hirofukami.com/</id>
   <author>
     <name><![CDATA[HiroFukami]]></name>
@@ -61,7 +61,7 @@
     <id>http://hirofukami.com/2015/08/02/movie-insideout</id>
     <content type="html"><![CDATA[<p>娘が紹介してくれて、見たくなるようなストーリーだったので家族で見に行った。</p>
 
-<p>{% img <a href="https://pbs.twimg.com/media/CKsTEMXUcAQs9Io.jpg:large">https://pbs.twimg.com/media/CKsTEMXUcAQs9Io.jpg:large</a> %}</p>
+<p><img class="<a" src="href="https://pbs.twimg.com/media/CKsTEMXUcAQs9Io.jpg:large">https://pbs.twimg.com/media/CKsTEMXUcAQs9Io.jpg:large</a>"></p>
 
 <p>出典 : <a href="https://twitter.com/Anddrada/status/624613952056504320">https://twitter.com/Anddrada/status/624613952056504320</a></p>
 
@@ -92,7 +92,7 @@
     <link href="http://hirofukami.com/2015/06/07/inside-architecture/"/>
     <updated>2015-06-07T19:30:00+09:00</updated>
     <id>http://hirofukami.com/2015/06/07/inside-architecture</id>
-    <content type="html"><![CDATA[<p>{% img /images/2015/06/20150607-inside-architecture.jpg %}</p>
+    <content type="html"><![CDATA[<p><img src="/images/2015/06/20150607-inside-architecture.jpg"></p>
 
 <p><a href="http://www.tfm.co.jp/podcasts/museum/">The Lifestyle MUSEUM</a> という Tokyo FM がやっているラジオ番組のポッドキャストを聞いているのだけど、監督の石山友美さんがゲストでこの映画を紹介されていて面白そうと思って観に行った。</p>
 
