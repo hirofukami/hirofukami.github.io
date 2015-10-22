@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Book | Hiro Fukami's Blog]]></title>
   <link href="http://hirofukami.com/blog/categories/book/atom.xml" rel="self"/>
   <link href="http://hirofukami.com/"/>
-  <updated>2015-10-14T16:37:06+09:00</updated>
+  <updated>2015-10-22T09:21:25+09:00</updated>
   <id>http://hirofukami.com/</id>
   <author>
     <name><![CDATA[HiroFukami]]></name>
@@ -12,6 +12,47 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Book How Google Works]]></title>
+    <link href="http://hirofukami.com/2015/10/22/book-how-google-works/"/>
+    <updated>2015-10-22T10:00:00+09:00</updated>
+    <id>http://hirofukami.com/2015/10/22/book-how-google-works</id>
+    <content type="html"><![CDATA[<p><a href="http://hb.afl.rakuten.co.jp/hgc/1368ce62.540143f5.1368ce63.cb671705/?pc=http%3a%2f%2fitem.rakuten.co.jp%2fbook%2f12901565%2f%3fscid%3daf_link_img&amp;m=http%3a%2f%2fm.rakuten.co.jp%2fbook%2fi%2f17081894%2f" target="_blank"><img src ="http://hbb.afl.rakuten.co.jp/hgb/?pc=http%3a%2f%2fthumbnail.image.rakuten.co.jp%2f%400_mall%2fbook%2fcabinet%2f9557%2f9784532319557.jpg%3f_ex%3d400x400&amp;m=http%3a%2f%2fthumbnail.image.rakuten.co.jp%2f%400_mall%2fbook%2fcabinet%2f9557%2f9784532319557.jpg%3f_ex%3d80x80" border="0"></a></p>
+
+<ul>
+<li><a href="http://hb.afl.rakuten.co.jp/hgc/1368ce62.540143f5.1368ce63.cb671705/?pc=http%3a%2f%2fitem.rakuten.co.jp%2fbook%2f12901565%2f%3fscid%3daf_link_txt&amp;m=http%3a%2f%2fm.rakuten.co.jp%2fbook%2fi%2f17081894%2f" target="_blank">楽天ブックス</a></li>
+<li><a rel="nofollow" href="http://www.amazon.co.jp/gp/product/4532319552/ref=as_li_ss_tl?ie=UTF8&camp=247&creative=7399&creativeASIN=4532319552&linkCode=as2&tag=dsea-22">Amazon</a></li>
+</ul>
+
+
+<p>シリコンバレーのGoogle本社(Googleplex)に見学しに行った(<a href="/2009/03/22/3-23-googleplex/">シリコンバレー会社見学 Googleplex</a>)のが、6年以上前。
+その時にも独特の文化がGoogleの中で成り立っていることを、オフィスのレイアウトや社員の方のお話から感じることができた。</p>
+
+<p>そのGoogleの社内文化、働き方について成り立ちや理由を整理して解説したのがこの本。</p>
+
+<p>筆者は現会長(元CEO)エリック・シュミットと現CEOのアドバイザー ジョナサン・ローゼンバーグ。
+Googleの経営陣による執筆なので、Google社内文化の解説にとどまらず、その中で自分たちは経営陣としてどう振る舞ったか、またメールやコミュニケーションの仕方はどうするか、といったGoogle経営陣としての業務のやり方も記述されている。</p>
+
+<p>Google社内の様子は社員と会社の契約(厳しい規定があるらしい)のもとあまり表に出てこない。最もGoogle社内の様子を対外的に示した情報といえるかもしれない。</p>
+
+<p>大項目は、文化、戦略、人材、意思決定、コミュニケーション、イノベーション となっている。</p>
+
+<p>興味のある項目から読んでいった。自分の読んだ順番は、意思決定、イノベーション、戦略、コミュニケーション、文化、人材。</p>
+
+<p>総じて思うのは、Googleの企業文化は、就職経験がない創業者2名のスタンフォード大学でのやり方を尊重した影響が大きいが  、今までの20世紀型の古いやり方を完全に否定していて、21世紀型の企業文化・経営を自ら模索し定義したところにある。</p>
+
+<p>今までの古いやり方で生じるデメリット、起こりがちな悪しき振る舞いを明確に示し批判する。痛快だ。</p>
+
+<p>最も重視しているのは <strong>スマートクリエイティブ</strong> と本書で読んでいる人たちをいかに増やし、いかに自由を与えて発想・行動してもらえるか。という点。</p>
+
+<p>従来型のトップダウンのアイデア・発想・単なる指示命令とは正反対の、自然発生的なボトムアップのアプローチ。だから、古いやり方を徹底的に否定し、自らの求める企業文化を追求する。</p>
+
+<p>経営者が書いているので、文化を学ぶだけでなく、新しく会社を起こそうとしている・起こしたスタートアップ・ベンチャーの経営者には新しい企業文化を作っていく際の大きな指針になるだろう。</p>
+
+<p>21世紀型企業文化を模索している人には必読。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Book 火車]]></title>
@@ -169,38 +210,6 @@
 <p>見た目が怖い絵に関しては時代背景を述べても見た目の印象以上になかなか怖くならず、ちょっと無理に文章を作っている感を感じる部分もあった。</p>
 
 <p>いずれにせよ絵画を捉える一つの新しい新鮮な視点の提案で、とても面白く読んだ。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Book 舟を編む]]></title>
-    <link href="http://hirofukami.com/2015/05/29/book-funewoamu/"/>
-    <updated>2015-05-29T15:00:00+09:00</updated>
-    <id>http://hirofukami.com/2015/05/29/book-funewoamu</id>
-    <content type="html"><![CDATA[<p><a href="http://hb.afl.rakuten.co.jp/hgc/1368ce62.540143f5.1368ce63.cb671705/?pc=http%3a%2f%2fitem.rakuten.co.jp%2fbook%2f13158690%2f%3fscid%3daf_link_img&amp;m=http%3a%2f%2fm.rakuten.co.jp%2fbook%2fi%2f17364811%2f" target="_blank"><img src ="http://hbb.afl.rakuten.co.jp/hgb/?pc=http%3a%2f%2fthumbnail.image.rakuten.co.jp%2f%400_mall%2fbook%2fcabinet%2f8805%2f9784334768805.jpg%3f_ex%3d400x400&amp;m=http%3a%2f%2fthumbnail.image.rakuten.co.jp%2f%400_mall%2fbook%2fcabinet%2f8805%2f9784334768805.jpg%3f_ex%3d80x80" border="0"></a></p>
-
-<ul>
-<li><a href="http://www.amazon.co.jp/gp/product/4334768806/ref=as_li_ss_tl?ie=UTF8&camp=247&creative=7399&creativeASIN=4334768806&linkCode=as2&tag=dsea-22">Amazon</a></li>
-<li><a href="http://hb.afl.rakuten.co.jp/hgc/1368ce62.540143f5.1368ce63.cb671705/?pc=http%3a%2f%2fitem.rakuten.co.jp%2fbook%2f13158690%2f%3fscid%3daf_link_txt&amp;m=http%3a%2f%2fm.rakuten.co.jp%2fbook%2fi%2f17364811%2f" target="_blank">楽天ブックス</a></li>
-</ul>
-
-
-<p>本当に面白い小説だった。</p>
-
-<p>映画化されるだろうなと思っていたらすでに2013年に<a href="http://movies.yahoo.co.jp/movie/%E8%88%9F%E3%82%92%E7%B7%A8%E3%82%80/343711/">上映されていた</a>。</p>
-
-<p>辞書や百科事典と聞くと無骨で完璧な印象持つが、それを作り出す人間の作業は揺らぎながら検討を重ねて生み出している。膨大な作業の賜物であることがわかった。</p>
-
-<p>一つの言葉でも複数の意味合いを持つので、単純ではない。日本語の豊かさ、言葉の深さが辞書作りの作業ににじみ出る。</p>
-
-<p>全体的に硬派な文章ながらユーモラスなシーンがあったりして、このギャップも1つの魅力になる。
-それぞれの登場人物の内面の描写も様々で豊かだ。読者が何かしら一致する点を見いだして、知らないうちに物語にのめり込んで行く。</p>
-
-<p>筆者の三浦しをんさんは辞書編集者にインタビューをしてこの辞書を作る物語を書き上げた。まるで実際に編集者で働いていたのではないかと思えるくらい、詳しい作業内容や働いているものの心理まで描写していたので、驚いた。小説家とはよきインタビューアーなのかもしれない。</p>
-
-<p>主人公、馬締の人柄も興味深い。真っ直ぐに辞書作りに励む姿が人を動かし、いつの間にか熱中させる。馬締本人はその影響を自覚していない。小手先のテクニックやごまかしではなく、ただただまっすぐに向かうことこそが真であることを示しているようにも思えた。</p>
-
-<p>小説を読んで楽しいという感覚はなかなかなかったが、読み終えるのが惜しいくらい読んでいる時間が楽しい本だった。</p>
 ]]></content>
   </entry>
   
