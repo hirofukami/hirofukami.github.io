@@ -4,7 +4,7 @@
   <title><![CDATA[Hiro Fukami's Blog]]></title>
   <link href="http://hirofukami.com/atom.xml" rel="self"/>
   <link href="http://hirofukami.com/"/>
-  <updated>2015-10-26T15:20:57+09:00</updated>
+  <updated>2015-11-11T14:49:37+09:00</updated>
   <id>http://hirofukami.com/</id>
   <author>
     <name><![CDATA[HiroFukami]]></name>
@@ -12,6 +12,62 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[開発したさくらのクラウド新サービスがリリースされました]]></title>
+    <link href="http://hirofukami.com/2015/11/11/launch-cloud-catalog/"/>
+    <updated>2015-11-11T18:00:00+09:00</updated>
+    <id>http://hirofukami.com/2015/11/11/launch-cloud-catalog</id>
+    <content type="html"><![CDATA[<p>珍しくお仕事の話です。</p>
+
+<p>今年の2月からさくらインターネットさんと一緒に開発してきたのですが、それがついにリリースされました。</p>
+
+<h1>さくらのクラウド &ndash; クラウドカタログ</h1>
+
+<p><img src="http://hirofukami.com/images/2015/11/20151111-cloud-cataglo.png" alt="cloud catalog" /></p>
+
+<p>さくらのクラウドの新サービス「<a href="http://cloud-news.sakura.ad.jp/cloud-catalog/">クラウドカタログ</a>」といいます。
+<a href="http://cloud-news.sakura.ad.jp/2015/11/04/catalog-beta/">「クラウドカタログ」ベータ提供を開始しました。 &ndash; さくらのクラウドニュース</a></p>
+
+<h2>DevOps 的サービス</h2>
+
+<p>ざっくり言うと、IaaSでサーバ起動からアプリケーションのインストール・セットアップまでを自動化するいわゆる <strong>DevOps的なサービス</strong> になります。</p>
+
+<p>ミドルウエアやアプリケーションのセットアップが苦手なユーザは手を動かすことなく、ブラウザから簡単に済ませられるようになります。
+今までセットアップに何日も使っていた方には魔法のようなサービスです。</p>
+
+<p>今までもWebブラウザーからアプリケーションを選択してインストールようなサービスはありましたが、今回はアプリケーションに設定したいパラメータがユーザ自ら指定できるようになっています。よりセットアップの自由度をユーザに与える機能です。</p>
+
+<p><img src="http://hirofukami.com/images/2015/11/20151111-params-cloud-catalog.png" alt="WordPressのパラメータ設定画面" /></p>
+
+<p>国内IaaS事業者の中で同じような DevOps 的なサービスはまだなく、国内初ではないかと思っています。</p>
+
+<p>まだインストールできるアプリケーションは3つですが、今後増えていく予定です。</p>
+
+<h2>フィードバックください</h2>
+
+<p>現状ベータ提供ですので、より良いサービスに向けて修正されていくでしょう。是非、使ってみて気づいた点を教えていただければと思います。</p>
+
+<h1>Why DevOps Service ？</h1>
+
+<p>いまや IaaS は国内外多くの提供会社が存在し、コモディティ化し差別化は難しくなってきています。
+そこで今まで提供してこなかったよりレイヤーの高い部分までサービスする傾向になることは間違いない流れだと思います。</p>
+
+<p>具体的には、サーバ事業者はディストリビューションOSまでの提供で、ミドルウエアやアプリケーションのセットアップはユーザが行うべきことでしたが、今後はその部分までもサーバ事業者がサービスとして提供するようになります。</p>
+
+<p>今回の「<a href="http://cloud-news.sakura.ad.jp/cloud-catalog/">クラウドカタログ</a>」はこの流れを推し進めるサービスになります。</p>
+
+<h1>Back to Our Services</h1>
+
+<p>今回開発したアプリケーションを自動インストール・セットアップするサーバは私の会社 <a href="http://www.shakesoul.net/">シェイクソウル</a> の自社サービス OpsDeliver と同じ基本設計になっています。</p>
+
+<p>それをさくらさん用にカスタマイズしたり、追加開発しました。</p>
+
+<p>今後は今回開発した経験を OpsDeliver にフィードバックしてリニューアルしていく予定です。</p>
+
+<p>その他、派生サービスも出していこうと思っているので、今回のような DevOps・自動化サービスに興味のある方は是非チェックいただければです。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Book How Google Works]]></title>
@@ -2010,39 +2066,6 @@ GK以外の選手たちはピッチ縦の1/3くらいの幅に収まっていた
 <li><a href="http://www1.nhk.or.jp/sports2/result/result_jlg.html">http://www1.nhk.or.jp/sports2/result/result_jlg.html</a></li>
 </ul>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Book 怖い絵]]></title>
-    <link href="http://hirofukami.com/2015/08/17/book-kowaie/"/>
-    <updated>2015-08-17T22:30:00+09:00</updated>
-    <id>http://hirofukami.com/2015/08/17/book-kowaie</id>
-    <content type="html"><![CDATA[<p><a href="http://hb.afl.rakuten.co.jp/hgc/1368ce62.540143f5.1368ce63.cb671705/?pc=http%3a%2f%2fitem.rakuten.co.jp%2fbook%2f12397529%2f%3fscid%3daf_link_img&amp;m=http%3a%2f%2fm.rakuten.co.jp%2fbook%2fi%2f16524654%2f" target="_blank"><img src ="http://hbb.afl.rakuten.co.jp/hgb/?pc=http%3a%2f%2fthumbnail.image.rakuten.co.jp%2f%400_mall%2fbook%2fcabinet%2f9123%2f9784041009123.jpg%3f_ex%3d400x400&amp;m=http%3a%2f%2fthumbnail.image.rakuten.co.jp%2f%400_mall%2fbook%2fcabinet%2f9123%2f9784041009123.jpg%3f_ex%3d80x80" border="0"></a></p>
-
-<ul>
-<li><a href="http://hb.afl.rakuten.co.jp/hgc/1368ce62.540143f5.1368ce63.cb671705/?pc=http%3a%2f%2fitem.rakuten.co.jp%2fbook%2f12397529%2f%3fscid%3daf_link_txt&amp;m=http%3a%2f%2fm.rakuten.co.jp%2fbook%2fi%2f16524654%2f" target="_blank">楽天ブックス</a></li>
-<li><a href="http://www.amazon.co.jp/gp/product/404100912X/ref=as_li_ss_tl?ie=UTF8&camp=247&creative=7399&creativeASIN=404100912X&linkCode=as2&tag=dsea-22">Amazon</a></li>
-</ul>
-
-
-<p>ポッドキャストでいつも聞いている <a href="http://www.tfm.co.jp/podcasts/museum/">The Lifestyle MUSEUM</a> に筆者である中野京子さんが出演されて、有名絵画が描かれた知られざる恐ろしいストーリーについて話されていて、それがとても面白くもっと知ってみたいと思い本を買ってみた。</p>
-
-<p>中野さんは怖い絵シリーズを複数書かれており、これは最初の一冊になる。</p>
-
-<p>全22作品についてラジオ同様、絵画の書かれた時代背景などから知られていないストーリーを紹介してくれる。</p>
-
-<p>一見何の変哲もない見慣れた有名絵画が、現代の視点では気づけない当時の時代背景を反映した残酷な物語に豹変する。今まで見たことのある程度だった作品が隠されたストーリーを知ることで全く違った印象になるから面白い。</p>
-
-<p>個人的には、一見何も怖くもない絵画にはこんな時代背景があって、うっすら写っているのは実はこういうことでした。と紹介される絵画が一番驚きと発見を感じることができた。</p>
-
-<p>ただ、紹介されている作品は様々で、「背景を知ることで怖くなる絵」と「単純に見た目が怖い絵」が混じっている。</p>
-
-<p><strong>「怖い絵」</strong> というタイトルとしてはまぁ良いのだろうが、「背景を知ることで怖くなる絵」に絞り込んだほうが意外性が高く、テーマとしてもはっきりしたのではないかと思った。</p>
-
-<p>見た目が怖い絵に関しては時代背景を述べても見た目の印象以上になかなか怖くならず、ちょっと無理に文章を作っている感を感じる部分もあった。</p>
-
-<p>いずれにせよ絵画を捉える一つの新しい新鮮な視点の提案で、とても面白く読んだ。</p>
 ]]></content>
   </entry>
   

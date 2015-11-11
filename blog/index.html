@@ -9,9 +9,8 @@
 
 <meta name="author" content="HiroFukami"> 
 
-<meta name="description" content="楽天ブックス
-Amazon シリコンバレーのGoogle本社(Googleplex)に見学しに行った(シリコンバレー会社見学 Googleplex)のが、6年以上前。
-その時にも独特の文化がGoogleの中で成り立っていることを、オフィスのレイアウトや社員の方のお話から感じることができた。 &hellip;"> <meta name="keywords" content="">
+<meta name="description" content="珍しくお仕事の話です。 今年の2月からさくらインターネットさんと一緒に開発してきたのですが、それがついにリリースされました。 さくらのクラウド &ndash; クラウドカタログ さくらのクラウドの新サービス「クラウドカタログ」といいます。
+「クラウドカタログ」ベータ提供を開始しました。 & &hellip;"> <meta name="keywords" content="">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -65,9 +64,8 @@ $(document).ready(
     <meta property="twitter:site" content="d_sea">
     <meta property="twitter:url" content="http://hirofukami.com">
     <meta property="twitter:title" content="Hiro Fukami's Blog">
-    <meta property="twitter:description" content="楽天ブックス
-Amazon シリコンバレーのGoogle本社(Googleplex)に見学しに行った(シリコンバレー会社見学 Googleplex)のが、6年以上前。
-その時にも独特の文化がGoogleの中で成り立っていることを、オフィスのレイアウトや社員の方のお話から感じることができた。 そのGoogleの社内文化、働き方について成り立ちや理由を整理して解説したのがこの本。 筆者は現会長( &hellip;">
+    <meta property="twitter:description" content="珍しくお仕事の話です。 今年の2月からさくらインターネットさんと一緒に開発してきたのですが、それがついにリリースされました。 さくらのクラウド &ndash; クラウドカタログ さくらのクラウドの新サービス「クラウドカタログ」といいます。
+「クラウドカタログ」ベータ提供を開始しました。 &ndash; さくらのクラウドニュース DevOps 的サービス ざっくり言うと、 &hellip;">
     <meta property="twitter:creator" content="d_sea" />
 
 
@@ -127,6 +125,97 @@ Amazon シリコンバレーのGoogle本社(Googleplex)に見学しに行った(
 </header>
 
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/2015/11/11/launch-cloud-catalog/">
+		
+			開発したさくらのクラウド新サービスがリリースされました</a>
+	</h2>
+	<div class="entry-content">
+		<p>珍しくお仕事の話です。</p>
+
+<p>今年の2月からさくらインターネットさんと一緒に開発してきたのですが、それがついにリリースされました。</p>
+
+<h1>さくらのクラウド &ndash; クラウドカタログ</h1>
+
+<p><img src="/images/2015/11/20151111-cloud-cataglo.png" alt="cloud catalog" /></p>
+
+<p>さくらのクラウドの新サービス「<a href="http://cloud-news.sakura.ad.jp/cloud-catalog/">クラウドカタログ</a>」といいます。
+<a href="http://cloud-news.sakura.ad.jp/2015/11/04/catalog-beta/">「クラウドカタログ」ベータ提供を開始しました。 &ndash; さくらのクラウドニュース</a></p>
+
+<h2>DevOps 的サービス</h2>
+
+<p>ざっくり言うと、IaaSでサーバ起動からアプリケーションのインストール・セットアップまでを自動化するいわゆる <strong>DevOps的なサービス</strong> になります。</p>
+
+<p>ミドルウエアやアプリケーションのセットアップが苦手なユーザは手を動かすことなく、ブラウザから簡単に済ませられるようになります。
+今までセットアップに何日も使っていた方には魔法のようなサービスです。</p>
+
+<p>今までもWebブラウザーからアプリケーションを選択してインストールようなサービスはありましたが、今回はアプリケーションに設定したいパラメータがユーザ自ら指定できるようになっています。よりセットアップの自由度をユーザに与える機能です。</p>
+
+<p><img src="/images/2015/11/20151111-params-cloud-catalog.png" alt="WordPressのパラメータ設定画面" /></p>
+
+<p>国内IaaS事業者の中で同じような DevOps 的なサービスはまだなく、国内初ではないかと思っています。</p>
+
+<p>まだインストールできるアプリケーションは3つですが、今後増えていく予定です。</p>
+
+<h2>フィードバックください</h2>
+
+<p>現状ベータ提供ですので、より良いサービスに向けて修正されていくでしょう。是非、使ってみて気づいた点を教えていただければと思います。</p>
+
+<h1>Why DevOps Service ？</h1>
+
+<p>いまや IaaS は国内外多くの提供会社が存在し、コモディティ化し差別化は難しくなってきています。
+そこで今まで提供してこなかったよりレイヤーの高い部分までサービスする傾向になることは間違いない流れだと思います。</p>
+
+<p>具体的には、サーバ事業者はディストリビューションOSまでの提供で、ミドルウエアやアプリケーションのセットアップはユーザが行うべきことでしたが、今後はその部分までもサーバ事業者がサービスとして提供するようになります。</p>
+
+<p>今回の「<a href="http://cloud-news.sakura.ad.jp/cloud-catalog/">クラウドカタログ</a>」はこの流れを推し進めるサービスになります。</p>
+
+<h1>Back to Our Services</h1>
+
+<p>今回開発したアプリケーションを自動インストール・セットアップするサーバは私の会社 <a href="http://www.shakesoul.net/">シェイクソウル</a> の自社サービス OpsDeliver と同じ基本設計になっています。</p>
+
+<p>それをさくらさん用にカスタマイズしたり、追加開発しました。</p>
+
+<p>今後は今回開発した経験を OpsDeliver にフィードバックしてリニューアルしていく予定です。</p>
+
+<p>その他、派生サービスも出していこうと思っているので、今回のような DevOps・自動化サービスに興味のある方は是非チェックいただければです。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-11-11T18:00:00+09:00" pubdate data-updated="true">Nov 11<span>th</span>, 2015</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/business/'>Business</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/2015/11/11/launch-cloud-catalog//blog/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
 
 
     <article class="post">
@@ -850,112 +939,6 @@ Jリーグクラブ経営、スポーツメーカーのプロモーション、�
 
 	
 		<span class="comments"><a href="/2015/09/25/sports-service//blog/index.html#disqus_thread">Comments</a></span>
-	
-</div></article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/2015/09/22/the-art-of-gundam/">
-		
-			ガンダム展にみる普遍的価値</a>
-	</h2>
-	<div class="entry-content">
-		<p>ファーストガンダムが大好きです。</p>
-
-<p>小学校低学年で見たアニメはいいおっさんになっても不滅です。ガンダムは僕の中で永遠です。</p>
-
-<p>ということで、ガンダム好きには外せない <a href="http://www.gundam-ten.jp/">機動戦士ガンダム展</a> に行ってきた。</p>
-
-<p><img src="/images/2015/09/20150923-the-art-of-gundam01.jpg"></p>
-
-<p>展示物に関しては、オリジナルショートムービーに始まり、当時の絵コンテやモビルスーツのデザイン画、アニメに登場する建物や戦艦内部のデザイン画まで、「ファーストガンダムを創り方」をあますところなく紹介。</p>
-
-<p>来場者は、おそらくリアルタイムでは見ていないだろう若者や外国人観光客の方もいて、おのおのにガンダムワールドを満喫していた。</p>
-
-<p>展示物を眺めていてふと思った。</p>
-
-<p><strong>「なぜこんなにもファーストガンダムは人を惹き付けるのだろう」</strong></p>
-
-<p>35年たっても色あせない魅力はなんだろう。それはどうやって作られたのか。</p>
-
-<p>知りたい。</p>
-
-<p>考えながら歩を進めると、富野喜幸監督が書いたガンダムの世界観を端的に示した原稿の展示物が目に止まった。
-そして、メカニックデザインを手がけた大河原邦男氏のデッサンとキャラクターデザインを手がけた安彦良和氏のデッサンが続き、アニメの原画の展示。</p>
-
-<p>そうかと気づく。</p>
-
-<h1>確固たるコンセプト</h1>
-
-<p>ガンダムの世界観は壮大でかつリアル。作品のコンセプトがしっかり確立している。</p>
-
-<p>未来・宇宙・戦争・青年</p>
-
-<p>それまでの強い主人公ではなく、致し方なく戦争に巻き込まれ揺れ動きながら戦う思春期の少年。反発・失望も描く。</p>
-
-<p>富野監督のガンダムの原作が小説になっているが、読むとだいぶアムロのキャラクターが違う。そのままアニメになっていたらここまでの作品にはならなかっただろう。</p>
-
-<p>みんなが知っているガンダムに行き着くまでにスタッフで議論を重ね何度も修正している。</p>
-
-<p>練られたコンセプトはより最適化され、強いコンセプトになった。</p>
-
-<h1>隙のないプロフェッショナルデザイン</h1>
-
-<p>メカデザインだけにとどまらず、建物、内装全て事前にデッサンされていた。それらを描くのはデザインを専門とするスタッフ。
-テレビに映るもの全てにプロのデザインが施されている。</p>
-
-<p>そして、絵コンテの原画のうまさ。アニメでは感じることのできない鉛筆のタッチがいきいきとキャラクターを描く。</p>
-
-<p>これはプロの仕事だな。と思った。</p>
-
-<p>確固たるコンセプトの元にプロフェッショナルなデザインで隙間なく固める。監督だけでなく優秀なスタッフとのチームによって実現されている。</p>
-
-<h1>妥協しない</h1>
-
-<p>展示物を見ると作品に対して <strong>妥協していない</strong> ことが分かる。</p>
-
-<p>何度もやり直し、書き直し、最善への模索して、出されたものが素晴らしかった。良い物を創り出すことにこだわって、結果として普遍的な価値が作品に埋め込まれた。</p>
-
-<p>そう感じる。</p>
-
-<p>大事なことを教えてもらった。</p>
-
-<p><img src="/images/2015/09/20150923-the-art-of-gundam02.jpg"></p>
-
-<p>おみやげたち</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2015-09-22T16:40:00+09:00" pubdate data-updated="true">Sep 22<span>nd</span>, 2015</time></div>
-	
-
-<div class="tags">
-
-	<a class='category' href='/blog/categories/life/'>Life</a>
-
-</div>
-
-
-	
-		<span class="comments"><a href="/2015/09/22/the-art-of-gundam//blog/index.html#disqus_thread">Comments</a></span>
 	
 </div></article>
 

@@ -9,7 +9,7 @@
 
 <meta name="author" content="HiroFukami"> 
 
-<meta name="description" content="急に売れ始めるにはワケがある ネットワーク理論が明らかにする口コミの法則（ソフトバンク文庫） プロモーションをどう取り組むか サービスを流行らせることに対してどんな発想で取り組んでいるだろう。 エンジニアしかいないチームに結構多い失敗パターンは、サービスの開発を一生懸命にやってできたけど、 &hellip;"> <meta name="keywords" content="">
+<meta name="description" content=" リード・ホフマン著のスタートアップ！からの引用部分をカテゴリごとに整理した。 今後見直すためのメモ。 スタートアップ！ シリコンバレー流成功する自己実現の秘訣 Read on &rarr; Mar 27th, 2014 Startup Comments "> <meta name="keywords" content="">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -63,8 +63,7 @@ $(document).ready(
     <meta property="twitter:site" content="d_sea">
     <meta property="twitter:url" content="http://hirofukami.com">
     <meta property="twitter:title" content="Hiro Fukami's Blog">
-    <meta property="twitter:description" content="急に売れ始めるにはワケがある ネットワーク理論が明らかにする口コミの法則（ソフトバンク文庫） プロモーションをどう取り組むか サービスを流行らせることに対してどんな発想で取り組んでいるだろう。 エンジニアしかいないチームに結構多い失敗パターンは、サービスの開発を一生懸命にやってできたけど、リリースしてみたら注目されず、さて困ったとなってしまうこと。
-サービスが流行って欲しい気持ちはあっても、 &hellip;">
+    <meta property="twitter:description" content=" リード・ホフマン著のスタートアップ！からの引用部分をカテゴリごとに整理した。 今後見直すためのメモ。 スタートアップ！ シリコンバレー流成功する自己実現の秘訣 Read on &rarr; Mar 27th, 2014 Startup Comments ">
     <meta property="twitter:creator" content="d_sea" />
 
 
@@ -124,6 +123,56 @@ $(document).ready(
 </header>
 
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/2014/03/27/quotation-startup/">
+		
+			スタートアップ！ 引用整理メモ用</a>
+	</h2>
+	<div class="entry-content">
+		<p>リード・ホフマン著のスタートアップ！からの引用部分をカテゴリごとに整理した。</p>
+
+<p>今後見直すためのメモ。</p>
+
+<p><a href="http://www.amazon.co.jp/exec/obidos/ASIN/B00FR78XAK/dsea-22/ref=nosim/" rel="nofollow" target="_blank"><img src="http://ecx.images-amazon.com/images/I/41kBvG1RPAL._SY500_.jpg" style="border: none;" alt="スタートアップ！" /></a>
+<a href="http://www.amazon.co.jp/exec/obidos/ASIN/B00FR78XAK/dsea-22/ref=nosim/" rel="nofollow" target="_blank">スタートアップ！ シリコンバレー流成功する自己実現の秘訣</a></p>
+
+
+		
+		<a href="/2014/03/27/quotation-startup/" class="more-link">Read on &rarr;</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-03-27T10:36:00+09:00" pubdate data-updated="true">Mar 27<span>th</span>, 2014</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/startup/'>Startup</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/2014/03/27/quotation-startup//blog/page/9/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
 
 
     <article class="post">
@@ -869,119 +918,6 @@ TwitterとFacebookページでアップデートをポストしているので�
 
 	
 		<span class="comments"><a href="/2014/02/04/firefox-vimperator-vs-chrome-vichrome//blog/page/9/index.html#disqus_thread">Comments</a></span>
-	
-</div></article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/2014/01/31/chef-solo-knife-command-memo/">
-		
-			Chef Solo Knife コマンド覚書</a>
-	</h2>
-	<div class="entry-content">
-		<p><img src="http://upload.wikimedia.org/wikipedia/en/5/56/Chef_Software_Inc._company_logo.png" width="380"></p>
-
-<p>どうも Chef コマンドを覚えられず、入門 Chef solo を毎回読みなおしてしまっているので、コマンド覚書を作っておく。</p>
-
-<ul>
-<li>レポジトリ名 : chef-repo</li>
-<li>chef クライアントホスト名 : chef-client</li>
-<li>クックブック名 : cookbook-name</li>
-</ul>
-
-
-<p>適当に置き換えてください。</p>
-
-<h1>新規</h1>
-
-<h2>レポジトリ作成</h2>
-
-<p>Chef レポジトリを作る。</p>
-
-<pre class="brush: plain; title: ; notranslate" title="">$ knife solo init [chef-repo-name]</pre>
-
-
-<h2>クックブック作成</h2>
-
-<p>レシピを新規作成する。</p>
-
-<pre class="brush: plain; title: ; notranslate" title="">$ knife cookbook create [cookbook-name] -o site-cookbooks</pre>
-
-
-<h2>ノード設定</h2>
-
-<p>chef クライアントに仕立てる。</p>
-
-<pre class="brush: plain; title: ; notranslate" title="">$ knife solo prepare [chef-client-hostname]</pre>
-
-
-<p>AWS EC2 に適用する場合はキーとユーザ名の指定が必要なので、ec2-user ユーザで作業すると、</p>
-
-<pre class="brush: plain; title: ; notranslate" title="">$ knife solo prepare -i ~/Keypair/[key-file] ec2-user@[chef-client-hostname]</pre>
-
-
-<p>とする。</p>
-
-<p>nodesディレクトリに [chef-client-hostname].json が作成される。</p>
-
-<h1>更新</h1>
-
-<h2>レシピを編集する</h2>
-
-<p>site-cookbooks/[cookbook-name]/recipes/default.rb を編集する。 適用したいレシピが複数に渡る場合はそれぞれの recipes/default.rb を編集する。</p>
-
-<h2>適用したいnodeファイルを確認</h2>
-
-<p>AWS EC2 AMI からの起動する際のように、すでに chef クライアントとして設定されているがホスト名が変わってしまう場合は、[chef-client-hostname].json ファイル名を割り当てられたホスト名に変更する。</p>
-
-<p>適用したいクックブックが記述されているか、nodes/[chef-client-hostname].json ファイルの中身を確認。</p>
-
-<h2>ノードに適用</h2>
-
-<p>ノードに適用。</p>
-
-<pre class="brush: plain; title: ; notranslate" title="">$ knife solo cook [chef-client-hostname]</pre>
-
-
-<p>AWS EC2 に適用する場合はキーとユーザ名の指定が必要なので、ec2-user ユーザで作業すると、</p>
-
-<pre class="brush: plain; title: ; notranslate" title="">$ knife solo cook -i ~/Keypair/[key-file] ec2-user@[chef-client-hostname]</pre>
-
-
-<p>とする。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-01-31T19:53:16+09:00" pubdate data-updated="true">Jan 31<span>st</span>, 2014</time></div>
-	
-
-<div class="tags">
-
-	<a class='category' href='/blog/categories/tech/'>Tech</a>
-
-</div>
-
-
-	
-		<span class="comments"><a href="/2014/01/31/chef-solo-knife-command-memo//blog/page/9/index.html#disqus_thread">Comments</a></span>
 	
 </div></article>
 

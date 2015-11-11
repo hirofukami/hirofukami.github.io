@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Business | Hiro Fukami's Blog]]></title>
   <link href="http://hirofukami.com/blog/categories/business/atom.xml" rel="self"/>
   <link href="http://hirofukami.com/"/>
-  <updated>2015-10-26T15:25:11+09:00</updated>
+  <updated>2015-11-11T14:49:37+09:00</updated>
   <id>http://hirofukami.com/</id>
   <author>
     <name><![CDATA[HiroFukami]]></name>
@@ -12,6 +12,62 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[開発したさくらのクラウド新サービスがリリースされました]]></title>
+    <link href="http://hirofukami.com/2015/11/11/launch-cloud-catalog/"/>
+    <updated>2015-11-11T18:00:00+09:00</updated>
+    <id>http://hirofukami.com/2015/11/11/launch-cloud-catalog</id>
+    <content type="html"><![CDATA[<p>珍しくお仕事の話です。</p>
+
+<p>今年の2月からさくらインターネットさんと一緒に開発してきたのですが、それがついにリリースされました。</p>
+
+<h1>さくらのクラウド &ndash; クラウドカタログ</h1>
+
+<p><img src="/images/2015/11/20151111-cloud-cataglo.png" alt="cloud catalog" /></p>
+
+<p>さくらのクラウドの新サービス「<a href="http://cloud-news.sakura.ad.jp/cloud-catalog/">クラウドカタログ</a>」といいます。
+<a href="http://cloud-news.sakura.ad.jp/2015/11/04/catalog-beta/">「クラウドカタログ」ベータ提供を開始しました。 &ndash; さくらのクラウドニュース</a></p>
+
+<h2>DevOps 的サービス</h2>
+
+<p>ざっくり言うと、IaaSでサーバ起動からアプリケーションのインストール・セットアップまでを自動化するいわゆる <strong>DevOps的なサービス</strong> になります。</p>
+
+<p>ミドルウエアやアプリケーションのセットアップが苦手なユーザは手を動かすことなく、ブラウザから簡単に済ませられるようになります。
+今までセットアップに何日も使っていた方には魔法のようなサービスです。</p>
+
+<p>今までもWebブラウザーからアプリケーションを選択してインストールようなサービスはありましたが、今回はアプリケーションに設定したいパラメータがユーザ自ら指定できるようになっています。よりセットアップの自由度をユーザに与える機能です。</p>
+
+<p><img src="/images/2015/11/20151111-params-cloud-catalog.png" alt="WordPressのパラメータ設定画面" /></p>
+
+<p>国内IaaS事業者の中で同じような DevOps 的なサービスはまだなく、国内初ではないかと思っています。</p>
+
+<p>まだインストールできるアプリケーションは3つですが、今後増えていく予定です。</p>
+
+<h2>フィードバックください</h2>
+
+<p>現状ベータ提供ですので、より良いサービスに向けて修正されていくでしょう。是非、使ってみて気づいた点を教えていただければと思います。</p>
+
+<h1>Why DevOps Service ？</h1>
+
+<p>いまや IaaS は国内外多くの提供会社が存在し、コモディティ化し差別化は難しくなってきています。
+そこで今まで提供してこなかったよりレイヤーの高い部分までサービスする傾向になることは間違いない流れだと思います。</p>
+
+<p>具体的には、サーバ事業者はディストリビューションOSまでの提供で、ミドルウエアやアプリケーションのセットアップはユーザが行うべきことでしたが、今後はその部分までもサーバ事業者がサービスとして提供するようになります。</p>
+
+<p>今回の「<a href="http://cloud-news.sakura.ad.jp/cloud-catalog/">クラウドカタログ</a>」はこの流れを推し進めるサービスになります。</p>
+
+<h1>Back to Our Services</h1>
+
+<p>今回開発したアプリケーションを自動インストール・セットアップするサーバは私の会社 <a href="http://www.shakesoul.net/">シェイクソウル</a> の自社サービス OpsDeliver と同じ基本設計になっています。</p>
+
+<p>それをさくらさん用にカスタマイズしたり、追加開発しました。</p>
+
+<p>今後は今回開発した経験を OpsDeliver にフィードバックしてリニューアルしていく予定です。</p>
+
+<p>その他、派生サービスも出していこうと思っているので、今回のような DevOps・自動化サービスに興味のある方は是非チェックいただければです。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[スポーツサービスづくり始めました]]></title>
@@ -99,7 +155,7 @@ Jリーグクラブ経営、スポーツメーカーのプロモーション、�
     <link href="http://hirofukami.com/2015/09/18/chef-tech-training/"/>
     <updated>2015-09-18T14:30:00+09:00</updated>
     <id>http://hirofukami.com/2015/09/18/chef-tech-training</id>
-    <content type="html"><![CDATA[<p>{% img /images/2015/09/20150918-chef-tech-training.jpg %}</p>
+    <content type="html"><![CDATA[<p><img src="/images/2015/09/20150918-chef-tech-training.jpg"></p>
 
 <p><a href="https://flic.kr/p/o9MtPp">https://flic.kr/p/o9MtPp</a></p>
 
@@ -107,7 +163,7 @@ Jリーグクラブ経営、スポーツメーカーのプロモーション、�
 
 <p>会社のテクニカルトレーニング事業の一環で、9月から12月にかけて <a href="https://www.chef.io/">Chef</a> のハンズオンを行います。</p>
 
-<p>{% img /images/2015/06/20150602-chef-logo.png %}</p>
+<p><img src="/images/2015/06/20150602-chef-logo.png"></p>
 
 <p>参加自由のオープン型での有料講義、PCを使っての実践的な演習になります。短期間で Chef を業務で使えるレベルにすることが目標です。</p>
 
@@ -173,7 +229,7 @@ Jリーグクラブ経営、スポーツメーカーのプロモーション、�
     <link href="http://hirofukami.com/2015/08/14/at-bali-beach/"/>
     <updated>2015-08-14T12:30:00+09:00</updated>
     <id>http://hirofukami.com/2015/08/14/at-bali-beach</id>
-    <content type="html"><![CDATA[<p>{% img /images/2015/08/20150814-at-bali-beach.JPG %}</p>
+    <content type="html"><![CDATA[<p><img src="/images/2015/08/20150814-at-bali-beach.JPG"></p>
 
 <p>ビーチはいいよビーチは。</p>
 
@@ -237,7 +293,7 @@ Jリーグクラブ経営、スポーツメーカーのプロモーション、�
 
 <p>と、水平線に沈みゆく夕日を観ながら思うのでした。</p>
 
-<p>{% img /images/2015/08/20150814-sunset.JPG %}</p>
+<p><img src="/images/2015/08/20150814-sunset.JPG"></p>
 ]]></content>
   </entry>
   
@@ -246,13 +302,13 @@ Jリーグクラブ経営、スポーツメーカーのプロモーション、�
     <link href="http://hirofukami.com/2015/06/02/chef-teacher/"/>
     <updated>2015-06-02T10:00:00+09:00</updated>
     <id>http://hirofukami.com/2015/06/02/chef-teacher</id>
-    <content type="html"><![CDATA[<p>{% img /images/2015/06/20150602-teacher.png 640 %}</p>
+    <content type="html"><![CDATA[<p><img src="/images/2015/06/20150602-teacher.png" width="640"></p>
 
 <p>Chef の研修講師をしました。</p>
 
 <p>具体的には、近年のインフラ業界での様子解説とDevOpsの概要、chef の knife solo の演習です。</p>
 
-<p>{% img /images/2015/06/20150602-chef-logo.png %}</p>
+<p><img src="/images/2015/06/20150602-chef-logo.png"></p>
 
 <p>今年1月からとあるエンタープライズSIerさんの企業内研修の1プログラムとして実施してきました。</p>
 
@@ -372,58 +428,6 @@ Jリーグクラブ経営、スポーツメーカーのプロモーション、�
 <p>2015年後半も引き続き Dev と Ops 間を埋めるような講師事業をやっていきます。ただ今募集中です。</p>
 
 <p>参考に <a href="http://www.shakesoul.net/tech-lecture">会社のWebにも講師事業ページ</a> も見ていただいて、ご興味あれば <a href="https://twitter.com/d_sea">@d_sea</a> や <a href="http://www.shakesoul.net/#contact">会社のコンタクトフォーム</a> から連絡いただければです。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[会社でテクニカルレクチャーはじめました]]></title>
-    <link href="http://hirofukami.com/2015/03/17/start-tech-lecture/"/>
-    <updated>2015-03-17T10:00:00+09:00</updated>
-    <id>http://hirofukami.com/2015/03/17/start-tech-lecture</id>
-    <content type="html"><![CDATA[<p>{% img /images/2015/03/20150317-students.jpg Learning %}</p>
-
-<p>プライベートカンパニーである<a href="http://www.shakesoul.net">株式会社シェイクソウル</a>でテクニカルレクチャーサービスを開始しました。</p>
-
-<hr />
-
-<p>インフラ業界の最新動向やDevOpsツールの実践的演習を行う、テクニカルレクチャーサービスを始めました。</p>
-
-<p style="text-align: center;"><strong>テクニカルレクチャー : <a href="http://www.shakesoul.net/tech-lecture">http://www.shakesoul.net/tech-lecture</a></strong></p>
-
-
-<p>実はすでに1月から実施していて、ホスティング事業者とエンタープライズ向けシステム開発会社に行っています。</p>
-
-<p>最初は知り合いの方からの紹介で依頼を受けた形で実施したのですが、同じように学びたい方々がいるのではと思い、広く展開するためにこの度シェイクソウルのサービスメニューの一つにしました。</p>
-
-<h2>サービス概要</h2>
-
-
-<p>インフラ分野の動向を解説する講義とDevOpsツールの演習を教える先生をやります。
-DevOpsツールとしては、<a href="http://chef.io" target="_blank">Chef</a>、<a href="http://docker.com" target="_blank">Docker</a> を教えます。</p>
-
-<p>単に概念的な解説にとどまらず、インフラ業界で今まで培ってきた開発経験やノウハウをベースとして、多角的な理解ができるようにします。
-演習では実際に参加者はPCを使って Chef の使い方を学んで自分でちゃんと動く Cookbook を作れるように教えます。</p>
-
-<h2>きっかけ</h2>
-
-
-<p>今まで勉強会のスピーカーはやって来ましたが、人に何かを教えることは初めてになります。
-先生のように人前に立って教えるというスタイルは、何やら偉そうな気がして、また自分はまだそんなに偉くないという思いもあって、積極的にやろうとはしていませんでした。</p>
-
-<p>ただ実際にやってみると、人が<strong>「できないことができるようになる」</strong>姿は素敵だと思うし、自分の持っているスキルやノウハウがその助けになるならばやりたいと思うようになりました。</p>
-
-<h2>インフラ変革期の今だから</h2>
-
-
-<p>最近のインフラ業界の動きも始めるひとつの理由なりました。
-インフラ業界は2013年ごろから変革の時期に入ったと思っていて、今までのスピード感ややり方を変えることが求められています。
-実際何が起きているのか、どう変わるべきなのか、その流れをしっかりキャッチアップする必要があります。</p>
-
-<p>ただ、日常業務に追われていると、なかなか新しい動きをキャッチアップすることは難しい。流行りのキーワードとして DevOps は知っているが本質的に捉えるまでは至っていないとか、ツールとしては Chef、Docker などがあるが現状は今までのツールを使い続けてなかなか学べない。などの課題があると思います。
-その現状課題に対して、シェイクソウルのテクニカルレクチャーは的確に解決できると思っています。</p>
-
-<p>問い合わせは<a href="http://www.shakesoul.net/#contact">コンタクトフォーム</a>で受け付けています。
-興味を持ってもらえたら幸いです。</p>
 ]]></content>
   </entry>
   

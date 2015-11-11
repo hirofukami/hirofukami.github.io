@@ -9,7 +9,9 @@
 
 <meta name="author" content="HiroFukami"> 
 
-<meta name="description" content="基本的に複数台の EC2 インスタンスある場合にファイルをデプロイする時は、手動なら SCP で1台ずつやるのだろうけど、楽をするなら Chef を使って環境を作るとかになると思う。だけど、オートスケーリングをさせている場合、起動しているインスタンスは常に変わってしまう懸念があるので、 &hellip;"> <meta name="keywords" content="">
+<meta name="description" content="最近は意図的にマーケティング関連の本を読むようにしている。
+自分の本業の分野ではなかった上に、スタートアップをやってみて得られた失敗の一つが「マーケティング・プロモーションの軽視」だったから。
+どうしてもエンジニアは「良い製品を作れば使ってくれる」と思いがちだし、 &hellip;"> <meta name="keywords" content="">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -63,7 +65,9 @@ $(document).ready(
     <meta property="twitter:site" content="d_sea">
     <meta property="twitter:url" content="http://hirofukami.com">
     <meta property="twitter:title" content="Hiro Fukami's Blog">
-    <meta property="twitter:description" content="基本的に複数台の EC2 インスタンスある場合にファイルをデプロイする時は、手動なら SCP で1台ずつやるのだろうけど、楽をするなら Chef を使って環境を作るとかになると思う。だけど、オートスケーリングをさせている場合、起動しているインスタンスは常に変わってしまう懸念があるので、実際そこまで作りこむのは大変。 そこで、s3cmd sync &hellip;">
+    <meta property="twitter:description" content="最近は意図的にマーケティング関連の本を読むようにしている。
+自分の本業の分野ではなかった上に、スタートアップをやってみて得られた失敗の一つが「マーケティング・プロモーションの軽視」だったから。
+どうしてもエンジニアは「良い製品を作れば使ってくれる」と思いがちだし、だからこそ自分自身が世の中を牽引できる感覚を持つ。製品やサービスがその市場で少ない時は確かに売れるのだけど、 &hellip;">
     <meta property="twitter:creator" content="d_sea" />
 
 
@@ -123,6 +127,76 @@ $(document).ready(
 </header>
 
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/2013/07/18/book-positioning/">
+		
+			ポジショニング戦略 &#8211; アル・ライズ、ジャック・トラウト</a>
+	</h2>
+	<div class="entry-content">
+		<p>最近は意図的にマーケティング関連の本を読むようにしている。<br/>
+自分の本業の分野ではなかった上に、スタートアップをやってみて得られた失敗の一つが「マーケティング・プロモーションの軽視」だったから。<br/>
+どうしてもエンジニアは「良い製品を作れば使ってくれる」と思いがちだし、だからこそ自分自身が世の中を牽引できる感覚を持つ。製品やサービスがその市場で少ない時は確かに売れるのだけど、現代はモノにあふれているし簡単にサービスを出すことができるので、単に作っただけでは埋もれてしまう。<br/>
+ワーストケースは「誰も使ってくれないサービスを作ってしまった」だが、使ってくれるユーザを明確に定義して刺さるサービスを作れたとしても、そのユーザにサービスの情報が届かない限り使ってくれない。</p>
+
+<p><a href="http://www.amazon.co.jp/gp/product/4903212076/ref=as_li_ss_il?ie=UTF8&amp;camp=247&amp;creative=7399&amp;creativeASIN=4903212076&amp;linkCode=as2&amp;tag=dsea-22"><img border="0" src="http://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=4903212076&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=dsea-22" /></a><img src="http://ir-jp.amazon-adsystem.com/e/ir?t=dsea-22&l=as2&o=9&a=4903212076" width="1" height="1" border="0" alt="" style="border:none !important;margin:0!important;" /><br/>
+<a href="http://www.amazon.co.jp/gp/product/4903212076/ref=as_li_ss_tl?ie=UTF8&amp;camp=247&amp;creative=7399&amp;creativeASIN=4903212076&amp;linkCode=as2&amp;tag=dsea-22">ポジショニング戦略[新版]</a><img src="http://ir-jp.amazon-adsystem.com/e/ir?t=dsea-22&l=as2&o=9&a=4903212076" width="1" height="1" border="0" alt="" style="border:none !important;margin:0!important;" /></p>
+
+<p>情報を届けるためにどうすればいいか、そもそもサービスをどう位置づければいいのか、ここら辺をちゃんと考えてサービスづくりをして行きたいと思っている。<br/>
+この本は、<a href="http://www.amazon.co.jp/gp/product/4873115914/ref=as_li_ss_tl?ie=UTF8&camp=247&creative=7399&creativeASIN=4873115914&linkCode=as2&tag=dsea-22" target="_blank">RUNNING LEAN</a> で薦められていて、サービスの独自価値を定義する際に読むと良いよと言われていた。</p>
+
+<p>日本での初版は1987年で近年読むことが難しかったが、2008年に新版として発行しなおしている。<br/>
+時代背景としてはインターネットもスマホもない時代なので出てくる会社は自動車、化粧品など昔からの大企業になるが、現在も有名な会社ばかりなのと、述べられていることは現代にも通じるので時代のギャップは感じないだろう。</p>
+
+<p>基本的には大量にあふれる製品・サービスがある中で、自分の製品・サービスを売り込もうとする時、顧客の頭の中にポジショニングさせるしかない。<br/>
+そのための考え方、具体的手法、数多くの事例を説明している。</p>
+
+<p>印象的だったのはフォルクスワーゲンのビートルの広告で、車が大きいサイズのものが流行っていた時期に「シンク・スモール」と言って、真逆ポジションを全面に出して受け入れられたこと。これはアップルの有名な広告「シンク・ディファレント」の発想の元になる広告だったのかもしれないと思った。</p>
+
+<p>単にマーケティングにおけるポジショニング論の概念を述べているのではなくて、具体的にいろいろな方面について述べているので、具体的にイメージできて自分が実行しやすいように思える。<br/>
+例えば、メディアの活用の仕方、失敗を恐れずやってみる、広告会社のノウハウとはのようなことが書かれている。一つ一つがサービスづくりの時に実践できそうなことばかりだ。マーケティングの範囲を超えてビジネス面や起業精神まで語られているように思う。<br/>
+本の最終部分には丁寧に戦略開始前の「6つの自問」と、まとめとしてポジショニングで勝利する12の決め手を書いてある。自分のサービをあてはめてチェックリストのような感じで使える。</p>
+
+<p>自分で実際やってみた。今進めようとしているサービスに対して6つの自問に答える形で整理できた。そいうしたら、やはりライバルの定義があやふやだったことと、ライバルの中で自分はどのポジションに位置したいのかが不明確だったことが分かった。ライバルのサービスをもう一度見なおしてユーザ視点での強み弱みを整理し、そことかぶらない自分のポジションを明確にしてランディングページに反映した。</p>
+
+<p>小さな会社が競合がいる中でどうサービスを成長させていけるか。という問はスタートアップにとって永遠の課題だが、この本が大きなヒントをくれている気がする。<br/>
+今まで読んなマーケティング関連の本で最も分かりやすく最も実践的だと思える本だった。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-07-19T02:26:06+09:00" pubdate data-updated="true">Jul 19<span>th</span>, 2013</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/book/'>Book</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/2013/07/18/book-positioning//blog/page/15/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
 
 
     <article class="post">
@@ -931,128 +1005,6 @@ $ sudo make install </pre>
 
 	
 		<span class="comments"><a href="/2013/06/08/aws-s3fs-multi-ec2//blog/page/15/index.html#disqus_thread">Comments</a></span>
-	
-</div></article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/2013/05/31/titanium-google-analytics/">
-		
-			Titanium で Google Analytics を使う手順</a>
-	</h2>
-	<div class="entry-content">
-		<p>ユーザがアプリをどんなふうに利用しているかは、最近ではトラッキングして分析するのが当たり前になっているが、ではどうやって？というところの解は Google Analytics を使うか、MBaaS の分析機能＆イベントと絡ませてデータを投げる(Titanium の場合、基本Analyticsでは情報不足なのでACSのオブジェクト作成をしてデータを貯める)とかが考えられる。</p>
-
-<p>ACS のオブジェクト作成でデータを貯めてみたが、結局集計は自分でやらなくてはいけないのであまりいい運用ができていなかった。ということで、やっぱりお手軽な Google Analytics を入れるかとういことでその手順をまとめる。</p>
-
-<p>Titanium-Google-Analytics というモジュールを適用して、Google Analytics の1つのウェブサイトとしてデータ収集してくれる。ちょっと分かりづらいポイントは Google Analytics for Mobile ではなくて、モジュールはアプリの振る舞いをウェブサイトとして Google Analytics に投げるこをとしてくれるので、Google Analytics 上はあくまでウェブサイトとしての扱いになる。</p>
-
-<p>参考URL</p>
-
-<ul>
-<li><a href="http://tech4403.hatenablog.com/entry/20110128/1296189155">http://tech4403.hatenablog.com/entry/20110128/1296189155</a></li>
-<li><a href="http://webanalyst.biz/tool/google-analytics/titanium-studio-google-analytics/">http://webanalyst.biz/tool/google-analytics/titanium-studio-google-analytics/</a></li>
-</ul>
-
-
-<p>ほぼ参考URL通りなのだけど、バージョンも上がって若干異なる記述が必要だったのでまとめておく。</p>
-
-<h2>Google Analytics で ID を取得する</h2>
-
-<p>他のIDでも使いまわせるが、アプリのトラッキングデータが多くなったら支障が出るような説明があったので、アカウントから新しく作ることにした。</p>
-
-<ol>
-<li>Google Analytics にログインして、「アナリティクス設定」> 「+新しいアカウント」をクリック</li>
-<li>「トラッキングの対象」は「ウェブサイト」を選択する
-
-<ul>
-<li>気持ち的にはアプリが対象なので「アプリ」を選びたいが、収集できないので注意</li>
-</ul>
-</li>
-<li>ウェブサイト名、サイトURL、アカウント名を適当に入力する
-
-<ul>
-<li>サイトURLはそのURLでないとNGということはないので、適当なURLでよい</li>
-<li>アカウント名 > ウェブサイト名 の階層関係なので、それぞれ管理しやすい名前にする</li>
-</ul>
-</li>
-<li>ID が発行されるのでメモる</li>
-</ol>
-
-
-<h2>Titanium-Google-Analytics をセットアップする</h2>
-
-<p>github で公開されている <a href="https://github.com/rogchap/Titanium-Google-Analytics" target="_blank">Titanium-Google-Analytics</a> を git clone してもいいし、<a href="https://github.com/rogchap/Titanium-Google-Analytics/archive/master.zip" target="_blank">ZIPファイルをダウンロード</a>してファイルを取得する。</p>
-
-<p>いくつかファイルやディレクトリがあるが実際使うのは、Resources/Ti.Google.Analytics.js になる。</p>
-
-<p>使い方は Resources/app.js にサンプルとして書いてあるので、読んでみる。</p>
-
-<pre class="brush: jscript; title: ; notranslate" title="">var gaModule = require('Ti.Google.Analytics');
-var analytics = new gaModule('UA-XXXXXX-X');
-
-// Call the next function if you want to reset the analytics to a new first time visit.
-// This is useful for development only and should not go into a production app.
-//analytics.reset();
-
-// The analytics object functions must be called on app.js otherwise it will loose it's context
-Ti.App.addEventListener''analytics_trackPageview', function(e){
-    analytics.trackPageview('/iPad' + e.pageUrl);
-});
-
-Ti.App.addEventListener('analytics_trackEvent', function(e){
-    analytics.trackEvent(e.category, e.action, e.label, e.value);
-});
-
-// Starts a new session as long as analytics.enabled = true
-// Function takes an integer which is the dispatch interval in seconds
-analytics.start(10,true);
-
-// track page view on focus
-win1.addEventListener('focus', function(e){
-    analytics.trackPageview('/win1');
-});
-</pre>
-
-
-<p>require で Ti.Google.Analytics.js を読み込んで、Google Analytics でアカウント作成時に取得した UA から始まる ID を記述する。<br/>
-addEventListener でページビューした時とイベント発生時を定義する。trackPageview はページビュー用のデータ収集、trackEvent はボタンを押した時などのイベントと絡めるデータ収集。<br/>
-analytics.start(10,true); は10秒間隔でデータを送っている？ようです。<br/>
-あとは、ページビューだったら Window が focus されたイベント時に trackPageview を値を添えて呼び出す。のような動作させたい箇所で記述する。</p>
-
-
-		
-		<a href="/2013/05/31/titanium-google-analytics/" class="more-link">Read on &rarr;</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-05-31T20:17:59+09:00" pubdate data-updated="true">May 31<span>st</span>, 2013</time></div>
-	
-
-<div class="tags">
-
-	<a class='category' href='/blog/categories/tech/'>Tech</a>
-
-</div>
-
-
-	
-		<span class="comments"><a href="/2013/05/31/titanium-google-analytics//blog/page/15/index.html#disqus_thread">Comments</a></span>
 	
 </div></article>
 
