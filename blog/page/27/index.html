@@ -9,7 +9,7 @@
 
 <meta name="author" content="HiroFukami"> 
 
-<meta name="description" content="Amazon EC2系の記事を書く際にちゃんと動く内容を示さないといけないと思い、実際動作させながら確認していった。その中でも Amazon CloudFront のスループット測定はデータとしてちゃんと取れたので、導入効果が分かりやすかった。 実際どれくらいパフォーマンスに差が出るのか、 &hellip;"> <meta name="keywords" content="">
+<meta name="description" content="あるパネルディスカッションを聞いた時にどうも面白くないと思った。話している人たちは知識も豊富で、それなりな地位の人たちらしいが、どの人が話す中身にも興味をそそられない。 話しているテーマは決して古くなく、先端的でチャレンジングであるのだが、なぜ自分がそこまではっきり思ったのか、 &hellip;"> <meta name="keywords" content="">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -63,7 +63,7 @@ $(document).ready(
     <meta property="twitter:site" content="d_sea">
     <meta property="twitter:url" content="http://hirofukami.com">
     <meta property="twitter:title" content="Hiro Fukami's Blog">
-    <meta property="twitter:description" content="Amazon EC2系の記事を書く際にちゃんと動く内容を示さないといけないと思い、実際動作させながら確認していった。その中でも Amazon CloudFront のスループット測定はデータとしてちゃんと取れたので、導入効果が分かりやすかった。 実際どれくらいパフォーマンスに差が出るのか、ファイルのダウンロードのスループット結果は以下。 ダウンロードに使ったファイルは &#8220; &hellip;">
+    <meta property="twitter:description" content="あるパネルディスカッションを聞いた時にどうも面白くないと思った。話している人たちは知識も豊富で、それなりな地位の人たちらしいが、どの人が話す中身にも興味をそそられない。 話しているテーマは決して古くなく、先端的でチャレンジングであるのだが、なぜ自分がそこまではっきり思ったのか、もう少し具体的に理由を明確にしたいと思った。 少し考えてみていくつか理由を見つけてみた。 個人が見えない &hellip;">
     <meta property="twitter:creator" content="d_sea" />
 
 
@@ -123,6 +123,149 @@ $(document).ready(
 </header>
 
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/2009/10/22/post/">
+		
+			「自分が何ものか」をもっと語っていい</a>
+	</h2>
+	<div class="entry-content">
+		<div class="section">
+  <p>
+    あるパネルディスカッションを聞いた時にどうも面白くないと思った。話している人たちは知識も豊富で、それなりな地位の人たちらしいが、どの人が話す中身にも興味をそそられない。
+  </p>
+  
+  <p>
+    話しているテーマは決して古くなく、先端的でチャレンジングであるのだが、なぜ自分がそこまではっきり思ったのか、もう少し具体的に理由を明確にしたいと思った。
+  </p>
+  
+  <p>
+    少し考えてみていくつか理由を見つけてみた。
+  </p>
+  
+  <dl>
+    <dt>
+      個人が見えない
+    </dt>
+    
+    <dd>
+      事情の説明が多く、その人自身が何を実践して、何をつかんできたかが分からなかった
+    </dd>
+    
+    <dt>
+      チャレンジしていない
+    </dt>
+    
+    <dd>
+      チャレンジングなことをしているのに小さな視点で難しいですね。みたいな結論になっていた。もっと大きな夢を実現しようといているのに、その夢に邁進する意義があまり見えていないようだった
+    </dd>
+    
+    <dt>
+      組織を主体にしている
+    </dt>
+    
+    <dd>
+      組織は個人の集まりなのに、組織に主体があるような言い回しをして人としての主体性がぼやけていた
+    </dd>
+    
+    <dt>
+      客観的視点の説明が多い
+    </dt>
+    
+    <dd>
+      事例の説明だけはどうでもいい。その上でその人が何をしたのかが大事なはず
+    </dd>
+    
+    <dt>
+      優等生過ぎる発言
+    </dt>
+    
+    <dd>
+      良く言えば無難、悪く言えば何も生み出せない
+    </dd>
+    
+    <dt>
+      日本inside
+    </dt>
+    
+    <dd>
+      ワールドワイドな視点が薄い。海の向こう側で起きていることにもっと焦っていいはずなのに、事情が自分の身に受け入れられていない
+    </dd>
+    
+    <dt>
+      Open への信頼が足りない
+    </dt>
+    
+    <dd>
+      Open になることを未だに信頼し切っていない
+    </dd>
+  </dl>
+  
+  <p>
+    これらの理由から、自分が何を求めているのかもう少し考えてみた。
+  </p>
+  
+  <p>
+    人の話を聞く時に気にしていたのは、「その人自身がどんな経験をして、それを通じてどんな考え方を主張するか。」だけかと思う。
+  </p>
+  
+  <p>
+    その人自身にフォーカスすることが重要で、地位や組織というのはほとんど意味がなくなる。結局組織と言っても人の集まりなのだから、その人が何を思うかに依存すると割り切っている。
+  </p>
+  
+  <p>
+    客観性を持つのはある程度重要だが、情報の収集は Google がやってくれるので、状況報告だけを話すというのは全く価値がなくなるし、それに時間を割くのは全くのナンセンスだと思っている。
+  </p>
+  
+  <p>
+    昔は自分も学生時代には優等生発言をまねて振る舞うことが良しとされていたので、昔であればその発言を聞けたかもしれない。でも、時代は変わり考え方も大きく変わった今思うのは、その人自身の経験、主張がちゃんと伝えられることだけで良いと思っている。
+  </p>
+  
+  <p>
+    自分の考え方は大きく変わった。自分の会社をやるようになってますますこの主体性へのフォーカスと実績主義の傾向は強まっていると自覚する。
+  </p>
+  
+  <p>
+    何をしてきたか、何を生み出せるのか。はっきり自分を語ることを当たり前のようにしたい。
+  </p>
+</div>
+
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-10-23T00:00:00+09:00" pubdate data-updated="true">Oct 23<span>rd</span>, 2009</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/self-management/'>Self Management</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/2009/10/22/post//blog/page/27/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
 
 
     <article class="post">
@@ -1789,264 +1932,6 @@ Total number of prefixes 1
 
 	
 		<span class="comments"><a href="/2009/08/21/post//blog/page/27/index.html#disqus_thread">Comments</a></span>
-	
-</div></article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/2009/07/30/bpstudy-23/">
-		
-			BPstudy#23 に参加しました</a>
-	</h2>
-	<div class="entry-content">
-		<div class="section">
-  <p>
-    2回目となる BPstudy に参加してきました。先月は出れずに2ヶ月ぶり。
-  </p>
-  
-  <h4>
-    第一部
-  </h4>
-  
-  <p>
-    第一部の資料は <a href="http://beproud.jp/bpstudy/?p=33" target="_blank"><a href="http://beproud.jp/bpstudy/?p=33" target="_blank">http://beproud.jp/bpstudy/?p=33</a></a> から入手できます。
-  </p>
-  
-  <ul>
-    <li>
-      プログラミング開発の作るそのものが変わる
-    </li>
-    <li>
-      クラウド上で集約
-    </li>
-    <li>
-      作るというよりかはカスタマイズ部分の対応がフォーカスされるはず
-    </li>
-    <li>
-      PaaS 上で開発することを想定している
-    </li>
-    <li>
-      スケーリングするストレージ = キーバリューストレージ
-    </li>
-  </ul>
-  
-  <h5>
-    Google App Engine での DB 利用
-  </h5>
-  
-  <ul>
-    <li>
-      クラウドのストレージは join ができないことを前提してつくる
-    </li>
-    <li>
-      複数のトランザクションを補償するのが弱いのでアプリレベルで1つに詰め込む方がいい
-    </li>
-    <li>
-      アプリケーション非同期処理
-    </li>
-    <li>
-      いろんなコンポーネントを組み合わせてアプリケーションが成り立つ
-    </li>
-  </ul>
-  
-  <h5>
-    demo
-  </h5>
-  
-  <ul>
-    <li>
-      simplemodeler というコマンド
-    </li>
-    <li>
-      src が選べる
-    </li>
-    <li>
-      scalar でオブジェクトモデルを自動生成
-    </li>
-    <li>
-      Google App Engine 上で反映を確認 <ul>
-        <li>
-          Java で作ってあげる
-        </li>
-      </ul>
-    </li>
-    
-    <li>
-      CSV をインポートできる機能があるらしい
-    </li>
-    <li>
-      class から仕様書が自動生成してくれるらしい HTMLで <ul>
-        <li>
-          詳細が class 図 属性を示す
-        </li>
-        <li>
-          状態遷移表も表として自動生成してくれる
-        </li>
-        <li>
-          program書くことだけで終わらせたい
-        </li>
-      </ul>
-    </li>
-  </ul>
-  
-  <h4>
-    第2部 edge2.cc
-  </h4>
-  
-  <ul>
-    <li>
-      クラウドコンピューティングでの開発を考える
-    </li>
-    <li>
-      # PaaS 上での話のようだ
-    </li>
-    <li>
-      通信プロトコルも統一できていない
-    </li>
-    <li>
-      エラーの頻度が高いはず
-    </li>
-    <li>
-      遅延発生する 返ってこないことも
-    </li>
-    <li>
-      トランザクションモデルが異なる RDBが使えない ACID特性があてにできない
-    </li>
-    <li>
-      制約があるからモデル駆動開発 既存のweb開発とは異なる抽象もでる
-    </li>
-    <li>
-      Enterprise Integration Patterns 本あるよ
-    </li>
-    <li>
-      Apache Camel フレームワーク
-    </li>
-    <li>
-      クラウドと非同期メッセージング
-    </li>
-    <li>
-      厳密な ACID特性を当てにしないサービス設計を採用するというサービス仕様を考えるとか
-    </li>
-    <li>
-      Google Developer Day で出店した TwitterRecommender <ul>
-        <li>
-          自分がフォローしている人をフォローしている人を知る
-        </li>
-      </ul>
-    </li>
-    
-    <li>
-      モバイルwebアプリは HTML5+Sync+Offline で <ul>
-        <li>
-          Safari HTML5 オフライン機能を使用しモバイルクライアントとして offline 対応web アプリケーション対応
-        </li>
-        <li>
-          Android Gears
-        </li>
-      </ul>
-    </li>
-    
-    <li>
-      iPhone のネイティブアプリ実装版 <ul>
-        <li>
-          CoverFlow の UI を利用
-        </li>
-        <li>
-          SQLite をローカルに持って動作させる
-        </li>
-        <li>
-          サンプルコードをいじって作った 2h くらいで終了
-        </li>
-        <li>
-          O/R Mapper は便利
-        </li>
-        <li>
-          XML は SAX Parser でガリガリ書く必要あり
-        </li>
-      </ul>
-    </li>
-  </ul>
-  
-  <h4>
-    懇親会で話したこと聞いたこと
-  </h4>
-  
-  <ul>
-    <li>
-      シリコンバレーでみてきた会社文化の違い
-    </li>
-    <li>
-      JTPAシリコンバレーカンファレンスは一度は参加すべし <ul>
-        <li>
-          昨年と同じならば11月頭に申込開始 要チェック！<a href="http://www.jtpa.org/" target="_blank"><a href="http://www.jtpa.org/" target="_blank">http://www.jtpa.org/</a></a>
-        </li>
-      </ul>
-    </li>
-    
-    <li>
-      internal と external の文化的違いについて <ul>
-        <li>
-          internal を10年前からの企業依存の高いSI業界の旧文化スタイルと言ってしまってもいいかも
-        </li>
-      </ul>
-    </li>
-    
-    <li>
-      深海は個人の力の最大化を試みる実験を株式会社シェイクソウルでしています # 最近この話を飲みの席で良くするかも
-    </li>
-    <li>
-      fujisaki_hb さんが子持ちでしかも3人もいた # おっとビックリ！
-    </li>
-    <li>
-      結局深夜2時まで恵比寿 # 終電以降ひさびさ
-    </li>
-    <li>
-      そこからハートビーツの方々と相乗りタクシー # 安くすんだ、ありがとうございました！
-    </li>
-  </ul>
-  
-  <p>
-    やはり技術的に刺激になるな。知らない情報があったし。徐々に参加者の方々と面識ができ始めている気がするので、エンジニア同士のいいネットワーキング作りにしたい。
-  </p>
-  
-  <p>
-    技術的に尖っている場の方が充実度の高さや刺激の多さが多い気がしてきている、今日この頃。
-  </p>
-</div>
-
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-07-31T00:00:00+09:00" pubdate data-updated="true">Jul 31<span>st</span>, 2009</time></div>
-	
-
-<div class="tags">
-
-	<a class='category' href='/blog/categories/tech/'>Tech</a>
-
-</div>
-
-
-	
-		<span class="comments"><a href="/2009/07/30/bpstudy-23//blog/page/27/index.html#disqus_thread">Comments</a></span>
 	
 </div></article>
 
