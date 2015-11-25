@@ -9,8 +9,7 @@
 
 <meta name="author" content="HiroFukami"> 
 
-<meta name="description" content="ちょっと思いついたアイデアレベルのことを書いてみる。すごく困っているというより、モヤッとした感じなこと。 スポーツ観戦 今年はスポーツ観戦によく行っている。JリーグFC東京の試合、Fリーグ府中アスレティック・ペスカドーラ町田などの試合を主に観た。
-毎回ハラハラ・ドキドキして、勝って嬉しい、 &hellip;"> <meta name="keywords" content="">
+<meta name="description" content="MacBook 12インチを使っていつくかの不満点があるけど、その一つが電源アダプターをコンセントに挿して通電すると「ポンッ♪」という音が鳴る。 この音は MacBook の音量を消音にしていても鳴るし、閉じてスリープ状態でも鳴る。音量も調節できない。 MacBook 12インチは電源ポートが &hellip;"> <meta name="keywords" content="">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -64,8 +63,7 @@ $(document).ready(
     <meta property="twitter:site" content="d_sea">
     <meta property="twitter:url" content="http://hirofukami.com">
     <meta property="twitter:title" content="Hiro Fukami's Blog">
-    <meta property="twitter:description" content="ちょっと思いついたアイデアレベルのことを書いてみる。すごく困っているというより、モヤッとした感じなこと。 スポーツ観戦 今年はスポーツ観戦によく行っている。JリーグFC東京の試合、Fリーグ府中アスレティック・ペスカドーラ町田などの試合を主に観た。
-毎回ハラハラ・ドキドキして、勝って嬉しい、負けて悔しい思いをする。日常の中でこれだけ心を動かされるものはないと思う。 &hellip;">
+    <meta property="twitter:description" content="MacBook 12インチを使っていつくかの不満点があるけど、その一つが電源アダプターをコンセントに挿して通電すると「ポンッ♪」という音が鳴る。 この音は MacBook の音量を消音にしていても鳴るし、閉じてスリープ状態でも鳴る。音量も調節できない。 MacBook 12インチは電源ポートが USB-C 1つだけで今まであった通電確認できる LED がなくなっている。 &hellip;">
     <meta property="twitter:creator" content="d_sea" />
 
 
@@ -125,6 +123,281 @@ $(document).ready(
 </header>
 
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/2015/11/25/macbook-12inch-powerchime/">
+		
+			MacBook 12インチ 電源on時の音を消す方法</a>
+	</h2>
+	<div class="entry-content">
+		<p>MacBook 12インチを使っていつくかの不満点があるけど、その一つが電源アダプターをコンセントに挿して通電すると「ポンッ♪」という音が鳴る。</p>
+
+<p><img src="/images/2015/11/20151125-macbook-12inch.JPG" alt="MacBook 12inch" /></p>
+
+<p>この音は MacBook の音量を消音にしていても鳴るし、閉じてスリープ状態でも鳴る。音量も調節できない。</p>
+
+<p>MacBook 12インチは電源ポートが USB-C 1つだけで今まであった通電確認できる LED がなくなっている。
+その代わりにユーザにに何かしら通知するために、この音を鳴らすようにしたというアップルの意図かと思われる。</p>
+
+<p>だけど、制御できない音を勝手に鳴らされるのはよろしくない。私語厳禁のような静かなワークスペースでこの音が鳴ってしまうので非常に困っていた。</p>
+
+<p>いい加減不満が溜まってきたので対応して、この音が鳴らないようにできたのでメモを残しておく。</p>
+
+<h1>PowerChime</h1>
+
+<p><img src="/images/2015/11/20151125-powerchime-before.png" alt="Activity Monitor before" /></p>
+
+<p>この音を鳴らしているのは PowerChime.app というアプリケーション。
+アクティビティーモニターで見ると、ユーザ権限で起動していることがわかる。</p>
+
+<p>このままプロセスを落とせば、チャイムはならなく鳴る。しかし、OS起動時に PowerChime.app が立ち上がるようになっているので、OS再起動しても鳴らないようにしたい。</p>
+
+<h1>作業前</h1>
+
+<p>ここからはターミナルで作業する。</p>
+
+<h2>確認</h2>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>ps aux | grep -i powerchime | grep -v grep
+</span><span class='line'>hironobu          913   0.0  0.2  2533460  15704   ??  S    10:16AM   0:00.12 /System/Library/CoreServices/PowerChime.app/Contents/MacOS/PowerChime
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>確かにプロセスが起動している。</p>
+
+<h2>plist</h2>
+
+<p>各プロセス起動の管理は plist ファイルにてXML形式で記述されている。</p>
+
+<p>root が起動するプロセスは <code>/System/Library/LaunchDaemons/</code> 配下、<br>
+ユーザが起動するプロセスは <code>/System/Library/LaunchAgents/</code> 配下、<br>に plist ファイルが置かれている。</p>
+
+<p>今回 PowerChime はユーザ権限でプロセス起動していたので、
+plist の場所は、<br> <code>/System/Library/LaunchAgents/com.apple.powerchime.plist</code> にある。</p>
+
+<p>中身を見てみる。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>more /System/Library/LaunchAgents/com.apple.powerchime.plist
+</span><span class='line'>&lt;?xml <span class="nv">version</span><span class="o">=</span><span class="s2">&quot;1.0&quot;</span> <span class="nv">encoding</span><span class="o">=</span><span class="s2">&quot;UTF-8&quot;</span>?&gt;
+</span><span class='line'>&lt;!DOCTYPE plist PUBLIC <span class="s2">&quot;-//Apple//DTD PLIST 1.0//EN&quot;</span> <span class="s2">&quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;</span>&gt;
+</span><span class='line'>&lt;plist <span class="nv">version</span><span class="o">=</span><span class="s2">&quot;1.0&quot;</span>&gt;
+</span><span class='line'>&lt;dict&gt;
+</span><span class='line'>        &lt;key&gt;LimitLoadToSessionType&lt;/key&gt;
+</span><span class='line'>        &lt;array&gt;
+</span><span class='line'>                &lt;string&gt;LoginWindow&lt;/string&gt;
+</span><span class='line'>                &lt;string&gt;Aqua&lt;/string&gt;
+</span><span class='line'>        &lt;/array&gt;
+</span><span class='line'>        &lt;key&gt;RunAtLoad&lt;/key&gt;
+</span><span class='line'>        &lt;<span class="nb">true</span>/&gt;
+</span><span class='line'>        &lt;key&gt;Label&lt;/key&gt;
+</span><span class='line'>        &lt;string&gt;com.apple.powerchime&lt;/string&gt;
+</span><span class='line'>        &lt;key&gt;Program&lt;/key&gt;
+</span><span class='line'>        &lt;string&gt;/System/Library/CoreServices/PowerChime.app/Contents/MacOS/PowerChime&lt;/string&gt;
+</span><span class='line'>        &lt;key&gt;ProcessType&lt;/key&gt;
+</span><span class='line'>        &lt;string&gt;Interactive&lt;/string&gt;
+</span><span class='line'>&lt;/dict&gt;
+</span><span class='line'>&lt;/plist&gt;
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>こんな感じの記述。</p>
+
+<h2>launchctl コマンド</h2>
+
+<p>OS起動時のプロセス管理のために <code>launchctl</code> コマンドを使う。</p>
+
+<p><code>launchctl</code> は OS起動時のプロセスを管理するためのコマンド。
+<code>launchctl (Enter)</code> でコマンドの説明が確認できる。</p>
+
+<p>現在、OS起動時に立ち上がるプロセス一覧を確認したい場合は <code>launchctl list</code> コマンドを使う。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>launchctl list | grep -i powerchime
+</span><span class='line'>894     0       com.apple.powerchime
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>確かに PowerChime がOS起動時に立ち上がるように設定されている。</p>
+
+<p>OS起動時にこの plist を読まないようにするには <code>launchctl unload</code> に <code>-w</code> オプションを付ける。
+OS起動時に立ち上がらないと同時に現在起動している場合はそのプロセスも落とす。</p>
+
+<p>以下、コマンドのヘルプ。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>launchctl unload -h
+</span><span class='line'>Usage: launchctl unload &lt;service-path, service-path2, ...&gt;
+</span><span class='line'>        -w      Additionally disables the service such that future load
+</span><span class='line'>                operations will result in a service which launchd tracks but
+</span><span class='line'>                cannot be launched or discovered in any way.
+</span><span class='line'>        -S &lt;session&gt;
+</span><span class='line'>                Only unloads the services associated with the specified session.
+</span><span class='line'>        -D &lt;domain&gt;
+</span><span class='line'>                Unloads launchd.plist<span class="o">(</span>5<span class="o">)</span> files from the specified domain. See
+</span><span class='line'>                the discussion regarding this same flag when given to the load
+</span><span class='line'>                subcommand <span class="k">for </span>further details.
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>先ほど見た plist ファイルのパスを指定する。</p>
+
+<p>実行してみる。ユーザプロセスなので <code>sudo</code> なしでOK。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>launchctl unload -w /System/Library/LaunchAgents/com.apple.powerchime.plist
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h1>実行後</h1>
+
+<h2>確認</h2>
+
+<p><img src="/images/2015/11/20151125-powerchime-after.png" alt="Activity Monitor after" /></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>ps aux | grep -i powerchime | grep -v grep
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>PowerChime プロセスが落ちている。</p>
+
+<p>一応 plist ファイルに変更が加えられたか見てみる。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>more /System/Library/LaunchAgents/com.apple.powerchime.plist
+</span><span class='line'>&lt;?xml <span class="nv">version</span><span class="o">=</span><span class="s2">&quot;1.0&quot;</span> <span class="nv">encoding</span><span class="o">=</span><span class="s2">&quot;UTF-8&quot;</span>?&gt;
+</span><span class='line'>&lt;!DOCTYPE plist PUBLIC <span class="s2">&quot;-//Apple//DTD PLIST 1.0//EN&quot;</span> <span class="s2">&quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;</span>&gt;
+</span><span class='line'>&lt;plist <span class="nv">version</span><span class="o">=</span><span class="s2">&quot;1.0&quot;</span>&gt;
+</span><span class='line'>&lt;dict&gt;
+</span><span class='line'>        &lt;key&gt;LimitLoadToSessionType&lt;/key&gt;
+</span><span class='line'>        &lt;array&gt;
+</span><span class='line'>                &lt;string&gt;LoginWindow&lt;/string&gt;
+</span><span class='line'>                &lt;string&gt;Aqua&lt;/string&gt;
+</span><span class='line'>        &lt;/array&gt;
+</span><span class='line'>        &lt;key&gt;RunAtLoad&lt;/key&gt;
+</span><span class='line'>        &lt;<span class="nb">true</span>/&gt;
+</span><span class='line'>        &lt;key&gt;Label&lt;/key&gt;
+</span><span class='line'>        &lt;string&gt;com.apple.powerchime&lt;/string&gt;
+</span><span class='line'>        &lt;key&gt;Program&lt;/key&gt;
+</span><span class='line'>        &lt;string&gt;/System/Library/CoreServices/PowerChime.app/Contents/MacOS/PowerChime&lt;/string&gt;
+</span><span class='line'>        &lt;key&gt;ProcessType&lt;/key&gt;
+</span><span class='line'>        &lt;string&gt;Interactive&lt;/string&gt;
+</span><span class='line'>&lt;/dict&gt;
+</span><span class='line'>&lt;/plist&gt;
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>特に変わっていないみたい。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>launchctl list | grep -i powerchime
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>OS起動時のプロセスから PowerChime が外れた。</p>
+
+<h1>起動させたい時</h1>
+
+<p>もし、OS起動時に立ち上がるようにしたい場合は(個人的にはないケースだけど)、 <code>launchctl load</code> コマンドに <code>-w</code> オプションを付ける。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>launchctl load -w /System/Library/LaunchAgents/com.apple.powerchime.plist
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>OS起動時に立ち上がるようになると同時にプロセスも起動する。</p>
+
+<h1>参考情報</h1>
+
+<p><a href="http://www.maruko2.com/mw/LaunchDaemons_(launchctl,_launchd.plist)_%E3%81%AE%E4%BD%BF%E3%81%84%E6%96%B9">http://www.maruko2.com/mw/LaunchDaemons<em>(launchctl,</em>launchd.plist)_の使い方</a></p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-11-25T12:00:00+09:00" pubdate data-updated="true">Nov 25<span>th</span>, 2015</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/apple/'>Apple</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/2015/11/25/macbook-12inch-powerchime//blog/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
 
 
     <article class="post">
@@ -855,71 +1128,6 @@ Googleの経営陣による執筆なので、Google社内文化の解説にと�
 
 	
 		<span class="comments"><a href="/2015/10/01/book-gotaifumanzoku//blog/index.html#disqus_thread">Comments</a></span>
-	
-</div></article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/2015/09/30/spors-seminar-jleague/">
-		
-			Jリーグのアジア戦略を学ぶ</a>
-	</h2>
-	<div class="entry-content">
-		<p>スポーツビジネスに関するセミナーに参加してきました。</p>
-
-<p>開催しているのは <a href="http://www.vantan-sports.com/">バンタンスポーツアカデミー</a>。</p>
-
-<p>バンタンは <a href="http://www.nikkei.com/markets/kigyo/ma.aspx?g=DGXLASDZ13HJR_13112014TJ2000">ドワンゴが2014年11月に買収した</a> 専門学校ですが、おそらく唯一スポーツビジネスに関するセミナーを開催しているところです。
-今までに私が出席したセミナーでいえば、Jリーグクラブ、スポーツメーカー、ベンチャー企業などスポーツビジネスの最前線にいるプレイヤーたちの話が聞ける貴重な場です。</p>
-
-<p>(他にこのようなセミナー実施しているところをご存知な方がいらっしゃれば、是非教えて下さい。)</p>
-
-<p>今回はJリーグのアジア戦略につていです。
-<a href="http://www.vantan-sports.com/event/1181/">【サッカービジネス】： 「Jサッカービジネス最前線！Jリーグのアジア戦略について」</a> というタイトル。</p>
-
-<p>恵比寿にあるバンタン内の教室へ。いつもの倍以上参加者がいる感じ20名くらい。</p>
-
-<p>聞けて本当に良かった。Jリーグが具体的に何をしているのか、アジアに対してどうアプローチしているのかは情報としてほとんど出てこないので知らなかった。</p>
-
-<p>具体的にやっていることが分かったのが収穫。思ったよりもしっかり取り組んでいて、しかも状況としてはアジア内のJリーグの評価は非常に高く追い風であることも分かった。</p>
-
-<p>ざっくり言うと、日本だけ見ていると暗くなるけど <strong>成長しているアジアの中で追い風を受けて &ldquo;アジアNo.1&rdquo; のポジションを取れば未来は明るい</strong> と思った。</p>
-
-<p>以下、メモと聞き終えてから思ったこと。</p>
-
-
-		
-		<a href="/2015/09/30/spors-seminar-jleague/" class="more-link">Read on &rarr;</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2015-09-30T23:00:00+09:00" pubdate data-updated="true">Sep 30<span>th</span>, 2015</time></div>
-	
-
-<div class="tags">
-
-	<a class='category' href='/blog/categories/sports/'>Sports</a>
-
-</div>
-
-
-	
-		<span class="comments"><a href="/2015/09/30/spors-seminar-jleague//blog/index.html#disqus_thread">Comments</a></span>
 	
 </div></article>
 

@@ -9,8 +9,7 @@
 
 <meta name="author" content="HiroFukami"> 
 
-<meta name="description" content="今回の スマートWordPress は RUNNING LEAN の手法を真似て進めている。
-最初はターゲットに対するインタビューから始まるが、ちょうど10名分のインタビューが終わったので、実際やってみてどうだったかをまとめる。 RUNNING LEAN と変えたところ &hellip;"> <meta name="keywords" content="">
+<meta name="description" content="「ロリポップ」でWordPress利用サイトが改ざん　「大規模攻撃」で被害4802件 現時点では、まだ完全に収束していなくて、ロリポップはこの件のアップデートをお知らせし続けている。 この原因は「WordPressのテーマかプラグインの脆弱性からファイルパーミッションの設定不備をつかれた」 &hellip;"> <meta name="keywords" content="">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -64,8 +63,8 @@ $(document).ready(
     <meta property="twitter:site" content="d_sea">
     <meta property="twitter:url" content="http://hirofukami.com">
     <meta property="twitter:title" content="Hiro Fukami's Blog">
-    <meta property="twitter:description" content="今回の スマートWordPress は RUNNING LEAN の手法を真似て進めている。
-最初はターゲットに対するインタビューから始まるが、ちょうど10名分のインタビューが終わったので、実際やってみてどうだったかをまとめる。 RUNNING LEAN と変えたところ 課題インタビューとソリューションインタビューを合わせて行った。 課題はかなり明確に意識できていたのと、 &hellip;">
+    <meta property="twitter:description" content="「ロリポップ」でWordPress利用サイトが改ざん　「大規模攻撃」で被害4802件 現時点では、まだ完全に収束していなくて、ロリポップはこの件のアップデートをお知らせし続けている。 この原因は「WordPressのテーマかプラグインの脆弱性からファイルパーミッションの設定不備をつかれた」とのことだけど、これだけでは不明確で、追々報告はあるかもしれないが、いまだ全容は明らかになっていない。
+「 &hellip;">
     <meta property="twitter:creator" content="d_sea" />
 
 
@@ -125,6 +124,146 @@ $(document).ready(
 </header>
 
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/2013/09/02/lolipop-wordpress-trouble/">
+		
+			ロリポップ WordPress 大規模改ざんの原因予想と思ふところ</a>
+	</h2>
+	<div class="entry-content">
+		<p><a href="http://www.itmedia.co.jp/news/articles/1308/29/news093.html" target="_blank">「ロリポップ」でWordPress利用サイトが改ざん　「大規模攻撃」で被害4802件</a></p>
+
+<p>現時点では、まだ完全に収束していなくて、ロリポップはこの件の<a href="http://lolipop.jp/info/news/4149/" target="_blank">アップデートをお知らせし続けている</a>。</p>
+
+<p>この原因は「WordPressのテーマかプラグインの脆弱性からファイルパーミッションの設定不備をつかれた」とのことだけど、これだけでは不明確で、追々報告はあるかもしれないが、いまだ全容は明らかになっていない。<br/>
+<a href="http://www.itmedia.co.jp/news/articles/1308/30/news127.html" target="_blank">「ロリポップ」のWordPressサイト改ざん被害、原因はパーミッション設定不備</a></p>
+
+<p>という状況なのだけど、WordPress 制作者の皆さんは何が起きてどうすればいいのか、イマイチ理解されていない気がして、リアクションできずに固まって、エンドユーザへの説明もなかなかつらいところなのではと思う。</p>
+
+<p>もう少し現象が分かるように、予想もあるけども追ってみたいと思う。今後共有レンタルサーバを提案して良いものなのかどうか、みなさんのお仕事の参考なれば良いと思う。</p>
+
+<h2>予想される流れ</h2>
+
+<p>詳細が公表されていないので、具体的にはなんとも言えないけど、ロリポップの公表情報から予測してみると以下の流れがあるのではと思う。</p>
+
+<ol>
+<li>あるユーザが自分の WordPress サイトに悪意のある非公式なテーマ or プラグインをサーバにおいた</li>
+<li>そのテーマ or プラグインがサーバ内で動作する</li>
+<li>そのサーバに共有されている他ユーザのディレクトリ名が分かる</li>
+<li>Apache の mod_rewrite 上のオプション FollowSymLinks が有効になっていたので、他ユーザの wp-config.php へのパスを予測してシンボリックリンクを貼って http 経由でアクセスして wp-config.php の内容を見る</li>
+<li>サーバ内 or 外部から DB サーバへアクセスし、テーブルの内容を書き換える</li>
+<li>4,5 の繰り返し</li>
+</ol>
+
+
+<h2>現象の原因要素</h2>
+
+<p>この流れが成立するためにはいくつかの要素必要。</p>
+
+<ol>
+<li>ロリポップのパーミッション設定不備</li>
+<li>共有サーバという形態</li>
+<li>WordPress の決められたファイルパスと情報</li>
+</ol>
+
+
+<p>この3つがそれぞれ成立したことで現象は生じた。</p>
+
+<h2>ロリポップのパーミション設定不備</h2>
+
+<p>対応内容で FollowSymLinks から SymLinksIfOwnerMatch に変えたとあったので、これで他ユーザの wp-config.php の内容を盗めたのではと思う。お互いのユーザのディレクトリ内は見えないようになっている状態だったが、そこをシンボリックリンクで http で飛び越えてしまう。<br/>
+詳細はわからないが、サーバ内部ではシンボリックリンクを <em>/[他ユーザディレクトリ名]/wp-config.php</em> あてに貼りまくって、http アクセスして中身を見るということかな？と思っている。</p>
+
+<p>技術的に実証して くださっている方がいた : <a href="http://blog.tokumaru.org/2013/09/symlink-attack.html" target="_blank">ロリポップのサイト改ざん事件に学ぶシンボリックリンク攻撃の脅威と対策</a><br/>
+そもそもこの設定不備がなければ事象は起きなかったと思う。</p>
+
+<h2>共有サーバという形態</h2>
+
+<p>共有サーバは ssh login してみるとわかるけど、同居している他ユーザのディレクトリ名が分かってしまう。<br/>
+ssh login して <em>$ ls -l ../</em> すれば見えるはず。これは共有サーバであればどこもできるはず。致し方ない部分。</p>
+
+<p>サーバは共有なのだけど Web サーバは各ユーザそれぞれ独立して動かすことができるように Web サーバには suEXEC が設定されている。<br/>
+また、他ユーザのディレクトリ配下のファイルが見えたり Web アプリからアクセスできてしまうとまずいので、全ユーザを1つのグループに入れてグループパーミッションを与えないようにすれば成立できる。だから今回で言うとパーミッションは 404 とか 400 にしましょうと2桁目が0にするようにサーバ運用会社は推奨している。これはセキュアにするための運用上の理由。</p>
+
+<p>おそらく今回改ざんされちゃった人の wp-config.php のファイルパーミッションはグループ(2桁目)が Read(4) 以上のアクセスを付与してあったのだろう。それが結構な人数いたからこれだけの被害の大きさになったと思う。<br/>
+結構パーミッションは見落としがちで、自分のローカルPC上で wp-config.php を編集して DB 情報を記入して保存。この時点でパーミションは 644 とか になってしまって、グループに Read が与えられてしまい、そのまま気づくことなく FTP でサーバにアップロードしてしまう。</p>
+
+<p>サーバ内においてはユーザのディレクトリのパーミッションはグループは 0 に設定されているので、たとえその下部にある wp-config.php のグループパーミッションに Read が付いていたとしても覗けないのだが、おそらく FollowSymLinks を使って、シンボリックリンクごしに http 経由でファイルにアクセスできたのではと思う。</p>
+
+<h2>WordPress の決められたファイルパスと情報</h2>
+
+<p>WordPress は接続する DB の情報を wp-config.php に書く。そしてこの wp-config.php ファイルは Web で公開するディレクトリの最上部の階層に設置するケースがほどんどだろう。<br/>
+wp-config.php に DB の情報を書くことは WordPress 上の決まりなので、しょうがないところではある。<br/>
+そして、この決まりは知れ渡っているので狙われやすい状況ではある。</p>
+
+<p>DB の情報を抜き出せればあとは、その情報を使って DB にログインして DB 内のデータを update する。ちょっと気になるのがこれは共有サーバからアクセスしたのではなくインターネット外部からなのでは？というところ。今回サーバ上のファイルはそのままだったようなのでサーバにログインしないで実行している気がする。DB に対するファイアウォールが内部の Web サーバからだけに絞られていないで、インターネット上にさらした状態であったとすれば、これもサーバ運用会社の不備ということになる。</p>
+
+<h2>まとめると</h2>
+
+<p>サマリー的に言うと、</p>
+
+<ul>
+<li>同一サーバ上の他ユーザのディレクトリ名一覧が入手できるという、共有サーバのセキュリティ上のリスクと</li>
+<li>WordPress の wp-config.php という特定のファイル名と重要な情報を持っていることが知れ渡っていること。</li>
+<li>というセキュリティリスクの高い状況下で、</li>
+<li>FollowSymLinks の設定不備が引き金になって起こった。</li>
+</ul>
+
+
+<p>というところだろう。</p>
+
+<h2>そして、もう時代はクラウドへの移行なのではないか？</h2>
+
+<p>共有サーバのサービスはもう10年以上提供されていて、使われている技術は変わらず当時の古い、いわゆる枯れた技術で運用され続けている。クラウド登場前、Web1.0時代のホスティング手段で、物理サーバしかない時に安くホスティングサービスを提供するかという視点で作られている。</p>
+
+<p>セキュリティを考えるなら1サーバに複数ユーザではなく、1サーバ1ユーザの形態で他ユーザの影響が自分に及ばない環境を求めるべきで、今なら低いスペックのVPSや1OS上でコンテナでより独立した環境を提供できる。より新しい技術やツールは出てきているのが現状。</p>
+
+<p>いい加減古い技術から離れたほうがいいのでは、というのが私の意見。古いものは必ずセキュリティリスクが高くなっていく。おそらく今回の事象で FollowSymLinks は無効化しても、.htaccess 内に書いたら？とかそれをさせないためにサーバ運用会社はガイドラインを示すだろうけど、他社も含めリスクの指摘はあったが、今頃あたふたというのはちょっとまずいだろう。個人利用ならまだしも、ビジネスで使うレベルではないと思っている。</p>
+
+<p>今回の事象は古いサービスを使い続けることからクラウドへ移行することを促す一つの警鐘と捉えてもいいと思う。</p>
+
+<p>おそらく共有サーバを今でも選定される理由は、安さ、サーバ知識のいらない環境(ワンクリックインストールやWeb UIからの操作など)からだ思うが、クラウドの専用サーバ環境で同じような使い勝手を PaaS/SaaS として提供することは十分可能。日本では VPS の宣伝が大きくて、その上のレイヤまでカバーしてサーバレイヤを抽象化するようなサービスが少ないので、共有サーバに流れてしまっていると思う。</p>
+
+<p>私がカバーしたいと思っているのはまさにこのサーバを意識しない抽象化されたクラウドサービスになる。しかも、これを簡単に提供すること。今クローズドβリリース準備中の <a href="http://www.shakesoul.net/smartwordpress" target="_blank">スマートWordPress</a> は、そんなサーバを意識しない抽象化した WordPress レイヤを簡単に提供するクラウドサービスです。<br/>
+クラウドのメリットを十分に活かして「必要な分を、必要な時に」動かして安心してサイト運営できるようにしている。確かに、共有サーバの500円〜2000円のレンジに比べれば高額になる予定だが、より本格的なサイト運営を求める方々の良きツールになりたいと思っている。</p>
+
+<p>興味のある方は <a href="http://www.shakesoul.net/smartwordpress" target="_blank">スマートWordPress</a> のページでメール登録をお願いします。クローズドβリリースのご案内をさせていただきます。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-02T23:49:48+09:00" pubdate data-updated="true">Sep 2<span>nd</span>, 2013</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/business/'>Business</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/2013/09/02/lolipop-wordpress-trouble//blog/page/14/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
 
 
     <article class="post">
@@ -898,67 +1037,6 @@ FTupdater でポストした時に確認先が分散されるのは手間だし�
 
 	
 		<span class="comments"><a href="/2013/07/23/aws-autoscaling-setting-2013//blog/page/14/index.html#disqus_thread">Comments</a></span>
-	
-</div></article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/2013/07/21/book-1vs21football/">
-		
-			「1対21」のサッカー原論 &#8211; 風間八宏</a>
-	</h2>
-	<div class="entry-content">
-		<p><a href="http://www.amazon.co.jp/gp/product/4576100920/ref=as_li_ss_il?ie=UTF8&amp;camp=247&amp;creative=7399&amp;creativeASIN=4576100920&amp;linkCode=as2&amp;tag=dsea-22"><img border="0" src="http://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=4576100920&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=dsea-22" /></a><img src="http://ir-jp.amazon-adsystem.com/e/ir?t=dsea-22&l=as2&o=9&a=4576100920" width="1" height="1" border="0" alt="" style="border:none !important;margin:0!important;" /><br/>
-<a href="http://www.amazon.co.jp/gp/product/4576100920/ref=as_li_ss_tl?ie=UTF8&amp;camp=247&amp;creative=7399&amp;creativeASIN=4576100920&amp;linkCode=as2&amp;tag=dsea-22">「 1対21 」 のサッカー原論 「 個人力 」 を引き出す発想と技術</a><img src="http://ir-jp.amazon-adsystem.com/e/ir?t=dsea-22&l=as2&o=9&a=4576100920" width="1" height="1" border="0" alt="" style="border:none !important;margin:0!important;" /></p>
-
-<p>現在の川崎フロンターレ監督である風間八宏さんの著書。<br/>
-「足元への強いパス」というフレーズがサッカー時期に紹介されていたことと、風間監督以降のフロンターレのサッカーの志向が面白くなってきているのを感じたので、読んでみた。</p>
-
-<p>この本は2010年初版でまだ風間監督がフロンターレに就任する前のテレビに良く出ていた頃に書かれたかと思うが、現在のフロンターレが志向している「足元への強いパス」の提示もされていて、風間監督のサッカー志向に触れることが出来ると思う。</p>
-
-<p>基本的にはサッカーは個人戦術がもっと重要で、その個人力の向上が組織的な向上につながるという考え方のもと、個人的な基本テクニックの説明から育成環境まで述べられている。<br/>
-2分の3は個人的な基本テクニックに割かれているので、現在サッカーやフットサルをされていて、もっとうまくなりたいと思っている人にとっては、ためになると思う。<br/>
-細かなテクニック集ではなく、根本的なサッカーへの考え方、「止める」「蹴る」「運ぶ」「外す」の基本要素への実戦的解説、その重要性について述べるスタンスなので、私のような週1回フットサルやっている程度の初心者でも十分楽しんで読めた。<br/>
-風間八宏というサッカーに関わる人間の一つの一貫したサッカーに対する志向集とも言える。</p>
-
-<p>この本で述べられていることをおそらくフロンターレで今実践されているのだろう。<br/>
-これらの考え方に触れたことのない選手は、大いに刺激を受けて楽しんでサッカーができているのかもしれない。<br/>
-フロンターレの今のサッカーとこの本を照らすと、また一つ面白い観戦の仕方が出来るだろう。</p>
-
-<p>サッカー好きで自分でもうまくなりたいと思っている方々におすすめな本。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-07-22T04:52:59+09:00" pubdate data-updated="true">Jul 22<span>nd</span>, 2013</time></div>
-	
-
-<div class="tags">
-
-	<a class='category' href='/blog/categories/book/'>Book</a>
-
-</div>
-
-
-	
-		<span class="comments"><a href="/2013/07/21/book-1vs21football//blog/page/14/index.html#disqus_thread">Comments</a></span>
 	
 </div></article>
 

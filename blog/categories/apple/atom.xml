@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Apple | Hiro Fukami's Blog]]></title>
   <link href="http://hirofukami.com/blog/categories/apple/atom.xml" rel="self"/>
   <link href="http://hirofukami.com/"/>
-  <updated>2015-11-20T21:55:44+09:00</updated>
+  <updated>2015-11-25T11:37:26+09:00</updated>
   <id>http://hirofukami.com/</id>
   <author>
     <name><![CDATA[HiroFukami]]></name>
@@ -14,11 +14,200 @@
 
   
   <entry>
+    <title type="html"><![CDATA[MacBook 12インチ 電源ON時の音を消す方法]]></title>
+    <link href="http://hirofukami.com/2015/11/25/macbook-12inch-powerchime/"/>
+    <updated>2015-11-25T12:00:00+09:00</updated>
+    <id>http://hirofukami.com/2015/11/25/macbook-12inch-powerchime</id>
+    <content type="html"><![CDATA[<p>MacBook 12インチを使っていつくかの不満点があるけど、その一つが電源アダプターをコンセントに挿して通電すると「ポンッ♪」という音が鳴る。</p>
+
+<p><img src="/images/2015/11/20151125-macbook-12inch.JPG" alt="MacBook 12inch" /></p>
+
+<p>この音は MacBook の音量を消音にしていても鳴るし、閉じてスリープ状態でも鳴る。音量も調節できない。</p>
+
+<p>MacBook 12インチは電源ポートが USB-C 1つだけで今まであった通電確認できる LED がなくなっている。
+その代わりにユーザにに何かしら通知するために、この音を鳴らすようにしたというアップルの意図かと思われる。</p>
+
+<p>だけど、制御できない音を勝手に鳴らされるのはよろしくない。私語厳禁のような静かなワークスペースでこの音が鳴ってしまうので非常に困っていた。</p>
+
+<p>いい加減不満が溜まってきたので対応して、この音が鳴らないようにできたのでメモを残しておく。</p>
+
+<h1>PowerChime</h1>
+
+<p><img src="/images/2015/11/20151125-powerchime-before.png" alt="Activity Monitor before" /></p>
+
+<p>この音を鳴らしているのは PowerChime.app というアプリケーション。
+アクティビティーモニターで見ると、ユーザ権限で起動していることがわかる。</p>
+
+<p>このままプロセスを落とせば、チャイムはならなく鳴る。しかし、OS起動時に PowerChime.app が立ち上がるようになっているので、OS再起動しても鳴らないようにしたい。</p>
+
+<h1>作業前</h1>
+
+<p>ここからはターミナルで作業する。</p>
+
+<h2>確認</h2>
+
+<p><code>bash
+$ ps aux | grep -i powerchime | grep -v grep
+hironobu          913   0.0  0.2  2533460  15704   ??  S    10:16AM   0:00.12 /System/Library/CoreServices/PowerChime.app/Contents/MacOS/PowerChime
+</code></p>
+
+<p>確かにプロセスが起動している。</p>
+
+<h2>plist</h2>
+
+<p>各プロセス起動の管理は plist ファイルにてXML形式で記述されている。</p>
+
+<p>root が起動するプロセスは <code>/System/Library/LaunchDaemons/</code> 配下、<br>
+ユーザが起動するプロセスは <code>/System/Library/LaunchAgents/</code> 配下、<br>に plist ファイルが置かれている。</p>
+
+<p>今回 PowerChime はユーザ権限でプロセス起動していたので、
+plist の場所は、<br> <code>/System/Library/LaunchAgents/com.apple.powerchime.plist</code> にある。</p>
+
+<p>中身を見てみる。</p>
+
+<p>```bash
+$ more /System/Library/LaunchAgents/com.apple.powerchime.plist
+&lt;?xml version=&ldquo;1.0&rdquo; encoding=&ldquo;UTF-8&rdquo;?>
+&lt;!DOCTYPE plist PUBLIC &ldquo;&ndash;//Apple//DTD PLIST 1.0//EN&rdquo; &ldquo;<a href="http://www.apple.com/DTDs/PropertyList-1.0.dtd">http://www.apple.com/DTDs/PropertyList-1.0.dtd</a>&rdquo;>
+<plist version="1.0">
+<dict></p>
+
+<pre><code>    &lt;key&gt;LimitLoadToSessionType&lt;/key&gt;
+    &lt;array&gt;
+            &lt;string&gt;LoginWindow&lt;/string&gt;
+            &lt;string&gt;Aqua&lt;/string&gt;
+    &lt;/array&gt;
+    &lt;key&gt;RunAtLoad&lt;/key&gt;
+    &lt;true/&gt;
+    &lt;key&gt;Label&lt;/key&gt;
+    &lt;string&gt;com.apple.powerchime&lt;/string&gt;
+    &lt;key&gt;Program&lt;/key&gt;
+    &lt;string&gt;/System/Library/CoreServices/PowerChime.app/Contents/MacOS/PowerChime&lt;/string&gt;
+    &lt;key&gt;ProcessType&lt;/key&gt;
+    &lt;string&gt;Interactive&lt;/string&gt;
+</code></pre>
+
+<p></dict>
+</plist>
+```</p>
+
+<p>こんな感じの記述。</p>
+
+<h2>launchctl コマンド</h2>
+
+<p>OS起動時のプロセス管理のために <code>launchctl</code> コマンドを使う。</p>
+
+<p><code>launchctl</code> は OS起動時のプロセスを管理するためのコマンド。
+<code>launchctl (Enter)</code> でコマンドの説明が確認できる。</p>
+
+<p>現在、OS起動時に立ち上がるプロセス一覧を確認したい場合は <code>launchctl list</code> コマンドを使う。</p>
+
+<p><code>bash
+$ launchctl list | grep -i powerchime
+894     0       com.apple.powerchime
+</code></p>
+
+<p>確かに PowerChime がOS起動時に立ち上がるように設定されている。</p>
+
+<p>OS起動時にこの plist を読まないようにするには <code>launchctl unload</code> に <code>-w</code> オプションを付ける。
+OS起動時に立ち上がらないと同時に現在起動している場合はそのプロセスも落とす。</p>
+
+<p>以下、コマンドのヘルプ。</p>
+
+<p>```bash
+$ launchctl unload -h
+Usage: launchctl unload &lt;service-path, service-path2, &hellip;></p>
+
+<pre><code>    -w      Additionally disables the service such that future load
+            operations will result in a service which launchd tracks but
+            cannot be launched or discovered in any way.
+    -S &lt;session&gt;
+            Only unloads the services associated with the specified session.
+    -D &lt;domain&gt;
+            Unloads launchd.plist(5) files from the specified domain. See
+            the discussion regarding this same flag when given to the load
+            subcommand for further details.
+</code></pre>
+
+<p>```
+先ほど見た plist ファイルのパスを指定する。</p>
+
+<p>実行してみる。ユーザプロセスなので <code>sudo</code> なしでOK。</p>
+
+<p><code>bash
+$ launchctl unload -w /System/Library/LaunchAgents/com.apple.powerchime.plist
+</code></p>
+
+<h1>実行後</h1>
+
+<h2>確認</h2>
+
+<p><img src="/images/2015/11/20151125-powerchime-after.png" alt="Activity Monitor after" /></p>
+
+<p><code>bash
+$ ps aux | grep -i powerchime | grep -v grep
+</code></p>
+
+<p>PowerChime プロセスが落ちている。</p>
+
+<p>一応 plist ファイルに変更が加えられたか見てみる。</p>
+
+<p>```bash
+$ more /System/Library/LaunchAgents/com.apple.powerchime.plist
+&lt;?xml version=&ldquo;1.0&rdquo; encoding=&ldquo;UTF-8&rdquo;?>
+&lt;!DOCTYPE plist PUBLIC &ldquo;&ndash;//Apple//DTD PLIST 1.0//EN&rdquo; &ldquo;<a href="http://www.apple.com/DTDs/PropertyList-1.0.dtd">http://www.apple.com/DTDs/PropertyList-1.0.dtd</a>&rdquo;>
+<plist version="1.0">
+<dict></p>
+
+<pre><code>    &lt;key&gt;LimitLoadToSessionType&lt;/key&gt;
+    &lt;array&gt;
+            &lt;string&gt;LoginWindow&lt;/string&gt;
+            &lt;string&gt;Aqua&lt;/string&gt;
+    &lt;/array&gt;
+    &lt;key&gt;RunAtLoad&lt;/key&gt;
+    &lt;true/&gt;
+    &lt;key&gt;Label&lt;/key&gt;
+    &lt;string&gt;com.apple.powerchime&lt;/string&gt;
+    &lt;key&gt;Program&lt;/key&gt;
+    &lt;string&gt;/System/Library/CoreServices/PowerChime.app/Contents/MacOS/PowerChime&lt;/string&gt;
+    &lt;key&gt;ProcessType&lt;/key&gt;
+    &lt;string&gt;Interactive&lt;/string&gt;
+</code></pre>
+
+<p></dict>
+</plist>
+```</p>
+
+<p>特に変わっていないみたい。</p>
+
+<p><code>bash
+$ launchctl list | grep -i powerchime
+</code></p>
+
+<p>OS起動時のプロセスから PowerChime が外れた。</p>
+
+<h1>起動させたい時</h1>
+
+<p>もし、OS起動時に立ち上がるようにしたい場合は(個人的にはないケースだけど)、 <code>launchctl load</code> コマンドに <code>-w</code> オプションを付ける。</p>
+
+<p><code>bash
+$ launchctl load -w /System/Library/LaunchAgents/com.apple.powerchime.plist
+</code></p>
+
+<p>OS起動時に立ち上がるようになると同時にプロセスも起動する。</p>
+
+<h1>参考情報</h1>
+
+<p><a href="http://www.maruko2.com/mw/LaunchDaemons_(launchctl,_launchd.plist)_%E3%81%AE%E4%BD%BF%E3%81%84%E6%96%B9">http://www.maruko2.com/mw/LaunchDaemons<em>(launchctl,</em>launchd.plist)_の使い方</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Apple Special Event March 2105 雑感]]></title>
     <link href="http://hirofukami.com/2015/03/10/apple-special-event-review/"/>
     <updated>2015-03-10T19:00:00+09:00</updated>
     <id>http://hirofukami.com/2015/03/10/apple-special-event-review</id>
-    <content type="html"><![CDATA[<p><img src="/images/2015/03/20150310-apple-watch.jpg" title=" WATCH" ></p>
+    <content type="html"><![CDATA[<p>{% img /images/2015/03/20150310-apple-watch.jpg  WATCH %}</p>
 
 <p>いつものように <a href="http://www.apple.com/live/2015-mar-event/">Apple のスペシャルイベント</a> をみた雑感をつらつら。</p>
 
@@ -62,7 +251,7 @@
 
 <h1>MacBook</h1>
 
-<p><img src="/images/2015/03/20150310-macbook.jpg" title="MacBook" ></p>
+<p>{% img /images/2015/03/20150310-macbook.jpg MacBook %}</p>
 
 <p>&ldquo;Reinvent&rdquo;</p>
 
