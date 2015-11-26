@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Life | Hiro Fukami's Blog]]></title>
   <link href="http://hirofukami.com/blog/categories/life/atom.xml" rel="self"/>
   <link href="http://hirofukami.com/"/>
-  <updated>2015-11-25T11:37:26+09:00</updated>
+  <updated>2015-11-26T22:26:40+09:00</updated>
   <id>http://hirofukami.com/</id>
   <author>
     <name><![CDATA[HiroFukami]]></name>
@@ -75,7 +75,7 @@
 
 <p>ということで、ガンダム好きには外せない <a href="http://www.gundam-ten.jp/">機動戦士ガンダム展</a> に行ってきた。</p>
 
-<p>{% img /images/2015/09/20150923-the-art-of-gundam01.jpg %}</p>
+<p><img src="/images/2015/09/20150923-the-art-of-gundam01.jpg"></p>
 
 <p>展示物に関しては、オリジナルショートムービーに始まり、当時の絵コンテやモビルスーツのデザイン画、アニメに登場する建物や戦艦内部のデザイン画まで、「ファーストガンダムを創り方」をあますところなく紹介。</p>
 
@@ -129,7 +129,7 @@
 
 <p>大事なことを教えてもらった。</p>
 
-<p>{% img /images/2015/09/20150923-the-art-of-gundam02.jpg %}</p>
+<p><img src="/images/2015/09/20150923-the-art-of-gundam02.jpg"></p>
 
 <p>おみやげたち</p>
 ]]></content>
@@ -140,7 +140,7 @@
     <link href="http://hirofukami.com/2015/09/16/41th-birthday/"/>
     <updated>2015-09-16T10:30:00+09:00</updated>
     <id>http://hirofukami.com/2015/09/16/41th-birthday</id>
-    <content type="html"><![CDATA[<p>{% img /images/2015/09/20150916-birthday.jpg %}</p>
+    <content type="html"><![CDATA[<p><img src="/images/2015/09/20150916-birthday.jpg"></p>
 
 <p><a href="https://flic.kr/p/pFAJwF">https://flic.kr/p/pFAJwF</a></p>
 
@@ -209,7 +209,7 @@
     <id>http://hirofukami.com/2015/08/15/bali-travel</id>
     <content type="html"><![CDATA[<p>今年2015年夏にバリ島に行ってみて実際色々わかったことを、今後行ってみようかと思われている方のお役に立てればと思いまとめてました。</p>
 
-<p>{% img /images/2015/07/20150722-dance.jpg %}</p>
+<p><img src="/images/2015/07/20150722-dance.jpg"></p>
 
 <h1>気候</h1>
 
@@ -276,15 +276,15 @@
 </ul>
 
 
-<p>{% img /images/2015/07/20150722-dinner01.jpg %}</p>
+<p><img src="/images/2015/07/20150722-dinner01.jpg"></p>
 
 <p>ナシゴレン。お店によって具や味が若干異なる。</p>
 
-<p>{% img /images/2015/07/20150722-dinner02.jpg %}</p>
+<p><img src="/images/2015/07/20150722-dinner02.jpg"></p>
 
 <p>ミーゴレン。割とどこのお店も同じ味。</p>
 
-<p>{% img /images/2015/07/20150721-chicken-satay.jpg %}</p>
+<p><img src="/images/2015/07/20150721-chicken-satay.jpg"></p>
 
 <p>鶏肉のサテ。串に刺さっていて焼き鳥っぽい。添えてあるピーナッツペーストに付けて食べるが、付けないほうが美味しかった。</p>
 
@@ -385,11 +385,11 @@
 
 <p>なんといってもバリ島の魅力は、ホテルが提供する自然豊かな敷地、地平線に広がるビーチ、穏やかな波、快適でゆったりとした時間が流れる空間だろう。</p>
 
-<p>{% img /images/2015/08/20150814-at-bali-beach.JPG %}</p>
+<p><img src="/images/2015/08/20150814-at-bali-beach.JPG"></p>
 
-<p>{% img /images/2015/07/20150721-court.jpg %}</p>
+<p><img src="/images/2015/07/20150721-court.jpg"></p>
 
-<p>{% img /images/2015/07/20150724-flowers.jpg %}</p>
+<p><img src="/images/2015/07/20150724-flowers.jpg"></p>
 
 <p>ゆったりしたいならホテルから出ないほうが良い。出てしまうと全く違った世界がある。</p>
 
@@ -399,7 +399,7 @@
 
 <p><strong>リゾートを満喫する</strong> ために来たと割り切ることかと思う。逆に色々ショッピングでめぐったり現地を知るようなことはリスクがあるからしないのが、最も無難に楽しめる。</p>
 
-<p>{% img /images/2015/07/20150721-sunset.jpg %}</p>
+<p><img src="/images/2015/07/20150721-sunset.jpg"></p>
 
 <p>この割り切りを心得ていけば天国のような別世界を満喫できる。</p>
 ]]></content>
@@ -421,7 +421,7 @@
 
 <p>昨日の海とプールでの疲れがあったので、水着にはならずビーチでのんびり寝転がる。</p>
 
-<p>{% img /images/2015/07/20150722-beach.jpg %}</p>
+<p><img src="/images/2015/07/20150722-beach.jpg"></p>
 
 <p>サーフスクールもやっている。</p>
 
@@ -444,16 +444,16 @@
 いくつかのレストランのメニューを見て、だいたいナシゴレン400-500円くらい。
 左から５つ目？の緑の看板お店にした。味は濃い目、辛目。</p>
 
-<p>{% img /images/2015/07/20150722-dinner01.jpg %}</p>
+<p><img src="/images/2015/07/20150722-dinner01.jpg"></p>
 
-<p>{% img /images/2015/07/20150722-dinner02.jpg %}</p>
+<p><img src="/images/2015/07/20150722-dinner02.jpg"></p>
 
 <p>ナシゴレン(炒めご飯・チャーハン)、ミーゴレン(炒め麺・焼きそば)、フライドチキン、飲み物で2800円ほど。観光客向けで高いのだろうけど東京と比べれば安い。
 味は美味しくボリュームもあった。昨日のお店は高めで量が少なかったことがわかったが、料金は同じだった。</p>
 
 <p>このビーチ沿いのレストランは横に7店舗くらい並んでいるので、毎回違う店にして比べてみることができる。</p>
 
-<p>{% img /images/2015/07/20150722-evening.jpg %}</p>
+<p><img src="/images/2015/07/20150722-evening.jpg"></p>
 
 <p>帰りがけホテル内で露店が出ていた。値段を聞くと安い。ミサンガ200円。娘のブレスレットが500円。これが定価だから値切ることも可能。でも100-200円程度まけても大した額ではないので定価で買う。もしかしたらここが一番買うには最適なのかも。</p>
 
@@ -461,7 +461,7 @@
 
 <p>そのレストラン内で民族舞踊というか劇のそうなものがされていた。英語のセリフ付き。遺跡まで行かないつもりだったので、見れてよかった。</p>
 
-<p>{% img /images/2015/07/20150722-dance.jpg %}</p>
+<p><img src="/images/2015/07/20150722-dance.jpg"></p>
 
 <h1>4日目</h1>
 
@@ -498,7 +498,7 @@
 
 <p>前日のショッキングな出来事から回復できず、ショッピングはもうコリゴリという感じ。娘も体調が良くないようだ。自分は今日もビーチで過ごす。</p>
 
-<p>{% img /images/2015/07/20150723-beach.jpg %}</p>
+<p><img src="/images/2015/07/20150723-beach.jpg"></p>
 
 <p>結局ビーチが一番癒やされる。</p>
 
@@ -506,7 +506,7 @@
 
 <p>娘の体調が風邪っぽくなってしまった。外出もする気がないので、今日もビーチ。</p>
 
-<p>{% img /images/2015/07/20150724-beach.jpg %}</p>
+<p><img src="/images/2015/07/20150724-beach.jpg"></p>
 
 <p>チェックアウトは14時で夜中の0時半のフライトなので、その時間までどこかで潰すつもりだったけど、22時くらいまでホテルいにることにする。</p>
 
@@ -514,7 +514,7 @@
 
 <p>夕飯はホテル近くのコンビニでカップ麺を。日本のせんべいのようなものも買ってみて、味的にはせんべいそのものなんだけど湿気ていて食べれず。</p>
 
-<p>{% img /images/2015/07/20150724-flowers.jpg %}</p>
+<p><img src="/images/2015/07/20150724-flowers.jpg"></p>
 
 <p>コンビニ途中で見つけた花。</p>
 
