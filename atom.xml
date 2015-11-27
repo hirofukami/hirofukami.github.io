@@ -4,7 +4,7 @@
   <title><![CDATA[Hiro Fukami's Blog]]></title>
   <link href="http://hirofukami.com/atom.xml" rel="self"/>
   <link href="http://hirofukami.com/"/>
-  <updated>2015-11-27T08:31:34+09:00</updated>
+  <updated>2015-11-27T14:26:06+09:00</updated>
   <id>http://hirofukami.com/</id>
   <author>
     <name><![CDATA[HiroFukami]]></name>
@@ -69,7 +69,7 @@
 
 <p>4Kディスプレイなので、4K未満の解像度で表示しようとすると単純に縦横半分ずつになる。</p>
 
-<p><code>3840/2 x 2160/2 = 1920 x 1080</code> ってことでフルHDDの能力になってしまう。</p>
+<p><code>3840/2 x 2160/2 = 1920 x 1080</code> ってことでフルHDの能力になってしまう。</p>
 
 <p>しまった。今頃そんなことに気づいてしまった。</p>
 
