@@ -9,8 +9,7 @@
 
 <meta name="author" content="HiroFukami"> 
 
-<meta name="description" content="楽天ブックス
-Amazon 今更ながらに読んだ。タイトルとしては知っていた &ldquo;五体不満足&rdquo; おとくん 障害は不便です。しかし、不幸ではありません この強烈なメッセージは今までの障害者に対する認識を変えた。今まで持っていた固定観念を変わるような大きなものだった。 &hellip;"> <meta name="keywords" content="">
+<meta name="description" content="前回の 自動Retweet bot 作った のに続き、今度はあるキーワードにヒットした Tweet を 自動 Retweet する bot を作った。 自分のブログ hirofukami.com について Tweet されたものを自分のフォロワーにもアピールしたいかなと思ったのがきっかけ。 &hellip;"> <meta name="keywords" content="">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -64,9 +63,8 @@ $(document).ready(
     <meta property="twitter:site" content="d_sea">
     <meta property="twitter:url" content="http://hirofukami.com">
     <meta property="twitter:title" content="Hiro Fukami's Blog">
-    <meta property="twitter:description" content="楽天ブックス
-Amazon 今更ながらに読んだ。タイトルとしては知っていた &ldquo;五体不満足&rdquo; おとくん 障害は不便です。しかし、不幸ではありません この強烈なメッセージは今までの障害者に対する認識を変えた。今まで持っていた固定観念を変わるような大きなものだった。 障害者というとかわいそう、助けてあげなくっちゃ。にすぐ結びついてしまう。
-そうなりやすい原因は、 &hellip;">
+    <meta property="twitter:description" content="前回の 自動Retweet bot 作った のに続き、今度はあるキーワードにヒットした Tweet を 自動 Retweet する bot を作った。 自分のブログ hirofukami.com について Tweet されたものを自分のフォロワーにもアピールしたいかなと思ったのがきっかけ。
+評価はポジティブでもネガティブでも問わないという、オープンスタンスで。 tweet id &hellip;">
     <meta property="twitter:creator" content="d_sea" />
 
 
@@ -126,6 +124,72 @@ Amazon 今更ながらに読んだ。タイトルとしては知っていた &ld
 </header>
 
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/2015/10/03/search-rt-bot/">
+		
+			キーワードにマッチする Tweet を Retweet する Bot 作った</a>
+	</h2>
+	<div class="entry-content">
+		<h1><i class="fa fa-twitter-square fa-5x"></i></h1>
+
+
+<p>前回の <a href="/2015/09/11/twitter-rt-bot/">自動Retweet bot 作った</a> のに続き、今度はあるキーワードにヒットした Tweet を 自動 Retweet する bot を作った。</p>
+
+<p>自分のブログ <a href="http://hirofukami.com">hirofukami.com</a> について Tweet されたものを自分のフォロワーにもアピールしたいかなと思ったのがきっかけ。
+評価はポジティブでもネガティブでも問わないという、オープンスタンスで。</p>
+
+<p>tweet id 情報を手元に置きたくないのでまずは Retweet して、すでに Retweet していた場合はエラーで逃げてしまうように。</p>
+
+<p>今回も Ruby の <a href="https://github.com/sferik/twitter">gem twitter</a> を使って簡単 Ruby スクリプト。
+手元の MacBook の cron で動かしています。</p>
+
+<p>環境</p>
+
+<ul>
+<li>MacBook 12inch Retina OS X El Capitan</li>
+<li>Ruby 2.0.0 (rvm)</li>
+</ul>
+
+
+<p>以下、gist ソース</p>
+
+
+		
+		<a href="/2015/10/03/search-rt-bot/" class="more-link">Read on &rarr;</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-10-03T15:00:00+09:00" pubdate data-updated="true">Oct 3<span>rd</span>, 2015</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/tech/'>Tech</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/2015/10/03/search-rt-bot//blog/page/2/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
 
 
     <article class="post">
@@ -967,83 +1031,6 @@ Jリーグクラブ経営、スポーツメーカーのプロモーション、�
 
 	
 		<span class="comments"><a href="/2015/09/16/41th-birthday//blog/page/2/index.html#disqus_thread">Comments</a></span>
-	
-</div></article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/2015/09/11/twitter-rt-bot/">
-		
-			Retweet されたら自動ポストする Twitter Bot 作った</a>
-	</h2>
-	<div class="entry-content">
-		<h1><i class="fa fa-twitter-square fa-5x"></i></h1>
-
-
-<p>ちょっと前から <a href="https://twitter.com/jptechcrunch">TechCrunch Japan の Twitter</a> でキリ番RT bot 運用している様子を目にして、同じようなものを作りたくなった。</p>
-
-<p>Retweet(RT) は Retweet してくれた人の followers には届くが、自分の followers には届かない。
-だから、あえて followers にお知らせすることはちょっとした tweet のアピールになるかもと思う。</p>
-
-<p>で、ついでに Favorites(Fav) も付けたいところ。Favorites の方はもっとクローズドなフラグで、tweet した人しか見えないので同じように見せれるといいなと。</p>
-
-<p>土曜の半日で出来た。以下のような仕様</p>
-
-<ul>
-<li>大げさにせずとりあえず最新の Retweet されたものを検出</li>
-<li>DBを置くのは大げさなので、テキストファイルにID、RT数、Fav数を書き込む</li>
-<li>Ruby の gem twitter の力を借りる</li>
-<li>自分の場合、RT数は少なくキリ番まで行かないので、1RTでもついた時点で自動 tweet</li>
-</ul>
-
-
-<p>Ruby の <a href="https://github.com/sferik/twitter">gem twitter</a> があるのでこれを使った。</p>
-
-<p>手元の MacBook の cron で動かしています。</p>
-
-<p>環境</p>
-
-<ul>
-<li>MacBook 12inch Retina OS X Yosemite</li>
-<li>Ruby 2.0.0 (rvm)</li>
-</ul>
-
-
-<p>以下、ソース</p>
-
-
-		
-		<a href="/2015/09/11/twitter-rt-bot/" class="more-link">Read on &rarr;</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2015-09-11T16:00:00+09:00" pubdate data-updated="true">Sep 11<span>th</span>, 2015</time></div>
-	
-
-<div class="tags">
-
-	<a class='category' href='/blog/categories/tech/'>Tech</a>
-
-</div>
-
-
-	
-		<span class="comments"><a href="/2015/09/11/twitter-rt-bot//blog/page/2/index.html#disqus_thread">Comments</a></span>
 	
 </div></article>
 
