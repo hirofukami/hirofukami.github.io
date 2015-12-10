@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Business | Hiro Fukami's Blog]]></title>
   <link href="http://hirofukami.com/blog/categories/business/atom.xml" rel="self"/>
   <link href="http://hirofukami.com/"/>
-  <updated>2015-12-03T19:37:40+09:00</updated>
+  <updated>2015-12-10T09:49:28+09:00</updated>
   <id>http://hirofukami.com/</id>
   <author>
     <name><![CDATA[HiroFukami]]></name>
@@ -244,7 +244,7 @@ Jリーグクラブ経営、スポーツメーカーのプロモーション、�
     <link href="http://hirofukami.com/2015/09/18/chef-tech-training/"/>
     <updated>2015-09-18T14:30:00+09:00</updated>
     <id>http://hirofukami.com/2015/09/18/chef-tech-training</id>
-    <content type="html"><![CDATA[<p><img src="/images/2015/09/20150918-chef-tech-training.jpg"></p>
+    <content type="html"><![CDATA[<p>{% img /images/2015/09/20150918-chef-tech-training.jpg %}</p>
 
 <p><a href="https://flic.kr/p/o9MtPp">https://flic.kr/p/o9MtPp</a></p>
 
@@ -252,7 +252,7 @@ Jリーグクラブ経営、スポーツメーカーのプロモーション、�
 
 <p>会社のテクニカルトレーニング事業の一環で、9月から12月にかけて <a href="https://www.chef.io/">Chef</a> のハンズオンを行います。</p>
 
-<p><img src="/images/2015/06/20150602-chef-logo.png"></p>
+<p>{% img /images/2015/06/20150602-chef-logo.png %}</p>
 
 <p>参加自由のオープン型での有料講義、PCを使っての実践的な演習になります。短期間で Chef を業務で使えるレベルにすることが目標です。</p>
 
@@ -318,7 +318,7 @@ Jリーグクラブ経営、スポーツメーカーのプロモーション、�
     <link href="http://hirofukami.com/2015/08/14/at-bali-beach/"/>
     <updated>2015-08-14T12:30:00+09:00</updated>
     <id>http://hirofukami.com/2015/08/14/at-bali-beach</id>
-    <content type="html"><![CDATA[<p><img src="/images/2015/08/20150814-at-bali-beach.JPG"></p>
+    <content type="html"><![CDATA[<p>{% img /images/2015/08/20150814-at-bali-beach.JPG %}</p>
 
 <p>ビーチはいいよビーチは。</p>
 
@@ -382,7 +382,7 @@ Jリーグクラブ経営、スポーツメーカーのプロモーション、�
 
 <p>と、水平線に沈みゆく夕日を観ながら思うのでした。</p>
 
-<p><img src="/images/2015/08/20150814-sunset.JPG"></p>
+<p>{% img /images/2015/08/20150814-sunset.JPG %}</p>
 ]]></content>
   </entry>
   
