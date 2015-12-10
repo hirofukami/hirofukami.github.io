@@ -237,7 +237,9 @@ fb.requestWithGraphPath('me/likes', {}, &quot;GET&quot;, function(r) {....
 <li><p>個別フィードが開いた時点で、 <pre class="default prettyprint prettyprinted"><code>&lt;span class=&ldquo;str&rdquo;>&ldquo;FBSession: should only be used from a single thread&rdquo;&lt;/span></code></pre></p>
 
 <p>が出て読み込めなくなる</li> </ol>
-多分、セキュリティ的観点から認証したページからしか認めないようになっているのだろうけど、認証したページとその後 fb module を呼び出したいページが異なる場合はどうやって渡せばいいのか、色々試したが解消できなかった。結局 fb.forceDialogAuth = true; としてこの機能自体使わないようにしている。POST系の permission も最初から定義できるしメリットはあるので、これはこれで良しとした。</p>
+多分、セキュリティ的観点から認証したページからしか認めないようになっているのだろうけど、認証したページとその後 fb module を呼び出したいページが異なる場合はどうやって渡せばいいのか、色々試したが解消できなかった。結局 fb.forceDialogAuth = true; としてこの機能自体使わないようにしている。POST系の permission も最初から定義できるしメリットはあるので、これはこれで良しとした。</p></li>
+</ol>
+
 
 <h2>iOS Retina simulator Support</h2>
 
@@ -250,47 +252,47 @@ fb.requestWithGraphPath('me/likes', {}, &quot;GET&quot;, function(r) {....
 </ol>
 
 
-<p><a href="images/2013/05/screen-shot-2013-05-17-at-10-21-43.png"><img class="aligncenter size-medium wp-image-963" alt="Screen Shot 2013-05-17 at 10.21.43" src="/images/2013/05/screen-shot-2013-05-17-at-10-21-43.png?resize=300%2C132" data-recalc-dims="1" /></a></p>
+<p><a href="/images/2013/05/screen-shot-2013-05-17-at-10-21-43.png"><img class="aligncenter size-medium wp-image-963" alt="Screen Shot 2013-05-17 at 10.21.43" src="/images/2013/05/screen-shot-2013-05-17-at-10-21-43.png?resize=300%2C132" data-recalc-dims="1" /></a></p>
 
 <h2>いきなり tabGroup.close() するとクラッシュする</h2>
 
 <p>これがアップデート情報になく解消までに時間がかかってしまった点だかが、tabGroup を閉じる処理はaddされているtabがない状態で行う。<a href="https://itunes.apple.com/jp/app/morning-latte/id585111783?mt=8" target="_blank">Morning Latte</a> が行なっている処理は、フィードのリストページからあるフィードのViewをタップすると新たにtabGroupページが下からニョキッと出てくる。出てきたページで個別のフィードはtabGroupになっているので、写真、リンク先、Likeした人のリストなどの画面に移る。</p>
 
-<p><a href="images/2013/05/ios-simulator-screen-shot-2013-05-17-10-01-37.png"><img class="size-medium wp-image-964 alignnone" alt="iOS Simulator Screen shot 2013.05.17 10.01.37" src="/images/2013/05/ios-simulator-screen-shot-2013-05-17-10-01-37.png?resize=169%2C300" data-recalc-dims="1" /></a> =>  <a href="images/2013/05/ios-simulator-screen-shot-2013-05-17-10-02-54.png"><img class="size-medium wp-image-965 alignnone" alt="iOS Simulator Screen shot 2013.05.17 10.02.54" src="/images/2013/05/ios-simulator-screen-shot-2013-05-17-10-02-54.png?resize=169%2C300" data-recalc-dims="1" /></a> =>  <a href="images/2013/05/ios-simulator-screen-shot-2013-05-17-10-01-41.png"><img class="size-medium wp-image-966 alignnone" alt="iOS Simulator Screen shot 2013.05.17 10.01.41" src="/images/2013/05/ios-simulator-screen-shot-2013-05-17-10-01-41.png?resize=169%2C300" data-recalc-dims="1" /></a> => <a href="images/2013/05/ios-simulator-screen-shot-2013-05-17-10-34-34.png"><img class="size-medium wp-image-967 alignnone" alt="iOS Simulator Screen shot 2013.05.17 10.34.34" src="/images/2013/05/ios-simulator-screen-shot-2013-05-17-10-34-34.png?resize=169%2C300" data-recalc-dims="1" /></a></p>
+<p><a href="/images/2013/05/ios-simulator-screen-shot-2013-05-17-10-01-37.png"><img class="size-medium wp-image-964 alignnone" alt="iOS Simulator Screen shot 2013.05.17 10.01.37" src="/images/2013/05/ios-simulator-screen-shot-2013-05-17-10-01-37.png?resize=169%2C300" data-recalc-dims="1" /></a> =>  <a href="/images/2013/05/ios-simulator-screen-shot-2013-05-17-10-02-54.png"><img class="size-medium wp-image-965 alignnone" alt="iOS Simulator Screen shot 2013.05.17 10.02.54" src="/images/2013/05/ios-simulator-screen-shot-2013-05-17-10-02-54.png?resize=169%2C300" data-recalc-dims="1" /></a> =>  <a href="/images/2013/05/ios-simulator-screen-shot-2013-05-17-10-01-41.png"><img class="size-medium wp-image-966 alignnone" alt="iOS Simulator Screen shot 2013.05.17 10.01.41" src="/images/2013/05/ios-simulator-screen-shot-2013-05-17-10-01-41.png?resize=169%2C300" data-recalc-dims="1" /></a> => <a href="/images/2013/05/ios-simulator-screen-shot-2013-05-17-10-34-34.png"><img class="size-medium wp-image-967 alignnone" alt="iOS Simulator Screen shot 2013.05.17 10.34.34" src="/images/2013/05/ios-simulator-screen-shot-2013-05-17-10-34-34.png?resize=169%2C300" data-recalc-dims="1" /></a></p>
 
 <p>個別フィードのページの左上ボタンでウインドウを閉じて、フィード一覧のページに戻る。</p>
 
 <p>このウインドウを閉じる処理は、</p>
 
-<p><pre class="brush: jscript; title: ; notranslate" title="">closeb.addEventListener(&lsquo;click&rsquo;, function(){
-        newtabGroup.close();
-    })
-</pre></p>
+<pre class="brush: jscript; title: ; notranslate" title="">closeb.addEventListener('click', function(){
+            newtabGroup.close();
+        })
+</pre>
 
-<p>  で今まで良かったのが、ワーニングが出た後、クラッシュして落ちてしまうようになった。色々調べたりして結局以下のようにして回避できた。</p>
 
-<p>  <pre class="brush: jscript; title: ; notranslate" title="">closeb.addEventListener(&lsquo;click&rsquo;, function(){
-          newtabGroup.animate({top:600,duration:300});
-          setTimeout(function(){
-              newtabGroup.removeTab(newtab);
-              newtabGroup.close();
-          },400);
-      });
-</pre></p>
+<p>で今まで良かったのが、ワーニングが出た後、クラッシュして落ちてしまうようになった。色々調べたりして結局以下のようにして回避できた。</p>
 
-<p>  アニメーションの部分はなくていいが、結局addされているtabをremovetab()で削除して、空の状態になったtabGroupをclose()する。</p>
+<pre class="brush: jscript; title: ; notranslate" title="">closeb.addEventListener('click', function(){
+            newtabGroup.animate({top:600,duration:300});
+            setTimeout(function(){
+                newtabGroup.removeTab(newtab);
+                newtabGroup.close();
+            },400);
+        });
+</pre>
 
-<p>  参考にしたURLは以下、</p>
+
+<p>アニメーションの部分はなくていいが、結局addされているtabをremovetab()で削除して、空の状態になったtabGroupをclose()する。</p>
+
+<p>参考にしたURLは以下、</p>
 
 <ul>
-<li>  Tinitaum ドキュメントにも書いてあった : <a href="http://docs.appcelerator.com/titanium/latest/#!/api/Titanium.UI.Tab-method-close">http://docs.appcelerator.com/titanium/latest/#!/api/Titanium.UI.Tab-method-close</a></li>
-<li>  フォーラムより : <a href="http://developer.appcelerator.com/question/139857/tabgroupclose-doesnt-work-on-android">http://developer.appcelerator.com/question/139857/tabgroupclose-doesnt-work-on-android</a></li>
+<li>Tinitaum ドキュメントにも書いてあった : <a href="http://docs.appcelerator.com/titanium/latest/#!/api/Titanium.UI.Tab-method-close">http://docs.appcelerator.com/titanium/latest/#!/api/Titanium.UI.Tab-method-close</a></li>
+<li>フォーラムより : <a href="http://developer.appcelerator.com/question/139857/tabgroupclose-doesnt-work-on-android">http://developer.appcelerator.com/question/139857/tabgroupclose-doesnt-work-on-android</a></li>
 </ul>
 
 
-<p>  ということで、色々はまった方のお役に立てれば何よりです。</p></li>
-</ol>
-
+<p>ということで、色々はまった方のお役に立てれば何よりです。</p>
 </div>
 
 
