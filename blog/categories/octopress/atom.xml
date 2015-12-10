@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Octopress | Hiro Fukami's Blog]]></title>
   <link href="http://hirofukami.com/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="http://hirofukami.com/"/>
-  <updated>2015-12-10T09:49:28+09:00</updated>
+  <updated>2015-12-10T10:36:39+09:00</updated>
   <id>http://hirofukami.com/</id>
   <author>
     <name><![CDATA[HiroFukami]]></name>
@@ -18,7 +18,7 @@
     <link href="http://hirofukami.com/2015/02/15/permalink-wordpress-to-octopress/"/>
     <updated>2015-02-15T20:00:00+09:00</updated>
     <id>http://hirofukami.com/2015/02/15/permalink-wordpress-to-octopress</id>
-    <content type="html"><![CDATA[<p><a href="/blog/2014/12/01/right-way-wordpress-to-octopress/">WordPressからOctopressにきれいに移行する方法を紹介した</a>が、ちょっとした問題が残っていて、それを解消したので紹介。</p>
+    <content type="html"><![CDATA[<p><a href="/2014/12/01/right-way-wordpress-to-octopress/">WordPressからOctopressにきれいに移行する方法を紹介した</a>が、ちょっとした問題が残っていて、それを解消したので紹介。</p>
 
 <h2>パーマリンクの扱い</h2>
 
@@ -28,7 +28,7 @@
 
 <p>として設定していました。</p>
 
-<p>それを <a href="/blog/2014/12/01/right-way-wordpress-to-octopress/">紹介した方法で</a> やると以下の様な markdown ファイルが生成されました。</p>
+<p>それを <a href="/2014/12/01/right-way-wordpress-to-octopress/">紹介した方法で</a> やると以下の様な markdown ファイルが生成されました。</p>
 
 <h2>```</h2>
 
@@ -150,7 +150,7 @@ tags:
 <p>title: 仕事で本当に大切にしたいこと
 author: Hiro Fukami
 layout: post
-permalink: /2004/07/26/%e4%bb%95%e4%ba%8b%e3%81%a7%e6%9c%ac%e5%bd%93%e3%81%ab%e5%a4%a7%e5%88%87%e3%81%ab%e3%81%97%e3%81%9f%e3%81%84%e3%81%93%e3%81%a8/
+permalink: /2004/07/26/post/
 tumblr_hirofukami_permalink:
   &ndash; <a href="http://hirofukami.tumblr.com/post/29542403177">http://hirofukami.tumblr.com/post/29542403177</a>
 tumblr_hirofukami_id:
@@ -198,7 +198,7 @@ tags:
 date: Mon, 26 Jul 2004 15:00:00 +0000
 author: Hiro Fukami
 layout: post
-permalink: /2004/07/26/%e4%bb%95%e4%ba%8b%e3%81%a7%e6%9c%ac%e5%bd%93%e3%81%ab%e5%a4%a7%e5%88%87%e3%81%ab%e3%81%97%e3%81%9f%e3%81%84%e3%81%93%e3%81%a8/
+permalink: /2004/07/26/post/
 tumblr_hirofukami_permalink:
   &ndash; <a href="http://hirofukami.tumblr.com/post/29542403177">http://hirofukami.tumblr.com/post/29542403177</a>
 tumblr_hirofukami_id:
@@ -228,9 +228,9 @@ tags:
 
 <h2>追記</h2>
 
-<p>日本語エンコードされた文字の入ったパーマリンクだと、個別ページが真っ白になって見れなくなる事象がでたため、それを <a href="/blog/2015/02/15/permalink-wordpress-to-octopress/">解消したポストを書きました</a>。</p>
+<p>日本語エンコードされた文字の入ったパーマリンクだと、個別ページが真っ白になって見れなくなる事象がでたため、それを <a href="/2015/02/15/permalink-wordpress-to-octopress/">解消したポストを書きました</a>。</p>
 
-<p><strong><a href="/blog/2015/02/15/permalink-wordpress-to-octopress/">WordPress to Octopress 日本語パーマリンクを直す</a></strong></p>
+<p><strong><a href="/2015/02/15/permalink-wordpress-to-octopress/">WordPress to Octopress 日本語パーマリンクを直す</a></strong></p>
 
 <p>良かったら読んでやってください。</p>
 ]]></content>

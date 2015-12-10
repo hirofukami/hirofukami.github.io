@@ -130,11 +130,11 @@ $(document).ready(
   </p>
   
   <p>
-    ただし、これは<del datetime="2008-12-17T11:32:15+09:00">ブレードサーバのエンクロージャに付く</del> Cisco Catalyst <del datetime="2008-12-17T11:32:15+09:00">Blade Switch 3020 という専用 module でのお話なので汎用性は低い</del>で動作する<span class="footnote"><a href="/d_sea/#f1" name="fn1" title="Catalyst2960でも出来たのでCatalystなら出来ると思われる" target="_blank">*1</a></span>。
+    ただし、これは<del datetime="2008-12-17T11:32:15+09:00">ブレードサーバのエンクロージャに付く</del> Cisco Catalyst <del datetime="2008-12-17T11:32:15+09:00">Blade Switch 3020 という専用 module でのお話なので汎用性は低い</del>で動作する<span class="footnote"><a href="#f1" name="fn1" title="Catalyst2960でも出来たのでCatalystなら出来ると思われる" target="_blank">*1</a></span>。
   </p>
   
   <p>
-    Layer 2 trunk failover の動作内容は、upstrem, downstream という2つの trunk group(もちろんシングルでも良い)を対応付けておいて、[upstream<del datetime="2008-12-17T11:32:15+09:00">|downstream]</del> down を検出したら、もう一方の <del datetime="2008-12-17T11:32:15+09:00">[upstream|</del>downstream] も down させるというもの<span class="footnote"><a href="/d_sea/#f2" name="fn2" title="2008/12/17修正:動作するのはupstreamのlinkが変化したときだけだった。downstreamがdownしてもupstreamはdonwしない" target="_blank">*2</a></span>。
+    Layer 2 trunk failover の動作内容は、upstrem, downstream という2つの trunk group(もちろんシングルでも良い)を対応付けておいて、[upstream<del datetime="2008-12-17T11:32:15+09:00">|downstream]</del> down を検出したら、もう一方の <del datetime="2008-12-17T11:32:15+09:00">[upstream|</del>downstream] も down させるというもの<span class="footnote"><a href="#f2" name="fn2" title="2008/12/17修正:動作するのはupstreamのlinkが変化したときだけだった。downstreamがdownしてもupstreamはdonwしない" target="_blank">*2</a></span>。
   </p>
   
   <p>
@@ -271,11 +271,11 @@ link state group 2 downstream
 
 <pre><code>&lt;div class="footnote"&gt;
   &lt;p class="footnote"&gt;
-    &lt;a href="/d_sea/#fn1" name="f1" target="_blank"&gt;*1&lt;/a&gt;：Catalyst2960でも出来たのでCatalystなら出来ると思われる
+    &lt;a href="#fn1" name="f1" target="_blank"&gt;*1&lt;/a&gt;：Catalyst2960でも出来たのでCatalystなら出来ると思われる
   &lt;/p&gt;
 
   &lt;p class="footnote"&gt;
-    &lt;a href="/d_sea/#fn2" name="f2" target="_blank"&gt;*2&lt;/a&gt;：2008/12/17修正:動作するのはupstreamのlinkが変化したときだけだった。downstreamがdownしてもupstreamはdonwしない
+    &lt;a href="#fn2" name="f2" target="_blank"&gt;*2&lt;/a&gt;：2008/12/17修正:動作するのはupstreamのlinkが変化したときだけだった。downstreamがdownしてもupstreamはdonwしない
   &lt;/p&gt;
 &lt;/div&gt;
 </code></pre>

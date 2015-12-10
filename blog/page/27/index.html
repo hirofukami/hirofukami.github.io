@@ -813,71 +813,78 @@ completed    2009-08-12T04:16:02+0000    100%
     <span style="font-weight:bold;">オリジンサーバからのダウンロード</span>
   </p>
   
-  <pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>dsea-MacBook:~ hironobu<span class="nv">$ </span>curl -o /dev/null -w time_total http://hironobu-bucket.s3.amazonaws.com/test/Office2004-1154UpdateJA.dmg
+</span><span class='line'>
+</span><span class='line'>% Total    % Received % Xferd  Average Speed   Time    Time     Time  Current Dload  Upload   Total   Spent    Left  Speed
+</span><span class='line'>
+</span><span class='line'>100  9.8M  100  9.8M    0     0   355k      0  0:00:28  0:00:28 --:--:--  736k
+</span><span class='line'>
+</span><span class='line'>time_totaldsea-MacBook:~ hironobu<span class="nv">$ </span>curl -o /dev/null -w time_total http://hironobu-bucket.s3.amazonawsOffice2004-1154UpdateJA.dmg
+</span><span class='line'>
+</span><span class='line'>% Total    % Received % Xferd  Average Speed   Time    Time     Time  Current Dload  Upload   Total   Spent    Left  Speed
+</span><span class='line'>
+</span><span class='line'>100  9.8M  100  9.8M    0     0   370k      0  0:00:27  0:00:27 --:--:--  401k
+</span><span class='line'>
+</span><span class='line'>time_totaldsea-MacBook:~ hironobu<span class="nv">$ </span>curl -o /dev/null -w time_total http://hironobu-bucket.s3.amazonawsOffice2004-1154UpdateJA.dmg
+</span><span class='line'>
+</span><span class='line'>% Total    % Received % Xferd  Average Speed   Time    Time     Time  Current Dload  Upload   Total   Spent    Left  Speed
+</span><span class='line'>
+</span><span class='line'>100  9.8M  100  9.8M    0     0   404k      0  0:00:24  0:00:24 --:--:--  377k
+</span><span class='line'>
+</span><span class='line'>  &lt;p&gt;
+</span><span class='line'>    ばらつきがあるが、400kB <span class="o">=</span> 3.2Mbps くらい。太平洋とアメリカを横断するからこんなもんでしょう。
+</span><span class='line'>  &lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>  &lt;p&gt;
+</span><span class='line'>    &lt;span <span class="nv">style</span><span class="o">=</span><span class="s2">&quot;font-weight:bold;&quot;</span>&gt;キャッシュサーバからのダウンロード&lt;/span&gt;
+</span><span class='line'>  &lt;/p&gt;
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure>bash
+dsea-MacBook:~ hironobu$ curl -o /dev/null -w time_total http://dql6mokzq0d1p.cloudfront.net/test/Office2004-1154UpdateJA.dmg
 
-dsea-MacBook:~ hironobu$ curl -o /dev/null -w time_total <a href="http://hironobu-bucket.s3.amazonaws.com/test/Office2004-1154UpdateJA.dmg" target="_blank">http://hironobu-bucket.s3.amazonaws.com/test/Office2004-1154UpdateJA.dmg</a>
+% Total    % Received % Xferd  Average Speed   Time    Time     Time  Current Dload  Upload   Total   Spent    Left  Speed
 
-% Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+100  9.8M  100  9.8M    0     0  2364k      0  0:00:04  0:00:04 &#8211;:&#8211;:&#8211; 2374k
 
-Dload  Upload   Total   Spent    Left  Speed
+time_totaldsea-MacBook:~ hironobu$ curl -o /dev/null -w time_total http://dql6mokzq0d1p.cloudfront.netce2004-1154UpdateJA.dmg
 
-100  9.8M  100  9.8M    0     0   355k      0  0:00:28  0:00:28 --:--:--  736k
+% Total    % Received % Xferd  Average Speed   Time    Time     Time  Current Dload  Upload   Total   Spent    Left  Speed
 
-time_totaldsea-MacBook:~ hironobu$ curl -o /dev/null -w time_total <a href="http://hironobu-bucket.s3.amazonawsOffice2004-1154UpdateJA.dmg" target="_blank">http://hironobu-bucket.s3.amazonawsOffice2004-1154UpdateJA.dmg</a>
+100  9.8M  100  9.8M    0     0  2370k      0  0:00:04  0:00:04 &#8211;:&#8211;:&#8211; 2380k
 
-% Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+time_totaldsea-MacBook:~ hironobu$ curl -o /dev/null -w time_total http://dql6mokzq0d1p.cloudfront.netce2004-1154UpdateJA.dmg
 
-Dload  Upload   Total   Spent    Left  Speed
+% Total    % Received % Xferd  Average Speed   Time    Time     Time  Current Dload  Upload   Total   Spent    Left  Speed
 
-100  9.8M  100  9.8M    0     0   370k      0  0:00:27  0:00:27 --:--:--  401k
+100  9.8M  100  9.8M    0     0  2344k      0  0:00:04  0:00:04 &#8211;:&#8211;:&#8211; 2355k
+&#8220;`
 
-time_totaldsea-MacBook:~ hironobu$ curl -o /dev/null -w time_total <a href="http://hironobu-bucket.s3.amazonawsOffice2004-1154UpdateJA.dmg" target="_blank">http://hironobu-bucket.s3.amazonawsOffice2004-1154UpdateJA.dmg</a>
-
-% Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-
-Dload  Upload   Total   Spent    Left  Speed
-
-100  9.8M  100  9.8M    0     0   404k      0  0:00:24  0:00:24 --:--:--  377k
-
-</pre>
-  
-  <p>
-    ばらつきがあるが、400kB = 3.2Mbps くらい。太平洋とアメリカを横断するからこんなもんでしょう。
-  </p>
-  
-  <p>
-    <span style="font-weight:bold;">キャッシュサーバからのダウンロード</span>
-  </p>
-  
-  <pre>
-
-dsea-MacBook:~ hironobu$ curl -o /dev/null -w time_total <a href="http://dql6mokzq0d1p.cloudfront.net/test/Office2004-1154UpdateJA.dmg" target="_blank">http://dql6mokzq0d1p.cloudfront.net/test/Office2004-1154UpdateJA.dmg</a>
-
-
-
-% Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-
-Dload  Upload   Total   Spent    Left  Speed
-
-100  9.8M  100  9.8M    0     0  2364k      0  0:00:04  0:00:04 --:--:-- 2374k
-
-time_totaldsea-MacBook:~ hironobu$ curl -o /dev/null -w time_total <a href="http://dql6mokzq0d1p.cloudfront.netce2004-1154UpdateJA.dmg" target="_blank">http://dql6mokzq0d1p.cloudfront.netce2004-1154UpdateJA.dmg</a>
-
-% Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-
-Dload  Upload   Total   Spent    Left  Speed
-
-100  9.8M  100  9.8M    0     0  2370k      0  0:00:04  0:00:04 --:--:-- 2380k
-
-time_totaldsea-MacBook:~ hironobu$ curl -o /dev/null -w time_total <a href="http://dql6mokzq0d1p.cloudfront.netce2004-1154UpdateJA.dmg" target="_blank">http://dql6mokzq0d1p.cloudfront.netce2004-1154UpdateJA.dmg</a>
-
-% Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-
-Dload  Upload   Total   Spent    Left  Speed
-
-100  9.8M  100  9.8M    0     0  2344k      0  0:00:04  0:00:04 --:--:-- 2355k
-
-</pre>
   
   <p>
     大体、2300kB/s = 18.4Mbps くらい
