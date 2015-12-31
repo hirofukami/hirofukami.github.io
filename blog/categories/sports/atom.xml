@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Sports | Hiro Fukami's Blog]]></title>
   <link href="http://hirofukami.com/blog/categories/sports/atom.xml" rel="self"/>
   <link href="http://hirofukami.com/"/>
-  <updated>2015-12-25T23:29:30+09:00</updated>
+  <updated>2015-12-31T22:39:26+09:00</updated>
   <id>http://hirofukami.com/</id>
   <author>
     <name><![CDATA[HiroFukami]]></name>
@@ -547,7 +547,7 @@
     <id>http://hirofukami.com/2015/09/21/futsal-court</id>
     <content type="html"><![CDATA[<p>自分がフットサルをしていることもあって、フットサルまわりのサービスアイデアをよく思いつく。</p>
 
-<p><img src="/images/2015/09/20150921-futsal-court.jpg"></p>
+<p>{% img /images/2015/09/20150921-futsal-court.jpg %}</p>
 
 <p><a href="https://flic.kr/p/vvqZwu">https://flic.kr/p/vvqZwu</a></p>
 
@@ -655,7 +655,7 @@
     <id>http://hirofukami.com/2015/09/19/fleague-fuchuxoita</id>
     <content type="html"><![CDATA[<p>9/11(金) に行われたフットサルの最高峰リーグ <a href="http://www.fleague.jp/">Fリーグ</a>観戦記 <a href="http://www.fuchu-athletic.com/">府中アスレティック</a> x <a href="http://vasagey.com/">バサジィ大分</a> 戦を観に行った時のメモ。</p>
 
-<p><img src="/images/2015/09/20150919-fleage-fuchuxoita01.jpg"></p>
+<p>{% img /images/2015/09/20150919-fleage-fuchuxoita01.jpg %}</p>
 
 <h1>前半</h1>
 
@@ -700,7 +700,7 @@
 
 <p>試合終了 府中4-1大分</p>
 
-<p><img src="/images/2015/09/20150919-fleage-fuchuxoita02.jpg"></p>
+<p>{% img /images/2015/09/20150919-fleage-fuchuxoita02.jpg %}</p>
 
 <h1>終了</h1>
 
@@ -712,9 +712,9 @@
 
 <p>観客席の様子</p>
 
-<p><img src="/images/2015/09/20150919-fleage-fuchuxoita03.jpg"></p>
+<p>{% img /images/2015/09/20150919-fleage-fuchuxoita03.jpg %}</p>
 
-<p><img src="/images/2015/09/20150919-fleage-fuchuxoita04.jpg"></p>
+<p>{% img /images/2015/09/20150919-fleage-fuchuxoita04.jpg %}</p>
 
 <p>確実にFリーグは根付いていることが実感できた。次のステップは立ち見が出るくらいだろう。それ以上になるとこの体育館のキャパシティでは足りないな。</p>
 ]]></content>
