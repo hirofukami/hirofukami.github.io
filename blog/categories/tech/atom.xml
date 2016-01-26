@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Tech | Hiro Fukami's Blog]]></title>
   <link href="http://hirofukami.com/blog/categories/tech/atom.xml" rel="self"/>
   <link href="http://hirofukami.com/"/>
-  <updated>2015-12-31T22:39:26+09:00</updated>
+  <updated>2016-01-26T14:22:14+09:00</updated>
   <id>http://hirofukami.com/</id>
   <author>
     <name><![CDATA[HiroFukami]]></name>
@@ -44,7 +44,33 @@
 <!-- more -->
 
 
-<p>{% gist b03f4fef85a06267faca search-retweet-bot.rb %}</p>
+<p><div><script src='https://gist.github.com/b03f4fef85a06267faca.js?file=search-retweet-bot.rb'></script>
+<noscript><pre><code>require &#39;twitter&#39;
+
+# login
+client = Twitter::REST::Client.new do |config|
+  config.consumer_key        = ENV[&#39;CONSUMER_KEY&#39;]
+  config.consumer_secret     = ENV[&#39;CONSUMER_SECRET&#39;]
+  config.access_token        = ENV[&#39;ACCESS_TOKEN&#39;]
+  config.access_token_secret = ENV[&#39;ACCESS_TOKEN_SECRET&#39;]
+end
+
+keyword = &quot;hirofukami.com&quot;
+results = client.search(keyword, :result_type =&gt; &quot;recent&quot;)
+
+results.each do |tweet|
+  if tweet.user.screen_name != &quot;d_sea&quot;
+    text = tweet.user.screen_name + &quot;: &quot; + tweet.text
+    begin
+      puts text
+      client.retweet(tweet.id)
+    rescue Exception =&gt; e
+      puts e.message
+    end
+  end
+end
+</code></pre></noscript></div>
+</p>
 
 <h1>解説</h1>
 
@@ -325,7 +351,7 @@ s3fs                  256T     0  256T   0% /home/shakesoul/Dropbox/SmartWP/smar
     <link href="http://hirofukami.com/2015/02/09/mac-docker-sharedfolder/"/>
     <updated>2015-02-09T19:00:00+09:00</updated>
     <id>http://hirofukami.com/2015/02/09/mac-docker-sharedfolder</id>
-    <content type="html"><![CDATA[<p>{% img /images/2015/02/20150209-docker.png &lsquo;docker&rsquo; %}</p>
+    <content type="html"><![CDATA[<p><img src="/images/2015/02/20150209-docker.png" title="&lsquo;docker&rsquo;" ></p>
 
 <p>Mac で <a href="https://www.docker.com/">Docker</a> を動かそうとすると <a href="http://boot2docker.io/">boot2docker</a> は必須。</p>
 
@@ -397,7 +423,7 @@ $ VBoxManage sharedfolder add boot2docker-vm --name Users --hostpath $HOME
 
 <p>VirtualBox 上の設定画面は以下のようになった。</p>
 
-<p>{% img /images/2015/02/20150209-ScreenShot.png &lsquo;VirualBox screen shot %}</p>
+<p><img src="/images/2015/02/20150209-ScreenShot.png" title="&lsquo;VirualBox screen shot" ></p>
 
 <p>古い情報だと Share Name を <code>home</code> にすると書いてあるブログもあったが、やってみたが認識しなかった。</p>
 

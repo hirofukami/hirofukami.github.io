@@ -9,7 +9,7 @@
 
 <meta name="author" content="HiroFukami"> 
 
-<meta name="description" content="バージョンアップ開発中のすき間iPhoneアプリDM@chatにAdmobを表示したくて調べたけれど、あまりきれいにまとまった手順がなかったので、自分のためにも残しておく。 Titanium Mobile の提供元である Appcelerator から AdMob 用のモジュールも提供されたので &hellip;"> <meta name="keywords" content="">
+<meta name="description" content="Facebook による Instagram 買収はスタートアップ業界にとって驚愕だったし、シリコンバレーはこれだけ大きな買収額の案件が出る特別な場所だと改めて思うところだった。確かに3000万ユーザの価値は高いが、売上がない状態で $1B(800億円) &hellip;"> <meta name="keywords" content="">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -63,7 +63,7 @@ $(document).ready(
     <meta property="twitter:site" content="d_sea">
     <meta property="twitter:url" content="http://hirofukami.com">
     <meta property="twitter:title" content="Hiro Fukami's Blog">
-    <meta property="twitter:description" content="バージョンアップ開発中のすき間iPhoneアプリDM@chatにAdmobを表示したくて調べたけれど、あまりきれいにまとまった手順がなかったので、自分のためにも残しておく。 Titanium Mobile の提供元である Appcelerator から AdMob 用のモジュールも提供されたので、それを iPhone アプリに導入するための手順です。 Appcelerator &hellip;">
+    <meta property="twitter:description" content="Facebook による Instagram 買収はスタートアップ業界にとって驚愕だったし、シリコンバレーはこれだけ大きな買収額の案件が出る特別な場所だと改めて思うところだった。確かに3000万ユーザの価値は高いが、売上がない状態で $1B(800億円)の売却額は素直に納得するには大きすぎる金額だなと思っていた。何かからくりというか、戦略戦術があるはずだと思ってちょっと調べてみた。 &hellip;">
     <meta property="twitter:creator" content="d_sea" />
 
 
@@ -123,6 +123,185 @@ $(document).ready(
 </header>
 
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/2012/04/24/instagram/">
+		
+			Instagram 買収にみる売る側の戦略戦術を考えてみる</a>
+	</h2>
+	<div class="entry-content">
+		<div class="section">
+  <p>
+    Facebook による Instagram 買収はスタートアップ業界にとって驚愕だったし、シリコンバレーはこれだけ大きな買収額の案件が出る特別な場所だと改めて思うところだった。確かに3000万ユーザの価値は高いが、売上がない状態で $1B(800億円)の売却額は素直に納得するには大きすぎる金額だなと思っていた。何かからくりというか、戦略戦術があるはずだと思ってちょっと調べてみた。
+  </p>
+  
+  <p>
+    <a href="http://www.crunchbase.com/company/instagram" target="_blank">Instagram の CrunchBase</a> を見てみると色々見えてきた。あくまで想像ではあるが考察してみる。
+  </p>
+  
+  <h4>
+    買収確定直前の資金調達
+  </h4>
+  
+  <p>
+    Facebookによる買収の記事は4/9に出ている<span class="footnote"><a href="#f1" name="fn1" title="http://techcrunch.com/2012/04/09/facebook-to-acquire-instagram-for-1-billion/" target="_blank">*1</a></span>。実はその数日前の4/5にシリーズBの資金調達記事が出ている<span class="footnote"><a href="#f2" name="fn2" title="http://allthingsd.com/20120406/sequoia-set-to-lead-500m-valuation-round-for-instagram/" target="_blank">*2</a></span>。実際シリーズBが行使された日付は分からないが、記事になる数カ月前ということはないだろう。シリーズBの調達金額は$50Mで、バリエーション$500Mということが明らかになっている。記事公開の日付をそのまま鵜呑みにすると数日間でバリエーションが倍になっていることになる。
+  </p>
+  
+  <p>
+    その14ヶ月前に行ったシリーズAのバリエーションは憶測だけど$20Mと言われていて<span class="footnote"><a href="#f3" name="fn3" title="[http://techcrunch.com/2011/02/02/instagram-funding/" target="_blank">*3</a></span>、それを考えるとシリーズBのバリエーション$500Mは上がり過ぎだろうと思える。
+  </p>
+  
+  <p>
+    Facebookのマーク・ザッカーバーグが3日間で交渉を成立させたという情報がある<span class="footnote"><a href="#f4" name="fn4" title="http://online.wsj.com/article/SB10001424052702304818404577350191931921290.html" target="_blank">*4</a></span>。ただ、18ヶ月前にFacebookとGoogleがアプローチしていたという情報もある<span class="footnote"><a href="#f5" name="fn5" title="http://techcrunch.com/2012/04/09/facebook-to-acquire-instagram-for-1-billion/" target="_blank">*5</a></span>。おそらく、3日間で行ったのは最終的な決断の部分であって、最初のゆるい段階でのコンタクトは18ヶ月前に始まっていたことを考えると、具体的売却条件の提示はすでに行われていたと考えるほうが普通だろう。
+  </p>
+  
+  <h5>
+    考察
+  </h5>
+  
+  <p>
+    シリーズBの調達がなければ$1Bという金額にはならなかったはず。むしろ、売却金額を大幅に上げるためのシリーズBを行ったといえる。シリーズBが行われたことによって、売却金額のスタートはシリーズAのバリエーション$20Mから$500Mに跳ね上がって、Facebook はそれ以上の提示をする必要があったことになる。
+  </p>
+  
+  <p>
+    つまり、VCは Facebook との売却交渉を知っていて、売却益を自分たちも得るためにシリーズBを仕掛けた。特にシリーズBで初めてInstagram に投資した Sequoia Capital にとっては仕掛ける価値のある大きなチャンスだったに違いない。
+  </p>
+  
+  <h4>
+    Facebook上場前のタイミングでの売却
+  </h4>
+  
+  <p>
+    <a href="http://www.crunchbase.com/company/instagram" target="_blank">Instagram の CrunchBase</a> を見るに、売却金額$1Bの内訳は株式とキャッシュになっている。株式は上場前のFacebook株だ。Facebook はまだ上場していないので、$1B分のキャッシュは用意しないだろうし、株を混ぜるのは普通の発想。実際、上場申請より純利益は$1Bなので、1年分の純利益が吹っ飛んでしまう<span class="footnote"><a href="#f6" name="fn6" title="http://jp.techcrunch.com/archives/20120201facebook-1-billion-profit/" target="_blank">*6</a></span>。
+  </p>
+  
+  <p>
+    どの程度の株式交換比率がわからないが、確実に言えることは、Facebook株は上場後に必ず金額が跳ね上がるだろうから売れば利益が出る。と言うことは、キャッシュよりもむしろFacebook株の方が、Instagram側にとってはゲインが確実視出来るので良い。
+  </p>
+  
+  <h5>
+    考察
+  </h5>
+  
+  <p>
+    この戦術は Instagram 創業者が持っていたというより、VC が提示して Instagram 創業者の同意者と実行され、狙い通りに実行できたと考えたほうが普通だろう。
+  </p>
+  
+  <p>
+    Facebook上場前にFacebook株をどうやって手に入れるか、というのはコックでもいいから雇ってほしいと思う個人から VC からみんな同じだろう。この観点からいけば Instagram 売却はVCにとっては上場前のFacebook株を得るベストな方法だった。
+  </p>
+  
+  <p>
+    Facebook側も上場前の株が上がることを考慮した株式交換比率を提示できるだろうから、純粋に$1B出すことにはならずに提示しやすかっただろう。もし、株式上場後だったらこの金額を提示するのは難しいだろう。実際、争っていた Google にはこの金額はキツかったのではないか。
+  </p>
+  
+  <h4>
+    まとめ
+  </h4>
+  
+  <p>
+    こうやって見てみると、VCの戦略性の高さ、戦術のしたたかさを感じざるを得ない。
+  </p>
+  
+  <p>
+    彼らは実にシンプルに、
+  </p>
+  
+  <ul>
+    <li>
+      売却金額をどれだけ大きくするか
+    </li>
+    <li>
+      Facebook株を得てさらに上場後のゲインを出す
+    </li>
+  </ul>
+  
+  <p>
+    これにフォーカスして、実際ものにした。
+  </p>
+  
+  <p>
+    ここまでの戦術を日本で打てるVCはいるのだろうか、いないだろうなぁ。戦術がダイナミックすぎるのと絶妙なタイミング(上場前という時間制約がありつつ、有利な条件を引き出したいというバランス)で結果を出す。これを実践する高いスキルが必要なことも想像できる。
+  </p>
+  
+  <p>
+    シリコンバレーの力というのは、創業者の優秀さは確かにあるけど、それにも増して投資側であるVCの強烈な力がエコシステムを作ってくれるのだと思う。
+  </p>
+  
+  <p>
+    実際、Facebook上場という一つのビックウエーブに対して、狙いを定めちゃんと乗ることが出来きたのだから、うーんさすがシリコンバレーパワーや、と思ったのでした。
+  </p>
+  
+  <p>
+    売却直前の資金調達のようなテクニックがグレーゾーンであるのか、あまり売却金額をどう大きくしたのか、のような観点で解説した記事がなかったもので書いてみたのもある。多分まだそういう段階に日本は来ていないので、お金の戦略性のような話題はあまり飛び交わないが、それくらい考えてやっている人達がいることを起業家、VCは知っておいていいと思う。
+  </p>
+</div>
+
+
+
+
+<div class="footnote">
+  <p class="footnote">
+    <a href="#fn1" name="f1" target="_blank">*1</a>：<a href="http://techcrunch.com/2012/04/09/facebook-to-acquire-instagram-for-1-billion/" target="_blank"><a href="http://techcrunch.com/2012/04/09/facebook-to-acquire-instagram-for-1-billion/" target="_blank">http://techcrunch.com/2012/04/09/facebook-to-acquire-instagram-for-1-billion/</a></a>
+  </p>
+  
+  <p class="footnote">
+    <a href="#fn2" name="f2" target="_blank">*2</a>：<a href="http://allthingsd.com/20120406/sequoia-set-to-lead-500m-valuation-round-for-instagram/" target="_blank"><a href="http://allthingsd.com/20120406/sequoia-set-to-lead-500m-valuation-round-for-instagram/" target="_blank">http://allthingsd.com/20120406/sequoia-set-to-lead-500m-valuation-round-for-instagram/</a></a>
+  </p>
+  
+  <p class="footnote">
+    <a href="#fn3" name="f3" target="_blank">*3</a>：<a href="http://techcrunch.com/2011/02/02/instagram-funding/" target="_blank"><a href="http://techcrunch.com/2011/02/02/instagram-funding/" target="_blank">http://techcrunch.com/2011/02/02/instagram-funding/</a></a>
+  </p>
+  
+  <p class="footnote">
+    <a href="#fn4" name="f4" target="_blank">*4</a>：<a href="http://online.wsj.com/article/SB10001424052702304818404577350191931921290.html" target="_blank"><a href="http://online.wsj.com/article/SB10001424052702304818404577350191931921290.html" target="_blank">http://online.wsj.com/article/SB10001424052702304818404577350191931921290.html</a></a>
+  </p>
+  
+  <p class="footnote">
+    <a href="#fn5" name="f5" target="_blank">*5</a>：<a href="http://techcrunch.com/2012/04/09/facebook-to-acquire-instagram-for-1-billion/" target="_blank"><a href="http://techcrunch.com/2012/04/09/facebook-to-acquire-instagram-for-1-billion/" target="_blank">http://techcrunch.com/2012/04/09/facebook-to-acquire-instagram-for-1-billion/</a></a>
+  </p>
+  
+  <p class="footnote">
+    <a href="#fn6" name="f6" target="_blank">*6</a>：<a href="http://jp.techcrunch.com/archives/20120201facebook-1-billion-profit/" target="_blank"><a href="http://jp.techcrunch.com/archives/20120201facebook-1-billion-profit/" target="_blank">http://jp.techcrunch.com/archives/20120201facebook-1-billion-profit/</a></a>/
+  </p>
+</div>
+
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-25T08:47:00+09:00" pubdate data-updated="true">Apr 25<span>th</span>, 2012</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/business/'>Business</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/2012/04/24/instagram/#disqus_thread">Comments</a></span>
+	
+</div></article>
 
 
     <article class="post">
@@ -1650,204 +1829,6 @@ win.add(tableView);
 	
 </div></article>
 
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/2011/04/15/post/">
-		
-			スタートアップを始めるときの優先順位</a>
-	</h2>
-	<div class="entry-content">
-		<div class="section">
-  <p>
-    2010年3月から最初のスタートアップをやってきているが、色々やってみないと分からないことが本当に多かった。このチャレンジで自分なりのノウハウをつけたいと思ってきたし、ある程度まとまってきたような気がするのでまとめてみる。
-  </p>
-  
-  <p>
-    書いている内容は実際やってみて、今のところこの優先順位で進めることが一番失敗のリスクを抑えられる方法と思っている。起業の全ては可能性なので、基本どんな方法でも可能性はあるし、この方法が絶対だ！と言うつもりもない。今も模索している最中なので、是非経験された方々と意見交換がしてみたいと思っている。コメント、twitter、メールでもフィードバックをいただけたら嬉しいです。
-  </p>
-  
-  <p>
-    ここで述べている前提としているスタートアップの定義は以下。
-  </p>
-  
-  <ul>
-    <li>
-      何がしかのインターネットにからむサービスを自ら開発し、運営しながら高い成長率を目指す
-    </li>
-    <li>
-      個人～3名くらいの少数の創業者で始める
-    </li>
-    <li>
-      サービスの成長過程では資金調達を行い、企業価値を結果的に5倍～十数倍程度まで上げてエグジットを目指す
-    </li>
-    <li>
-      デバイスなどハードウエア系は対象としてない
-    </li>
-    <li>
-      低い成長率を目指す中小企業もしくはプライベートカンパニーは対象としていない
-    </li>
-  </ul>
-  
-  <p>
-    自分なりの優先順位は以下。
-  </p>
-  
-  <ol>
-    <li>
-      サービスをつくる
-    </li>
-    <li>
-      無料をローンチ
-    </li>
-    <li>
-      会社を作る
-    </li>
-    <li>
-      課金サービスをローンチ
-    </li>
-    <li>
-      エンジェルからの資金調達
-    </li>
-  </ol>
-  
-  <h4>
-    1. とにかく最初にサービスを作るところまでやる
-  </h4>
-  
-  <p>
-    まずサービスありき。少なくともインターネット系のサービスであればデモできるレベルまでつくることが必要。何よりも先に優先し、ある程度形になるまでは次の動きを始めなくて良い。
-  </p>
-  
-  <p>
-    動くものがなければ単なるアイデアであって、アイデアだけには価値はない。
-  </p>
-  
-  <p>
-    実際にデモが出来る前にいくつかの日本のVCに話してみたが、具体的に話がすぐ進むということはなかった。その場としては日本のVCは興味がありそうな姿勢を見せてくれて、結構好感触かと思ってしまった。実は今すぐ投資することはなくて、ローンチしたら当たるかもしれないから、それまでキープしたいがための姿勢だったというのが後から分かった。やはり、アイデアだけを示しても、それにお金がつくことはないと思ったほうがいい。あとは、そもそも日本のVCはローンチ後ある程度会社が成長してきた段階の、シリーズB以降の資金提供を行うところがほとんどということもあった。もしうまく話を進めて、投資検討できたとしても会社のバリューはすごく低く見積もられるだろうから、創業者の割合が低い悪条件が前提になるだろう。
-  </p>
-  
-  <p>
-    スタートアップをやろうとするときにまず会社をつくろうと発想しがちだが、それよりも本当にアイデアが実現できているかを示せていないと、後々苦しくなってくる。アイデアの実現可能性はスタートアップを行う上では問われるシーンはほとんどない。問われてしまっている時点で投資対象にはならない。ちゃんと動くことが用意できていることが投資検討の前提になっていると思う。投資する側から見ればイメージしやすい当然のことなのだけど、意外と気付けていない点だったと思う。
-  </p>
-  
-  <p>
-    だから、資金調達をしてエンジニアを増やして最初のローンチを目指す。という流れはまず資金調達が難しい。その資金は少なくともVCからは出てこないと思ったほうがいい。その場合は、エンジニアを創業者としてタダで動いてもらうことが一番リスクを抑えられつつ、前に進める策かなと思う。
-  </p>
-  
-  <h4>
-    2. フィードバックをもとに改善
-  </h4>
-  
-  <p>
-    たくさんの人に使ってもらう or デモしながらフィードバックを集めるのがこのフェーズ。
-  </p>
-  
-  <p>
-    最初のアイデアが最もユーザに適しているとは思わないほうがいい。客観的評価を得てサービスをよりよい方向に変化させていくことは必要なことで、そのための時間は優先して取るべきだと認識した方がいい。なるべく多くのターゲットとなりうる人たちからフィードバックを得て、変更を加えていく。無料サービスであればサービス内容を変更することへの抵抗は少ないはずなので、変更しやすい。
-  </p>
-  
-  <p>
-    この時に初めてターゲッティングやマーケットを意識しだして、ビジネスプランを練っても遅くはない。1つのアイデアがユーザのフィードバックによって、ビジネスらしくしてくれる。むしろサービスを作る前からビジネスプランを固定化してしまうほうが、誰も使わないものを出してしまう可能性が高くて危険だ。
-  </p>
-  
-  <p>
-    この時は無料でサービスを提供するので売上は上がらないから、個人名義でサービスを行っていても問題ない。ただ、サーバのホスティング費用は自腹になるので、やはりある程度の出費は覚悟しておいたほうがいい。
-  </p>
-  
-  <h4>
-    3&4. 会社を作るのはなるべく後
-  </h4>
-  
-  <p>
-    会社作りを急ぐ理由はないと思う。大事なのはサービスが多くのユーザに使われるかであって、会社が必要な状態は有料サービスを始める時で、売上を受け取るための受け皿としての役割でしかない。あとはここで示している順番通りにいかず、売上があがる前に資金調達を行う場合も、会社が株を発行する or 転換ノート(Convertible Notes)するために必要になる。
-  </p>
-  
-  <p>
-    早く会社を作る必要がない理由として、売上があがる前 or ユーザが獲得できる前の会社であれば、バリュエーションはどこも同じで差別化できないという状況がある。だいたい$1Mくらいにしておくのが無難のようだ<span class="footnote"><a href="#f1" name="fn1" title="http://billpayne.com/2010/09/23/valuation-of-pre-revenue-angel-deals.html" target="_blank">*1</a></span>、<span class="footnote"><a href="#f2" name="fn2" title="http://www.feld.com/wp/archives/2006/06/early-stage-angel-round-valuations.html" target="_blank">*2</a></span>。ローンチ直前に作っても、ローンチしない状態を半年続けてもバリュエーションは変わらないだろう。
-  </p>
-  
-  <p>
-    もうひとつの理由としては、会社を作ると色々お金がかかってくる。専門家(弁護士、会計士など)への支払い。税金の支払。会計用アプリケーションの購入などなど。売上がないのにこれらの費用が発生し、しかも時間も取られるのは、自らの環境をより一層状況を厳しくさせる。
-  </p>
-  
-  <h4>
-    5. 資金調達は最後、必要な段階になったらがベスト
-  </h4>
-  
-  <p>
-    「スタートアップを始めるので、会社を作ってすぐ資金調達をする」と思ってしまうと、その後の状況が苦しく不幸な状態なる。サービスを続けていく上で、売上だけではまかなえなくて、これ以上は自腹も切れないとなったら最後の最後で資金調達をする、と思っていたほうがいい。あくまで、「必要となったから入れる。」のほうが創業者の利益確保の観点から良い。
-  </p>
-  
-  <p>
-    もっとも最初からサービスをつくるために大きな開発費用が必要なデバイス系などハードウエア製品であれば、アイデアの段階で資金調達をする必要があるので話は違ってくる。
-  </p>
-  
-  <p>
-    資金調達をするタイミングをなるべく遅くする理由は、サービスをローンチしている前提ならば、この耐えている時間で会社のバリュエーションが上がる or 上がる可能性があるから。「バリューが上がる => 有利な条件で資金調達が行える => 創業者の株式保有比率は高く保たれる => エグジット時の成功が大きくなる」という具合になる。
-  </p>
-  
-  <p>
-    もうひとつの理由は、資金を入れる前にサービスの反応が得られているだろうから、このチャレンジを継続させる or 辞めるかの大きな判断ができる。もし辞める場合には今まで自腹を切った費用だけになるので損出を小さく抑えることができる。資金を入れてしまったら、損出がより大きくなってしまうことに加えて、投資してくれた方々への配慮が必要なので、辞めづらい状況になる。
-  </p>
-  
-  <p>
-    <p>
-      以上まとめてみたが、この流れで行くと有料サービスを始めるまでは資金調達はしないので、自腹を切っている状態になる。実はスタートアップをするには資金調達をする前に出て行く費用は自分で何とかしなければいけない。結局、他人のお金をあてにする前に自分のお金を用意しなくてはチャレンジできないことだと思う。蓄え or 他の仕事をしながら or 親戚友人から借りる、手法はいろいろだが、どの程度のお金が必要かについては別エントリーにまとめる予定。
-    </p>
-    
-    <p>
-      今のところこの優先順位で始めれば、リスクを抑えつつ大きな成功を目指すチャレンジが繰り返せるのではないかと思う。スタートアップは1回だけで終わりではないし、2回目、3回目と繰り返しながらでも成功を目指し続けることが重要だと思うので、なるべくリスクを抑えるための策を練っておいたほうがいいと思っている。
-    </p>
-    
-    <div class="footnote">
-      <p class="footnote">
-        <a href="#fn1" name="f1" target="_blank">*1</a>：<a href="http://billpayne.com/2010/09/23/valuation-of-pre-revenue-angel-deals.html" target="_blank"><a href="http://billpayne.com/2010/09/23/valuation-of-pre-revenue-angel-deals.html" target="_blank">http://billpayne.com/2010/09/23/valuation-of-pre-revenue-angel-deals.html</a></a>
-      </p>
-      
-      <p class="footnote">
-        <a href="#fn2" name="f2" target="_blank">*2</a>：<a href="http://www.feld.com/wp/archives/2006/06/early-stage-angel-round-valuations.html" target="_blank"><a href="http://www.feld.com/wp/archives/2006/06/early-stage-angel-round-valuations.html" target="_blank">http://www.feld.com/wp/archives/2006/06/early-stage-angel-round-valuations.html</a></a>
-      </p>
-    </div>
-</div>
-
-
-<p></p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-04-16T02:55:09+09:00" pubdate data-updated="true">Apr 16<span>th</span>, 2011</time></div>
-	
-
-<div class="tags">
-
-	<a class='category' href='/blog/categories/business/'>Business</a>
-
-</div>
-
-
-	
-		<span class="comments"><a href="/2011/04/15/post/#disqus_thread">Comments</a></span>
-	
-</div></article>
-
 <nav id="pagenavi">
     
         <a href="/blog/page/22/" class="prev">Prev</a>
@@ -1871,7 +1852,7 @@ win.add(tableView);
 
 <br>
 
-Copyright &copy; 2015
+Copyright &copy; 2016
 
     HiroFukami
 
