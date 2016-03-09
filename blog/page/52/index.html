@@ -9,7 +9,7 @@
 
 <meta name="author" content="HiroFukami"> 
 
-<meta name="description" content="このカテゴリはここでひとまず占めるために、事後の振り返りを、、、次なる時期が来るまで凍結。 あっという間に4週間が経過した。 最初はリリース時期が決まっていたけども、あまりにいろんなことが決まっていない状況に焦ってしまっていたけども、最近では焦ってやってもいいもの作れないし、 &hellip;"> <meta name="keywords" content="">
+<meta name="description" content="緊急オペレーションを少なくしたいと思えば、Single Point of Failure を減らすように冗長構成をとるだろうけど、 サーバをたくさん並べたときの構成はサーバの interface が1つだからそこが SPOF になる。*1 これを回避するためには同機能のサーバを複数台並べて、 &hellip;"> <meta name="keywords" content="">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -63,7 +63,7 @@ $(document).ready(
     <meta property="twitter:site" content="d_sea">
     <meta property="twitter:url" content="http://hirofukami.com">
     <meta property="twitter:title" content="Hiro Fukami's Blog">
-    <meta property="twitter:description" content="このカテゴリはここでひとまず占めるために、事後の振り返りを、、、次なる時期が来るまで凍結。 あっという間に4週間が経過した。 最初はリリース時期が決まっていたけども、あまりにいろんなことが決まっていない状況に焦ってしまっていたけども、最近では焦ってやってもいいもの作れないし、まぁ今の状況で出来ることをやって、来るべき本当のスタートに向けて準備をしていこうというスタンス。 &hellip;">
+    <meta property="twitter:description" content="緊急オペレーションを少なくしたいと思えば、Single Point of Failure を減らすように冗長構成をとるだろうけど、 サーバをたくさん並べたときの構成はサーバの interface が1つだからそこが SPOF になる。*1 これを回避するためには同機能のサーバを複数台並べて、2つのスイッチで分けて収容する。(サーバへのアクセスの分散をするにはロードバランサが必要) &hellip;">
     <meta property="twitter:creator" content="d_sea" />
 
 
@@ -123,6 +123,88 @@ $(document).ready(
 </header>
 
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/2007/03/08/spof-web/">
+		
+			SPOF のないWebサイト用ネットワーク構成って、、、</a>
+	</h2>
+	<div class="entry-content">
+		<div class="section">
+  <p>
+    緊急オペレーションを少なくしたいと思えば、Single Point of Failure を減らすように冗長構成をとるだろうけど、
+  </p>
+  
+  <p>
+    サーバをたくさん並べたときの構成はサーバの interface が1つだからそこが SPOF になる。<span class="footnote"><a href="#f1" name="fn1" title="最近では2つ interface を持つサーバがあるけど、メンテナンス用にマルチホームを組みたい気もしてくるので上流向けに2つは使わないとする。" target="_blank">*1</a></span>
+  </p>
+  
+  <p>
+    これを回避するためには同機能のサーバを複数台並べて、2つのスイッチで分けて収容する。(サーバへのアクセスの分散をするにはロードバランサが必要)
+  </p>
+  
+  <p>
+    この2つのスイッチは同じセグメントなのでスイッチ同士つなげると、、、このつなぎが切れると上位のルータからは link down が検出できないけど、ルーティングプロトコルは不通となって HSRP は primary そのまま。standby 切り替りで、各スイッチごとにパケットの流れが異なる現象になる？
+  </p>
+  
+  <p>
+    スイッチごとに異なるセグメントにして、スイッチ間はつながないとこの現象は起きずにOKだけど、上流のルータのポートが倍必要になる。
+  </p>
+  
+  <p>
+    ん～、悩ましい。。。みんなどうしているのだろう。
+  </p>
+  
+  <p>
+    というかこの理解でまずはOKか？突っ込み歓迎。
+  </p>
+</div>
+
+
+
+
+<div class="footnote">
+  <p class="footnote">
+    <a href="#fn1" name="f1" target="_blank">*1</a>：最近では2つ interface を持つサーバがあるけど、メンテナンス用にマルチホームを組みたい気もしてくるので上流向けに2つは使わないとする。
+  </p>
+</div>
+
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-03-09T00:00:00+09:00" pubdate data-updated="true">Mar 9<span>th</span>, 2007</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/tech/'>Tech</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/2007/03/08/spof-web/#disqus_thread">Comments</a></span>
+	
+</div></article>
 
 
     <article class="post">
@@ -1020,67 +1102,6 @@ $(document).ready(
 
 	
 		<span class="comments"><a href="/2007/01/28/post/#disqus_thread">Comments</a></span>
-	
-</div></article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/2007/01/24/post/">
-		
-			オヤヂ化か&#8230;</a>
-	</h2>
-	<div class="entry-content">
-		<div class="section">
-  <p>
-    年下の世代の人と飲むことは少なくって、どんな話ができるのかなぁと期待と緊張をもってサシ飲みに望んだけど色々差はあるのだなぁと実感。
-  </p>
-  
-  <p>
-    自分が同じ年の時を考えると納得する部分はある。自分の成長を意識して勉強し始めているけど、なんというかそれを得るためにまだガメついていなくって腹黒くないっていうか。そういう自分は既に腹黒くなってきていると思うし(w
-  </p>
-  
-  <p>
-    どうしても多くをしゃべってしまうのは年のせいなんだろうなぁ。それは何かを伝えなきゃとか成功できる可能性とかへの期待があるからなんだろう。オヤヂ化と言ってしまえばそれまでか。もうちょっと対等なスタンスで共有できる話題の提供とか質問とかが出来るといいのかな？
-  </p>
-  
-  <p>
-    自分の年齢的なポジションを自覚できるいい機会だった。
-  </p>
-</div>
-
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-01-25T00:00:00+09:00" pubdate data-updated="true">Jan 25<span>th</span>, 2007</time></div>
-	
-
-<div class="tags">
-
-	<a class='category' href='/blog/categories/life/'>Life</a>
-
-</div>
-
-
-	
-		<span class="comments"><a href="/2007/01/24/post/#disqus_thread">Comments</a></span>
 	
 </div></article>
 

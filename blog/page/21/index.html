@@ -9,7 +9,8 @@
 
 <meta name="author" content="HiroFukami"> 
 
-<meta name="description" content="October 2012 Apple Special Event を見た感想を並べる Macbook Pro がこれだけ薄く軽くなると、Macbook Airとの差がRetina Display対応だけの差になりそうだな、ゆくゆくは最新スペックで軽くて早い MacBook &hellip;"> <meta name="keywords" content="">
+<meta name="description" content="まだ iPad mini や Kindle 端末は買ってないのですが、iPhone に Kindle アプリ入れていたので、試しにジョジョの奇妙な冒険 第1巻の無料サンプルを見てみるかと思ったら、ちょっとはまったのでメモっておく。
+解決の際に参考にしたのは このリンク。 元々の状況 Amazon &hellip;"> <meta name="keywords" content="">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -63,9 +64,9 @@ $(document).ready(
     <meta property="twitter:site" content="d_sea">
     <meta property="twitter:url" content="http://hirofukami.com">
     <meta property="twitter:title" content="Hiro Fukami's Blog">
-    <meta property="twitter:description" content="October 2012 Apple Special Event を見た感想を並べる Macbook Pro がこれだけ薄く軽くなると、Macbook Airとの差がRetina Display対応だけの差になりそうだな、ゆくゆくは最新スペックで軽くて早い MacBook 1機種に集約されそうな気がした
-Retina対応未対応の差は$500くらい
-Mac Mini の紹介あっさりしすぎw &hellip;">
+    <meta property="twitter:description" content="まだ iPad mini や Kindle 端末は買ってないのですが、iPhone に Kindle アプリ入れていたので、試しにジョジョの奇妙な冒険 第1巻の無料サンプルを見てみるかと思ったら、ちょっとはまったのでメモっておく。
+解決の際に参考にしたのは このリンク。 元々の状況 Amazon.com(US) にアカウントを持っていた
+Amazon.co.jp(JP) &hellip;">
     <meta property="twitter:creator" content="d_sea" />
 
 
@@ -125,6 +126,90 @@ Mac Mini の紹介あっさりしすぎw &hellip;">
 </header>
 
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/2012/10/28/kindle-us-jp-amazon/">
+		
+			Kindle利用時にUS/JP Amazonアカウントでちょっと混乱したのでまとめ</a>
+	</h2>
+	<div class="entry-content">
+		<p>まだ iPad mini や Kindle 端末は買ってないのですが、iPhone に Kindle アプリ入れていたので、試しに<a href="http://www.amazon.co.jp/gp/product/B009LHC7A4/ref=as_li_ss_tl?ie=UTF8&camp=247&creative=7399&creativeASIN=B009LHC7A4&linkCode=as2&tag=dsea-22" target="_blank">ジョジョの奇妙な冒険 第1巻</a>の無料サンプルを見てみるかと思ったら、ちょっとはまったのでメモっておく。<br/>
+解決の際に参考にしたのは <a href="http://www.itmedia.co.jp/enterprise/articles/1210/27/news010.html" target="_blank">このリンク</a>。</p>
+
+<h3>元々の状況</h3>
+
+<ul>
+<li>Amazon.com(US) にアカウントを持っていた</li>
+<li>Amazon.co.jp(JP) にもアカウントを持っていた</li>
+<li>2つのアカウントは別物だけど、メールアドレス/パスワードは同じに設定していた</li>
+</ul>
+
+
+<h3>起きた現象</h3>
+
+<ul>
+<li>US の Apple ID で Kindle アプリをインストールしていたので、削除</li>
+<li>日本の App Store で Kindle アプリをインストール</li>
+<li>Kindle アプリで [Settings] &#8211; [Registration] に自分の名前が表示されているのを確認</li>
+<li>Amazon.co.jp にて、[アカウントサービス] &#8211; [My Kindle] &#8211; [端末の登録] を見てみる。何も登録されていない</li>
+<li>Amazon.com にて、[Your Account] &#8211; [Manage Your Kindle] &#8211; [Manage Your Devices] を見てみる。こちらに iPhone が登録されていた。</li>
+</ul>
+
+
+<h3>解消するためにやったこと</h3>
+
+<ul>
+<li>Amazon.com の [Manage Your Devices] にて、登録されているデバイスを Deregister して削除</li>
+<li>Amazon.com のアカウントのメールアドレスを変更した<br/>
+<img src="http://media.tumblr.com/tumblr_mckz9qxyKn1qzhrk3.png?w=830" alt="us" data-recalc-dims="1" /></li>
+<li>iPhone の Kindle アプリを起動、再ログインしたけど現象変わらず</li>
+<li>iPhone の Kindle アプリを一旦削除、再インストール</li>
+<li>Kindle アプリを起動して、ログイン、端末の登録に漢字の自分の氏名を確認</li>
+<li>Amazon.co.jp にて、[端末の登録] を確認して iPhone が表示されていることを確認<br/>
+<img src="http://media.tumblr.com/tumblr_mckz9zcMMO1qzhrk3.png?w=830" alt="jp" data-recalc-dims="1" /></li>
+</ul>
+
+
+<p>結局 US-JPで同じアカウントパスワードにしてしまったのがいけなかったのだけど、同じであることに気づくのに時間がかかってしまった。<br/>
+すでにUSとJPにアカウントを持っている人向けに Amazon は<a href="http://www.amazon.co.jp/gp/help/customer/display.html?ie=UTF8&nodeId=201049300" target="_blank">統合という機能を紹介している</a>が、これはどちらかのアカウントに依存させられてしまうので、JPを購入アカウントに選択したらUSのKindle Store で購入ができなくなってしまうデメリットがある。</p>
+
+<p>だから、両方のアカウントを今後も使い分けたい場合はそれぞれ独立したアカウントにしたほうがよい。デメリットは、必要に応じて Kindle アプリのログインアカウントを切り替える手間がかかることで、自分の場合は日本の Kindle Store での購入がほとんどなので、アカウント切り替えはほとんど起きないだろうなということで、この解消方法でOKになった。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-10-28T11:37:00+09:00" pubdate data-updated="true">Oct 28<span>th</span>, 2012</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/internet/'>Internet</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/2012/10/28/kindle-us-jp-amazon/#disqus_thread">Comments</a></span>
+	
+</div></article>
 
 
     <article class="post">
@@ -682,52 +767,6 @@ Mac Mini の紹介あっさりしすぎw &hellip;">
 
 	
 		<span class="comments"><a href="/2012/09/05/106/#disqus_thread">Comments</a></span>
-	
-</div></article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/2012/08/30/119/">
-		
-			119</a>
-	</h2>
-	<div class="entry-content">
-		<p>自分が本当に理解しているならば、人には簡潔に話せるはずです。「結論は◯◯です。なぜなら△△だからです」と簡明に説明できないのは、結局、自分の中で咀嚼できていないからなのです。仕事は、インプットだけはなく、アウトプットをしてみて初めて理解度が試されると思うのです。</p>
-
-<p><a href="http://www.amazon.co.jp/gp/product/4569709583/ref=as_li_tf_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4569709583&linkCode=as2&tag=dsea-22" target="_blank">川淵三郎 著&#160;: 「51歳の左遷」からすべては始まった (PHP新書)</a><img src="http://www.assoc-amazon.jp/e/ir?t=dsea-22&l=as2&o=9&a=4569709583" width="1" height="1" border="0" alt="" style="border:none!important;margin:0!important;" /></p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-08-30T19:29:06+09:00" pubdate data-updated="true">Aug 30<span>th</span>, 2012</time></div>
-	
-
-<div class="tags">
-
-	<a class='category' href='/blog/categories/book/'>Book</a>
-
-</div>
-
-
-	
-		<span class="comments"><a href="/2012/08/30/119/#disqus_thread">Comments</a></span>
 	
 </div></article>
 
