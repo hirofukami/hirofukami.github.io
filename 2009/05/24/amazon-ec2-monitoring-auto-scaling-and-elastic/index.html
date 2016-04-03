@@ -1,0 +1,1327 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Amazon EC2 新機能 Monitoring, Auto Scaling and Elastic Load Balancing を一通り触ってみた – Hiro Fukami's Blog</title>
+    <link rel="dns-prefetch" href="//maxcdn.bootstrapcdn.com">
+    <link rel="dns-prefetch" href="//cdn.mathjax.org">
+    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Hiro Fukami(深海寛信 ふかみひろのぶ)'s Blog : 世の中をより良く変えるため、世の中にない新しいサービスを模索する日々。CEO of Players1st inc., Business Starter, Engineer and Daddy.">
+    <meta name="robots" content="all">
+    <meta name="author" content="Hiro Fukami">
+    <meta name="keywords" content="Tech">
+    <link rel="canonical" href="http://hirofukami.com/2009/05/24/amazon-ec2-monitoring-auto-scaling-and-elastic/">
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed for Hiro Fukami's Blog" href="/feed.xml">
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/pixyll.css?201604031232" type="text/css">
+
+    <!-- Fonts -->
+    
+    <link href="//fonts.googleapis.com/css?family=Merriweather:900,900italic,300,300italic" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Lato:900,300" rel="stylesheet" type="text/css">
+    
+    
+      <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+    
+    <!-- MathJax -->
+    
+
+    <!-- Verifications -->
+    
+    
+
+    <!-- Open Graph -->
+    <!-- From: https://github.com/mmistakes/hpstr-jekyll-theme/blob/master/_includes/head.html -->
+    <meta property="og:locale" content="en_US">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Amazon EC2 新機能 Monitoring, Auto Scaling and Elastic Load Balancing を一通り触ってみた">
+    <meta property="og:description" content="Hiro Fukami(深海寛信 ふかみひろのぶ)'s Blog : 世の中をより良く変えるため、世の中にない新しいサービスを模索する日々。CEO of Players1st inc., Business Starter, Engineer and Daddy.">
+    <meta property="og:url" content="http://hirofukami.com/2009/05/24/amazon-ec2-monitoring-auto-scaling-and-elastic/">
+    <meta property="og:site_name" content="Hiro Fukami's Blog">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    
+        <meta name="twitter:site" content="@d_sea">
+    
+    <meta name="twitter:title" content="Amazon EC2 新機能 Monitoring, Auto Scaling and Elastic Load Balancing を一通り触ってみた">
+    <meta name="twitter:description" content="Hiro Fukami(深海寛信 ふかみひろのぶ)'s Blog : 世の中をより良く変えるため、世の中にない新しいサービスを模索する日々。CEO of Players1st inc., Business Starter, Engineer and Daddy.">
+    <meta name="twitter:url" content="http://hirofukami.com/2009/05/24/amazon-ec2-monitoring-auto-scaling-and-elastic/">
+
+    <!-- Icons -->
+    <link rel="icon" type="image/png" href="/images/hirofukami.png">
+
+    
+    <script type="text/javascript">
+       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+       ga('create', 'UA-44359867-3', 'auto');
+       ga('send', 'pageview');
+    </script>
+    
+</head>
+
+<body class="site">
+  
+	
+
+  <div class="site-wrap">
+    <header class="site-header px2 px-responsive">
+  <div class="mt2 wrap">
+    <div class="measure">
+      <!-- <a href="http://hirofukami.com" class="site-title">Hiro Fukami's Blog</a> -->
+      <a href="/" class="site-title">Hiro Fukami's Blog</a>
+      <nav class="site-nav">
+        
+    
+
+    
+        <a href="/about/">About</a>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+
+    
+
+    
+
+    
+
+    
+        <a href="/contact/">Contact</a>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+
+  <form action="http://google.com/search" method="get">
+    <input type="text" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="as_sitesearch" value="http://hirofukami.com">
+  </form>
+
+
+      </nav>
+      <div class="clearfix"></div>
+      
+        <div class="social-icons">
+  <div class="social-icons-right">
+    
+      <a class="fa fa-github" href="https://github.com/d-sea"></a>
+    
+    
+      <a class="fa fa-bitbucket" href="https://bitbucket.org/d_sea"></a>
+    
+    
+    <a class="fa fa-rss" href="/feed.xml"></a>
+    
+      <a class="fa fa-twitter" href="https://twitter.com/d_sea"></a>
+    
+    
+    
+    
+    
+      <a class="fa fa-envelope" href="mailto:dee.sea@gmail.com"></a>
+    
+    
+      <a class="fa fa-linkedin" href="https://www.linkedin.com/in/hirofukami"></a>
+    
+    
+    
+  </div>
+  <div class="right">
+    
+    
+    
+  </div>
+</div>
+<div class="clearfix"></div>
+
+      
+    </div>
+  </div>
+</header>
+
+
+    <div class="post p2 p-responsive wrap" role="main">
+      <div class="measure">
+        
+
+
+<div class="post-header mb2">
+  <h1>Amazon EC2 新機能 Monitoring, Auto Scaling and Elastic Load Balancing を一通り触ってみた</h1>
+  <span class="post-meta">May 25, 2009</span><br>
+  
+  <span class="post-meta">
+  <small>
+  <div class="post-categories">
+  Categories: 
+  
+  
+  <a href="/categories/#Tech">Tech</a>
+  
+</div>
+  <div class="post-tags">
+  Tags: 
+  
+  
+  <a href="/tags/#auto%20scaling">auto scaling</a>,
+  
+  <a href="/tags/#AWS">AWS</a>,
+  
+  <a href="/tags/#CloudWatch">CloudWatch</a>,
+  
+  <a href="/tags/#ELB">ELB</a>,
+  
+  <a href="/tags/#report">report</a>,
+  
+  <a href="/tags/#Server">Server</a>,
+  
+  <a href="/tags/#tech">tech</a>
+  
+</div>
+  </small>
+  </span>
+<!--   <span class="post-meta small">
+  
+    4 minute read
+  
+  </span>
+ -->
+</div>
+
+<article class="post-content">
+  <div class="section">
+  <p>
+    5/18に Amazon AWS から<a href="http://aws.typepad.com/aws/2009/05/new-aws-load-balancing-automatic-scaling-and-cloud-monitoring-services.html" target="_blank">発表になった</a> Amazon EC2 の新機能は Auto Scaling や Load Blanacing など、今までユーザ側でなんとかしていた or 提供事業者が飯の種にしていた部分に Amazon がカバーしてしまった。と言う点で結構注目が集まっていた。
+  </p>
+  
+  <p>
+    細かな点はさておき、ひとまず触ってみないことにはどこまでカバーされているかも分からないので触ってみた。以下、触ってみたときのメモ。
+  </p>
+  
+  <h4>
+    事前情報
+  </h4>
+  
+  <p>
+    設定の仕方やコマンドはそれぞれのページを参考にした。
+  </p>
+  
+  <ul>
+    <li>
+      <a href="http://aws.amazon.com/cloudwatch/" target="_blank">Amazon CloudWatch</a>
+    </li>
+    <li>
+      <a href="http://aws.amazon.com/autoscaling/" target="_blank">Auto Scaling</a>
+    </li>
+    <li>
+      <a href="http://aws.amazon.com/elasticloadbalancing/" target="_blank">Elastic Load Balancing</a>
+    </li>
+  </ul>
+  
+  <h5>
+    3機能概要
+  </h5>
+  
+  <ul>
+    <li>
+      CloudWatch は instance と Elastic Load Balancer 両方のモニタリングが行える <ul>
+        <li>
+          それぞれ取得できるパラメータは異なる
+        </li>
+      </ul>
+    </li>
+    
+    <li>
+      Auto Scaling が動作するためには、CloudWatch が instance 上で有効になっていることが条件
+    </li>
+    <li>
+      Elastic Load Balancing は起動している instance を指定して分散対象に加えることができる
+    </li>
+    <li>
+      beta版ということで、すべてコマンドラインでの操作方法しか提供されていない <ul>
+        <li>
+          Elasticfox 上だと今回の機能に対する情報は見えない
+        </li>
+      </ul>
+    </li>
+  </ul>
+  
+  <h4>
+    動作環境
+  </h4>
+  
+  <ul>
+    <li>
+      すでに EC2 コマンドが実施できる環境があることを前提
+    </li>
+    <li>
+      mac 上でオペレーションしています
+    </li>
+  </ul>
+  
+  <h4>
+    事前準備
+  </h4>
+  
+  <ul>
+    <li>
+      Amazon AWS web へログイン
+    </li>
+    <li>
+      Amazon EC2 API Tools をダウンロードして、ローカルにて解凍
+    </li>
+    <li>
+      EC2 コマンドへの PATH が通っている既存ディレクトリと置き換える <ul>
+        <li>
+          今回の3機能追加にともなうもろもろのコマンドが増えている
+        </li>
+      </ul>
+    </li>
+  </ul>
+  
+  <h4>
+    CloudWatch を触る
+  </h4>
+  
+  <h5>
+    事前準備
+  </h5>
+  
+  <p>
+    README.TXT をみつつ
+  </p>
+  
+  <ul>
+    <li>
+      Amazon CloudWatch API Tools をダウンロードローカルに配置
+    </li>
+    <li>
+      .bash_profile に PATH を追加
+    </li>
+    <li>
+      credential-file-path.template をコピーして好きな名前に変える <ul>
+        <li>
+          今回は credential-file とした
+        </li>
+      </ul>
+    </li>
+    
+    <li>
+      このファイルに必要な情報を書く <ul>
+        <li>
+          key.id と secret key の情報は AWS web の my page よりコピペする
+        </li>
+      </ul>
+    </li>
+    
+    <li>
+      .bash_profile に追記した中身
+    </li>
+  </ul>
+  
+  <pre>
+
+export AWS_CLOUDWATCH_HOME=~/Dropbox/AmazonAWS/CloudWatch
+
+export PATH=$PATH:$AWS_CLOUDWATCH_HOME/bin
+
+export AWS_CREDENTIAL_FILE=$AWS_CLOUDWATCH_HOME/credential-file
+
+</pre>
+  
+  <ul>
+    <li>
+      以下の記述があらかじめ入っていること
+    </li>
+  </ul>
+  
+  <pre>
+
+export EC2_PRIVATE_KEY=$EC2_HOME/pk-****.pem
+
+export EC2_CERT=$EC2_HOME/cert-****.pem
+
+</pre>
+  
+  <ul>
+    <li>
+      確認 mon-** コマンドが実行できるようになっていること
+    </li>
+  </ul>
+  
+  <h5>
+    動かしてみる
+  </h5>
+  
+  <ul>
+    <li>
+      EC2 の instance を起動する時に CloudWatch のモニターを有効にする <ul>
+        <li>
+          コマンドラインで -m オプションを付けて起動
+        </li>
+        <li>
+          もしくは instance 起動後に instance-ID を指定して、
+        </li>
+      </ul>
+    </li>
+  </ul>
+  
+  <pre>
+
+$ ec2-monitor-instances i-***
+
+</pre>
+  
+  <p>
+    を実行する
+  </p>
+  
+  <ul>
+    <li>
+      モニターできるパラメータ 09.05.24 現在
+    </li>
+  </ul>
+  
+  <dl>
+    <dt>
+      EC2 instance 用
+    </dt>
+    
+    <dd>
+      CPUUtilization<br>DiskReadBytes<br>DiskReadOps<br>DiskWriteBytes<br>DiskWriteOps<br>NetworkIn<br>NetworkOut
+    </dd>
+    
+    <dt>
+      Elastic Load Balancer 用
+    </dt>
+    
+    <dd>
+      HealthyHostCount<br>Latency<br>RequestCount<br>UnHealthyHostCount
+    </dd>
+  </dl>
+  
+  <ul>
+    <li>
+      stats を見るコマンド mon-get-stats
+    </li>
+  </ul>
+  
+  <p>
+    コマンドのヘルプをみると、
+  </p>
+  
+  <pre>
+
+$ mon-get-stats -help
+
+
+
+SYNOPSIS
+
+mon-get-stats
+
+MeasureName  --statistics  value[,value...] [--dimensions
+
+"key1=value1,key2=value2..." ] [--end-time  value ] [--namespace  value
+
+]
+
+[--period  value ] [--start-time  value ] [--unit  value ]
+
+[General Options]
+
+</pre>
+  
+  <p>
+    何が必須なのかが分かりづらいのと、key とか value に何を入れるかが説明不足。。。
+  </p>
+  
+  <ul>
+    <li>
+      instance の CPU utilization をみるコマンド <ul>
+        <li>
+          —start-time, —end-time, —namespace を設定しないとエラーが出ずに何も出力されなかった
+        </li>
+        <li>
+          日本時間で見たいときは +09:00 を加えれば OK
+        </li>
+      </ul>
+    </li>
+  </ul>
+  
+  <pre>
+
+$ mon-get-stats CPUUtilization --start-time 2009-05-22T15:00:00+09:00 --end-time 2009-05-22T15:30:00+09:00 --period 60 --statistics "Average,Minimum,Maximum" --namespace "AWS/EC2" --dimensions "InstanceId=i-1183c678"
+
+2009-05-22 06:00:00  1.0  0     0.0   4.9E-324  Percent
+
+2009-05-22 06:01:00  1.0  0.38  0.38  0.38      Percent
+
+2009-05-22 06:02:00  1.0  0     0.0   4.9E-324  Percent
+
+</pre>
+  
+  <ul>
+    <li>
+      Elastic Load Balancer の RequestCount をみるコマンド
+    </li>
+  </ul>
+  
+  <pre>
+
+$ mon-get-stats RequestCount --namespace "AWS/ELB" --statistics "Average,Minimum,Maximum" --start-time 2009-05-25T12:00:00+09:00 --end-time 2009-05-25T13:30:00+09:00
+
+2009-05-25 03:00:00  3.0  1  1.0  1.0  Count
+
+2009-05-25 03:01:00  3.0  1  1.0  1.0  Count
+
+2009-05-25 03:02:00  6.0  1  1.0  1.0  Count
+
+2009-05-25 04:05:00  3.0  1  1.0  1.0  Count
+
+</pre>
+  
+  <p>
+    出力結果の数値はこの場合 Samples, Average, Minimum, Maximum のようだ
+  </p>
+  
+  <h4>
+    auto scaling を触る
+  </h4>
+  
+  <h5>
+    準備
+  </h5>
+  
+  <ul>
+    <li>
+      CloudWatch の時と同じ
+    </li>
+    <li>
+      auto scaling API tools をダウンロードして、.bash_profile で PATH 指定
+    </li>
+  </ul>
+  
+  <h5>
+    動かしてみる
+  </h5>
+  
+  <ul>
+    <li>
+      コマンドは as-** という形式
+    </li>
+  </ul>
+  
+  <ul>
+    <li>
+      1) as-create-launch-config : スケールアウトする時(増やす際)にどの AMI を増やして行くのかあらかじめ指定する
+    </li>
+    <li>
+      2) as-create-auto-scaling-group : 先に設定した launch-config を group に設定する <ul>
+        <li>
+          —availablitity-zone と —min-size/—max-size は必須
+        </li>
+        <li>
+          min-size は最小構成 instance 数、max-size は最大構成 instance 数
+        </li>
+        <li>
+          1test という launch-config を使って、最小0/最大2 instance の test-group1 を作成する場合
+        </li>
+      </ul>
+    </li>
+  </ul>
+  
+  <pre>
+
+$ as-create-auto-scaling-group test-group1 --launch-configuration 1test --availability-zones us-east-1a --min-size 0 --max-size 2
+
+</pre>
+  
+  <ul>
+    <li>
+      3) as-create-or-update-trigger : auto-scaling-group に対する閾値設定 <ul>
+        <li>
+          test-group1 という auto-scaling group を使って、CPU利用率の平均で 20%以下 になった際にインスタンスを減らす、80% 以上になった時にインスタンスを増やす、120秒状態が継続した場合に発動する test-trigger2 という閾値を設定する場合
+        </li>
+      </ul>
+    </li>
+  </ul>
+  
+  <pre>
+
+$ as-create-or-update-trigger test-trigger2 --auto-scaling-group test-group1 --namespace "AWS/EC2" --measure CPUUtilization --statistic Average --dimensions "AutoScalingGroupName=test-group01" --period 60 --lower-threshold 20 --lower-breach-increment=-1 --upper-breach-increment 1 --upper-threshold 80 --breach-duration 120
+
+</pre>
+  
+  <ul>
+    <li>
+      応用編 : auto-scaling group で min-size 1 にした場合 <ul>
+        <li>
+          group 内のすべての instance を terminated したら、自動的に 1 instance が起動する
+        </li>
+        <li>
+          この時は launch-config で指定した AMI が起動する
+        </li>
+        <li>
+          すべて落ちても自動的に立ち上げてくれるので、web のフロントや front proxy 的な動きをするものになどに使えそう
+        </li>
+        <li>
+          手動ですべて落としたいときは
+        </li>
+      </ul>
+    </li>
+  </ul>
+  
+  <pre>
+
+$ as-terminate-instance-in-auto-scaling-group i-**** --decrement-desired-capacity
+
+</pre>
+  
+  <p>
+    を実行すると指定したサイズに関係なく落ちてくれるので、自動起動はなくなる
+  </p>
+  
+  <h4>
+    load blancer を触る
+  </h4>
+  
+  <h5>
+    準備
+  </h5>
+  
+  <ul>
+    <li>
+      CloudWatch の時と同じ
+    </li>
+    <li>
+      Elastic Load Balancing API Tools をダウンロードして、.bash_profile で PATH 指定
+    </li>
+  </ul>
+  
+  <h5>
+    動かしてみる
+  </h5>
+  
+  <ul>
+    <li>
+      コマンドは elb-** という形式
+    </li>
+    <li>
+      1) elb-create-lb : Load Balancer を作るコマンド <ul>
+        <li>
+          elb-create-lb -help をみる
+        </li>
+      </ul>
+    </li>
+  </ul>
+  
+  <pre>
+
+SYNOPSIS
+
+elb-create-lb
+
+LoadBalancerName  --availability-zones  value[,value...]  --listener
+
+"protocol=value, lb-port=value, instance-port=value" [ --listener
+
+"protocol=value, lb-port=value, instance-port=value" ...]
+
+[General Options]
+
+</pre>
+  
+  <ul>
+    <ul>
+      <li>
+        Load Balancer がサービスするポート番号と転送先ポート番号を設定する
+      </li>
+      <li>
+        test-lb4 という名で、http 80 番でサービスして、http 80 番へ転送する Load Balancer を作成
+      </li>
+    </ul>
+  </ul>
+  
+  <pre>
+
+$ elb-create-lb test-lb4 --availability-zones us-east-1a --listener "lb-port=80,instance-port=80,protocol=http"
+
+DNS-NAME  test-lb4-1200388198.us-east-1.elb.amazonaws.com
+
+</pre>
+  
+  <ul>
+    <ul>
+      <li>
+        出力結果に Load Balancer に割り当てる FQDN が発行される
+      </li>
+      <li>
+        実際オリジナルドメインに結びつける時には、オリジナルドメインの DNS サーバ上で CNAME する必要があるだろう
+      </li>
+      <li>
+        確かめてみると
+      </li>
+    </ul>
+  </ul>
+  
+  <pre>
+
+$ host test-lb4-1200388198.us-east-1.elb.amazonaws.com
+
+test-lb4-1200388198.us-east-1.elb.amazonaws.com has address 174.129.197.180
+
+</pre>
+  
+  <p>
+    確かにグローバルアドレスが振られている
+  </p>
+  
+  <ul>
+    <li>
+      2) elb-register-instances-with-lb : 作った ELB に instance を登録する <ul>
+        <li>
+          すでにinstance name が分かっている(起動している)こと
+        </li>
+        <li>
+          先ほど設定した test-lb4 という Load Balancer に3つの instance を登録する
+        </li>
+      </ul>
+    </li>
+  </ul>
+  
+  <pre>
+
+$ elb-register-instances-with-lb test-lb4 --instances i-fb155392,i-ff155396,i-f315539a
+
+INSTANCE-ID  i-fb155392
+
+INSTANCE-ID  i-ff155396
+
+INSTANCE-ID  i-f315539a
+
+</pre>
+  
+  <ul>
+    <li>
+      3) Load Balancer は分散対象となる instance の health check を行っているので、確認 <ul>
+        <li>
+          Load Balancer 名 test-lb4 での health check 結果
+        </li>
+      </ul>
+    </li>
+  </ul>
+  
+  <pre>
+
+$ elb-describe-instance-health test-lb4
+
+INSTANCE-ID  i-fb155392  InService
+
+INSTANCE-ID  i-ff155396  InService
+
+INSTANCE-ID  i-f315539a  InService
+
+</pre>
+  
+  <ul>
+    <ul>
+      <li>
+        instance が生きていれば InService、死んでいれば OutService となる
+      </li>
+      <li>
+        instance を登録した時点で、デフォルトで何がしかのチェックが行われている。設定内容は不明
+      </li>
+    </ul>
+    
+    <li>
+      4) さらにオリジナルの health check設定を入れてみる <ul>
+        <li>
+          Load Balancer test-lb4 にて登録した instance に対して TCP 80 番ポートのチェック、interval 5sec(これが最小値)、timeout 3sec、死活の閾値 2回続いた時
+        </li>
+      </ul>
+    </li>
+  </ul>
+  
+  <pre>
+
+$ elb-configure-healthcheck test-lb4 --target "TCP:80" --interval 5 --timeout 3 --unhealthy-threshold 2 --healthy-threshold 2
+
+HEALTH-CHECK  TCP:80  5  3  2  2
+
+
+
+$ elb-describe-instance-health test-lb4
+
+INSTANCE-ID  i-fb155392  InService
+
+INSTANCE-ID  i-ff155396  InService
+
+INSTANCE-ID  i-f315539a  InService
+
+</pre>
+  
+  <p>
+    これにて確認終了。
+  </p>
+  
+  <ul>
+    <ul>
+      <li>
+        分散方式は不明 ソースIP縛りなのか、完全なラウンドロビンなのか
+      </li>
+      <li>
+        設定内容的に L4 スイッチとしての振る舞いまで、L7レベルは設定できない
+      </li>
+    </ul>
+  </ul>
+  
+  <h5>
+    ちょっとはまったこと
+  </h5>
+  
+  <ul>
+    <li>
+      Load Balancer から instance への health check する際には、instance に適用している sercurity group(firewall) にて source CIDR に <del datetime="2010-03-08T16:16:00+09:00">0.0.0.0/0(any)</del> ヘルスチェックしてくる source IP address が設定されていること
+    </li>
+    <li>
+      health check packet がはじかれてしまい、OutService 扱いになってしまうため
+    </li>
+    <li>
+      Load Balancer と instance に割り当てられていたグローバルアドレスより 174.129.197.0/24 を設定しても NG だったことから、異なる interface から通信していて、Amaozn EC2 内であってもすべて Security Group が適用されていると思われる
+    </li>
+    <li>
+      =&gt; 任意のローカルアドレスからチェックされていることが分かった。tcpdump などしてアドレスを特定して security group に追加すれば広く設定する必要はない(<a href="http://d.hatena.ne.jp/d_sea/20100305/p1" target="_blank"> Amazon EC2 Elastic Load Balancing をもう少し詳しく見てみた – つれづれなる・・・</a><a href="http://b.hatena.ne.jp/entry/http://d.hatena.ne.jp/d_sea/20100305/p1" class="http-bookmark" target="_blank"><img src="http://b.hatena.ne.jp/entry/image/http://d.hatena.ne.jp/d_sea/20100305/p1" alt="" class="http-bookmark"></a> より)
+    </li>
+  </ul>
+  
+  <h5>
+    気になったこと
+  </h5>
+  
+  <ul>
+    <li>
+      直接 instance に割り当てられた FQDN にブラウザからアクセスしてもみれる
+    </li>
+    <li>
+      Load Balancer に割り当てられた FQDN にブラウザからアクセスしてもみれる
+    </li>
+    <li>
+      instance のデフォルトゲートウエイが変わっていないことから、Load Balancer の動作は route 方式でなくて、おそらく NAT 方式なのだろう
+    </li>
+  </ul>
+  
+  <h4>
+    全体通して分かったこと
+  </h4>
+  
+  <p>
+    (<a href="http://d.hatena.ne.jp/d_sea/20100306/p1" target="_blank"> Amazon EC2 Auto Scaling をもう少し詳しく見てみた – つれづれなる・・・</a><a href="http://b.hatena.ne.jp/entry/http://d.hatena.ne.jp/d_sea/20100306/p1" class="http-bookmark" target="_blank"><img src="http://b.hatena.ne.jp/entry/image/http://d.hatena.ne.jp/d_sea/20100306/p1" alt="" class="http-bookmark"></a>より、正しくない部分を修正)
+  </p>
+  
+  <h5>
+    auto scaling と Load Balancer の連携は <del datetime="2010-03-08T22:22:38+09:00">今のところできてないようだ</del> 可能
+  </h5>
+  
+  <ul>
+    <li>
+      自動的に auto scaling から Load Balancer へ instance-ID 情報を渡すコマンドなりは<del datetime="2010-03-08T22:22:38+09:00">見つけられなかった</del> —load-balancers オプションを用いる
+    </li>
+    <li>
+      <del datetime="2010-03-08T22:22:38+09:00">Load Balancer の分散対象を設定するときはあらかじめ起動してある instance-ID を指定するので、auto scaling が立ち上げた instance-ID は手動で設定する必要がある</del>
+    </li>
+    <li>
+      <del datetime="2010-03-08T22:22:38+09:00">Load Balancer 配下への追加は手動になるので、Load Balancer を使うケースは auto scale のメリットが発揮できない</del>
+    </li>
+    <li>
+      <del datetime="2010-03-08T22:22:38+09:00">これができると web のフロントエンドの負荷分散を自動的にできて、auto scaling のメリットがでるが今回の機能追加ではカバーできていない</del>
+    </li>
+    <li>
+      今回の機能追加 auto scaling は instance が落ちてしまった際、自動的に起動できる対障害性のアップにはなりそう
+    </li>
+  </ul>
+  
+  <h5>
+    Amazon EC2 が制御できる範囲はあくまでネットワーク～電源 ON/OFF まで
+  </h5>
+  
+  <ul>
+    <li>
+      Load Balancer は既存の L4 スイッチと変わらない基本動作をする
+    </li>
+    <li>
+      ネットワーク機能的にはこれでもう整ったといっていいのでは
+    </li>
+    <li>
+      AMI ベースで auto scaling するので、立ち上がった際の不整合は起きない環境で AMI 保存しておく必要がある
+    </li>
+    <li>
+      auto scaling はあくまで instance の起動/終了になるので、OS 内でのオペレーションは関与できない
+    </li>
+    <li>
+      バックエンドや DB のスケーリングをする際には OS 内のでのオペレーションが必要なので、ここは Amazon ではないサービス提供会社が行える部分と思われる
+    </li>
+  </ul>
+</div>
+
+</article>
+
+
+  <div class="container">
+    <div class="share-page">
+<ul class="rrssb-buttons clearfix">
+    <li class="rrssb-email">
+    <!-- Replace subject with your message using URL Endocding: http://meyerweb.com/eric/tools/dencoder/ -->
+        <a href="mailto:?subject=Amazon%20EC2%20%E6%96%B0%E6%A9%9F%E8%83%BD%20Monitoring,%20Auto%20Scaling%20and%20Elastic%20Load%20Balancing%20%E3%82%92%E4%B8%80%E9%80%9A%E3%82%8A%E8%A7%A6%E3%81%A3%E3%81%A6%E3%81%BF%E3%81%9F&amp;body=Check%20out:%20http://hirofukami.com/2009/05/24/amazon-ec2-monitoring-auto-scaling-and-elastic/">
+            <span class="rrssb-icon"><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 28 28"><path d="M20.11 26.147c-2.335 1.05-4.36 1.4-7.124 1.4C6.524 27.548.84 22.916.84 15.284.84 7.343 6.602.45 15.4.45c6.854 0 11.8 4.7 11.8 11.252 0 5.684-3.193 9.265-7.398 9.3-1.83 0-3.153-.934-3.347-2.997h-.077c-1.208 1.986-2.96 2.997-5.023 2.997-2.532 0-4.36-1.868-4.36-5.062 0-4.75 3.503-9.07 9.11-9.07 1.713 0 3.7.4 4.6.972l-1.17 7.203c-.387 2.298-.115 3.3 1 3.4 1.674 0 3.774-2.102 3.774-6.58 0-5.06-3.27-8.994-9.304-8.994C9.05 2.87 3.83 7.545 3.83 14.97c0 6.5 4.2 10.2 10 10.202 1.987 0 4.09-.43 5.647-1.245l.634 2.22zM16.647 10.1c-.31-.078-.7-.155-1.207-.155-2.572 0-4.596 2.53-4.596 5.53 0 1.5.7 2.4 1.9 2.4 1.44 0 2.96-1.83 3.31-4.088l.592-3.72z"></path></svg></span>
+            <span class="rrssb-text">email</span>
+        </a>
+    </li>
+    <li class="rrssb-facebook">
+<!--  Replace with your URL. For best results, make sure you page has the proper FB Open Graph tags in header: https://developers.facebook.com/docs/opengraph/howtos/maximizing-distribution-media-content/ -->
+        <a href="https://www.facebook.com/sharer/sharer.php?u=http://hirofukami.com/2009/05/24/amazon-ec2-monitoring-auto-scaling-and-elastic/" class="popup">
+            <span class="rrssb-icon"><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 29 29"><path d="M26.4 0H2.6C1.714 0 0 1.715 0 2.6v23.8c0 .884 1.715 2.6 2.6 2.6h12.393V17.988h-3.996v-3.98h3.997v-3.062c0-3.746 2.835-5.97 6.177-5.97 1.6 0 2.444.173 2.845.226v3.792H21.18c-1.817 0-2.156.9-2.156 2.168v2.847h5.045l-.66 3.978h-4.386V29H26.4c.884 0 2.6-1.716 2.6-2.6V2.6c0-.885-1.716-2.6-2.6-2.6z"></path></svg></span>
+            <span class="rrssb-text">facebook</span>
+        </a>
+    </li>
+    <li class="rrssb-twitter">
+        <!-- Replace href with your Meta and URL information  -->
+        <a href="https://twitter.com/intent/tweet?text=Amazon%20EC2%20%E6%96%B0%E6%A9%9F%E8%83%BD%20Monitoring,%20Auto%20Scaling%20and%20Elastic%20Load%20Balancing%20%E3%82%92%E4%B8%80%E9%80%9A%E3%82%8A%E8%A7%A6%E3%81%A3%E3%81%A6%E3%81%BF%E3%81%9F&amp;url=http://hirofukami.com/2009/05/24/amazon-ec2-monitoring-auto-scaling-and-elastic/" class="popup">
+            <span class="rrssb-icon"><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 28 28"><path d="M24.253 8.756C24.69 17.08 18.297 24.182 9.97 24.62a15.093 15.093 0 0 1-8.86-2.32c2.702.18 5.375-.648 7.507-2.32a5.417 5.417 0 0 1-4.49-3.64c.802.13 1.62.077 2.4-.154a5.416 5.416 0 0 1-4.412-5.11 5.43 5.43 0 0 0 2.168.387A5.416 5.416 0 0 1 2.89 4.498a15.09 15.09 0 0 0 10.913 5.573 5.185 5.185 0 0 1 3.434-6.48 5.18 5.18 0 0 1 5.546 1.682 9.076 9.076 0 0 0 3.33-1.317 5.038 5.038 0 0 1-2.4 2.942 9.068 9.068 0 0 0 3.02-.85 5.05 5.05 0 0 1-2.48 2.71z"></path></svg></span>
+            <span class="rrssb-text">twitter</span>
+        </a>
+    </li>
+    <li class="rrssb-linkedin">
+        <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=http://hirofukami.com/2009/05/24/amazon-ec2-monitoring-auto-scaling-and-elastic/&amp;title=Amazon%20EC2%20%E6%96%B0%E6%A9%9F%E8%83%BD%20Monitoring,%20Auto%20Scaling%20and%20Elastic%20Load%20Balancing%20%E3%82%92%E4%B8%80%E9%80%9A%E3%82%8A%E8%A7%A6%E3%81%A3%E3%81%A6%E3%81%BF%E3%81%9F&amp;summary=Amazon%20EC2%20%E6%96%B0%E6%A9%9F%E8%83%BD%20Monitoring,%20Auto%20Scaling%20and%20Elastic%20Load%20Balancing%20%E3%82%92%E4%B8%80%E9%80%9A%E3%82%8A%E8%A7%A6%E3%81%A3%E3%81%A6%E3%81%BF%E3%81%9F" class="popup">
+            <span class="rrssb-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewbox="0 0 28 28">
+                    <path d="M25.424 15.887v8.447h-4.896v-7.882c0-1.98-.71-3.33-2.48-3.33-1.354 0-2.158.91-2.514 1.802-.13.315-.162.753-.162 1.194v8.216h-4.9s.067-13.35 0-14.73h4.9v2.087c-.01.017-.023.033-.033.05h.032v-.05c.65-1.002 1.812-2.435 4.414-2.435 3.222 0 5.638 2.106 5.638 6.632zM5.348 2.5c-1.676 0-2.772 1.093-2.772 2.54 0 1.42 1.066 2.538 2.717 2.546h.032c1.71 0 2.77-1.132 2.77-2.546C8.056 3.593 7.02 2.5 5.344 2.5h.005zm-2.48 21.834h4.896V9.604H2.867v14.73z"></path>
+                </svg>
+            </span>
+            <span class="rrssb-text">linkedin</span>
+        </a>
+    </li>
+    <li class="rrssb-googleplus">
+        <a href="https://plus.google.com/share?url=http://hirofukami.com/2009/05/24/amazon-ec2-monitoring-auto-scaling-and-elastic/" class="popup">
+            <span class="rrssb-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24">
+                    <path d="M21 8.29h-1.95v2.6h-2.6v1.82h2.6v2.6H21v-2.6h2.6v-1.885H21V8.29zM7.614 10.306v2.925h3.9c-.26 1.69-1.755 2.925-3.9 2.925-2.34 0-4.29-2.016-4.29-4.354s1.885-4.353 4.29-4.353c1.104 0 2.014.326 2.794 1.105l2.08-2.08c-1.3-1.17-2.924-1.883-4.874-1.883C3.65 4.586.4 7.835.4 11.8s3.25 7.212 7.214 7.212c4.224 0 6.953-2.988 6.953-7.082 0-.52-.065-1.104-.13-1.624H7.614z"></path>
+                </svg>
+            </span>
+            <span class="rrssb-text">google+</span></a>
+    </li>
+    <li class="rrssb-pinterest">
+        <a href="http://pinterest.com/pin/create/button/?url=http://hirofukami.com/2009/05/24/amazon-ec2-monitoring-auto-scaling-and-elastic/&amp;description=Amazon%20EC2%20%E6%96%B0%E6%A9%9F%E8%83%BD%20Monitoring,%20Auto%20Scaling%20and%20Elastic%20Load%20Balancing%20%E3%82%92%E4%B8%80%E9%80%9A%E3%82%8A%E8%A7%A6%E3%81%A3%E3%81%A6%E3%81%BF%E3%81%9F"><span class="rrssb-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewbox="0 0 28 28">
+                <path d="M14.02 1.57c-7.06 0-12.784 5.723-12.784 12.785S6.96 27.14 14.02 27.14c7.062 0 12.786-5.725 12.786-12.785 0-7.06-5.724-12.785-12.785-12.785zm1.24 17.085c-1.16-.09-1.648-.666-2.558-1.22-.5 2.627-1.113 5.146-2.925 6.46-.56-3.972.822-6.952 1.462-10.117-1.094-1.84.13-5.545 2.437-4.632 2.837 1.123-2.458 6.842 1.1 7.557 3.71.744 5.226-6.44 2.924-8.775-3.324-3.374-9.677-.077-8.896 4.754.19 1.178 1.408 1.538.49 3.168-2.13-.472-2.764-2.15-2.683-4.388.132-3.662 3.292-6.227 6.46-6.582 4.008-.448 7.772 1.474 8.29 5.24.58 4.254-1.815 8.864-6.1 8.532v.003z"></path>
+            </svg></span><span class="rrssb-text">pinterest</span></a>
+    </li>
+</ul>
+</div>
+  </div>
+
+
+
+
+
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_shortname  = 'hirofukamisblog';
+    var disqus_identifier = '/2009/05/24/amazon-ec2-monitoring-auto-scaling-and-elastic';
+    var disqus_title      = 'Amazon EC2 新機能 Monitoring, Auto Scaling and Elastic Load Balancing を一通り触ってみた';
+
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+
+
+
+
+
+
+      </div>
+    </div>
+  </div>
+
+  <footer class="center">
+  <div class="measure">
+    <small>
+			<div class="row">
+				<div class="col-sm-2 col-sm-offset-3 text-center">
+					<img src="/images/hirofukami.jpg" alt="Hiro Fukami" class="img-circle">
+				</div>
+				<div class="col-sm-4 text-left text-muted">
+					<b>Hiro Fukami</b><br>
+					<a href="http://twitter.com/d_sea" target="_blank">@d_sea</a>. Business Starter and Engineer in Tokyo.
+					Founder and CEO of <a href="http://players1.st" target="_blank">Players1st inc.</a> See more about me <a href="/about">here</a>.
+				</div>
+			</div>
+
+			<br>
+
+			Copyright © 2016
+			
+			    Hiro Fukami
+			
+    </small>
+  </div>
+</footer>
+
+
+</body>
+</html>

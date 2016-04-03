@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>AWS オートスケーリング設定方法 – 2013年版実践編 – Hiro Fukami's Blog</title>
+    <link rel="dns-prefetch" href="//maxcdn.bootstrapcdn.com">
+    <link rel="dns-prefetch" href="//cdn.mathjax.org">
+    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Hiro Fukami(深海寛信 ふかみひろのぶ)'s Blog : 世の中をより良く変えるため、世の中にない新しいサービスを模索する日々。CEO of Players1st inc., Business Starter, Engineer and Daddy.">
+    <meta name="robots" content="all">
+    <meta name="author" content="Hiro Fukami">
+    <meta name="keywords" content="Tech">
+    <link rel="canonical" href="http://hirofukami.com/2013/07/23/aws-autoscaling-setting-2013/">
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed for Hiro Fukami's Blog" href="/feed.xml">
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/pixyll.css?201604031232" type="text/css">
+
+    <!-- Fonts -->
+    
+    <link href="//fonts.googleapis.com/css?family=Merriweather:900,900italic,300,300italic" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Lato:900,300" rel="stylesheet" type="text/css">
+    
+    
+      <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+    
+    <!-- MathJax -->
+    
+
+    <!-- Verifications -->
+    
+    
+
+    <!-- Open Graph -->
+    <!-- From: https://github.com/mmistakes/hpstr-jekyll-theme/blob/master/_includes/head.html -->
+    <meta property="og:locale" content="en_US">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="AWS オートスケーリング設定方法 &amp;#8211; 2013年版実践編">
+    <meta property="og:description" content="Hiro Fukami(深海寛信 ふかみひろのぶ)'s Blog : 世の中をより良く変えるため、世の中にない新しいサービスを模索する日々。CEO of Players1st inc., Business Starter, Engineer and Daddy.">
+    <meta property="og:url" content="http://hirofukami.com/2013/07/23/aws-autoscaling-setting-2013/">
+    <meta property="og:site_name" content="Hiro Fukami's Blog">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    
+        <meta name="twitter:site" content="@d_sea">
+    
+    <meta name="twitter:title" content="AWS オートスケーリング設定方法 – 2013年版実践編">
+    <meta name="twitter:description" content="Hiro Fukami(深海寛信 ふかみひろのぶ)'s Blog : 世の中をより良く変えるため、世の中にない新しいサービスを模索する日々。CEO of Players1st inc., Business Starter, Engineer and Daddy.">
+    <meta name="twitter:url" content="http://hirofukami.com/2013/07/23/aws-autoscaling-setting-2013/">
+
+    <!-- Icons -->
+    <link rel="icon" type="image/png" href="/images/hirofukami.png">
+
+    
+    <script type="text/javascript">
+       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+       ga('create', 'UA-44359867-3', 'auto');
+       ga('send', 'pageview');
+    </script>
+    
+</head>
+
+<body class="site">
+  
+	
+
+  <div class="site-wrap">
+    <header class="site-header px2 px-responsive">
+  <div class="mt2 wrap">
+    <div class="measure">
+      <!-- <a href="http://hirofukami.com" class="site-title">Hiro Fukami's Blog</a> -->
+      <a href="/" class="site-title">Hiro Fukami's Blog</a>
+      <nav class="site-nav">
+        
+    
+
+    
+        <a href="/about/">About</a>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+
+    
+
+    
+
+    
+
+    
+        <a href="/contact/">Contact</a>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+
+  <form action="http://google.com/search" method="get">
+    <input type="text" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="as_sitesearch" value="http://hirofukami.com">
+  </form>
+
+
+      </nav>
+      <div class="clearfix"></div>
+      
+        <div class="social-icons">
+  <div class="social-icons-right">
+    
+      <a class="fa fa-github" href="https://github.com/d-sea"></a>
+    
+    
+      <a class="fa fa-bitbucket" href="https://bitbucket.org/d_sea"></a>
+    
+    
+    <a class="fa fa-rss" href="/feed.xml"></a>
+    
+      <a class="fa fa-twitter" href="https://twitter.com/d_sea"></a>
+    
+    
+    
+    
+    
+      <a class="fa fa-envelope" href="mailto:dee.sea@gmail.com"></a>
+    
+    
+      <a class="fa fa-linkedin" href="https://www.linkedin.com/in/hirofukami"></a>
+    
+    
+    
+  </div>
+  <div class="right">
+    
+    
+    
+  </div>
+</div>
+<div class="clearfix"></div>
+
+      
+    </div>
+  </div>
+</header>
+
+
+    <div class="post p2 p-responsive wrap" role="main">
+      <div class="measure">
+        
+
+
+<div class="post-header mb2">
+  <h1>AWS オートスケーリング設定方法 – 2013年版実践編</h1>
+  <span class="post-meta">Jul 23, 2013</span><br>
+  
+  <span class="post-meta">
+  <small>
+  <div class="post-categories">
+  Categories: 
+  
+  
+  <a href="/categories/#Tech">Tech</a>
+  
+</div>
+  <div class="post-tags">
+  Tags: 
+  
+  
+  <a href="/tags/#auto%20scaling">auto scaling</a>,
+  
+  <a href="/tags/#AWS">AWS</a>,
+  
+  <a href="/tags/#cloud">cloud</a>,
+  
+  <a href="/tags/#CloudWatch">CloudWatch</a>,
+  
+  <a href="/tags/#setting">setting</a>
+  
+</div>
+  </small>
+  </span>
+<!--   <span class="post-meta small">
+  
+    4 minute read
+  
+  </span>
+ -->
+</div>
+
+<article class="post-content">
+  <p>AWS が Auto Scaling、CloudWatch、Elastic Load Balancing を発表した時は興奮して、すぐに触ってブログに書きました。</p>
+
+<ul>
+  <li><a title="Amazon EC2 新機能 Monitoring, Auto Scaling and Elastic Load Balancing を一通り触ってみた" href="http://hirofukami.com/2009/05/24/amazon-ec2-monitoring-auto-scaling-and-elastic/" target="_blank">Amazon EC2 新機能 Monitoring, Auto Scaling and Elastic Load Balancing を一通り触ってみた</a></li>
+  <li><a title="Amazon EC2 Auto Scaling をもう少し詳しく見てみた" href="http://hirofukami.com/2010/03/05/amazon-ec2-auto-scaling/" target="_blank">Amazon EC2 Auto Scaling をもう少し詳しく見てみた</a></li>
+</ul>
+
+<p>その情報を元にして <a href="http://www.amazon.co.jp/gp/product/4774142840/ref=as_li_ss_tl?ie=UTF8&amp;camp=247&amp;creative=7399&amp;creativeASIN=4774142840&amp;linkCode=as2&amp;tag=dsea-22" target="_blank">「よくわかるAmazonEC2/S3入門」を執筆した</a> のだけど、4年前の情報なのでもう古くオートスケーリングの設定方法も変わったようだったのでしっかり追いつきたいと思って再び触ってみた。</p>
+
+<p>結論的には以前と同じように思った通りの挙動が確認できた。AWS のドキュメントも充実していて理解をだいぶ助けたが、ちょいちょい間違っている点があったり、基本的にパラメータが多くて説明が少ないので、ユーザにはとっつきにくいというより、ちゃんと動かすまでに結構大変な思いをするものなのは変わらないようだ。<br>
+ただ、実践でちゃんと使えるようになると魔法のツールになるので、設定方法を紹介してお役に立てれば幸いです。</p>
+
+<p>参考URLとしては、<a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/as-scale-based-on-demand.html" target="_blank">AWS のドキュメントサイトの Auto Scaling – Scale Based on Demand</a> に沿って進めるとできるが、その通りだと動かない部分もあり、ちょっとした解説や補足を加えて日本語で以下に書いていきます。</p>
+
+<h2 id="section">目指す挙動</h2>
+
+<p>オートスケーリングを活用して実戦的に使える設定方法としては、</p>
+
+<ul>
+  <li>常にインスタンスの負荷状態をモニタリングしている</li>
+  <li>モニタリングのある閾値を超えたら自動的にインスタンス数を増減させる</li>
+  <li>起動したインスタンスは ELB の配下に置かれる</li>
+</ul>
+
+<p>これができると例えば、Webフロントサーバのスケーラブルな環境を作ることができる。<br>
+自動的にスケールしてくれるので、今まで人間リソースに頼っていた部分が丸ごとなくなってコストカットも狙える。</p>
+
+<p>ただ注意点は、起動したインスタンスは起動後処理を開始できることを担保してあげないといけないので、ファイルのデプロイやアプリケーションの自動起動などを行うためのセッティングや起動スクリプトの用意などが必要。</p>
+
+<h2 id="auto-scaling-">Auto Scaling 設定概要</h2>
+
+<p>オートスケーリングの設定は複数の設定を組み合わせて動作させる。</p>
+
+<ul>
+  <li>launch-config : インスタンスの起動情報を設定する。AMI、インスタンス、キーペア、セキュリティグループなどを指定する</li>
+  <li>auto-scaling-group : オートスケーリングの中心となる設定。最大最小起動インスタンス数、ELB、アベイラビリティゾーンなどを指定する</li>
+  <li>scaling policy : インスタンスを増減方法の設定。一度に立ち上げるインスタンス数などを指定する</li>
+  <li>metric-alarm : CloudWatch における閾値の設定。どんな条件の時にアラートを出すかを指定する</li>
+</ul>
+
+<p>上の3つが Auto Scaling コマンドで実施し、最後は CloudWatch コマンドで実施する。<br>
+各設定と挙動を整理すると以下の図のようになる。<br>
+<a href="/images/2013/07/130723aws-autoscaling-001.png"><img class="aligncenter size-large wp-image-1103" alt="130723AWS-AutoScaling.001" src="/images/2013/07/130723aws-autoscaling-001.png?resize=830%2C622" data-recalc-dims="1"></a><!--more--></p>
+
+<h2 id="section-1">準備</h2>
+
+<p>現在 オートスケーリングの設定はコマンドラインからのみのようなので、コマンドラインツールをダウンロードして、自分の環境に適用させる。</p>
+
+<ul>
+  <li>Auto Scaling Command Line Tool : http://aws.amazon.com/developertools/2535</li>
+  <li>CloudWatch Command Line Tool : http://aws.amazon.com/developertools/2534</li>
+</ul>
+
+<p>自分の環境への適用方法は割愛。<br>
+結果として、ターミナルで as コマンドと mon コマンドが実行可能になっていること。</p>
+
+<p>各コマンドを理解するには [コマンド] -h としてヘルプを見る。必須項目は何か、オプションの意味などが分かる。</p>
+
+<h2 id="launch-config-">launch config の設定</h2>
+
+<p>as-create-launch-config で launch config の作成をする。<br>
+以下は、</p>
+
+<ul>
+  <li>launch-config 名 : demo00-test04</li>
+  <li>AMI : ami-893cab88</li>
+  <li>インスタンスタイプ : t1.micro</li>
+  <li>キーペア : deesea</li>
+  <li>セキュリティグループ : quick-start-1</li>
+  <li>リージョン : ap-northeast-1 (Tokyo)</li>
+</ul>
+
+<p>とした場合の設定方法</p>
+
+<pre class="brush: bash; title: ; notranslate" title="">$ as-create-launch-config demo00-test04 --image-id ami-893cab88 --instance-type t1.micro --region ap-northeast-1 --key deesea --group quick-start-1
+</pre>
+
+<p>キーペアとセキュリティグループは必須項目ではないのだけど、設定しないとサーバにログイン出来ない、サービスできないことになるので現実的には必須項目。</p>
+
+<p>確認する時は、as-describe-launch-config する</p>
+
+<pre class="brush: bash; title: ; notranslate" title="">$ as-describe-launch-configs -H
+LAUNCH-CONFIG  NAME           IMAGE-ID      TYPE
+LAUNCH-CONFIG  demo00-test04  ami-893cab88  t1.micro
+</pre>
+
+<h2 id="auto-scaling-group-">Auto Scaling Group の設定</h2>
+
+<p>as-create-auto-scaling-group で auto scaling group を作成する。<br>
+以下は、</p>
+
+<ul>
+  <li>auto-scaling-group 名 : demo00-test00-group00</li>
+  <li>適用させる launch config 名 : demo00-test04</li>
+  <li>(必要であれば) 起動したインスタンスを配下につける ELB 名 : demo00</li>
+  <li>起動最大インスタンス数 : 10</li>
+  <li>起動最小インスタンス数 : 2</li>
+  <li>アベイラビリティゾーン : ap-northeast-1a, ap-northeast-1c</li>
+  <li>リージョン : ap-northeast-1 (Tokyo)</li>
+</ul>
+
+<p>とした場合の設定方法</p>
+
+<pre class="brush: bash; title: ; notranslate" title="">$ as-create-auto-scaling-group demo00-test00-group00 --launch-configuration demo00-test04 --load-balancers demo00 --max-size 10 --min-size 2 --availability-zones ap-northeast-1a,ap-northeast-1c --region ap-northeast-1
+</pre>
+
+<p>この設定をした時点で、min-size 数のインスタンスが自動的に起動する。<br>
+min-size は「常に起動するインスタンス数」になるので、min-size 1 以上にすれば落ちない状態を作ることができる。</p>
+
+<p>確認する時は、as-describe-auto-scaling-groups する</p>
+
+<pre class="brush: bash; title: ; notranslate" title="">$ as-describe-auto-scaling-groups
+AUTO-SCALING-GROUP  demo00-test00-group00  demo00-test04  ap-northeast-1c,ap-northeast-1a  demo00  2  10  2  Default
+INSTANCE  i-eaea06ee  ap-northeast-1c  InService  Healthy  demo00-test04
+INSTANCE  i-48c9254c  ap-northeast-1a  InService  Healthy  demo00-test04
+</pre>
+
+<p>起動したインスタンスも表示される。この場合2つのインスタンスが ap-northeast-1a と ap-northeast-1c に分散して起動されていることが分かる。</p>
+
+<p>修正したい時は、as-update-auto-scaling-group を使う。修正したい部分だけ書けばアップデートされる。</p>
+
+<pre class="brush: bash; title: ; notranslate" title="">$ as-update-auto-scaling-group demo00-test00-group00 --launch-config demo00-test05
+</pre>
+
+<p>アップデートコマンドがあるのは auto scaling group だけなので、AMI を更新した時の適用方法は、</p>
+
+<ol>
+  <li>as-create-launch-config で新しい launch config を作成</li>
+  <li>as-update-auto-scaling-group で適用させる launch config を変更</li>
+  <li>as-delete-launch config で古い launch config を削除</li>
+</ol>
+
+<p>という流れを踏む必要がある。</p>
+
+<h2 id="scaling-policy-">Scaling Policy の設定</h2>
+
+<p>as-put-scaling-policy で scaling policy を作成する。<br>
+スケールアウトとスケールインそれぞれに対して設定する。<br>
+以下は、スケールアウト用</p>
+
+<ul>
+  <li>scaling policy 名 : demo00-test00-outpolicy00</li>
+  <li>適用する auto scaling group 名 : demo00-test00-group00</li>
+  <li>adjustment トリガーに引っかかった時に増やす値 : 50</li>
+  <li>type adjustmentの単位 : PercentChangeInCapacity</li>
+  <li>リージョン : ap-northeast-1 (Tokyo)</li>
+</ul>
+
+<p>adjustment 50 で type が PercentChangeInCapacity と言うことは。全体のキャパシティに対して 50% 増加する分のスケーリングをするという意味。現在の起動インスタンス数が2だったら、2の50％の1インスタンスを起動して合計3インスタンスになる。現在のインスタンス数が10だったら、5インスタンス増えて合計15インスタンスになる。</p>
+
+<pre class="brush: bash; title: スケールアウト; notranslate" title="スケールアウト">$ as-put-scaling-policy demo00-test00-outpolicy00 -g demo00-test00-group00 --adjustment 50 --type PercentChangeInCapacity --region ap-northeast-1
+</pre>
+
+<p> </p>
+
+<pre class="brush: bash; title: 出力結果; notranslate" title="出力結果">arn:aws:autoscaling:ap-northeast-1:910777643605:scalingPolicy:801eb489-69c7-4ecd-8b5c-60e7509c9dbf:autoScalingGroupName/demo00-test00-group00:policyName/demo00-test00-outpolicy00
+</pre>
+
+<p>以下は、スケールアウト用</p>
+
+<ul>
+  <li>scaling policy 名 : demo00-test00-inpolicy00</li>
+  <li>適用する auto scaling group 名 : demo00-test00-group00</li>
+  <li>adjustment トリガーに引っかかった時に増やす値 : -1</li>
+  <li>type adjustmentの単位 : ChangeInCapacity</li>
+  <li>リージョン : ap-northeast-1 (Tokyo)</li>
+</ul>
+
+<p>インスタンス数を減らすので、adjustment はマイナスの数字になる。<br>
+ここでは単純に1インスタンスを減らす設定内容。</p>
+
+<pre class="brush: bash; title: スケールイン; notranslate" title="スケールイン">$ as-put-scaling-policy demo00-test00-inpolicy00 -g demo00-test00-group00 --adjustment=-1 --type ChangeInCapacity --region ap-northeast-1
+</pre>
+
+<p> </p>
+
+<pre class="brush: bash; title: 出力結果; notranslate" title="出力結果">arn:aws:autoscaling:ap-northeast-1:910777643605:scalingPolicy:0ce7a750-7fa1-46fc-a316-d2647013aa3f:autoScalingGroupName/demo00-test00-group00:policyName/demo00-test00-inpolicy00
+</pre>
+
+<p>arn: から始まる出力結果は次で設定する CloudWatch の設定時に使うのでメモっておく。<br>
+as-describe-policies コマンドの POLICY-ARN 項目でも確認できる。</p>
+
+<h2 id="metric-alarm-">metric alarm の設定</h2>
+
+<p>CloudWatch のコマンド mon-put-metric-alrm を使って閾値を設定する。<br>
+これもスケールアウトとスケールインそれぞれ設定する。<br>
+以下は、</p>
+
+<ul>
+  <li>アラーム名 : スケールアウト demo00-test00-AddCapacity01、スケールイン demo00-test00-RemoveCapacity01</li>
+  <li>モニタリングする項目 metric-name : CPUUtilization</li>
+  <li>適用サービス名 namespace : AWS/EC2</li>
+  <li>モニタリング値の統計項目 : Average</li>
+  <li>監視間隔 : 60 (sec)</li>
+  <li>閾値 : スケールアウト 90、スケールイン 40</li>
+  <li>検出条件 : GreaterThanOrEqualToThreshold (閾値の値と等しくもしくは超えた時)</li>
+  <li>監視対象 dimensions : AutoScalingGroupName=demo00-test00-group00 (スケーリンググループ全体に適用しているのがポイント)</li>
+  <li>アラームを出すまでに連続で閾値を超えた回数 evaluation-periods : 2 (この場合、監視間隔60 x 2 = 120sec後にアラームを発生する)</li>
+  <li>アラーム発生時の処理 :
+    <ul>
+      <li>スケールアウト arn:aws:autoscaling:ap-northeast-1:910777643605:scalingPolicy:801eb489-69c7-4ecd-8b5c-60e7509c9dbf:autoScalingGroupName/demo00-test00-group00:policyName/demo00-test00-outpolicy00</li>
+      <li>スケールイン arn:aws:autoscaling:ap-northeast-1:910777643605:scalingPolicy:801eb489-69c7-4ecd-8b5c-60e7509c9dbf:autoScalingGroupName/demo00-test00-group00:policyName/demo00-test00-outpolicy00</li>
+      <li>(as-put-scaling-policy 出力結果)</li>
+    </ul>
+  </li>
+  <li>リージョン : ap-northeast-1 (Tokyo)</li>
+</ul>
+
+<p>とした場合の設定方法</p>
+
+<p>namespace は AWS のドキュメントだと “AWS/EC2″ とダブルコーテーションで囲ってあるが、これだと設定はできるが挙動時にエラーになって動作してくれない。</p>
+
+<pre class="brush: bash; title: ; notranslate" title="">$ mon-put-metric-alarm --alarm-name demo00-test00-AddCapacity01 --metric-name CPUUtilization --namespace=AWS/EC2 --statistic Average --period 60 --threshold 90 --comparison-operator GreaterThanOrEqualToThreshold --dimensions "AutoScalingGroupName=demo00-test00-group00" --evaluation-periods 2 --alarm-actions arn:aws:autoscaling:ap-northeast-1:910777643605:scalingPolicy:801eb489-69c7-4ecd-8b5c-60e7509c9dbf:autoScalingGroupName/demo00-test00-group00:policyName/demo00-test00-outpolicy00 --region ap-northeast-1
+
+$ mon-put-metric-alarm --alarm-name demo00-test00-RemoveCapacity01 --metric-name CPUUtilization --namespace=AWS/EC2 --statistic Average --period 60 --threshold 40 --comparison-operator LessThanOrEqualToThreshold --dimensions "AutoScalingGroupName=demo00-test00-group00" --evaluation-periods 2 --alarm-actions arn:aws:autoscaling:ap-northeast-1:910777643605:scalingPolicy:0ce7a750-7fa1-46fc-a316-d2647013aa3f:autoScalingGroupName/demo00-test00-group00:policyName/demo00-test00-inpolicy00 --region ap-northeast-1
+</pre>
+
+<h2 id="section-2">確認</h2>
+
+<p>CloudWatch の設定が正しくできているか mon-describe-alarms コマンドで確認する。</p>
+
+<pre class="brush: bash; title: ; notranslate" title="">$ mon-describe-alarms --region ap-northeast-1 --headers
+ALARM                           STATE  ALARM_ACTIONS                             NAMESPACE  METRIC_NAME     PERIOD  STATISTIC  EVAL_PERIODS  COMPARISON                     THRESHOLD
+demo00-test00-AddCapacity01     OK     arn:aws:autoscalin...-test00-outpolicy00  AWS/EC2    CPUUtilization  60      Average    2             GreaterThanOrEqualToThreshold  90.0
+demo00-test00-RemoveCapacity01  ALARM     arn:aws:autoscalin...0-test00-inpolicy00  AWS/EC2    CPUUtilization  60      Average    2             LessThanOrEqualToThreshold     40.0
+</pre>
+
+<p>通常の状態であれば STATE 項目でスケールアウトが OK、スケールイン が ALARM になっていれば良い。ALARM は今現在閾値に引っかかって ALARM を出しているという状態。INSUFFICIENT_DATA になっていなければ何か設定がおかしいということ。</p>
+
+<p>CloudWatch のログは mon-describe-alarm-history で見れる。アラームに引っかかったものや設定の更新が時系列に表示される。</p>
+
+<pre class="brush: bash; title: ; notranslate" title="">$ mon-describe-alarm-history --region ap-northeast-1
+demo00-test00-RemoveCapacity01  2013-07-22T09:02:45.790Z  Action               Successfully executed action arn:aws:autoscaling:ap-northeast-1:910777643605:scalingPolicy:0ce7a750-7fa1-46fc-a316-d2647013aa3f:autoScalingGroupName/demo00-test00-group00:policyName/demo00-test00-inpolicy00
+demo00-test00-RemoveCapacity01  2013-07-22T09:02:45.759Z  StateUpdate          Alarm updated from OK to ALARM
+demo00-test00-RemoveCapacity01  2013-07-22T08:59:45.776Z  StateUpdate          Alarm updated from ALARM to OK
+demo00-test00-RemoveCapacity01  2013-07-22T08:55:45.772Z  Action               Successfully executed action arn:aws:autoscaling:ap-northeast-1:910777643605:scalingPolicy:0ce7a750-7fa1-46fc-a316-d2647013aa3f:autoScalingGroupName/demo00-test00-group00:policyName/demo00-test00-inpolicy00
+demo00-test00-RemoveCapacity01  2013-07-22T08:55:45.768Z  StateUpdate          Alarm updated from OK to ALARM
+demo00-test00-AddCapacity02     2013-07-22T08:46:41.129Z  ConfigurationUpdate  Alarm "demo00-test00-AddCapacity02" deleted
+demo00-test00-AddCapacity03     2013-07-22T08:46:33.759Z  ConfigurationUpdate  Alarm "demo00-test00-AddCapacity03" deleted
+demo00-test00-AddCapacity05     2013-07-22T08:46:24.615Z  ConfigurationUpdate  Alarm "demo00-test00-AddCapacity05" deleted
+demo00-test00-AddCapacity05     2013-07-22T08:43:21.129Z  StateUpdate          Alarm updated from ALARM to OK
+demo00-test00-AddCapacity05     2013-07-22T08:42:21.092Z  StateUpdate          Alarm updated from OK to ALARM
+demo00-test00-AddCapacity04     2013-07-22T08:41:07.031Z  ConfigurationUpdate  Alarm "demo00-test00-AddCapacity04" deleted
+demo00-test00-AddCapacity05     2013-07-22T08:40:25.609Z  StateUpdate          Alarm updated from INSUFFICIENT_DATA to OK
+demo00-test00-AddCapacity05     2013-07-22T08:40:24.983Z  ConfigurationUpdate  Alarm "demo00-test00-AddCapacity05" created
+demo00-test00-AddCapacity04     2013-07-22T08:39:33.834Z  Action               Successfully executed action arn:aws:autoscaling:ap-northeast-1:910777643605:scalingPolicy:801eb489-69c7-4ecd-8b5c-60e7509c9dbf:autoScalingGroupName/demo00-test00-group00:policyName/demo00-test00-outpolicy00
+demo00-test00-AddCapacity04     2013-07-22T08:39:33.815Z  StateUpdate          Alarm updated from INSUFFICIENT_DATA to ALARM
+</pre>
+
+<p>また、実際のモニタリングの値を見たい時は、mon-get-stats コマンドを使う。</p>
+
+<pre class="brush: bash; title: ; notranslate" title="">$ mon-get-stats CPUUtilization --region ap-northeast-1 --namespace AWS/EC2 --statistics Average --dimensions "AutoScalingGroupName=demo00-test00-group00"
+
+(snip)
+
+2013-07-23 00:22:00  25.615000000000002  Percent
+2013-07-23 00:23:00  19.310000000000002  Percent
+2013-07-23 00:24:00  23.115000000000002  Percent
+2013-07-23 00:25:00  19.13               Percent
+2013-07-23 00:26:00  23.505000000000003  Percent
+2013-07-23 00:27:00  19.04               Percent
+2013-07-23 00:28:00  15.985              Percent
+2013-07-23 00:29:00  6.665               Percent
+</pre>
+
+<p>これで auto scaling group 全体の値が確認できる。</p>
+
+<p>負荷テストして実際スケールさせる場合は、1インスタンスだけCPU使用率100％にしても複数インスタンス起動している場合は平均で見られるので、スケールしない。複数のインスタンスで負荷をかけて、mon-get-stats の値が閾値を超えたかどうか確認しつつ、インスタンスが自動的に起動されるか見ると良い。</p>
+
+
+</article>
+
+
+  <div class="container">
+    <div class="share-page">
+<ul class="rrssb-buttons clearfix">
+    <li class="rrssb-email">
+    <!-- Replace subject with your message using URL Endocding: http://meyerweb.com/eric/tools/dencoder/ -->
+        <a href="mailto:?subject=AWS%20%E3%82%AA%E3%83%BC%E3%83%88%E3%82%B9%E3%82%B1%E3%83%BC%E3%83%AA%E3%83%B3%E3%82%B0%E8%A8%AD%E5%AE%9A%E6%96%B9%E6%B3%95%20%E2%80%93%202013%E5%B9%B4%E7%89%88%E5%AE%9F%E8%B7%B5%E7%B7%A8&amp;body=Check%20out:%20http://hirofukami.com/2013/07/23/aws-autoscaling-setting-2013/">
+            <span class="rrssb-icon"><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 28 28"><path d="M20.11 26.147c-2.335 1.05-4.36 1.4-7.124 1.4C6.524 27.548.84 22.916.84 15.284.84 7.343 6.602.45 15.4.45c6.854 0 11.8 4.7 11.8 11.252 0 5.684-3.193 9.265-7.398 9.3-1.83 0-3.153-.934-3.347-2.997h-.077c-1.208 1.986-2.96 2.997-5.023 2.997-2.532 0-4.36-1.868-4.36-5.062 0-4.75 3.503-9.07 9.11-9.07 1.713 0 3.7.4 4.6.972l-1.17 7.203c-.387 2.298-.115 3.3 1 3.4 1.674 0 3.774-2.102 3.774-6.58 0-5.06-3.27-8.994-9.304-8.994C9.05 2.87 3.83 7.545 3.83 14.97c0 6.5 4.2 10.2 10 10.202 1.987 0 4.09-.43 5.647-1.245l.634 2.22zM16.647 10.1c-.31-.078-.7-.155-1.207-.155-2.572 0-4.596 2.53-4.596 5.53 0 1.5.7 2.4 1.9 2.4 1.44 0 2.96-1.83 3.31-4.088l.592-3.72z"></path></svg></span>
+            <span class="rrssb-text">email</span>
+        </a>
+    </li>
+    <li class="rrssb-facebook">
+<!--  Replace with your URL. For best results, make sure you page has the proper FB Open Graph tags in header: https://developers.facebook.com/docs/opengraph/howtos/maximizing-distribution-media-content/ -->
+        <a href="https://www.facebook.com/sharer/sharer.php?u=http://hirofukami.com/2013/07/23/aws-autoscaling-setting-2013/" class="popup">
+            <span class="rrssb-icon"><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 29 29"><path d="M26.4 0H2.6C1.714 0 0 1.715 0 2.6v23.8c0 .884 1.715 2.6 2.6 2.6h12.393V17.988h-3.996v-3.98h3.997v-3.062c0-3.746 2.835-5.97 6.177-5.97 1.6 0 2.444.173 2.845.226v3.792H21.18c-1.817 0-2.156.9-2.156 2.168v2.847h5.045l-.66 3.978h-4.386V29H26.4c.884 0 2.6-1.716 2.6-2.6V2.6c0-.885-1.716-2.6-2.6-2.6z"></path></svg></span>
+            <span class="rrssb-text">facebook</span>
+        </a>
+    </li>
+    <li class="rrssb-twitter">
+        <!-- Replace href with your Meta and URL information  -->
+        <a href="https://twitter.com/intent/tweet?text=AWS%20%E3%82%AA%E3%83%BC%E3%83%88%E3%82%B9%E3%82%B1%E3%83%BC%E3%83%AA%E3%83%B3%E3%82%B0%E8%A8%AD%E5%AE%9A%E6%96%B9%E6%B3%95%20%E2%80%93%202013%E5%B9%B4%E7%89%88%E5%AE%9F%E8%B7%B5%E7%B7%A8&amp;url=http://hirofukami.com/2013/07/23/aws-autoscaling-setting-2013/" class="popup">
+            <span class="rrssb-icon"><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 28 28"><path d="M24.253 8.756C24.69 17.08 18.297 24.182 9.97 24.62a15.093 15.093 0 0 1-8.86-2.32c2.702.18 5.375-.648 7.507-2.32a5.417 5.417 0 0 1-4.49-3.64c.802.13 1.62.077 2.4-.154a5.416 5.416 0 0 1-4.412-5.11 5.43 5.43 0 0 0 2.168.387A5.416 5.416 0 0 1 2.89 4.498a15.09 15.09 0 0 0 10.913 5.573 5.185 5.185 0 0 1 3.434-6.48 5.18 5.18 0 0 1 5.546 1.682 9.076 9.076 0 0 0 3.33-1.317 5.038 5.038 0 0 1-2.4 2.942 9.068 9.068 0 0 0 3.02-.85 5.05 5.05 0 0 1-2.48 2.71z"></path></svg></span>
+            <span class="rrssb-text">twitter</span>
+        </a>
+    </li>
+    <li class="rrssb-linkedin">
+        <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=http://hirofukami.com/2013/07/23/aws-autoscaling-setting-2013/&amp;title=AWS%20%E3%82%AA%E3%83%BC%E3%83%88%E3%82%B9%E3%82%B1%E3%83%BC%E3%83%AA%E3%83%B3%E3%82%B0%E8%A8%AD%E5%AE%9A%E6%96%B9%E6%B3%95%20%E2%80%93%202013%E5%B9%B4%E7%89%88%E5%AE%9F%E8%B7%B5%E7%B7%A8&amp;summary=AWS%20%E3%82%AA%E3%83%BC%E3%83%88%E3%82%B9%E3%82%B1%E3%83%BC%E3%83%AA%E3%83%B3%E3%82%B0%E8%A8%AD%E5%AE%9A%E6%96%B9%E6%B3%95%20%E2%80%93%202013%E5%B9%B4%E7%89%88%E5%AE%9F%E8%B7%B5%E7%B7%A8" class="popup">
+            <span class="rrssb-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewbox="0 0 28 28">
+                    <path d="M25.424 15.887v8.447h-4.896v-7.882c0-1.98-.71-3.33-2.48-3.33-1.354 0-2.158.91-2.514 1.802-.13.315-.162.753-.162 1.194v8.216h-4.9s.067-13.35 0-14.73h4.9v2.087c-.01.017-.023.033-.033.05h.032v-.05c.65-1.002 1.812-2.435 4.414-2.435 3.222 0 5.638 2.106 5.638 6.632zM5.348 2.5c-1.676 0-2.772 1.093-2.772 2.54 0 1.42 1.066 2.538 2.717 2.546h.032c1.71 0 2.77-1.132 2.77-2.546C8.056 3.593 7.02 2.5 5.344 2.5h.005zm-2.48 21.834h4.896V9.604H2.867v14.73z"></path>
+                </svg>
+            </span>
+            <span class="rrssb-text">linkedin</span>
+        </a>
+    </li>
+    <li class="rrssb-googleplus">
+        <a href="https://plus.google.com/share?url=http://hirofukami.com/2013/07/23/aws-autoscaling-setting-2013/" class="popup">
+            <span class="rrssb-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24">
+                    <path d="M21 8.29h-1.95v2.6h-2.6v1.82h2.6v2.6H21v-2.6h2.6v-1.885H21V8.29zM7.614 10.306v2.925h3.9c-.26 1.69-1.755 2.925-3.9 2.925-2.34 0-4.29-2.016-4.29-4.354s1.885-4.353 4.29-4.353c1.104 0 2.014.326 2.794 1.105l2.08-2.08c-1.3-1.17-2.924-1.883-4.874-1.883C3.65 4.586.4 7.835.4 11.8s3.25 7.212 7.214 7.212c4.224 0 6.953-2.988 6.953-7.082 0-.52-.065-1.104-.13-1.624H7.614z"></path>
+                </svg>
+            </span>
+            <span class="rrssb-text">google+</span></a>
+    </li>
+    <li class="rrssb-pinterest">
+        <a href="http://pinterest.com/pin/create/button/?url=http://hirofukami.com/2013/07/23/aws-autoscaling-setting-2013/&amp;description=AWS%20%E3%82%AA%E3%83%BC%E3%83%88%E3%82%B9%E3%82%B1%E3%83%BC%E3%83%AA%E3%83%B3%E3%82%B0%E8%A8%AD%E5%AE%9A%E6%96%B9%E6%B3%95%20%E2%80%93%202013%E5%B9%B4%E7%89%88%E5%AE%9F%E8%B7%B5%E7%B7%A8"><span class="rrssb-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewbox="0 0 28 28">
+                <path d="M14.02 1.57c-7.06 0-12.784 5.723-12.784 12.785S6.96 27.14 14.02 27.14c7.062 0 12.786-5.725 12.786-12.785 0-7.06-5.724-12.785-12.785-12.785zm1.24 17.085c-1.16-.09-1.648-.666-2.558-1.22-.5 2.627-1.113 5.146-2.925 6.46-.56-3.972.822-6.952 1.462-10.117-1.094-1.84.13-5.545 2.437-4.632 2.837 1.123-2.458 6.842 1.1 7.557 3.71.744 5.226-6.44 2.924-8.775-3.324-3.374-9.677-.077-8.896 4.754.19 1.178 1.408 1.538.49 3.168-2.13-.472-2.764-2.15-2.683-4.388.132-3.662 3.292-6.227 6.46-6.582 4.008-.448 7.772 1.474 8.29 5.24.58 4.254-1.815 8.864-6.1 8.532v.003z"></path>
+            </svg></span><span class="rrssb-text">pinterest</span></a>
+    </li>
+</ul>
+</div>
+  </div>
+
+
+
+
+
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_shortname  = 'hirofukamisblog';
+    var disqus_identifier = '/2013/07/23/aws-autoscaling-setting-2013';
+    var disqus_title      = 'AWS オートスケーリング設定方法 &#8211; 2013年版実践編';
+
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+
+
+
+
+
+
+      </div>
+    </div>
+  </div>
+
+  <footer class="center">
+  <div class="measure">
+    <small>
+			<div class="row">
+				<div class="col-sm-2 col-sm-offset-3 text-center">
+					<img src="/images/hirofukami.jpg" alt="Hiro Fukami" class="img-circle">
+				</div>
+				<div class="col-sm-4 text-left text-muted">
+					<b>Hiro Fukami</b><br>
+					<a href="http://twitter.com/d_sea" target="_blank">@d_sea</a>. Business Starter and Engineer in Tokyo.
+					Founder and CEO of <a href="http://players1.st" target="_blank">Players1st inc.</a> See more about me <a href="/about">here</a>.
+				</div>
+			</div>
+
+			<br>
+
+			Copyright © 2016
+			
+			    Hiro Fukami
+			
+    </small>
+  </div>
+</footer>
+
+
+</body>
+</html>

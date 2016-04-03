@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Amazon EC2 Auto Scaling をもう少し詳しく見てみた – Hiro Fukami's Blog</title>
+    <link rel="dns-prefetch" href="//maxcdn.bootstrapcdn.com">
+    <link rel="dns-prefetch" href="//cdn.mathjax.org">
+    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Hiro Fukami(深海寛信 ふかみひろのぶ)'s Blog : 世の中をより良く変えるため、世の中にない新しいサービスを模索する日々。CEO of Players1st inc., Business Starter, Engineer and Daddy.">
+    <meta name="robots" content="all">
+    <meta name="author" content="Hiro Fukami">
+    <meta name="keywords" content="Tech">
+    <link rel="canonical" href="http://hirofukami.com/2010/03/05/amazon-ec2-auto-scaling/">
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed for Hiro Fukami's Blog" href="/feed.xml">
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/pixyll.css?201604031232" type="text/css">
+
+    <!-- Fonts -->
+    
+    <link href="//fonts.googleapis.com/css?family=Merriweather:900,900italic,300,300italic" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Lato:900,300" rel="stylesheet" type="text/css">
+    
+    
+      <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+    
+    <!-- MathJax -->
+    
+
+    <!-- Verifications -->
+    
+    
+
+    <!-- Open Graph -->
+    <!-- From: https://github.com/mmistakes/hpstr-jekyll-theme/blob/master/_includes/head.html -->
+    <meta property="og:locale" content="en_US">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Amazon EC2 Auto Scaling をもう少し詳しく見てみた">
+    <meta property="og:description" content="Hiro Fukami(深海寛信 ふかみひろのぶ)'s Blog : 世の中をより良く変えるため、世の中にない新しいサービスを模索する日々。CEO of Players1st inc., Business Starter, Engineer and Daddy.">
+    <meta property="og:url" content="http://hirofukami.com/2010/03/05/amazon-ec2-auto-scaling/">
+    <meta property="og:site_name" content="Hiro Fukami's Blog">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    
+        <meta name="twitter:site" content="@d_sea">
+    
+    <meta name="twitter:title" content="Amazon EC2 Auto Scaling をもう少し詳しく見てみた">
+    <meta name="twitter:description" content="Hiro Fukami(深海寛信 ふかみひろのぶ)'s Blog : 世の中をより良く変えるため、世の中にない新しいサービスを模索する日々。CEO of Players1st inc., Business Starter, Engineer and Daddy.">
+    <meta name="twitter:url" content="http://hirofukami.com/2010/03/05/amazon-ec2-auto-scaling/">
+
+    <!-- Icons -->
+    <link rel="icon" type="image/png" href="/images/hirofukami.png">
+
+    
+    <script type="text/javascript">
+       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+       ga('create', 'UA-44359867-3', 'auto');
+       ga('send', 'pageview');
+    </script>
+    
+</head>
+
+<body class="site">
+  
+	
+
+  <div class="site-wrap">
+    <header class="site-header px2 px-responsive">
+  <div class="mt2 wrap">
+    <div class="measure">
+      <!-- <a href="http://hirofukami.com" class="site-title">Hiro Fukami's Blog</a> -->
+      <a href="/" class="site-title">Hiro Fukami's Blog</a>
+      <nav class="site-nav">
+        
+    
+
+    
+        <a href="/about/">About</a>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+
+    
+
+    
+
+    
+
+    
+        <a href="/contact/">Contact</a>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+
+  <form action="http://google.com/search" method="get">
+    <input type="text" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="as_sitesearch" value="http://hirofukami.com">
+  </form>
+
+
+      </nav>
+      <div class="clearfix"></div>
+      
+        <div class="social-icons">
+  <div class="social-icons-right">
+    
+      <a class="fa fa-github" href="https://github.com/d-sea"></a>
+    
+    
+      <a class="fa fa-bitbucket" href="https://bitbucket.org/d_sea"></a>
+    
+    
+    <a class="fa fa-rss" href="/feed.xml"></a>
+    
+      <a class="fa fa-twitter" href="https://twitter.com/d_sea"></a>
+    
+    
+    
+    
+    
+      <a class="fa fa-envelope" href="mailto:dee.sea@gmail.com"></a>
+    
+    
+      <a class="fa fa-linkedin" href="https://www.linkedin.com/in/hirofukami"></a>
+    
+    
+    
+  </div>
+  <div class="right">
+    
+    
+    
+  </div>
+</div>
+<div class="clearfix"></div>
+
+      
+    </div>
+  </div>
+</header>
+
+
+    <div class="post p2 p-responsive wrap" role="main">
+      <div class="measure">
+        
+
+
+<div class="post-header mb2">
+  <h1>Amazon EC2 Auto Scaling をもう少し詳しく見てみた</h1>
+  <span class="post-meta">Mar 6, 2010</span><br>
+  
+  <span class="post-meta">
+  <small>
+  <div class="post-categories">
+  Categories: 
+  
+  
+  <a href="/categories/#Tech">Tech</a>
+  
+</div>
+  <div class="post-tags">
+  Tags: 
+  
+  
+  <a href="/tags/#auto%20scaling">auto scaling</a>,
+  
+  <a href="/tags/#AWS">AWS</a>,
+  
+  <a href="/tags/#ec2">ec2</a>,
+  
+  <a href="/tags/#Server">Server</a>
+  
+</div>
+  </small>
+  </span>
+<!--   <span class="post-meta small">
+  
+    2 minute read
+  
+  </span>
+ -->
+</div>
+
+<article class="post-content">
+  <div class="section">
+  <p>
+    以前、Auto Scaling について触ってみた内容は以下のエントリーで書いた。
+  </p>
+  
+  <p>
+    <a href="http://d.hatena.ne.jp/d_sea/20090525/p1" target="_blank"> Amazon EC2 新機能 Monitoring, Auto Scaling and Elastic Load Balancing を一通り触ってみた – つれづれなる・・・</a><a href="http://b.hatena.ne.jp/entry/http://d.hatena.ne.jp/d_sea/20090525/p1" class="http-bookmark" target="_blank"><img src="http://b.hatena.ne.jp/entry/image/http://d.hatena.ne.jp/d_sea/20090525/p1" alt="" class="http-bookmark"></a>
+  </p>
+  
+  <p>
+    それ以降、実際に使ってみて、正しくない部分に気づいたので、前のエントリーの修正をしつつ追加で分かったことを含めて書いておく。
+  </p>
+  
+  <h4>
+    Auto Scaling の設定手順をまとめてみる
+  </h4>
+  
+  <p>
+    Auto Scaling の設定はいくつかの設定を依存させて動作させているので、その整理を行う。
+  </p>
+  
+  <p>
+    設定すべき内容は以下3つになる。
+  </p>
+  
+  <ol>
+    <li>
+      launch-config
+    </li>
+    <li>
+      auto-scaling-group
+    </li>
+    <li>
+      trigger
+    </li>
+  </ol>
+  
+  <p>
+    順番に設定する必要があり、依存関係は launch-config &gt; auto-scaling-group &gt; trigger となっている。
+  </p>
+  
+  <p>
+    それぞれについて解説する。
+  </p>
+  
+  <h5>
+    launch-config
+  </h5>
+  
+  <p>
+    自動的にインスタンスが起動する際に必要な項目を設定する
+  </p>
+  
+  <ul>
+    <li>
+      設定する項目 <ul>
+        <li>
+          LaunchConfigurationName: 名前
+        </li>
+        <li>
+          AMI: 立ち上げたいAMIを指定する
+        </li>
+        <li>
+          key pair: 必須ではない設定項目だが、これを設定しないと key を使った ssh login ができないため、設定した方がいい
+        </li>
+        <li>
+          security group: 起動したインスタンスに適用する security group
+        </li>
+        <li>
+          instance type: 起動するインスタンスのタイプ smallとかlargeとか
+        </li>
+      </ul>
+    </li>
+    
+    <li>
+      作成するコマンドは、as-create-launch-config
+    </li>
+    <li>
+      例:
+    </li>
+  </ul>
+  
+  <pre>
+
+as-create-launch-config TEST-CONFIG --image-id ami-89e809e0 --key temp-key --group Web-group --instance-type m1.small
+
+</pre>
+  
+  <ul>
+    <ul>
+      <li>
+        LaunchConfigurationName: TEST-CONFIG
+      </li>
+      <li>
+        AMI: ami-89e809e0
+      </li>
+      <li>
+        key pair: temp-key
+      </li>
+      <li>
+        security group: Web-group
+      </li>
+      <li>
+        instance type: m1.small
+      </li>
+    </ul>
+  </ul>
+  
+  <h5>
+    auto-scaling-group
+  </h5>
+  
+  <p>
+    起動したインスタンスを動作させるための全般的な設定
+  </p>
+  
+  <ul>
+    <li>
+      設定する項目 <ul>
+        <li>
+          AutoScalingGroupName: 名前
+        </li>
+        <li>
+          availability-zones: インスタンスをどの availability-zones で起動させるか
+        </li>
+        <li>
+          launch-configuration: 適用させる launch-configuration 名
+        </li>
+        <li>
+          min-size: 起動させるインスタンスの最小数。0以上で max と同じもしくは小さい値にすること。
+        </li>
+        <li>
+          max-size: 起動させるインスタンスの最大数。10000より小さくて min と同じもしくは大きい値にすること。
+        </li>
+        <li>
+          load-balancers: 起動したインスタンスを load balancer 配下に追加する。このオプションを付けない場合は load balancer 配下に入らずに起動される
+        </li>
+      </ul>
+    </li>
+    
+    <li>
+      作成するコマンドは、as-create-auto-scaling-group
+    </li>
+    <li>
+      例:
+    </li>
+  </ul>
+  
+  <pre>
+
+as-create-auto-scaling-group test-group1 --launch-configuration 1test --availability-zones us-east-1a --min-size 0 --max-size 2 --load-balancers Web-LB
+
+</pre>
+  
+  <ul>
+    <ul>
+      <li>
+        AutoScalingGroupName: test-group1
+      </li>
+      <li>
+        availability-zones: us-east-1a
+      </li>
+      <li>
+        launch-configuration: 1test
+      </li>
+      <li>
+        min-size: 0
+      </li>
+      <li>
+        max-size: 2
+      </li>
+      <li>
+        load-balancers: Web-LB
+      </li>
+    </ul>
+  </ul>
+  
+  <h5>
+    trigger
+  </h5>
+  
+  <p>
+    auto-scaling-groupを発動させるしきい値の設定。(ちょっと分かりづらい。いまいち把握しきれていない。)
+  </p>
+  
+  <ul>
+    <li>
+      設定する項目 <ul>
+        <li>
+          TriggerName: 名前
+        </li>
+        <li>
+          auto-scaling-group: 適用させる auto-scaling-group 名
+        </li>
+        <li>
+          measure: しきい値として用いるモニタリング項目。CloudWatchで取得できる項目が該当する。
+        </li>
+        <li>
+          statistic: しきい値として用いる数字の Average, Sum, Minimum, Maximum のうちどれかを選ぶ
+        </li>
+        <li>
+          dimensions: モニタリングで利用する設定を示す
+        </li>
+        <li>
+          period: モニタリングする頻度
+        </li>
+        <li>
+          lower-threshold: この値を下回った際にしきい値を超えた判断する。しきい値の下限
+        </li>
+        <li>
+          upper-threshold: この値を上回った際にしきい値を超えた判断する。しきい値の上限
+        </li>
+        <li>
+          lower-breach-increment: しきい値の下限をどれくらい下回ったらスケールするかを設定する。-1 を設定したときは「lower-breach-increment=-1」と書く
+        </li>
+        <li>
+          upper-breach-increment: しきい値の上限をどれくらい上回ったらスケールするかを設定する。
+        </li>
+        <li>
+          breach-duration: しきい値を超えた際にどれくらいの時間が継続したらtriggerを発動するか設定する
+        </li>
+      </ul>
+    </li>
+    
+    <li>
+      作成するコマンドは、as-create-or-update-trigger
+    </li>
+    <li>
+      例:
+    </li>
+  </ul>
+  
+  <pre>
+
+as-create-or-update-trigger WebApp-trigger1 --auto-scaling-group WebApp-group1 --measure CPUUtilization --statistic Average --dimensions "AutoScalingGroupName=WebApp-group1" --period 60 --lower-threshold 20 --upper-threshold 95 --lower-breach-increment=-1 --upper-breach-increment 1 --breach-duration 180
+
+</pre>
+  
+  <ul>
+    <ul>
+      <li>
+        TriggerName: WebApp-trigger1
+      </li>
+      <li>
+        auto-scaling-group: WebApp-group1
+      </li>
+      <li>
+        measure: CPUUtilization
+      </li>
+      <li>
+        statistic: Average
+      </li>
+      <li>
+        dimensions: “AutoScalingGroupName=WebApp-group1”
+      </li>
+      <li>
+        period: 60
+      </li>
+      <li>
+        lower-threshold: 20
+      </li>
+      <li>
+        upper-threshold: 95
+      </li>
+      <li>
+        lower-breach-increment: -1
+      </li>
+      <li>
+        upper-breach-increment: 1
+      </li>
+      <li>
+        breach-duration: 180
+      </li>
+    </ul>
+  </ul>
+  
+  <p>
+    </p>
+<h4>
+      Auto Scaling で自動で増えたインスタンスを Elastic Load Balancing 配下に追加できた
+    </h4>
+    
+    <p>
+      オプションの見落としだったわけですが、以前は自動的に増えたインスタンスは Elastic Load Balancing 配下に自動的に追加されないと思っていたが、ちゃんと追加できるオプションがあった。Load Balancer 配下に自動的に追加されなければオートスケーリングの意味無いじゃんと思っていたけど、さすがアマゾン、ちゃんとサポートしていた。
+    </p>
+    
+    <p>
+      オプションは、as-create-auto-scaling-group コマンドにある。ヘルプを見てみると、
+    </p>
+    
+    <pre>
+
+SYNOPSIS
+
+as-create-auto-scaling-group
+
+AutoScalingGroupName  --availability-zones  value[,value...]
+
+--launch-configuration  value  --max-size  value  --min-size  value
+
+[--cooldown  value ] [--load-balancers  value[,value...] ]
+
+[General Options]
+
+
+
+(snip)
+
+SPECIFIC OPTIONS
+
+--cooldown VALUE
+
+Time (in seconds) between a successful scaling activity and succeeding
+
+scaling activity.
+
+
+
+-l, --launch-configuration VALUE
+
+Name of existing launch configuration to use to launch new instances.
+
+Required.
+
+
+
+--load-balancers VALUE1,VALUE2,VALUE3...
+
+List of existing load balancers. Load balancers must exist in Elastic
+
+Load Balancing service, within the scope of the caller's AWS account.
+
+
+
+</pre>
+    
+    <p>
+      「—load-balancers」というのがあり、Load Balancer 名を書くことでその配下に追加されることが可能になる。事前に Load Balancer は作成してあることが必要。
+    </p>
+    
+    <p>
+      </p>
+<h4>
+        決して落ちないインスタンスを作ることができる
+      </h4>
+      
+      <p>
+        min-size 1以上であれば動作させることが可能。
+      </p>
+      
+      <p>
+        例えば、min-size 1 にした場合、
+      </p>
+      
+      <ul>
+        <li>
+          意味としては「必ず1台立ち上がっている=決して落ちない」状況を作ることができる
+        </li>
+        <li>
+          Webサーバみたいな必ず立ち上がっていて欲しい時には —min-size 1 にしておくと良い <ul>
+            <li>
+              この時は —load-balancers オプションを忘れずに。事前にWeb用ロードバランサを作成しておくこと
+            </li>
+            <li>
+              Web用ロードバランサの FQDN を DNS で CNAME して、www.example.com とかと紐付けて置くこと前提
+            </li>
+          </ul>
+        </li>
+        
+        <li>
+          この設定をした途端に自動的にインスタンスが立ち上がる。後述の trigger がなくても動作する
+        </li>
+        <li>
+          手動で立ち上がっているインスタンスを terminate して、0台の状態にしても自動的に起動してくる
+        </li>
+      </ul>
+      
+      <h5>
+        決して落ちない状況で起動インスタンス数を0にしたい場合
+      </h5>
+      
+      <ul>
+        <li>
+          「as-terminate-instance-in-auto-scaling-group」コマンドで —decrement-desired-capacity オプションを付けて実行してから、インスタンスIDを指定して実行する。その後、そのインスタンスを terminate すると自動起動せずに落ちる。
+        </li>
+        <li>
+          内容としてはオートスケーリングの設定範囲からこのインスタンスを外すという意味合い <ul>
+            <li>
+              例:
+            </li>
+          </ul>
+        </li>
+      </ul>
+      
+      <pre>
+
+as-terminate-instance-in-auto-scaling-group i-f7e9859f --decrement-desired-capacity
+
+</pre>
+      
+      <h4>
+        実際 Auto Scaling がちゃんと動くかどうか試してみる
+      </h4>
+      
+      <h5>
+        設定する
+      </h5>
+      
+      <ul>
+        <li>
+          webサーバのオートスケーリングを想定
+        </li>
+        <li>
+          起動したインスタンスは web-front という Elastic Load Balancer 配下に登録する
+        </li>
+        <li>
+          min-size 1 として最低でも1台のインスタンスが起動させること
+        </li>
+        <li>
+          トリガーのしきい値は、CPU平均利用率が95%を超えた場合に増えて、20%を下回った場合に減らす
+        </li>
+        <li>
+          上記の状態が180秒継続したらオートスケーリングが実施される
+        </li>
+      </ul>
+      
+      <p>
+        以下の順にコマンドを実行
+      </p>
+      
+      <pre>
+
+$ as-create-launch-config TEST-CONFIG -i ami-654ea20c -t m1.small --group default,SSH,Web --key temp-key
+
+</pre>
+      
+      <pre>
+
+$ as-create-auto-scaling-group test-group1 --launch-configuration TEST-CONFIG -z us-east-1a,us-east-1b,us-east-1c,us-east-1d --min-size 1 --max-size 10 --load-balancers web-front
+
+</pre>
+      
+      <p>
+        このコマンドを入力した時点で、min-size 1 が有効になって1台インスタンスが起動した。
+      </p>
+      
+      <pre>
+
+$ as-create-or-update-trigger WebApp-trigger1 --auto-scaling-group test-group1 --measure CPUUtilization --statistic Average --namespace "AWS/EC2" --dimensions "AutoScalingGroupName=test-group1" --period 60 --lower-threshold 20 --upper-threshold 95 --lower-breach-increment=-1 --upper-breach-increment 1 --breach-duration 180
+
+</pre>
+      
+      <p>
+        設定完了。
+      </p>
+      
+      <h5>
+        実際CPUを回してオートスケーリングするかどうか確認してみる
+      </h5>
+      
+      <p>
+        1台起動したインスタンス内で stress コマンドを実施する。(事前にstressをインストールして利用可能な状況にしてある前提)
+      </p>
+      
+      <p>
+        実行コマンドは以下
+      </p>
+      
+      <pre>
+
+# stress -c 1 --timeout 360s
+
+</pre>
+      
+      <ul>
+        <ul>
+          <li>
+            起動しているのはスモールインスタンスでCPUは1つなので、Load Average 1 を狙えばCPU利用率は100%になるだろう
+          </li>
+          <li>
+            timeout 360s にしているのは、180sec でオートスケーリングされるはずなので、起動時間も考慮して若干長めにとった
+          </li>
+        </ul>
+      </ul>
+      
+      <p>
+        AWS Management Console にて確認する。
+      </p>
+      
+      <ul>
+        <li>
+          1台目のインスタンスにsshログイン
+        </li>
+        <li>
+          stressコマンドを実行
+        </li>
+        <li>
+          最初に起動しているインスタンスの CloudWatch でのモニタリングで、CPU利用率のグラフをみる。
+        </li>
+        <li>
+          CPU利用率が100%近くになっていることを確認する
+        </li>
+        <li>
+          180秒くらい経過したときに自動的に1台のインスタンスが起動した
+        </li>
+        <li>
+          Load Balancers より、web-front 配下に登録されているインスタンスが2台になっていることを確認
+        </li>
+        <li>
+          stress コマンド実行が終了
+        </li>
+        <li>
+          しばらく経過して、後から起動した2台目のインスタンスが自動的に terminate した
+        </li>
+        <li>
+          1台のインスタンスのみ起動した状態に戻る
+        </li>
+        <li>
+          Load Balancers より、web-front 配下に登録されているインスタンスが1台になっていることを確認
+        </li>
+        <li>
+          確認終了
+        </li>
+      </ul>
+      
+      <p>
+        ちゃんと動いた。
+      </p>
+      
+      <p>
+        Auto Scaling を使いこなせれば、運用の手間を省くことが出来そうな設定内容になっている。ただし、あくまでサーバの起動・停止をオートスケーリングで行うだけなので、内部のアプリケーションの整合性はユーザ側で事前にとっておく必要がある。
+      </p>
+      
+      <p>
+        例えば、立ち上げるAMIは自動起動でプロセスが起動する状態で保存しておかなくてはいけないし、Load Balancer 配下に追加した場合、単純なラウンドロビンで分散するので、セッション維持など複数台構成をとっても問題が生じないようにしておく必要もある。
+      </p>
+      
+      <p>
+        そういう意味ではユーザ側で事前の準備や検証が必要で、その後の運用状況もチェックするようにしておかないと実サービス運用は難しいだろう。
+      </p>
+</div>
+
+</article>
+
+
+  <div class="container">
+    <div class="share-page">
+<ul class="rrssb-buttons clearfix">
+    <li class="rrssb-email">
+    <!-- Replace subject with your message using URL Endocding: http://meyerweb.com/eric/tools/dencoder/ -->
+        <a href="mailto:?subject=Amazon%20EC2%20Auto%20Scaling%20%E3%82%92%E3%82%82%E3%81%86%E5%B0%91%E3%81%97%E8%A9%B3%E3%81%97%E3%81%8F%E8%A6%8B%E3%81%A6%E3%81%BF%E3%81%9F&amp;body=Check%20out:%20http://hirofukami.com/2010/03/05/amazon-ec2-auto-scaling/">
+            <span class="rrssb-icon"><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 28 28"><path d="M20.11 26.147c-2.335 1.05-4.36 1.4-7.124 1.4C6.524 27.548.84 22.916.84 15.284.84 7.343 6.602.45 15.4.45c6.854 0 11.8 4.7 11.8 11.252 0 5.684-3.193 9.265-7.398 9.3-1.83 0-3.153-.934-3.347-2.997h-.077c-1.208 1.986-2.96 2.997-5.023 2.997-2.532 0-4.36-1.868-4.36-5.062 0-4.75 3.503-9.07 9.11-9.07 1.713 0 3.7.4 4.6.972l-1.17 7.203c-.387 2.298-.115 3.3 1 3.4 1.674 0 3.774-2.102 3.774-6.58 0-5.06-3.27-8.994-9.304-8.994C9.05 2.87 3.83 7.545 3.83 14.97c0 6.5 4.2 10.2 10 10.202 1.987 0 4.09-.43 5.647-1.245l.634 2.22zM16.647 10.1c-.31-.078-.7-.155-1.207-.155-2.572 0-4.596 2.53-4.596 5.53 0 1.5.7 2.4 1.9 2.4 1.44 0 2.96-1.83 3.31-4.088l.592-3.72z"></path></svg></span>
+            <span class="rrssb-text">email</span>
+        </a>
+    </li>
+    <li class="rrssb-facebook">
+<!--  Replace with your URL. For best results, make sure you page has the proper FB Open Graph tags in header: https://developers.facebook.com/docs/opengraph/howtos/maximizing-distribution-media-content/ -->
+        <a href="https://www.facebook.com/sharer/sharer.php?u=http://hirofukami.com/2010/03/05/amazon-ec2-auto-scaling/" class="popup">
+            <span class="rrssb-icon"><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 29 29"><path d="M26.4 0H2.6C1.714 0 0 1.715 0 2.6v23.8c0 .884 1.715 2.6 2.6 2.6h12.393V17.988h-3.996v-3.98h3.997v-3.062c0-3.746 2.835-5.97 6.177-5.97 1.6 0 2.444.173 2.845.226v3.792H21.18c-1.817 0-2.156.9-2.156 2.168v2.847h5.045l-.66 3.978h-4.386V29H26.4c.884 0 2.6-1.716 2.6-2.6V2.6c0-.885-1.716-2.6-2.6-2.6z"></path></svg></span>
+            <span class="rrssb-text">facebook</span>
+        </a>
+    </li>
+    <li class="rrssb-twitter">
+        <!-- Replace href with your Meta and URL information  -->
+        <a href="https://twitter.com/intent/tweet?text=Amazon%20EC2%20Auto%20Scaling%20%E3%82%92%E3%82%82%E3%81%86%E5%B0%91%E3%81%97%E8%A9%B3%E3%81%97%E3%81%8F%E8%A6%8B%E3%81%A6%E3%81%BF%E3%81%9F&amp;url=http://hirofukami.com/2010/03/05/amazon-ec2-auto-scaling/" class="popup">
+            <span class="rrssb-icon"><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 28 28"><path d="M24.253 8.756C24.69 17.08 18.297 24.182 9.97 24.62a15.093 15.093 0 0 1-8.86-2.32c2.702.18 5.375-.648 7.507-2.32a5.417 5.417 0 0 1-4.49-3.64c.802.13 1.62.077 2.4-.154a5.416 5.416 0 0 1-4.412-5.11 5.43 5.43 0 0 0 2.168.387A5.416 5.416 0 0 1 2.89 4.498a15.09 15.09 0 0 0 10.913 5.573 5.185 5.185 0 0 1 3.434-6.48 5.18 5.18 0 0 1 5.546 1.682 9.076 9.076 0 0 0 3.33-1.317 5.038 5.038 0 0 1-2.4 2.942 9.068 9.068 0 0 0 3.02-.85 5.05 5.05 0 0 1-2.48 2.71z"></path></svg></span>
+            <span class="rrssb-text">twitter</span>
+        </a>
+    </li>
+    <li class="rrssb-linkedin">
+        <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=http://hirofukami.com/2010/03/05/amazon-ec2-auto-scaling/&amp;title=Amazon%20EC2%20Auto%20Scaling%20%E3%82%92%E3%82%82%E3%81%86%E5%B0%91%E3%81%97%E8%A9%B3%E3%81%97%E3%81%8F%E8%A6%8B%E3%81%A6%E3%81%BF%E3%81%9F&amp;summary=Amazon%20EC2%20Auto%20Scaling%20%E3%82%92%E3%82%82%E3%81%86%E5%B0%91%E3%81%97%E8%A9%B3%E3%81%97%E3%81%8F%E8%A6%8B%E3%81%A6%E3%81%BF%E3%81%9F" class="popup">
+            <span class="rrssb-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewbox="0 0 28 28">
+                    <path d="M25.424 15.887v8.447h-4.896v-7.882c0-1.98-.71-3.33-2.48-3.33-1.354 0-2.158.91-2.514 1.802-.13.315-.162.753-.162 1.194v8.216h-4.9s.067-13.35 0-14.73h4.9v2.087c-.01.017-.023.033-.033.05h.032v-.05c.65-1.002 1.812-2.435 4.414-2.435 3.222 0 5.638 2.106 5.638 6.632zM5.348 2.5c-1.676 0-2.772 1.093-2.772 2.54 0 1.42 1.066 2.538 2.717 2.546h.032c1.71 0 2.77-1.132 2.77-2.546C8.056 3.593 7.02 2.5 5.344 2.5h.005zm-2.48 21.834h4.896V9.604H2.867v14.73z"></path>
+                </svg>
+            </span>
+            <span class="rrssb-text">linkedin</span>
+        </a>
+    </li>
+    <li class="rrssb-googleplus">
+        <a href="https://plus.google.com/share?url=http://hirofukami.com/2010/03/05/amazon-ec2-auto-scaling/" class="popup">
+            <span class="rrssb-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24">
+                    <path d="M21 8.29h-1.95v2.6h-2.6v1.82h2.6v2.6H21v-2.6h2.6v-1.885H21V8.29zM7.614 10.306v2.925h3.9c-.26 1.69-1.755 2.925-3.9 2.925-2.34 0-4.29-2.016-4.29-4.354s1.885-4.353 4.29-4.353c1.104 0 2.014.326 2.794 1.105l2.08-2.08c-1.3-1.17-2.924-1.883-4.874-1.883C3.65 4.586.4 7.835.4 11.8s3.25 7.212 7.214 7.212c4.224 0 6.953-2.988 6.953-7.082 0-.52-.065-1.104-.13-1.624H7.614z"></path>
+                </svg>
+            </span>
+            <span class="rrssb-text">google+</span></a>
+    </li>
+    <li class="rrssb-pinterest">
+        <a href="http://pinterest.com/pin/create/button/?url=http://hirofukami.com/2010/03/05/amazon-ec2-auto-scaling/&amp;description=Amazon%20EC2%20Auto%20Scaling%20%E3%82%92%E3%82%82%E3%81%86%E5%B0%91%E3%81%97%E8%A9%B3%E3%81%97%E3%81%8F%E8%A6%8B%E3%81%A6%E3%81%BF%E3%81%9F"><span class="rrssb-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewbox="0 0 28 28">
+                <path d="M14.02 1.57c-7.06 0-12.784 5.723-12.784 12.785S6.96 27.14 14.02 27.14c7.062 0 12.786-5.725 12.786-12.785 0-7.06-5.724-12.785-12.785-12.785zm1.24 17.085c-1.16-.09-1.648-.666-2.558-1.22-.5 2.627-1.113 5.146-2.925 6.46-.56-3.972.822-6.952 1.462-10.117-1.094-1.84.13-5.545 2.437-4.632 2.837 1.123-2.458 6.842 1.1 7.557 3.71.744 5.226-6.44 2.924-8.775-3.324-3.374-9.677-.077-8.896 4.754.19 1.178 1.408 1.538.49 3.168-2.13-.472-2.764-2.15-2.683-4.388.132-3.662 3.292-6.227 6.46-6.582 4.008-.448 7.772 1.474 8.29 5.24.58 4.254-1.815 8.864-6.1 8.532v.003z"></path>
+            </svg></span><span class="rrssb-text">pinterest</span></a>
+    </li>
+</ul>
+</div>
+  </div>
+
+
+
+
+
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_shortname  = 'hirofukamisblog';
+    var disqus_identifier = '/2010/03/05/amazon-ec2-auto-scaling';
+    var disqus_title      = 'Amazon EC2 Auto Scaling をもう少し詳しく見てみた';
+
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+
+
+
+
+
+
+      </div>
+    </div>
+  </div>
+
+  <footer class="center">
+  <div class="measure">
+    <small>
+			<div class="row">
+				<div class="col-sm-2 col-sm-offset-3 text-center">
+					<img src="/images/hirofukami.jpg" alt="Hiro Fukami" class="img-circle">
+				</div>
+				<div class="col-sm-4 text-left text-muted">
+					<b>Hiro Fukami</b><br>
+					<a href="http://twitter.com/d_sea" target="_blank">@d_sea</a>. Business Starter and Engineer in Tokyo.
+					Founder and CEO of <a href="http://players1.st" target="_blank">Players1st inc.</a> See more about me <a href="/about">here</a>.
+				</div>
+			</div>
+
+			<br>
+
+			Copyright © 2016
+			
+			    Hiro Fukami
+			
+    </small>
+  </div>
+</footer>
+
+
+</body>
+</html>
