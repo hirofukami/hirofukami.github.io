@@ -13,4 +13,3 @@ source 'https://rubygems.org'
 # gem 'jekyll-feed'
 
 gem 'github-pages'
-gem 'octopress-image-tag'

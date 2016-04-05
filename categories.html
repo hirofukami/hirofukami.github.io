@@ -1,0 +1,30 @@
+---
+layout: page
+permalink: /categories/
+---
+<h3>Categories</h3>
+<ul class="category-cloud">
+{% for category in site.categories %}
+  <li style="font-size: {{ category | last | size | times: 100 | divided_by: site.categories.size | plus: 70  }}%">
+    <a href="#{{ category | first | slugize }}">
+      {{ category | first }}
+    </a>
+  </li>
+{% endfor %}
+</ul>
+
+<div id="archives">
+{% for category in site.categories %}
+  <div class="archive-group">
+    {% capture tag_name %}{{ category | first }}{% endcapture %}
+    <p id="#{{ tag_name | slugize }}"></p>
+    <a name="{{ tag_name | slugize }}"></a>
+    <h3>{{ tag_name }}</h3>
+    {% for post in site.categories[tag_name] %}
+    <article class="archive-item">
+      <h4><a href="{{ root_url }}{{ post.url }}">{{post.title}}</a></h4>
+    </article>
+    {% endfor %}
+  </div>
+{% endfor %}
+</div>

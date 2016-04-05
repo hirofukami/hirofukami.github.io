@@ -1,0 +1,125 @@
+# Site settings
+title:       Hiro Fukami's Blog
+email:       dee.sea@gmail.com
+author:      Hiro Fukami
+description: "Hiro Fukami(深海寛信 ふかみひろのぶ)'s Blog : 世の中をより良く変えるため、世の中にない新しいサービスを模索する日々。CEO of Players1st inc., Business Starter, Engineer and Daddy."
+baseurl:     ""
+url:         "http://hirofukami.com"
+date_format: "%b %-d, %Y"
+
+# Google services
+google_verification:
+# Use either direct GA implementation or set up GTM account
+# - using both will skew your data (leave blank to not use at all)
+google_analytics: UA-44359867-3
+google_tag_manager:
+# Bing services
+bing_verification:
+
+simple_search: http://google.com/search
+
+# Optional features
+animated:             false
+show_related_posts:   false
+show_post_footers:    false
+show_social_icons:    true
+ajaxify_contact_form: false
+enable_mathjax: false
+extended_fonts: false
+enable_anchorjs: false
+
+# Disqus post comments
+# (leave blank to disable Disqus)
+disqus_shortname: hirofukamisblog
+
+# Facebook Comments plugin
+# (leave blank to disable Facebook Comments, otherwise set it to true)
+facebook_comments:
+facebook_appid:
+facebook_comments_number: 10
+
+# Social icons
+github_username: d-sea
+bitbucket_username: d_sea
+stackoverflow_id:
+twitter_username: d_sea
+skype_username:
+steam_nickname:
+google_plus_id:
+linkedin_username: hirofukami
+angellist_username:
+medium_id:
+bitcoin_url:
+paypal_url:
+flattr_button:
+
+# Post sharing icons
+show_sharing_icons: true
+# Change to 'true' to enable individual icons
+# NO USE for customize share button
+share_facebook: true
+share_twitter: true
+share_googleplus: false
+share_linkedin: true
+share_digg: false
+share_tumblr: true
+share_reddit: false
+share_stumbleupon: false
+share_hackernews: true
+
+text:
+  pagination:
+    newer: 'Newer'
+    older: 'Older'
+  share_buttons:
+    text:         'Share this post!'
+    facebook:     'Share on Facebook'
+    twitter:      'Share on Twitter'
+    googleplus:   'Share on Google+'
+    linkedin:     'Share on LinkedIn'
+    digg:         'Share on Digg'
+    tumblr:       'Share on Tumblr'
+    reddit:       'Share on Reddit'
+    stumbleupon:  'Share on StumbleUpon'
+    hackernews:   'Share on Hacker News'
+  post:
+    updated:        'Updated'
+    minute_read:    'minute read'
+    related_posts:  'Related Posts'
+  index:
+    coming_soon: 'Coming soon...'
+  contact:
+    email:    'Email Address'
+    content:  'What would you like to say?'
+    subject:  'New submission!'
+    submit:   'Send'
+    ajax:
+      sending:  'sending..'
+      sent:     'Message sent!'
+      error:    'Error!'
+  thanks: 'Thanks for contacting us. We will check as soon as possible.'
+  og_locale: 'en_US'
+
+# Build settings
+markdown_ext: "markdown,mkdown,mkdn,mkd,md,mdown"
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false  
+highlighter:  rouge
+redcarpet:
+  extensions: ['smart', 'tables', 'with_toc_data', 'autolink', 'no_intra_emphasis']
+permalink: /:year/:month/:day/:title/
+paginate:     10
+sass:
+  compressed: true
+gems:
+  - jekyll-paginate
+  - jemoji
+  - jekyll-mentions
+  - jekyll-redirect-from
+  - jekyll-sitemap
+  - jekyll-feed
+  - jekyll-gist
+# https://github.com/jekyll/jekyll/issues/2938
+exclude: [vendor]
