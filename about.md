@@ -12,7 +12,7 @@ tags: about
 
 1974/09/16生まれ
 
-転職を重ねてきた後、個人会社を作って新しいサービズを作ったり
+転職を重ねてきた後、会社を作って新しいサービズを作ったり
 
 インターネットの力を信じて世の中を豊かにすることを目指す、創業者 + エンジニア
 
@@ -28,7 +28,7 @@ tags: about
 1. 2007-2009 トランスコスモス(Meet-Me) エンジニアチームマネージャ
 1. 2010-2012 fluxflex, inc. 共同創業者
 1. 2009-Present 株式会社シェイクソウル 代表取締役 CEO
-1. 2016-Present 株式会社プレイヤーズファースト 代表取締役社長 CEO
+1. 2016-Present [株式会社プレイヤーズファースト](https://players1.st/) 代表取締役社長 CEO
 
 ## Summary
 
@@ -37,7 +37,7 @@ tags: about
 *   インターネットサービスの立ち上げがしたくて、3D仮想空間コミュニティー(メタバース)サービス <a href="http://www.meet-me.jp" target="_blank">Meet-Me</a> の立ち上げのためにトランスコスモス株式会社に入社。ネットワーク/サーバ/運用監視システムを一人で構築し、実質4ヶ月でサービスインさせる荒業を経験。
 *   2009年2月に独立し、<a href="http://shakesoul.net" target="_blank">株式会社シェイクソウル(ShakeSoul, inc.)</a>を設立。代表取締役CEO。
 *   2010年6月 シリコンバレースタートアップ <a href="http://fluxflex.com" target="_blank">fluxflex, inc.</a> の共同創業者、2012年1月末退任。
-*   2016年3月 「スポーツで世の中をより良く変える。」をコンセプトに 株式会社プレイヤーズファースト Players1st inc. 設立。スポーツ選手とファンをネット上でつなぎ「スポーツを支える」ためのスポーツインターネットサービス [Players1st](http://players1.st) を開発中。
+*   2016年3月 「スポーツで世の中をより良く変える。」をコンセプトに 株式会社プレイヤーズファースト Players1st inc. 設立。スポーツ選手とファンをネット上でつなぎ「スポーツを支える」ためのスポーツインターネットサービス [Players1st](http://players1.st) をリリース。
 
 ## Topics
 
@@ -86,9 +86,9 @@ tags: about
 
 # Current
 
-今は次のスタートアップの芽を作るためにむけてじっくり準備するために、シェイクソウルで自由にアイデアを検証して実験中。
+今は [Players1st](https://players1.st/) にリスクを取って進めている。
 
-最近はリーンスタートアップの実践をやってみたり「小さく素早く試す」アプローチを取っています。(「早く大きく」は失敗の経験としてあるので)
+今までリーンスタートアップの実践をやっきた結果、「小さく素早く試す」アプローチを取って課題を見つけ、最適なソリューションを試すことをしています。(「早く大きく」は失敗の経験としてあるので)
 
 目的に合った者同士が有機的につながりあうようなプロジェクトスタイルな働き方が好き。興味あれば連絡ください。
 
@@ -100,8 +100,6 @@ tags: about
 * RSS : [http://hirofukami.com/feed.xml](http://hirofukami.com/feed.xml)
 * Facebook Page : [/hirofukamiblog](https://www.facebook.com/hirofukamiblog) すべてのポストをフィードしています
 
-<iframe src="//www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2Fhirofukamiblog&amp;width=510&amp;height=530&amp;colorscheme=light&amp;show_faces=true&amp;header=false&amp;stream=true&amp;show_border=true&amp;appId=345825838884402" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:510px; height:530px;" allowTransparency="true"></iframe>
-
 # Social Networks
 
 * <i class="fa fa-facebook-square"></i> Facebook : [/fukami][1]   : 割と大きめなお知らせ的なものが多め(ポスト頻度低め)
@@ -112,13 +110,11 @@ tags: about
 
 個人
 
-<a class="twitter-timeline" href="https://twitter.com/d_sea" data-widget-id="383085843721637888">Tweets by @d_sea</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+<a class="twitter-timeline" data-width="560" data-height="960" href="https://twitter.com/d_sea">Tweets by d_sea</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 会社
 
-<a class="twitter-timeline" href="https://twitter.com/shakesoul" data-widget-id="383088297850859520">Tweets by @shakesoul</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+<a class="twitter-timeline" data-width="560" data-height="960" href="https://twitter.com/pys1st">Tweets by pys1st</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 
 # Book
@@ -156,26 +152,22 @@ http://www.venturenow.jp/column/fukami/
   * \#3 「BGPの話」https://atnd.org/events/1268
 
 # Slides
+<div style="width: 65%">
+  <script async class="speakerdeck-embed" data-id="bf80b378ec6d4bd29c7f14978b39a2b7" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
+</div>
 
-[Hiro Fukami's All SlideShare][8]
+Speaker Deck : [https://speakerdeck.com/dsea](https://speakerdeck.com/dsea)
 
-<iframe src="//www.slideshare.net/slideshow/embed_code/key/CK0zsVjTqoCLKj" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/d_sea/devops-46714371" title="DevOps 概要 - インフラ革命、今起きていること" target="_blank">DevOps 概要 - インフラ革命、今起きていること</a> </strong> from <strong><a href="//www.slideshare.net/d_sea" target="_blank">Hiro Fukami</a></strong> </div>
+SlideShare : [Hiro Fukami's All SlideShare][8]
 
-<iframe src="//www.slideshare.net/slideshow/embed_code/key/q2H3U3kpcl3Cu4" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/d_sea/devops-53262303" title="DevOps 研修 初級編" target="_blank">DevOps 研修 初級編</a> </strong> from <strong><a href="//www.slideshare.net/d_sea" target="_blank">Hiro Fukami</a></strong> </div>
-
-<iframe src="//www.slideshare.net/slideshow/embed_code/key/cxrrmMMtlckqf0" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/d_sea/devops-01" title="DevOps 研修 中級編#01" target="_blank">DevOps 研修 中級編#01</a> </strong> from <strong><a href="//www.slideshare.net/d_sea" target="_blank">Hiro Fukami</a></strong> </div>
-
-<iframe src="//www.slideshare.net/slideshow/embed_code/key/iHOdWzNeUq8fJc" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/d_sea/devops-02" title="DevOps 研修 中級編#02" target="_blank">DevOps 研修 中級編#02</a> </strong> from <strong><a href="//www.slideshare.net/d_sea" target="_blank">Hiro Fukami</a></strong> </div>
-
-<iframe src="http://www.slideshare.net/slideshow/embed_code/40045536" width="597" height="486" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="https://www.slideshare.net/d_sea/opsdeliver-business-model" title="OpsDeliver Serivce Info, Business Model" target="_blank">OpsDeliver Serivce Info, Business Model</a> </strong> from <strong><a href="http://www.slideshare.net/d_sea" target="_blank">Hiro Fukami</a></strong> </div>
 
 # Skills
 
 * LEAN Startup
-* iOS App Development(Titanium Mobile/MBaaS)
 * Ruby on Rails
+* Chef, Vagrant, Test-Kitchen
+* iOS App Development(Titanium Mobile/MBaaS)
 * Network Engineering, Servers Engineering
-* Chef, Vagrant
 * 効率的な振る舞い
 * Extreme Meeting
 * Cloud Computing/Virtual Machine/Cloud Management
@@ -184,6 +176,7 @@ http://www.venturenow.jp/column/fukami/
   * インターネットバックボーンの中にいたので、全般的なインターネットの仕組みとネットワークスキルに不自由しないかと
   * できることのレイヤを上げてきてネットワーク/サーバのインフラづくりと運用からiPhoneアプリを作ったりRailsでWebづくりまで
   * エンジニアの業務効率、ミーティング手法、チームモチベーションのコンサルをやったり
+  * 割とチームマネージメントは得意
 
 * やりたいこと
   * やっぱりサービスを作りたい
