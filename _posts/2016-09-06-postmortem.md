@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "ポストモーテム on Players1st Team Meetup #01"
+title: "ポストモーテム in Players1st Team Meetup #01"
 date: 2016-09-06 19:00:00 +0900
 comments: true
 categories:
