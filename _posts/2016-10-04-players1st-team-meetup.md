@@ -13,10 +13,9 @@ tags:
 image: /images/2016/10/20161004-players1st-team.png
 description: 青森で行った Players1st Team Meetup #01 の振り返りまとめ。
 ---
-[Players1st]: https://players1.st/
-
-
 ![Players1st Team](/images/2016/10/20161004-players1st-team.png)
+
+[Players1st]: https://players1.st/
 
 もう1ヶ月も経過してしまいましたが、青森で行った Players1st Team Meetup #01 の振り返りまとめ。
 
