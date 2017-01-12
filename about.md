@@ -60,13 +60,13 @@ tags: about
 * ジェトロ(日本貿易振興機構 JETRO)のスタートアップ支援プログラムに合格。サンノゼインキュベーションセンターにオフィス設立。現地JETROスタッフのサポートを受けながらシリコンバレー拠点の立ち上げを行う
 * エンジェル投資家から資金調達、プレゼンテーション、交渉、契約処理を全て担当
 * Tech Crunch掲載 日本語版、本家英語版ともに掲載実績あり
-  * JP : オートスケール可能なfluxflexは数クリックでEC2が使える新感覚クラウドだ http://jp.techcrunch.com/2010/10/25/jp-20101025-fluxflex-can-use-ec2-by-several-clicks/
-  * JP : 日本人が起業したfluxflexはGithubと連動する安くて簡単なクラウド・ホスティング・サービスを目指す http://jp.techcrunch.com/2011/08/19/20110817github-integrated-fluxflex-aims-at-making-cloud-hosting-easier-and-cheaper/
-  * EN : Github-Integrated fluxflex Aims At Making Cloud Hosting Easier And Cheaper http://techcrunch.com/2011/08/17/github-integrated-fluxflex-aims-at-making-cloud-hosting-easier-and-cheaper/
+  * JP : [オートスケール可能なfluxflexは数クリックでEC2が使える新感覚クラウドだ](http://jp.techcrunch.com/2010/10/25/jp-20101025-fluxflex-can-use-ec2-by-several-clicks/)
+  * JP : [日本人が起業したfluxflexはGithubと連動する安くて簡単なクラウド・ホスティング・サービスを目指す](http://jp.techcrunch.com/2011/08/19/20110817github-integrated-fluxflex-aims-at-making-cloud-hosting-easier-and-cheaper/)
+  * EN : [Github-Integrated fluxflex Aims At Making Cloud Hosting Easier And Cheaper](http://techcrunch.com/2011/08/17/github-integrated-fluxflex-aims-at-making-cloud-hosting-easier-and-cheaper/)
   * この他にもアジアのテックサイト Pennoison(現、Tech in Asia) や国内テックメディアに多数掲載
 * 日本においてミートアップインベントを開催。150名参加者を集める
 * スタートアップピッチイベント実績
-  * Innovation Weekend 3rdにて準優勝。Innovation Weekend Grand Final 2011にてファイナリストとしてピッチを行う http://innovation-weekend.jp/2011/index_presenters.html
+  * Innovation Weekend 3rdにて準優勝。[Innovation Weekend Grand Final 2011にてファイナリストとしてピッチを行う](http://innovation-weekend.jp/2011/index_presenters.html)
   * Startup Dating インフライベント
 
 ### Meet−Meプロジェクト エンジニアチームマネージャ
