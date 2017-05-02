@@ -187,4 +187,4 @@ OS起動時に立ち上がるようになると同時にプロセスも起動す
 
 # 参考情報
 
-[http://www.maruko2.com/mw/LaunchDaemons_(launchctl,_launchd.plist)_の使い方](http://www.maruko2.com/mw/LaunchDaemons_\(launchctl,_launchd.plist\)_の使い方)
+[launchctl,launchd.plistの使い方](http://www.maruko2.com/mw/LaunchDaemons_\(launchctl,_launchd.plist\)_の使い方)
