@@ -42,6 +42,7 @@ facebook_comments_number: 10
 github_username: d-sea
 bitbucket_username: d_sea
 stackoverflow_id:
+facebook_username: hirofukami
 twitter_username: d_sea
 skype_username:
 steam_nickname:
@@ -105,7 +106,7 @@ markdown_ext: "markdown,mkdown,mkdn,mkd,md,mdown"
 markdown: kramdown
 kramdown:
   input: GFM
-  hard_wrap: false  
+  hard_wrap: false
 highlighter:  rouge
 redcarpet:
   extensions: ['smart', 'tables', 'with_toc_data', 'autolink', 'no_intra_emphasis']
