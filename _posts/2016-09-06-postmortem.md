@@ -13,6 +13,7 @@ tags:
 image: /images/2016/09/20160906-keep_teammeetup01.jpg
 description: 先週8/31に [Players1st][] ではじめてオフラインでチーム全員顔合わせをしました。言うなれば Players1st Team Meetup #01 です。
 ---
+![my work space](/images/2016/09/20160906-keep_teammeetup01.jpg)
 
 先週8/31に [Players1st][] ではじめてオフラインでチーム全員顔合わせをしました。
 言うなれば [Players1st][] Team Meetup #01 です。
