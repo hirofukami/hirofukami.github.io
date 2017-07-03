@@ -4,7 +4,7 @@ title: "Players1st Team Meetup #01 振り返り"
 date: 2016-10-04 12:00:00 +0900
 comments: true
 categories:
-  - Business
+  - Players1st
 tags:
   - players1st
   - manage
