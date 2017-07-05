@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "アスリートへの初回ミーティングのインタビューシート"
+title: "初対面のアスリートに必ず聞くこと インタビューシート公開"
 date: 2017-07-03 22:45:00 +0900
 comments: true
 image: /images/2017/07/20170703-meeting.jpg
