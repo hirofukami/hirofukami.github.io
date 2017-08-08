@@ -12,9 +12,9 @@ tags: about
 
 1974/09/16生まれ
 
-転職を重ねてきた後、会社を作って新しいサービズを作ったり
+転職を重ねてきた後、会社を作って新しいサービズを作ったり、新サービスの作り方を教えたり。
 
-インターネットの力を信じて世の中を豊かにすることを目指す、創業者 + エンジニア
+インターネットの力を信じて世の中を豊かにすることを目指す、創業者 + エンジニア。
 
 過去にシリコンバレーでスタートアップやって失敗して、
 やっぱりサービスをゼロから作り上げて世の中を良くしたい。スポーツサービスのスタートアップをチャレンジ中。
@@ -86,7 +86,7 @@ tags: about
 
 # Current
 
-今は [Players1st](https://players1.st/) にリスクを取って進めている。
+今は [Players1st](https://players1.st/) という現役アスリートの支援サービスでスポーツの力で世界をより良くすることにチャレンジしながら、新規事業・新サービスづくりのコンサルティングで食べています。「教育・育成」も興味があり、Linuxの先生もやったりしています。
 
 今までリーンスタートアップの実践をやっきた結果、「小さく素早く試す」アプローチを取って課題を見つけ、最適なソリューションを試すことをしています。(「早く大きく」は失敗の経験としてあるので)
 
@@ -104,15 +104,21 @@ tags: about
 
 * <i class="fa fa-facebook-square"></i> Facebook : [/fukami][1]   : 割と大きめなお知らせ的なものが多め(ポスト頻度低め)
 * <i class="fa fa-twitter-square"></i> Twitter : [@d_sea][2]  : 日常的な思いつき、小ネタ(ポスト頻度多め)
+* <i class="fa fa-instagram"></i> Instagram : [/d_sea][9]  : 普段の写真
 * <i class="fa fa-linkedin-square"></i> Linkedin : [/hirofukami][4]
 
-## Tweet
+## Social Feeds
 
-個人
+### 個人
 
 <a class="twitter-timeline" data-width="560" data-height="960" href="https://twitter.com/d_sea">Tweets by d_sea</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-会社
+<i class="fa fa-instagram"></i>
+
+<!-- LightWidget WIDGET --><script src="//lightwidget.com/widgets/lightwidget.js"></script><iframe src="//lightwidget.com/widgets/f3209975193756bab6edc6d6b230e622.html" scrolling="no" allowtransparency="true" class="lightwidget-widget" style="width: 100%; border: 0; overflow: hidden;"></iframe>
+
+
+### 会社
 
 <a class="twitter-timeline" data-width="560" data-height="960" href="https://twitter.com/pys1st">Tweets by pys1st</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
@@ -172,7 +178,7 @@ SlideShare : [Hiro Fukami's All SlideShare][8]
 * Extreme Meeting
 * Cloud Computing/Virtual Machine/Cloud Management
 
-* やれること・やってること 
+* やれること・やってること
   * インターネットバックボーンの中にいたので、全般的なインターネットの仕組みとネットワークスキルに不自由しないかと
   * できることのレイヤを上げてきてネットワーク/サーバのインフラづくりと運用からiPhoneアプリを作ったりRailsでWebづくりまで
   * エンジニアの業務効率、ミーティング手法、チームモチベーションのコンサルをやったり
@@ -196,3 +202,4 @@ Facebook/TwitterなどのソーシャルネットワークからでもOKです�
  [6]: http://www.amazon.co.jp/gp/product/4774142840/ref=as_li_ss_il?ie=UTF8&camp=247&creative=7399&creativeASIN=4774142840&linkCode=as2&tag=dsea-22
  [7]: http://www.amazon.co.jp/gp/product/4774167878/ref=as_li_ss_tl?ie=UTF8&camp=247&creative=7399&creativeASIN=4774167878&linkCode=as2&tag=dsea-22
  [8]: http://www.slideshare.net/d_sea/presentations
+ [9]: https://instagram.com/d_sea
