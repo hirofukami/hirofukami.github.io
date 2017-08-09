@@ -129,7 +129,7 @@ tags: about
 
 2014.10発行、共著
 
-[<img border="0" src="http://ecx.images-amazon.com/images/I/610lYz15VZL.jpg" width="80%" />][7]
+[<img border="0" src="http://ecx.images-amazon.com/images/I/610lYz15VZL.jpg" width="300" />][7]
 
 [WordPressプロフェッショナル養成読本 [Webサイト運用の現場で役立つ知識が満載! ]\ (Software Design plus)][7]
 
@@ -144,25 +144,24 @@ tags: about
 
 # Media
 
-* fluxflex, inc.活動が評価されスタートアップを目指す創業者向けコラムをスタートアップ系テックメディアであるベンチャーナウに連載
-http://www.venturenow.jp/column/fukami/
+* fluxflex, inc.活動が評価されスタートアップを目指す創業者向けコラムをスタートアップ系テックメディアである[ベンチャーナウにコラム連載](http://www.venturenow.jp/column/fukami/)
 
 # 勉強会・イベントスピーカー
 
 * 日本最大のWordPressコミュニティイベント WordCamp Tokyo 2013
-  * 運用セッションスピーカー http://2013.tokyo.wordcamp.org/session/management/
+  * [運用セッションスピーカー](http://2013.tokyo.wordcamp.org/session/management/)
 * Web開発者向け勉強会 BPStudy
-  * \#27 「Amazon Web Service にまつわるいろいろ」https://atnd.org/events/2043
-  * \#75 「クリエイティブWordPressクラウド「スマートWP」を開発したリーンな手法紹介 〜 内部のテクニカルなお話からビジネス面まで」http://bpstudy.connpass.com/event/4045/
+  * \#27 「[Amazon Web Service にまつわるいろいろ](https://atnd.org/events/2043)」
+  * \#75 「[クリエイティブWordPressクラウド「スマートWP」を開発したリーンな手法紹介 〜 内部のテクニカルなお話からビジネス面まで](http://bpstudy.connpass.com/event/4045/)」
 * インフラエンジニア向け勉強会 HBStudy
-  * \#3 「BGPの話」https://atnd.org/events/1268
+  * \#3 「[BGPの話](https://atnd.org/events/1268)」
 
 # Slides
 <div style="width: 80%">
   <script async class="speakerdeck-embed" data-id="bf80b378ec6d4bd29c7f14978b39a2b7" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
 </div>
 
-Speaker Deck : [https://speakerdeck.com/dsea](https://speakerdeck.com/dsea)
+[Speaker Deck @d-sea](https://speakerdeck.com/dsea)
 
 SlideShare : [Hiro Fukami's All SlideShare][8]
 
