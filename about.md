@@ -6,7 +6,7 @@ tags: about
 ---
 
 ## Hiro Fukami 深海 寛信 (ふかみ ひろのぶ)
-![Hiro Fukami's Picture](https://graph.facebook.com/1282639350/picture?width=350)
+![Hiro Fukami's Picture](https://graph.facebook.com/1282639350/picture?width=300)
 
 # Sumarry
 
@@ -111,16 +111,16 @@ tags: about
 
 ### 個人
 
-<a class="twitter-timeline" data-width="560" data-height="960" href="https://twitter.com/d_sea">Tweets by d_sea</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+<a class="twitter-timeline" data-width="300" data-height="720" href="https://twitter.com/d_sea">Tweets by d_sea</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 <i class="fa fa-instagram"></i>
 
-<!-- LightWidget WIDGET --><script src="//lightwidget.com/widgets/lightwidget.js"></script><iframe src="//lightwidget.com/widgets/f3209975193756bab6edc6d6b230e622.html" scrolling="no" allowtransparency="true" class="lightwidget-widget" style="width: 100%; border: 0; overflow: hidden;"></iframe>
+<!-- LightWidget WIDGET --><script src="//lightwidget.com/widgets/lightwidget.js"></script><iframe src="//lightwidget.com/widgets/f3209975193756bab6edc6d6b230e622.html" scrolling="no" allowtransparency="true" class="lightwidget-widget" style="width: 80%; border: 0; overflow: hidden;"></iframe>
 
 
 ### 会社
 
-<a class="twitter-timeline" data-width="560" data-height="960" href="https://twitter.com/pys1st">Tweets by pys1st</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+<a class="twitter-timeline" data-width="300" data-height="720" href="https://twitter.com/pys1st">Tweets by pys1st</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 
 # Book
@@ -129,7 +129,7 @@ tags: about
 
 2014.10発行、共著
 
-[<img border="0" src="http://ecx.images-amazon.com/images/I/610lYz15VZL.jpg" />][7]
+[<img border="0" src="http://ecx.images-amazon.com/images/I/610lYz15VZL.jpg" width="80%" />][7]
 
 [WordPressプロフェッショナル養成読本 [Webサイト運用の現場で役立つ知識が満載! ]\ (Software Design plus)][7]
 
@@ -158,7 +158,7 @@ http://www.venturenow.jp/column/fukami/
   * \#3 「BGPの話」https://atnd.org/events/1268
 
 # Slides
-<div style="width: 65%">
+<div style="width: 80%">
   <script async class="speakerdeck-embed" data-id="bf80b378ec6d4bd29c7f14978b39a2b7" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
 </div>
 
