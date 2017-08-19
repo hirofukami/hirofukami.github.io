@@ -8,8 +8,6 @@ tags: about
 ## Hiro Fukami 深海 寛信 (ふかみ ひろのぶ)
 ![Hiro Fukami's Picture](https://graph.facebook.com/1282639350/picture?width=300)
 
-# Sumarry
-
 1974/09/16生まれ
 
 転職を重ねてきた後、会社を作って新しいサービズを作ったり、新サービスの作り方を教えたり。
@@ -19,7 +17,45 @@ tags: about
 過去にシリコンバレーでスタートアップやって失敗して、
 やっぱりサービスをゼロから作り上げて世の中を良くしたい。スポーツサービスのスタートアップをチャレンジ中。
 
-嫁1、娘1。東京都、京王線沿いに住んでいます
+嫁1、娘1。東京都、京王線沿いに住んでいます。
+
+<hr>
+
+# index
+
+1. [Skills](#skills)
+1. [History](#history)
+1. [Current](#current)
+1. [This Blog](#this-blog)
+1. [Social Networks](#social-networks)
+1. [Book](#book)
+1. [Media](#media)
+1. [勉強会・イベントスピーカー](#勉強会イベントスピーカー)
+1. [Slides](#slides)
+1. [Contact](#contact)
+
+<hr>
+
+# Skills
+
+* LEAN Startup
+* Ruby on Rails
+* Chef, Vagrant, Test-Kitchen
+* Cloud Computing/Virtual Machine/Cloud Management
+* iOS App Development(Titanium Mobile/MBaaS)
+* Network Engineering, Servers Engineering
+* 効率的な振る舞い
+* Extreme Meeting
+
+* やれること・やってること
+  * インターネットバックボーンの中にいたので、全般的なインターネットの仕組みとネットワークスキルに不自由しないかと
+  * できることのレイヤを上げてきてネットワーク/サーバのインフラづくりと運用からiPhoneアプリ作ったりRuby on RailsでWeb開発まで
+  * エンジニアの業務効率、ミーティング手法、チームモチベーションのコンサルをやったり
+  * 割とチームマネージメントは得意
+
+* やりたいこと
+  * やっぱりサービスを作りたい
+  * 人の心が少しでも振えるような＆人の生活がハッピーになれるようなモノ/サービスを考えるために常に勉強中
 
 # History
 
@@ -102,21 +138,16 @@ tags: about
 
 # Social Networks
 
-* <i class="fa fa-facebook-square"></i> Facebook : [/fukami][1]   : 割と大きめなお知らせ的なものが多め(ポスト頻度低め)
-* <i class="fa fa-twitter-square"></i> Twitter : [@d_sea][2]  : 日常的な思いつき、小ネタ(ポスト頻度多め)
-* <i class="fa fa-instagram"></i> Instagram : [/d_sea][9]  : 普段の写真
-* <i class="fa fa-linkedin-square"></i> Linkedin : [/hirofukami][4]
+* <i class="fa fa-facebook-square"></i> : [/fukami][1]   : 割と大きめなお知らせ的なものが多め(ポスト頻度低め)
+* <i class="fa fa-twitter-square"></i> : [@d_sea][2]  : 日常的な思いつき、小ネタ(ポスト頻度多め)
+* <i class="fa fa-instagram"></i> : [/d_sea][9]  : 普段の写真
+* <i class="fa fa-linkedin-square"></i> : [/hirofukami][4]
 
 ## Social Feeds
 
 ### 個人
 
 <a class="twitter-timeline" data-width="300" data-height="720" href="https://twitter.com/d_sea">Tweets by d_sea</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-
-<i class="fa fa-instagram"></i>
-
-<!-- LightWidget WIDGET --><script src="//lightwidget.com/widgets/lightwidget.js"></script><iframe src="//lightwidget.com/widgets/f3209975193756bab6edc6d6b230e622.html" scrolling="no" allowtransparency="true" class="lightwidget-widget" style="width: 80%; border: 0; overflow: hidden;"></iframe>
-
 
 ### 会社
 
@@ -164,28 +195,6 @@ tags: about
 [Speaker Deck @d-sea](https://speakerdeck.com/dsea)
 
 SlideShare : [Hiro Fukami's All SlideShare][8]
-
-
-# Skills
-
-* LEAN Startup
-* Ruby on Rails
-* Chef, Vagrant, Test-Kitchen
-* iOS App Development(Titanium Mobile/MBaaS)
-* Network Engineering, Servers Engineering
-* 効率的な振る舞い
-* Extreme Meeting
-* Cloud Computing/Virtual Machine/Cloud Management
-
-* やれること・やってること
-  * インターネットバックボーンの中にいたので、全般的なインターネットの仕組みとネットワークスキルに不自由しないかと
-  * できることのレイヤを上げてきてネットワーク/サーバのインフラづくりと運用からiPhoneアプリを作ったりRailsでWebづくりまで
-  * エンジニアの業務効率、ミーティング手法、チームモチベーションのコンサルをやったり
-  * 割とチームマネージメントは得意
-
-* やりたいこと
-  * やっぱりサービスを作りたい
-  * 人の心が少しでも振えるような＆人の生活がハッピーになれるようなモノ/サービスを考えるために常に勉強中
 
 # Contact
 
