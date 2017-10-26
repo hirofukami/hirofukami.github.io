@@ -54,6 +54,7 @@ medium_id:
 bitcoin_url:
 paypal_url:
 flattr_button:
+shopping: true
 
 # Post sharing icons
 show_sharing_icons: true

@@ -1,5 +1,8 @@
 <div class="social-icons">
   <div class="social-icons-right">
+    {% if site.shopping %}
+    <a class="fa fa-shopping-cart" href="https://hirofukami.official.ec/"></a>
+    {% endif %}
     {% if site.facebook_username %}
     <a class="fa fa-facebook" href="https://facebook.com/{{ site.facebook_username }}"></a>
     {% endif %}
