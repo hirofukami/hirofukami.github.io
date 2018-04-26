@@ -133,9 +133,9 @@ image: /images/2018/04/web-zeroichi-engineer-academy.png
 
 自らの手で世の中にないWebサービスを生み出したい方の応募お待ちしています！
 
-**「すべてのエンジニアに、失敗の担保と成功のチャンスを」**
+**「すべてのエンジニアに、失敗の担保と成功のチャンスを」** ゼロイチ Engineer Academy
 
-https://company.players1.st/academy
+[https://company.players1.st/academy](https://company.players1.st/academy)
 
 
 [web]: https://company.players1.st/academy
