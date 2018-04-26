@@ -53,8 +53,7 @@ image: /images/2018/04/web-zeroichi-engineer-academy.png
 
 サービスの紹介は [Webサイト][web] と Google Drive のスライドで公開しています。
 
-<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTgk2utJQkGffYZnFZODPVNqfPH6K8YgkPj-Rn4WMEi2EmKmYytKlkLCg95h06Me62Ixb_C_a8sid2f/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
-
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTgk2utJQkGffYZnFZODPVNqfPH6K8YgkPj-Rn4WMEi2EmKmYytKlkLCg95h06Me62Ixb_C_a8sid2f/embed?start=false&loop=false&delayms=3000" frameborder="0" width="480" height="299" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 
 <!-- more -->
 
