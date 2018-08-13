@@ -142,7 +142,7 @@ tags: about
 
 ### [Players1st](https://players1.st/)
 
-[<img src="https://players1.st/assets/logo-horizontal.png", width="320px" />](https://players1.st/)
+<a href="https://players1.st"><img src="https://players1.st/assets/logo-horizontal.png", width="320px" /></a>
 
 「現役アスリートのクラウドスポンサー募集サービス」
 
