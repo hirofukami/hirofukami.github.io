@@ -66,6 +66,8 @@ tags: about
 1. 2009-Present 株式会社シェイクソウル 代表取締役 CEO
 1. 2016-Present [株式会社プレイヤーズファースト](https://players1.st/) 代表取締役社長 CEO
 
+詳細な職歴書は<a href="{{ root_url}}/professional-career">こちら</a>
+
 ## Summary
 
 *   NTT(のちNTT東日本)にて法人営業SE、インターネットの可能性に魅せられて＆本物のスキルを身につけたくて、初の転職でインターネット業界に飛び込む。
@@ -140,7 +142,7 @@ tags: about
 
 ### [Players1st](https://players1.st/)
 
-[![Players1st](https://players1.st/assets/logo_top.png)](https://players1.st/)
+[<img src="https://players1.st/assets/logo-horizontal.png", width="320px" />](https://players1.st/)
 
 「現役アスリートのクラウドスポンサー募集サービス」
 
