@@ -142,9 +142,11 @@ tags: about
 
 ### [Players1st](https://players1.st/)
 
-<a href="https://players1.st"><img src="https://players1.st/assets/logo-horizontal.png", width="320px" /></a>
+[![Players1st](https://players1.st/assets/logo-horizontal.png)](https://players1.st)
 
-「現役アスリートのクラウドスポンサー募集サービス」
+[https://players1.st](https://players1.st)
+
+「現役アスリートの月額スポンサー募集サービス」
 
 アスリートの経済的課題を解決するためのサービスです。アスリートはスポンサー・支援金の決済窓口、キャリア支援、仕事紹介、認知向上などのオンラインサービスが受けられます。
 課金・PRはPlayers1stに任せて、競技活動に集中できます。
