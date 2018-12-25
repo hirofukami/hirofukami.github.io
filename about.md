@@ -244,6 +244,8 @@ SlideShare : [Hiro Fukami's All SlideShare][8]
 
 # Contact
 
+お仕事の依頼は[こちら](/contact)から
+
 何か興味があれば <dee.sea@gmail.com> へいつでも連絡ください。
 
 Facebook/TwitterなどのソーシャルネットワークからでもOKです。
