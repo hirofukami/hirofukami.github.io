@@ -3,6 +3,7 @@ _drafts
 .sass-cache
 .DS_Store
 .jekyll-metadata
+.icloud
 
 # Ignore the config file that's used for gh-pages.
 _config.gh-pages.yml
