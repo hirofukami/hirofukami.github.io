@@ -40,14 +40,16 @@ tags: about
 
 * LEAN Startup
 * Ruby on Rails
+* iOS App Development(Swift + Firebase)
+* Dcoker, Docker Compose
 * Chef, Vagrant, Test-Kitchen
 * Cloud Computing/Virtual Machine/Cloud Management
-* iOS App Development(Titanium Mobile/MBaaS)
 * Network Engineering, Servers Engineering
 * 効率的な振る舞い
 * Extreme Meeting
 
 * やれること・やってること
+  * スタートアップのアプローチを最小コストで小さく試しながら確実な成長を作る枠組みを見つける試み
   * インターネットバックボーンの中にいたので、全般的なインターネットの仕組みとネットワークスキルに不自由しないかと
   * できることのレイヤを上げてきてネットワーク/サーバのインフラづくりと運用からiPhoneアプリ作ったりRuby on RailsでWeb開発まで
   * エンジニアの業務効率、ミーティング手法、チームモチベーションのコンサルをやったり
@@ -191,13 +193,7 @@ tags: about
 
 ## Social Feeds
 
-### 個人
-
 <a class="twitter-timeline" data-width="300" data-height="720" href="https://twitter.com/d_sea">Tweets by d_sea</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-
-### 会社
-
-<a class="twitter-timeline" data-width="300" data-height="720" href="https://twitter.com/pys1st">Tweets by pys1st</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 
 # Book
