@@ -74,7 +74,7 @@ Twitter も入れたかったのですが、FirebaseUI 6.2.1 では動きませ�
 
 AppDelegate.swift に Firebase の初期化をしています。
 
-```swift:AppDelegate.swift
+```swift
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
@@ -98,7 +98,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 `func viewDidLoad()` の中で FirebaseUI の初期化をしています。
 
-```
+```swift
 override func viewDidLoad() {
     super.viewDidLoad()
     self.authUI.delegate = self
@@ -108,7 +108,7 @@ override func viewDidLoad() {
 
 また、`Auth.auth().addStateDidChangeListener` を使ってログイン状態をリアルタイムに監視して `login_status` 変数に反映して、TableCell の表示内容に活かしています。
 
-```
+```swift
 handle = Auth.auth().addStateDidChangeListener { (auth, user) in
     if user != nil {
         self.login_status = true
@@ -120,7 +120,7 @@ handle = Auth.auth().addStateDidChangeListener { (auth, user) in
 
 一点うまく行かなかったのが、認証画面から離れる `didSignInWith` の部分の69行目で認証方法の View で認証がエラーになった際のメッセージを表示したかったのですが、この View 自体を非表示にするキャンセルボタンを押した際もこの部分での処理になるので、そこの分岐の仕方がわからず。結局、何も処理をしていない状態にしています。
 
-```
+```swift
 //　認証画面から離れたときに呼ばれる（キャンセルボタン押下含む）
 public func authUI(_ authUI: FUIAuth, didSignInWith user: User?, error: Error?){
     // 認証に成功した場合
