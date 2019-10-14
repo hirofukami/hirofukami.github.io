@@ -18,29 +18,27 @@ image: /images/2019/07/20190716_geo_pin.jpg
 ---
 ![FirebaseUI](/images/2019/07/20190716_geo_pin.jpg)
 
-「フットサルメット」というフットサルを一緒に蹴るメンバーを募集したり簡単に参加できるアプリをリリースしました。
+「フットサル」というフットサルを一緒に蹴るメンバーを募集したり簡単に参加できるアプリをリリースしました。
 
 Swift + Firebase(Cloud Firestore) の構成です。
 
-<div id="appreach-box" style="text-align: left;">
-  <img id="appreach-image" src="https://is4-ssl.mzstatic.com/image/thumb/Purple113/v4/66/ec/a3/66eca3c8-3954-c9c1-586e-d50fdfa99705/source/512x512bb.jpg" alt="フットサル 募集" style="float: left; margin: 10px; width: 25%; max-width: 120px; border-top-left-radius: 10%; border-top-right-radius: 10%; border-bottom-right-radius: 10%; border-bottom-left-radius: 10%;">
-  <div class="appreach-info" style="margin: 10px;">
-    <div id="appreach-appname">フットサル 募集</div>
+<div id="appreach-box" style="text-align: left; border: solid 0.5px #808000; border-radius: 8px; margin: 20px; padding: 5px; max-width: 420px;">
+  <img id="appreach-image" src="https://is4-ssl.mzstatic.com/image/thumb/Purple113/v4/66/ec/a3/66eca3c8-3954-c9c1-586e-d50fdfa99705/source/512x512bb.jpg" alt="フットサル 募集" style="float: left; margin: 10px; width: 25%; max-width: 120px; border-radius: 10%; margin-right: 25px;">
+  <div class="appreach-info" style="margin: 12px;">
+    <div id="appreach-appname">フットサル</div>
     <div id="appreach-developer" style="font-size: 80%; display: inline-block;">
       開発元:
       <span id="appreach-developerurl">Players1st inc.</span>
     </div>
     <div id="appreach-price" style="font-size: 80%; display: inline-block;">無料</div>
-    <div class="appreach-links" style="">
+    <div class="appreach-links" style="margin: 14px;">
       <div id="appreach-itunes-link" style="display: inline-block;">
         <a id="appreach-itunes" href="https://apps.apple.com/jp/app/%25E3%2583%2595%25E3%2583%2583%25E3%2583%2588%25E3%2582%25B5%25E3%2583%25AB/id1467175472?uo=4" target="_blank" rel="nofollow">
           <img src="https://nabettu.github.io/appreach/img/itune_ja.svg" style="height: 40px; width: 135px;">
         </a>
       </div>
-      <div id="appreach-gplay-link" style="display: inline-block;"></div>
     </div>
   </div>
-  <div class="appreach-footer" style="margin-bottom: 10px; clear: left;"></div>
 </div>
 
 データ管理の部分は Cloud Firestore を使っています。
