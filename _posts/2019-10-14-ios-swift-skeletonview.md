@@ -14,7 +14,7 @@ tags:
 description: iOS アプリを Swift + Firebase(Cloud Firestore) で作りました。 Firebase からのデータロードの待ち時間をユーザーに感じさせないために SkeletonView を入れました。その導入メモです。
 image: https://raw.githubusercontent.com/Juanpe/SkeletonView/master/Assets/header2.jpg
 ---
-![FirebaseUI](https://raw.githubusercontent.com/Juanpe/SkeletonView/master/Assets/header2.jpg)
+![SkeletonView](https://raw.githubusercontent.com/Juanpe/SkeletonView/master/Assets/header2.jpg)
 
 「フットサル」というフットサルを一緒に蹴るメンバーを募集したり簡単に参加できるアプリをリリースしました。
 
