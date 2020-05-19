@@ -54,7 +54,7 @@
     <meta property="og:url" content="{{ site.url }}{{ page.url }}">
     <meta property="og:site_name" content="{{ site.title | xml_escape }}">
     {% if page.image %}
-      {% if page.image.start_with?("http") %}
+      {% if page.image.include?("https") %}
         <meta property="og:image" content="{{ page.image }}" />
       {% else %}
         <meta property="og:image" content="{{ site.url }}{{ page.image }}" />
