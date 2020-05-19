@@ -54,7 +54,11 @@
     <meta property="og:url" content="{{ site.url }}{{ page.url }}">
     <meta property="og:site_name" content="{{ site.title | xml_escape }}">
     {% if page.image %}
-      <meta property="og:image" content="{{ site.url }}{{ page.image }}" />
+      {% if page.image.start_with?("http") %}
+        <meta property="og:image" content="{{ page.image }}" />
+      {% else %}
+        <meta property="og:image" content="{{ site.url }}{{ page.image }}" />
+      {% end %}
     {% else %}
       <meta property="og:image" content="{{ site.url }}/images/title.png" />
     {% endif %}
@@ -73,14 +77,7 @@
     <meta name="twitter:card" content="summary_large_image" />
     {% if site.twitter_username %}
       <meta name="twitter:site" content="@{{ site.twitter_username }}" />
-    {% endif %}
-    <meta name="twitter:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}" />
-    <meta name="twitter:description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}" />
-    <meta name="twitter:url" content="{{ site.url }}{{ page.url }}" />
-    {% if page.image %}
-      <meta name="twitter:image" content="{{ site.url }}{{ page.image }}" />
-    {% else %}
-      <meta name="twitter:image" content="{{ site.url }}/images/title.png" />
+      <meta name="twitter:creator" content="@{{ site.twitter_username }}" />
     {% endif %}
 
     <!-- Icons -->
