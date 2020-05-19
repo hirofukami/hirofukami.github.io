@@ -54,11 +54,9 @@
     <meta property="og:url" content="{{ site.url }}{{ page.url }}">
     <meta property="og:site_name" content="{{ site.title | xml_escape }}">
     {% if page.image %}
-      {% if page.image.include?("https") %}
-        <meta property="og:image" content="{{ page.image }}" />
-      {% else %}
-        <meta property="og:image" content="{{ site.url }}{{ page.image }}" />
-      {% end %}
+      <meta property="og:image" content="{{ site.url }}{{ page.image }}" />
+    {% elsif page.image_out %}
+      <meta property="og:image" content="{{ page.image_out }}" />
     {% else %}
       <meta property="og:image" content="{{ site.url }}/images/title.png" />
     {% endif %}
