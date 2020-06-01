@@ -8,6 +8,13 @@
   font-size: $h0;
 }
 
+@media #{$breakpoint-sp} {
+  p {
+    font-size: 16px !important;
+    line-height: 30px !important;
+  }
+}
+
 @media #{$breakpoint-md} {
   .h00-responsive {
     font-size: $h00-responsive;
