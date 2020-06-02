@@ -8,6 +8,11 @@
   font-size: $h0;
 }
 
+.row {
+  margin-right: 0 !important;
+  margin-left: 0 !important;
+}
+
 @media #{$breakpoint-sp} {
   p {
     font-size: 16px !important;
