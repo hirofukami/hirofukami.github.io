@@ -36,11 +36,13 @@ tags: about
 
 <hr>
 
+**詳細な職歴書は<a href="{{ root_url}}/professional-career"> こちら</a>**
+
 # Skills
 
 * LEAN Startup
 * Ruby on Rails
-* iOS App Development(Swift + Firebase)
+* iOS/Android App Development(Flutter + Firebase)
 * Dcoker, Docker Compose
 * Chef, Vagrant, Test-Kitchen
 * Cloud Computing/Virtual Machine/Cloud Management
@@ -68,8 +70,6 @@ tags: about
 1. 2009-Present 株式会社シェイクソウル 代表取締役 CEO
 1. 2016-Present [株式会社プレイヤーズファースト](https://players1.st/) 代表取締役社長 CEO
 
-詳細な職歴書は<a href="{{ root_url}}/professional-career">こちら</a>
-
 ## Summary
 
 *   NTT(のちNTT東日本)にて法人営業SE、インターネットの可能性に魅せられて＆本物のスキルを身につけたくて、初の転職でインターネット業界に飛び込む。
@@ -81,8 +81,9 @@ tags: about
 
 ## Topics
 
-### Players1st
+### Players1st, inc. CEO
 
+* Flutter + Firebase による iOS/Android アプリ開発をサーバレスで実現
 * リーンスタートアップの手法によるアスリートへの課題インタビュー、ソリューションインタビュー実施。ビジネスモデル構築、サービス設計
 * 開発開始時に4名のエンジニアチームを構成、チームマネージメントしながらエンジニアとしても関わる。Ruby on Rails によるWeb開発。リリース後はプロモーションメンバーも加わり計8名のチームマネージメント(リリース後にチーム人数を縮小)
 * インフラ構築を1人で行う、ステージング・本番サーバのセットアップを Chef で行う。監視モニタリングもセットアップ
@@ -153,24 +154,9 @@ tags: about
 アスリートの経済的課題を解決するためのサービスです。アスリートはスポンサー・支援金の決済窓口、キャリア支援、仕事紹介、認知向上などのオンラインサービスが受けられます。
 課金・PRはPlayers1stに任せて、競技活動に集中できます。
 
-
-## 検証中サービス
-
-**[最新ITざっくり理解シリーズ 電子書籍](http://zakkuri.strikingly.com/)**
-
-忙しいビジネスマンが最新ITトレンドにあがる技術・ツールの概要理解からビジネス面の優位性までを端的に理解するための解説本
-
-**[Kakekomi](http://kakekomi.strikingly.com/)**
-
-フットサルのメンバーが足りない場合に募集できるアプリ
-
-**[Okini(オキニ)](http://okini.strikingly.com/)**
-
-家の中で切らしちゃいけないモノの買い忘れをなくす、お買い物サポートアプリ
-
 ## etc
 
-新規事業・新サービスづくりのコンサルティングで食べています。「教育・育成」も興味があり、Linuxの先生もやったりしています。
+新規事業・新サービスづくりのコンサルティングで食べています。「教育・育成」も興味があり、AWS や Linuxの先生もやったりしました。
 
 今までリーンスタートアップの実践をやっきた結果、「小さく素早く試す」アプローチを取って課題を見つけ、最適なソリューションを試すことをしています。(「早く大きく」は失敗の経験としてあるので)
 
