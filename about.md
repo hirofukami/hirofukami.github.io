@@ -10,12 +10,12 @@ tags: about
 
 1974/09/16生まれ
 
-転職を重ねてきた後、会社を作って新しいサービズを作ったり、新サービスの作り方を教えたり。
+転職を重ねてた後、会社を作って新しいサービズを作ったり、新サービスの作り方を教えたり。
 
 インターネットの力を信じて世の中を豊かにすることを目指す、創業者 + エンジニア。
 
 過去にシリコンバレーでスタートアップやって失敗して、
-やっぱりサービスをゼロから作り上げて世の中を良くしたい。スポーツサービスのスタートアップをチャレンジ中。
+やっぱりサービスをゼロから作り上げて世の中を良くしたいと思いつつ、新しいサービスを開発してチャレンジ中。
 
 嫁1、娘1。東京都、京王線沿いに住んでいます。
 
@@ -42,10 +42,9 @@ tags: about
 
 * LEAN Startup
 * Ruby on Rails
-* iOS/Android App Development(Flutter + Firebase)
+* iOS/Android App Development (Flutter + Firebase)
 * Dcoker, Docker Compose
-* Chef, Vagrant, Test-Kitchen
-* Cloud Computing/Virtual Machine/Cloud Management
+* Cloud Computing (AWS, Google Firebase)
 * Network Engineering, Servers Engineering
 * 効率的な振る舞い
 * Extreme Meeting
@@ -53,13 +52,12 @@ tags: about
 * やれること・やってること
   * スタートアップのアプローチを最小コストで小さく試しながら確実な成長を作る枠組みを見つける試み
   * インターネットバックボーンの中にいたので、全般的なインターネットの仕組みとネットワークスキルに不自由しないかと
-  * できることのレイヤを上げてきてネットワーク/サーバのインフラづくりと運用からiPhoneアプリ作ったりRuby on RailsでWeb開発まで
+  * できることのレイヤーを上げてネットワーク/サーバのインフラづくりと運用からスマホアプリ作ったりRuby on Rails + Vue.js でWeb開発まで
   * エンジニアの業務効率、ミーティング手法、チームモチベーションのコンサルをやったり
   * 割とチームマネージメントは得意
 
 * やりたいこと
-  * やっぱりサービスを作りたい
-  * 人の心が少しでも振えるような＆人の生活がハッピーになれるようなモノ/サービスを考えるために常に勉強中
+  * 人の心が少しでも振えるような＆人の生活がハッピーになれるようなモノ/サービスを創れるように常に勉強中
 
 # History
 
@@ -67,17 +65,17 @@ tags: about
 1. 2002-2006 インターネット総合研究所 からの ブロードバンドタワー ネットワークエンジニアリーダ
 1. 2007-2009 トランスコスモス(Meet-Me) エンジニアチームマネージャ
 1. 2010-2012 fluxflex, inc. 共同創業者
-1. 2009-Present 株式会社シェイクソウル 代表取締役 CEO
-1. 2016-Present [株式会社プレイヤーズファースト](https://players1.st/) 代表取締役社長 CEO
+1. 2009-2021 株式会社シェイクソウル 代表取締役 CEO
+1. 2016-Present [株式会社プレイヤーズファースト](https://company.players1.st/) 代表取締役社長 CEO
 
 ## Summary
 
 *   NTT(のちNTT東日本)にて法人営業SE、インターネットの可能性に魅せられて＆本物のスキルを身につけたくて、初の転職でインターネット業界に飛び込む。
-*   <a href="http://www.iri.co.jp" target="_blank">インターネット総合研究所</a>入社後、<a href="http://www.bbtower.co.jp" target="_blank">ブロードバンドタワー</a>にてデータセンタのインターネットバックボーンのネットワークエンジニアとして現場にて運用/設計を経験。現場の実践的技術スキルを身につける。転籍。この時IPOを経験。
-*   インターネットサービスの立ち上げがしたくて、3D仮想空間コミュニティー(メタバース)サービス <a href="http://www.meet-me.jp" target="_blank">Meet-Me</a> の立ち上げのためにトランスコスモス株式会社に入社。ネットワーク/サーバ/運用監視システムを一人で構築し、実質4ヶ月でサービスインさせる荒業を経験。
-*   2009年2月に独立し、<a href="http://shakesoul.net" target="_blank">株式会社シェイクソウル(ShakeSoul, inc.)</a>を設立。代表取締役CEO。
+*   インターネット総合研究所入社後、ブロードバンドタワーにてデータセンタのインターネットバックボーンのネットワークエンジニアとして現場にて運用/設計を経験。現場の実践的技術スキルを身につける。転籍。この時IPOを経験。
+*   インターネットサービスの立ち上げがしたくて、3D仮想空間コミュニティー(メタバース)サービス Meet-Me の立ち上げのためにトランスコスモス株式会社に入社。ネットワーク/サーバ/運用監視システムを一人で構築し、実質4ヶ月でサービスインさせる荒業を経験。
+*   2009年2月に独立し、株式会社シェイクソウル(ShakeSoul, inc.)を設立。代表取締役CEO。AWS関連書籍の執筆、インフラ構築受託・チームビルディングコンサルティングなどを行う。
 *   2010年6月 シリコンバレースタートアップ <a href="http://fluxflex.com" target="_blank">fluxflex, inc.</a> の共同創業者、2012年1月末退任。
-*   2016年3月 「スポーツで世の中をより良く変える。」をコンセプトに 株式会社プレイヤーズファースト Players1st inc. 設立。スポーツ選手とファンをネット上でつなぎ「スポーツを支える」ためのスポーツインターネットサービス [Players1st](http://players1.st) をリリース。
+*   2016年3月 「スポーツで世の中をより良く変える。」をコンセプトに 株式会社プレイヤーズファースト Players1st inc. 設立。スポーツ選手とファンをネット上でつなぎ「スポーツを支える」ためのアスリートファンディングサイト [Players1st](http://players1.st) をリリース。
 
 ## Topics
 
@@ -91,9 +89,9 @@ tags: about
 
 ### ShakeSoul, inc. CEO
 
-* OpsDeliver リリース
-* Smart Designing リリース
-* スマートWP リリース
+* Webブラウザだけでサーバにアプリケーションをインストール・セットアップできる 「OpsDeliver」リリース
+* Dropbox を使ったローカルと同期するクラウドサーバー 「Smart Designing」リリース
+* WordPress向けオートスケーリングインフラ 「スマートWP」リリース
 * iOS Apps 3つリリース
 * 企業内勉強会・研修講師 DevOps、Chefハンズオンなど実施
 * mBaaS プロモーションコンサルティング
@@ -149,14 +147,14 @@ tags: about
 
 [https://players1.st](https://players1.st)
 
-「現役アスリートの月額スポンサー募集サービス」
+「現役アスリートのための月額スポンサー募集サービス」
 
 アスリートの経済的課題を解決するためのサービスです。アスリートはスポンサー・支援金の決済窓口、キャリア支援、仕事紹介、認知向上などのオンラインサービスが受けられます。
 課金・PRはPlayers1stに任せて、競技活動に集中できます。
 
 ## etc
 
-新規事業・新サービスづくりのコンサルティングで食べています。「教育・育成」も興味があり、AWS や Linuxの先生もやったりしました。
+他社が行っている新規事業・新サービスづくりのコンサルティング、アドバイザー、技術支援を行っています。「人を育てる」ことも興味があり、AWS や Linuxの先生もやったりしました。
 
 今までリーンスタートアップの実践をやっきた結果、「小さく素早く試す」アプローチを取って課題を見つけ、最適なソリューションを試すことをしています。(「早く大きく」は失敗の経験としてあるので)
 
@@ -172,8 +170,8 @@ tags: about
 
 # Social Networks
 
-* <i class="fa fa-facebook-square"></i> : [/fukami][1]   : 割と大きめなお知らせ的なものが多め(ポスト頻度低め)
-* <i class="fa fa-twitter-square"></i> : [@d_sea][2]  : 日常的な思いつき、小ネタ(ポスト頻度多め)
+* <i class="fa fa-facebook-square"></i> : [/fukami][1]   : 割と大きめなお知らせ的なものが多め
+* <i class="fa fa-twitter-square"></i> : [@d_sea][2]  : 日常的な思いつき、小ネタ
 * <i class="fa fa-instagram"></i> : [/d_sea][9]  : 普段の写真
 * <i class="fa fa-linkedin-square"></i> : [/hirofukami][4]
 
@@ -197,13 +195,11 @@ tags: about
 
 2010.06発行、共著
 
-<a rel="nofollow" href="http://www.amazon.co.jp/gp/product/4774142840/ref=as_li_ss_il?ie=UTF8&camp=247&creative=7399&creativeASIN=4774142840&linkCode=as2&tag=dsea-22"><img border="0" src="http://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=4774142840&Format=_SL250_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=dsea-22" ></a>
-
-[よくわかるAmazonEC2/S3入門 ―Amazon Web Servicesクラウド活用と実践 (Software Design plusシリーズ)][7]
+よくわかるAmazonEC2/S3入門 ―Amazon Web Servicesクラウド活用と実践 (Software Design plusシリーズ)
 
 # Media
 
-* fluxflex, inc.活動が評価されスタートアップを目指す創業者向けコラムをスタートアップ系テックメディアである[ベンチャーナウにコラム連載](http://www.venturenow.jp/column/fukami/)
+* fluxflex, inc.活動が評価されスタートアップを目指す創業者向けコラムをスタートアップ系テックメディアであるベンチャーナウにコラム連載
 
 # 勉強会・イベントスピーカー
 
@@ -227,10 +223,6 @@ SlideShare : [Hiro Fukami's All SlideShare][8]
 # Contact
 
 お仕事の依頼は[こちら](/contact)から
-
-何か興味があれば <dee.sea@gmail.com> へいつでも連絡ください。
-
-Facebook/TwitterなどのソーシャルネットワークからでもOKです。
 
  [1]: http://facebook.com/fukami
  [2]: http://twitter.com/d_sea
