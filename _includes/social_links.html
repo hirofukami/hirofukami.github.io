@@ -1,16 +1,13 @@
 <div class="social-icons">
   <div class="social-icons-right">
-    {% if site.shopping %}
-    <a class="fa fa-shopping-cart" href="https://hirofukami.official.ec/"></a>
-    {% endif %}
-    {% if site.facebook_username %}
-    <a class="fa fa-facebook" href="https://facebook.com/{{ site.facebook_username }}"></a>
-    {% endif %}
     {% if site.twitter_username %}
     <a class="fa fa-twitter" href="https://twitter.com/{{ site.twitter_username }}"></a>
     {% endif %}
     {% if site.instagram_username %}
     <a class="fa fa-instagram" href="https://www.instagram.com/{{ site.instagram_username }}"></a>
+    {% endif %}
+    {% if site.facebook_username %}
+    <a class="fa fa-facebook" href="https://facebook.com/{{ site.facebook_username }}"></a>
     {% endif %}
     {% if site.linkedin_username %}
     <a class="fa fa-linkedin" href="https://www.linkedin.com/in/{{ site.linkedin_username }}"></a>
@@ -20,6 +17,9 @@
     {% endif %}
     {% if site.bitbucket_username %}
       <a class="fa fa-bitbucket" href="https://bitbucket.org/{{ site.bitbucket_username }}"></a>
+    {% endif %}
+    {% if site.shopping %}
+      <a class="fa fa-shopping-cart" href="https://hirofukami.official.ec/"></a>
     {% endif %}
     {% if site.stackoverflow_id %}
       <a class="fa fa-stack-overflow" href="https://stackoverflow.com/users/{{ site.stackoverflow_id }}"></a>
