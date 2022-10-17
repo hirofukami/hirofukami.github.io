@@ -103,7 +103,7 @@ text:
       sending:  'sending..'
       sent:     'Message sent!'
       error:    'Error!'
-  thanks: 'メッセージを受け付けました。ありがとうございました.'
+  thanks: 'メッセージを受け付けました。ありがとうございました。'
   og_locale: 'ja_JP'
 
 # Build settings
