@@ -21,9 +21,19 @@
 }
 
 .post-footer {
-  @extend .italic;
+  background-color: $footer-bg-color;
+  border-top: $footer-border-top;
+  color: $footer-color;
+
+  // @extend .italic;
 
   margin-top: .75rem;
+  padding: 1rem;
+  // text-align: center;
+
+}
+
+.post-footer .center {
   text-align: center;
 }
 

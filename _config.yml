@@ -20,8 +20,8 @@ simple_search: http://google.com/search
 
 # Optional features
 animated:             false
-show_related_posts:   false
-show_post_footers:    false
+show_related_posts:   true
+show_post_footers:    true
 show_social_icons:    true
 ajaxify_contact_form: false
 enable_mathjax: false
@@ -92,16 +92,19 @@ text:
   index:
     coming_soon: 'Coming soon...'
   contact:
-    email:    'Email Address'
-    content:  'What would you like to say?'
-    subject:  'New submission!'
-    submit:   'Send'
+    explain: 'ITシステム開発のマネジメント、技術についてのアドバイス、コンサルティング、エンジニア育成プログラムの策定・実施などを行っています。<br>お仕事の依頼や相談はコンタクトフォームからお送りください。<br>内容を確認の上、入力メールアドレス宛にご連絡いたします。'
+    name:     '氏名'
+    email:    'メールアドレス'
+    company:    '会社名'
+    content:  'メッセージをどうぞ'
+    subject:  'New submission! from Hiro Fukami Blog'
+    submit:   '送信'
     ajax:
       sending:  'sending..'
       sent:     'Message sent!'
       error:    'Error!'
-  thanks: 'Thanks for contacting us. We will check as soon as possible.'
-  og_locale: 'en_US'
+  thanks: 'メッセージを受け付けました。ありがとうございました.'
+  og_locale: 'ja_JP'
 
 # Build settings
 markdown_ext: "markdown,mkdown,mkdn,mkd,md,mdown"
