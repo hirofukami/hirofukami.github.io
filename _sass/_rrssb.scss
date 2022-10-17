@@ -86,6 +86,10 @@ $social-list: (rrssb-email $rrssb-email, rrssb-facebook $rrssb-facebook, rrssb-t
   text-align: left;
 }
 
+.share-page {
+  display: inline-block;
+}
+
 // The meat and potatoes
 .rrssb-buttons {
   box-sizing: border-box;
