@@ -4,7 +4,8 @@ title: "リモートワーク"
 date: 2016-08-26 19:30:00 +0900
 comments: true
 categories:
-  - Players1st
+  - Business
+  - Sports
 tags:
   - remote work
   - players1st

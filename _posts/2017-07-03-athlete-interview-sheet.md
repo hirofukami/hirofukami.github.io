@@ -5,7 +5,8 @@ date: 2017-07-03 22:45:00 +0900
 comments: true
 image: /images/2017/07/20170703-meeting.jpg
 categories:
-  - Players1st
+  - Business
+  - Startup
 tags:
   - athlete
   - sports

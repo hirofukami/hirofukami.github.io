@@ -3,7 +3,7 @@ layout: post
 title: "OpsDeliver というサービスをローンチしました"
 date: 2014-10-16 19:00:00 +0900
 comments: true
-categories: [OpsDeliver, Startup]
+categories: [Business, Startup]
 ---
 
 [1]: https://opsdeliver.com/

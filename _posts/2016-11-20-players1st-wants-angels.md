@@ -4,7 +4,8 @@ title: "「スポーツの力で世の中をより良くする」思いを持つ
 date: 2016-11-20 14:00:00 +0900
 comments: true
 categories:
-  - Players1st
+  - Business
+  - Startup
 tags:
   - players1st
   - angel

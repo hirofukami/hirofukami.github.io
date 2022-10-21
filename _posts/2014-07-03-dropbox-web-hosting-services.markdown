@@ -3,7 +3,7 @@ layout: post
 title: "Dropbox Webホスティングサービス一覧"
 date: 2014-07-03 17:30:00 +0900
 comments: true
-categories: Services
+categories: Business
 ---
 
 ![Dropbox](/images/dropbox-logos.png)

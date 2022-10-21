@@ -6,7 +6,6 @@ comments: true
 categories:
   - Business
   - Startup
-  - OpsDeliver
 tags:
   - opsdeliver
   - shakesoul

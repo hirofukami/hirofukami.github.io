@@ -3,7 +3,7 @@ layout: post
 title: "WordPress to Octopress 日本語パーマリンクを直す"
 date: 2015-02-15 20:00:00 +0900
 comments: true
-categories: Octopress
+categories: Tool
 ---
 [WordPressからOctopressにきれいに移行する方法を紹介した][post]が、ちょっとした問題が残っていて、それを解消したので紹介。
 

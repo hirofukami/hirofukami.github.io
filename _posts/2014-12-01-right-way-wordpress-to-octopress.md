@@ -3,7 +3,7 @@ layout: post
 title: "WordPressからOctopressへきれいに移行する方法"
 date: 2014-12-01 20:00:00 +0900
 comments: true
-categories: Octopress
+categories: Tool
 ---
 ![octopress](/images/20141201-octopress.png)
 

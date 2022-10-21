@@ -3,7 +3,7 @@ layout: post
 title: "WordPressプロフェッショナル養成読本という本を書きました"
 date: 2014-11-18 08:00:00 +0900
 comments: true
-categories: [Book, WordPress]
+categories: [Book, Business]
 ---
 
 [![WordPress本](/images/20141118-wordpress-book.jpg)](http://www.amazon.co.jp/gp/product/4774167878/ref=as_li_ss_tl?ie=UTF8&camp=247&creative=7399&creativeASIN=4774167878&linkCode=as2&tag=dsea-22)
