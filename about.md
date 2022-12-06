@@ -74,8 +74,8 @@ tags: about
 *   インターネット総合研究所入社後、ブロードバンドタワーにてデータセンタのインターネットバックボーンのネットワークエンジニアとして現場にて運用/設計を経験。現場の実践的技術スキルを身につける。転籍。この時IPOを経験。
 *   インターネットサービスの立ち上げがしたくて、3D仮想空間コミュニティー(メタバース)サービス Meet-Me の立ち上げのためにトランスコスモス株式会社に入社。ネットワーク/サーバ/運用監視システムを一人で構築し、実質4ヶ月でサービスインさせる荒業を経験。
 *   2009年2月に独立し、株式会社シェイクソウル(ShakeSoul, inc.)を設立。代表取締役CEO。AWS関連書籍の執筆、インフラ構築受託・チームビルディングコンサルティングなどを行う。
-*   2010年6月 シリコンバレースタートアップ <a href="http://fluxflex.com" target="_blank">fluxflex, inc.</a> の共同創業者、2012年1月末退任。
-*   2016年3月 「スポーツで世の中をより良く変える。」をコンセプトに 株式会社プレイヤーズファースト Players1st inc. 設立。スポーツ選手とファンをネット上でつなぎ「スポーツを支える」ためのアスリートファンディングサイト [Players1st](http://players1.st) をリリース。
+*   2010年6月 シリコンバレースタートアップ fluxflex, inc. の共同創業者、2012年1月末退任。
+*   2016年3月 「スポーツで世の中をより良く変える。」をコンセプトに 株式会社プレイヤーズファースト Players1st inc. 設立。スポーツ選手とファンをネット上でつなぎ「スポーツを支える」ためのアスリートファンディングサイト [Players1st](https://players1.st) をリリース。
 
 ## Topics
 
@@ -107,18 +107,18 @@ tags: about
 * ジェトロ(日本貿易振興機構 JETRO)のスタートアップ支援プログラムに合格。サンノゼインキュベーションセンターにオフィス設立。現地JETROスタッフのサポートを受けながらシリコンバレー拠点の立ち上げを行う
 * エンジェル投資家から資金調達、プレゼンテーション、交渉、契約処理を全て担当
 * Tech Crunch掲載 日本語版、本家英語版ともに掲載実績あり
-  * JP : [オートスケール可能なfluxflexは数クリックでEC2が使える新感覚クラウドだ](http://jp.techcrunch.com/2010/10/25/jp-20101025-fluxflex-can-use-ec2-by-several-clicks/)
-  * JP : [日本人が起業したfluxflexはGithubと連動する安くて簡単なクラウド・ホスティング・サービスを目指す](http://jp.techcrunch.com/2011/08/19/20110817github-integrated-fluxflex-aims-at-making-cloud-hosting-easier-and-cheaper/)
-  * EN : [Github-Integrated fluxflex Aims At Making Cloud Hosting Easier And Cheaper](http://techcrunch.com/2011/08/17/github-integrated-fluxflex-aims-at-making-cloud-hosting-easier-and-cheaper/)
+  * JP : [オートスケール可能なfluxflexは数クリックでEC2が使える新感覚クラウドだ](https://jp.techcrunch.com/2010/10/25/jp-20101025-fluxflex-can-use-ec2-by-several-clicks/)
+  * JP : [日本人が起業したfluxflexはGithubと連動する安くて簡単なクラウド・ホスティング・サービスを目指す](https://jp.techcrunch.com/2011/08/19/20110817github-integrated-fluxflex-aims-at-making-cloud-hosting-easier-and-cheaper/)
+  * EN : [Github-Integrated fluxflex Aims At Making Cloud Hosting Easier And Cheaper](https://techcrunch.com/2011/08/17/github-integrated-fluxflex-aims-at-making-cloud-hosting-easier-and-cheaper/)
   * この他にもアジアのテックサイト Pennoison(現、Tech in Asia) や国内テックメディアに多数掲載
 * 日本においてミートアップインベントを開催。150名参加者を集める
 * スタートアップピッチイベント実績
-  * Innovation Weekend 3rdにて準優勝。[Innovation Weekend Grand Final 2011にてファイナリストとしてピッチを行う](http://innovation-weekend.jp/2011/index_presenters.html)
+  * Innovation Weekend 3rdにて準優勝。Innovation Weekend Grand Final 2011にてファイナリストとしてピッチを行う
   * Startup Dating インフライベント
 
 ### Meet−Meプロジェクト エンジニアチームマネージャ
 
-* 3D仮想空間コミュニティー(メタバース)サービス Meet-Me(http://www.meet-me.jp/) 立ち上げのためにジョイン。東京の実際の地形データを用いて東京を仮想空間に再現するコンセプト。ネットワーク/サーバ/運用監視システムを一人で構築し、構想から実質4ヶ月でサービスインさせる荒業を経験
+* 3D仮想空間コミュニティー(メタバース)サービス Meet-Me 立ち上げのためにジョイン。東京の実際の地形データを用いて東京を仮想空間に再現するコンセプト。ネットワーク/サーバ/運用監視システムを一人で構築し、構想から実質4ヶ月でサービスインさせる荒業を経験
     * データセンター7社のコンペを開催、最安ベンダーを選定
     * ネットワーク冗長化、セキュリティ、トラフィック負荷分散(ロードバランサー)の設計、各機器の設定内容を定義。
     * 各サーバプロセスの特徴からサーバスペックの選定、サーバメーカーへの発注
@@ -141,11 +141,11 @@ tags: about
 
 ## 開発・運営中
 
-### [Players1st](https://players1.st/)
+### [Players1st][10]
 
-[![Players1st](https://players1.st/assets/logo-horizontal.png)](https://players1.st)
+[![Players1st](https://players1.st/assets/logo-horizontal.png)][10]
 
-[https://players1.st](https://players1.st)
+[https://players1.st][10]
 
 「現役アスリートのための月額スポンサー募集サービス」
 
@@ -164,8 +164,8 @@ tags: about
 
 # This Blog
 
-* URL : [hirofukami.com](http://hirofukami.com)
-* RSS : [http://hirofukami.com/feed.xml](http://hirofukami.com/feed.xml)
+* URL : [hirofukami.com](https://hirofukami.com)
+* RSS : [https://hirofukami.com/feed.xml](https://hirofukami.com/feed.xml)
 * Facebook Page : [/hirofukamiblog](https://www.facebook.com/hirofukamiblog) すべてのポストをフィードしています
 
 # Social Networks
@@ -182,20 +182,22 @@ tags: about
 
 # Book
 
-## WordPressプロフェッショナル養成読本 [Webサイト運用の現場で役立つ知識が満載! ]
+## WordPressプロフェッショナル養成読本 Webサイト運用の現場で役立つ知識が満載!
 
 2014.10発行、共著
 
-[<img border="0" src="http://ecx.images-amazon.com/images/I/610lYz15VZL.jpg" width="300" />][7]
+[<img border="0" src="https://ecx.images-amazon.com/images/I/610lYz15VZL.jpg" width="300" />][7]
 
-[WordPressプロフェッショナル養成読本 [Webサイト運用の現場で役立つ知識が満載! ]\ (Software Design plus)][7]
+[WordPressプロフェッショナル養成読本 [Webサイト運用の現場で役立つ知識が満載! ] (Software Design plus)][7]
 
 
 ## よくわかるAmazonEC2/S3入門 ―Amazon Web Services クラウド活用と実践
 
 2010.06発行、共著
 
-よくわかるAmazonEC2/S3入門 ―Amazon Web Servicesクラウド活用と実践 (Software Design plusシリーズ)
+<a href="https://www.amazon.co.jp/%E3%82%88%E3%81%8F%E3%82%8F%E3%81%8B%E3%82%8BAmazonEC2-%E2%80%95AmazonWebServices%E3%82%AF%E3%83%A9%E3%82%A6%E3%83%89%E6%B4%BB%E7%94%A8%E3%81%A8%E5%AE%9F%E8%B7%B5-Software-Design-plus%E3%82%B7%E3%83%AA%E3%83%BC%E3%82%BA/dp/4774142840?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&crid=9B05QE0N21R2&keywords=%E3%82%88%E3%81%8F%E3%82%8F%E3%81%8B%E3%82%8BAmazonEC2%2FS3%E5%85%A5%E9%96%80&qid=1670285100&sprefix=%E3%82%88%E3%81%8F%E3%82%8F%E3%81%8B%E3%82%8Bamazonec2%2Fs3%E5%85%A5%E9%96%80%2Caps%2C562&sr=8-1&linkCode=li3&tag=dsea-22&linkId=db56eed9a92b767879d400258d6fbb3a&language=ja_JP&ref_=as_li_ss_il" target="_blank"><img border="0" src="//ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=4774142840&Format=_SL250_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=dsea-22&language=ja_JP" ></a><img src="https://ir-jp.amazon-adsystem.com/e/ir?t=dsea-22&language=ja_JP&l=li3&o=9&a=4774142840" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+
+[よくわかるAmazonEC2/S3入門 ―Amazon Web Servicesクラウド活用と実践 (Software Design plusシリーズ)][6]
 
 # Media
 
@@ -204,12 +206,12 @@ tags: about
 # 勉強会・イベントスピーカー
 
 * 日本最大のWordPressコミュニティイベント WordCamp Tokyo 2013
-  * [運用セッションスピーカー](http://2013.tokyo.wordcamp.org/session/management/)
+  * [運用セッションスピーカー](https://2013.tokyo.wordcamp.org/session/management/)
 * Web開発者向け勉強会 BPStudy
-  * \#27 「[Amazon Web Service にまつわるいろいろ](https://atnd.org/events/2043)」
-  * \#75 「[クリエイティブWordPressクラウド「スマートWP」を開発したリーンな手法紹介 〜 内部のテクニカルなお話からビジネス面まで](http://bpstudy.connpass.com/event/4045/)」
+  * \#27 「Amazon Web Service にまつわるいろいろ」
+  * \#75 「[クリエイティブWordPressクラウド「スマートWP」を開発したリーンな手法紹介 〜 内部のテクニカルなお話からビジネス面まで](https://bpstudy.connpass.com/event/4045/)」
 * インフラエンジニア向け勉強会 HBStudy
-  * \#3 「[BGPの話](https://atnd.org/events/1268)」
+  * \#3 「BGPの話」
 
 # Slides
 <div style="width: 80%">
@@ -224,12 +226,13 @@ SlideShare : [Hiro Fukami's All SlideShare][8]
 
 お仕事の依頼は[こちら](/contact)から
 
- [1]: http://facebook.com/fukami
- [2]: http://twitter.com/d_sea
+ [1]: https://facebook.com/fukami
+ [2]: https://twitter.com/d_sea
  [3]: https://plus.google.com/+HiroFukami?rel=author
- [4]: http://www.linkedin.com/in/hirofukami
- [5]: http://hirofukami.tumblr.com/
- [6]: http://www.amazon.co.jp/gp/product/4774142840/ref=as_li_ss_il?ie=UTF8&camp=247&creative=7399&creativeASIN=4774142840&linkCode=as2&tag=dsea-22
- [7]: http://www.amazon.co.jp/gp/product/4774167878/ref=as_li_ss_tl?ie=UTF8&camp=247&creative=7399&creativeASIN=4774167878&linkCode=as2&tag=dsea-22
- [8]: http://www.slideshare.net/d_sea/presentations
+ [4]: https://www.linkedin.com/in/hirofukami
+ [5]: https://hirofukami.tumblr.com/
+ [6]: https://amzn.to/3H9CblH
+ [7]: https://amzn.to/3Vztcyx
+ [8]: https://www.slideshare.net/d_sea/presentations
  [9]: https://instagram.com/d_sea
+ [10]: https://players1.st/
