@@ -131,7 +131,6 @@ image: /images/static_pages/book_cover_your_startup.jpg
 	  <textarea type="text" name="message" class="field-light" rows="5" placeholder="{{ site.text.contact.content }}"></textarea>
 	  <input type="hidden" name="_subject" value="{{ site.text.contact.subject }}" />
 	  <input type="hidden" name="from_page" value="/books" />
-	  <input type="text" name="_gotcha" style="display:none" />
 	  <input type="hidden" id="g-recaptcha-response" name="g-recaptcha-response">
 	  <button type="submit" class="button button-blue button-big">{{ site.text.contact.submit }}</button>
 	</form>
