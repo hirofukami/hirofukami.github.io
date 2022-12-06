@@ -1,16 +1,16 @@
 ---
 layout: page
-title: 
+title: 執筆本
 permalink: /books/
 tags:
   - ひとりスタートアップ
   - WordPressプロフェッショナル養成読本
   - よくわかるAmazonEC2/S3入門
+description: 深海寛信の執筆本の紹介ページ
+image: /images/static_pages/book_cover_your_startup.jpg
 ---
 
-# 執筆本
-
-## ひとりスタートアップ
+# ひとりスタートアップ
 
 [<img border="0" src="{{ site.url }}/images/static_pages/book_cover_your_startup.jpg" width="480" />][3]
 
@@ -18,7 +18,7 @@ tags:
 
 2022.12発行
 
-### はじめに より
+## はじめに より
 
 > この本は「ひとりスタートアップ」。文字通り、ひとりでスタートアップをするため本です。
 >
@@ -46,7 +46,7 @@ tags:
 >
 > さあ、ひとりスタートアップを始めましょう。
 
-### 目次
+## 目次
 
 はじめに
 
@@ -117,7 +117,7 @@ tags:
 
 付録 参考文献
 
-### 「ひとりスタートアップ」受付フォーム
+## 「ひとりスタートアップ」受付フォーム
 
 <div class="m3">
   <p class ="">
@@ -138,7 +138,7 @@ tags:
 </div>
 
 
-## WordPressプロフェッショナル養成読本 Webサイト運用の現場で役立つ知識が満載!
+# WordPressプロフェッショナル養成読本 Webサイト運用の現場で役立つ知識が満載!
 
 2014.10発行、共著
 
@@ -147,7 +147,7 @@ tags:
 [WordPressプロフェッショナル養成読本 [Webサイト運用の現場で役立つ知識が満載! ] (Software Design plus)][2]
 
 
-## よくわかるAmazonEC2/S3入門 ―Amazon Web Services クラウド活用と実践
+# よくわかるAmazonEC2/S3入門 ―Amazon Web Services クラウド活用と実践
 
 2010.06発行、共著
 
