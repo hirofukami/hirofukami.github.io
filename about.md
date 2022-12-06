@@ -28,7 +28,7 @@ tags: about
 1. [Current](#current)
 1. [This Blog](#this-blog)
 1. [Social Networks](#social-networks)
-1. [Book](#book)
+1. [Books](#books)
 1. [Media](#media)
 1. [勉強会・イベントスピーカー](#勉強会イベントスピーカー)
 1. [Slides](#slides)
@@ -180,24 +180,22 @@ tags: about
 <a class="twitter-timeline" data-width="300" data-height="720" href="https://twitter.com/d_sea">Tweets by d_sea</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 
-# Book
+# Books
 
-## WordPressプロフェッショナル養成読本 Webサイト運用の現場で役立つ知識が満載!
+### [執筆本 <i class="fa fa-book"></i> 紹介ページ](/books)
 
-2014.10発行、共著
+[<img border="0" src="{{ site.url }}/images/static_pages/book_cover_your_startup.jpg" width="480" />][11]
+
+[ひとりスタートアップ: 無理せず確実に成長するための実践ガイドブック][11] 2022.12.発行
 
 [<img border="0" src="https://ecx.images-amazon.com/images/I/610lYz15VZL.jpg" width="300" />][7]
 
-[WordPressプロフェッショナル養成読本 [Webサイト運用の現場で役立つ知識が満載! ] (Software Design plus)][7]
+[WordPressプロフェッショナル養成読本 [Webサイト運用の現場で役立つ知識が満載! ] (Software Design plus)][7] 2014.10発行、共著
 
-
-## よくわかるAmazonEC2/S3入門 ―Amazon Web Services クラウド活用と実践
-
-2010.06発行、共著
 
 <a href="https://www.amazon.co.jp/%E3%82%88%E3%81%8F%E3%82%8F%E3%81%8B%E3%82%8BAmazonEC2-%E2%80%95AmazonWebServices%E3%82%AF%E3%83%A9%E3%82%A6%E3%83%89%E6%B4%BB%E7%94%A8%E3%81%A8%E5%AE%9F%E8%B7%B5-Software-Design-plus%E3%82%B7%E3%83%AA%E3%83%BC%E3%82%BA/dp/4774142840?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&crid=9B05QE0N21R2&keywords=%E3%82%88%E3%81%8F%E3%82%8F%E3%81%8B%E3%82%8BAmazonEC2%2FS3%E5%85%A5%E9%96%80&qid=1670285100&sprefix=%E3%82%88%E3%81%8F%E3%82%8F%E3%81%8B%E3%82%8Bamazonec2%2Fs3%E5%85%A5%E9%96%80%2Caps%2C562&sr=8-1&linkCode=li3&tag=dsea-22&linkId=db56eed9a92b767879d400258d6fbb3a&language=ja_JP&ref_=as_li_ss_il" target="_blank"><img border="0" src="//ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=4774142840&Format=_SL250_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=dsea-22&language=ja_JP" ></a><img src="https://ir-jp.amazon-adsystem.com/e/ir?t=dsea-22&language=ja_JP&l=li3&o=9&a=4774142840" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
 
-[よくわかるAmazonEC2/S3入門 ―Amazon Web Servicesクラウド活用と実践 (Software Design plusシリーズ)][6]
+[よくわかるAmazonEC2/S3入門 ―Amazon Web Servicesクラウド活用と実践 (Software Design plusシリーズ)][6] 2010.06発行、共著
 
 # Media
 
@@ -236,3 +234,4 @@ SlideShare : [Hiro Fukami's All SlideShare][8]
  [8]: https://www.slideshare.net/d_sea/presentations
  [9]: https://instagram.com/d_sea
  [10]: https://players1.st/
+ [11]: https://amzn.to/3P3f6To
