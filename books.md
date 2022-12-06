@@ -12,7 +12,7 @@ tags:
 
 ## ひとりスタートアップ
 
-[<img border="0" src="/images/static_pages/ひとりスタートアップ_表紙.jpg" width="480" />][3]
+[<img border="0" src="{{ site.url }}/images/static_pages/book_cover_your_startup.jpg" width="480" />][3]
 
 [ひとりスタートアップ 無理せず確実に成長するための実践ガイドブック][3]
 
