@@ -8,8 +8,8 @@ categories:
 tags:
   - ハードウエア
   - Web化
-  - Iot
-description: 最近のハードウエアはLinux
+  - IoT
+description: ハードウエアの世界は縁遠いと思っていて、「IoTの時代だ」と言われても、積極的にアプローチしようとは思わなかったが、どうも最近のハードウエアはLinuxで動いているようで、「ほー、興味深いな」と一気に親近感を持った。そうしたらハードウエアのWeb化というキーワードが浮かんだ。
 image_out: https://lh3.googleusercontent.com/pw/AL9nZEXL_TJmtsoQMQ6PgFwGvH_dYI16brXF9_-mGNalEiC9O6WN_Iso641bcVH2H8EkCbjqZAjajNQhiHTwjQSDuX4KgbQ8WhV4vTdlYpW4ZhPXoXYYrktuPWf_erdFjE76QZUBJXurzBYwDoa9GovcWfLrsQ=w1196-h673-no?authuser=0
 
 ---
