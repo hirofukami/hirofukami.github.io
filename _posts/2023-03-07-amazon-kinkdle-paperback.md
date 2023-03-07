@@ -18,7 +18,7 @@ image_out: https://lh3.googleusercontent.com/pw/AMWts8BEnG3yYXHJ70Ne3p6DluF4OIQb
 
 [ひとりスタートアップ][1]で Kindle とペーパーバックを作った。
 
-ちょっと手順や工夫が必要だったので、今後もためにメモっておく。
+ちょっと手順や工夫が必要だったので、今後のためにメモっておく。
 
 # Kindle の作り方
 
@@ -141,7 +141,7 @@ PDF 通りに印刷される。
 
 余白のとり方、読みやすさなどをチェックした。
 
-1冊757円ほどかかった。
+1冊 115ページで 757円ほどかかった。
 
 [1]: https://amzn.to/3P1Szqj
 [canva]: https://www.canva.com
