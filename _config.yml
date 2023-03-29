@@ -4,7 +4,7 @@ email:       dee.sea@gmail.com
 author:      Hiro Fukami
 description: "Hiro Fukami(深海寛信 ふかみひろのぶ)'s Blog : 世の中をより良く変えるため、世の中にない新しいサービスを模索する日々。CEO of Players1st inc., Business Starter, Engineer and Daddy."
 baseurl:     ""
-url:         "http://hirofukami.com"
+url:         "https://hirofukami.com"
 date_format: "%b %-d, %Y"
 
 # Google services
@@ -16,7 +16,7 @@ google_tag_manager:
 # Bing services
 bing_verification:
 
-simple_search: http://google.com/search
+simple_search: https://google.com/search
 
 # Optional features
 animated:             false
