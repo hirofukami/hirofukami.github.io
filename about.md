@@ -6,7 +6,6 @@ tags: about
 ---
 
 ## Hiro Fukami 深海 寛信 (ふかみ ひろのぶ)
-![Hiro Fukami's Picture](https://graph.facebook.com/1282639350/picture?width=300)
 
 1974/09/16生まれ
 
@@ -66,7 +65,7 @@ tags: about
 1. 2007-2009 トランスコスモス(Meet-Me) エンジニアチームマネージャ
 1. 2010-2012 fluxflex, inc. 共同創業者
 1. 2009-2021 株式会社シェイクソウル 代表取締役 CEO
-1. 2016-Present [株式会社プレイヤーズファースト](https://company.players1.st/) 代表取締役社長 CEO
+1. 2016-Present [株式会社プレイヤーズファースト](https://company.p1st.app/) 代表取締役社長 CEO
 
 ## Summary
 
@@ -75,7 +74,7 @@ tags: about
 *   インターネットサービスの立ち上げがしたくて、3D仮想空間コミュニティー(メタバース)サービス Meet-Me の立ち上げのためにトランスコスモス株式会社に入社。ネットワーク/サーバ/運用監視システムを一人で構築し、実質4ヶ月でサービスインさせる荒業を経験。
 *   2009年2月に独立し、株式会社シェイクソウル(ShakeSoul, inc.)を設立。代表取締役CEO。AWS関連書籍の執筆、インフラ構築受託・チームビルディングコンサルティングなどを行う。
 *   2010年6月 シリコンバレースタートアップ fluxflex, inc. の共同創業者、2012年1月末退任。
-*   2016年3月 「スポーツで世の中をより良く変える。」をコンセプトに 株式会社プレイヤーズファースト Players1st inc. 設立。スポーツ選手とファンをネット上でつなぎ「スポーツを支える」ためのアスリートファンディングサイト [Players1st](https://players1.st) をリリース。
+*   2016年3月 「スポーツで世の中をより良く変える。」をコンセプトに 株式会社プレイヤーズファースト Players1st inc. 設立。スポーツ選手とファンをネット上でつなぎ「スポーツを支える」ためのアスリートファンディングサイト [P1st](https://p1st.app) をリリース。
 
 ## Topics
 
@@ -141,11 +140,11 @@ tags: about
 
 ## 開発・運営中
 
-### [Players1st][10]
+### [P1st][10]
 
-[![Players1st](https://players1.st/assets/logo-horizontal.png)][10]
+[![P1st](https://company.p1st.app/images/logos/p1st_logo_v2_320x320.png)][10]
 
-[https://players1.st][10]
+[https://p1st.app][10]
 
 「現役アスリートのための月額スポンサー募集サービス」
 
@@ -184,7 +183,7 @@ tags: about
 
 ### [執筆本 <i class="fa fa-book"></i> 紹介ページ](/books)
 
-[<img border="0" src="{{ site.url }}/images/static_pages/book_cover_your_startup.jpg" width="480" />][11]
+[<img src="{{ site.url }}/images/static_pages/book_cover_your_startup.jpg" width="480" style="border: 2px #000 solid;" />][11]
 
 [ひとりスタートアップ: 無理せず確実に成長するための実践ガイドブック][11] 2022.12.発行
 
@@ -233,5 +232,5 @@ SlideShare : [Hiro Fukami's All SlideShare][8]
  [7]: https://amzn.to/3Vztcyx
  [8]: https://www.slideshare.net/d_sea/presentations
  [9]: https://instagram.com/d_sea
- [10]: https://players1.st/
+ [10]: https://p1st.app/
  [11]: https://amzn.to/3P3f6To
