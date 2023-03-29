@@ -12,7 +12,7 @@ image: /images/static_pages/book_cover_your_startup.jpg
 
 # ひとりスタートアップ
 
-[<img border="0" src="{{ site.url }}/images/static_pages/book_cover_your_startup.jpg" width="480" />][3]
+[<img src="{{ site.url }}/images/static_pages/book_cover_your_startup.jpg" width="480" style="border: 2px #000 solid;" />][3]
 
 [ひとりスタートアップ 無理せず確実に成長するための実践ガイドブック][3]
 
@@ -129,13 +129,15 @@ image: /images/static_pages/book_cover_your_startup.jpg
 	  <input type="text" name="company" class="field-light" placeholder="{{ site.text.contact.company }}">
 	  <input type="text" name="title" class="field-light" placeholder="タイトル">
 	  <textarea type="text" name="message" class="field-light" rows="5" placeholder="{{ site.text.contact.content }}"></textarea>
+	  <div class="py2 g-recaptcha" data-sitekey="6LfddT4lAAAAAGjsvocw192BvjvctlQD8PNRFL9K"></div>
 	  <input type="hidden" name="_subject" value="{{ site.text.contact.subject }}" />
 	  <input type="hidden" name="from_page" value="/books" />
-	  <input type="hidden" id="g-recaptcha-response" name="g-recaptcha-response">
 	  <button type="submit" class="button button-blue button-big">{{ site.text.contact.submit }}</button>
 	</form>
 </div>
 
+<!-- reCAPTCHA v2 -->
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
 # WordPressプロフェッショナル養成読本 Webサイト運用の現場で役立つ知識が満載!
 
@@ -150,7 +152,7 @@ image: /images/static_pages/book_cover_your_startup.jpg
 
 2010.06発行、共著
 
-<a href="https://www.amazon.co.jp/%E3%82%88%E3%81%8F%E3%82%8F%E3%81%8B%E3%82%8BAmazonEC2-%E2%80%95AmazonWebServices%E3%82%AF%E3%83%A9%E3%82%A6%E3%83%89%E6%B4%BB%E7%94%A8%E3%81%A8%E5%AE%9F%E8%B7%B5-Software-Design-plus%E3%82%B7%E3%83%AA%E3%83%BC%E3%82%BA/dp/4774142840?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&crid=9B05QE0N21R2&keywords=%E3%82%88%E3%81%8F%E3%82%8F%E3%81%8B%E3%82%8BAmazonEC2%2FS3%E5%85%A5%E9%96%80&qid=1670285100&sprefix=%E3%82%88%E3%81%8F%E3%82%8F%E3%81%8B%E3%82%8Bamazonec2%2Fs3%E5%85%A5%E9%96%80%2Caps%2C562&sr=8-1&linkCode=li3&tag=dsea-22&linkId=db56eed9a92b767879d400258d6fbb3a&language=ja_JP&ref_=as_li_ss_il" target="_blank"><img border="0" src="//ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=4774142840&Format=_SL250_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=dsea-22&language=ja_JP" ></a><img src="https://ir-jp.amazon-adsystem.com/e/ir?t=dsea-22&language=ja_JP&l=li3&o=9&a=4774142840" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+<a href="https://www.amazon.co.jp/gp/product/4774142840?&linkCode=li3&tag=dsea-22&linkId=3c44c05283a920489547608a7f1cf98d&language=ja_JP&ref_=as_li_ss_il" target="_blank"><img border="0" src="//ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=4774142840&Format=_SL250_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=dsea-22&language=ja_JP" ></a><img src="https://ir-jp.amazon-adsystem.com/e/ir?t=dsea-22&language=ja_JP&l=li3&o=9&a=4774142840" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
 
 [よくわかるAmazonEC2/S3入門 ―Amazon Web Servicesクラウド活用と実践 (Software Design plusシリーズ)][1]
 
