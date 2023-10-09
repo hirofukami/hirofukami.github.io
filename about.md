@@ -7,7 +7,7 @@ tags: about
 
 ## Hiro Fukami 深海 寛信 (ふかみ ひろのぶ)
 
-1974/09/16生まれ
+1974年9月16日 生まれ
 
 転職を重ねてた後、会社を作って新しいサービズを作ったり、新サービスの作り方を教えたり。
 
@@ -39,10 +39,11 @@ tags: about
 
 # Skills
 
-* LEAN Startup
-* Ruby on Rails
 * iOS/Android App Development (Flutter + Firebase)
-* Dcoker, Docker Compose
+* Ruyb on Rails
+* Vue.js
+* LEAN Startup
+* Docker, Docker Compose
 * Cloud Computing (AWS, Google Firebase)
 * Network Engineering, Servers Engineering
 * 効率的な振る舞い
@@ -106,8 +107,8 @@ tags: about
 * ジェトロ(日本貿易振興機構 JETRO)のスタートアップ支援プログラムに合格。サンノゼインキュベーションセンターにオフィス設立。現地JETROスタッフのサポートを受けながらシリコンバレー拠点の立ち上げを行う
 * エンジェル投資家から資金調達、プレゼンテーション、交渉、契約処理を全て担当
 * Tech Crunch掲載 日本語版、本家英語版ともに掲載実績あり
-  * JP : [オートスケール可能なfluxflexは数クリックでEC2が使える新感覚クラウドだ](https://jp.techcrunch.com/2010/10/25/jp-20101025-fluxflex-can-use-ec2-by-several-clicks/)
-  * JP : [日本人が起業したfluxflexはGithubと連動する安くて簡単なクラウド・ホスティング・サービスを目指す](https://jp.techcrunch.com/2011/08/19/20110817github-integrated-fluxflex-aims-at-making-cloud-hosting-easier-and-cheaper/)
+  * JP : オートスケール可能なfluxflexは数クリックでEC2が使える新感覚クラウドだ
+  * JP : 日本人が起業したfluxflexはGithubと連動する安くて簡単なクラウド・ホスティング・サービスを目指す
   * EN : [Github-Integrated fluxflex Aims At Making Cloud Hosting Easier And Cheaper](https://techcrunch.com/2011/08/17/github-integrated-fluxflex-aims-at-making-cloud-hosting-easier-and-cheaper/)
   * この他にもアジアのテックサイト Pennoison(現、Tech in Asia) や国内テックメディアに多数掲載
 * 日本においてミートアップインベントを開催。150名参加者を集める
@@ -146,10 +147,10 @@ tags: about
 
 [https://p1st.app][10]
 
-「現役アスリートのための月額スポンサー募集サービス」
+「アスリートやクリエイティブな活動をしている個人の活動資金を募集するパーソナルファンディングサービス」
 
-アスリートの経済的課題を解決するためのサービスです。アスリートはスポンサー・支援金の決済窓口、キャリア支援、仕事紹介、認知向上などのオンラインサービスが受けられます。
-課金・PRはPlayers1stに任せて、競技活動に集中できます。
+クリエイティブな活動をしている個人の活動資金不足を、ファンからの継続課金で解決するためのWebサービスです。
+月額スポンサー募集や継続的にサポーターを増やすための機能が利用できます。
 
 ## etc
 
@@ -165,25 +166,19 @@ tags: about
 
 * URL : [hirofukami.com](https://hirofukami.com)
 * RSS : [https://hirofukami.com/feed.xml](https://hirofukami.com/feed.xml)
-* Facebook Page : [/hirofukamiblog](https://www.facebook.com/hirofukamiblog) すべてのポストをフィードしています
 
 # Social Networks
 
-* <i class="fa fa-facebook-square"></i> : [/fukami][1]   : 割と大きめなお知らせ的なものが多め
-* <i class="fa fa-twitter-square"></i> : [@d_sea][2]  : 日常的な思いつき、小ネタ
-* <i class="fa fa-instagram"></i> : [/d_sea][9]  : 普段の写真
+* <i class="fa fa-twitter-square"></i> : [@d_sea][2]
+* <i class="fa fa-instagram"></i> : [@d_sea][9]
+* <i class="fa fa-facebook-square"></i> : [/fukami][1]
 * <i class="fa fa-linkedin-square"></i> : [/hirofukami][4]
-
-## Social Feeds
-
-<a class="twitter-timeline" data-width="300" data-height="720" href="https://twitter.com/d_sea">Tweets by d_sea</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-
 
 # Books
 
 ### [執筆本 <i class="fa fa-book"></i> 紹介ページ](/books)
 
-[<img src="{{ site.url }}/images/static_pages/book_cover_your_startup.jpg" width="480" style="border: 2px #000 solid;" />][11]
+[<img src="{{ site.url }}/images/static_pages/book_cover_your_startup.jpg" width="320" style="border: 2px #000 solid;" />][11]
 
 [ひとりスタートアップ: 無理せず確実に成長するための実践ガイドブック][11] 2022.12.発行
 
@@ -192,7 +187,7 @@ tags: about
 [WordPressプロフェッショナル養成読本 [Webサイト運用の現場で役立つ知識が満載! ] (Software Design plus)][7] 2014.10発行、共著
 
 
-<a href="https://www.amazon.co.jp/%E3%82%88%E3%81%8F%E3%82%8F%E3%81%8B%E3%82%8BAmazonEC2-%E2%80%95AmazonWebServices%E3%82%AF%E3%83%A9%E3%82%A6%E3%83%89%E6%B4%BB%E7%94%A8%E3%81%A8%E5%AE%9F%E8%B7%B5-Software-Design-plus%E3%82%B7%E3%83%AA%E3%83%BC%E3%82%BA/dp/4774142840?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&crid=9B05QE0N21R2&keywords=%E3%82%88%E3%81%8F%E3%82%8F%E3%81%8B%E3%82%8BAmazonEC2%2FS3%E5%85%A5%E9%96%80&qid=1670285100&sprefix=%E3%82%88%E3%81%8F%E3%82%8F%E3%81%8B%E3%82%8Bamazonec2%2Fs3%E5%85%A5%E9%96%80%2Caps%2C562&sr=8-1&linkCode=li3&tag=dsea-22&linkId=db56eed9a92b767879d400258d6fbb3a&language=ja_JP&ref_=as_li_ss_il" target="_blank"><img border="0" src="//ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=4774142840&Format=_SL250_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=dsea-22&language=ja_JP" ></a><img src="https://ir-jp.amazon-adsystem.com/e/ir?t=dsea-22&language=ja_JP&l=li3&o=9&a=4774142840" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+[<img border="0" src="https://m.media-amazon.com/images/I/51McdgvsIIL.jpg" width="300" />][6]
 
 [よくわかるAmazonEC2/S3入門 ―Amazon Web Servicesクラウド活用と実践 (Software Design plusシリーズ)][6] 2010.06発行、共著
 
@@ -211,11 +206,8 @@ tags: about
   * \#3 「BGPの話」
 
 # Slides
-<div style="width: 80%">
-  <script async class="speakerdeck-embed" data-id="bf80b378ec6d4bd29c7f14978b39a2b7" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
-</div>
 
-[Speaker Deck @d-sea](https://speakerdeck.com/dsea)
+Speaker Deck : [Speaker Deck @d-sea](https://speakerdeck.com/dsea)
 
 SlideShare : [Hiro Fukami's All SlideShare][8]
 
