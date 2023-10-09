@@ -9,3 +9,6 @@ _drafts
 _config.gh-pages.yml
 
 Gemfile.lock
+
+# intelliJ project file
+.idea
