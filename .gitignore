@@ -1,5 +1,6 @@
 _site
 _drafts
+_cache
 .sass-cache
 .DS_Store
 .jekyll-metadata
@@ -9,6 +10,7 @@ _drafts
 _config.gh-pages.yml
 
 Gemfile.lock
+
 
 # intelliJ project file
 .idea
