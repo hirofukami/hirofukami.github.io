@@ -23,7 +23,7 @@ p,
 dl,
 ol,
 ul {
-  font-size: $h4;
+  font-size: $base-font-size;
   margin-top: 0;
   margin-bottom: $space-2;
 }
@@ -99,4 +99,8 @@ h6,
 .list-reset {
   list-style: none;
   padding-left: 0;
+}
+
+.alert {
+  font-size: $base-font-size;
 }
