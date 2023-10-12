@@ -19,23 +19,17 @@ image: /images/static_pages/book_cover_your_startup.jpg
 <span class="m1">
     購入先
 </span>
-<a href="https://amzn.to/3P1Szqj">
-    <span class="button button-blue mr1">
-        <i class="fab fa-amazon"></i>
-        <span class="m1">Amazon</span>
-    </span>
+<a href="https://amzn.to/3P1Szqj" class="button button-blue mr1">
+    <i class="fab fa-amazon"></i>
+    <span class="m1">Amazon</span>
 </a>
-<a href="http://books.apple.com/us/book/id6468870528">
-    <span class="button button-blue mr1">
-        <i class="fab fa-apple"></i>
-        <span class="m1">Apple Books</span>
-    </span>
+<a href="http://books.apple.com/us/book/id6468870528" class="button button-blue mr1">
+    <i class="fab fa-apple"></i>
+    <span class="m1">Apple Books</span>
 </a>
-<a href="https://play.google.com/store/books/details?id=9i7bEAAAQBAJ">
-    <span class="button button-blue mr1">
-        <i class="fab fa-google"></i>
-        <span class="m1">Google Play Books</span>
-    </span>
+<a href="https://play.google.com/store/books/details?id=9i7bEAAAQBAJ" class="button button-blue mr1">
+    <i class="fab fa-google"></i>
+    <span class="m1">Google Play Books</span>
 </a>
 
 
@@ -141,24 +135,19 @@ image: /images/static_pages/book_cover_your_startup.jpg
 
 ## 購入先
 
-<a href="https://amzn.to/3P1Szqj">
-    <span class="button button-blue mr1">
-        <i class="fab fa-amazon"></i>
-        <span class="m1">Amazon</span>
-    </span>
+<a href="https://amzn.to/3P1Szqj" class="button button-blue mr1">
+    <i class="fab fa-amazon"></i>
+    <span class="m1">Amazon</span>
 </a>
-<a href="http://books.apple.com/us/book/id6468870528">
-    <span class="button button-blue mr1">
-        <i class="fab fa-apple"></i>
-        <span class="m1">Apple Books</span>
-    </span>
+<a href="http://books.apple.com/us/book/id6468870528" class="button button-blue mr1">
+    <i class="fab fa-apple"></i>
+    <span class="m1">Apple Books</span>
 </a>
-<a href="https://play.google.com/store/books/details?id=9i7bEAAAQBAJ">
-    <span class="button button-blue mr1">
-        <i class="fab fa-google"></i>
-        <span class="m1">Google Play Books</span>
-    </span>
+<a href="https://play.google.com/store/books/details?id=9i7bEAAAQBAJ" class="button button-blue mr1">
+    <i class="fab fa-google"></i>
+    <span class="m1">Google Play Books</span>
 </a>
+
 
 ## 「ひとりスタートアップ」受付フォーム
 
