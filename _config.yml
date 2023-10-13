@@ -127,5 +127,6 @@ plugins:
   - jekyll-sitemap
   - jekyll-feed
   - jekyll-gist
+  - jekyll-linkpreview
 # https://github.com/jekyll/jekyll/issues/2938
 exclude: [vendor]

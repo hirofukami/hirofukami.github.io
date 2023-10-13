@@ -12,11 +12,26 @@ image: /images/static_pages/book_cover_your_startup.jpg
 
 # ひとりスタートアップ
 
-[<img src="{{ site.url }}/images/static_pages/book_cover_your_startup.jpg" width="480" style="border: 2px #000 solid;" />][3]
+[<img src="{{ site.url }}/images/static_pages/book_cover_your_startup.jpg" width="320" style="border: 2px #000 solid;" />][3]
 
-[ひとりスタートアップ 無理せず確実に成長するための実践ガイドブック][3]
+[ひとりスタートアップ 無理せず確実に成長するための実践ガイドブック][3] 2022.12発行
 
-2022.12発行
+<span class="m1">
+    購入先
+</span>
+<a href="https://amzn.to/3P1Szqj" class="button button-blue mr1">
+    <i class="fab fa-amazon"></i>
+    <span class="m1">Amazon</span>
+</a>
+<a href="http://books.apple.com/us/book/id6468870528" class="button button-blue mr1">
+    <i class="fab fa-apple"></i>
+    <span class="m1">Apple Books</span>
+</a>
+<a href="https://play.google.com/store/books/details?id=9i7bEAAAQBAJ" class="button button-blue mr1">
+    <i class="fab fa-google"></i>
+    <span class="m1">Google Play Books</span>
+</a>
+
 
 ## はじめに より
 
@@ -117,6 +132,23 @@ image: /images/static_pages/book_cover_your_startup.jpg
 
 付録 参考文献
 
+
+## 購入先
+
+<a href="https://amzn.to/3P1Szqj" class="button button-blue mr1">
+    <i class="fab fa-amazon"></i>
+    <span class="m1">Amazon</span>
+</a>
+<a href="http://books.apple.com/us/book/id6468870528" class="button button-blue mr1">
+    <i class="fab fa-apple"></i>
+    <span class="m1">Apple Books</span>
+</a>
+<a href="https://play.google.com/store/books/details?id=9i7bEAAAQBAJ" class="button button-blue mr1">
+    <i class="fab fa-google"></i>
+    <span class="m1">Google Play Books</span>
+</a>
+
+
 ## 「ひとりスタートアップ」受付フォーム
 
 <div class="m3">
@@ -152,7 +184,7 @@ image: /images/static_pages/book_cover_your_startup.jpg
 
 2010.06発行、共著
 
-<a href="https://www.amazon.co.jp/gp/product/4774142840?&linkCode=li3&tag=dsea-22&linkId=3c44c05283a920489547608a7f1cf98d&language=ja_JP&ref_=as_li_ss_il" target="_blank"><img border="0" src="//ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=4774142840&Format=_SL250_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=dsea-22&language=ja_JP" ></a><img src="https://ir-jp.amazon-adsystem.com/e/ir?t=dsea-22&language=ja_JP&l=li3&o=9&a=4774142840" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+[<img border="0" src="https://m.media-amazon.com/images/I/51McdgvsIIL.jpg" width="300" />][1]
 
 [よくわかるAmazonEC2/S3入門 ―Amazon Web Servicesクラウド活用と実践 (Software Design plusシリーズ)][1]
 
