@@ -4,6 +4,7 @@ _cache
 .sass-cache
 .DS_Store
 .jekyll-metadata
+.jekyll-cache
 .icloud
 
 # Ignore the config file that's used for gh-pages.
