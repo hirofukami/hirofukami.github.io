@@ -2,6 +2,7 @@ _site
 _drafts
 _cache
 .sass-cache
+.jekyll-cache
 .DS_Store
 .jekyll-metadata
 .icloud
