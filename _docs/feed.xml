@@ -1,0 +1,1890 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hiro Fukami's Blog - 深海寛信のブログ</title>
+    <description>Hiro Fukami(深海寛信 ふかみひろのぶ)'s Blog : 世の中をより良く変えるため、世の中にない新しいサービスを模索する日々。CEO of Players1st inc., Business Starter, Engineer and Daddy.</description>
+    <link>https://hirofukami.com/</link>
+    <atom:link href="https://hirofukami.com/feed.xml" rel="self" type="application/rss+xml" />
+    
+      <item>
+        <title>Flutter in_app_purchase で定期購入を実現する方法 2023年版</title>
+        <description>&lt;p&gt;Flutter にて in_app_purchase を使って定期課金を実現するための方法をまとめました。&lt;/p&gt;
+
+&lt;p&gt;構成は単純な デバイス + DB 以外にも購入データを証明するバックエンドも加わり割りと複雑で、
+in_app_purchase が行っている処理への理解も必要の上、Apple, Google 上で行うべき作業もある。&lt;/p&gt;
+
+&lt;p&gt;実際実現してみて事前にある程度情報を入れておかないと、実現するのは難しいと思ったのでまとめておく。&lt;/p&gt;
+
+&lt;h1 id=&quot;定期課金を導入したアプリ&quot;&gt;定期課金を導入したアプリ&lt;/h1&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://company.p1st.app/futsal-met/&quot;&gt;フットサルSNSアプリ 「フットサルメット」&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;div class=&quot;jekyll-linkpreview-wrapper&quot;&gt;
+  &lt;div class=&quot;jekyll-linkpreview-wrapper-inner&quot;&gt;
+    &lt;div class=&quot;jekyll-linkpreview-content&quot;&gt;
+      &lt;div class=&quot;jekyll-linkpreview-image&quot;&gt;
+        &lt;a href=&quot;https://company.p1st.app/futsal-met/&quot; target=&quot;_blank&quot;&gt;
+          &lt;img src=&quot;https://company.p1st.app/images/apps/futsalmet/header_futsalmet.png&quot; /&gt;
+        &lt;/a&gt;
+      &lt;/div&gt;
+
+      &lt;div class=&quot;jekyll-linkpreview-body&quot;&gt;
+        &lt;h2 class=&quot;jekyll-linkpreview-title&quot;&gt;
+          &lt;a href=&quot;https://company.p1st.app/futsal-met/&quot; target=&quot;_blank&quot;&gt;フットサルSNSアプリ - フットサルメット&lt;/a&gt;
+        &lt;/h2&gt;
+        &lt;div class=&quot;jekyll-linkpreview-description&quot;&gt;便利な機能でより楽しく、豊かなフットサルライフを支えます。広告なしで、純粋にフットサルを通して、仲間を増やして、楽しく蹴れる日常を。&lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;jekyll-linkpreview-footer&quot;&gt;
+      &lt;a href=&quot;//company.p1st.app&quot; target=&quot;_blank&quot;&gt;company.p1st.app&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;広告なしで使える無料アプリだが機能制限があり、より便利な機能を利用するための定期課金を提供している。&lt;/p&gt;
+
+&lt;h1 id=&quot;参考にしたサイト&quot;&gt;参考にしたサイト&lt;/h1&gt;
+
+&lt;p&gt;理解をするのに助けてもらったサイト。2023年9月においては古い情報もあり、完全に網羅しているサイトはかなった。
+これを読めば大丈夫。というものがなく、複数のサイトからの情報とトライアンドエラーが必要だったので、
+今回まとめようと思ったモチベーションになっている。&lt;/p&gt;
+
+&lt;div class=&quot;jekyll-linkpreview-wrapper&quot;&gt;
+  &lt;div class=&quot;jekyll-linkpreview-wrapper-inner&quot;&gt;
+    &lt;div class=&quot;jekyll-linkpreview-content&quot;&gt;
+      &lt;div class=&quot;jekyll-linkpreview-image&quot;&gt;
+        &lt;a href=&quot;https://zenn.dev/hirokt/articles/b3dbc2824800456743d5&quot; target=&quot;_blank&quot;&gt;
+          &lt;img src=&quot;https://res.cloudinary.com/zenn/image/upload/s--Tj_H2kZn--/c_fit%2Cg_north_west%2Cl_text:notosansjp-medium.otf_55:Flutter%2520%252B%2520Firebase%25E3%2581%25A7iOS%25E3%2581%25A8Android%25E3%2581%25AE%25E5%25AE%259A%25E6%259C%259F%25E8%25B3%25BC%25E5%2585%25A5%2528%25E3%2582%25B5%25E3%2583%2596%25E3%2582%25B9%25E3%2582%25AF%2529%25E3%2582%2592%25E5%25AE%259F%25E8%25A3%2585%25E3%2581%2599%25E3%2582%258B%2Cw_1010%2Cx_90%2Cy_100/g_south_west%2Cl_text:notosansjp-medium.otf_37:hiknot%2Cx_203%2Cy_121/g_south_west%2Ch_90%2Cl_fetch:aHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EtL0FPaDE0R2liX2hsV19HeHFCZjZySDlLLUNQRnhwNExvaFhzT3IwcjFRLTJSPXM5Ni1j%2Cr_max%2Cw_90%2Cx_87%2Cy_95/v1627283836/default/og-base-w1200-v2.png&quot; /&gt;
+        &lt;/a&gt;
+      &lt;/div&gt;
+
+      &lt;div class=&quot;jekyll-linkpreview-body&quot;&gt;
+        &lt;h2 class=&quot;jekyll-linkpreview-title&quot;&gt;
+          &lt;a href=&quot;https://zenn.dev/hirokt/articles/b3dbc2824800456743d5&quot; target=&quot;_blank&quot;&gt;Flutter + FirebaseでiOSとAndroidの定期購入(サブスク)を実装する&lt;/a&gt;
+        &lt;/h2&gt;
+        &lt;div class=&quot;jekyll-linkpreview-description&quot;&gt;&lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;jekyll-linkpreview-footer&quot;&gt;
+      &lt;a href=&quot;//zenn.dev&quot; target=&quot;_blank&quot;&gt;zenn.dev&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;必要な処理ごとにフローとサンプルコードを示しているので、どんな処理が必要なのか理解できる。
+示しているソースコードは実際の処理としては足りないので、鵜呑みにしない方が良い。&lt;/p&gt;
+
+&lt;div class=&quot;jekyll-linkpreview-wrapper&quot;&gt;
+  &lt;div class=&quot;jekyll-linkpreview-wrapper-inner&quot;&gt;
+    &lt;div class=&quot;jekyll-linkpreview-content&quot;&gt;
+      &lt;div class=&quot;jekyll-linkpreview-image&quot;&gt;
+        &lt;a href=&quot;https://qiita.com/YuKiO-OO/items/a0fe8e0a256afbb69fc7&quot; target=&quot;_blank&quot;&gt;
+          &lt;img src=&quot;https://qiita-user-contents.imgix.net/https%3A%2F%2Fcdn.qiita.com%2Fassets%2Fpublic%2Farticle-ogp-background-9f5428127621718a910c8b63951390ad.png?ixlib=rb-4.0.0&amp;amp;w=1200&amp;amp;mark64=aHR0cHM6Ly9xaWl0YS11c2VyLWNvbnRlbnRzLmltZ2l4Lm5ldC9-dGV4dD9peGxpYj1yYi00LjAuMCZ3PTkxNiZ0eHQ9JTA4JUUzJTgwJTkwRmx1dHRlciVFMyU4MCU5MSVFMyU4MiU4MiVFMyU4MSU4NiVFNiU4MCU5NiVFMyU4MSU4RiVFMyU4MSVBQSVFMyU4MSU4NCVFRiVCQyU4MSVFMyU4MiVBMiVFMyU4MyU5NyVFMyU4MyVBQSVFNSU4NiU4NSVFOCVBQSVCMiVFOSU4NyU5MSVFMyU4MyVCQiVFNSVBRSU5QSVFNiU5QyU5RiVFOCVCMyVCQyVFNSU4NSVBNSVFNiVBOSU5RiVFOCU4MyVCRCVFMyU4MiU5MiVFNSVBRSU5RiVFOCVBMyU4NSVFMyU4MSU5OSVFMyU4MiU4QiVFNiU5NiVCOSVFNiVCMyU5NSVFMyU4MiU5MiVFNCVCOCU4MSVFNSVBRiVBNyVFMyU4MSVBQiVFOCVBQSVBQyVFNiU5OCU4RSVFMyU4MSU5NyVFMyU4MSVBNiVFMyU4MSVCRiVFMyU4MSU5RiVFMyU4MCU4MiZ0eHQtY29sb3I9JTIzMjEyMTIxJnR4dC1mb250PUhpcmFnaW5vJTIwU2FucyUyMFc2JnR4dC1zaXplPTU2JnR4dC1jbGlwPWVsbGlwc2lzJnR4dC1hbGlnbj1sZWZ0JTJDdG9wJnM9NzU0ZGU4MGE2YzQyN2FiZjBiYjg1MzZhZjNmYTQwZjg&amp;amp;mark-x=142&amp;amp;mark-y=112&amp;amp;blend64=aHR0cHM6Ly9xaWl0YS11c2VyLWNvbnRlbnRzLmltZ2l4Lm5ldC9-dGV4dD9peGxpYj1yYi00LjAuMCZ3PTYxNiZ0eHQ9JTQwWXVLaU8tT08mdHh0LWNvbG9yPSUyMzIxMjEyMSZ0eHQtZm9udD1IaXJhZ2lubyUyMFNhbnMlMjBXNiZ0eHQtc2l6ZT0zNiZ0eHQtYWxpZ249bGVmdCUyQ3RvcCZzPTJkZGRkYTMyOGIyMjgwYTBjYjFiODk1OTBhMTA3MWQy&amp;amp;blend-x=142&amp;amp;blend-y=491&amp;amp;blend-mode=normal&amp;amp;s=a5877efa68863a968031d513fb02cb6e&quot; /&gt;
+        &lt;/a&gt;
+      &lt;/div&gt;
+
+      &lt;div class=&quot;jekyll-linkpreview-body&quot;&gt;
+        &lt;h2 class=&quot;jekyll-linkpreview-title&quot;&gt;
+          &lt;a href=&quot;https://qiita.com/YuKiO-OO/items/a0fe8e0a256afbb69fc7&quot; target=&quot;_blank&quot;&gt;【Flutter】もう怖くない！アプリ内課金・定期購入機能を実装する方法を丁寧に説明してみた。 - Qiita&lt;/a&gt;
+        &lt;/h2&gt;
+        &lt;div class=&quot;jekyll-linkpreview-description&quot;&gt;7月にFlutter開発を始めてから２作目、アイデアを発想するためのメモアプリ「アイデアメモ iX」をリリースしました。走り書きをする感覚でサッとメモができ、さらにそのメモを組み合わせてシャッフ…&lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;jekyll-linkpreview-footer&quot;&gt;
+      &lt;a href=&quot;//qiita.com&quot; target=&quot;_blank&quot;&gt;qiita.com&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;大まかに必要な要素をカバーしている。全体の流れを網羅するには良い。
+示しているソースコードは現状にはない関数があったり、かなり省略されているので実際のコードとしてはあまり参考にならない。&lt;/p&gt;
+
+&lt;div class=&quot;jekyll-linkpreview-wrapper&quot;&gt;
+  &lt;div class=&quot;jekyll-linkpreview-wrapper-inner&quot;&gt;
+    &lt;div class=&quot;jekyll-linkpreview-content&quot;&gt;
+      &lt;div class=&quot;jekyll-linkpreview-image&quot;&gt;
+        &lt;a href=&quot;https://tkzo.jp/blog/flutter-iap-implementation/&quot; target=&quot;_blank&quot;&gt;
+          &lt;img src=&quot;https://tkzo.jp/blog/wp-content/uploads/2020/05/flutter-logo.png&quot; /&gt;
+        &lt;/a&gt;
+      &lt;/div&gt;
+
+      &lt;div class=&quot;jekyll-linkpreview-body&quot;&gt;
+        &lt;h2 class=&quot;jekyll-linkpreview-title&quot;&gt;
+          &lt;a href=&quot;https://tkzo.jp/blog/flutter-iap-implementation/&quot; target=&quot;_blank&quot;&gt;【Flutter + Firebase】アプリ内課金(IAP)のステップバイステップ実装ガイド【レシート検証】&lt;/a&gt;
+        &lt;/h2&gt;
+        &lt;div class=&quot;jekyll-linkpreview-description&quot;&gt;この記事はFlutterとFirebaseを利用してアプリ内課金(IAP)機能を実装するためのステップバイステップ実装ガイドです。 主にIAPを実装する際の肝となるレシート検証処理を、プラットフォーム&lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;jekyll-linkpreview-footer&quot;&gt;
+      &lt;a href=&quot;//tkzo.jp&quot; target=&quot;_blank&quot;&gt;tkzo.jp&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;購入した際に発行されるレシートの検証処理についてまとめている。
+検証するための構成や検証処理への理解を深められる。
+示しているソースコードはどんな処理をすればよいのか理解はできるが、サーバ側の検証部分が一部省略されているので、鵜呑みにしない方が良い。&lt;/p&gt;
+
+&lt;h1 id=&quot;目次&quot;&gt;目次&lt;/h1&gt;
+
+&lt;!-- TOC --&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;#環境&quot;&gt;環境&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#構成&quot;&gt;構成&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#準備&quot;&gt;準備&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#flutter-側セットアップ&quot;&gt;Flutter 側セットアップ&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#アイテム登録&quot;&gt;アイテム登録&lt;/a&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#ios&quot;&gt;iOS&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#android&quot;&gt;Android&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#実装&quot;&gt;実装&lt;/a&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#基本的な処理の流れ&quot;&gt;基本的な処理の流れ&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#検証-verify-とは&quot;&gt;検証 verify とは&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#仕様&quot;&gt;仕様&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#firebase-functions&quot;&gt;firebase functions&lt;/a&gt;
+        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#verify&quot;&gt;verify&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#verifysubscription&quot;&gt;verifySubscription&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#verifyreceipt&quot;&gt;verifyReceipt&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#inapppurchase&quot;&gt;in_app_purchase&lt;/a&gt;
+        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#注意点-2&quot;&gt;注意点&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#sample-code&quot;&gt;Sample Code&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#リストア-restore&quot;&gt;リストア restore&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#テスト&quot;&gt;テスト&lt;/a&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#デバイス&quot;&gt;デバイス&lt;/a&gt;
+        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#ios-1&quot;&gt;iOS&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#android-1&quot;&gt;Android&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#定期課金処理&quot;&gt;定期課金処理&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#定期課金の解約&quot;&gt;定期課金の解約&lt;/a&gt;
+        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#ios-2&quot;&gt;iOS&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#android-2&quot;&gt;Android&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#審査&quot;&gt;審査&lt;/a&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#ios-3&quot;&gt;iOS&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#android-3&quot;&gt;Android&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#まとめ&quot;&gt;まとめ&lt;/a&gt;
+&lt;!-- TOC --&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;環境&quot;&gt;環境&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Flutter 3.13.4&lt;/li&gt;
+  &lt;li&gt;Dart 3.1.2&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/flutter/packages/tree/main/packages/in_app_purchase/in_app_purchase&quot;&gt;in_app_purchase&lt;/a&gt; 3.1.8&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;構成&quot;&gt;構成&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Flutter : アプリUIの提供。バックエンドとの通信&lt;/li&gt;
+  &lt;li&gt;in_app_purchase : アプリ内課金を実現する。iOS, Android アイテム情報の取得、購入処理を行う&lt;/li&gt;
+  &lt;li&gt;Firebase Firestore Database : DB として利用するバックエンド&lt;/li&gt;
+  &lt;li&gt;Firebase Functions : Node.js で動かすバックエンド。今回は購入後のレシート情報の検証と firestore への書き込みを行う&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;準備&quot;&gt;準備&lt;/h1&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Flutter 側のセットアップ in_app_purchase 導入&lt;/li&gt;
+  &lt;li&gt;iOS, Android へのアイテム登録&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1 id=&quot;flutter-側セットアップ&quot;&gt;Flutter 側セットアップ&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/flutter/packages/tree/main/packages/in_app_purchase/in_app_purchase&quot;&gt;in_app_purchase の README&lt;/a&gt; の Getting started にも示されている通り、
+&lt;a href=&quot;https://codelabs.developers.google.com/codelabs/flutter-in-app-purchases&quot;&gt;codelab&lt;/a&gt; に沿うのが一番良いと思う。ただし、すべてのスッテップを行うのではなく「6. Set up Firebase」 まででOK。
+その後の実装はバックエンドに dart で書いたサーバを立てる想定なので、今回の構成とマッチしなくなるので、参考にしない。&lt;/p&gt;
+
+&lt;h1 id=&quot;アイテム登録&quot;&gt;アイテム登録&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://codelabs.developers.google.com/codelabs/flutter-in-app-purchases&quot;&gt;codelab&lt;/a&gt; の「Set up the App Store」、「Set up the Play Store」の通りにする。&lt;/p&gt;
+
+&lt;p&gt;今回は、有料サービスの内容は1つだけど、月額、年額と2つの購入方法を用意する。&lt;/p&gt;
+
+&lt;p&gt;ここでは product id は以下のようにする。&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;月額 : com.example.monthly.standard&lt;/li&gt;
+  &lt;li&gt;年額 : com.example.yearly.standard&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;flutter in_app_purchase 上の product id は、以下に対応する。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;iOS : サブスクリプションの製品ID&lt;/li&gt;
+  &lt;li&gt;Android : 定期課金のアイテムID&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;ios&quot;&gt;iOS&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://appstoreconnect.apple.com/&quot;&gt;App Store Connect&lt;/a&gt; の該当アプリ上の「サブスクリプション」で入力する。&lt;/p&gt;
+
+&lt;p&gt;「サブスクリプション」が実際のユーザーに提示する課金アイテム。それらをまとめるための「サブスクリプショングループ」がある。
+今回のように、同じサービス内容で複数の支払方法に対応したい場合は、1つのサブスクリプショングループでまとめることができる。&lt;/p&gt;
+
+&lt;p&gt;サブスクリプショングループを1つ作り、その配下にサブスクリプションを追加した。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-mermaid&quot;&gt;graph LR
+    A[サブスクリプショングループ : default]
+    A --- B[サブスクリプション 月額 : com.example.monthly.standard]
+    A --- C[サブスクリプション 年額 : com.example.yearly.standard]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;サブスクリプションには製品IDを付与して、これが flutter 上で持っておく product id になる。&lt;/p&gt;
+
+&lt;h3 id=&quot;注意点&quot;&gt;注意点&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://appstoreconnect.apple.com/&quot;&gt;App Store Connect&lt;/a&gt; で各サブスクリプションを入力する際に、最下部にある「審査に関する情報」でスクリーンショットと審査メモを必ず登録すること。
+この情報がなくても保存して審査へ提出ができるが、審査でリジェクトされる。&lt;/p&gt;
+
+&lt;p&gt;スクリーンショットは、そのサブスクリプションを購入する画面にした。
+審査メモは、その画面に行き着くフローを示した。結果的に承認されたので、この内容で良いと思う。&lt;/p&gt;
+
+&lt;p&gt;実際には以下のようにした。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/2023/10/2023-10-10-subscription-screenshot.png&quot; alt=&quot;サブスクリプションのスクリーンショット&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;android&quot;&gt;Android&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://play.google.com/console/&quot;&gt;Google Play Console&lt;/a&gt; の該当アプリ上の「収益化」-「定期購入」にて入力する。&lt;/p&gt;
+
+&lt;p&gt;「定期購入」がアイテムIDを持ち、支払いサイクルなどを設定できる「特典」を配下に紐付ける。
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;queryProductDetails&lt;/code&gt; した時の product id は特典ではなく定期購入のアイテムIDになるので、
+定期購入を複数作成するようにする。特典を指定する方法は分からなかった。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-mermaid&quot;&gt;graph LR
+    A[定期購入 月額 : com.example.monthly.standard]
+    B[定期購入 年額 : com.example.yearly.standard]
+    A --- A1[特典 月額]
+    B --- B1[特典 年額]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;注意点-1&quot;&gt;注意点&lt;/h3&gt;
+
+&lt;p&gt;注意点1 : 定期課金と特典は削除できないので不要なものが残ってしまう。&lt;/p&gt;
+
+&lt;p&gt;また、&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;queryProductDetails&lt;/code&gt; する時に不要なものを配列に入れなかったら &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;notFoundIDs&lt;/code&gt; が返ってくる。
+&lt;strong&gt;不要なアイテムIDも含めたすべての定期課金のアイテムIDの配列にする必要がある。&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;注意点2 : 定期購入をテストで使いたい場合は事前にビルドしたアプリをアップロードする必要がある。&lt;/p&gt;
+
+&lt;p&gt;この時点では課金の実装はできていないが、紐付ける App Bundle が必要なので、現状のアプリをとりあえずビルドしてアップロードすれば良い。
+App Bundle エクスプローラに表示されサブスクリプションの画面にて紐付けられればOK。くれぐれも公開しないこと。&lt;/p&gt;
+
+&lt;h1 id=&quot;実装&quot;&gt;実装&lt;/h1&gt;
+
+&lt;h2 id=&quot;基本的な処理の流れ&quot;&gt;基本的な処理の流れ&lt;/h2&gt;
+
+&lt;p&gt;ユースケースごとに示す。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;新規購入&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;デバイス(flutter)にて購入処理、Apple, Google へ問い合わせて購入処理をして localVerificationData を受け取る&lt;/li&gt;
+  &lt;li&gt;firebase functions にて localVerificationData を使って Apple, Google へ検証する。最近のレシートを受け取る&lt;/li&gt;
+  &lt;li&gt;firebase functions にて最近のレシート情報を firestore に保存する&lt;/li&gt;
+  &lt;li&gt;flutter にて購入完了処理(購入ボタンの widget を閉じるなど)&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;strong&gt;定期課金更新チェック&lt;/strong&gt; (firebase functions のみで実行)&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;firebase functions を cron 的に毎日スケジュールで実行&lt;/li&gt;
+  &lt;li&gt;firebase firestore に存在するレシート情報から有効期限が切れているものを検索&lt;/li&gt;
+  &lt;li&gt;該当レシートの verificationData を使って Apple, Google へ検証する。最新のレシートを受け取る&lt;/li&gt;
+  &lt;li&gt;最新のレシートの有効期限が今よりも後ならば、最近のレシート情報を firestore に保存する&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;strong&gt;ユーザーが有料ユーザーかどうか判別&lt;/strong&gt; (flutter アプリにて)&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;firebase auth ユーザー情報より、該当ユーザーの firebase firestore 上のレシート情報のドキュメントを検索&lt;/li&gt;
+  &lt;li&gt;該当ドキュメントの有効期限が現在時刻よりも後ならば有料ユーザー true, 前なら false&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;strong&gt;リストア&lt;/strong&gt; (flutter アプリにて)&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;flutter 上は有料ユーザーではないと判別(firestore 上に有効期限内のレシート情報がない)&lt;/li&gt;
+  &lt;li&gt;ユーザーがリストアボタンを押す&lt;/li&gt;
+  &lt;li&gt;firebase functions にて localVerificationData を使って Apple, Google へ検証する。最近のレシートを受け取る&lt;/li&gt;
+  &lt;li&gt;firebase functions にて最近のレシート情報を firestore に保存する&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;検証-verify-とは&quot;&gt;検証 verify とは&lt;/h2&gt;
+
+&lt;p&gt;お金に絡むことなので、誤ったデータを使って購入させたり不正を防止するために Apple, Google が設けている購入したレシート情報の検証を行う処理。
+1回毎の支払い情報のことをレシートと呼ぶ。&lt;/p&gt;
+
+&lt;p&gt;Apple, Google ともにレシート情報を返す Web Endpoint を設けている。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Apple : &lt;a href=&quot;https://developer.apple.com/documentation/appstorereceipts/verifyreceipt&quot;&gt;verifyReceipt&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Google : &lt;a href=&quot;https://developers.google.com/android-publisher/api-ref/rest/v3/purchases.subscriptions/get?hl=ja&quot;&gt;purchases.subscriptions.get&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;クライアント(今回はflutter)にて Apple(App Store), Google(Google Play) を使って購入処理をすると verificationData が発行される。
+そのデータを Apple, Google の 検証用 endpoint へ問い合わせて検証結果がOKなら、最新のレシート情報(last receipt) が返ってくる。&lt;/p&gt;
+
+&lt;p&gt;このデータが有料ユーザーの判別に使えるので firestore に保存している。&lt;/p&gt;
+
+&lt;div class=&quot;alert alert-warning&quot; role=&quot;alert&quot; xmlns=&quot;http://www.w3.org/1999/html&quot;&gt;
+  &lt;div style=&quot;float: left; margin-right: 10px;&quot;&gt;
+    &lt;i class=&quot;fas fa-info-circle fa-lg&quot;&gt;&lt;/i&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;a href=&quot;https://developer.apple.com/documentation/appstorereceipts/verifyreceipt&quot;&gt;
+        Apple の verifyReceipt endpoint は非推奨(Deprecated)になった
+    &lt;/a&gt;
+    ので推奨方法での切り替えが必要。
+    App Store Server API を使うようにとのこと
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;仕様&quot;&gt;仕様&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;有料ユーザーかどうかのチェックは1日1回とする&lt;/li&gt;
+  &lt;li&gt;レシート情報の有効期限内なら有料ユーザーと判別する&lt;/li&gt;
+  &lt;li&gt;flutter(クライアント側)では定期的に狙ったタイミングではチェックできないので、firebase functions にて行う&lt;/li&gt;
+  &lt;li&gt;最新のレシート情報は firebase firestore に保存し、有料ユーザーの判別に使う&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;firebase-functions&quot;&gt;firebase functions&lt;/h2&gt;
+
+&lt;p&gt;主に参考にさせてもらったサイト 特に返り値の部分とか踏襲している。&lt;/p&gt;
+&lt;div class=&quot;jekyll-linkpreview-wrapper&quot;&gt;
+  &lt;div class=&quot;jekyll-linkpreview-wrapper-inner&quot;&gt;
+    &lt;div class=&quot;jekyll-linkpreview-content&quot;&gt;
+      &lt;div class=&quot;jekyll-linkpreview-image&quot;&gt;
+        &lt;a href=&quot;https://zenn.dev/hirokt/articles/b3dbc2824800456743d5&quot; target=&quot;_blank&quot;&gt;
+          &lt;img src=&quot;https://res.cloudinary.com/zenn/image/upload/s--Tj_H2kZn--/c_fit%2Cg_north_west%2Cl_text:notosansjp-medium.otf_55:Flutter%2520%252B%2520Firebase%25E3%2581%25A7iOS%25E3%2581%25A8Android%25E3%2581%25AE%25E5%25AE%259A%25E6%259C%259F%25E8%25B3%25BC%25E5%2585%25A5%2528%25E3%2582%25B5%25E3%2583%2596%25E3%2582%25B9%25E3%2582%25AF%2529%25E3%2582%2592%25E5%25AE%259F%25E8%25A3%2585%25E3%2581%2599%25E3%2582%258B%2Cw_1010%2Cx_90%2Cy_100/g_south_west%2Cl_text:notosansjp-medium.otf_37:hiknot%2Cx_203%2Cy_121/g_south_west%2Ch_90%2Cl_fetch:aHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EtL0FPaDE0R2liX2hsV19HeHFCZjZySDlLLUNQRnhwNExvaFhzT3IwcjFRLTJSPXM5Ni1j%2Cr_max%2Cw_90%2Cx_87%2Cy_95/v1627283836/default/og-base-w1200-v2.png&quot; /&gt;
+        &lt;/a&gt;
+      &lt;/div&gt;
+
+      &lt;div class=&quot;jekyll-linkpreview-body&quot;&gt;
+        &lt;h2 class=&quot;jekyll-linkpreview-title&quot;&gt;
+          &lt;a href=&quot;https://zenn.dev/hirokt/articles/b3dbc2824800456743d5&quot; target=&quot;_blank&quot;&gt;Flutter + FirebaseでiOSとAndroidの定期購入(サブスク)を実装する&lt;/a&gt;
+        &lt;/h2&gt;
+        &lt;div class=&quot;jekyll-linkpreview-description&quot;&gt;&lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;jekyll-linkpreview-footer&quot;&gt;
+      &lt;a href=&quot;//zenn.dev&quot; target=&quot;_blank&quot;&gt;zenn.dev&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;3種類の関数を設けた。&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;verify :  flutter からの verify チェックのリクエストの窓口用&lt;/li&gt;
+  &lt;li&gt;verifyReceipt : Apple, Google にアクセスし、レシートデータを検証して、latest_receipt(最新のレシート)情報を返し、firestore に保存する&lt;/li&gt;
+  &lt;li&gt;verifySubscription : 定期購入の更新をチェックし、latest_receipt(最新レシート)を firestore に保存する&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;検証にアクセスする Apple, Google のURLやレスポンが異なっているので、 iOS, Android 用に2種類ずつ必要。
+計6つの関数を設けている。&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;verify
+    &lt;ol&gt;
+      &lt;li&gt;verifyIos&lt;/li&gt;
+      &lt;li&gt;verifyAndroid&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;verifyReceipt
+    &lt;ol&gt;
+      &lt;li&gt;verifyReceiptIos&lt;/li&gt;
+      &lt;li&gt;verifyReceiptAndroid&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;verifySubscription
+    &lt;ol&gt;
+      &lt;li&gt;verifySubscriptionIos&lt;/li&gt;
+      &lt;li&gt;verifySubscriptionAndroid&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;関数ごとに分けて解説する。
+functions にデプロイするファイル(今回は purchase.js)の先頭には以下のようにしている。&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;functions&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;firebase-functions&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;admin&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;firebase-admin&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;axios&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;axios&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;google&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;googleapis&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Firestore&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;firebase-admin/firestore&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;各関数の返り値は以下のようにファイル内で定義している。flutter 側でも同じ用に解釈できるようにしている。&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;SUCCESS&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 成功&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;EXPIRED&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 期限切れ&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;DOCUMENT_NOT_FOUND&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// Firestoreにドキュメントなし&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;NO_AUTH&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 認証情報なし&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;INVALID_RECEIPT&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// レシート情報が不正です&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ALREADY_EXIST&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 同じトランザクションが存在している&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;UNEXPECTED_ERROR&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;99&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 不明なエラー&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h3 id=&quot;verify&quot;&gt;verify&lt;/h3&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;verifyIos&lt;/code&gt; を例に解説する。&lt;/p&gt;
+
+&lt;noscript&gt;&lt;pre&gt;400: Invalid request&lt;/pre&gt;&lt;/noscript&gt;
+&lt;script src=&quot;https://gist.github.com/54e2f30b7d901b58aa1392a234201b21.js?file=purchase.js&quot;&gt; &lt;/script&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://gist.github.com/d-sea/08e0f8973b94008c0e93c828b1634dbc&quot;&gt;verifyAndroid の gist はこちら&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;http.onCall&lt;/code&gt; で HTTP で受け付ける。&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;context.auth&lt;/code&gt; で認証ユーザーであることが必須。&lt;/p&gt;
+
+&lt;p&gt;flutter 側から &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;data[&quot;data&quot;]&lt;/code&gt; に入っている &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;verificationData&lt;/code&gt; を受け取る。&lt;/p&gt;
+
+&lt;p&gt;後述する &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;verifyReceipt&lt;/code&gt; に &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;verificationData&lt;/code&gt; を渡して最新のレシート &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;latestReceipt&lt;/code&gt; を受け取る。&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;latestReceipt&lt;/code&gt; の &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;transaction_id&lt;/code&gt; は支払処理ごとに割り当てられるユニークなIDなので、
+すでに firestore に保存されていないか確認する。
+firebase auth のユーザーが異なっていている場合もあるので、&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;collectionGroup&lt;/code&gt; で検索している。&lt;/p&gt;
+
+&lt;p&gt;なければ firestore に保存する。
+検証に利用するだけならカラムはもっと減らせるが、
+問い合わせなどがあった場合に運営側として把握しておきたい情報も含めている。
+実際保存しているカラムの意味は以下。&lt;/p&gt;
+
+&lt;p&gt;iOSの場合&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;receipt_data : verificationData をそのまま格納、verificationData は課金が続く限り認証情報として利用される&lt;/li&gt;
+  &lt;li&gt;product_id : 購入した製品ID,アイテムID&lt;/li&gt;
+  &lt;li&gt;transaction_id : 購入処理ごとに割り当てられたユニークなID&lt;/li&gt;
+  &lt;li&gt;purchase_date_ms : 購入日時の unix time のミリセカンド&lt;/li&gt;
+  &lt;li&gt;purchase_date : 購入日時&lt;/li&gt;
+  &lt;li&gt;expires_date_ms : この購入の期限日時の unix time のミリセカンド&lt;/li&gt;
+  &lt;li&gt;expires_date : この購入の期限日時&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;verifyAndroid&lt;/code&gt; のAndroidの場合は以下。
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;transaction_id&lt;/code&gt; の代わりに &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;orderId&lt;/code&gt; になる。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;receipt_data : verificationData をそのまま格納、verificationData は課金が続く限り認証情報として利用される&lt;/li&gt;
+  &lt;li&gt;product_id : 購入した製品ID,アイテムID&lt;/li&gt;
+  &lt;li&gt;orderId : 購入処理ごとに割り当てられたユニークなID&lt;/li&gt;
+  &lt;li&gt;purchase_date_ms : 購入日時の unix time のミリセカンド&lt;/li&gt;
+  &lt;li&gt;purchase_date : 購入日時&lt;/li&gt;
+  &lt;li&gt;expires_date_ms : この購入の期限日時の unix time のミリセカンド&lt;/li&gt;
+  &lt;li&gt;expires_date : この購入の期限日時&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;最後に期限日時が現在時刻と比較して期限が切れていないかどうかチェック。その結果を返す。&lt;/p&gt;
+
+&lt;h3 id=&quot;verifysubscription&quot;&gt;verifySubscription&lt;/h3&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;verifySubscriptionIos&lt;/code&gt; を例に解説する。&lt;/p&gt;
+
+&lt;noscript&gt;&lt;pre&gt;400: Invalid request&lt;/pre&gt;&lt;/noscript&gt;
+&lt;script src=&quot;https://gist.github.com/cd2fbf48d48b032c74135c5a5fa43de1.js?file=purchase.js&quot;&gt; &lt;/script&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://gist.github.com/d-sea/3c06862355657a358916b898e5110bec&quot;&gt;verifySubscriptionAndroid の gist はこちら&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pubsub.schedule&lt;/code&gt; にて定期実行させる。1日1回夜中に実行。&lt;/p&gt;
+
+&lt;p&gt;レシート情報から有効期限が切れているものを見つける。実行間隔は24時間なので、その間隔で検索する。&lt;/p&gt;
+
+&lt;p&gt;レシート情報の &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;receipt_data&lt;/code&gt; を使って、&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;verifyReceiptIos&lt;/code&gt; へ検証してもらう。&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;latestReceipt&lt;/code&gt; があり、有効期限が現在以降ならレシート情報を firestore に保存する。&lt;/p&gt;
+
+&lt;p&gt;Android 版の &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;verifySubscriptionAndroid&lt;/code&gt; はfirestore の保存カラムが異なるだけで、処理内容は同じ。&lt;/p&gt;
+
+&lt;h3 id=&quot;verifyreceipt&quot;&gt;verifyReceipt&lt;/h3&gt;
+
+&lt;noscript&gt;&lt;pre&gt;400: Invalid request&lt;/pre&gt;&lt;/noscript&gt;
+&lt;script src=&quot;https://gist.github.com/d80dafb616318215df396ec47875a06f.js?file=purchase.js&quot;&gt; &lt;/script&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://gist.github.com/d-sea/d0b412c76977b161715adc568111e4f9&quot;&gt;verifyReceiptAndroid の gist はこちら&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;verificationData&lt;/code&gt; を使って、Apple の &lt;a href=&quot;https://developer.apple.com/documentation/appstorereceipts/verifyreceipt&quot;&gt;verifyReceipt&lt;/a&gt; にある &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Latest_receipt_info&lt;/code&gt; にアクスする。&lt;/p&gt;
+
+&lt;p&gt;レスポンスを見て、最終購入のレシート情報 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;latest_receipt&lt;/code&gt; を返す。&lt;/p&gt;
+
+&lt;p&gt;latest_receipt のレスポンスの各プロパティーの意味はドキュメントを参照&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Apple : &lt;a href=&quot;https://developer.apple.com/documentation/appstorereceipts/responsebody/latest_receipt_info&quot;&gt;App Store Receipts responseBody.Latest_receipt_info&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Google : &lt;a href=&quot;https://developers.google.com/android-publisher/api-ref/rest/v3/purchases.subscriptions?hl=ja#SubscriptionPurchase&quot;&gt;Google Play Developer API SubscriptionPurchase&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Apple, Google にアクセスするためには認証情報が必要。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Apple : RECEIPT_VERIFICATION_PASSWORD_FOR_IOS&lt;/li&gt;
+  &lt;li&gt;Google
+    &lt;ul&gt;
+      &lt;li&gt;SERVICE_CLIENT_EMAIL_FOR_ANDROID&lt;/li&gt;
+      &lt;li&gt;SERVICE_PRIVATE_KEY_FOR_ANDROID&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RECEIPT_VERIFICATION_PASSWORD_FOR_IOS&lt;/code&gt; は、 &lt;a href=&quot;https://appstoreconnect.apple.com/&quot;&gt;App Store Connect&lt;/a&gt; で確認できる。&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;App Store Connect &amp;gt; ユーザーとアクセス &amp;gt; 共有シークレット&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;ない場合は生成する。&lt;/p&gt;
+
+&lt;p&gt;生成した共有シークレットの値をコード内の &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RECEIPT_VERIFICATION_PASSWORD_FOR_IOS&lt;/code&gt; の値に定義する。&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SERVICE_CLIENT_EMAIL_FOR_ANDROID&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SERVICE_PRIVATE_KEY_FOR_ANDROID&lt;/code&gt; は Google Cloud でアプリのプロジェクトにリンクした
+サービスアカウントを作成する必要がある。&lt;/p&gt;
+
+&lt;p&gt;やり方は、
+&lt;a href=&quot;https://developers.google.com/android-publisher/getting_started?hl=ja&quot;&gt;Google Play Developer API&lt;/a&gt;
+にありますが、執筆時点で Google Play Console の APIアクセスページが廃止されている。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://console.cloud.google.com/&quot;&gt;Google Cloud のコンソール画面&lt;/a&gt;から行う必要がありそう。&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Google Cloud &amp;gt; IAM と管理 &amp;gt; サービスアカウント&lt;/code&gt; でたどれる。&lt;/p&gt;
+
+&lt;p&gt;設定方法は、以下のサイトが参考になる。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://zenn.dev/altiveinc/articles/how-to-google-service-account#%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88%E3%81%AE%E4%BD%9C%E6%88%90&quot;&gt;Google Play Store向けサービスアカウントの作り方&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;このドキュメントの「秘密鍵の作成とJSONダウンロード」で、JSON を保存しますが、このJSONファイルに記載されている、
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;client_email&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;private_key&lt;/code&gt; をそれぞれ、コード内の 
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SERVICE_CLIENT_EMAIL_FOR_ANDROID&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SERVICE_PRIVATE_KEY_FOR_ANDROID&lt;/code&gt; の値に定義する。&lt;/p&gt;
+
+&lt;h2 id=&quot;in_app_purchase&quot;&gt;in_app_purchase&lt;/h2&gt;
+
+&lt;p&gt;flutter 公式の in app purchase するためのパッケージ。&lt;/p&gt;
+
+&lt;p&gt;実装の構成としては、以下の3つ。&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;利用可能かどうか確認する : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;isAvailable()&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;販売する product の提示 : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;queryProductDetails&lt;/code&gt; を使って情報を widget に表示&lt;/li&gt;
+  &lt;li&gt;購入状況を把握する : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;purchaseStream&lt;/code&gt; 公式のように listener として状態を監視する&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;購入処理の流れとしては、&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;有料サービス説明と購入ボタンを含む widget を表示 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;queryProductDetails&lt;/code&gt; の情報を提示&lt;/li&gt;
+  &lt;li&gt;購入ボタンをユーザーが押す&lt;/li&gt;
+  &lt;li&gt;listener が動き出す&lt;/li&gt;
+  &lt;li&gt;ユーザーが in app purchase 画面で購入処理をする&lt;/li&gt;
+  &lt;li&gt;listener が status == purchased を検出&lt;/li&gt;
+  &lt;li&gt;有料サービスの widget を閉じて、有料サービスを提供する&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;注意点-2&quot;&gt;注意点&lt;/h3&gt;
+
+&lt;p&gt;in app purchase で購入せずキャンセルして画面を閉じた場合は、
+処理が完了せずに &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;purchaseDetails.pendingCompletePurchase == ture&lt;/code&gt; となる。
+この状態で再び購入ボタンを押すと、すでに listener 上であるのでエラーになる。
+そのため、この状態になったら listener 上で &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;completePurchase&lt;/code&gt; して残らないようにしている。&lt;/p&gt;
+
+&lt;h3 id=&quot;sample-code&quot;&gt;Sample Code&lt;/h3&gt;
+
+&lt;p&gt;購入するための widget。購入ボタンを押した後のレシートの検証も含めた1つのファイルにまとめている。&lt;/p&gt;
+
+&lt;noscript&gt;&lt;pre&gt;400: Invalid request&lt;/pre&gt;&lt;/noscript&gt;
+&lt;script src=&quot;https://gist.github.com/b3dee6d63cd68cd8eec88a246a500a92.js?file=purchase_products_list.dart&quot;&gt; &lt;/script&gt;
+
+&lt;p&gt;StatefulWidget にしている。&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;initState()&lt;/code&gt; で &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_getProducts()&lt;/code&gt; してアイテム情報を取得し、listener の設定をする。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;購入アイテムの表示&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_getProducts()&lt;/code&gt; では &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;queryProductDetails&lt;/code&gt; して、返り値を &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ProductDetails&lt;/code&gt; の配列 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_products&lt;/code&gt; に入れる。&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_products&lt;/code&gt; の情報より widget を表示させる。
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ProductDetails&lt;/code&gt; は、以下の情報を使って購入ボタンを表示している。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;id : ex. com.example.monthly.standard&lt;/li&gt;
+  &lt;li&gt;price : 通貨表示を含めた国ごとの価格&lt;/li&gt;
+  &lt;li&gt;description : アイテム登録時に入力した説明文&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;購入処理&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;購入ボタンを押して &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;buyNonConsumable&lt;/code&gt; を走らせると、 listener &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_listenToPurchaseUpdated&lt;/code&gt; が動き出す。&lt;/p&gt;
+
+&lt;p&gt;listener の status の状況によって処理を分ける。status が &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;purchased&lt;/code&gt;,&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;restored&lt;/code&gt; になったら
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_verifyPurchase&lt;/code&gt; で検証を走らせる。&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_verifyPurchase&lt;/code&gt; では &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FirebaseFunctions.instance.httpsCallable('verifyIos')&lt;/code&gt; のように
+firebase functions へ http アクセスをして返り値を得て、そのまま値を返す。&lt;/p&gt;
+
+&lt;p&gt;返ってきた値によって &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_listenToPurchaseUpdated&lt;/code&gt; が処理を分ける。&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;BillingConst.SUCCESS&lt;/code&gt; だった場合 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;deliverProduct&lt;/code&gt; して、購入画面の widget を閉じて購入処理が完了する。&lt;/p&gt;
+
+&lt;h2 id=&quot;リストア-restore&quot;&gt;リストア restore&lt;/h2&gt;
+
+&lt;p&gt;リストは  iOS の審査には必須。ないとリジェクトされる。&lt;/p&gt;
+
+&lt;p&gt;リストが発生するのは、以下のような状態。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;ユーザーは定期課金契約中、支払いは継続している、解約していない&lt;/li&gt;
+  &lt;li&gt;ユーザー情報からは支払い履歴が確認できない&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;処理としては、verify で確認して、OKなら firestore に書き込む。&lt;/p&gt;
+
+&lt;p&gt;コードとしては、リストアするボタンを以下のようにすれば動作する。&lt;/p&gt;
+
+&lt;div class=&quot;language-dart highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;CupertinoButton&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;filled&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;child:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Text&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'リストアする'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;),&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;onPressed:&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;await&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;inAppPurchase&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;restorePurchases&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;catch&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'inAppPurchase.restorePurchase: &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$error&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;},&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;listener などはそのまま利用する必要があるため、上記の Sample Code に &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bool isRestore&lt;/code&gt; のような判別を加えて、&lt;/p&gt;
+
+&lt;div class=&quot;language-dart highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;isRestore&lt;/span&gt;
+ &lt;span class=&quot;o&quot;&gt;?&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;CupertinoButton&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;filled&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;child:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Text&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'リストアする'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;),&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;onPressed:&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;await&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;inAppPurchase&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;restorePurchases&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+      &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;catch&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'inAppPurchase.restorePurchase: &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$error&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+      &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;},&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;CupertinoButton&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;filled&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
+      &lt;span class=&quot;nl&quot;&gt;child:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Text&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;_buttonView&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;),&lt;/span&gt; 
+      &lt;span class=&quot;c1&quot;&gt;//&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;),&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;//&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;のようにしている。&lt;/p&gt;
+
+&lt;h1 id=&quot;テスト&quot;&gt;テスト&lt;/h1&gt;
+
+&lt;h2 id=&quot;デバイス&quot;&gt;デバイス&lt;/h2&gt;
+
+&lt;h3 id=&quot;ios-1&quot;&gt;iOS&lt;/h3&gt;
+
+&lt;p&gt;購入テストを行うには実機が必要。iOS Simulator では購入できない。&lt;/p&gt;
+
+&lt;p&gt;購入テストにはテストアカウントを使う。
+テストアカウントの作成は、&lt;a href=&quot;https://appstoreconnect.apple.com/&quot;&gt;App Store Connect&lt;/a&gt; の &lt;a href=&quot;https://appstoreconnect.apple.com/access/users/sandbox&quot;&gt;ユーザーとアクセスのSandboxテスター&lt;/a&gt; で行う。&lt;/p&gt;
+
+&lt;p&gt;テストアカウントを実機に設定する方法は、
+&lt;a href=&quot;https://codelabs.developers.google.com/codelabs/flutter-in-app-purchases&quot;&gt;codelab&lt;/a&gt; の 「Set up the App Store」 にあるように、
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Setting &amp;gt; App Store &amp;gt; Sandbox-account&lt;/code&gt; にて設定する。
+これで、TestFlight でアプリを配布、インストールして、テストアカウントにて購入処理ができる。&lt;/p&gt;
+
+&lt;h3 id=&quot;android-1&quot;&gt;Android&lt;/h3&gt;
+
+&lt;p&gt;Android Emulator で購入処理ができる。ただし Play Store に対応しているデバイスであること。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/2023/10/2023-10-11-android-device-manager.png&quot; alt=&quot;Android Device Manager&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;購入処理を進めた際にログインが求められた時は、自身の Google アカウントを使えば良い。&lt;/p&gt;
+
+&lt;h2 id=&quot;定期課金処理&quot;&gt;定期課金処理&lt;/h2&gt;
+
+&lt;p&gt;定期課金処理は Apple, Google 共に数分間隔で実行される。(実際に1ヶ月や1年待つ訳に行かないので)&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;iOS : 特に通知なし、一定回数になると課金処理が停止されるが、定期課金の解約処理はされない&lt;/li&gt;
+  &lt;li&gt;Android : 課金されるたびに都度メールが来る。このメール内に解約処理など manage できるページへのリンクが表示されている&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;定期課金の解約&quot;&gt;定期課金の解約&lt;/h2&gt;
+
+&lt;p&gt;実際はテストで新規購入のケースを何度も行いたい場合に定期課金の解約を行いたい時がある。
+テスト環境での定期課金の解約方法を知っておく必要がある。&lt;/p&gt;
+
+&lt;h3 id=&quot;ios-2&quot;&gt;iOS&lt;/h3&gt;
+
+&lt;p&gt;テストアカウントの作成は、&lt;a href=&quot;https://appstoreconnect.apple.com/&quot;&gt;App Store Connect&lt;/a&gt; の &lt;a href=&quot;https://appstoreconnect.apple.com/access/users/sandbox&quot;&gt;ユーザーとアクセスのSandboxテスター&lt;/a&gt; で行う。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/2023/10/2023-10-11-ios-stop-subscription.png&quot; alt=&quot;iOS 定期課金停止&quot; /&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Sandboxテスターのページで、テストアカウントが表示されれていることを確認して、「編集」ボタンを押す&lt;/li&gt;
+  &lt;li&gt;該当のテストアカウントのチェックボックスにチェックを付ける&lt;/li&gt;
+  &lt;li&gt;すると、「購入履歴を消去」ボタンが押せるようになるので、押す&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;解約処理の完了は通知されない。ボタンを押してから数十分後に反映されているようなので、すぐには新規購入はできない。&lt;/p&gt;
+
+&lt;h3 id=&quot;android-2&quot;&gt;Android&lt;/h3&gt;
+
+&lt;p&gt;ログインしたユーザーの &lt;a href=&quot;https://play.google.com/store/account/subscriptions&quot;&gt;Google Play の定期課金&lt;/a&gt; にて行える。
+また、定期課金の最初の購入処理がされるとメールを受け取るので、その本文に記載されている「Manage your subscriptions」リンクからもたどれる。&lt;/p&gt;
+
+&lt;p&gt;定期購入の解約が完了したらメールで通知されるので、それを待って新規購入のテストが行える。&lt;/p&gt;
+
+&lt;p&gt;メール本文は以下。&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Your フットサルメット subscription from Players1st, inc. on Google Play has been canceled.
+
+Order number: GPA.3340-2542-4611-83848
+Order date: Sep 19, 2023 8:44:06 AM GMT+9
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h1 id=&quot;審査&quot;&gt;審査&lt;/h1&gt;
+
+&lt;h2 id=&quot;ios-3&quot;&gt;iOS&lt;/h2&gt;
+
+&lt;p&gt;上記のアイテム登録の&lt;a href=&quot;#注意点&quot;&gt;注意点&lt;/a&gt;で示した、スクリーンショットと審査メモが実質必須なことを押さえれば、
+つまずきそうなポイントはないと思う。&lt;/p&gt;
+
+&lt;p&gt;今回1回リジェクトされて、App Store Connect 上の設定だけで対応できる対応内容だったが、
+コード上は何も変更がないのに、新しくビルド・アップロードして新しいビルドを審査に出すバージョンに紐付けなおす必要があった。&lt;/p&gt;
+
+&lt;p&gt;App Store Connect 上の設定だけで対応できる場合も &lt;strong&gt;必ず新しいビルドを紐付ける必要がある&lt;/strong&gt;。&lt;/p&gt;
+
+&lt;p&gt;多分これは、Apple の内部の都合で、一度リジェクトなどのステータスが決定されたビルドはステータス変更できないようにしているのだと思う。
+だから、再レビューするにはコードの変更がなくても新しいビルドが必要ということだろう。&lt;/p&gt;
+
+&lt;p&gt;あと審査は人間がアメリカのタイムゾーンで行っているようなので、日本時間のだいたい夕方から明け方に稼働してレスポンスが来る。
+だから、朝イチでレビュー依頼しても夕方以降までは何も起きない。
+変更を行ってから寝ている間に対応さしてくれるくらい時間がかかるものだと認識しておくと良い。&lt;/p&gt;
+
+&lt;h2 id=&quot;android-3&quot;&gt;Android&lt;/h2&gt;
+
+&lt;p&gt;製品版で新しいリリースを作成してあらかじめ作成していた定期購入を紐付ければ、特に気をつけるポイントはない。&lt;/p&gt;
+
+&lt;p&gt;審査は、システムが自動的に行なっているようで、数時間で結果が出る。
+Google Play で公開されると、
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Your update is live&lt;/code&gt; という題名のシンプルなメールが届く。&lt;/p&gt;
+
+&lt;h1 id=&quot;まとめ&quot;&gt;まとめ&lt;/h1&gt;
+
+&lt;p&gt;in app purchase で定期課金を実現するには、
+複数の要素や多方面の知識が必要になるため、このドキュメントも膨大な情報量になってしまいました。&lt;/p&gt;
+
+&lt;p&gt;ひとつずつ解消していけば確実に実現するので、
+時間はかかると思うが、ぜひチャレンジしていただければと思います。&lt;/p&gt;
+
+&lt;p&gt;このドキュメントが誰かの役に立てば幸いです。&lt;/p&gt;
+
+&lt;p&gt;内容に関する、修正点の指摘、やってみたけど動かなかったなどの指摘はコメントにていただければです。&lt;/p&gt;
+
+&lt;p&gt;また、flutter x firebase で作るサーバーレスなアプリ開発や今回のような in app purchase の定額課金導入に対する
+有料のサポートも行っています。
+コンタクトフォームからお問い合わせください。&lt;/p&gt;
+
+</description>
+        <pubDate>Mon, 16 Oct 2023 09:00:00 +0900</pubDate>
+        <link>https://hirofukami.com/2023/10/16/flutter-in-app-purchase/</link>
+        <guid isPermaLink="true">https://hirofukami.com/2023/10/16/flutter-in-app-purchase/</guid>
+      </item>
+    
+      <item>
+        <title>ペップのビルドアップ UEFA Champions League Final</title>
+        <description>&lt;p&gt;&lt;img src=&quot;https://www.mancity.com/meta/media/vswhswbv/tf509969.png?width=810&quot; alt=&quot;新宿&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;ペップが2016年に ManCity の監督になってから6シーズンが経過した。&lt;/p&gt;
+
+&lt;p&gt;ついに最後の砦であった UEFA Champions League で優勝した。
+しかも、Premier League 優勝, FA Cup 獲得しての3冠達成だった。&lt;/p&gt;
+
+&lt;p&gt;ペップのフットボールの特徴として、個人的に最も重要視しているのが、&lt;strong&gt;ビルドアップ&lt;/strong&gt;。&lt;/p&gt;
+
+&lt;p&gt;今シーズンのビルドアップは、今までのシーズンを踏襲しつつ改善し、より安定性が高まった印象。
+完成形に近いのではないか。&lt;/p&gt;
+
+&lt;h1 id=&quot;ペップのビルドアップの原則&quot;&gt;ペップのビルドアップの原則&lt;/h1&gt;
+
+&lt;p&gt;6年見続けたペップのビルドアップは、いくつかの原則によって設計・運用されている。&lt;/p&gt;
+
+&lt;h2 id=&quot;5人で攻めて5人で守る&quot;&gt;5人で攻めて5人で守る&lt;/h2&gt;
+
+&lt;p&gt;ビルドアップと攻撃で明確に役割を分けている。&lt;/p&gt;
+
+&lt;p&gt;ビルドアップは最終ラインとボランチの計5名で行う。
+残りの5名は攻撃に専念する。基本的にビルドアップに加わることはない。&lt;/p&gt;
+
+&lt;p&gt;他のチームで見られるように、トップ下の選手が中盤より低い位置まで下がってボールを受けて前線につなぐようなことはしない。&lt;/p&gt;
+
+&lt;p&gt;ビルドアップは、5名でボールを繋ぎながら全員で前進して、相手を敵陣に押し込む。
+そこからフリーの状態の攻撃の5名に良い状態でボールを渡す。
+あとは攻撃の5名に任せる。&lt;/p&gt;
+
+&lt;h2 id=&quot;最終ライン3名次のライン2名の2ラインで組み立てる&quot;&gt;最終ライン3名、次のライン2名の2ラインで組み立てる&lt;/h2&gt;
+
+&lt;p&gt;今までは、いわゆる偽SBを使っての 3-2 の構成でビルドアップする。&lt;/p&gt;
+
+&lt;p&gt;左右どちらかの SB をピボーテと同じ高さで、中央に位置して、3-2 の構成を作っていた。
+この際、残った SB はサイド近くに位置するので、逆サイドに大きなスペースが生まれる歪な構成となっていた。&lt;/p&gt;
+
+&lt;p&gt;今シーズンは最終ラインを完全な3バックとして、3人を横幅に対して均等に配置した。
+その3人の前に次のラインの2名がボランチとしてポジションする。&lt;/p&gt;
+
+&lt;p&gt;きれいな 3-2 のポジションとなり、歪さがなくなり、これが安定感が増した。&lt;/p&gt;
+
+&lt;p&gt;実際、GK がビルドアップ時にボールを触ることがほとんどなくなった。&lt;/p&gt;
+
+&lt;h2 id=&quot;三角形を複数作る&quot;&gt;三角形を複数作る&lt;/h2&gt;
+
+&lt;p&gt;3-2 の形がきれいに配置されると、均等な複数の三角形が形成できる。&lt;/p&gt;
+
+&lt;p&gt;三角形はパスコースが常に2つある状態なので、選択肢が担保され安定感が生まれる。&lt;/p&gt;
+
+&lt;p&gt;4-1 では三角形が歪になり、ピボーテが狙われやすく、リスクの高い状態になる。
+なので、3-2 の構成を作るために偽SBという発想が生まれている。&lt;/p&gt;
+
+&lt;p&gt;今シーズンは更に発展させて、SBをCBにして &lt;strong&gt;「4人のCB + ピボーテ」&lt;/strong&gt; で 3-2 を作るようにした。&lt;/p&gt;
+
+&lt;h1 id=&quot;今シーズンの理想の立ち位置&quot;&gt;今シーズンの理想の立ち位置&lt;/h1&gt;
+
+&lt;p&gt;前シーズンから変化はビルドアップの形が明確な3バックになった点。&lt;/p&gt;
+
+&lt;p&gt;3-2 のブロックでビルドアップする。
+全体のポジションとしては、3-2-2-3 という感じ。&lt;/p&gt;
+
+&lt;h2 id=&quot;ビルドアップ時&quot;&gt;ビルドアップ時&lt;/h2&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;   Rodrigo  Stones
+
+ Ake   Dias   Akanji
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;今シーズンのトップトピックとしては、「Stones のボランチ化」だろう。&lt;/p&gt;
+
+&lt;p&gt;今まで Rodrigo の隣には偽SBして、SBの選手を起用していたが、今シーズンの途中からCBの Stones をこのポジションへ起用した。&lt;/p&gt;
+
+&lt;p&gt;今まで CB としては見えなかった Stones のボールの受け方、動かし方、判断がとてもクレバーで、格段にビルドアップの質が向上した。&lt;/p&gt;
+
+&lt;h2 id=&quot;守りの時&quot;&gt;守りの時&lt;/h2&gt;
+
+&lt;p&gt;守備の時は、4-4-2 になる。&lt;/p&gt;
+
+&lt;p&gt;攻撃の時の 3 バックが変形して4バックを形成する。&lt;/p&gt;
+
+&lt;p&gt;きれいな3ラインのブロックをしっかり構成することを重視している。&lt;/p&gt;
+
+&lt;h3 id=&quot;シーズン序盤&quot;&gt;シーズン序盤&lt;/h3&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;   Gundogan  Rodrigo
+
+Ake  Dias  Akanji  Stones
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;攻撃時にボランチの位置にいた Stones が右SBの位置に入る。&lt;/p&gt;
+
+&lt;h3 id=&quot;終盤&quot;&gt;終盤&lt;/h3&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;   Gundogan  Rodrigo
+
+Ake  Dias  Stones Akanji
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;終盤は、Stones がまっすぐ下がって最終ラインの右CBに入る。&lt;/p&gt;
+
+&lt;p&gt;Akanji は攻守にわたり右サイドをケアすることが引き続きできるし、Stones の横移動がなくなったことで、よりスムーズな守備構成への移動ができるようになった。&lt;/p&gt;
+
+&lt;h1 id=&quot;ake-がいない時の立ち位置&quot;&gt;Ake がいない時の立ち位置&lt;/h1&gt;
+
+&lt;p&gt;Ake が怪我をして離脱しているときは Waker が入った。&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;   Rodrigo  Stones
+
+ Akanji  Dias  Waker
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Akanji が右も左もできるのが大きかった。&lt;/p&gt;
+
+&lt;p&gt;Laporte は左ができるが、Ake の代わりに入ることはなく、Akanji を左に回すことで対応した。
+SB的な役割も求められるこのポジションの序列としては、 Akanji の方が Laporte より上となっていた。&lt;/p&gt;
+
+&lt;h1 id=&quot;ucl-ファイナル前半の立ち位置&quot;&gt;UCL ファイナル前半の立ち位置&lt;/h1&gt;
+
+&lt;p&gt;Ake が復帰できたことで、今までの Waker に代えて Ake を先発で使った。&lt;/p&gt;
+
+&lt;p&gt;最終ラインは理想形と同じメンバーできた。&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; Ake  Dias  Akanji
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;最終ラインは理想形だが、次のラインがいつもと違った&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;DeBruyne    Stones
+      Rodrigo
+
+ Ake  Dias  Akanji
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Stones の立ち位置が Rodrigo と同じ高さではなく、もう一段前になっていた。
+いつもの「5人で行う」のではなくこの時は DeBruyne を左サイドにまわして 「6人」になっていた。
+代わりに、いつもは左サイドのハーフスペースの前線近くに位置する Gundogan が右サイドに位置していた。&lt;/p&gt;
+
+&lt;p&gt;原則を崩して対策をしていた。&lt;/p&gt;
+
+&lt;p&gt;いつもなら DeBruyne は右サイドに入って、「攻め」のメンバーとしてハーフスペースを攻略する。ビルドアップには関わらない。&lt;/p&gt;
+
+&lt;p&gt;分析の結果やインテルのプレッシングへの対策からか、いつものビルドアップではない形だった。&lt;/p&gt;
+
+&lt;p&gt;左に張った DeBruyne は Ake から受けたボールを前線の Haaland めがけて長めのクロスを上げるようなことを何度か試みていた。&lt;/p&gt;
+
+&lt;p&gt;狙いとしては、なるべく DeBruyne をフリーにして、精度の高いキックを活かしたかったかもしれない。
+決められた狙い、戦術だったと思うが、原則を崩してしまったこととインテルの早いプレッシングに苦しみ、効果的なビルドアップは実現できていなかった。&lt;/p&gt;
+
+&lt;p&gt;ビルドアップからいつものように敵陣に押し込めたシーンはほとんどなかった。&lt;/p&gt;
+
+&lt;h1 id=&quot;ucl-ファイナル後半の立ち位置&quot;&gt;UCL ファイナル後半の立ち位置&lt;/h1&gt;
+
+&lt;p&gt;後半は前半のビルドアップの改善を行うために、メンバー交代はなかったが立ち位置をいつもの構成に戻した。&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;   Rodrigo  Stones
+
+ Ake  Dias  Akanji
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Stones が Rodrigo と同じ高さでより内側に位置するようになり、 DeBruyne はいつもの右サイドの攻撃側に入るようになった。&lt;/p&gt;
+
+&lt;p&gt;ボール回しも1タッチ、2タッチで積極的にパスを回すようになった。プレスがかかっていても後ろ向きに受けて、奪われないようにしながら、ボールを繋ぐようにした。&lt;/p&gt;
+
+&lt;p&gt;立ち位置のバランスが良くなったことや、インテルの守備のプレスが疲れから弱まったこともあり、よりボールがつながるようになった。&lt;/p&gt;
+
+&lt;p&gt;DeBruyne はいつものポジションでやりやすい感じで、右サイドで効果的な崩しが展開できるようになった。&lt;/p&gt;
+
+&lt;p&gt;ゴールシーンも、敵陣に押し込んだ状態で、数分間ポゼッションし、右サイドからの崩しの結果こぼれ球に Rodrigo が反応した見事なミドルシュートだった。&lt;/p&gt;
+
+&lt;p&gt;あの時間帯はいつもの ManCity の攻撃が再現できた時間帯だった。&lt;/p&gt;
+
+&lt;h1 id=&quot;今後も-3バック-は踏襲するだろう&quot;&gt;今後も 3バック は踏襲するだろう&lt;/h1&gt;
+
+&lt;p&gt;完璧な結果のシーズンだったが、おそらくペップにとって ManCity での最後のシーズンとなる 23/24 はどうなるか。&lt;/p&gt;
+
+&lt;p&gt;今シーズンの完全な3バックは安定感の効果が抜群なので、このまま踏襲するだろう。&lt;/p&gt;
+
+&lt;p&gt;Stones が引き続き使えるなら Rodrigo, Stones の組み合わせでビルドアップ時のボランチを形成するだろう。&lt;/p&gt;
+
+&lt;p&gt;Rodrigo, Stones のどちらかが怪我などで使えない時の代替えをどうするかが課題になりそう。
+Phillips がSBもできれば、そろそろ実働させたい意図からも、代わりにでることも有り得そう。&lt;/p&gt;
+
+&lt;h1 id=&quot;常に改善点を見つけて的確に修正する&quot;&gt;常に改善点を見つけて的確に修正する&lt;/h1&gt;
+
+&lt;p&gt;振り返ると、ペップは今あるものに満足することなく、常に改善点を見つけて的確に修正してきた歴史だったと思う。&lt;/p&gt;
+
+&lt;p&gt;偽SBでピボーテの負担を下げ、今回完全な3バック、CBのボランチ化でさらに修正してきた。&lt;/p&gt;
+
+&lt;p&gt;この修正が、シーズン最初だけでなく、シーズン中も行われるのが、見る側としてはとても楽しい。
+Stones のボランチ起用はシーズン序盤にはない代表的な策だった。&lt;/p&gt;
+
+&lt;p&gt;いずれにせよ、今シーズンの課題をどこに見出して、どうバージョンアップさせる。それを見つけるのが楽しみだ。&lt;/p&gt;
+</description>
+        <pubDate>Wed, 14 Jun 2023 10:00:00 +0900</pubDate>
+        <link>https://hirofukami.com/2023/06/14/pep-buildup-UCL-final/</link>
+        <guid isPermaLink="true">https://hirofukami.com/2023/06/14/pep-buildup-UCL-final/</guid>
+      </item>
+    
+      <item>
+        <title>テクニカルアドバイザー仕事が終わったのでまとめ</title>
+        <description>&lt;p&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/pw/AMWts8Bx00-inwgPpZjhhy3jHCjd5iq3e2IlymqcLaEdFuwkqr0SI4iuujf8maQtR9eGm484x2qY2gNj2T-fTlLALFffR5LJ80sWwvN4mVV97z502-lGJnnb2xP2P5UKxt4zGsPzmAyDc4gJqwJ42_-TlJQERA=w1173-h660-no?authuser=0&quot; alt=&quot;新宿&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;2月末でテクニカルアドバイザーの案件が終了したので、個人的な振り返りも含めてまとめておく。&lt;/p&gt;
+
+&lt;h1 id=&quot;ui-は動的なものが当たり前に求められる時代に&quot;&gt;UI は動的なものが当たり前に求められる時代に&lt;/h1&gt;
+
+&lt;p&gt;Web UI は動的な見せ方が当たり前になったなぁと思う。
+スマホが普及したことの影響もあるだろう。&lt;/p&gt;
+
+&lt;p&gt;ボタンを押した時のちょっとしたアニメーションも当たり前。
+ページ遷移なくデータが更新されるのも当たり前。
+ユーザー側も開発側もそれが標準的なUIと思うようになった。&lt;/p&gt;
+
+&lt;p&gt;そうすると必然的に Javascript のフロントエンド開発が必須になる。
+結局、 UI 作る = Javascript でフロントエンド開発みたいな感じになる。&lt;/p&gt;
+
+&lt;h1 id=&quot;web-が覆い尽くす&quot;&gt;Web が覆い尽くす&lt;/h1&gt;
+
+&lt;p&gt;UI としては Web 以外の手法もあるけれど、結局 Web に集約されそうな気配。&lt;/p&gt;
+
+&lt;p&gt;昔なら Windows 上でアプリを動かすことをしていた。
+(みずほ銀行のATMにあるディスプレイで、エラーが起きてWindowsのデスクトップが見えている時があるのがそれ)&lt;/p&gt;
+
+&lt;p&gt;今なら Android, iOS 上でアプリを動かすのもありだけど、まだまだ開発の敷居が高いだろうな。
+OS への依存度が高いのでロックオンされて、バージョンが上がるとエラーが出るようなことが Web に比べてると比較的多い印象。&lt;/p&gt;
+
+&lt;p&gt;Web なら今ある知識がそのまま活かせるし、デザインや機能含めすべての面で豊富オープンソースの恩恵を受けることができる。
+Web のオープン性が生きている感じ。&lt;/p&gt;
+
+&lt;h1 id=&quot;構成は-javascript-フロントエンド--api-で&quot;&gt;構成は Javascript フロントエンド + API で&lt;/h1&gt;
+
+&lt;p&gt;API サーバーを自前で建てるか、外部を使うかはあれど、構成は&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Javascript フロント + API&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;これで良い。&lt;/p&gt;
+
+&lt;p&gt;個人的には、API は Firebase の Firestore Database にして、フレキシブルなカラム変更、ノーメンテナンスにして、バックエンド開発なし、サーバーレスのおまかせ運用にする。&lt;/p&gt;
+
+&lt;h1 id=&quot;google-検索で得られる以上の情報を提供する&quot;&gt;Google 検索で得られる以上の情報を提供する&lt;/h1&gt;
+
+&lt;p&gt;フィードバックで、欲しい情報は十分いただけたけど、もうちょっと優しい内容もあると。。という内容があったけど、
+結構それはわざとで、自分が提供する情報は Google 検索で得られる以上のものであるべき。というのがある。&lt;/p&gt;
+
+&lt;p&gt;概要の概要みたいな部分は Google 検索すれば、豊富なサイトにアクセスして読むことができる。
+読めば「何となく分かった」感じにななれる。&lt;/p&gt;
+
+&lt;p&gt;でも、システムを開発する場合、その程度の理解度では全然足りなくて、もっと実践的な理解が必要になってくる。&lt;/p&gt;
+
+&lt;p&gt;何となく分かるレベルの情報は知っているけど、更にその先に進めないから依頼(お金を払ってでも解消したい価値)があると思っている。&lt;/p&gt;
+
+&lt;p&gt;だから、基礎の基礎みたいな部分は追ってでも補完してもらって、もっと実現するために必要な大事な情報を提供するために時間を使っている。&lt;/p&gt;
+
+&lt;h1 id=&quot;なるべく動いているものを見せる&quot;&gt;なるべく動いているものを見せる&lt;/h1&gt;
+
+&lt;p&gt;アドバイザーなので、コードを書かない、システム設計開発しない。ことは伝えていたのだけど、結局、簡易デモ環境を作って見せてしまった。&lt;/p&gt;
+
+&lt;p&gt;実施動くものを見るほうが何十倍も理解が進むので、あったほうが良いよなと思って、ちょっと作ってしまった。&lt;/p&gt;
+
+&lt;p&gt;アドバイザーは、適当なことを喋って時間を消費させることもできるし、そういう振る舞いの人も見かけるけど、個人的には物足りないと言うか、仕事に対してはもっと誠実でありたいと思う。&lt;/p&gt;
+
+&lt;p&gt;なので、理解をもっと深めてもらうためには何が必要かなと考えて、自分から提案して作った。&lt;/p&gt;
+
+&lt;h1 id=&quot;紹介会社が課題&quot;&gt;紹介会社が課題&lt;/h1&gt;
+
+&lt;p&gt;それまでの反応やフィードバックを聞くに、多分エンドユーザーの課題は解消できたようなので、満足度は高かっただろう。&lt;/p&gt;
+
+&lt;p&gt;ただ、人材紹介会社が間に入る形式だったけど、やっぱりというか、相変わらず課題があったなぁ。&lt;/p&gt;
+
+&lt;p&gt;多分お金払う側から意見があって改善策を打ったのだろうけど、専門家側からすると契約内容以外の無駄な工数を強いられているだけになった。以前より悪手を打って状況を悪くしている。&lt;/p&gt;
+
+&lt;p&gt;単純にマッチングだけならもっと簡易的にできるはずだし、それで良いのだけど。&lt;/p&gt;
+
+&lt;p&gt;紹介会社の取り分程の価値が提供できないから意見を言われちゃっているだけなので、マージンの取り方を工夫すれば良さそうだけど、目の前のうまみがあるからそこは変えられないんだろうなぁ。&lt;/p&gt;
+
+&lt;p&gt;人材紹介会社の強みは大企業へのリーチ力と思っているし、マッチングだけしかしないのはそういう会社と思っているので、それで結構。業務に関わろうとしても、そもそも関わるような立場も提供できるスキルもありませんになちゃう。&lt;/p&gt;
+
+&lt;p&gt;ネットでマッチングできるサービスがあれば正直それで良いけど、今のところ見当たらないところを見ると、大企業は使ってくれないのかな、専門家側のエントリーがないのかな。&lt;/p&gt;
+
+&lt;p&gt;何れにせよ、課題は大きいのであまりこの状態が続くなら、自分でマッチングのためのサービス作っちゃうかも。&lt;/p&gt;
+
+&lt;h1 id=&quot;ということでお仕事募集中です&quot;&gt;ということでお仕事募集中です&lt;/h1&gt;
+
+&lt;p&gt;ということで、アドバイザーはこんな感じでやってきました。&lt;/p&gt;
+
+&lt;p&gt;お仕事の相談あればコンタクトフォームからいつでもご連絡ください。&lt;/p&gt;
+
+&lt;div class=&quot;center m3&quot;&gt;
+  &lt;a href=&quot;/contact&quot;&gt;
+    &lt;div class=&quot;button button-blue&quot;&gt;コンタクトフォーム&lt;/div&gt;
+  &lt;/a&gt;
+&lt;/div&gt;
+</description>
+        <pubDate>Wed, 08 Mar 2023 08:20:00 +0900</pubDate>
+        <link>https://hirofukami.com/2023/03/08/tech-adviser/</link>
+        <guid isPermaLink="true">https://hirofukami.com/2023/03/08/tech-adviser/</guid>
+      </item>
+    
+      <item>
+        <title>Amazon で Kindle とペーパーバックを作るやり方</title>
+        <description>&lt;p&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/pw/AMWts8BEnG3yYXHJ70Ne3p6DluF4OIQblFlDo092_3l-pKB0-o-98yvaPVLfb7W6AygvK3GW8BZconYh_p_SUFvfGjvQQQsdXj_P0pNW66ONVrtwuIUsVsVx1gAI198xhg4iQKmnq4-xTdBc7XKtMkOytojOzg=w1200-h900-no?authuser=0&quot; alt=&quot;Amazon ペーパーバック&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://amzn.to/3P1Szqj&quot;&gt;ひとりスタートアップ&lt;/a&gt;で Kindle とペーパーバックを作った。&lt;/p&gt;
+
+&lt;p&gt;ちょっと手順や工夫が必要だったので、今後のためにメモっておく。&lt;/p&gt;
+
+&lt;h1 id=&quot;kindle-の作り方&quot;&gt;Kindle の作り方&lt;/h1&gt;
+
+&lt;p&gt;基本的には Pages で書いて、epub にしてアップロードするだけ。&lt;/p&gt;
+
+&lt;h2 id=&quot;流れ&quot;&gt;流れ&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Pages で書く&lt;/li&gt;
+  &lt;li&gt;Pages で epub 形式でエクスポート&lt;/li&gt;
+  &lt;li&gt;表紙をデザインして png or jpeg 形式で保存&lt;/li&gt;
+  &lt;li&gt;kdp にアップロード&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;epub-について&quot;&gt;epub について&lt;/h2&gt;
+
+&lt;p&gt;Pages から epub にした時に、&lt;/p&gt;
+
+&lt;p&gt;維持されるもの&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;目次&lt;/li&gt;
+  &lt;li&gt;改ページ&lt;/li&gt;
+  &lt;li&gt;図表の位置&lt;/li&gt;
+  &lt;li&gt;中央、左、右揃い&lt;/li&gt;
+  &lt;li&gt;文字の大きさ&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;維持されないもの&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;フォントの種類&lt;/li&gt;
+  &lt;li&gt;ページ数&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;pages&quot;&gt;Pages&lt;/h2&gt;
+
+&lt;h3 id=&quot;図表の挿入&quot;&gt;図表の挿入&lt;/h3&gt;
+
+&lt;p&gt;図表を挿入する際は、文字と一緒に移動してほしいので、
+「Arrange 配置」にて「Move with Text テキストと移動」タブ、「Inline with Text インライン(テキストあり)」にする。&lt;/p&gt;
+
+&lt;p&gt;その際、テキストと同様「中央揃え」にする。&lt;/p&gt;
+
+&lt;p&gt;「自動」にしてしまうと、収まるスペースに図表を移動してしまう時がある。&lt;/p&gt;
+
+&lt;h3 id=&quot;目次の挿入&quot;&gt;目次の挿入&lt;/h3&gt;
+
+&lt;p&gt;ドキュメントの目次を挿入する。&lt;/p&gt;
+
+&lt;p&gt;目次に表示する項目は、右フォーマットパネルにて指定できる。&lt;/p&gt;
+
+&lt;h2 id=&quot;表紙の作成&quot;&gt;表紙の作成&lt;/h2&gt;
+
+&lt;p&gt;画像サイズは、1600px x 2560px にする。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.canva.com&quot;&gt;Canva&lt;/a&gt; を使った。&lt;/p&gt;
+
+&lt;h1 id=&quot;ペーパーバックの作り方&quot;&gt;ペーパーバックの作り方&lt;/h1&gt;
+
+&lt;h2 id=&quot;流れ-1&quot;&gt;流れ&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Pages で書く&lt;/li&gt;
+  &lt;li&gt;Pages で pdf 形式でエクスポート&lt;/li&gt;
+  &lt;li&gt;表紙のテンプレートをダウンロード&lt;/li&gt;
+  &lt;li&gt;テンプレートを元に表紙を作成&lt;/li&gt;
+  &lt;li&gt;表紙と原稿を kdp にアップロード&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;pages-1&quot;&gt;Pages&lt;/h2&gt;
+
+&lt;p&gt;PDF 通りに印刷される。&lt;/p&gt;
+
+&lt;p&gt;余白のとり方、読みやすいフォントなど kindle 作りには必要なかった要素が大事になってくる。&lt;/p&gt;
+
+&lt;h3 id=&quot;マージン設定&quot;&gt;マージン設定&lt;/h3&gt;
+
+&lt;p&gt;原稿の PDF ファイル通りに製本されるので、本の背側(閉じられる方)の余白は多めに、小口側の余白は少なめにする。&lt;/p&gt;
+
+&lt;p&gt;右ドキュメントパネルにて、「Document Margins」の「Facing Pages」のチェックボックスを付けると、左右のマージン設定が、Inside/Outside になる。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://amzn.to/3P1Szqj&quot;&gt;ひとりスタートアップ&lt;/a&gt;で設定したマージンは以下。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/2023/03/20230307-screenshot_pages_margin.png&quot; alt=&quot;Pages margin&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;実際に印刷されたものは、マージン + 1mm のサイズだった。&lt;/p&gt;
+
+&lt;h2 id=&quot;奇数偶数で異なるヘッダーフッター設定&quot;&gt;奇数偶数で異なるヘッダー、フッター設定&lt;/h2&gt;
+
+&lt;p&gt;ページ数の位置はページの外側にしたかったので、奇数ページと偶数ページで異なるヘッダー・フッターの設定にしたかった。&lt;/p&gt;
+
+&lt;p&gt;右ドキュメントパネルにて、「Section」タブの「Headers &amp;amp; Footers」の「Left and right pages are different」のチェックボックスを付ける。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://amzn.to/3P1Szqj&quot;&gt;ひとりスタートアップ&lt;/a&gt;で設定したマージンは以下。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/2023/03/20230307-screenshot_header_footer.png&quot; alt=&quot;Pages margin&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;表紙作り&quot;&gt;表紙作り&lt;/h2&gt;
+
+&lt;p&gt;表紙は、表紙、背、裏表紙を1つの PDF ファイルで指定する。&lt;/p&gt;
+
+&lt;p&gt;ページ数によって、このファイルの縦横のサイズが変わるので、Amazon の表紙作成ツールでテンプレートを生成する必要がある。&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;a href=&quot;https://kdp.amazon.co.jp/ja_JP/help/topic/G201953020&quot;&gt;ペーパーバックの表紙の作成&lt;/a&gt;を開く&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://kdp.amazon.co.jp/cover-calculator&quot;&gt;表紙計算ツールとテンプレート生成ツール&lt;/a&gt;を開く&lt;/li&gt;
+  &lt;li&gt;パラメーターを入力する (原稿のページ数の指定が必要なので、表紙作成の前に原稿作成が終わっていること)&lt;/li&gt;
+  &lt;li&gt;サイズの計算 ボタンを押す&lt;/li&gt;
+  &lt;li&gt;表示された各サイズの「全表紙」の幅と高さをメモっておく&lt;/li&gt;
+  &lt;li&gt;テンプレートをダウンロード ボタンを押す&lt;/li&gt;
+  &lt;li&gt;ダウンロードしたファルを解凍する&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;実際の表紙ファイルのデザインは &lt;a href=&quot;https://www.canva.com&quot;&gt;Canva&lt;/a&gt; を使った。&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Canva にログイン&lt;/li&gt;
+  &lt;li&gt;新規作成する、キャンバスのサイズはメモっていた全表紙の幅、高さを入力する&lt;/li&gt;
+  &lt;li&gt;テンプレートの png ファイルを追加して、キャンバスめいいっぱいまで広げる&lt;/li&gt;
+  &lt;li&gt;テンプレートのガイドに従ってデザインする&lt;/li&gt;
+  &lt;li&gt;表表紙をデザインする (kindle 表紙で作った画像をそのまま挿入)&lt;/li&gt;
+  &lt;li&gt;背表紙に本タイトルと筆者名を入力する&lt;/li&gt;
+  &lt;li&gt;裏表紙に ISBN 番号を入力する&lt;/li&gt;
+  &lt;li&gt;出来上がったら、PDF ファイル形式でエクスポート、ダウンロードする&lt;/li&gt;
+  &lt;li&gt;kdp の表紙としてアップロードする&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;校正用の印刷&quot;&gt;校正用の印刷&lt;/h2&gt;
+
+&lt;p&gt;「校正刷りを依頼」で世に出す前にチェックしたほうが良い。&lt;/p&gt;
+
+&lt;p&gt;余白のとり方、読みやすさなどをチェックした。&lt;/p&gt;
+
+&lt;p&gt;1冊 115ページで 757円ほどかかった。&lt;/p&gt;
+
+</description>
+        <pubDate>Tue, 07 Mar 2023 10:15:00 +0900</pubDate>
+        <link>https://hirofukami.com/2023/03/07/amazon-kinkdle-paperback/</link>
+        <guid isPermaLink="true">https://hirofukami.com/2023/03/07/amazon-kinkdle-paperback/</guid>
+      </item>
+    
+      <item>
+        <title>[思考]老いへの許容</title>
+        <description>&lt;p&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/pw/AMWts8CHc8YMMo7iQfcXiFvyAUmseXEhKh8uM7TFw5L1ODXMiOu7llKNtvj4wI78rQd5zqOQ03E-ELef6xNGAdLVtOJZX5Tew_cxaM9qh8Me1SR0J6r-zJTt_d0yALNv2mNG9mu-cGDNueMvOC3D1wGFXtLSpg=w1173-h660-no?authuser=0&quot; alt=&quot;ある日の夕焼け&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;日常の出来事から思ったこと・考えたことをメモっておく。&lt;/p&gt;
+
+&lt;p&gt;つらつら書いたら長くなったし、自分用の読み返す用のメモなので、他の人があまり真剣に読むものでないです(汗&lt;/p&gt;
+
+&lt;h1 id=&quot;とある日のできごと&quot;&gt;とある日のできごと&lt;/h1&gt;
+
+&lt;p&gt;平日午後にジムに行った。土日は混むので、空いているから良い。&lt;/p&gt;
+
+&lt;p&gt;器具を使っている人数は10人行かないくらいか。値上げしてからだいぶ減ったかもなぁなどと思う。&lt;/p&gt;
+
+&lt;p&gt;今日使う器具は決まっているので、いつものように1器具15分 x 4種類のルーティーンをこなす予定。&lt;/p&gt;
+
+&lt;p&gt;レッグエクステンションを始めて、1セット10回が終わった時に話しかけられた。
+基本的にみんな一人で来て黙々とやるので、話しかけられるのは珍しい。&lt;/p&gt;
+
+&lt;p&gt;話しかけてきた相手は、年齢は70代後半から80代前半くらいだろうか。
+見た目、高齢者、おじいちゃんという印象。
+このジムに平日に来る人は年齢層高めだけど、その中でも高めな印象。&lt;/p&gt;
+
+&lt;p&gt;最初聞き取れなかったけど、聞き直すと「まだ、かかりますか？」とのこと。&lt;/p&gt;
+
+&lt;p&gt;あー、この器具がやりたいのか。時間を見ると残り7分くらいはあるな。
+「もう少しで終わりますよ。」と一応答える。&lt;/p&gt;
+
+&lt;p&gt;こちらが使っている最中に器具を使わせてほしいと言われるのは、2回目でかなり珍しい。
+言われるとやっぱり、「早く終わらせないと」という思いと、「自分のペースでやればいい」という思いが葛藤する。&lt;/p&gt;
+
+&lt;p&gt;「ちょっと早めに進めるか」と決めて再開する。&lt;/p&gt;
+
+&lt;p&gt;話しかけてきた相手は、隣の器具に座って、こちらをじっと見て何もしていない。単に待っているという姿勢。
+「やりにくいなぁ」と思う。&lt;/p&gt;
+
+&lt;p&gt;レッグエクステンションはもう一台、奥のスペースにあるはずだよなと思い、目を向けると、誰も使っていない。&lt;/p&gt;
+
+&lt;p&gt;「なんだよ」と思い、じっとこちらを見つめる高齢者に向かって、「あっち空いていますよ。」と伝える。
+「えっ？」と聞き返されたので、「あっちに同じ器具があって、空いていますよ。」と大きめに言う。
+相手は指差したほうも見ずに変化なし。こっちを見続けて待っているだけ。&lt;/p&gt;
+
+&lt;p&gt;「おいおい、わざとかよ」と思い怒りがこみ上げてくる。
+空いている器具があるのに、わざわざ人が使ってるのを邪魔したいだけか？
+結局、早めに切り上げて「どうぞ」と譲った。&lt;/p&gt;
+
+&lt;p&gt;その高齢者は「あい」とだけ言った。
+「ありがとう」ではなかった。それでさらに怒りが増したが、口には出さずに、空いているもう一台のレッグエクステンションに移動して続けた。&lt;/p&gt;
+
+&lt;p&gt;この時は「なんで人のじゃまをするのだろう」とか「高齢者だから言えば当然やってくれると思っているのだろうか」とか、色々考えてしまった。&lt;/p&gt;
+
+&lt;h1 id=&quot;その後悶々とする&quot;&gt;その後悶々とする&lt;/h1&gt;
+
+&lt;p&gt;結構大きな怒りが残ってしまったので、家に帰ってからも考えてしまった。&lt;/p&gt;
+
+&lt;p&gt;「単に意地悪のためにやっていた訳ではないよな」
+「もう一台あることを知らなかったのかな」
+「いや、あの人は結構前から見かけたことがあるから、もう一台あることは知っているだろう」&lt;/p&gt;
+
+&lt;p&gt;とかとか、答えのない問みたいな感じでくるくる考えていたら、ふと新しい考えが出てくる。&lt;/p&gt;
+
+&lt;p&gt;「もしかして、もう一台あることがわからなかった・認知できなかったのかな？」&lt;/p&gt;
+
+&lt;p&gt;見えなかったとか、目の前を通ったことはあるけど、忘れちゃっていたとか。
+高齢だとありえるのかな。と思った。&lt;/p&gt;
+
+&lt;h1 id=&quot;妻に確認してみる&quot;&gt;妻に確認してみる&lt;/h1&gt;
+
+&lt;p&gt;妻は仕事上、高齢者を相手にしていた経験があるので聞いてみようと思い、夕飯時に今日の出来事や思ったことを話してみる。&lt;/p&gt;
+
+&lt;p&gt;すると、「多分、わからなかっただけだと思う」
+「単に目の前をものをやりたい、だから待っていただけ」
+「歳を取るとだんだん認知ができなくなるから、子どもと同じようになる」
+とのこと。&lt;/p&gt;
+
+&lt;p&gt;やっぱりそうか。気づけなかった・わからなかっただけか。&lt;/p&gt;
+
+&lt;p&gt;その場で怒らなくてよかったと思う。&lt;/p&gt;
+
+&lt;h1 id=&quot;老いを許容できるか&quot;&gt;老いを許容できるか&lt;/h1&gt;
+
+&lt;p&gt;今まで、祖父や祖母の様子から高齢者の振る舞いはわかっていたつもりだったけど、実際わかってなかったのだなぁと思った。&lt;/p&gt;
+
+&lt;p&gt;自分はその場で腹を立ててしまって、その後、考え直すことができたけど、その場の感情で怒ってしまったら、
+あの人がもし認知できていなかったら、きっと怒られたことに困惑して傷つくだろう。&lt;/p&gt;
+
+&lt;p&gt;気づくはず・わかるはずという前提で対応したり、考えてしまうと外れてしまうのだな。&lt;/p&gt;
+
+&lt;p&gt;今後、高齢者の振る舞いを許容できる自分でいられるか。自分に問われた気がした。&lt;/p&gt;
+
+&lt;h1 id=&quot;未来は老いを許容してくれるか&quot;&gt;未来は老いを許容してくれるか&lt;/h1&gt;
+
+&lt;p&gt;今回は自分が高齢者に対しての把握不足があっての出来事だったけど、自分が逆の立場、高齢者になった時に確実に訪れることだなと思った。急に不安がこみ上げる。&lt;/p&gt;
+
+&lt;p&gt;自分が老いた時に、逆に、社会は許容してくれるだろうか。世の中は許してくれるだろうか。&lt;/p&gt;
+
+&lt;p&gt;批判されるだろうか。批判された時に自分はおそらく憤れないだろう・反論できないだろう。
+謝るしか無いのかもしれない。
+よく謝っているおばあちゃんの姿を見かける。&lt;/p&gt;
+
+&lt;p&gt;許してくれない世の中を批判することはできないだろう。
+自分の能力のなさを差し置いて、批判するのは単なるおごりだから。&lt;/p&gt;
+
+&lt;p&gt;能力はなくもうできないのに、できるように努力するだろうか。
+努力できたとしても、能力は上がらないだろう。&lt;/p&gt;
+
+&lt;h1 id=&quot;効率化はもう成り立たないかもしれない&quot;&gt;効率化はもう成り立たないかもしれない&lt;/h1&gt;
+
+&lt;p&gt;日常を見ると、コンビニ、スーパーでの支払で時間がかかるのは、だいたい高齢の方が多い。
+スーパーやダイソーは、セルフレジが導入されている。もたつくのはほとんど高齢者。&lt;/p&gt;
+
+&lt;p&gt;それ自体は全然悪いことでもなんでも無い。それを攻めるような理由はない。それは単なる傾向だから。
+ただ、それを許せないとか困るとか思う人も出てきて、事件やニュースになるかもしれないなとも思う。&lt;/p&gt;
+
+&lt;p&gt;昔テレビで、マクドナルドのアルバイト同士のミーティングで、直近の目標を「一人あたりの対応時間の短縮」をあげていた。
+それは高齢社会では無理だろうと思う。もう単なる効率化は、成り立たないだろう。&lt;/p&gt;
+
+&lt;h1 id=&quot;しょうがないが成り立つか&quot;&gt;しょうがないが成り立つか&lt;/h1&gt;
+
+&lt;p&gt;「しょうがないこと」としてどれだけ社会は許容できるだろうか。今後許容できるようになっていくだろうか。&lt;/p&gt;
+
+&lt;p&gt;個人の思いとしては、許容できる世の中であってほしいと思うが、貧困率が高まり、今のような状態が続けば、難しいだろうとも思う。&lt;/p&gt;
+
+&lt;p&gt;ひとりひとりに余裕がない。経済的貧困は必ず心理的貧困につながるので、先々の方が難しいと思う。
+「心に余裕がない」時代。&lt;/p&gt;
+
+&lt;p&gt;思えば、高齢社会になることは年代別人口分布を見れば、何十年も前から容易に想像できた。
+高齢者に負担を強いる仕組みは作られたが、社会が高齢者を許容する視点での対応策はない。&lt;/p&gt;
+
+&lt;p&gt;自分があの方の年になるにはあと25年から30年後くらいか。&lt;/p&gt;
+
+&lt;p&gt;その時社会はどうなっているだろう。&lt;/p&gt;
+
+&lt;p&gt;社会はその時、色々できなくなっている自分を受け入れてくれるだろうか、許してくれるだろうか。&lt;/p&gt;
+</description>
+        <pubDate>Mon, 06 Mar 2023 10:20:00 +0900</pubDate>
+        <link>https://hirofukami.com/2023/03/06/permissible-older/</link>
+        <guid isPermaLink="true">https://hirofukami.com/2023/03/06/permissible-older/</guid>
+      </item>
+    
+      <item>
+        <title>「ひとりスタートアップ」が本の形になりました</title>
+        <description>&lt;p&gt;&lt;a href=&quot;https://amzn.to/3XKtQcU&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/pw/AMWts8BrjIGXUIeqrB3kI08O0cWJX4vMVEoSRBS9-85QHNkn2rUmU4ot1nxswpVTj-WLmKEDJ_vtrrS97wx-yBwAzxZa-KyE0ymcnWdNM0icEYOiZS1mGjTjqwHSkphFOf9Qy4WgpugB4wG3IeMNhfSIJKEDAQ=w1200-h900-no?authuser=0&quot; alt=&quot;ひとりスタートアップ ペーパーバック&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;2022年12月に出した、&lt;a href=&quot;https://amzn.to/3XKtQcU&quot;&gt;「ひとりスタートアップ」&lt;/a&gt;。おかげさまで、ちょいちょい読まれております。&lt;/p&gt;
+
+&lt;p&gt;今までKindleのみで提供していましたが、紙の本の形態でも購入できるように作りました。&lt;/p&gt;
+
+&lt;p&gt;Amazon上では「ペーパーバック」と呼ばれています。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://amzn.to/3XKtQcU&quot;&gt;「ひとりスタートアップ 無理せず確実に成長するための実践ガイドブック ペーパーバック」&lt;/a&gt;
+&lt;a href=&quot;https://amzn.to/3XKtQcU&quot;&gt;&lt;img src=&quot;/images/static_pages/book_cover_your_startup.jpg&quot; width=&quot;480&quot; style=&quot;border: solid 2px #9c9c9c; border-radius: 5px;&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;ペーパーバックって何&quot;&gt;ペーパーバックって何？&lt;/h1&gt;
+
+&lt;p&gt;Amazonが印刷、製本、郵送する、本です。&lt;/p&gt;
+
+&lt;p&gt;従来の出版社が出版する新書や文庫などの形態と分けて、「ペーパーバック」とAmazon上では呼ばれています。&lt;/p&gt;
+
+&lt;p&gt;注文してから印刷、製本すると思うのですが、翌日に届く地域もあるようで、さすがAmazonといった感じです。&lt;/p&gt;
+
+&lt;p&gt;今まで出版社におまかせしていた、レイアウト、表紙デザイン、原稿以外の文章の作成は自分でやることになるので、手間はありますが、PDFファイルをアップロードすれば、本になってしまう手軽さは、出版界の破壊的イノベーションだなぁ、などと感心したりします。&lt;/p&gt;
+
+&lt;h1 id=&quot;レイアウトの試行錯誤&quot;&gt;レイアウトの試行錯誤&lt;/h1&gt;
+
+&lt;p&gt;文章の内容は&lt;a href=&quot;https://amzn.to/3XHxwMi&quot;&gt;Kindleもの&lt;/a&gt;と同じですが、読みやすい余白のとり方を見つけるのに、かなり時間がかかってしまった。&lt;/p&gt;
+
+&lt;p&gt;結果、5回も試し刷りしてしまった。。。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/pw/AMWts8BEnG3yYXHJ70Ne3p6DluF4OIQblFlDo092_3l-pKB0-o-98yvaPVLfb7W6AygvK3GW8BZconYh_p_SUFvfGjvQQQsdXj_P0pNW66ONVrtwuIUsVsVx1gAI198xhg4iQKmnq4-xTdBc7XKtMkOytojOzg=w1200-h900-no?authuser=0&quot; alt=&quot;ひとりスタートアップ 試し刷り&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;主に余白の幅の調整なのですが、余白の長さが本にすると1mm増えたりするので、製本される時の特徴みたいなのを把握するのに手間がかかりました。&lt;/p&gt;
+
+&lt;p&gt;結果的に背側の余白を多めに、小口側を少なめに、エディター側で設定できて、ちょうど良い余白の長さが見つけることができたので、納得の行くモノにできました。&lt;/p&gt;
+
+&lt;p&gt;中身はこんな感じ。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://amzn.to/3XKtQcU&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/pw/AMWts8ArQra4Naq3nVC12K1KopWjyMDDSlMNbJUJDw2pdcCBB-Ot6tuZZT9m4r13g6lHDSwtOHq8SekB0nnXZBlRdcao6-uOK1JEVu8yf6vuQnoaoj5o0TId89vp3Q7aj66zW3PBmcd2bJSOMHB94O1wPh5qKQ=w1200-h1002-no?authuser=0&quot; alt=&quot;ひとりスタートアップ ペーパーバック 中身&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Apple Pagesで作りましたが、Appleの美しいフォントが活かせて、良い感じです😊&lt;/p&gt;
+
+&lt;h1 id=&quot;amazonアプリから直接買える&quot;&gt;Amazonアプリから直接買える&lt;/h1&gt;
+
+&lt;p&gt;ペーパーバックを出したことで、Amazonアプリから直接購入できるようになりました。&lt;/p&gt;
+
+&lt;p&gt;Kindleは、デジタルコンテンツ扱いになるので、アプリ内課金手数料30％適用の対象になってしまうんですよね。
+なので、手数料を払いたくないAmazonは、Amazonアプリから購入できないようにしています。&lt;/p&gt;
+
+&lt;p&gt;ということで、Kindleの形態だとAmazonアプリから直接買えない状態でした。&lt;/p&gt;
+
+&lt;p&gt;スマホで、AmazonのURLを開こうとすると、Amazonアプリがインストールされていると、アプリに遷移するようにしている方が多いと思うので、結構最悪なUXになってしまうんですよね。&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;スマホで商品のURLを開く&lt;/li&gt;
+  &lt;li&gt;Amazonアプリが立ち上がる&lt;/li&gt;
+  &lt;li&gt;商品情報が表示される&lt;/li&gt;
+  &lt;li&gt;Kindleには「このアプリではこのコンテンツを購入できません」と表示されて買えない&lt;/li&gt;
+  &lt;li&gt;では、どうしたら？となって購入できずにフローが終わってしまう&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;こんな感じで、せっかく商品情報まで遷移したのに買えないで終わる。という悲しいことになる。&lt;/p&gt;
+
+&lt;p&gt;アイテムのページにペーパーバックも表示されれば、終わらずに購入に繋がる可能性が作れます。&lt;/p&gt;
+
+&lt;h1 id=&quot;やはり本は手元に置いておきたい&quot;&gt;やはり本は手元に置いておきたい&lt;/h1&gt;
+
+&lt;p&gt;個人的にもそうなのですが、何度も読み返したり、部分的に確認したりする場合は、本は物理媒体で置いておきたいと思う方は多いんじゃないかと思います。&lt;/p&gt;
+
+&lt;p&gt;気になる箇所にインデックスを張ったり、パソコン作業の傍らちょいちょい見返したりという事ができるのは、紙の本の良い点だと思います。&lt;/p&gt;
+
+&lt;p&gt;紙の本が手元に置けたので、今後新しく開発するサービスにも&lt;a href=&quot;https://amzn.to/3XKtQcU&quot;&gt;「ひとりスタートアップ」本&lt;/a&gt;を読みながら進めてみようと思います😊📖&lt;/p&gt;
+
+&lt;p&gt;自分で自分を客観的にアドバイスするみたいなことになりますが、結構ありがたいです。
+(ひとりだとどうしても客観視点が足りなくなりがちなので)&lt;/p&gt;
+
+&lt;h1 id=&quot;ということでひとりスタートアップ本よろしくお願いします&quot;&gt;ということで、「ひとりスタートアップ」本、よろしくお願いします&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://amzn.to/3XKtQcU&quot;&gt;&lt;img src=&quot;/images/static_pages/book_cover_your_startup.jpg&quot; width=&quot;320&quot; style=&quot;border: solid 2px #9c9c9c; border-radius: 5px;&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://amzn.to/3XKtQcU&quot;&gt;ひとりスタートアップ 無理せず確実に成長するための実践ガイドブック ペーパーバック&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;また、本のフォームを設けていますので、ご意見・ご感想、誤植の申告があればご連絡ください。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://hirofukami.com/books&quot;&gt;https://hirofukami.com/books&lt;/a&gt;&lt;/p&gt;
+
+</description>
+        <pubDate>Fri, 17 Feb 2023 09:20:00 +0900</pubDate>
+        <link>https://hirofukami.com/2023/02/17/paper-back-your-startup/</link>
+        <guid isPermaLink="true">https://hirofukami.com/2023/02/17/paper-back-your-startup/</guid>
+      </item>
+    
+      <item>
+        <title>2022年を振り返る</title>
+        <description>&lt;p&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/pw/AL9nZEUv_sdNEC4eu3G2RmcsDFsZPYU_KA-QRKX3-A3VX6d0Ru4a32kMiZSNoKaa6Wx08vHf3T5BPLUNDdh2Bo04s-LqAj2ulSOfnhCmSjQpcWGAuxRWD_kxJ5pt5vzDQ4MIpPWsa3JBCXxPF_sLEx13PCqedA=w1149-h647-no?authuser=0&quot; alt=&quot;2022年を振り返る&quot; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;本を出した&quot;&gt;本を出した&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://amzn.to/3P1Szqj&quot;&gt;&lt;img src=&quot;/images/static_pages/book_cover_your_startup.jpg&quot; width=&quot;320&quot; style=&quot;border: solid 2px #9c9c9c; border-radius: 5px;&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;今までソフトウエアを作ることでサービスを提供して来た。
+創造物はソフトウエアだった。&lt;/p&gt;
+
+&lt;p&gt;これからは、時間売りでなく、創造物で稼ぎたいと思った。
+ソフトウエア以外の創造物でも出してみたかった。&lt;/p&gt;
+
+&lt;p&gt;創造物をあげてみると、ソフトウエア、本、画像、映像あたりだった。&lt;/p&gt;
+
+&lt;p&gt;本は今まで出した経験もあり、Kindleの環境も整っているので、取り組むには最適だった。&lt;/p&gt;
+
+&lt;p&gt;城ヶ崎海岸へ執筆のために泊まりに行った。
+結局、1ヶ月ちょっとで出版できた。&lt;/p&gt;
+
+&lt;h1 id=&quot;仕事&quot;&gt;仕事&lt;/h1&gt;
+
+&lt;h2 id=&quot;時間売をやめた&quot;&gt;時間売をやめた&lt;/h2&gt;
+
+&lt;p&gt;受託開発は完全にやらなくなった。フルタイムに近いプロジェクトにも参加しない。&lt;/p&gt;
+
+&lt;p&gt;アドバイザーやコンサルは引き続きしている。
+契約内容的には工数換算なので時間売りになるけど、どちらかと言うと、課題を解決するスキルに対する対価という料金算出にしている。&lt;/p&gt;
+
+&lt;h2 id=&quot;買収話があったり&quot;&gt;買収話があったり&lt;/h2&gt;
+
+&lt;p&gt;結果的に収益が全然ダメな状態だったのと、向こうの提案内容が乗りたいものではなかったので、お断りした。&lt;/p&gt;
+
+&lt;p&gt;集中的に時間を使ったので、3週間くらいロスしたが、客観的にどう思われれているのか分かったので、収穫はあった。&lt;/p&gt;
+
+&lt;h1 id=&quot;運動&quot;&gt;運動&lt;/h1&gt;
+
+&lt;h2 id=&quot;フットサル&quot;&gt;フットサル&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/pw/AL9nZEXOsIrAKAU73qFmzXD3bDltibTbliRJ6FsFieZ7hlvOhbOwFWel1GDKWIbdEIiAEBHllB5kczXGTyOlWFHJg2VkgWuEgsswNrlifIW3s7ShUR23zjsaZ80y9Eiu0vMv3CnkGhQkQi2VQz6u0FnFeFWBUg=w1149-h862-no?authuser=0&quot; alt=&quot;FC東京パーク府中&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;怪我との付き合いが多かった。やっぱり年齢はあると思う。
+ちょっと負荷の高いことをすると怪我につながる。&lt;/p&gt;
+
+&lt;p&gt;左ふくらはぎの肉離れ 2回、違和感からの1ヶ月ちょっとお休み 1回。&lt;/p&gt;
+
+&lt;p&gt;今は over40とかover30とかの、強度の低い個サルに行くようにして、週1から2回楽しんでいる。&lt;/p&gt;
+
+&lt;p&gt;こんな感じで50歳くらいまではできるといいかなぁ。&lt;/p&gt;
+
+&lt;h2 id=&quot;ジム&quot;&gt;ジム&lt;/h2&gt;
+
+&lt;p&gt;週3回通うのは定着した。&lt;/p&gt;
+
+&lt;p&gt;最初は手術した左膝の筋肉を増やすためだったけど、全身も筋トレするようになって筋力が増えた。&lt;/p&gt;
+
+&lt;p&gt;今はジム通う前のプラス3キロくらい、体脂肪率12〜14%をキープしている。&lt;/p&gt;
+
+&lt;p&gt;これ以上筋肉つけると、妻と娘に嫌がられるので(笑)やめておく。&lt;/p&gt;
+
+&lt;h1 id=&quot;ライフイベント&quot;&gt;ライフイベント&lt;/h1&gt;
+
+&lt;h2 id=&quot;イニエスタを見に行った&quot;&gt;イニエスタを見に行った&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/pw/AL9nZEX6CIVx_tBTisA-DRlBXMgCNux6hlJOY9nqUqp2RRjWnTgwpbY9PjeVqR1OoAYipgJr_3xEyOMtD_Z881LyIJIJRlLPZVx2yEK-zc0KbWf-JnzJr80qU6LCNAWTrUIkLYGe6h1WDGcpBR0nkLGCQRvFWw=w1149-h691-no?authuser=0&quot; alt=&quot;イニエスタ&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;神戸まで行ってヴィッセル神戸のホームゲームを見に行った。&lt;/p&gt;
+
+&lt;p&gt;メインスタンド側の前から2列目だったので、ピッチが近かった。
+イニエスタ、大迫、槙野も間近で見れてよかった。槙野と大迫の太ももの太さすごかった。&lt;/p&gt;
+
+&lt;p&gt;やっぱりサッカー専用スタジアムはいいなぁ。味スタ近いんだけど、、、&lt;/p&gt;
+
+&lt;p&gt;神戸の街も少し楽しめたし、良い旅行だった。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/pw/AL9nZEU6n-Qm7b8NVXMPzNsXEh__K5ZcCQERv0YgelYOrgQU1OILrFcR4s4cBJapH7NyQ6hyOPCeRq0LLObC46v6CGHPcMJd_BgeiWChf0Hxr9e45qgUy7dpZ3yYYQKEYh1pOvozromjoyhuhMtN1WgvZvxc5A=w1149-h862-no?authuser=0&quot; alt=&quot;BEKOBE&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;家族旅行&quot;&gt;家族旅行&lt;/h2&gt;
+
+&lt;p&gt;石垣島に行った。とても良かった。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/pw/AL9nZEXgk9dCS0p3zxfW70qgwryjrKkSbtGLYiUi8iTcNeD5itJtnqG54Sh-eDwtfUAG9NyUzxPqFGhQDqxEXtC749v4ZDoXstP1Zpct1BLw-iHhWwnH78hSWT5fwYa9JrSvk2X54V3axACFnnNEbtUlJAVIvQ=w1149-h647-no?authuser=0&quot; alt=&quot;石垣島&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;自然が多くて、人は自然と共存しながら生活できるのがいいんだろうなぁと思うようになった。&lt;/p&gt;
+
+&lt;p&gt;娘の大学が終わったら、石垣島へ移住もいいなぁなどと考えるくらい良かった。&lt;/p&gt;
+
+&lt;p&gt;でも、移住者が増えているようで(特に若い人)、空き物件も少なく、全般的に高め。&lt;/p&gt;
+
+&lt;h2 id=&quot;成人式&quot;&gt;成人式&lt;/h2&gt;
+
+&lt;p&gt;娘の成人式があった。親としての達成感が大きい。&lt;/p&gt;
+
+&lt;p&gt;ここまで来たかという感じ。大学卒業まで行けば、経済的にも独立して行くんだろう。&lt;/p&gt;
+
+&lt;p&gt;卒業まで順調に行けばあと1年ちょっと、もう少しだなと思う。&lt;/p&gt;
+
+&lt;h1 id=&quot;etc&quot;&gt;etc&lt;/h1&gt;
+
+&lt;h2 id=&quot;博士取得検討&quot;&gt;博士取得検討&lt;/h2&gt;
+
+&lt;p&gt;修士は持っているけど、ふと思い立って博士号取得まで行けるといいかなぁと思った。&lt;/p&gt;
+
+&lt;p&gt;2つ程の大学の説明会大学に出てみたけど、あまり魅力的に思わず。&lt;/p&gt;
+
+&lt;p&gt;大学に入るということはその大学の枠組み(ブランドイメージや訴求力など)が上限になるので、それならその枠組を超える取り組みを試みたほうが良いと思ったのでやめた。&lt;/p&gt;
+
+&lt;h2 id=&quot;セルフカット定着&quot;&gt;セルフカット定着&lt;/h2&gt;
+
+&lt;p&gt;コロナが流行りだしてから、完全に自宅で過ごすようになって、唯一外出する必要があったのが、散髪。&lt;/p&gt;
+
+&lt;p&gt;色々床屋を変えてみたけど、ここぞというところに出会えず、であれば自分でやろうということで、バリカンとハサミを買って自分でやるようになった。&lt;/p&gt;
+
+&lt;p&gt;セルフカットも回数を重ねるごとに慣れてきて、いい感じにできるので、3週間サイクルで、フェードカットを楽しんでいる。&lt;/p&gt;
+
+&lt;h1 id=&quot;まとめ&quot;&gt;まとめ&lt;/h1&gt;
+
+&lt;p&gt;終わってみると、いい年だったなぁという感じ。&lt;/p&gt;
+
+&lt;p&gt;激動と言うよりかは、「やりたいことに対してしっかりアプローチして実現する」ことが出来ていたような気がする。&lt;/p&gt;
+
+&lt;p&gt;年齢を重ねるにつれ、激しく攻めたり焦ったりということが減ってきて、淡々と冷静にアプローチするようになった気がする。
+心情的には「静」で、でも何もしないことではなくて、新しく生み出すことは続ける。&lt;/p&gt;
+
+&lt;p&gt;そんな感じで2023年も行ければいいかな。&lt;/p&gt;
+
+</description>
+        <pubDate>Sat, 31 Dec 2022 10:20:00 +0900</pubDate>
+        <link>https://hirofukami.com/2022/12/31/2022review/</link>
+        <guid isPermaLink="true">https://hirofukami.com/2022/12/31/2022review/</guid>
+      </item>
+    
+      <item>
+        <title>ハードウエアのWeb化</title>
+        <description>&lt;p&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/pw/AL9nZEXL_TJmtsoQMQ6PgFwGvH_dYI16brXF9_-mGNalEiC9O6WN_Iso641bcVH2H8EkCbjqZAjajNQhiHTwjQSDuX4KgbQ8WhV4vTdlYpW4ZhPXoXYYrktuPWf_erdFjE76QZUBJXurzBYwDoa9GovcWfLrsQ=w1196-h673-no?authuser=0&quot; alt=&quot;World&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Web周りのテクニカルアドバイザーの仕事で、ハードウエア開発にちょこっとだけ絡んでいる。&lt;/p&gt;
+
+&lt;p&gt;ハードウエアの世界は縁遠いと思っていて、「IoTの時代だ」と言われても、積極的にアプローチしようとは思わなかったが、どうも最近のハードウエアはLinuxで動いているようで、「ほー、興味深いな」と一気に親近感を持った。&lt;/p&gt;
+
+&lt;p&gt;ちょっと調べてみると、「組み込みLinux」という単語もあるようで、ハードウエアのLinux化はすでに進んでいるみたい。&lt;/p&gt;
+
+&lt;h1 id=&quot;組み込みlinux&quot;&gt;組み込みLinux&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://monoist.itmedia.co.jp/mn/articles/2210/31/news066.html&quot;&gt;IoTに最適化されたLinuxも出ているようだし&lt;/a&gt;、&lt;a href=&quot;https://www.aps-web.jp/academy/18209/&quot;&gt;組み込みLinuxの実践的な記事も出ている&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;すでに&lt;strong&gt;ハードウエアのLinux化&lt;/strong&gt;は当然のアプローチみたい。&lt;/p&gt;
+
+&lt;p&gt;確かに、IPアドレスベースでの通信が可能だし、セキュリティ、ユーザー管理などもLinuxにおまかせできる。&lt;/p&gt;
+
+&lt;p&gt;IoTな機器だと、IPv6割り当てて、インターネットに繋がって、HTTPでWebAPIサーバーとの通信をすることもありだし、Linuxで動かすメリットは大きそう。&lt;/p&gt;
+
+&lt;h1 id=&quot;linux化するってことはuiはweb化するのでは&quot;&gt;Linux化するってことはUIはWeb化するのでは？&lt;/h1&gt;
+
+&lt;p&gt;そうするとUIはブラウザーベースでも可能になる。&lt;/p&gt;
+
+&lt;p&gt;なんとなくだけど、ハードウエアのUIってスタティックで、決まったレイアウトのViewしか出せないイメージがある。&lt;/p&gt;
+
+&lt;p&gt;LinuxならWebサーバーを立てて、UIをWebブラウザーにしてし locahost 内でHTTP通信させれば、パソコン・スマホの世界と同じアプローチで行ける。
+SPAで動的に見せることも可能。&lt;/p&gt;
+
+&lt;p&gt;構成は、&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Javascript
+Web Browser
+    |
+    | HTTP
+    |
+Web Server (API)
+Docker Container
+    |
+    | HTTP?
+    |
+Data (from sensors)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;みたいな感じで行けそう。&lt;/p&gt;
+
+&lt;p&gt;Docker にしておけば、手元での開発環境との整合性も担保できるし、Docker部分は開発ベンダーが担当みたいに、責任分界点もきれいに分けられる。&lt;/p&gt;
+
+&lt;h1 id=&quot;懸念は表示のスムーズさかな&quot;&gt;懸念は表示のスムーズさかな&lt;/h1&gt;
+
+&lt;p&gt;懸念は、ブラウザーベースにするので、今までのスタティックなViewよりかは、マシンスペックが低ければ、アニメーションがカクカクしてしまうかもしれない。&lt;/p&gt;
+
+&lt;p&gt;やっぱり、ブラウザーの描画処理って重いし、基本的に表示内容がリッチになればそれだけ負荷が大きくなる。&lt;/p&gt;
+
+&lt;p&gt;IoTな機器はコスト削減のために、マシンスペックをなるべく低くしたいだろうから、ブラウザーで動的ページを常にゴリゴリ動かすようなことには耐えられないかもしれない。&lt;/p&gt;
+
+&lt;p&gt;まぁ、この懸念はハードウエアのスペックが上がってくれば払拭されるけど。&lt;/p&gt;
+
+&lt;p&gt;楽観的に、ムーアの法則へ期待して、物理で殴れば懸念も引っ込む感じで。&lt;/p&gt;
+
+&lt;h1 id=&quot;競合は-android-iosあたりか&quot;&gt;競合は Android, iOSあたりか&lt;/h1&gt;
+
+&lt;p&gt;組み込みLinuxの競合になりそうなのは、Android, iOSあたりになるんだろう。&lt;/p&gt;
+
+&lt;p&gt;実際Android搭載のハードウエアは増えているようだし、iOS CarPlay もiPhone以外のハードへのアプローチの1つとも言える。&lt;/p&gt;
+
+&lt;p&gt;オープン性で言えば Web &amp;gt; Android &amp;gt; &amp;gt; &amp;gt; iOS で、Webには有利。&lt;/p&gt;
+
+&lt;p&gt;Webのオープンさ、実績の豊富さ、スマホファーストな時代でも廃れないメインツールとしての有利なポジショニングがかなり強みになると思う。&lt;/p&gt;
+
+&lt;p&gt;UIをWebにするのは新しいアプローチだけど、WebがハードウエアのUIのメインになる可能性は高いと思う。&lt;/p&gt;
+
+&lt;h1 id=&quot;web系エンジニアには新しいフィールドの誕生&quot;&gt;Web系エンジニアには新しいフィールドの誕生&lt;/h1&gt;
+
+&lt;p&gt;実はIoT・ハードウエアは、これからWeb系エンジニアの新しい活躍のフィールドになってくるのでは？&lt;/p&gt;
+
+&lt;p&gt;UIがWeb化すると、フロントエンジニアだったり、フロントと通信するAPIをつくるWebアプリエンジニアも活躍の場が広がる。&lt;/p&gt;
+
+&lt;p&gt;Linuxそのものの設定になれば、インフラエンジニアも登場する。&lt;/p&gt;
+
+&lt;p&gt;ハードウエアを扱うメーカーのエンジニアは、今までのスキルセットで行くと、Webとは縁遠いと思われる。
+なので、今いるWeb系エンジニアへの需要がハードウエア業界から来る。ということが、これから起きそう。&lt;/p&gt;
+
+&lt;p&gt;ハードウエアは縁遠い、独特の世界と思っていたけど、向こうから近づいてきてくれた印象。&lt;/p&gt;
+
+&lt;p&gt;意外にもハードウエア業界は、Web系エンジニアの新しい活躍の場になってくれるのでは？&lt;/p&gt;
+</description>
+        <pubDate>Wed, 14 Dec 2022 10:40:00 +0900</pubDate>
+        <link>https://hirofukami.com/2022/12/14/hardware-web/</link>
+        <guid isPermaLink="true">https://hirofukami.com/2022/12/14/hardware-web/</guid>
+      </item>
+    
+      <item>
+        <title>本を書きました「ひとりスタートアップ」</title>
+        <description>&lt;p&gt;&lt;a href=&quot;https://amzn.to/3P1Szqj&quot;&gt;&lt;img src=&quot;/images/static_pages/book_cover_your_startup.jpg&quot; width=&quot;480&quot; style=&quot;border: solid 2px #9c9c9c; border-radius: 5px;&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;実は、本を出しました。&lt;/p&gt;
+
+&lt;p&gt;Kindleで販売中です。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://amzn.to/3P1Szqj&quot;&gt;ひとりスタートアップ 無理せず確実に成長するための実践ガイドブック&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;タイトルは「ひとりスタートアップ」、
+サブタイトルは「無理せず確実に成長するための実践ガイドブック」です。&lt;/p&gt;
+
+&lt;p&gt;Kindle Unlimited な方は無料で読めます。&lt;/p&gt;
+
+&lt;p&gt;今まで本は2冊ほど共著で出したことはあるのですが、自分で企画、執筆、出版した初の本となります。&lt;/p&gt;
+
+&lt;h1 id=&quot;どんな本&quot;&gt;どんな本？&lt;/h1&gt;
+
+&lt;p&gt;端的に言ってしまうと、「ひとり」で「スタートアップ」をするため本です。&lt;/p&gt;
+
+&lt;p&gt;本書内の「はじめに」には、&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;これから、「ひとり」で「スタートアップ」するための、考え方やうまくいくためのポイントをおさえながら、実践するためのコツや具体的な方法を説明します。&lt;/p&gt;
+
+  &lt;p&gt;(中略)&lt;/p&gt;
+
+  &lt;p&gt;「ひとりスタートアップ」は、あなたひとりしかいませんので、無茶はせずに、なるべく確実に進めます。&lt;/p&gt;
+
+  &lt;p&gt;あなたのチャレンジを、大事に、大失敗を避けながら、まずは身の丈にあったやり方で成長を確実に作っていけるような方法です。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;こんなことを書きました。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;ひとり&lt;/strong&gt;で、&lt;strong&gt;自己資金のみ&lt;/strong&gt;で、&lt;strong&gt;投資・借金せず&lt;/strong&gt;に、サービスを&lt;strong&gt;成長&lt;/strong&gt;させるための&lt;strong&gt;実践ガイドブック&lt;/strong&gt;にしています。&lt;/p&gt;
+
+&lt;p&gt;ひとりスタートアップの考え方から準備、サービス作り、リリース後の集客、運用と、一通りのサービス作りのフェーズをカバーしています。&lt;/p&gt;
+
+&lt;p&gt;「自分でサービスを立ち上げたい」とか「独立しようかな」とか考えている方が、始める前にまず読んでもらって、実際に進めながらもう一度読み進めてもらえると良いなぁと思っています。&lt;/p&gt;
+
+&lt;p&gt;読者対象はIT系のサービスを立ち上げたいと思う見込み創業者ですが、新規事業の立ち上げをミッションにされている方でも「リスクを最小限にして確実に成長させる」アプローチは参考になるかと思います。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;読者を励まし、応援し、常に並走し、アドバイスを送るための本&lt;/strong&gt;を目指しました。&lt;/p&gt;
+
+&lt;h1 id=&quot;なぜ書いたの&quot;&gt;なぜ書いたの？&lt;/h1&gt;
+
+&lt;p&gt;独立して13年、最初のスタートアップをチャレンジしてから12年が経っていました。&lt;/p&gt;
+
+&lt;p&gt;リーン・スタートアップに出会ってからは、その実践を重ねて来ましたが、うまく行ったこと・行かなかったことがあり、実践ノウハウや知見のようなものがある程度得られたと思っています。&lt;/p&gt;
+
+&lt;p&gt;今回、それを世に出してみようと思いました。&lt;/p&gt;
+
+&lt;p&gt;いまだに起業や新規事業には成功パターンはないと思われていますが、ある程度&lt;strong&gt;実践的な知見が集まれば「大きな失敗を避けて、成長させるためのやり方」はテンプレート化できる&lt;/strong&gt;と思っていて、そのチャレンジでもあります。&lt;/p&gt;
+
+&lt;p&gt;また、スタートアップに対しては、あまり創業者視点の本がなく、どうしても投資家、VC、インキュベーションなど周辺のものが多い印象で、これから創業者になる・なろうかと悩んでいる人たちに対して実践的にサポートできるような情報を提供したかったというのもあります。&lt;/p&gt;
+
+&lt;p&gt;この「実践的にサポートしたい」という思いは、年齢を重ねるにつれて徐々に意識するようになった「育成・教育・人を育てる」の具体的アプローチにつながっています。&lt;/p&gt;
+
+&lt;h1 id=&quot;イメージ的には日本版-running-lean&quot;&gt;イメージ的には「日本版 RUNNING LEAN」&lt;/h1&gt;
+
+&lt;p&gt;リーン・スタートアップの実践本として「&lt;a href=&quot;https://amzn.to/3hjBpb4&quot;&gt;RUNNING LEAN&lt;/a&gt;」は、具体的にやり方を示してリーン・スタートアップの実践を解説した本としては、個人的にはとても参考になり、世に出た価値が高かったと思っています。&lt;/p&gt;
+
+&lt;p&gt;私も実際に本の通りにやってみて、「なるほど、こういうことか」と実感しながらサービスを作れました。&lt;/p&gt;
+
+&lt;p&gt;ただ、やってみたけどうまく行かなかったことや、日本的な特性には合わない方法だったり、出版されたのが2012年で時代の変化にマッチしなくなっている部分もあるかと思いました。&lt;/p&gt;
+
+&lt;p&gt;また、ちまたには起業系の本は多いのですが、アフィリエイト、広告収入、ECあたりを個人の範囲で小さなビジネス起こすこと想定したもので、大きな成長可能性を秘めた、いわゆるスタートアップに関連した本はほとんどありません。&lt;/p&gt;
+
+&lt;p&gt;そこで、日本に適したスタートアップ実践本、「日本版 RUNNING LEAN」をイメージして書きました。&lt;/p&gt;
+
+&lt;h1 id=&quot;ということでひとりスタートアップよろしくお願いします&quot;&gt;ということで、「ひとりスタートアップ」よろしくお願いします&lt;/h1&gt;
+
+&lt;p&gt;また、この本のページを作っています。&lt;/p&gt;
+
+&lt;p&gt;フォームを設けていますので、ご意見・ご感想、誤植の申告があればご連絡ください。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://hirofukami.com/books&quot;&gt;https://hirofukami.com/books&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Amazon Kindleで読めますので、読んでみていただければです。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://amzn.to/3P1Szqj&quot;&gt;&lt;img src=&quot;/images/static_pages/book_cover_your_startup.jpg&quot; width=&quot;320&quot; style=&quot;border: solid 2px #9c9c9c; border-radius: 5px;&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://amzn.to/3P1Szqj&quot;&gt;ひとりスタートアップ 無理せず確実に成長するための実践ガイドブック&lt;/a&gt;&lt;/p&gt;
+
+</description>
+        <pubDate>Mon, 12 Dec 2022 17:40:00 +0900</pubDate>
+        <link>https://hirofukami.com/2022/12/12/book-your-starup/</link>
+        <guid isPermaLink="true">https://hirofukami.com/2022/12/12/book-your-starup/</guid>
+      </item>
+    
+      <item>
+        <title>自分ではない他の誰かのためにサービスを作る</title>
+        <description>&lt;p&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/pw/AL9nZEWrgzXlT-1XZD_FY9-QMGvg4aiJ8NBZS5k_rTexTdfNEWOQfpjLbwRkQHYiKFVR5ngwCXANlBhlRtliaqkBagrjRMUys7qz-QTRvJ5GLHrB2Ea6QvcbT4Nit7gGf1JXUbBytRmGWkpbhQNlehV9HmlNfg=w1078-h665-no?authuser=0&quot; alt=&quot;World&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;とある新規事業で立ち上げようとしているサービスの現状と課題を聞いたのだけど、何かその時にもやもやが生じて、次の日になっても違和感が残った。&lt;/p&gt;
+
+&lt;p&gt;その違和感が何だったのか。落ち着いて考えてみたら気づいたことがあったので、まとめてみる。&lt;/p&gt;
+
+&lt;h1 id=&quot;バズワードを散りばめるとユーザー不在になる&quot;&gt;バズワードを散りばめるとユーザー不在になる&lt;/h1&gt;
+
+&lt;p&gt;新しいサービスの説明で、バズワードを全面に押し出しサービスがある。
+プレスリリースとかよく見かけるし、よくあるケース。&lt;/p&gt;
+
+&lt;p&gt;バズワードは今だと、AI、NFT、ファントークン、仮想通貨、メタバースあたりのキーワードになるか。
+ちょっと前だと、IR, VR, FinTech, DXとかとかかな。&lt;/p&gt;
+
+&lt;p&gt;サービスを認識してもらう時にバズワードを使えば、「新しいそう」というイメージは得やすいのでプロモーションの視点からは有効だけど。&lt;/p&gt;
+
+&lt;p&gt;サービスとして求められる最も大事な&lt;strong&gt;ユーザーの課題解決が欠落しやすい&lt;/strong&gt;。&lt;/p&gt;
+
+&lt;p&gt;バズワードを組み合わたサービスアイデアは、ユーザーが不在になりやすい。
+ユーザーから見ると「だから何？」となる。&lt;/p&gt;
+
+&lt;h1 id=&quot;ツールはあくまでも解決方法の1つ&quot;&gt;ツールはあくまでも解決方法の1つ&lt;/h1&gt;
+
+&lt;p&gt;バズワードはだいたいテクノロジーの新しい手法になるので、単なる1つのツールにしかならない。&lt;/p&gt;
+
+&lt;p&gt;サービスの場合、ツールを使うことは目的にはならない。
+それを使って&lt;strong&gt;誰のどんな課題を解決するのか&lt;/strong&gt;が示されないとユーザーには届かない。&lt;/p&gt;
+
+&lt;p&gt;例えば、「AIを使った自動NFT化するメタバース空間です」は、誰がどういうふうに使うためなのかわからない。&lt;/p&gt;
+
+&lt;p&gt;所詮ツールなので解決方法の1つの手段にしかなりえない。&lt;/p&gt;
+
+&lt;p&gt;上記のターゲットは、実は自動車メーカー向けで、メターバス内に展示する新車を3Dモデリングする手間が課題だった。となれば、なるほどそういったサービスなのね。と理解してもらえる。&lt;/p&gt;
+
+&lt;h1 id=&quot;サービス側の押し付けはエゴになる&quot;&gt;サービス側の押し付けはエゴになる&lt;/h1&gt;
+
+&lt;p&gt;なんのためにサービスをやるのかといえば、ユーザーの課題を解決するため。これはもうはっきりしている。&lt;/p&gt;
+
+&lt;p&gt;でもサービスアイデアを何でも出してみましょう。みたいにやっちゃうと、未経験者は個人のやりたいことを混ぜてしまう。&lt;/p&gt;
+
+&lt;p&gt;サービス側がやりたいことをやろうとすると、ユーザーの課題は想定されない。課題に適した解決策もない。&lt;/p&gt;
+
+&lt;p&gt;ユーザー不在になる。
+で、これを流行らそうとすると押しつけになる。ユーザーの拒否反応がでるとスケールすることはない。&lt;/p&gt;
+
+&lt;p&gt;これは単なるエゴになる。&lt;/p&gt;
+
+&lt;p&gt;ユーザーの課題に沿っていないサービスづくりは、サービスと言えないしその体をなしていないので、最初から発想し直すことをおすすめする。&lt;/p&gt;
+
+&lt;h1 id=&quot;自分のサービスを考える時の流れ&quot;&gt;自分のサービスを考える時の流れ&lt;/h1&gt;
+
+&lt;p&gt;自分のサービスづくりは基本的に&lt;a href=&quot;https://amzn.to/3Oid3Lb&quot;&gt;リーンスタートアップ&lt;/a&gt;の考え方をベースにして、今までの経験で失敗したことを含めて細かい部分は自分なりの方法でやっている。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://amzn.to/3Oid3Lb&quot;&gt;リーンスタートアップ&lt;/a&gt;は、簡単に言ってしまうと、課題の発見と解決策が適しているのかを思い込みのまま進むのではなく検証しながら進めましょう。という考え方。&lt;/p&gt;
+
+&lt;p&gt;ターゲットの課題があって、そこに対する解決策を作ることでサービスが利用される。スケールする。&lt;/p&gt;
+
+&lt;p&gt;考える順番は、ユーザーは誰なのか？課題は何か？で解決策をどうするのか？という流れ。&lt;/p&gt;
+
+&lt;p&gt;ターゲット、課題、解決方法の整理については、
+&lt;a href=&quot;https://amzn.to/3Oid3Lb&quot;&gt;リーンスタートアップ&lt;/a&gt;の実践本「&lt;a href=&quot;https://amzn.to/3hE8YEK&quot;&gt;ランニングリーン&lt;/a&gt;」で学んだ。&lt;/p&gt;
+
+&lt;p&gt;細かい部分や本の通りにやっていない、自分なりのやり方や発想の仕方もあるのだけど、今回は割愛。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://amzn.to/3hE8YEK&quot;&gt;ランニングリーン&lt;/a&gt;は、簡潔にガイドブックのように進めることができるので、実際に読みながら進めてみるのがおすすめです。&lt;/p&gt;
+
+&lt;h1 id=&quot;世の中がより良くなるのか&quot;&gt;世の中がより良くなるのか&lt;/h1&gt;
+
+&lt;p&gt;サービスを作る際にいつも気にしているのは、&lt;strong&gt;このサービスがはやることで世の中がより良くなるのか&lt;/strong&gt;。ということ。&lt;/p&gt;
+
+&lt;p&gt;ネットの向こう側にいる知らない誰かが使ってくれて、ポジティブな感情(嬉しい、楽しい、安心とか)が芽生えるイメージ。&lt;/p&gt;
+
+&lt;p&gt;誰のためにと聞かれれば、&lt;strong&gt;自分ではない他の誰かのため&lt;/strong&gt;。&lt;/p&gt;
+
+&lt;p&gt;サービスが広まることで、少しでも世の中にポジティブなものが生まれてほしい。それが結果的に世の中を少しでもより良くすることにつながるだろう。と思ってやっている。&lt;/p&gt;
+
+&lt;p&gt;自分の人生は他の誰かをポジティブにするために使う。
+そうありたいと思っている。&lt;/p&gt;
+
+</description>
+        <pubDate>Tue, 15 Nov 2022 18:40:00 +0900</pubDate>
+        <link>https://hirofukami.com/2022/11/15/start-service-policy/</link>
+        <guid isPermaLink="true">https://hirofukami.com/2022/11/15/start-service-policy/</guid>
+      </item>
+    
+  </channel>
+</rss>
