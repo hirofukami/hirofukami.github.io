@@ -1,0 +1,1693 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Flutter in_app_purchase で定期購入を実現する方法 2023年版 &#8211; Hiro Fukami's Blog - 深海寛信のブログ</title>
+    <link rel="dns-prefetch" href="//maxcdn.bootstrapcdn.com">
+    <link rel="dns-prefetch" href="//cdn.mathjax.org">
+    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Hiro Fukami(深海寛信 ふかみひろのぶ)'s Blog : 世の中をより良く変えるため、世の中にない新しいサービスを模索する日々。CEO of Players1st inc., Business Starter, Engineer and Daddy.">
+    <meta name="robots" content="all">
+    <meta name="author" content="Hiro Fukami">
+    <meta name="keywords" content="Development, Tech">
+    <link rel="canonical" href="https://hirofukami.com/2023/10/16/flutter-in-app-purchase/">
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed for Hiro Fukami's Blog - 深海寛信のブログ" href="/feed.xml" />
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/pixyll.css?202310161212" type="text/css">
+
+    <!-- Fonts -->
+    
+    <link href='//fonts.googleapis.com/css?family=Merriweather:900,900italic,300,300italic' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Lato:900,300' rel='stylesheet' type='text/css'>
+    
+    
+      <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+    
+    <!-- MathJax -->
+    
+
+    <!-- Verifications -->
+    
+    
+
+    <!-- Open Graph -->
+    <!-- From: https://github.com/mmistakes/hpstr-jekyll-theme/blob/master/_includes/head.html -->
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Flutter in_app_purchase で定期購入を実現する方法 2023年版">
+    <meta property="og:description" content="Flutter にて in_app_purchase を使って定期課金を実現するための方法をまとめました。2023年9月実装">
+    <meta property="og:url" content="https://hirofukami.com/2023/10/16/flutter-in-app-purchase/">
+    <meta property="og:site_name" content="Hiro Fukami's Blog - 深海寛信のブログ">
+    
+      <meta property="og:image" content="https://www.mancity.com/meta/media/vswhswbv/tf509969.png?width=810" />
+    
+    
+      
+      <meta content="Development" property="article:section">
+      
+    
+    
+      
+      <meta content="flutter" property="article:tag">
+      
+      <meta content="in app purchase" property="article:tag">
+      
+      <meta content="firebase" property="article:tag">
+      
+      <meta content="firestore" property="article:tag">
+      
+      <meta content="functions" property="article:tag">
+      
+      <meta content="subscription" property="article:tag">
+      
+      <meta content="iOS" property="article:tag">
+      
+      <meta content="Android" property="article:tag">
+      
+      <meta content="定額課金" property="article:tag">
+      
+    
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    
+      <meta name="twitter:site" content="@d_sea" />
+      <meta name="twitter:creator" content="@d_sea" />
+    
+
+    <!-- Icons -->
+    <link rel="icon" type="image/png" href="/images/favicon.png">
+
+    
+    <script type="text/javascript">
+       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+       ga('create', 'UA-44359867-3', 'auto');
+       ga('send', 'pageview');
+    </script>
+    
+
+</head>
+
+<body class="site">
+  
+	
+
+<div class="site-wrap">
+  <header class="site-header px2 px-responsive">
+  <div class="mt2 wrap">
+    <div class="measure">
+      <div class="row">
+        <div class="col-md-6 center">
+          <div class="site-title">
+            <a href="/" class="site-title">Hiro Fukami's Blog - 深海寛信のブログ</a>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 center">
+          <div class="auther-thumb">
+            <a href="/">
+              <img src="/images/hirofukami.jpg" alt="Hiro Fukami" class="img-circle">
+            </a>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <nav class="site-nav">
+            
+    
+
+    
+        <a href="/about/">About</a>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+
+    
+
+    
+
+    
+
+    
+
+    
+        <a href="/contact/">Contact</a>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+
+  <form action="https://google.com/search" method="get">
+    <input type="text" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="as_sitesearch" value="https://hirofukami.com">
+  </form>
+
+
+          </nav>
+          <div class="clearfix"></div>
+          
+          <div class="social-icons">
+  <div class="social-icons-right">
+    
+    <a class="fa fa-twitter" href="https://twitter.com/d_sea"></a>
+    
+    
+    <a class="fa fa-instagram" href="https://www.instagram.com/d_sea"></a>
+    
+    
+    <a class="fa fa-facebook" href="https://facebook.com/fukami"></a>
+    
+    
+    <a class="fa fa-linkedin" href="https://www.linkedin.com/in/hirofukami"></a>
+    
+    
+      <a class="fa fa-github" href="https://github.com/d-sea"></a>
+    
+    
+    
+      <a class="fa fa-shopping-cart" href="https://hirofukami.official.ec/"></a>
+    
+    
+    
+    
+    
+    
+      <a class="fa fa-envelope" href="mailto:dee.sea@gmail.com"></a>
+    
+    
+    
+    <a class="fa fa-rss" href="/feed.xml"></a>
+  </div>
+  <div class="right">
+    
+    
+    
+  </div>
+</div>
+<div class="clearfix"></div>
+
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+  <div class="post p2 p-responsive wrap" role="main">
+    <div class="measure">
+      
+
+
+<div class="post-header mb2">
+  <h1>Flutter in_app_purchase で定期購入を実現する方法 2023年版</h1>
+  <span class="post-meta">Oct 16, 2023</span><br>
+  
+  <span class="post-meta">
+  <small>
+  <div class="post-categories">
+  Categories: 
+  
+  
+  <a href="/categories/#Development">Development</a>,
+  
+  <a href="/categories/#Tech">Tech</a>
+  
+</div>
+  <div class="post-tags">
+  Tags: 
+  
+  
+  <a href="/tags/#flutter">flutter</a>,
+  
+  <a href="/tags/#in%20app%20purchase">in app purchase</a>,
+  
+  <a href="/tags/#firebase">firebase</a>,
+  
+  <a href="/tags/#firestore">firestore</a>,
+  
+  <a href="/tags/#functions">functions</a>,
+  
+  <a href="/tags/#subscription">subscription</a>,
+  
+  <a href="/tags/#iOS">iOS</a>,
+  
+  <a href="/tags/#Android">Android</a>,
+  
+  <a href="/tags/#%E5%AE%9A%E9%A1%8D%E8%AA%B2%E9%87%91">定額課金</a>
+  
+</div>
+  </small>
+  </span>
+<!--   <span class="post-meta small">
+  
+    6 minute read
+  
+  </span>
+ -->
+</div>
+
+<article class="post-content">
+  <p>Flutter にて in_app_purchase を使って定期課金を実現するための方法をまとめました。</p>
+
+<p>構成は単純な デバイス + DB 以外にも購入データを証明するバックエンドも加わり割りと複雑で、
+in_app_purchase が行っている処理への理解も必要の上、Apple, Google 上で行うべき作業もある。</p>
+
+<p>実際実現してみて事前にある程度情報を入れておかないと、実現するのは難しいと思ったのでまとめておく。</p>
+
+<h1 id="定期課金を導入したアプリ">定期課金を導入したアプリ</h1>
+
+<p><strong><a href="https://company.p1st.app/futsal-met/">フットサルSNSアプリ 「フットサルメット」</a></strong></p>
+
+<div class="jekyll-linkpreview-wrapper">
+  <div class="jekyll-linkpreview-wrapper-inner">
+    <div class="jekyll-linkpreview-content">
+      <div class="jekyll-linkpreview-image">
+        <a href="https://company.p1st.app/futsal-met/" target="_blank">
+          <img src="https://company.p1st.app/images/apps/futsalmet/header_futsalmet.png">
+        </a>
+      </div>
+
+      <div class="jekyll-linkpreview-body">
+        <h2 class="jekyll-linkpreview-title">
+          <a href="https://company.p1st.app/futsal-met/" target="_blank">フットサルSNSアプリ - フットサルメット</a>
+        </h2>
+        <div class="jekyll-linkpreview-description">便利な機能でより楽しく、豊かなフットサルライフを支えます。広告なしで、純粋にフットサルを通して、仲間を増やして、楽しく蹴れる日常を。</div>
+      </div>
+    </div>
+    <div class="jekyll-linkpreview-footer">
+      <a href="//company.p1st.app" target="_blank">company.p1st.app</a>
+    </div>
+  </div>
+</div>
+
+<p>広告なしで使える無料アプリだが機能制限があり、より便利な機能を利用するための定期課金を提供している。</p>
+
+<h1 id="参考にしたサイト">参考にしたサイト</h1>
+
+<p>理解をするのに助けてもらったサイト。2023年9月においては古い情報もあり、完全に網羅しているサイトはかなった。
+これを読めば大丈夫。というものがなく、複数のサイトからの情報とトライアンドエラーが必要だったので、
+今回まとめようと思ったモチベーションになっている。</p>
+
+<div class="jekyll-linkpreview-wrapper">
+  <div class="jekyll-linkpreview-wrapper-inner">
+    <div class="jekyll-linkpreview-content">
+      <div class="jekyll-linkpreview-image">
+        <a href="https://zenn.dev/hirokt/articles/b3dbc2824800456743d5" target="_blank">
+          <img src="https://res.cloudinary.com/zenn/image/upload/s--Tj_H2kZn--/c_fit%2Cg_north_west%2Cl_text:notosansjp-medium.otf_55:Flutter%2520%252B%2520Firebase%25E3%2581%25A7iOS%25E3%2581%25A8Android%25E3%2581%25AE%25E5%25AE%259A%25E6%259C%259F%25E8%25B3%25BC%25E5%2585%25A5%2528%25E3%2582%25B5%25E3%2583%2596%25E3%2582%25B9%25E3%2582%25AF%2529%25E3%2582%2592%25E5%25AE%259F%25E8%25A3%2585%25E3%2581%2599%25E3%2582%258B%2Cw_1010%2Cx_90%2Cy_100/g_south_west%2Cl_text:notosansjp-medium.otf_37:hiknot%2Cx_203%2Cy_121/g_south_west%2Ch_90%2Cl_fetch:aHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EtL0FPaDE0R2liX2hsV19HeHFCZjZySDlLLUNQRnhwNExvaFhzT3IwcjFRLTJSPXM5Ni1j%2Cr_max%2Cw_90%2Cx_87%2Cy_95/v1627283836/default/og-base-w1200-v2.png">
+        </a>
+      </div>
+
+      <div class="jekyll-linkpreview-body">
+        <h2 class="jekyll-linkpreview-title">
+          <a href="https://zenn.dev/hirokt/articles/b3dbc2824800456743d5" target="_blank">Flutter + FirebaseでiOSとAndroidの定期購入(サブスク)を実装する</a>
+        </h2>
+        <div class="jekyll-linkpreview-description"></div>
+      </div>
+    </div>
+    <div class="jekyll-linkpreview-footer">
+      <a href="//zenn.dev" target="_blank">zenn.dev</a>
+    </div>
+  </div>
+</div>
+
+<p>必要な処理ごとにフローとサンプルコードを示しているので、どんな処理が必要なのか理解できる。
+示しているソースコードは実際の処理としては足りないので、鵜呑みにしない方が良い。</p>
+
+<div class="jekyll-linkpreview-wrapper">
+  <div class="jekyll-linkpreview-wrapper-inner">
+    <div class="jekyll-linkpreview-content">
+      <div class="jekyll-linkpreview-image">
+        <a href="https://qiita.com/YuKiO-OO/items/a0fe8e0a256afbb69fc7" target="_blank">
+          <img src="https://qiita-user-contents.imgix.net/https%3A%2F%2Fcdn.qiita.com%2Fassets%2Fpublic%2Farticle-ogp-background-9f5428127621718a910c8b63951390ad.png?ixlib=rb-4.0.0&amp;w=1200&amp;mark64=aHR0cHM6Ly9xaWl0YS11c2VyLWNvbnRlbnRzLmltZ2l4Lm5ldC9-dGV4dD9peGxpYj1yYi00LjAuMCZ3PTkxNiZ0eHQ9JTA4JUUzJTgwJTkwRmx1dHRlciVFMyU4MCU5MSVFMyU4MiU4MiVFMyU4MSU4NiVFNiU4MCU5NiVFMyU4MSU4RiVFMyU4MSVBQSVFMyU4MSU4NCVFRiVCQyU4MSVFMyU4MiVBMiVFMyU4MyU5NyVFMyU4MyVBQSVFNSU4NiU4NSVFOCVBQSVCMiVFOSU4NyU5MSVFMyU4MyVCQiVFNSVBRSU5QSVFNiU5QyU5RiVFOCVCMyVCQyVFNSU4NSVBNSVFNiVBOSU5RiVFOCU4MyVCRCVFMyU4MiU5MiVFNSVBRSU5RiVFOCVBMyU4NSVFMyU4MSU5OSVFMyU4MiU4QiVFNiU5NiVCOSVFNiVCMyU5NSVFMyU4MiU5MiVFNCVCOCU4MSVFNSVBRiVBNyVFMyU4MSVBQiVFOCVBQSVBQyVFNiU5OCU4RSVFMyU4MSU5NyVFMyU4MSVBNiVFMyU4MSVCRiVFMyU4MSU5RiVFMyU4MCU4MiZ0eHQtY29sb3I9JTIzMjEyMTIxJnR4dC1mb250PUhpcmFnaW5vJTIwU2FucyUyMFc2JnR4dC1zaXplPTU2JnR4dC1jbGlwPWVsbGlwc2lzJnR4dC1hbGlnbj1sZWZ0JTJDdG9wJnM9NzU0ZGU4MGE2YzQyN2FiZjBiYjg1MzZhZjNmYTQwZjg&amp;mark-x=142&amp;mark-y=112&amp;blend64=aHR0cHM6Ly9xaWl0YS11c2VyLWNvbnRlbnRzLmltZ2l4Lm5ldC9-dGV4dD9peGxpYj1yYi00LjAuMCZ3PTYxNiZ0eHQ9JTQwWXVLaU8tT08mdHh0LWNvbG9yPSUyMzIxMjEyMSZ0eHQtZm9udD1IaXJhZ2lubyUyMFNhbnMlMjBXNiZ0eHQtc2l6ZT0zNiZ0eHQtYWxpZ249bGVmdCUyQ3RvcCZzPTJkZGRkYTMyOGIyMjgwYTBjYjFiODk1OTBhMTA3MWQy&amp;blend-x=142&amp;blend-y=491&amp;blend-mode=normal&amp;s=a5877efa68863a968031d513fb02cb6e">
+        </a>
+      </div>
+
+      <div class="jekyll-linkpreview-body">
+        <h2 class="jekyll-linkpreview-title">
+          <a href="https://qiita.com/YuKiO-OO/items/a0fe8e0a256afbb69fc7" target="_blank">【Flutter】もう怖くない！アプリ内課金・定期購入機能を実装する方法を丁寧に説明してみた。 - Qiita</a>
+        </h2>
+        <div class="jekyll-linkpreview-description">7月にFlutter開発を始めてから２作目、アイデアを発想するためのメモアプリ「アイデアメモ iX」をリリースしました。走り書きをする感覚でサッとメモができ、さらにそのメモを組み合わせてシャッフ…</div>
+      </div>
+    </div>
+    <div class="jekyll-linkpreview-footer">
+      <a href="//qiita.com" target="_blank">qiita.com</a>
+    </div>
+  </div>
+</div>
+
+<p>大まかに必要な要素をカバーしている。全体の流れを網羅するには良い。
+示しているソースコードは現状にはない関数があったり、かなり省略されているので実際のコードとしてはあまり参考にならない。</p>
+
+<div class="jekyll-linkpreview-wrapper">
+  <div class="jekyll-linkpreview-wrapper-inner">
+    <div class="jekyll-linkpreview-content">
+      <div class="jekyll-linkpreview-image">
+        <a href="https://tkzo.jp/blog/flutter-iap-implementation/" target="_blank">
+          <img src="https://tkzo.jp/blog/wp-content/uploads/2020/05/flutter-logo.png">
+        </a>
+      </div>
+
+      <div class="jekyll-linkpreview-body">
+        <h2 class="jekyll-linkpreview-title">
+          <a href="https://tkzo.jp/blog/flutter-iap-implementation/" target="_blank">【Flutter + Firebase】アプリ内課金(IAP)のステップバイステップ実装ガイド【レシート検証】</a>
+        </h2>
+        <div class="jekyll-linkpreview-description">この記事はFlutterとFirebaseを利用してアプリ内課金(IAP)機能を実装するためのステップバイステップ実装ガイドです。 主にIAPを実装する際の肝となるレシート検証処理を、プラットフォーム</div>
+      </div>
+    </div>
+    <div class="jekyll-linkpreview-footer">
+      <a href="//tkzo.jp" target="_blank">tkzo.jp</a>
+    </div>
+  </div>
+</div>
+
+<p>購入した際に発行されるレシートの検証処理についてまとめている。
+検証するための構成や検証処理への理解を深められる。
+示しているソースコードはどんな処理をすればよいのか理解はできるが、サーバ側の検証部分が一部省略されているので、鵜呑みにしない方が良い。</p>
+
+<h1 id="目次">目次</h1>
+
+<!-- TOC -->
+<ul>
+  <li><a href="#%E7%92%B0%E5%A2%83">環境</a></li>
+  <li><a href="#%E6%A7%8B%E6%88%90">構成</a></li>
+  <li><a href="#%E6%BA%96%E5%82%99">準備</a></li>
+  <li><a href="#flutter-%E5%81%B4%E3%82%BB%E3%83%83%E3%83%88%E3%82%A2%E3%83%83%E3%83%97">Flutter 側セットアップ</a></li>
+  <li>
+<a href="#%E3%82%A2%E3%82%A4%E3%83%86%E3%83%A0%E7%99%BB%E9%8C%B2">アイテム登録</a>
+    <ul>
+      <li><a href="#ios">iOS</a></li>
+      <li><a href="#android">Android</a></li>
+    </ul>
+  </li>
+  <li>
+<a href="#%E5%AE%9F%E8%A3%85">実装</a>
+    <ul>
+      <li><a href="#%E5%9F%BA%E6%9C%AC%E7%9A%84%E3%81%AA%E5%87%A6%E7%90%86%E3%81%AE%E6%B5%81%E3%82%8C">基本的な処理の流れ</a></li>
+      <li><a href="#%E6%A4%9C%E8%A8%BC-verify-%E3%81%A8%E3%81%AF">検証 verify とは</a></li>
+      <li><a href="#%E4%BB%95%E6%A7%98">仕様</a></li>
+      <li>
+<a href="#firebase-functions">firebase functions</a>
+        <ul>
+          <li><a href="#verify">verify</a></li>
+          <li><a href="#verifysubscription">verifySubscription</a></li>
+          <li><a href="#verifyreceipt">verifyReceipt</a></li>
+        </ul>
+      </li>
+      <li>
+<a href="#inapppurchase">in_app_purchase</a>
+        <ul>
+          <li><a href="#%E6%B3%A8%E6%84%8F%E7%82%B9-2">注意点</a></li>
+          <li><a href="#sample-code">Sample Code</a></li>
+        </ul>
+      </li>
+      <li><a href="#%E3%83%AA%E3%82%B9%E3%83%88%E3%82%A2-restore">リストア restore</a></li>
+    </ul>
+  </li>
+  <li>
+<a href="#%E3%83%86%E3%82%B9%E3%83%88">テスト</a>
+    <ul>
+      <li>
+<a href="#%E3%83%87%E3%83%90%E3%82%A4%E3%82%B9">デバイス</a>
+        <ul>
+          <li><a href="#ios-1">iOS</a></li>
+          <li><a href="#android-1">Android</a></li>
+        </ul>
+      </li>
+      <li><a href="#%E5%AE%9A%E6%9C%9F%E8%AA%B2%E9%87%91%E5%87%A6%E7%90%86">定期課金処理</a></li>
+      <li>
+<a href="#%E5%AE%9A%E6%9C%9F%E8%AA%B2%E9%87%91%E3%81%AE%E8%A7%A3%E7%B4%84">定期課金の解約</a>
+        <ul>
+          <li><a href="#ios-2">iOS</a></li>
+          <li><a href="#android-2">Android</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+<a href="#%E5%AF%A9%E6%9F%BB">審査</a>
+    <ul>
+      <li><a href="#ios-3">iOS</a></li>
+      <li><a href="#android-3">Android</a></li>
+    </ul>
+  </li>
+  <li>
+<a href="#%E3%81%BE%E3%81%A8%E3%82%81">まとめ</a>
+<!-- TOC -->
+</li>
+</ul>
+
+<h1 id="環境">環境</h1>
+
+<ul>
+  <li>Flutter 3.13.4</li>
+  <li>Dart 3.1.2</li>
+  <li>
+<a href="https://github.com/flutter/packages/tree/main/packages/in_app_purchase/in_app_purchase">in_app_purchase</a> 3.1.8</li>
+</ul>
+
+<h1 id="構成">構成</h1>
+
+<ul>
+  <li>Flutter : アプリUIの提供。バックエンドとの通信</li>
+  <li>in_app_purchase : アプリ内課金を実現する。iOS, Android アイテム情報の取得、購入処理を行う</li>
+  <li>Firebase Firestore Database : DB として利用するバックエンド</li>
+  <li>Firebase Functions : Node.js で動かすバックエンド。今回は購入後のレシート情報の検証と firestore への書き込みを行う</li>
+</ul>
+
+<h1 id="準備">準備</h1>
+
+<ol>
+  <li>Flutter 側のセットアップ in_app_purchase 導入</li>
+  <li>iOS, Android へのアイテム登録</li>
+</ol>
+
+<h1 id="flutter-側セットアップ">Flutter 側セットアップ</h1>
+
+<p><a href="https://github.com/flutter/packages/tree/main/packages/in_app_purchase/in_app_purchase">in_app_purchase の README</a> の Getting started にも示されている通り、
+<a href="https://codelabs.developers.google.com/codelabs/flutter-in-app-purchases">codelab</a> に沿うのが一番良いと思う。ただし、すべてのスッテップを行うのではなく「6. Set up Firebase」 まででOK。
+その後の実装はバックエンドに dart で書いたサーバを立てる想定なので、今回の構成とマッチしなくなるので、参考にしない。</p>
+
+<h1 id="アイテム登録">アイテム登録</h1>
+
+<p><a href="https://codelabs.developers.google.com/codelabs/flutter-in-app-purchases">codelab</a> の「Set up the App Store」、「Set up the Play Store」の通りにする。</p>
+
+<p>今回は、有料サービスの内容は1つだけど、月額、年額と2つの購入方法を用意する。</p>
+
+<p>ここでは product id は以下のようにする。</p>
+
+<ol>
+  <li>月額 : com.example.monthly.standard</li>
+  <li>年額 : com.example.yearly.standard</li>
+</ol>
+
+<p>flutter in_app_purchase 上の product id は、以下に対応する。</p>
+
+<ul>
+  <li>iOS : サブスクリプションの製品ID</li>
+  <li>Android : 定期課金のアイテムID</li>
+</ul>
+
+<h2 id="ios">iOS</h2>
+
+<p><a href="https://appstoreconnect.apple.com/">App Store Connect</a> の該当アプリ上の「サブスクリプション」で入力する。</p>
+
+<p>「サブスクリプション」が実際のユーザーに提示する課金アイテム。それらをまとめるための「サブスクリプショングループ」がある。
+今回のように、同じサービス内容で複数の支払方法に対応したい場合は、1つのサブスクリプショングループでまとめることができる。</p>
+
+<p>サブスクリプショングループを1つ作り、その配下にサブスクリプションを追加した。</p>
+
+<pre><code class="language-mermaid">graph LR
+    A[サブスクリプショングループ : default]
+    A --- B[サブスクリプション 月額 : com.example.monthly.standard]
+    A --- C[サブスクリプション 年額 : com.example.yearly.standard]
+</code></pre>
+
+<p>サブスクリプションには製品IDを付与して、これが flutter 上で持っておく product id になる。</p>
+
+<h3 id="注意点">注意点</h3>
+
+<p><a href="https://appstoreconnect.apple.com/">App Store Connect</a> で各サブスクリプションを入力する際に、最下部にある「審査に関する情報」でスクリーンショットと審査メモを必ず登録すること。
+この情報がなくても保存して審査へ提出ができるが、審査でリジェクトされる。</p>
+
+<p>スクリーンショットは、そのサブスクリプションを購入する画面にした。
+審査メモは、その画面に行き着くフローを示した。結果的に承認されたので、この内容で良いと思う。</p>
+
+<p>実際には以下のようにした。</p>
+
+<p><img src="/images/2023/10/2023-10-10-subscription-screenshot.png" alt="サブスクリプションのスクリーンショット"></p>
+
+<h2 id="android">Android</h2>
+
+<p><a href="https://play.google.com/console/">Google Play Console</a> の該当アプリ上の「収益化」-「定期購入」にて入力する。</p>
+
+<p>「定期購入」がアイテムIDを持ち、支払いサイクルなどを設定できる「特典」を配下に紐付ける。
+<code class="language-plaintext highlighter-rouge">queryProductDetails</code> した時の product id は特典ではなく定期購入のアイテムIDになるので、
+定期購入を複数作成するようにする。特典を指定する方法は分からなかった。</p>
+
+<pre><code class="language-mermaid">graph LR
+    A[定期購入 月額 : com.example.monthly.standard]
+    B[定期購入 年額 : com.example.yearly.standard]
+    A --- A1[特典 月額]
+    B --- B1[特典 年額]
+</code></pre>
+
+<h3 id="注意点-1">注意点</h3>
+
+<p>注意点1 : 定期課金と特典は削除できないので不要なものが残ってしまう。</p>
+
+<p>また、<code class="language-plaintext highlighter-rouge">queryProductDetails</code> する時に不要なものを配列に入れなかったら <code class="language-plaintext highlighter-rouge">notFoundIDs</code> が返ってくる。
+<strong>不要なアイテムIDも含めたすべての定期課金のアイテムIDの配列にする必要がある。</strong></p>
+
+<p>注意点2 : 定期購入をテストで使いたい場合は事前にビルドしたアプリをアップロードする必要がある。</p>
+
+<p>この時点では課金の実装はできていないが、紐付ける App Bundle が必要なので、現状のアプリをとりあえずビルドしてアップロードすれば良い。
+App Bundle エクスプローラに表示されサブスクリプションの画面にて紐付けられればOK。くれぐれも公開しないこと。</p>
+
+<h1 id="実装">実装</h1>
+
+<h2 id="基本的な処理の流れ">基本的な処理の流れ</h2>
+
+<p>ユースケースごとに示す。</p>
+
+<p><strong>新規購入</strong></p>
+<ol>
+  <li>デバイス(flutter)にて購入処理、Apple, Google へ問い合わせて購入処理をして localVerificationData を受け取る</li>
+  <li>firebase functions にて localVerificationData を使って Apple, Google へ検証する。最近のレシートを受け取る</li>
+  <li>firebase functions にて最近のレシート情報を firestore に保存する</li>
+  <li>flutter にて購入完了処理(購入ボタンの widget を閉じるなど)</li>
+</ol>
+
+<p><strong>定期課金更新チェック</strong> (firebase functions のみで実行)</p>
+<ol>
+  <li>firebase functions を cron 的に毎日スケジュールで実行</li>
+  <li>firebase firestore に存在するレシート情報から有効期限が切れているものを検索</li>
+  <li>該当レシートの verificationData を使って Apple, Google へ検証する。最新のレシートを受け取る</li>
+  <li>最新のレシートの有効期限が今よりも後ならば、最近のレシート情報を firestore に保存する</li>
+</ol>
+
+<p><strong>ユーザーが有料ユーザーかどうか判別</strong> (flutter アプリにて)</p>
+<ol>
+  <li>firebase auth ユーザー情報より、該当ユーザーの firebase firestore 上のレシート情報のドキュメントを検索</li>
+  <li>該当ドキュメントの有効期限が現在時刻よりも後ならば有料ユーザー true, 前なら false</li>
+</ol>
+
+<p><strong>リストア</strong> (flutter アプリにて)</p>
+<ol>
+  <li>flutter 上は有料ユーザーではないと判別(firestore 上に有効期限内のレシート情報がない)</li>
+  <li>ユーザーがリストアボタンを押す</li>
+  <li>firebase functions にて localVerificationData を使って Apple, Google へ検証する。最近のレシートを受け取る</li>
+  <li>firebase functions にて最近のレシート情報を firestore に保存する</li>
+</ol>
+
+<h2 id="検証-verify-とは">検証 verify とは</h2>
+
+<p>お金に絡むことなので、誤ったデータを使って購入させたり不正を防止するために Apple, Google が設けている購入したレシート情報の検証を行う処理。
+1回毎の支払い情報のことをレシートと呼ぶ。</p>
+
+<p>Apple, Google ともにレシート情報を返す Web Endpoint を設けている。</p>
+
+<ul>
+  <li>Apple : <a href="https://developer.apple.com/documentation/appstorereceipts/verifyreceipt">verifyReceipt</a>
+</li>
+  <li>Google : <a href="https://developers.google.com/android-publisher/api-ref/rest/v3/purchases.subscriptions/get?hl=ja">purchases.subscriptions.get</a>
+</li>
+</ul>
+
+<p>クライアント(今回はflutter)にて Apple(App Store), Google(Google Play) を使って購入処理をすると verificationData が発行される。
+そのデータを Apple, Google の 検証用 endpoint へ問い合わせて検証結果がOKなら、最新のレシート情報(last receipt) が返ってくる。</p>
+
+<p>このデータが有料ユーザーの判別に使えるので firestore に保存している。</p>
+
+<div class="alert alert-warning" role="alert" xmlns="http://www.w3.org/1999/html">
+  <div style="float: left; margin-right: 10px;">
+    <i class="fas fa-info-circle fa-lg"></i>
+  </div>
+  <div>
+    <a href="https://developer.apple.com/documentation/appstorereceipts/verifyreceipt">
+        Apple の verifyReceipt endpoint は非推奨(Deprecated)になった
+    </a>
+    ので推奨方法での切り替えが必要。
+    App Store Server API を使うようにとのこと
+  </div>
+</div>
+
+<h2 id="仕様">仕様</h2>
+
+<ul>
+  <li>有料ユーザーかどうかのチェックは1日1回とする</li>
+  <li>レシート情報の有効期限内なら有料ユーザーと判別する</li>
+  <li>flutter(クライアント側)では定期的に狙ったタイミングではチェックできないので、firebase functions にて行う</li>
+  <li>最新のレシート情報は firebase firestore に保存し、有料ユーザーの判別に使う</li>
+</ul>
+
+<h2 id="firebase-functions">firebase functions</h2>
+
+<p>主に参考にさせてもらったサイト 特に返り値の部分とか踏襲している。</p>
+<div class="jekyll-linkpreview-wrapper">
+  <div class="jekyll-linkpreview-wrapper-inner">
+    <div class="jekyll-linkpreview-content">
+      <div class="jekyll-linkpreview-image">
+        <a href="https://zenn.dev/hirokt/articles/b3dbc2824800456743d5" target="_blank">
+          <img src="https://res.cloudinary.com/zenn/image/upload/s--Tj_H2kZn--/c_fit%2Cg_north_west%2Cl_text:notosansjp-medium.otf_55:Flutter%2520%252B%2520Firebase%25E3%2581%25A7iOS%25E3%2581%25A8Android%25E3%2581%25AE%25E5%25AE%259A%25E6%259C%259F%25E8%25B3%25BC%25E5%2585%25A5%2528%25E3%2582%25B5%25E3%2583%2596%25E3%2582%25B9%25E3%2582%25AF%2529%25E3%2582%2592%25E5%25AE%259F%25E8%25A3%2585%25E3%2581%2599%25E3%2582%258B%2Cw_1010%2Cx_90%2Cy_100/g_south_west%2Cl_text:notosansjp-medium.otf_37:hiknot%2Cx_203%2Cy_121/g_south_west%2Ch_90%2Cl_fetch:aHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EtL0FPaDE0R2liX2hsV19HeHFCZjZySDlLLUNQRnhwNExvaFhzT3IwcjFRLTJSPXM5Ni1j%2Cr_max%2Cw_90%2Cx_87%2Cy_95/v1627283836/default/og-base-w1200-v2.png">
+        </a>
+      </div>
+
+      <div class="jekyll-linkpreview-body">
+        <h2 class="jekyll-linkpreview-title">
+          <a href="https://zenn.dev/hirokt/articles/b3dbc2824800456743d5" target="_blank">Flutter + FirebaseでiOSとAndroidの定期購入(サブスク)を実装する</a>
+        </h2>
+        <div class="jekyll-linkpreview-description"></div>
+      </div>
+    </div>
+    <div class="jekyll-linkpreview-footer">
+      <a href="//zenn.dev" target="_blank">zenn.dev</a>
+    </div>
+  </div>
+</div>
+
+<p>3種類の関数を設けた。</p>
+
+<ol>
+  <li>verify :  flutter からの verify チェックのリクエストの窓口用</li>
+  <li>verifyReceipt : Apple, Google にアクセスし、レシートデータを検証して、latest_receipt(最新のレシート)情報を返し、firestore に保存する</li>
+  <li>verifySubscription : 定期購入の更新をチェックし、latest_receipt(最新レシート)を firestore に保存する</li>
+</ol>
+
+<p>検証にアクセスする Apple, Google のURLやレスポンが異なっているので、 iOS, Android 用に2種類ずつ必要。
+計6つの関数を設けている。</p>
+
+<ol>
+  <li>verify
+    <ol>
+      <li>verifyIos</li>
+      <li>verifyAndroid</li>
+    </ol>
+  </li>
+  <li>verifyReceipt
+    <ol>
+      <li>verifyReceiptIos</li>
+      <li>verifyReceiptAndroid</li>
+    </ol>
+  </li>
+  <li>verifySubscription
+    <ol>
+      <li>verifySubscriptionIos</li>
+      <li>verifySubscriptionAndroid</li>
+    </ol>
+  </li>
+</ol>
+
+<p>関数ごとに分けて解説する。
+functions にデプロイするファイル(今回は purchase.js)の先頭には以下のようにしている。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">functions</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">firebase-functions</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">admin</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">firebase-admin</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">axios</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">const</span> <span class="p">{</span> <span class="nx">google</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">googleapis</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">const</span> <span class="p">{</span> <span class="nx">Firestore</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">firebase-admin/firestore</span><span class="dl">"</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>各関数の返り値は以下のようにファイル内で定義している。flutter 側でも同じ用に解釈できるようにしている。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">SUCCESS</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// 成功</span>
+<span class="kd">const</span> <span class="nx">EXPIRED</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// 期限切れ</span>
+<span class="kd">const</span> <span class="nx">DOCUMENT_NOT_FOUND</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="c1">// Firestoreにドキュメントなし</span>
+<span class="kd">const</span> <span class="nx">NO_AUTH</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span> <span class="c1">// 認証情報なし</span>
+<span class="kd">const</span> <span class="nx">INVALID_RECEIPT</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span> <span class="c1">// レシート情報が不正です</span>
+<span class="kd">const</span> <span class="nx">ALREADY_EXIST</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span> <span class="c1">// 同じトランザクションが存在している</span>
+<span class="kd">const</span> <span class="nx">UNEXPECTED_ERROR</span> <span class="o">=</span> <span class="mi">99</span><span class="p">;</span> <span class="c1">// 不明なエラー</span>
+</code></pre></div></div>
+<h3 id="verify">verify</h3>
+
+<p><code class="language-plaintext highlighter-rouge">verifyIos</code> を例に解説する。</p>
+
+<noscript><pre>400: Invalid request</pre></noscript>
+<script src="https://gist.github.com/54e2f30b7d901b58aa1392a234201b21.js?file=purchase.js"> </script>
+
+<p><a href="https://gist.github.com/d-sea/08e0f8973b94008c0e93c828b1634dbc">verifyAndroid の gist はこちら</a></p>
+
+<p><code class="language-plaintext highlighter-rouge">http.onCall</code> で HTTP で受け付ける。<code class="language-plaintext highlighter-rouge">context.auth</code> で認証ユーザーであることが必須。</p>
+
+<p>flutter 側から <code class="language-plaintext highlighter-rouge">data["data"]</code> に入っている <code class="language-plaintext highlighter-rouge">verificationData</code> を受け取る。</p>
+
+<p>後述する <code class="language-plaintext highlighter-rouge">verifyReceipt</code> に <code class="language-plaintext highlighter-rouge">verificationData</code> を渡して最新のレシート <code class="language-plaintext highlighter-rouge">latestReceipt</code> を受け取る。</p>
+
+<p><code class="language-plaintext highlighter-rouge">latestReceipt</code> の <code class="language-plaintext highlighter-rouge">transaction_id</code> は支払処理ごとに割り当てられるユニークなIDなので、
+すでに firestore に保存されていないか確認する。
+firebase auth のユーザーが異なっていている場合もあるので、<code class="language-plaintext highlighter-rouge">collectionGroup</code> で検索している。</p>
+
+<p>なければ firestore に保存する。
+検証に利用するだけならカラムはもっと減らせるが、
+問い合わせなどがあった場合に運営側として把握しておきたい情報も含めている。
+実際保存しているカラムの意味は以下。</p>
+
+<p>iOSの場合</p>
+
+<ul>
+  <li>receipt_data : verificationData をそのまま格納、verificationData は課金が続く限り認証情報として利用される</li>
+  <li>product_id : 購入した製品ID,アイテムID</li>
+  <li>transaction_id : 購入処理ごとに割り当てられたユニークなID</li>
+  <li>purchase_date_ms : 購入日時の unix time のミリセカンド</li>
+  <li>purchase_date : 購入日時</li>
+  <li>expires_date_ms : この購入の期限日時の unix time のミリセカンド</li>
+  <li>expires_date : この購入の期限日時</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">verifyAndroid</code> のAndroidの場合は以下。
+<code class="language-plaintext highlighter-rouge">transaction_id</code> の代わりに <code class="language-plaintext highlighter-rouge">orderId</code> になる。</p>
+
+<ul>
+  <li>receipt_data : verificationData をそのまま格納、verificationData は課金が続く限り認証情報として利用される</li>
+  <li>product_id : 購入した製品ID,アイテムID</li>
+  <li>orderId : 購入処理ごとに割り当てられたユニークなID</li>
+  <li>purchase_date_ms : 購入日時の unix time のミリセカンド</li>
+  <li>purchase_date : 購入日時</li>
+  <li>expires_date_ms : この購入の期限日時の unix time のミリセカンド</li>
+  <li>expires_date : この購入の期限日時</li>
+</ul>
+
+<p>最後に期限日時が現在時刻と比較して期限が切れていないかどうかチェック。その結果を返す。</p>
+
+<h3 id="verifysubscription">verifySubscription</h3>
+
+<p><code class="language-plaintext highlighter-rouge">verifySubscriptionIos</code> を例に解説する。</p>
+
+<noscript><pre>400: Invalid request</pre></noscript>
+<script src="https://gist.github.com/cd2fbf48d48b032c74135c5a5fa43de1.js?file=purchase.js"> </script>
+
+<p><a href="https://gist.github.com/d-sea/3c06862355657a358916b898e5110bec">verifySubscriptionAndroid の gist はこちら</a></p>
+
+<p><code class="language-plaintext highlighter-rouge">pubsub.schedule</code> にて定期実行させる。1日1回夜中に実行。</p>
+
+<p>レシート情報から有効期限が切れているものを見つける。実行間隔は24時間なので、その間隔で検索する。</p>
+
+<p>レシート情報の <code class="language-plaintext highlighter-rouge">receipt_data</code> を使って、<code class="language-plaintext highlighter-rouge">verifyReceiptIos</code> へ検証してもらう。</p>
+
+<p><code class="language-plaintext highlighter-rouge">latestReceipt</code> があり、有効期限が現在以降ならレシート情報を firestore に保存する。</p>
+
+<p>Android 版の <code class="language-plaintext highlighter-rouge">verifySubscriptionAndroid</code> はfirestore の保存カラムが異なるだけで、処理内容は同じ。</p>
+
+<h3 id="verifyreceipt">verifyReceipt</h3>
+
+<noscript><pre>400: Invalid request</pre></noscript>
+<script src="https://gist.github.com/d80dafb616318215df396ec47875a06f.js?file=purchase.js"> </script>
+
+<p><a href="https://gist.github.com/d-sea/d0b412c76977b161715adc568111e4f9">verifyReceiptAndroid の gist はこちら</a></p>
+
+<p><code class="language-plaintext highlighter-rouge">verificationData</code> を使って、Apple の <a href="https://developer.apple.com/documentation/appstorereceipts/verifyreceipt">verifyReceipt</a> にある <code class="language-plaintext highlighter-rouge">Latest_receipt_info</code> にアクスする。</p>
+
+<p>レスポンスを見て、最終購入のレシート情報 <code class="language-plaintext highlighter-rouge">latest_receipt</code> を返す。</p>
+
+<p>latest_receipt のレスポンスの各プロパティーの意味はドキュメントを参照</p>
+
+<ul>
+  <li>Apple : <a href="https://developer.apple.com/documentation/appstorereceipts/responsebody/latest_receipt_info">App Store Receipts responseBody.Latest_receipt_info</a>
+</li>
+  <li>Google : <a href="https://developers.google.com/android-publisher/api-ref/rest/v3/purchases.subscriptions?hl=ja#SubscriptionPurchase">Google Play Developer API SubscriptionPurchase</a>
+</li>
+</ul>
+
+<p>Apple, Google にアクセスするためには認証情報が必要。</p>
+
+<ul>
+  <li>Apple : RECEIPT_VERIFICATION_PASSWORD_FOR_IOS</li>
+  <li>Google
+    <ul>
+      <li>SERVICE_CLIENT_EMAIL_FOR_ANDROID</li>
+      <li>SERVICE_PRIVATE_KEY_FOR_ANDROID</li>
+    </ul>
+  </li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">RECEIPT_VERIFICATION_PASSWORD_FOR_IOS</code> は、 <a href="https://appstoreconnect.apple.com/">App Store Connect</a> で確認できる。</p>
+
+<p><code class="language-plaintext highlighter-rouge">App Store Connect &gt; ユーザーとアクセス &gt; 共有シークレット</code></p>
+
+<p>ない場合は生成する。</p>
+
+<p>生成した共有シークレットの値をコード内の <code class="language-plaintext highlighter-rouge">RECEIPT_VERIFICATION_PASSWORD_FOR_IOS</code> の値に定義する。</p>
+
+<p><code class="language-plaintext highlighter-rouge">SERVICE_CLIENT_EMAIL_FOR_ANDROID</code>, <code class="language-plaintext highlighter-rouge">SERVICE_PRIVATE_KEY_FOR_ANDROID</code> は Google Cloud でアプリのプロジェクトにリンクした
+サービスアカウントを作成する必要がある。</p>
+
+<p>やり方は、
+<a href="https://developers.google.com/android-publisher/getting_started?hl=ja">Google Play Developer API</a>
+にありますが、執筆時点で Google Play Console の APIアクセスページが廃止されている。</p>
+
+<p><a href="https://console.cloud.google.com/">Google Cloud のコンソール画面</a>から行う必要がありそう。</p>
+
+<p><code class="language-plaintext highlighter-rouge">Google Cloud &gt; IAM と管理 &gt; サービスアカウント</code> でたどれる。</p>
+
+<p>設定方法は、以下のサイトが参考になる。</p>
+
+<p><a href="https://zenn.dev/altiveinc/articles/how-to-google-service-account#%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88%E3%81%AE%E4%BD%9C%E6%88%90">Google Play Store向けサービスアカウントの作り方</a></p>
+
+<p>このドキュメントの「秘密鍵の作成とJSONダウンロード」で、JSON を保存しますが、このJSONファイルに記載されている、
+<code class="language-plaintext highlighter-rouge">client_email</code>, <code class="language-plaintext highlighter-rouge">private_key</code> をそれぞれ、コード内の 
+<code class="language-plaintext highlighter-rouge">SERVICE_CLIENT_EMAIL_FOR_ANDROID</code>, <code class="language-plaintext highlighter-rouge">SERVICE_PRIVATE_KEY_FOR_ANDROID</code> の値に定義する。</p>
+
+<h2 id="in_app_purchase">in_app_purchase</h2>
+
+<p>flutter 公式の in app purchase するためのパッケージ。</p>
+
+<p>実装の構成としては、以下の3つ。</p>
+
+<ol>
+  <li>利用可能かどうか確認する : <code class="language-plaintext highlighter-rouge">isAvailable()</code>
+</li>
+  <li>販売する product の提示 : <code class="language-plaintext highlighter-rouge">queryProductDetails</code> を使って情報を widget に表示</li>
+  <li>購入状況を把握する : <code class="language-plaintext highlighter-rouge">purchaseStream</code> 公式のように listener として状態を監視する</li>
+</ol>
+
+<p>購入処理の流れとしては、</p>
+
+<ol>
+  <li>有料サービス説明と購入ボタンを含む widget を表示 <code class="language-plaintext highlighter-rouge">queryProductDetails</code> の情報を提示</li>
+  <li>購入ボタンをユーザーが押す</li>
+  <li>listener が動き出す</li>
+  <li>ユーザーが in app purchase 画面で購入処理をする</li>
+  <li>listener が status == purchased を検出</li>
+  <li>有料サービスの widget を閉じて、有料サービスを提供する</li>
+</ol>
+
+<h3 id="注意点-2">注意点</h3>
+
+<p>in app purchase で購入せずキャンセルして画面を閉じた場合は、
+処理が完了せずに <code class="language-plaintext highlighter-rouge">purchaseDetails.pendingCompletePurchase == ture</code> となる。
+この状態で再び購入ボタンを押すと、すでに listener 上であるのでエラーになる。
+そのため、この状態になったら listener 上で <code class="language-plaintext highlighter-rouge">completePurchase</code> して残らないようにしている。</p>
+
+<h3 id="sample-code">Sample Code</h3>
+
+<p>購入するための widget。購入ボタンを押した後のレシートの検証も含めた1つのファイルにまとめている。</p>
+
+<noscript><pre>400: Invalid request</pre></noscript>
+<script src="https://gist.github.com/b3dee6d63cd68cd8eec88a246a500a92.js?file=purchase_products_list.dart"> </script>
+
+<p>StatefulWidget にしている。</p>
+
+<p><code class="language-plaintext highlighter-rouge">initState()</code> で <code class="language-plaintext highlighter-rouge">_getProducts()</code> してアイテム情報を取得し、listener の設定をする。</p>
+
+<p><strong>購入アイテムの表示</strong></p>
+
+<p><code class="language-plaintext highlighter-rouge">_getProducts()</code> では <code class="language-plaintext highlighter-rouge">queryProductDetails</code> して、返り値を <code class="language-plaintext highlighter-rouge">ProductDetails</code> の配列 <code class="language-plaintext highlighter-rouge">_products</code> に入れる。</p>
+
+<p><code class="language-plaintext highlighter-rouge">_products</code> の情報より widget を表示させる。
+<code class="language-plaintext highlighter-rouge">ProductDetails</code> は、以下の情報を使って購入ボタンを表示している。</p>
+
+<ul>
+  <li>id : ex. com.example.monthly.standard</li>
+  <li>price : 通貨表示を含めた国ごとの価格</li>
+  <li>description : アイテム登録時に入力した説明文</li>
+</ul>
+
+<p><strong>購入処理</strong></p>
+
+<p>購入ボタンを押して <code class="language-plaintext highlighter-rouge">buyNonConsumable</code> を走らせると、 listener <code class="language-plaintext highlighter-rouge">_listenToPurchaseUpdated</code> が動き出す。</p>
+
+<p>listener の status の状況によって処理を分ける。status が <code class="language-plaintext highlighter-rouge">purchased</code>,<code class="language-plaintext highlighter-rouge">restored</code> になったら
+<code class="language-plaintext highlighter-rouge">_verifyPurchase</code> で検証を走らせる。</p>
+
+<p><code class="language-plaintext highlighter-rouge">_verifyPurchase</code> では <code class="language-plaintext highlighter-rouge">FirebaseFunctions.instance.httpsCallable('verifyIos')</code> のように
+firebase functions へ http アクセスをして返り値を得て、そのまま値を返す。</p>
+
+<p>返ってきた値によって <code class="language-plaintext highlighter-rouge">_listenToPurchaseUpdated</code> が処理を分ける。</p>
+
+<p><code class="language-plaintext highlighter-rouge">BillingConst.SUCCESS</code> だった場合 <code class="language-plaintext highlighter-rouge">deliverProduct</code> して、購入画面の widget を閉じて購入処理が完了する。</p>
+
+<h2 id="リストア-restore">リストア restore</h2>
+
+<p>リストは  iOS の審査には必須。ないとリジェクトされる。</p>
+
+<p>リストが発生するのは、以下のような状態。</p>
+
+<ul>
+  <li>ユーザーは定期課金契約中、支払いは継続している、解約していない</li>
+  <li>ユーザー情報からは支払い履歴が確認できない</li>
+</ul>
+
+<p>処理としては、verify で確認して、OKなら firestore に書き込む。</p>
+
+<p>コードとしては、リストアするボタンを以下のようにすれば動作する。</p>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">CupertinoButton</span><span class="o">.</span><span class="na">filled</span><span class="o">(</span>
+  <span class="nl">child:</span> <span class="n">Text</span><span class="o">(</span><span class="s">'リストアする'</span><span class="o">),</span>
+  <span class="nl">onPressed:</span> <span class="o">()</span> <span class="o">{</span>
+    <span class="k">try</span> <span class="o">{</span>
+      <span class="n">await</span> <span class="n">inAppPurchase</span><span class="o">.</span><span class="na">restorePurchases</span><span class="o">();</span>
+    <span class="o">}</span> <span class="k">catch</span><span class="o">(</span><span class="n">error</span><span class="o">)</span> <span class="o">{</span>
+      <span class="n">print</span><span class="o">(</span><span class="s">'inAppPurchase.restorePurchase: </span><span class="si">$error</span><span class="s">'</span><span class="o">);</span>
+    <span class="o">}</span>
+  <span class="o">},</span>
+<span class="o">);</span>
+</code></pre></div></div>
+
+<p>listener などはそのまま利用する必要があるため、上記の Sample Code に <code class="language-plaintext highlighter-rouge">bool isRestore</code> のような判別を加えて、</p>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">isRestore</span>
+ <span class="o">?</span> <span class="n">CupertinoButton</span><span class="o">.</span><span class="na">filled</span><span class="o">(</span>
+    <span class="nl">child:</span> <span class="n">Text</span><span class="o">(</span><span class="s">'リストアする'</span><span class="o">),</span>
+    <span class="nl">onPressed:</span> <span class="o">()</span> <span class="o">{</span>
+      <span class="k">try</span> <span class="o">{</span>
+        <span class="n">await</span> <span class="n">inAppPurchase</span><span class="o">.</span><span class="na">restorePurchases</span><span class="o">();</span>
+      <span class="o">}</span> <span class="k">catch</span><span class="o">(</span><span class="n">error</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">print</span><span class="o">(</span><span class="s">'inAppPurchase.restorePurchase: </span><span class="si">$error</span><span class="s">'</span><span class="o">);</span>
+      <span class="o">}</span>
+    <span class="o">},</span>
+  <span class="o">)</span>
+  <span class="o">:</span> <span class="n">CupertinoButton</span><span class="o">.</span><span class="na">filled</span><span class="o">(</span>
+      <span class="nl">child:</span> <span class="n">Text</span><span class="o">(</span><span class="n">_buttonView</span><span class="o">),</span> 
+      <span class="c1">//</span>
+  <span class="o">),</span>
+  <span class="c1">//</span>
+</code></pre></div></div>
+
+<p>のようにしている。</p>
+
+<h1 id="テスト">テスト</h1>
+
+<h2 id="デバイス">デバイス</h2>
+
+<h3 id="ios-1">iOS</h3>
+
+<p>購入テストを行うには実機が必要。iOS Simulator では購入できない。</p>
+
+<p>購入テストにはテストアカウントを使う。
+テストアカウントの作成は、<a href="https://appstoreconnect.apple.com/">App Store Connect</a> の <a href="https://appstoreconnect.apple.com/access/users/sandbox">ユーザーとアクセスのSandboxテスター</a> で行う。</p>
+
+<p>テストアカウントを実機に設定する方法は、
+<a href="https://codelabs.developers.google.com/codelabs/flutter-in-app-purchases">codelab</a> の 「Set up the App Store」 にあるように、
+<code class="language-plaintext highlighter-rouge">Setting &gt; App Store &gt; Sandbox-account</code> にて設定する。
+これで、TestFlight でアプリを配布、インストールして、テストアカウントにて購入処理ができる。</p>
+
+<h3 id="android-1">Android</h3>
+
+<p>Android Emulator で購入処理ができる。ただし Play Store に対応しているデバイスであること。</p>
+
+<p><img src="/images/2023/10/2023-10-11-android-device-manager.png" alt="Android Device Manager"></p>
+
+<p>購入処理を進めた際にログインが求められた時は、自身の Google アカウントを使えば良い。</p>
+
+<h2 id="定期課金処理">定期課金処理</h2>
+
+<p>定期課金処理は Apple, Google 共に数分間隔で実行される。(実際に1ヶ月や1年待つ訳に行かないので)</p>
+
+<ul>
+  <li>iOS : 特に通知なし、一定回数になると課金処理が停止されるが、定期課金の解約処理はされない</li>
+  <li>Android : 課金されるたびに都度メールが来る。このメール内に解約処理など manage できるページへのリンクが表示されている</li>
+</ul>
+
+<h2 id="定期課金の解約">定期課金の解約</h2>
+
+<p>実際はテストで新規購入のケースを何度も行いたい場合に定期課金の解約を行いたい時がある。
+テスト環境での定期課金の解約方法を知っておく必要がある。</p>
+
+<h3 id="ios-2">iOS</h3>
+
+<p>テストアカウントの作成は、<a href="https://appstoreconnect.apple.com/">App Store Connect</a> の <a href="https://appstoreconnect.apple.com/access/users/sandbox">ユーザーとアクセスのSandboxテスター</a> で行う。</p>
+
+<p><img src="/images/2023/10/2023-10-11-ios-stop-subscription.png" alt="iOS 定期課金停止"></p>
+
+<ol>
+  <li>Sandboxテスターのページで、テストアカウントが表示されれていることを確認して、「編集」ボタンを押す</li>
+  <li>該当のテストアカウントのチェックボックスにチェックを付ける</li>
+  <li>すると、「購入履歴を消去」ボタンが押せるようになるので、押す</li>
+</ol>
+
+<p>解約処理の完了は通知されない。ボタンを押してから数十分後に反映されているようなので、すぐには新規購入はできない。</p>
+
+<h3 id="android-2">Android</h3>
+
+<p>ログインしたユーザーの <a href="https://play.google.com/store/account/subscriptions">Google Play の定期課金</a> にて行える。
+また、定期課金の最初の購入処理がされるとメールを受け取るので、その本文に記載されている「Manage your subscriptions」リンクからもたどれる。</p>
+
+<p>定期購入の解約が完了したらメールで通知されるので、それを待って新規購入のテストが行える。</p>
+
+<p>メール本文は以下。</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Your フットサルメット subscription from Players1st, inc. on Google Play has been canceled.
+
+Order number: GPA.3340-2542-4611-83848
+Order date: Sep 19, 2023 8:44:06 AM GMT+9
+</code></pre></div></div>
+
+<h1 id="審査">審査</h1>
+
+<h2 id="ios-3">iOS</h2>
+
+<p>上記のアイテム登録の<a href="#%E6%B3%A8%E6%84%8F%E7%82%B9">注意点</a>で示した、スクリーンショットと審査メモが実質必須なことを押さえれば、
+つまずきそうなポイントはないと思う。</p>
+
+<p>今回1回リジェクトされて、App Store Connect 上の設定だけで対応できる対応内容だったが、
+コード上は何も変更がないのに、新しくビルド・アップロードして新しいビルドを審査に出すバージョンに紐付けなおす必要があった。</p>
+
+<p>App Store Connect 上の設定だけで対応できる場合も <strong>必ず新しいビルドを紐付ける必要がある</strong>。</p>
+
+<p>多分これは、Apple の内部の都合で、一度リジェクトなどのステータスが決定されたビルドはステータス変更できないようにしているのだと思う。
+だから、再レビューするにはコードの変更がなくても新しいビルドが必要ということだろう。</p>
+
+<p>あと審査は人間がアメリカのタイムゾーンで行っているようなので、日本時間のだいたい夕方から明け方に稼働してレスポンスが来る。
+だから、朝イチでレビュー依頼しても夕方以降までは何も起きない。
+変更を行ってから寝ている間に対応さしてくれるくらい時間がかかるものだと認識しておくと良い。</p>
+
+<h2 id="android-3">Android</h2>
+
+<p>製品版で新しいリリースを作成してあらかじめ作成していた定期購入を紐付ければ、特に気をつけるポイントはない。</p>
+
+<p>審査は、システムが自動的に行なっているようで、数時間で結果が出る。
+Google Play で公開されると、
+<code class="language-plaintext highlighter-rouge">Your update is live</code> という題名のシンプルなメールが届く。</p>
+
+<h1 id="まとめ">まとめ</h1>
+
+<p>in app purchase で定期課金を実現するには、
+複数の要素や多方面の知識が必要になるため、このドキュメントも膨大な情報量になってしまいました。</p>
+
+<p>ひとつずつ解消していけば確実に実現するので、
+時間はかかると思うが、ぜひチャレンジしていただければと思います。</p>
+
+<p>このドキュメントが誰かの役に立てば幸いです。</p>
+
+<p>内容に関する、修正点の指摘、やってみたけど動かなかったなどの指摘はコメントにていただければです。</p>
+
+<p>また、flutter x firebase で作るサーバーレスなアプリ開発や今回のような in app purchase の定額課金導入に対する
+有料のサポートも行っています。
+コンタクトフォームからお問い合わせください。</p>
+
+
+</article>
+
+
+    <div class="share-page">
+<ul class="rrssb-buttons clearfix">
+    <li class="rrssb-email">
+    <!-- Replace subject with your message using URL Endocding: http://meyerweb.com/eric/tools/dencoder/ -->
+        <a href="mailto:?subject=Flutter%20in_app_purchase%20%E3%81%A7%E5%AE%9A%E6%9C%9F%E8%B3%BC%E5%85%A5%E3%82%92%E5%AE%9F%E7%8F%BE%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95%202023%E5%B9%B4%E7%89%88&amp;body=Check%20out:%20https://hirofukami.com/2023/10/16/flutter-in-app-purchase/">
+            <span class="rrssb-icon"><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 28 28"><path d="M20.11 26.147c-2.335 1.05-4.36 1.4-7.124 1.4C6.524 27.548.84 22.916.84 15.284.84 7.343 6.602.45 15.4.45c6.854 0 11.8 4.7 11.8 11.252 0 5.684-3.193 9.265-7.398 9.3-1.83 0-3.153-.934-3.347-2.997h-.077c-1.208 1.986-2.96 2.997-5.023 2.997-2.532 0-4.36-1.868-4.36-5.062 0-4.75 3.503-9.07 9.11-9.07 1.713 0 3.7.4 4.6.972l-1.17 7.203c-.387 2.298-.115 3.3 1 3.4 1.674 0 3.774-2.102 3.774-6.58 0-5.06-3.27-8.994-9.304-8.994C9.05 2.87 3.83 7.545 3.83 14.97c0 6.5 4.2 10.2 10 10.202 1.987 0 4.09-.43 5.647-1.245l.634 2.22zM16.647 10.1c-.31-.078-.7-.155-1.207-.155-2.572 0-4.596 2.53-4.596 5.53 0 1.5.7 2.4 1.9 2.4 1.44 0 2.96-1.83 3.31-4.088l.592-3.72z"></path></svg></span>
+            <span class="rrssb-text">email</span>
+        </a>
+    </li>
+    <li class="rrssb-facebook">
+<!--  Replace with your URL. For best results, make sure you page has the proper FB Open Graph tags in header: https://developers.facebook.com/docs/opengraph/howtos/maximizing-distribution-media-content/ -->
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https://hirofukami.com/2023/10/16/flutter-in-app-purchase/" class="popup">
+            <span class="rrssb-icon"><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 29 29"><path d="M26.4 0H2.6C1.714 0 0 1.715 0 2.6v23.8c0 .884 1.715 2.6 2.6 2.6h12.393V17.988h-3.996v-3.98h3.997v-3.062c0-3.746 2.835-5.97 6.177-5.97 1.6 0 2.444.173 2.845.226v3.792H21.18c-1.817 0-2.156.9-2.156 2.168v2.847h5.045l-.66 3.978h-4.386V29H26.4c.884 0 2.6-1.716 2.6-2.6V2.6c0-.885-1.716-2.6-2.6-2.6z"></path></svg></span>
+            <span class="rrssb-text">facebook</span>
+        </a>
+    </li>
+    <li class="rrssb-twitter">
+        <!-- Replace href with your Meta and URL information  -->
+        <a href="https://twitter.com/intent/tweet?text=Flutter%20in_app_purchase%20%E3%81%A7%E5%AE%9A%E6%9C%9F%E8%B3%BC%E5%85%A5%E3%82%92%E5%AE%9F%E7%8F%BE%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95%202023%E5%B9%B4%E7%89%88&amp;url=https://hirofukami.com/2023/10/16/flutter-in-app-purchase/" class="popup">
+            <span class="rrssb-icon"><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 28 28"><path d="M24.253 8.756C24.69 17.08 18.297 24.182 9.97 24.62a15.093 15.093 0 0 1-8.86-2.32c2.702.18 5.375-.648 7.507-2.32a5.417 5.417 0 0 1-4.49-3.64c.802.13 1.62.077 2.4-.154a5.416 5.416 0 0 1-4.412-5.11 5.43 5.43 0 0 0 2.168.387A5.416 5.416 0 0 1 2.89 4.498a15.09 15.09 0 0 0 10.913 5.573 5.185 5.185 0 0 1 3.434-6.48 5.18 5.18 0 0 1 5.546 1.682 9.076 9.076 0 0 0 3.33-1.317 5.038 5.038 0 0 1-2.4 2.942 9.068 9.068 0 0 0 3.02-.85 5.05 5.05 0 0 1-2.48 2.71z"></path></svg></span>
+            <span class="rrssb-text">twitter</span>
+        </a>
+    </li>
+    <li class="rrssb-linkedin">
+        <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=https://hirofukami.com/2023/10/16/flutter-in-app-purchase/&amp;title=Flutter%20in_app_purchase%20%E3%81%A7%E5%AE%9A%E6%9C%9F%E8%B3%BC%E5%85%A5%E3%82%92%E5%AE%9F%E7%8F%BE%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95%202023%E5%B9%B4%E7%89%88&amp;summary=Flutter%20in_app_purchase%20%E3%81%A7%E5%AE%9A%E6%9C%9F%E8%B3%BC%E5%85%A5%E3%82%92%E5%AE%9F%E7%8F%BE%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95%202023%E5%B9%B4%E7%89%88" class="popup">
+            <span class="rrssb-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewbox="0 0 28 28">
+                    <path d="M25.424 15.887v8.447h-4.896v-7.882c0-1.98-.71-3.33-2.48-3.33-1.354 0-2.158.91-2.514 1.802-.13.315-.162.753-.162 1.194v8.216h-4.9s.067-13.35 0-14.73h4.9v2.087c-.01.017-.023.033-.033.05h.032v-.05c.65-1.002 1.812-2.435 4.414-2.435 3.222 0 5.638 2.106 5.638 6.632zM5.348 2.5c-1.676 0-2.772 1.093-2.772 2.54 0 1.42 1.066 2.538 2.717 2.546h.032c1.71 0 2.77-1.132 2.77-2.546C8.056 3.593 7.02 2.5 5.344 2.5h.005zm-2.48 21.834h4.896V9.604H2.867v14.73z"></path>
+                </svg>
+            </span>
+            <span class="rrssb-text">linkedin</span>
+        </a>
+    </li>
+    <li class="rrssb-googleplus">
+        <a href="https://plus.google.com/share?url=https://hirofukami.com/2023/10/16/flutter-in-app-purchase/" class="popup">
+            <span class="rrssb-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24">
+                    <path d="M21 8.29h-1.95v2.6h-2.6v1.82h2.6v2.6H21v-2.6h2.6v-1.885H21V8.29zM7.614 10.306v2.925h3.9c-.26 1.69-1.755 2.925-3.9 2.925-2.34 0-4.29-2.016-4.29-4.354s1.885-4.353 4.29-4.353c1.104 0 2.014.326 2.794 1.105l2.08-2.08c-1.3-1.17-2.924-1.883-4.874-1.883C3.65 4.586.4 7.835.4 11.8s3.25 7.212 7.214 7.212c4.224 0 6.953-2.988 6.953-7.082 0-.52-.065-1.104-.13-1.624H7.614z"></path>
+                </svg>
+            </span>
+            <span class="rrssb-text">google+</span></a>
+    </li>
+    <li class="rrssb-pinterest">
+        <a href="http://pinterest.com/pin/create/button/?url=https://hirofukami.com/2023/10/16/flutter-in-app-purchase/&amp;description=Flutter%20in_app_purchase%20%E3%81%A7%E5%AE%9A%E6%9C%9F%E8%B3%BC%E5%85%A5%E3%82%92%E5%AE%9F%E7%8F%BE%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95%202023%E5%B9%B4%E7%89%88"><span class="rrssb-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewbox="0 0 28 28">
+                <path d="M14.02 1.57c-7.06 0-12.784 5.723-12.784 12.785S6.96 27.14 14.02 27.14c7.062 0 12.786-5.725 12.786-12.785 0-7.06-5.724-12.785-12.785-12.785zm1.24 17.085c-1.16-.09-1.648-.666-2.558-1.22-.5 2.627-1.113 5.146-2.925 6.46-.56-3.972.822-6.952 1.462-10.117-1.094-1.84.13-5.545 2.437-4.632 2.837 1.123-2.458 6.842 1.1 7.557 3.71.744 5.226-6.44 2.924-8.775-3.324-3.374-9.677-.077-8.896 4.754.19 1.178 1.408 1.538.49 3.168-2.13-.472-2.764-2.15-2.683-4.388.132-3.662 3.292-6.227 6.46-6.582 4.008-.448 7.772 1.474 8.29 5.24.58 4.254-1.815 8.864-6.1 8.532v.003z"></path>
+            </svg></span><span class="rrssb-text">pinterest</span></a>
+    </li>
+</ul>
+</div>
+
+
+
+  <div class="py2 post-footer">
+  <div class="center">
+    <small class="center small">
+      😊もしこの記事が役に立ったなら、コーヒー代をお願いします☕️
+    </small>
+    <div class="m1">
+      <a href="https://buy.stripe.com/7sI17U2NJcRt1oc144" target="_blank">
+        <div class="button button-blue">投げ銭する</div>
+      </a>
+    </div>
+  </div>
+
+  <hr class="m2">
+
+  <div class="row">
+    <div class="col-sm-2 col-sm-offset-3 text-center">
+      <div class="auther-thumb">
+        <a href="/">
+          <img src="/images/hirofukami.jpg" alt="Hiro Fukami" class="img-circle">
+        </a>
+      </div>
+    </div>
+    <div class="col-sm-6 text-left">
+      <p>
+        <strong>筆者について</strong><br>
+        深海寛信<br>
+        ふかみひろのぶ Hiro Fukami
+      </p>
+    </div>
+  </div>
+
+  <div class="py1">
+    <small>
+      自社サービの開発運用をしつつ、ITシステム開発のマネジメント、アドバイス、コンサルティング、エンジニア育成などを行っています。<br>今までの職歴やお仕事の履歴は<a href="/professional-career/">こちら(職務経歴書)</a><br>お仕事の依頼や相談はコンタクトフォームからお送りください。<br>内容を確認の上、メールにてご連絡いたします。
+    </small>
+  </div>
+  <div class="center">
+    <a href="/contact">
+      <div class="button button-blue">
+        コンタクトフォーム
+      </div>
+    </a>
+  </div>
+</div>
+
+
+
+
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_shortname  = 'hirofukamisblog';
+    var disqus_identifier = '/2023/10/16/flutter-in-app-purchase';
+    var disqus_title      = 'Flutter in_app_purchase で定期購入を実現する方法 2023年版';
+
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+
+
+
+
+
+  <h3 class="related-post-title">Related Posts</h3>
+  
+    <div class="post ml2">
+      <a href="/2023/06/14/pep-buildup-UCL-final/" class="post-link">
+        <h4 class="post-title">ペップのビルドアップ UEFA Champions League Final</h4>
+        <p class="post-summary"></p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/2023/03/08/tech-adviser/" class="post-link">
+        <h4 class="post-title">テクニカルアドバイザー仕事が終わったのでまとめ</h4>
+        <p class="post-summary"></p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/2023/03/07/amazon-kinkdle-paperback/" class="post-link">
+        <h4 class="post-title">Amazon で Kindle とペーパーバックを作るやり方</h4>
+        <p class="post-summary"></p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/2023/03/06/permissible-older/" class="post-link">
+        <h4 class="post-title">[思考]老いへの許容</h4>
+        <p class="post-summary"></p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/2023/02/17/paper-back-your-startup/" class="post-link">
+        <h4 class="post-title">「ひとりスタートアップ」が本の形になりました</h4>
+        <p class="post-summary"></p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/2022/12/31/2022review/" class="post-link">
+        <h4 class="post-title">2022年を振り返る</h4>
+        <p class="post-summary"></p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/2022/12/14/hardware-web/" class="post-link">
+        <h4 class="post-title">ハードウエアのWeb化</h4>
+        <p class="post-summary"></p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/2022/12/12/book-your-starup/" class="post-link">
+        <h4 class="post-title">本を書きました「ひとりスタートアップ」</h4>
+        <p class="post-summary"></p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/2022/11/15/start-service-policy/" class="post-link">
+        <h4 class="post-title">自分ではない他の誰かのためにサービスを作る</h4>
+        <p class="post-summary"></p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/2022/11/07/metaverse-rise/" class="post-link">
+        <h4 class="post-title">メタバースが流行る兆しが出てきた</h4>
+        <p class="post-summary"></p>
+      </a>
+    </div>
+  
+
+
+    </div>
+  </div>
+</div>
+
+<footer class="center">
+  <div class="measure">
+    <small>
+			<div class="row">
+				<div class="col-sm-2 col-sm-offset-3 text-center">
+          <div class="auther-thumb">
+            <a href="/">
+              <img src="/images/hirofukami.jpg" alt="Hiro Fukami" class="img-circle">
+            </a>
+          </div>
+				</div>
+				<div class="col-sm-4 text-left text-muted">
+          <div class="short-profile">
+		        <b>Hiro Fukami</b><br>
+            <a href="https://twitter.com/d_sea" target="_blank">@d_sea</a>. Business Starter and Engineer in Tokyo.
+					Founder and CEO of <a href="https://players1.st" target="_blank">Players1st inc.</a> See more about me <a href="/about">here</a>.
+          </div>
+				</div>
+			</div>
+
+			<br>
+
+			Copyright © 2023
+			
+			    Hiro Fukami
+			
+    </small>
+  </div>
+</footer>
+
+
+
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/8.0.0/mermaid.min.js"></script>
+<script>
+   mermaid.initialize({
+       startOnLoad:true,
+       theme: 'default'
+   });
+   window.mermaid.init(undefined, document.querySelectorAll('.language-mermaid'));
+</script>
+</html>
