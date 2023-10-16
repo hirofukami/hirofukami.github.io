@@ -13,9 +13,3 @@ gem 'jekyll'
 # gem 'jekyll-feed'
 
 gem 'github-pages'
-
-
-group :jekyll_plugins do
-  # link preview
-  gem 'jekyll-linkpreview', '~> 0.7.0'
-end
