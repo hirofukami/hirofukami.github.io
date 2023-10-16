@@ -17,7 +17,7 @@ tags:
   - Android
   - 定額課金
 description: Flutter にて in_app_purchase を使って定期課金を実現するための方法をまとめました。2023年9月実装
-image_out: https://www.mancity.com/meta/media/vswhswbv/tf509969.png?width=810
+image: /images/2023/10/2023-10-16-futsal-met.png
 ---
 
 Flutter にて in_app_purchase を使って定期課金を実現するための方法をまとめました。
