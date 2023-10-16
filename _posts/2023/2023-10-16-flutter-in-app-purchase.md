@@ -31,7 +31,7 @@ in_app_purchase が行っている処理への理解も必要の上、Apple, Goo
 
 **[フットサルSNSアプリ 「フットサルメット」][FutsalMet]**
 
-{% linkpreview "https://company.p1st.app/futsal-met/" %}
+[![フットサルメット](/images/2023/10/2023-10-16-futsal-met.png)][FutsalMet]
 
 広告なしで使える無料アプリだが機能制限があり、より便利な機能を利用するための定期課金を提供している。
 
@@ -42,17 +42,17 @@ in_app_purchase が行っている処理への理解も必要の上、Apple, Goo
 これを読めば大丈夫。というものがなく、複数のサイトからの情報とトライアンドエラーが必要だったので、
 今回まとめようと思ったモチベーションになっている。
 
-{% linkpreview "https://zenn.dev/hirokt/articles/b3dbc2824800456743d5" %}
+[Flutter + FirebaseでiOSとAndroidの定期購入(サブスク)を実装する](https://zenn.dev/hirokt/articles/b3dbc2824800456743d5)
 
 必要な処理ごとにフローとサンプルコードを示しているので、どんな処理が必要なのか理解できる。
 示しているソースコードは実際の処理としては足りないので、鵜呑みにしない方が良い。
 
-{% linkpreview "https://qiita.com/YuKiO-OO/items/a0fe8e0a256afbb69fc7#%E5%B0%8E%E5%85%A5%E3%81%99%E3%82%8B%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8" %}
+[【Flutter】もう怖くない！アプリ内課金・定期購入機能を実装する方法を丁寧に説明してみた。](https://qiita.com/YuKiO-OO/items/a0fe8e0a256afbb69fc7#%E5%B0%8E%E5%85%A5%E3%81%99%E3%82%8B%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8)
 
 大まかに必要な要素をカバーしている。全体の流れを網羅するには良い。
 示しているソースコードは現状にはない関数があったり、かなり省略されているので実際のコードとしてはあまり参考にならない。
 
-{% linkpreview "https://tkzo.jp/blog/flutter-iap-implementation/" %}
+[【Flutter + Firebase】アプリ内課金(IAP)のステップバイステップ実装ガイド【レシート検証】 ](https://tkzo.jp/blog/flutter-iap-implementation/)
 
 購入した際に発行されるレシートの検証処理についてまとめている。
 検証するための構成や検証処理への理解を深められる。
@@ -264,7 +264,8 @@ Apple, Google ともにレシート情報を返す Web Endpoint を設けてい�
 ## firebase functions
 
 主に参考にさせてもらったサイト 特に返り値の部分とか踏襲している。
-{% linkpreview "https://zenn.dev/hirokt/articles/b3dbc2824800456743d5" %}
+
+[Flutter + FirebaseでiOSとAndroidの定期購入(サブスク)を実装する](https://zenn.dev/hirokt/articles/b3dbc2824800456743d5)
 
 3種類の関数を設けた。
 
