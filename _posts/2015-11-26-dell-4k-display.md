@@ -10,12 +10,11 @@ tags:
   - monitor
   - macbook
 description: はじめての4Kディスプレイを買ってみたけど、23.8インチにMacOS表示はキツ過ぎたというお話。
-image_out: https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=B00PXXJ07S&Format=_SL250_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=dsea-22
+image: /images/2015/11/20151126-4k-display-macbook.JPG
 ---
 *(4Kディスプレイについてこのブログにたどり着いた方へ。こちらは数年前の記事ですし、現在は最適な4Kモニターを使用できているので、購入検討されている方は参考までに[こちらの記事をどうぞ](/2020/06/01/recent-4k-display/))*
 
-
-<a href="https://www.amazon.co.jp/gp/product/B00PXXJ07S/ref=as_li_ss_il?ie=UTF8&linkCode=li3&tag=dsea-22&linkId=045d2f7f318bd1d761f6bc23905dded9" target="_blank"><img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=B00PXXJ07S&Format=_SL250_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=dsea-22" ></a><img src="https://ir-jp.amazon-adsystem.com/e/ir?t=dsea-22&l=li3&o=9&a=B00PXXJ07S" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+![Dell 4K Display P2415Q and MacBook 12inch](/images/2015/11/20151126-4k-display-macbook.JPG)
 
 # 4Kモニター購入
 
@@ -24,8 +23,6 @@ image_out: https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=B00PX
 MacBook 12インチの USB-C アダプターは Displayport 非対応で、高画質だと HDMI が唯一の選択肢。なんとか Displayport に繋げたくて [NONDA の Hub+](http://www.nonda.co/products/usb-c-hub-for-apple-new-macbook-12-plus) に期待して購入予約していたのだけど、チップセットの不良とやらでテストがパスせず頓挫、返金となってしまった。
 
 これは新しいディスプレイに買い換えるかと思い調べていたら、Amazon で Dell から4Kディスプレイが発売されていた。P2415Q という機種。
-
-<a href="https://www.amazon.co.jp/gp/product/B00PXXJ07S/ref=as_li_ss_il?ie=UTF8&linkCode=li3&tag=dsea-22&linkId=045d2f7f318bd1d761f6bc23905dded9" target="_blank"><img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=B00PXXJ07S&Format=_SL250_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=dsea-22" ></a><img src="https://ir-jp.amazon-adsystem.com/e/ir?t=dsea-22&l=li3&o=9&a=B00PXXJ07S" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
 
 <a rel="nofollow" href="http://www.amazon.co.jp/gp/product/B00PXXJ07S/ref=as_li_ss_tl?ie=UTF8&camp=247&creative=7399&creativeASIN=B00PXXJ07S&linkCode=as2&tag=dsea-22">Dell 24型 4Kワイド液晶ディスプレイ Pシリーズ (3840x2160/60Hz/IPS非光沢液晶/6ms/ブラック) P2415Q</a><img src="http://ir-jp.amazon-adsystem.com/e/ir?t=dsea-22&l=as2&o=9&a=B00PXXJ07S" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
 
@@ -43,8 +40,6 @@ Mac のディスプレイの設定でデフォルト表示されているのは 
 # 文字が小さすぎて読めない。。。
 
 3840x2160 を選択して4Kを表示してみる。[USB-C につなぐ HDMI アダプター](http://www.apple.com/jp/shop/product/MJ1L2AM/A/usb-c-vga-multiportアダプタ?fnode=8b)は 4K 30Hz で出力できる。
-
-![Dell 4K Display P2415Q and MacBook 12inch](/images/2015/11/20151126-4k-display-macbook.JPG)
 
 MacOS 上のディスプレイのスケール設定はディスプレイの情報量を多くしたいので、最も細かい設定。
 あっ、小さい。。。確かに解像度が高くディスプレイに10cmくらまで近づけば文字の識別ができるけど、これは厳しいかも。。。
@@ -79,8 +74,6 @@ MacOS 上のディスプレイのスケール設定はディスプレイの情�
 # 一番使えるのは24インチ 2560x1440 ディスプレイ
 
 返品してすぐに買ったのがこれ。
-
-<a rel="nofollow" href="http://www.amazon.co.jp/gp/product/B00XN15WJW/ref=as_li_ss_il?ie=UTF8&camp=247&creative=7399&creativeASIN=B00XN15WJW&linkCode=as2&tag=dsea-22"><img border="0" src="http://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=B00XN15WJW&Format=_SL250_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=dsea-22" ></a>
 
 <a rel="nofollow" href="http://www.amazon.co.jp/gp/product/B00XN15WJW/ref=as_li_ss_tl?ie=UTF8&camp=247&creative=7399&creativeASIN=B00XN15WJW&linkCode=as2&tag=dsea-22">Dell 23.8型 ワイド液晶モニタ 3年保証 (2560x1440/IPS非光沢/sRGB99%/VGA,DP,HDMI/USBハブ) P2416D</a><img src="http://ir-jp.amazon-adsystem.com/e/ir?t=dsea-22&l=as2&o=9&a=B00XN15WJW" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
 

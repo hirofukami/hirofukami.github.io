@@ -11,9 +11,9 @@ tags:
   - macbook
   - dell
 description: 4Kモニターもようやく揃ってきた感があり、23.8インチよりも多く情報を表示したくなり再び4Kモニター購入。落ち着くまでちょっと色々あったので、そのお話。
-image_out: https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=B07GYX7G5Z&Format=_SL250_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=dsea-22
+image_out: https://lh3.googleusercontent.com/pw/ADCreHfuq_bLbTxnJIzL_bfDdNvC1b0D6U2JJo9Ri0rYY6Vu6s0bNovJVu7vtDiBjx0112aUke26a4JrukSbDz3B76Pqn7g8GgRJiOsBwpez8KqGDTJB9mhlk6xl6-9dgMnx02Mb-gfMRb0NxbjpVlSg_wD6_Q=w1074-h1074-s-no?authuser=0
 ---
-<a href="https://www.amazon.co.jp/gp/product/B07GYX7G5Z/ref=as_li_ss_il?ie=UTF8&psc=1&linkCode=li3&tag=dsea-22&linkId=b9e45b5b03b862711bce09997f16f99d" target="_blank"><img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=B07GYX7G5Z&Format=_SL250_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=dsea-22" ></a><img src="https://ir-jp.amazon-adsystem.com/e/ir?t=dsea-22&l=li3&o=9&a=B07GYX7G5Z" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+[![Dell 4Kモニター 31.5インチ U3219Q](https://lh3.googleusercontent.com/pw/ADCreHfuq_bLbTxnJIzL_bfDdNvC1b0D6U2JJo9Ri0rYY6Vu6s0bNovJVu7vtDiBjx0112aUke26a4JrukSbDz3B76Pqn7g8GgRJiOsBwpez8KqGDTJB9mhlk6xl6-9dgMnx02Mb-gfMRb0NxbjpVlSg_wD6_Q=w1074-h1074-s-no?authuser=0)](https://amzn.to/2Me9G8N)
 
 [Dell 4Kモニター 31.5インチ U3219Q](https://amzn.to/2Me9G8N)
 
@@ -35,8 +35,6 @@ image_out: https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=B07GY
 予算的には 32UL750-W かな。
 
 現時点で Amazon's Choice になっている。
-
-<a href="https://www.amazon.co.jp/LG-32UL750-W-DisplayHDR600-Type-C%E3%80%81DP%E3%80%81HDMI%C3%972-FreeSync/dp/B07MXDZFVV/ref=as_li_ss_il?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&dchild=1&keywords=32UL750-W&qid=1590976945&sr=8-5&linkCode=li3&tag=dsea-22&linkId=88c58b3c561822952710591f42b8d759" target="_blank"><img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=B07MXDZFVV&Format=_SL250_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=dsea-22" ></a><img src="https://ir-jp.amazon-adsystem.com/e/ir?t=dsea-22&l=li3&o=9&a=B07MXDZFVV" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
 
 [LG モニター ディスプレイ 32UL750-W](https://amzn.to/3cfcCMU)
 
@@ -76,7 +74,7 @@ Macbook につないで作業を始めるもまたもブラックアウト発生
 
 U3219Q という機種が当てはまった。
 
-<a href="https://www.amazon.co.jp/Dell-31-5%E3%82%A4%E3%83%B3%E3%83%81-%E3%83%95%E3%83%AC%E3%83%BC%E3%83%A0%E3%83%AC%E3%82%B9-%E3%83%97%E3%83%AC%E3%83%9F%E3%82%A2%E3%83%A0%E3%83%91%E3%83%8D%E3%83%AB3%E5%B9%B4%E4%BF%9D%E8%A8%BC-U3219Q/dp/B07GYX7G5Z/ref=as_li_ss_il?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&dchild=1&keywords=dell+4k+32&qid=1590982358&sr=8-2&linkCode=li3&tag=dsea-22&linkId=dacc087282814e8a51378792e004df48" target="_blank"><img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=B07GYX7G5Z&Format=_SL250_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=dsea-22" ></a><img src="https://ir-jp.amazon-adsystem.com/e/ir?t=dsea-22&l=li3&o=9&a=B07GYX7G5Z" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+[![Dell 4Kモニター 31.5インチ U3219Q](https://lh3.googleusercontent.com/pw/ADCreHeuJh4pbuFgqjEEKXFD2bZxkGLBYBvhRHKG04p4JgDxbETT2k_Lyv7YB730NdtcbB_jR9CGFgLm1Cz-I3uO0ka1lrBqGxmUhpuvuNhTmpLaI4xSy1jzPaItl-nidBBPXayal13eIFWeWXmuu5bTE4ehtg=w1074-h604-s-no?authuser=0)](https://amzn.to/2Me9G8N)
 
 [Dell 4Kモニター 31.5インチ U3219Q](https://amzn.to/2Me9G8N)
 
@@ -95,6 +93,6 @@ Macbook 12インチにつなぐ今オススメの4Kモニターは Dell 4Kモニ
 
 [Dell 4Kモニター 31.5インチ U3219Q](https://amzn.to/2Me9G8N)
 
-<iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="https://rcm-fe.amazon-adsystem.com/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=dsea-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=as_ss_li_til&asins=B07GYX7G5Z&linkId=a5c74db5e8693c7fac4e7f7101916b58"></iframe>
+[![Dell 4Kモニター 31.5インチ U3219Q](https://lh3.googleusercontent.com/pw/ADCreHdjaK3yZiCOaoa3eAyVyTWtO2TzKBzq3cWaUou0btb9ZKq10stiqZmnabGEkGQvtG_3BV8jjLnkhWouklf2Cdyu6lw6y_cV7hM0UZsWkf5TKICBGHvLZFUUgfzY3XNGAjQrCCIXZTqw95q2HYhxSYpE9w=w1074-h1071-s-no?authuser=0)](https://amzn.to/2Me9G8N)
 
 このモニターを使い始めて周辺環境を変えたこともあり、今度はそのことを紹介予定。
