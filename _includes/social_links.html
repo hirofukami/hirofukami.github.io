@@ -1,55 +1,92 @@
 <div class="social-icons">
   <div class="social-icons-right">
+    <a class="mx-1" href="/books">
+      <i class="fa-solid fa-book"></i>
+    </a>
     {% if site.twitter_username %}
-    <a class="fa fa-twitter" href="https://twitter.com/{{ site.twitter_username }}"></a>
+    <a class="mx-1" href="https://twitter.com/{{ site.twitter_username }}">
+      <i class="fa-brands fa-twitter"></i>
+    </a>
     {% endif %}
     {% if site.instagram_username %}
-    <a class="fa fa-instagram" href="https://www.instagram.com/{{ site.instagram_username }}"></a>
+    <a class="mx-1" href="https://www.instagram.com/{{ site.instagram_username }}">
+      <i class="fa-brands fa-instagram"></i>
+    </a>
     {% endif %}
     {% if site.facebook_username %}
-    <a class="fa fa-facebook" href="https://facebook.com/{{ site.facebook_username }}"></a>
+    <a class="mx-1" href="https://facebook.com/{{ site.facebook_username }}">
+      <i class="fa-brands fa-facebook"></i>
+    </a>
     {% endif %}
     {% if site.linkedin_username %}
-    <a class="fa fa-linkedin" href="https://www.linkedin.com/in/{{ site.linkedin_username }}"></a>
+    <a class="mx-1" href="https://www.linkedin.com/in/{{ site.linkedin_username }}">
+      <i class="fa-brands fa-linkedin-in"></i>
+    </a>
     {% endif %}
     {% if site.github_username %}
-      <a class="fa fa-github" href="https://github.com/{{ site.github_username }}"></a>
+      <a class="mx-1" href="https://github.com/{{ site.github_username }}">
+        <i class="fa-brands fa-github"></i>
+      </a>
     {% endif %}
     {% if site.bitbucket_username %}
-      <a class="fa fa-bitbucket" href="https://bitbucket.org/{{ site.bitbucket_username }}"></a>
+      <a class="mx-1" href="https://bitbucket.org/{{ site.bitbucket_username }}">
+        <i class="fa-brands fa-bitbucket"></i>
+      </a>
     {% endif %}
     {% if site.shopping %}
-      <a class="fa fa-shopping-cart" href="https://hirofukami.official.ec/"></a>
+      <a class="mx-1" href="https://hirofukami.official.ec/">
+        <i class="fa-solid fa-cart-shopping"></i>
+      </a>
     {% endif %}
     {% if site.stackoverflow_id %}
-      <a class="fa fa-stack-overflow" href="https://stackoverflow.com/users/{{ site.stackoverflow_id }}"></a>
+      <a class="mx-1" href="https://stackoverflow.com/users/{{ site.stackoverflow_id }}">
+        <i class="fa-brands fa-stack-overflow"></i>
+      </a>
     {% endif %}
     {% if site.skype_username %}
-      <a class="fa fa-skype" href="skype:{{ site.skype_username }}?userinfo"></a>
+      <a class="mx-1" href="skype:{{ site.skype_username }}?userinfo">
+        <i class="fa-brands fa-skype"></i>
+      </a>
     {% endif %}
     {% if site.steam_nickname %}
-      <a class="fa fa-steam-square" href="http://steamcommunity.com/id/{{ site.steam_nickname }}"></a>
+      <a class="mx-1" href="http://steamcommunity.com/id/{{ site.steam_nickname }}">
+        <i class="fa-brands fa-square-steam"></i>
+      </a>
     {% endif %}
     {% if site.google_plus_id %}
-      <a class="fa fa-google-plus" href="https://plus.google.com/{{ site.google_plus_id }}/posts"></a>
+      <a class="mx-1" href="https://plus.google.com/{{ site.google_plus_id }}/posts">
+        <i class="fa-brands fa-google-plus-g"></i>
+      </a>
     {% endif %}
     {% if site.email %}
-      <a class="fa fa-envelope" href="mailto:{{ site.email }}"></a>
+      <a class="mx-1" href="mailto:{{ site.email }}">
+        <i class="fa-regular fa-envelope"></i>
+      </a>
     {% endif %}
     {% if site.angellist_username %}
-      <a class="fa fa-angellist" href="https://angel.co/{{ site.angellist_username }}"></a>
+      <a class="mx-1" href="https://angel.co/{{ site.angellist_username }}">
+        <i class="fa-brands fa-angellist"></i>
+      </a>
     {% endif %}
     {% if site.medium_id %}
-      <a class="fa fa-medium" href="https://medium.com/@{{ site.medium_id }}"></a>
+      <a class="mx-1" href="https://medium.com/@{{ site.medium_id }}">
+        <i class="fa-brands fa-medium"></i>
+      </a>
     {% endif %}
-    <a class="fa fa-rss" href="{{ "/feed.xml" | prepend: site.baseurl }}"></a>
+      <a class="mx-1" href="{{ "/feed.xml" | prepend: site.baseurl }}">
+        <i class="fa-solid fa-rss"></i>
+      </a>
   </div>
   <div class="right">
     {% if site.bitcoin_url %}
-      <a class="fa fa-bitcoin" href="{{ site.bitcoin_url }}"></a>
+      <a class="mx-1" href="{{ site.bitcoin_url }}">
+        <i class="fa-brands fa-bitcoin"></i>
+      </a>
     {% endif %}
     {% if site.paypal_url %}
-      <a class="fa fa-paypal" href="{{ site.paypal_url }}"></a>
+      <a class="mx-1" href="{{ site.paypal_url }}">
+        <i class="fa-brands fa-paypal"></i>
+      </a>
     {% endif %}
     {% if site.flattr_button %}
       {{ site.flattr_button }}
