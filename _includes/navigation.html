@@ -1,13 +1,26 @@
-{% for page in site.pages %}
+<div class="text-center">
+  {% for page in site.pages %}
     {% if page.tags contains "about" %}
-        <a href="{{ page.url }}">{{ page.title }}</a>
+      <a href="{{ page.url }}">{{ page.title }}</a>
     {% endif %}
-{% endfor %}
-{% for page in site.pages %}
+  {% endfor %}
+  {% for page in site.pages %}
+    {% if page.tags contains "professional-career" %}
+      <a href="{{ page.url }}">Biz</a>
+    {% endif %}
+  {% endfor %}
+  <br>
+  {% for page in site.pages %}
+    {% if page.title == "ひとりスタートアップ" %}
+      <a href="{{ page.url }}">{{ page.title }}</a>
+    {% endif %}
+  {% endfor %}
+  {% for page in site.pages %}
     {% if page.tags contains "contact" %}
-        <a href="{{ page.url }}">{{ page.title }}</a>
+      <a href="{{ page.url }}">{{ page.title }}</a>
     {% endif %}
-{% endfor %}
+  {% endfor %}
+</div>
 {% if site.simple_search %}
   <form action="{{ site.simple_search }}" method="get">
     <input type="text" name="q" results="0" placeholder="Search">

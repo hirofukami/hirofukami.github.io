@@ -1,6 +1,6 @@
 # Site settings
 title:       Hiro Fukami's Blog - 深海寛信のブログ
-email:       dee.sea@gmail.com
+# email:       dee.sea@gmail.com
 author:      Hiro Fukami
 description: "Hiro Fukami(深海寛信 ふかみひろのぶ)'s Blog : 世の中をより良く変えるため、世の中にない新しいサービスを模索する日々。CEO of Players1st inc., Business Starter, Engineer and Daddy."
 baseurl:     ""
@@ -54,7 +54,7 @@ medium_id:
 bitcoin_url:
 paypal_url:
 flattr_button:
-shopping: true
+shopping: false
 
 # Post sharing icons
 show_sharing_icons: true
