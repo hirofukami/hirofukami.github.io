@@ -1,0 +1,11 @@
+name: Hiro Fukami's Blog
+
+services:
+  jekyll:
+    platform: linux/x86_64
+    image: jekyll/jekyll:4.2.0
+    volumes:
+      - ./:/srv/jekyll
+    command: jekyll serve --watch --trace
+    ports:
+      - "4000:4000"
