@@ -3,7 +3,12 @@ layout: post
 title: "AIが来て、ひとりスタートアップが変わった。2027年3月末までに60サービスを作るチャレンジ開始"
 date: 2026-07-13
 categories: Business
-tags: スタートアップ, AI, BuildInPublic, 1日1スタートアップ, 受託開発
+tags: 
+  - スタートアップ
+  - AI
+  - BuildInPublic
+  - 1日1スタートアップ
+  - 受託開発
 comments: true
 description: AIの登場でひとりスタートアップが変わった。受託依存から抜け出すために、1日1サービスを量産して60本並べる。9ヶ月の挑戦を全部オープンにしながら進めるチャレンジを開始する。
 image: /images/2026/07/20260713-ai-multi-startup.png
