@@ -20,6 +20,15 @@ description: Flutter にて in_app_purchase を使って定期課金を実現す
 image: /images/2023/10/2023-10-16-futsal-met.png
 ---
 
+<div class="alert alert-warning" role="alert">
+  <div style="float: left; margin-right: 10px;">
+    <i class="fas fa-info-circle fa-lg"></i>
+  </div>
+  <div>
+    この記事は2023年9月時点の情報です。Apple の verifyReceipt endpoint が非推奨になるなど、現在では古くなっている内容が含まれます。実装の際は最新の公式ドキュメントもあわせてご確認ください。
+  </div>
+</div>
+
 Flutter にて in_app_purchase を使って定期課金を実現するための方法をまとめました。
 
 構成は単純な デバイス + DB 以外にも購入データを証明するバックエンドも加わり割りと複雑で、
@@ -29,9 +38,9 @@ in_app_purchase が行っている処理への理解も必要の上、Apple, Goo
 
 # 定期課金を導入したアプリ
 
-**[フットサルSNSアプリ 「フットサルメット」][FutsalMet]**
+**フットサルSNSアプリ 「フットサルメット」**
 
-[![フットサルメット](/images/2023/10/2023-10-16-futsal-met.png)][FutsalMet]
+![フットサルメット](/images/2023/10/2023-10-16-futsal-met.png)
 
 広告なしで使える無料アプリだが機能制限があり、より便利な機能を利用するための定期課金を提供している。
 
@@ -644,7 +653,6 @@ in app purchase で定期課金を実現するには、
 コンタクトフォームからお問い合わせください。
 
 
-[FutsalMet]: https://company.p1st.app/futsal-met/
 [codelab]: https://codelabs.developers.google.com/codelabs/flutter-in-app-purchases
 [App Store Connect]: https://appstoreconnect.apple.com/
 [Google Play Console]: https://play.google.com/console/
