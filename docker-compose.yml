@@ -4,6 +4,8 @@ services:
   jekyll:
     platform: linux/x86_64
     image: jekyll/jekyll:4.2.0
+    environment:
+      - TZ=Asia/Tokyo
     volumes:
       - ./:/srv/jekyll
     command: jekyll serve --watch --trace
