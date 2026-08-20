@@ -6,6 +6,7 @@ description: "Hiro Fukami(深海寛信 ふかみひろのぶ)'s Blog : 世の中
 baseurl:     ""
 url:         "https://hirofukami.com"
 date_format: "%b %-d, %Y"
+timezone:    Asia/Tokyo
 
 # Google services
 google_verification:
